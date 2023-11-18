@@ -3,6 +3,7 @@ from datetime import date
 
 
 from shared.selenium_service import get_html
+from shared.quality import tags_work
 from utils.wordlist import BLACK_LIST
 from utils.dry_functions import (DATE_FORMAT,
                                  read_json, 
@@ -24,6 +25,7 @@ def map_seed(driver, data_path, map_seed_conf, is_origin=False, update_fields=[]
     time = map_seed_conf["time"]
     scroll_page = map_seed_conf["scroll_page"]
     get_elements_seed = map_seed_conf["get_elements_seed"]
+    option = map_seed_conf['option']
 
     seed_path = data_path + "/seed.json"
     seeds = read_json(seed_path)
@@ -68,7 +70,10 @@ def map_seed(driver, data_path, map_seed_conf, is_origin=False, update_fields=[]
                 new_row = {"ref": ref, "titulo": title, "preco": price, "link_imagem": link_imagem, "link_produto": product_link, "ing_date": data_formatada}
                 index = df_tree["ref"] == new_row['ref']
                 print(new_row)
-
+                
+                if (option == 'test_tag'):
+                    tags_work(df_tree, columns, new_row)
+                
                 if ((update_fields) and (index.any())):
                     for field in update_fields:
                         df_tree.loc[index, field] = new_row[field]
@@ -126,8 +131,8 @@ def map_tree(driver, data_path, map_tree_conf, update=False, filter_ref=False):
 
     # Define as colunas para o DataFrame e cria um arquivo CSV, se não existir
     columns = ["ref", "titulo" ,"preco" ,"link_imagem", "link_produto", "ing_date"]
-    row = ",".join(map(str, columns))
-    create_file_if_not_exists(origin_temp_path, row)
+    head = ",".join(map(str, columns))
+    create_file_if_not_exists(origin_temp_path, head)
 
     # Carrega e filtra o DataFrame df_origin por data
     df_tree = df_tree[~df_tree['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]

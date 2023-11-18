@@ -7,7 +7,7 @@ CONF = {
     "name": "new_millen",
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
-    "marca": "atlhetica nutrition",
+    "marca": "new millen",
     "location_type_product": [{'tag': 'div', 'class': 'breadcrumbs'}],
     "data_path" : "./pages/new_millen/data",
 }

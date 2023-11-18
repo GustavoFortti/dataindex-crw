@@ -77,20 +77,26 @@ def extract(conf):
     global CONF
     CONF = conf
     option = CONF["option"]
+    data_path = CONF["data_path"]
+    map_seed_conf["option"] = option
 
     driver = initialize_selenium()
 
     if (option == "init"):
         print("MAP FUNCTION: map_seed")
-        map_seed(driver, CONF["data_path"], map_seed_conf)
+        map_seed(driver, data_path, map_seed_conf)
 
         print("MAP FUNCTION: map_tree")
-        map_tree(driver, CONF["data_path"], map_tree_conf)
+        map_tree(driver, data_path, map_tree_conf)
     elif (option == "update_products"):
         print("MAP FUNCTION: map_seed")
-        map_seed(driver, CONF["data_path"], map_seed_conf, True)
+        map_seed(driver, data_path, map_seed_conf, True)
     elif (option == "update_pages"):
         print("MAP FUNCTION: map_tree")
-        map_tree(driver, CONF["data_path"], map_tree_conf)
+        map_tree(driver, data_path, map_tree_conf)
+    elif (option == "test_tag"):
+        print("MAP FUNCTION: map_seed")
+        map_seed_conf["scroll_page"] = False
+        map_seed(driver, data_path, map_seed_conf)
 
     driver.quit()
