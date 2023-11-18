@@ -8,7 +8,7 @@ CONF = {
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
     "marca": "adaptogen",
-    "location_type_product": {'tag': 'nav', 'class': 'woocommerce-breadcrumb'},
+    "location_type_product": [{'tag': 'nav', 'class': 'woocommerce-breadcrumb'}],
     "data_path" : "./pages/adaptogen/data",
 }
 

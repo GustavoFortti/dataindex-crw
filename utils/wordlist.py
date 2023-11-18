@@ -15,6 +15,7 @@ BLACK_LIST = [
     'baby look',
     'mascara',
     'porta capsulas',
+    'shoulder bag',
     'frisbee',
 ]
 

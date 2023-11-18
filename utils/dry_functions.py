@@ -98,7 +98,7 @@ def check_if_is_old_file(file_path):
         return last_modified_date != today
     return True
 
-def filter_column_date_by_days(df, column, n_days_back):
+def filter_df_by_days(df, column, n_days_back):
     if (len(df) == 0): return df
     df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)
     days = date.today() - timedelta(days=n_days_back)
@@ -139,3 +139,17 @@ def remove_nan_from_dict(document):
             new_document[chave] = valor  # Se não for um float, inclua no novo dicionário
 
     return new_document
+
+def find_in_text_with_word_list(text, word_list):
+    match = None
+    for word in word_list:
+        clean_word = clean_text(word)
+        text = clean_text(text)
+        
+        match = re.search(clean_word, clean_text(text))  # Expressão regular para encontrar dígitos
+        if match:
+            break
+            
+    if match:
+        return True
+    return False

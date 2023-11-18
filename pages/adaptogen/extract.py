@@ -61,14 +61,14 @@ map_seed_conf = {
     "get_last_page_index": get_last_page_index,
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
-    "time": 8,
+    "time": 3,
     "scroll_page": True,
     "return_text": False,
 }
 
 map_tree_conf = {
     "get_elements_tree": get_elements_tree,
-    "time": 3,
+    "time": 1,
     "scroll_page": True,
     "return_text": True,
 }

@@ -2,8 +2,8 @@ from shared.enrich_data import init
 
 def dry_origin():
     file_path = CONF['data_path']
-    location = CONF['location_type_product']
-    df = init(CONF, location)
+    locations = CONF['location_type_product']
+    df = init(CONF, locations)
     df['nome'] = df['nome'].str.replace('- growth supplements', '')
     
     df.to_csv(file_path + "/origin_csl.csv", index=False)

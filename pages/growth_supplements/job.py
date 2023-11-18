@@ -8,7 +8,7 @@ CONF = {
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
     "marca": "growth supplements",
-    "location_type_product": {'tag': 'section', 'class': 'breadcrumb-produto'},
+    "location_type_product": [{'tag': 'section', 'class': 'breadcrumb-produto'}],
     "data_path" : "./pages/growth_supplements/data",
 }
 

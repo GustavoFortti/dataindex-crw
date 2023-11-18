@@ -8,7 +8,7 @@ CONF = {
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
     "marca": "iridium labs",
-    "location_type_product": {'tag': 'div', 'class': 't4s-product__description t4s-rte'},
+    "location_type_product": [{'tag': 'div', 'class': 't4s-product__description t4s-rte'}],
     "data_path" : "./pages/iridium_labs/data",
 }
 

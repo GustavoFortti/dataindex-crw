@@ -6,7 +6,7 @@ from utils.dry_functions import clean_text, path_exist, remove_spaces, loading
 
 pd.set_option('display.max_rows', None)
 
-def init(conf, location):
+def init(conf, locations):
     global CONF
     global WORD_LIST
 
@@ -33,12 +33,12 @@ def init(conf, location):
     df['titulo'] = df['titulo'].apply(clean_text)
     df['titulo'] = df['titulo'].apply(remove_spaces)
 
-    df = keywords_page_specification(df, file_path, location)
+    df = keywords_page_specification(df, file_path, locations)
     print(df)
 
     return df
 
-def keywords_page_specification(df, file_path, location):
+def keywords_page_specification(df, file_path, locations):
     products_path = f"{file_path}/products"
 
     df['especificacao'] = None
@@ -51,14 +51,19 @@ def keywords_page_specification(df, file_path, location):
                 html_text = product_file.read()
                 soup = BeautifulSoup(html_text, 'html.parser')
 
-                tag = soup.find(location['tag'], class_=location['class'])
-                text = clean_text(tag.text)
-                keywords = []
-                for item in WORD_LIST:
-                    for sub_item in item:
-                        if re.search(clean_text(sub_item), text):
-                            keywords.append(sub_item)
-                            break
+                for location in locations:
+                    tag = soup.find(location['tag'], class_=location['class'])
+                    
+                    text = clean_text(tag.text)
+                    keywords = []
+                    for item in WORD_LIST:
+                        for sub_item in item:
+                            if re.search(clean_text(sub_item), text):
+                                keywords.append(sub_item)
+                                break
+                    
+                    if (keywords != []):
+                        break
                 
                 if (keywords != []):
                     keywords = " ".join(keywords)
@@ -84,20 +89,24 @@ def keywords_page(df, file_path):
         page_path = f"{products_path}/{ref}.txt"
         is_text = path_exist(text_path)
         
-        product_text_path = text_path if is_text else page_path
+        try:
+            product_text_path = text_path if is_text else page_path
 
-        with open(product_text_path, 'r') as product_file:
-            product = product_file.read()
+            with open(product_text_path, 'r') as product_file:
+                product = product_file.read()
 
-            if (~is_text):
-                product = clear_page(product)
-                product = ' '.join(product.split())
+                if (~is_text):
+                    product = clear_page(product)
+                    product = ' '.join(product.split())
 
-            words = best_words(product)
-            df.loc[index, 'especificacao_rota'] = words
+                words = best_words(product)
+                df.loc[index, 'especificacao_rota'] = words
 
-            with open(text_path, 'w') as new_file:
-                new_file.write(product)
+                with open(text_path, 'w') as new_file:
+                    new_file.write(product)
+        except:
+            df.loc[index, 'especificacao_rota'] = None
+            print("error file: " + ref)
 
     return df
 

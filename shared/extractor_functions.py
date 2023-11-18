@@ -11,7 +11,8 @@ from utils.dry_functions import (DATE_FORMAT,
                                  create_directory_if_not_exists, 
                                  check_if_is_old_file,
                                  create_file_if_not_exists,
-                                 filter_column_date_by_days,
+                                 find_in_text_with_word_list,
+                                 path_exist,
                                  format_column_date,
                                  clean_string_break_line,
                                  path_exist)
@@ -90,10 +91,8 @@ def map_seed(driver, data_path, map_seed_conf, is_origin=False, update_fields=[]
     df_tree_temp = format_column_date(df_tree_temp, 'ing_date')
 
     if (is_origin):
-        
         df_tree = df_tree.dropna(subset=['preco'])
-        for word in BLACK_LIST:
-            df_tree = df_tree[~df_tree['titulo'].str.contains(word, case=False, na=False)]
+        df_tree = df_tree[~df_tree['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
 
         df_tree_temp.to_csv(origin_path, index=False)
 
@@ -123,28 +122,22 @@ def map_tree(driver, data_path, map_tree_conf, update=False, filter_ref=False):
     create_directory_if_not_exists(textfiles_path)
 
     # Define os caminhos para os arquivos CSV de origem e temporário
-    origin_path = data_path + "/origin.csv"
     origin_temp_path = data_path + "/origin_temp.csv"
 
     # Define as colunas para o DataFrame e cria um arquivo CSV, se não existir
     columns = ["ref", "titulo" ,"preco" ,"link_imagem", "link_produto", "ing_date"]
     row = ",".join(map(str, columns))
-    create_file_if_not_exists(origin_path, row)
+    create_file_if_not_exists(origin_temp_path, row)
 
     # Carrega e filtra o DataFrame df_origin por data
-    df_origin = pd.read_csv(origin_path)
-    df_origin = filter_column_date_by_days(df_origin, 'ing_date', 3)
-    refs = df_origin["ref"].values
-    df_tree = df_tree[~df_tree['ref'].isin(refs)]
-    # df_tree = df_tree.dropna(subset=['preco'])
-
+    df_tree = df_tree[~df_tree['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+    df_origin_temp = pd.read_csv(origin_temp_path)
+    df_tree = df_tree.dropna(subset=['preco'])
+    
     if (df_tree.empty):
         print("df_tree is empty")
         return
-
-    for word in BLACK_LIST:
-        df_tree = df_tree[~df_tree['titulo'].str.contains(word, case=False, na=False)]
-
+    
     # Processamento principal: itera sobre df_tree para extrair e processar dados
     for index, row in df_tree.iterrows():
         # Extrai dados da linha atual
@@ -187,13 +180,15 @@ def map_tree(driver, data_path, map_tree_conf, update=False, filter_ref=False):
         # Cria um novo registro e adiciona ao DataFrame de origem
         new_row = {"ref": ref, "titulo": title, "preco": price, "link_imagem": link_imagem, "link_produto": url, "ing_date": data_formatada}
         print(new_row)
-        df_origin.loc[len(df_origin)] = new_row
+        df_origin_temp.loc[len(df_origin_temp)] = new_row
         
         # Salva temporariamente o DataFrame df_origin
-        df_origin = format_column_date(df_origin, 'ing_date')
-        df_origin.to_csv(origin_temp_path, index=False)
+        df_origin_temp = format_column_date(df_origin_temp, 'ing_date')
+        df_origin_temp.to_csv(origin_temp_path, index=False)
 
     # Carrega o DataFrame temporário e o salva no arquivo CSV final
+    origin_path = data_path + "/origin.csv"
+    delete_file(origin_path)
     df_origin_temp = pd.read_csv(origin_temp_path)
     df_origin_temp = format_column_date(df_origin_temp, 'ing_date')
     df_origin_temp.to_csv(origin_path, index=False)

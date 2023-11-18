@@ -8,8 +8,8 @@ CONF = {
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
     "marca": "darkness",
+    "location_type_product": [{'tag': 'section', 'class': 'breadcrumbs'}],
     "data_path" : "./pages/darkness/data",
-    "location_type_product": {'tag': 'section', 'class': 'breadcrumbs'},
 }
 
 def run(args):

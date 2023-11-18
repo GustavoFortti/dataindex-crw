@@ -8,7 +8,7 @@ CONF = {
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
     "marca": "black skull",
-    "location_type_product": {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'},
+    "location_type_product": [{'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'}],
     "data_path" : "./pages/black_skull/data",
 }
 

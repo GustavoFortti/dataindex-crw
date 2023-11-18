@@ -8,7 +8,7 @@ CONF = {
     "tipo_produto": "suplemento",
     "word_list": WORD_LIST["suplemento"],
     "marca": "atlhetica nutrition",
-    "location_type_product": {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'},
+    "location_type_product": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
     "data_path" : "./pages/atlhetica_nutrition/data",
 }
 
