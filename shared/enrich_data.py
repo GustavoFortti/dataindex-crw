@@ -1,6 +1,7 @@
 import os
-import pandas as pd
 import re
+import pandas as pd
+import numpy as np
 from bs4 import BeautifulSoup
 from utils.dry_functions import clean_text, path_exist, remove_spaces, loading, find_in_text_with_word_list
 from utils.wordlist import BLACK_LIST
@@ -32,59 +33,75 @@ def init(conf, locations):
     df['preco_numeric'] = df['preco'].str.replace(',', '.').astype(float)
     df['titulo'] = df['titulo'].apply(clean_text)
     df['titulo'] = df['titulo'].apply(remove_spaces)
+    
+    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)(?!\s*gratis)\b'
+    df[['quantidade', 'unidade']] = df['nome'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
+    df['qnt_gramas'] = df[['quantidade', 'unidade']].apply(convert_to_grams, axis=1)
+    df['preco_qnt'] = df.apply(relation_qnt_preco, axis=1)
+    
+    pattern = r'(\d+)\s*(caps|cap|vcaps|capsules|comprimidos|comps|comp|capsulas|soft|softgel)\b'
+    df[['quantidade_formato', 'formato']] = df['nome'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
+    df['formato'] = df['formato'].apply(replace_for_comprimidos)
 
     df = df[~df['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "titulo", "preco", "link_imagem", "link_produto"], how="any")
-    print(df)
+    df = df[['ref', 'titulo', 'preco', 'link_imagem', 'link_produto', 'ing_date',
+            'nome', 'marca', 'tipo_produto', 'preco_numeric', 'qnt_gramas', 'preco_qnt',
+            'quantidade_formato', 'formato', 'especificacao', 'especificacao_rota']]
     
     return df
 
 def keywords_page_specification(df, file_path, locations):
     products_path = f"{file_path}/products"
 
-    df['especificacao'] = None
+    df['especificacao_rota'] = None
     for index, ref in enumerate(df["ref"]):
         loading(index, len(df))
         page_path = f"{products_path}/{ref}.txt"
         keywords_path = f"{products_path}/{ref}_spec.txt"
-        keywords_exist = path_exist(keywords_path)
-
+        
+        # if path_exist(keywords_path):
+        #     product_keywords_path = keywords_path
+        if path_exist(page_path):
+            product_keywords_path = page_path
+        else:
+            continue            
+        
         try:
-            product_keywords_path = keywords_path if keywords_exist else page_path
-            
             with open(product_keywords_path, 'r') as product_file:
                 product = product_file.read()
                 keywords = []
                 
-                if ((not keywords_exist) or (not product)):
+                if (product):
                     soup = BeautifulSoup(product, 'html.parser')
                     for location in locations:
                         tag = soup.find(location['tag'], class_=location['class'])
                         if (tag == None): continue
                         keywords = find_matches(tag.text, 3)
-                    
+                        
                         if (keywords != []): break
                 else:
-                    keywords = product
+                    keywords = ''
 
-                df.loc[index, 'especificacao'] = keywords
+                df.loc[df['ref'] == ref, 'especificacao_rota'] = keywords
                 with open(keywords_path, 'w') as new_file:
                     new_file.write(keywords)
         except:
-            df.loc[index, 'especificacao'] = None
+            df.loc[df['ref'] == ref, 'especificacao_rota'] = None
 
+    # exit(0)
     print()
     keywords_page(df, file_path)
     print()
-    df['especificacao_rota'] = df.apply(lambda row: None if row['especificacao'] is not None else row['especificacao_rota'], axis=1)
+    df['especificacao'] = df.apply(lambda row: None if row['especificacao_rota'] is not None else row['especificacao'], axis=1)
 
     return df
 
 def keywords_page(df, file_path):
     products_path = f"{file_path}/products"
 
-    df['especificacao_rota'] = ""
+    df['especificacao'] = ""
     for index, ref in enumerate(df["ref"]):
         loading(index, len(df))
         text_path = f"{products_path}/{ref}_text.txt"
@@ -102,13 +119,15 @@ def keywords_page(df, file_path):
                     product = ' '.join(product.split())
 
                 words = best_words(product)
-                df.loc[index, 'especificacao_rota'] = words
+                df.loc[df['ref'] == ref, 'especificacao'] = words
 
                 with open(text_path, 'w') as new_file:
                     new_file.write(product)
         except:
-            df.loc[index, 'especificacao_rota'] = None
+            df.loc[df['ref'] == ref, 'especificacao'] = None
+            print("")
             print("error file: " + str(ref))
+            print("")
 
     return df
 
@@ -254,3 +273,42 @@ def create_table_2(soup):
         return dfs
     except:
         return None
+    
+def find_pattern_for_quantity(text, pattern):
+    match = re.search(pattern, text)
+    
+    if match:
+        quantidade, unidade = match.groups()
+        return str(quantidade).replace(',', '.'), unidade
+
+    return None, None
+
+def convert_to_grams(row):
+    value = row['quantidade']
+    unit = row['unidade']
+    
+    if pd.notna(value):
+        if unit in ['kg']:
+            value = float(value) * 1000
+        try:
+            value = int(float(value))
+        except ValueError:
+            pass
+    else:
+        value = -1
+    
+    return value
+
+def replace_for_comprimidos(texto):
+    palavras_substituir = ['caps', 'cap', 'vcaps', 'capsulas', 'capsules', 'comprimidos', 'comps', 'comp', 'capsulas', 'soft', 'softgel']
+    if pd.notna(texto):
+        for palavra in palavras_substituir:
+            if clean_text(palavra) in clean_text(texto):
+                return 'comprimidos'
+    return texto
+
+def relation_qnt_preco(row):
+    resultado = (row['preco_numeric'] / row['qnt_gramas']) if (row['qnt_gramas'] > 0) else -1
+    if resultado < 0:
+        return np.nan
+    return round(resultado, 3)

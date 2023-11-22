@@ -212,14 +212,17 @@ def create_products_index_if_not_exits():
                 "preco_numeric": {
                     "type": "float"
                 },
-                "quantidade": {
+                "qnt_gramas": {
                     "type": "integer"
                 },
-                "quantidade_numeric": {
+                "preco_qnt": {
+                    "type": "float"
+                },
+                "quantidade_formato": {
                     "type": "integer"
                 },
-                "unidade": {
-                    "type": "keyword"
+                "formato": {
+                    "type": "text"
                 }
             }
         }

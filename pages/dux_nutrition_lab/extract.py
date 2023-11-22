@@ -30,7 +30,7 @@ def get_title(soup, map_type):
 def get_price(soup, map_type):
     if (map_type == "seed"):
         price = None
-        price_element = soup.find('span', class_='vtex-product-price-1-x-sellingPriceValue')
+        price_element = soup.find('span', class_='vtex-product-price-1-x-sellingPriceValue vtex-product-price-1-x-sellingPriceValue--summary')
         if price_element:
             currency_container = price_element.find('span', class_='vtex-product-price-1-x-currencyContainer')
             if currency_container:

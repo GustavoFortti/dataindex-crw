@@ -43,8 +43,8 @@ def get_price(soup, map_type):
 def get_link_imagem(soup, map_type):
     if (map_type == "seed"):
         image_element = soup.find(class_='t4s-product-main-img')
-        image = image_element['src'] if image_element else None
-        return (image[2:] if image[:2] == "//" else image)
+        image = "https:" + image_element['src'] if image_element else None
+        return image
     # map_tree
     return None
 
