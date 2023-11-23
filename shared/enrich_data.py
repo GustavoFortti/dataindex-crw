@@ -13,7 +13,6 @@ def init(conf, locations):
 
     CONF = conf
     WORD_LIST = CONF['word_list']
-    
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")
@@ -28,7 +27,6 @@ def init(conf, locations):
     df['nome'] = df['titulo'].str.lower()
     df['preco'] = df['preco'].str.replace('R$', '').str.replace(' ', '')
     df['marca'] = CONF['marca']
-    df['tipo_produto'] = CONF['tipo_produto']
    
     df['preco_numeric'] = df['preco'].str.replace(',', '.').astype(float)
     df['titulo'] = df['titulo'].apply(clean_text)
@@ -36,8 +34,9 @@ def init(conf, locations):
     
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)(?!\s*gratis)\b'
     df[['quantidade', 'unidade']] = df['nome'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
-    df['qnt_gramas'] = df[['quantidade', 'unidade']].apply(convert_to_grams, axis=1)
+    df['quantidade'] = df[['quantidade', 'unidade']].apply(convert_to_grams, axis=1)
     df['preco_qnt'] = df.apply(relation_qnt_preco, axis=1)
+    df['quantidade'] = df['quantidade'].astype(str).replace("-1", np.nan)
     
     pattern = r'(\d+)\s*(caps|cap|vcaps|capsules|comprimidos|comps|comp|capsulas|soft|softgel)\b'
     df[['quantidade_formato', 'formato']] = df['nome'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
@@ -47,7 +46,7 @@ def init(conf, locations):
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "titulo", "preco", "link_imagem", "link_produto"], how="any")
     df = df[['ref', 'titulo', 'preco', 'link_imagem', 'link_produto', 'ing_date',
-            'nome', 'marca', 'tipo_produto', 'preco_numeric', 'qnt_gramas', 'preco_qnt',
+            'nome', 'marca', 'preco_numeric', 'quantidade', 'preco_qnt',
             'quantidade_formato', 'formato', 'especificacao', 'especificacao_rota']]
     
     return df
@@ -275,11 +274,16 @@ def create_table_2(soup):
         return None
     
 def find_pattern_for_quantity(text, pattern):
-    match = re.search(pattern, text)
-    
-    if match:
-        quantidade, unidade = match.groups()
-        return str(quantidade).replace(',', '.'), unidade
+    matches = re.findall(pattern, text)
+    padrao = r'\d+x'
+    matches_multiply = re.findall(padrao, text)
+
+    if (len(matches) == 1):
+        quantidade, unidade = matches[0]
+        quantidade = float(str(quantidade).replace(',', '.'))
+        if (len(matches_multiply) == 1):
+            quantidade = quantidade * float(matches_multiply[0].replace('x', ''))
+        return quantidade, unidade
 
     return None, None
 
@@ -308,7 +312,7 @@ def replace_for_comprimidos(texto):
     return texto
 
 def relation_qnt_preco(row):
-    resultado = (row['preco_numeric'] / row['qnt_gramas']) if (row['qnt_gramas'] > 0) else -1
+    resultado = (row['preco_numeric'] / row['quantidade']) if (row['quantidade'] > 0) else -1
     if resultado < 0:
         return np.nan
     return round(resultado, 3)

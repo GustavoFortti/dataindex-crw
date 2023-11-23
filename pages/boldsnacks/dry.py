@@ -4,6 +4,7 @@ def dry_origin():
     file_path = CONF['data_path']
     locations = CONF['location_type_product']
     df = init(CONF, locations)
+    df['especificacao_rota'] = df['especificacao_rota'] + ' barrinha'
     
     df.to_csv(file_path + "/origin_csl.csv", index=False)
     print("Success in saving origin_csl")

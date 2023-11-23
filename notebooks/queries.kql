@@ -1,0 +1,62 @@
+
+HEAD /suplementos
+
+DELETE /suplementos
+
+GET /suplementos/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+POST /suplementos/_search
+{
+  "from": 0,      
+  "size": 10,
+  "query": {
+    "multi_match": {
+      "query": "whey",
+      "fields": ["titulo^3", "especificacao^1", "marca^5", "especificacao_rota^5"]
+    }
+  },
+  "sort": [
+    {
+      "preco_qnt": "asc"
+    }
+  ]
+}
+
+POST /suplementos/_search
+{
+  "from": 0,      
+  "size": 50,
+  "query": {
+    "multi_match": {
+      "query": "kit 2x",
+      "fields": ["titulo^3", "especificacao^1", "marca^5", "especificacao_rota^5"]
+    }
+  }
+}
+
+
+POST /suplementos/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "multi_match": {
+            "query": "whey protein",
+            "fields": ["titulo^3", "marca^1", "especificacao_rota^3"]
+          }
+        }
+      ]
+    }
+  },
+  "sort": [
+    {
+      "preco_numeric": "asc"
+    }
+  ]
+}

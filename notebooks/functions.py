@@ -1,8 +1,22 @@
 import os
 import pandas as pd
 import re
+import os
+import unicodedata
+import pandas as pd
 
 local = '/home/sun/Main/prototipos/NutriFind/nutrifind-data-ingestion'
+
+def remove_spaces(text):
+    return re.sub(r'\s+', ' ', text).strip()
+
+def clean_text(texto):
+    # Normaliza o texto para decompor acentos e caracteres especiais
+    texto = unicodedata.normalize('NFKD', texto)
+    # Mantém apenas caracteres alfanuméricos e espaços
+    texto = u"".join([c for c in texto if not unicodedata.combining(c)])
+    # Remove tudo que não for letra, número ou espaço
+    return remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
 
 def get_all_origins():
     diretorio_inicial = local
@@ -22,47 +36,48 @@ def get_all_origins():
     df = pd.concat(dataframes, ignore_index=True)
     return df
 
-def mask_qnt(text, pattern):
-    # Padrão de regex para combinar quantidades e unidades
-    
+def find_pattern_for_quantity(text, pattern):
+    matches = re.findall(pattern, text)
+    padrao = r'\d+x'
+    matches_multiply = re.findall(padrao, text)
 
-    # Buscar por correspondências
-    match = re.search(pattern, text)
-
-    # Extrair quantidade e unidade se houver correspondência
-    if match:
-        quantidade, unidade = match.groups()
+    # Verificar se há uma única correspondência
+    if (len(matches) == 1):
+        quantidade, unidade = matches[0]
+        quantidade = float(str(quantidade).replace(',', '.'))
+        if (len(matches_multiply) == 1):
+            quantidade = quantidade * float(matches_multiply[0].replace('x', ''))
         return quantidade, unidade
 
     return None, None
 
-def convert_to_gr(row):
+def convert_to_grams(row):
     value = row['quantidade']
     unit = row['unidade']
     
-    if pd.notna(value):  # Verifica se 'value' não é nulo
-        value = str(value).replace(',', '.')
-        if unit in ['kg', 'l']:
+    if pd.notna(value):
+        if unit in ['kg']:
             value = float(value) * 1000
         try:
             value = int(float(value))
         except ValueError:
             pass
     else:
-        value = -1  # Converte NaN em -1
+        value = -1
     
     return value
 
-def substituir_por_comprimidos(texto):
-    palavras_substituir = ['caps', 'cap', 'cáps', 'v-caps', 'cápsulas', 'capsulas', 'capsules', 'cáp', 'comprimidos', 'comps', 'comp', 'capsulas', 'soft', 'softgel']
-    if pd.notna(texto):  # Verifica se o texto não é nulo
+def replace_for_comprimidos(texto):
+    palavras_substituir = ['caps', 'cap', 'vcaps', 'capsulas', 'capsules', 'comprimidos', 'comps', 'comp', 'capsulas', 'soft', 'softgel']
+    if pd.notna(texto):
         for palavra in palavras_substituir:
-            if palavra in texto:
+            if clean_text(palavra) in clean_text(texto):
                 return 'comprimidos'
     return texto
 
-def relacao_preco_qnt(row):
-    resultado = row['preco_numeric'] / row['qnt_gramas']
+def relation_qnt_preco(row):
+    resultado = (row['preco_numeric'] / row['qnt_gramas']) if (row['qnt_gramas'] > 0) else -1
     if resultado < 0:
-        return np.nan  # Substitui valores negativos por NaN
-    return resultado
+        return np.nan
+    return round(resultado, 3)
+

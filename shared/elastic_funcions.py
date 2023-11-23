@@ -18,7 +18,7 @@ def ingestion(conf):
     df = pd.read_csv(file_path + '/origin_csl.csv')
 
     create_connection()
-    create_or_update_products_document(df)
+    create_or_update_suply_document(df)
 
 def create_connection():
     es_hosts = "https://localhost:9200"
@@ -38,13 +38,13 @@ def create_connection():
 
     print(f"Elasticsearch connection... {es.ping()}")
 
-def create_or_update_products_document(df):
+def create_or_update_suply_document(df):
     global INDEX_NAME
-    INDEX_NAME = 'produtos'
+    INDEX_NAME = 'suplementos'
 
     try:
-        create_products_index_if_not_exits()
-        delete_docs_from_products_by_marca_and_type()
+        create_suply_index_if_not_exits()
+        delete_docs_from_suply_by_marca_and_type()
 
         helpers.bulk(es, create_documents_with_pandas(df))
         print("Bulkload completed successfully")
@@ -52,25 +52,17 @@ def create_or_update_products_document(df):
     except Exception as e:
         print(f"Erro ao enviar dados para o Elasticsearch: {str(e)}")
 
-def delete_docs_from_products_by_marca_and_type():
+def delete_docs_from_suply_by_marca_and_type():
     marca = CONF['marca']
-    tipo_produto = CONF['tipo_produto']
 
     query = {
         "query": {
             "bool": {
-            "must": [
-                {
-                "term": {
-                    "tipo_produto.keyword": tipo_produto
-                }
-                },
-                {
-                "term": {
-                    "marca.keyword": marca
-                }
-                }
-            ]
+                "must": [{
+                    "term": {
+                        "marca.keyword": marca
+                    }
+                }]
             }
         }
     }
@@ -103,7 +95,7 @@ def update_documents_with_pandas(df, hits):
             "doc": remove_nan_from_dict(row.to_dict()),
         }
 
-def create_products_index_if_not_exits():
+def create_suply_index_if_not_exits():
     index_settings = {
         "settings": {
             "analysis": {
@@ -188,15 +180,6 @@ def create_products_index_if_not_exits():
                         }
                     }
                 },
-                "tipo_produto": {
-                    "type": "text",
-                    "fields": {
-                        "keyword": {
-                            "type": "keyword",
-                            "ignore_above": 256
-                        }
-                    }
-                },
                 "nome": {
                     "type": "text",
                     "fields": {
@@ -212,7 +195,7 @@ def create_products_index_if_not_exits():
                 "preco_numeric": {
                     "type": "float"
                 },
-                "qnt_gramas": {
+                "quantidade": {
                     "type": "integer"
                 },
                 "preco_qnt": {
