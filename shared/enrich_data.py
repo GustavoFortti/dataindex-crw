@@ -32,22 +32,22 @@ def init(conf, locations):
     df['titulo'] = df['titulo'].apply(clean_text)
     df['titulo'] = df['titulo'].apply(remove_spaces)
     
-    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)(?!\s*gratis)\b'
+    pattern = r'(\d+([.,]\d+)?)\s*(kg|g|gr|gramas)\s*\w*'
     df[['quantidade', 'unidade']] = df['nome'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
     df['quantidade'] = df[['quantidade', 'unidade']].apply(convert_to_grams, axis=1)
     df['preco_qnt'] = df.apply(relation_qnt_preco, axis=1)
     df['quantidade'] = df['quantidade'].astype(str).replace("-1", np.nan)
-    
-    pattern = r'(\d+)\s*(caps|cap|vcaps|capsules|comprimidos|comps|comp|capsulas|soft|softgel)\b'
-    df[['quantidade_formato', 'formato']] = df['nome'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
-    df['formato'] = df['formato'].apply(replace_for_comprimidos)
+
+    # pattern = r'(\d+)\s*(caps|cap|vcaps|capsules|comprimidos|comps|comp|capsulas|soft|softgel)\b'
+    # df[['quantidade_formato', 'formato']] = df['nome'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
+    # df['formato'] = df['formato'].apply(replace_for_comprimidos)
 
     df = df[~df['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "titulo", "preco", "link_imagem", "link_produto"], how="any")
     df = df[['ref', 'titulo', 'preco', 'link_imagem', 'link_produto', 'ing_date',
             'nome', 'marca', 'preco_numeric', 'quantidade', 'preco_qnt',
-            'quantidade_formato', 'formato', 'especificacao', 'especificacao_rota']]
+            'especificacao', 'especificacao_rota']]
     
     return df
 
@@ -274,17 +274,21 @@ def create_table_2(soup):
         return None
     
 def find_pattern_for_quantity(text, pattern):
-    matches = re.findall(pattern, text)
-    padrao = r'\d+x'
-    matches_multiply = re.findall(padrao, text)
-
-    if (len(matches) == 1):
+    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
+    matches = re.findall(pattern, text, re.IGNORECASE)
+    
+    quantidade = None
+    if ((len(matches) == 1)): 
         quantidade, unidade = matches[0]
         quantidade = float(str(quantidade).replace(',', '.'))
-        if (len(matches_multiply) == 1):
+    
+        padrao = r'\d+x'
+        matches_multiply = re.findall(padrao, text)
+        if ((len(matches_multiply) == 1) & (quantidade != None)):
             quantidade = quantidade * float(matches_multiply[0].replace('x', ''))
+        
         return quantidade, unidade
-
+    
     return None, None
 
 def convert_to_grams(row):

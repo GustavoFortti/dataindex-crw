@@ -4,6 +4,7 @@ import re
 import os
 import unicodedata
 import pandas as pd
+import numpy as np
 
 local = '/home/sun/Main/prototipos/NutriFind/nutrifind-data-ingestion'
 
@@ -35,13 +36,11 @@ def get_all_origins():
     # Una todos os DataFrames em um único DataFrame
     df = pd.concat(dataframes, ignore_index=True)
     return df
-
 def find_pattern_for_quantity(text, pattern):
     matches = re.findall(pattern, text)
     padrao = r'\d+x'
     matches_multiply = re.findall(padrao, text)
 
-    # Verificar se há uma única correspondência
     if (len(matches) == 1):
         quantidade, unidade = matches[0]
         quantidade = float(str(quantidade).replace(',', '.'))
@@ -76,8 +75,7 @@ def replace_for_comprimidos(texto):
     return texto
 
 def relation_qnt_preco(row):
-    resultado = (row['preco_numeric'] / row['qnt_gramas']) if (row['qnt_gramas'] > 0) else -1
+    resultado = (row['preco_numeric'] / row['quantidade']) if (row['quantidade'] > 0) else -1
     if resultado < 0:
         return np.nan
     return round(resultado, 3)
-
