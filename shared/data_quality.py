@@ -1,7 +1,6 @@
 import pandas as pd
 from utils.dry_functions import create_file_if_not_exists
 
-
 def tags_work(df, columns, new_row):
     tags_path = "./data/tags.csv"
     head = ",".join(map(str, columns))

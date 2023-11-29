@@ -1,4 +1,5 @@
 import os
+import math
 import pandas as pd
 import re
 import os
@@ -7,6 +8,26 @@ import pandas as pd
 import numpy as np
 
 local = '/home/sun/Main/prototipos/NutriFind/nutrifind-data-ingestion'
+
+def remove_nan_from_dict(document):
+    new_document = {}
+    for chave, valor in document.items():
+        if isinstance(valor, float):
+            if not math.isnan(valor):
+                new_document[chave] = valor
+        else:
+            new_document[chave] = valor
+
+    return new_document
+
+def create_documents_with_pandas(df, index_name):
+    for index, row in df.iterrows():
+        yield {
+            "_op_type": "create",
+            "_index": index_name,
+            "_source": remove_nan_from_dict(row.to_dict()),
+        }
+
 
 def remove_spaces(text):
     return re.sub(r'\s+', ' ', text).strip()
@@ -79,3 +100,4 @@ def relation_qnt_preco(row):
     if resultado < 0:
         return np.nan
     return round(resultado, 3)
+

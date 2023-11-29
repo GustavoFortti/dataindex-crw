@@ -60,8 +60,6 @@ def keywords_page_specification(df, file_path, locations):
         page_path = f"{products_path}/{ref}.txt"
         keywords_path = f"{products_path}/{ref}_spec.txt"
         
-        # if path_exist(keywords_path):
-        #     product_keywords_path = keywords_path
         if path_exist(page_path):
             product_keywords_path = page_path
         else:
@@ -89,7 +87,6 @@ def keywords_page_specification(df, file_path, locations):
         except:
             df.loc[df['ref'] == ref, 'especificacao_rota'] = None
 
-    # exit(0)
     print()
     keywords_page(df, file_path)
     print()
