@@ -28,7 +28,6 @@ def create_documents_with_pandas(df, index_name):
             "_source": remove_nan_from_dict(row.to_dict()),
         }
 
-
 def remove_spaces(text):
     return re.sub(r'\s+', ' ', text).strip()
 
@@ -57,6 +56,7 @@ def get_all_origins():
     # Una todos os DataFrames em um único DataFrame
     df = pd.concat(dataframes, ignore_index=True)
     return df
+
 def find_pattern_for_quantity(text, pattern):
     matches = re.findall(pattern, text)
     padrao = r'\d+x'

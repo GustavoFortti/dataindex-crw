@@ -37,22 +37,22 @@ def create_connection():
     )
 
     print(f"Elasticsearch connection... {es.ping()}")
+    return es
 
 def create_or_update_suply_document(df):
-    global INDEX_NAME
     INDEX_NAME = 'suplementos'
 
     try:
-        create_suply_index_if_not_exits()
+        create_suply_index_if_not_exits(INDEX_NAME)
         delete_docs_from_suply_by_marca_and_type()
 
-        helpers.bulk(es, create_documents_with_pandas(df))
+        helpers.bulk(es, create_documents_with_pandas(df, INDEX_NAME))
         print("Bulkload completed successfully")
 
     except Exception as e:
         print(f"Erro ao enviar dados para o Elasticsearch: {str(e)}")
 
-def delete_docs_from_suply_by_marca_and_type():
+def delete_docs_from_suply_by_marca_and_type(index_name):
     marca = CONF['marca']
 
     query = {
@@ -68,16 +68,16 @@ def delete_docs_from_suply_by_marca_and_type():
     }
 
     try:
-        results = es.delete_by_query(index=INDEX_NAME, body=query)
+        results = es.delete_by_query(index=index_name, body=query)
         print(f"Documentos excluídos: {results['deleted']}")
     except Exception as e:
         print(f"Erro ao excluir documentos: {str(e)}")
 
-def create_documents_with_pandas(df):
+def create_documents_with_pandas(df, index_name):
     for index, row in df.iterrows():
         yield {
             "_op_type": "create",
-            "_index": INDEX_NAME,
+            "_index": index_name,
             "_source": remove_nan_from_dict(row.to_dict()),
         }
 

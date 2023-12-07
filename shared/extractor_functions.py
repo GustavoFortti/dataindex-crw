@@ -3,7 +3,7 @@ from datetime import date
 
 
 from shared.selenium_service import get_html
-from shared.quality import tags_work
+from shared.data_quality import tags_work
 from utils.wordlist import BLACK_LIST
 from utils.dry_functions import (DATE_FORMAT,
                                  read_json, 
