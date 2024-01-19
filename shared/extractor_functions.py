@@ -18,7 +18,8 @@ from utils.dry_functions import (DATE_FORMAT,
                                  clean_string_break_line,
                                  path_exist)
 
-def map_seed(driver, data_path, map_seed_conf, is_origin=False, update_fields=[]):
+def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
+    data_path = map_seed_conf['data_path']
     get_next_url = map_seed_conf["get_next_url"]
     get_last_page_index = map_seed_conf["get_last_page_index"]
     get_items = map_seed_conf["get_items"]
@@ -27,7 +28,7 @@ def map_seed(driver, data_path, map_seed_conf, is_origin=False, update_fields=[]
     get_elements_seed = map_seed_conf["get_elements_seed"]
     option = map_seed_conf['option']
 
-    seed_path = data_path + "/seed.json"
+    seed_path = map_seed_conf['seed_path'] + "/seed.json"
     seeds = read_json(seed_path)
 
     tree_path = data_path + "/tree.csv"
@@ -104,8 +105,8 @@ def map_seed(driver, data_path, map_seed_conf, is_origin=False, update_fields=[]
     df_tree_temp.to_csv(tree_path, index=False)
     delete_file(tree_temp_path)
 
-def map_tree(driver, data_path, map_tree_conf, update=False, filter_ref=False):
-    # Configurações iniciais retiradas de map_tree_conf
+def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
+    data_path = map_tree_conf['data_path']
     get_elements_tree = map_tree_conf["get_elements_tree"]
     time = map_tree_conf["time"]
     scroll_page = map_tree_conf["scroll_page"]

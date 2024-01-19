@@ -14,14 +14,15 @@ def ingestion(conf):
     SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(CONF['word_list'])]
 
     file_path = CONF['data_path']
+    index_name = CONF['index_name']
 
     df = pd.read_csv(file_path + '/origin_csl.csv')
 
     create_connection()
-    create_or_update_suply_document(df)
+    create_or_update_suply_document(df, index_name)
 
 def create_connection():
-    es_hosts = "https://localhost:9200"
+    es_hosts = os.getenv('ES_HOSTS')
     es_user = os.getenv('ES_USER')
     es_pass = os.getenv('ES_PASS')
 
@@ -39,14 +40,13 @@ def create_connection():
     print(f"Elasticsearch connection... {es.ping()}")
     return es
 
-def create_or_update_suply_document(df):
-    INDEX_NAME = 'suplementos'
+def create_or_update_suply_document(df, index_name):
 
     try:
-        create_suply_index_if_not_exits(INDEX_NAME)
-        delete_docs_from_suply_by_marca_and_type()
+        create_suply_index_if_not_exits(index_name)
+        delete_docs_from_suply_by_marca_and_type(index_name)
 
-        helpers.bulk(es, create_documents_with_pandas(df, INDEX_NAME))
+        helpers.bulk(es, create_documents_with_pandas(df, index_name))
         print("Bulkload completed successfully")
 
     except Exception as e:
@@ -81,21 +81,7 @@ def create_documents_with_pandas(df, index_name):
             "_source": remove_nan_from_dict(row.to_dict()),
         }
 
-def update_documents_with_pandas(df, hits):
-    for index, row in df.iterrows():
-        id = None
-        for document in hits:
-            if (document['ref'] == row['ref']):
-                id = document['id']
-                
-        yield {
-            "_op_type": "update",
-            "_index": INDEX_NAME,
-            "_id": id,
-            "doc": remove_nan_from_dict(row.to_dict()),
-        }
-
-def create_suply_index_if_not_exits():
+def create_suply_index_if_not_exits(index_name):
     index_settings = {
         "settings": {
             "analysis": {
@@ -212,8 +198,8 @@ def create_suply_index_if_not_exits():
     }
 
 
-    if not es.indices.exists(index=INDEX_NAME):
-        es.indices.create(index=INDEX_NAME, body=index_settings)
-        print(f"Índice '{INDEX_NAME}' criado.")
+    if not es.indices.exists(index=index_name):
+        es.indices.create(index=index_name, body=index_settings)
+        print(f"Índice '{index_name}' criado.")
     else:
-        print(f"Índice '{INDEX_NAME}' já existe.")
+        print(f"Índice '{index_name}' já existe.")

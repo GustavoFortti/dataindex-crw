@@ -1,0 +1,31 @@
+from .extract import extract
+from .dry import dry
+from shared.elastic_funcions import ingestion
+from utils.wordlist import WORD_LIST
+from utils.dry_functions import create_directory_if_not_exists
+
+CONF = {
+    "name": "probiotica",
+    "tipo_produto": "suplemento",
+    "word_list": WORD_LIST["suplemento"],
+    "marca": "probiotica",
+    "location_type_product": [{'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}],
+    "data_path" : "./data/supplement/brazil/probiotica",
+    "seed_path": "./pages/supplement/brazil/probiotica",
+    "index_name": "brazil_supplement"
+}
+
+def run(args):
+    print("JOB_NAME: " + CONF["name"], end="")
+    CONF["option"] = args.option
+
+    job_type = args.job_type
+    print(" - EXEC: " + job_type)
+    create_directory_if_not_exists(CONF['data_path'])
+
+    options = {"extract": extract,
+                "dry": dry,
+                "ingestion": ingestion}
+    
+    exec = options.get(job_type)
+    exec(CONF)

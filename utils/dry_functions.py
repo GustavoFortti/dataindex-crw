@@ -59,11 +59,13 @@ def generate_hash(value):
 
 def clean_text(texto):
     # Normaliza o texto para decompor acentos e caracteres especiais
-    texto = unicodedata.normalize('NFKD', texto)
-    # Mantém apenas caracteres alfanuméricos e espaços
-    texto = u"".join([c for c in texto if not unicodedata.combining(c)])
-    # Remove tudo que não for letra, número ou espaço
-    return remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
+    if isinstance(texto, str):
+        texto = unicodedata.normalize('NFKD', texto)
+        # Mantém apenas caracteres alfanuméricos e espaços
+        texto = u"".join([c for c in texto if not unicodedata.combining(c)])
+        # Remove tudo que não for letra, número ou espaço
+        return remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
+    return texto
 
 def slice_text(original, start, end):
     start_index = original.find(start)
