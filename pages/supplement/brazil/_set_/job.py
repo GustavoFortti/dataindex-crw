@@ -4,7 +4,7 @@ from elasticsearch import helpers
 from shared.elastic_funcions import create_connection, create_documents_with_pandas
 
 CONF = {
-    "name": "_compiled_ing_",
+    "name": "_set_",
 }
 
 def filter_title(df, keyword):
@@ -31,8 +31,7 @@ def gen_destaques(wordlist, df):
     return df_index
 
 def get_all_origins():
-    local = '/home/sun/Main/prototipos/NutriFind/nutrifind-data-ingestion'
-    diretorio_inicial = local
+    diretorio_inicial = './data'
     nome_arquivo = 'origin_csl.csv'
 
     dataframes = []
@@ -47,6 +46,7 @@ def get_all_origins():
 
     # Una todos os DataFrames em um único DataFrame
     df = pd.concat(dataframes, ignore_index=True)
+    print(df)
     return df
 
 def run(args):
@@ -60,7 +60,7 @@ def run(args):
     
     df = get_all_origins()
     
-    print("suplementos_whey")
+    print("brazil_supplement_whey")
     sabores = ["banana cream", "baunilha", "beijinho", "beijinho de coco", "brigadeiro","brownie chocolate","cafe","cappuccino","caramelo crocante","cheesecake chocolate","cheesecake de maracuja","cheesecake de morango","chocolate","chocolate crocante","churros","cocco cioccolato","cocco e cioccolato","cookies","cookies cream","cookies e cream","doce de leite","dulce de leche premium","duo bianco al latte","leite cacau avela","leite de coco","limão","maracuja mousse","milho verde","morango","morango com chantilly","napolitano","pao de mel","peanut butter","strawberry milk shake","strawberry milkshake","torta al limone","torta cioccolato bianco","torta de banana","torta de limão","vanilla cream","vitamina de frutas"]
     blacklist = ["barrinha", "barra", 'break', 'bar', 'wafer', 'kit', 'combo']
     keywords = ['whey']
@@ -70,12 +70,12 @@ def run(args):
     df_index = filter_title(df_index, keywords[0])
     df_index = df_index.sample(12)
 
-    indice_elasticsearch = 'suplementos_whey'
+    indice_elasticsearch = 'brazil_supplement_whey'
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
     helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
     
     
-    print("suplementos_barrinhas")
+    print("brazil_supplement_bar")
     sabores = ["avela", "banoffee", "beijinho", "beijinho de coco", "berries crispies", "bombom de coco", "brigadeiro", "brownie chocolate", "brownie crispies", "cafe", "cafe doce de leite", "caramelo amendoim", "caramelo crocante", "cheesecake de maracuja", "cheesecake de morango", "chocolate", "churros", "cookie", "cookies cream", "crisp gourmet", "doce de leite", "dulce de leche e limao siciliano", "dulce de leche havanna", "duo bianco al latte", "floresta negra", "leite cacau avelã", "leite condensado", "morango com chantilly", "morango perfetto", "mousse de maracujá", "pacoca", "pacoca chocolate", "pao de mel", "peanut butter", "penaut caramel", "protein crisp", "torta al limone", "torta cioccolato bianco", "torta de banana", "torta de limao", "trufa de avelã", "trufa de chocolate", "trufa de morango"]
     blacklist = ['wafer', 'kit', 'combo']
     keywords = ['bar']
@@ -85,11 +85,11 @@ def run(args):
     df_index = filter_title(df_index, keywords[0])
     df_index = df_index.sample(12)
 
-    indice_elasticsearch = 'suplementos_barrinhas'
+    indice_elasticsearch = 'brazil_supplement_bar'
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
     helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
 
-    print("suplementos_pretreino")
+    print("brazil_supplement_preworkout")
     keywords = ['pretreino', 'pre treino', 'preworkout', 'pre workout', 'workout']
     blacklist = ['whey', 'creatina']
     wordlist = [{"keywords": keywords, "type": "filter"},{"keywords": blacklist, "type": "exclude"}]
@@ -98,6 +98,6 @@ def run(args):
     df_index = filter_title(df_index, keywords[0])
     df_index = df_index.sample(12)
 
-    indice_elasticsearch = 'suplementos_pretreino'
+    indice_elasticsearch = 'brazil_supplement_preworkout'
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
     helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))

@@ -99,8 +99,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     if (is_origin):
         df_tree = df_tree.dropna(subset=['preco'])
         df_tree = df_tree[~df_tree['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
-
-        df_tree_temp.to_csv(origin_path, index=False)
+        df_tree.to_csv(origin_path, index=False)
 
     df_tree_temp.to_csv(tree_path, index=False)
     delete_file(tree_temp_path)
