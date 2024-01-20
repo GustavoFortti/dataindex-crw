@@ -29,10 +29,14 @@ def get_title(soup, map_type):
     return None
 
 def get_price(soup, map_type):
-    if (map_type == "seed"):
+    if map_type == "seed":
         price_element = soup.find('a', class_='product-grid-item__price price')
-        price = price_element.get_text().strip() if price_element else None
-        return price
+        if price_element:
+            price_span = price_element.find('span', class_='product-grid-item__price__new')
+            if price_span:
+                return price_span.get_text().strip()
+            else:
+                return price_element.get_text().strip()
     # map_tree
     return None
 
