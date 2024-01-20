@@ -30,6 +30,13 @@ def gen_destaques(wordlist, df):
     
     return df_index
 
+def create_index(es, indice_elasticsearch):
+    if not es.indices.exists(index=indice_elasticsearch):
+        es.indices.create(index=indice_elasticsearch)
+        print(f"Índice '{indice_elasticsearch}' criado.")
+    else:
+        print(f"Índice '{indice_elasticsearch}' já existe.")
+
 def get_all_origins():
     diretorio_inicial = './data'
     nome_arquivo = 'origin_csl.csv'
@@ -46,7 +53,6 @@ def get_all_origins():
 
     # Una todos os DataFrames em um único DataFrame
     df = pd.concat(dataframes, ignore_index=True)
-    print(df)
     return df
 
 def run(args):
@@ -68,9 +74,10 @@ def run(args):
 
     df_index = gen_destaques(wordlist, df)
     df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(12)
+    df_index = df_index.sample(10)
 
     indice_elasticsearch = 'brazil_supplement_whey'
+    create_index(es, indice_elasticsearch)
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
     helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
     
@@ -83,9 +90,10 @@ def run(args):
 
     df_index = gen_destaques(wordlist, df)
     df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(12)
+    df_index = df_index.sample(10)
 
     indice_elasticsearch = 'brazil_supplement_bar'
+    create_index(es, indice_elasticsearch)
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
     helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
 
@@ -96,8 +104,10 @@ def run(args):
 
     df_index = gen_destaques(wordlist, df)
     df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(12)
+    print(df_index)
+    df_index = df_index.sample(10)
 
     indice_elasticsearch = 'brazil_supplement_preworkout'
+    create_index(es, indice_elasticsearch)
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
     helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
