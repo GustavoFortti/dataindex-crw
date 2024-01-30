@@ -2,7 +2,7 @@ from .extract import extract
 from .dry import dry
 from shared.elastic_funcions import ingestion
 from utils.wordlist import WORD_LIST
-from utils.dry_functions import create_directory_if_not_exists
+from utils.general_functions import create_directory_if_not_exists
 
 CONF = {
     "name": "under_labz",
@@ -21,7 +21,7 @@ def run(args):
 
     job_type = args.job_type
     print(" - EXEC: " + job_type)
-    create_directory_if_not_exists(CONF['data_path'])
+create_directory_if_not_exists(CONF['data_path'])
 
     options = {"extract": extract,
                 "dry": dry,

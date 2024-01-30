@@ -1,10 +1,16 @@
 import os
 import re
-import pandas as pd
 import numpy as np
+import pandas as pd
 from bs4 import BeautifulSoup
-from utils.dry_functions import clean_text, path_exist, remove_spaces, loading, find_in_text_with_word_list
+
 from utils.wordlist import BLACK_LIST
+from utils.general_functions import (clean_text,
+                                 path_exist,
+                                 remove_spaces,
+                                 loading,
+                                 find_in_text_with_word_list)
+
 pd.set_option('display.max_rows', None)
 
 def init(conf, locations):

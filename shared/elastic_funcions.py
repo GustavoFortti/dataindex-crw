@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from elasticsearch import Elasticsearch, helpers
-from utils.dry_functions import remove_nan_from_dict
+from utils.general_functions import remove_nan_from_dict
 from utils.wordlist import get_synonyms
 
 os.environ['PYTHONWARNINGS'] = 'ignore'

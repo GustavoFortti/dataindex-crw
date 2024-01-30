@@ -1,5 +1,5 @@
 from shared.selenium_service import initialize_selenium
-from shared.extractor_functions import map_tree, map_seed
+from shared.extractor import map_tree, map_seed
 
 def get_last_page_index(soup=None):
     return 3
