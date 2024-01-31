@@ -1,5 +1,13 @@
 #!/bin/bash
 
-export ES_HOSTS="https://6e54-54-39-132-231.ngrok-free.app/"
+export ES_HOSTS="https://dataindex-elk-1.ngrok.app/"
 export ES_USER="elastic"
-export ES_PASS="dh6qHhDsuPJVLOn2TnFN"
+export ES_PASS="RJ6XXwfjHzYICKfGRTSn"
+
+export DATAINDEX_IMG_PATH="$(pwd)/../dataindex-img"
+
+if [ -d $DATAINDEX_IMG_PATH ]; then
+  echo "$DATAINDEX_IMG_PATH Ok"
+else
+  echo "Error: path does not exist $DATAINDEX_IMG_PATH"
+fi
