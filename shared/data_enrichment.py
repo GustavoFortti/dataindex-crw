@@ -1,6 +1,7 @@
 import os
 import re
 import imagehash
+import hashlib
 import numpy as np
 import pandas as pd
 from PIL import Image
@@ -13,6 +14,7 @@ from utils.general_functions import (clean_text,
                                  save_file,
                                  list_directory,
                                  convert_image,
+                                 calculate_precise_image_hash,
                                  loading,
                                  create_directory_if_not_exists,
                                  find_in_text_with_word_list)
@@ -58,8 +60,7 @@ def process_data(conf, locations):
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "titulo", "preco", "link_imagem", "link_produto"], how="any")
 
-    df = image_processing(df, file_path)
-    exit(0)
+    image_processing(df, file_path)
     df = df[['ref', 'titulo', 'preco', 'link_imagem', 'link_produto', 'ing_date',
             'nome', 'marca', 'preco_numeric', 'quantidade', 'preco_qnt',
             'especificacao', 'especificacao_rota']]
@@ -334,78 +335,58 @@ def relation_qnt_preco(row):
     return round(resultado, 3)
 
 def image_processing(df, data_path):
-
     path_img_temp = data_path + "/img_temp/"
     path_img_hash = data_path + "/img_hash/"
-    path_img_conv = data_path + "/img_conv/"
     path_img_csl = data_path + "/img_csl/"
     create_directory_if_not_exists(path_img_hash)
-    create_directory_if_not_exists(path_img_conv)
     create_directory_if_not_exists(path_img_csl)
 
     refs = sorted(df['ref'])
     dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_temp)}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
     
-    # if (not (list(dict_imgs.keys()) == refs)):
-    #     print("ERROR IMAGE PROCESSING")
-    #     exit(1)
+    if (not (list(dict_imgs.keys()) == refs)):
+        print("ERROR IMAGE PROCESSING")
+        exit(1)
 
+    def describe_image(image, img_path):
+        width, height = image.size
+        file_size = os.path.getsize(img_path)  
+        return {
+            "dimensions": (width, height),
+            "size": file_size,
+            "img_path": img_path
+        }
+    
     images_info = {}
+
     for index, (ref, img_file_name) in enumerate(dict_imgs.items()):
         loading(index, len(df))
 
         img_path = path_img_temp + img_file_name
         image = Image.open(img_path)
-
-        new_image_hash = imagehash.average_hash(image)
-
-        def describe_image():
-            width, height = image.size
-
-            file_size = os.path.getsize(img_path)  
-            images_info[ref] = {
-                "dimensions": (width, height),
-                "size": file_size,
-                "img_path": img_path
-            }
+        new_image_hash = calculate_precise_image_hash(img_path)
+        new_image_hash = imagehash.hex_to_hash(new_image_hash)
 
         path_ref_img_hash = path_img_hash + ref + ".txt"
         if path_exist(path_ref_img_hash):
+            
             with open(path_ref_img_hash, "r") as file:
                 old_image_hash_str = file.read()
                 old_image_hash = imagehash.hex_to_hash(old_image_hash_str)
 
             if new_image_hash != old_image_hash:
                 save_file(new_image_hash, path_ref_img_hash)
-                describe_image()
+                images_info[ref] = describe_image(image, img_path)
         else:
             save_file(new_image_hash, path_ref_img_hash)
-            describe_image()
+            images_info[ref] = describe_image(image, img_path)
     
-        describe_image()
-
     for ref, image_info in images_info.items():
-        save_path = path_img_conv + ref
-        manipulating_image(image_info, save_path)
+        save_path = path_img_csl + ref
+        img_path = image_info["img_path"]
+        manipulating_image(img_path, save_path)
 
-    return df
-
-def manipulating_image(image_info, save_path, img_format='webp'):
-    file_size = image_info["size"]
-    img_path = image_info["img_path"]
+def manipulating_image(img_path, save_path, img_format='webp'):
     
-    convert_image(img_path, save_path, 'webp')
-
-    # if not os.path.isfile(img_path):
-    #     raise FileNotFoundError(f"The file {img_path} does not exist.")
-    
-    # if file_size > 100 * 1024:
-    #     with Image.open(img_path) as img:
-    #         img.thumbnail((500, 500))
-
-    #         quality = 85
-    #         while file_size > 100 * 1024 and quality > 10:
-    #             img.save(img_path, img_format.upper(), quality=quality)
-    #             file_size = os.path.getsize(img_path)
-    #             quality -= 5
+    convert_image(img_path, save_path, img_format)
