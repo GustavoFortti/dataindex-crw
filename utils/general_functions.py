@@ -8,6 +8,7 @@ import hashlib
 import requests
 import unicodedata
 import pandas as pd
+from PIL import Image
 from datetime import date, timedelta
 
 DATE_FORMAT = "%d/%m/%Y"
@@ -67,6 +68,22 @@ def clean_text(texto):
         # Remove tudo que não for letra, número ou espaço
         return remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
     return texto
+
+def list_directory(path):
+    try:
+        # Check if the path is a valid directory
+        if os.path.isdir(path):
+            contents = os.listdir(path)
+            print(f"Contents of directory '{path}':")
+            items = []
+            for item in contents:
+                items.append(item)
+            
+            return items
+        else:
+            print(f"'{path}' is not a valid directory.")
+    except Exception as e:
+        print(f"Error while listing the directory: {str(e)}")
 
 def slice_text(original, start, end):
     start_index = original.find(start)
@@ -157,6 +174,11 @@ def find_in_text_with_word_list(text, word_list):
         return True
     return False
 
+def save_file(text, path):
+    with open(path, "w") as file:
+        print("file path: " + path)
+        file.write(str(text))
+
 def download_image(image_url, image_path, image_name):
     try:
         response = requests.get(image_url)
@@ -188,3 +210,11 @@ def download_image(image_url, image_path, image_name):
             return f"Failed to download the image. HTTP status code: {response.status_code}"
     except Exception as e:
         return f"An error occurred: {e}"
+
+def convert_image(image_path, save_path, output_format='webp'):
+    if (not os.path.isfile(image_path)):
+        raise FileNotFoundError(f"The file {image_path} does not exist.")
+    
+    with Image.open(image_path) as img:
+            # Converte a imagem para WebP e salva
+            img.save(save_path + '.' + output_format, output_format.upper())

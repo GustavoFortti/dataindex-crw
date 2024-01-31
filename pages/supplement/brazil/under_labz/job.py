@@ -21,7 +21,7 @@ def run(args):
 
     job_type = args.job_type
     print(" - EXEC: " + job_type)
-create_directory_if_not_exists(CONF['data_path'])
+    create_directory_if_not_exists(CONF['data_path'])
 
     options = {"extract": extract,
                 "dry": dry,
