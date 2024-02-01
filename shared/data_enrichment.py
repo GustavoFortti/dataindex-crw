@@ -335,14 +335,14 @@ def relation_qnt_preco(row):
     return round(resultado, 3)
 
 def image_processing(df, data_path):
-    path_img_temp = data_path + "/img_temp/"
+    path_img_tmp = data_path + "/img_tmp/"
     path_img_hash = data_path + "/img_hash/"
     path_img_csl = data_path + "/img_csl/"
     create_directory_if_not_exists(path_img_hash)
     create_directory_if_not_exists(path_img_csl)
 
     refs = sorted(df['ref'])
-    dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_temp)}
+    dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp)}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
     
     if (not (list(dict_imgs.keys()) == refs)):
@@ -363,7 +363,7 @@ def image_processing(df, data_path):
     for index, (ref, img_file_name) in enumerate(dict_imgs.items()):
         loading(index, len(df))
 
-        img_path = path_img_temp + img_file_name
+        img_path = path_img_tmp + img_file_name
         image = Image.open(img_path)
         new_image_hash = calculate_precise_image_hash(img_path)
         new_image_hash = imagehash.hex_to_hash(new_image_hash)

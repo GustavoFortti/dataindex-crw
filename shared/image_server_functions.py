@@ -1,9 +1,10 @@
 import os
 import pandas as pd
-import subprocess
 import shutil
 
-def data_ingestion(conf):
+from utils.general_functions import check_url_existence, delete_file
+
+def data_ingestion(df, conf):
     global CONF
     CONF = conf
 
@@ -16,7 +17,8 @@ def data_ingestion(conf):
     if not os.path.exists(images_server_path):
         os.makedirs(images_server_path)
 
-    for file_name in os.listdir(images_path):
+    files = os.listdir(images_path)
+    for file_name in files:
         source_file = os.path.join(images_path, file_name)
         
         if os.path.isfile(source_file):
@@ -25,31 +27,50 @@ def data_ingestion(conf):
     
     execute_git_commands(dataindex_img_path)
 
-    # https://raw.githubusercontent.com/GustavoFortti/dataindex-img/master/imgs/04ba683b.webp
+    url = os.getenv('DATAINDEX_IMG_URL')
+    refs = {file.split(".")[0]: url + file for file in files}
 
-def execute_git_commands(dataindex_img_path):
-    # Change to the repository directory
-    os.chdir(dataindex_img_path)
+    for url in refs.values():
+        res = check_url_existence(url)
+        if (not res):
+            print(f"Error image ingestion url does not exist: {url}")
+            exit(1)
+    
+    print("Successfully image ingestion")
+    df['link_imagem_srv'] = df['ref'].map(refs)
 
+    images_tmp_path = file_path + "/img_tmp/"
+    for img_tmp in os.listdir(images_tmp_path):
+        delete_file(img_tmp)
+
+    return df
+
+def execute_git_commands(project_dir):
+    original_dir = os.getcwd()
+    
     try:
-        # Stage all modified files
-        subprocess.run(['git', 'add', '.'], check=True)
-        
-        # Check if there are changes to commit
-        status_result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True)
-        if status_result.stdout.strip():  # If there's output, there are changes to commit
-            # Commit the changes
-            subprocess.run(['git', 'commit', '-m', 'Automated commit from data ingestion script'], check=True)
-            
-            # Push the changes to the remote repository, setting upstream if necessary
-            push_result = subprocess.run(['git', 'push'], stderr=subprocess.PIPE, text=True)
-            if "no upstream" in push_result.stderr:
-                print("Setting upstream branch...")
-                subprocess.run(['git', 'push', '--set-upstream', 'origin', 'master'], check=True)
-        else:
+        os.chdir(project_dir)
+
+        if os.system('git add .') != 0:
+            print("Error staging files.")
+            return
+
+        if os.system('git diff --cached --exit-code') == 0:
             print("No changes to commit.")
-        
+            return
+
+        if os.system('git commit -m "Automated commit from data ingestion script"') != 0:
+            print("Error committing changes.")
+            return
+
+        push_result = os.system('git push')
+        if push_result != 0:
+            print("Error pushing changes, trying to set upstream...")
+            if os.system('git push --set-upstream origin master') != 0:
+                print("Error setting upstream and pushing changes.")
+                return
+
         print("Changes successfully committed and pushed.")
-        
-    except subprocess.CalledProcessError as e:
-        print(f"Error executing git commands: {e}")
+    
+    finally:
+        os.chdir(original_dir)

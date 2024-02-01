@@ -60,8 +60,8 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             for item in items:
                 product_link, title, price, link_imagem = get_elements_seed(item)
                 ref = generate_hash(product_link)
-                create_directory_if_not_exists(data_path + "/img_temp/")
-                download_image(link_imagem, data_path + "/img_temp/", ref)
+                create_directory_if_not_exists(data_path + "/img_tmp/")
+                download_image(link_imagem, data_path + "/img_tmp/", ref)
                 
                 if (price): price = clean_string_break_line(price)
                 if (title): title = clean_string_break_line(title)
@@ -178,7 +178,7 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
 
         if (new_link_imagem): 
             link_imagem = new_link_imagem
-            download_image(ref, data_path + "/img_temp/", new_link_imagem)
+            download_image(ref, data_path + "/img_tmp/", new_link_imagem)
         if (new_price): price = clean_string_break_line(new_price)
         if (new_title): 
             new_title = clean_string_break_line(new_title)

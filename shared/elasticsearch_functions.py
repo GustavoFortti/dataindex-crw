@@ -10,17 +10,14 @@ from utils.wordlist import get_synonyms
 
 os.environ['PYTHONWARNINGS'] = 'ignore'
 
-def data_ingestion(conf):
+def data_ingestion(df, conf):
     global CONF
     global SYNONYMS_LIST
 
     CONF = conf
     SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(CONF['word_list'])]
 
-    file_path = CONF['data_path']
-    index_name = CONF['index_name']
-
-    df = pd.read_csv(file_path + '/origin_csl.csv')
+    index_name = CONF['index_name'] 
 
     create_connection()
     insert_documents(df, index_name)

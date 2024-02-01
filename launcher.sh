@@ -19,6 +19,7 @@
 # probiotica 
 # under_labz
 
+export LOCAL=$(pwd)
 source ./.env/setup.sh
 
 # python3 main.py darkness extract --option init

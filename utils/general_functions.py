@@ -224,3 +224,10 @@ def calculate_precise_image_hash(image_path):
         image_data = image_file.read()
         image_hash = hashlib.sha256(image_data).hexdigest()
     return image_hash
+
+def check_url_existence(url):
+    try:
+        response = requests.get(url)
+        return response.status_code == 200
+    except Exception as e:
+        return False

@@ -73,6 +73,9 @@ def elasticsearch_index(product, synonyms_list):
                     "link_imagem": {
                         "type": "keyword"
                     },
+                    "link_imagem_srv": {
+                        "type": "keyword"
+                    },
                     "link_produto": {
                         "type": "keyword"
                     },
