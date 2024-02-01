@@ -6,3 +6,4 @@ webdriver_manager
 fake_useragent
 Pillow
 requests
+imagehash
