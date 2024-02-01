@@ -37,11 +37,11 @@ def data_ingestion(df, conf):
             exit(1)
     
     print("Successfully image ingestion")
-    df['link_imagem_srv'] = df['ref'].map(refs)
+    df['image_url_srv'] = df['ref'].map(refs)
 
     images_tmp_path = file_path + "/img_tmp/"
     for img_tmp in os.listdir(images_tmp_path):
-        delete_file(img_tmp)
+        delete_file(images_tmp_path + img_tmp)
 
     return df
 

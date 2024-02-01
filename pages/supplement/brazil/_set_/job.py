@@ -8,11 +8,11 @@ CONF = {
 }
 
 def filter_title(df, keyword):
-    filtered_df = df[df['titulo'].str.contains(keyword, case=False)]
+    filtered_df = df[df['title'].str.contains(keyword, case=False)]
     return filtered_df
 
 def exclude_in_title(df, keyword):
-    filtered_df = df[~df['titulo'].str.contains(keyword, case=False)]
+    filtered_df = df[~df['title'].str.contains(keyword, case=False)]
     return filtered_df
 
 def gen_destaques(wordlist, df):
@@ -33,9 +33,9 @@ def gen_destaques(wordlist, df):
 def create_index(es, indice_elasticsearch):
     if not es.indices.exists(index=indice_elasticsearch):
         es.indices.create(index=indice_elasticsearch)
-        print(f"Índice '{indice_elasticsearch}' criado.")
+        print(f"Index '{indice_elasticsearch}' created.")
     else:
-        print(f"Índice '{indice_elasticsearch}' já existe.")
+        print(f"Index '{indice_elasticsearch}' exists.")
 
 def get_all_origins():
     diretorio_inicial = './data'

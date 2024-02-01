@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "darkness",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "darkness",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "darkness",
     "location_type_product": [{'tag': 'section', 'class': 'breadcrumbs'}],
     "data_path" : "./data/supplement/brazil/darkness",
     "seed_path": "./pages/supplement/brazil/darkness",

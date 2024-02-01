@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "atlhetica_nutrition",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "atlhetica nutrition",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "atlhetica nutrition",
     "location_type_product": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
     "data_path" : "./data/supplement/brazil/atlhetica_nutrition",
     "seed_path": "./pages/supplement/brazil/atlhetica_nutrition",

@@ -16,7 +16,7 @@ def elasticsearch_index(product, synonyms_list):
                         }
                     },
                     "analyzer": {
-                        "titulo_analyzer": {
+                        "title_analyzer": {
                             "type": "custom",
                             "tokenizer": "standard",
                             "filter": [
@@ -36,9 +36,9 @@ def elasticsearch_index(product, synonyms_list):
                     "ref": {
                         "type": "keyword"
                     },
-                    "titulo": {
+                    "title": {
                         "type": "text",
-                        "analyzer": "titulo_analyzer",
+                        "analyzer": "title_analyzer",
                         "fields": {
                             "keyword": {
                                 "type": "keyword",
@@ -46,9 +46,9 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "especificacao": {
+                    "spec": {
                         "type": "text",
-                        "analyzer": "titulo_analyzer",
+                        "analyzer": "title_analyzer",
                         "fields": {
                             "keyword": {
                                 "type": "keyword",
@@ -56,9 +56,9 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "especificacao_rota": {
+                    "spec_route": {
                         "type": "text",
-                        "analyzer": "titulo_analyzer",
+                        "analyzer": "title_analyzer",
                         "fields": {
                             "keyword": {
                                 "type": "keyword",
@@ -70,16 +70,16 @@ def elasticsearch_index(product, synonyms_list):
                         "type": "date",
                         "format": "dd/MM/yyyy"
                     },
-                    "link_imagem": {
+                    "image_url": {
                         "type": "keyword"
                     },
-                    "link_imagem_srv": {
+                    "image_url_srv": {
                         "type": "keyword"
                     },
                     "link_produto": {
                         "type": "keyword"
                     },
-                    "marca": {
+                    "brand": {
                         "type": "text",
                         "fields": {
                             "keyword": {
@@ -88,7 +88,7 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "nome": {
+                    "name": {
                         "type": "text",
                         "fields": {
                             "keyword": {
@@ -97,13 +97,13 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "preco": {
+                    "price": {
                         "type": "text"
                     },
-                    "preco_numeric": {
+                    "price_numeric": {
                         "type": "float"
                     },
-                    "quantidade": {
+                    "quantity": {
                         "type": "integer"
                     },
                     "preco_qnt": {

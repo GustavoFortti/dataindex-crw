@@ -27,10 +27,6 @@ def create_connection():
     es_user =  os.getenv('ES_USER')
     es_pass = os.getenv('ES_PASS')
 
-    print(f"ES_HOSTS: {es_hosts}")
-    print(f"ES_USER: {es_user}")
-    print(f"ES_PASS: {es_pass}")
-
     global es
     es = Elasticsearch(
         [es_hosts],
@@ -44,7 +40,7 @@ def create_connection():
 def insert_documents(df, index_name):
     try:
         create_index_if_not_exits(index_name)
-        field, value = "marca", CONF['marca']
+        field, value = "brand", CONF['brand']
         delete_all_documents_on_index_by_field_value(index_name, field, value)
 
         helpers.bulk(es, create_documents_with_pandas(df, index_name))

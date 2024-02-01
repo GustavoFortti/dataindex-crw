@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "nutrata",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "nutrata",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "nutrata",
     "location_type_product": [{'tag': 'span', 'class': 'tagged_as'}, {'tag': 'nav', 'class': 'woocommerce-breadcrumb'}, {'tag': 'div', 'class': 'woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab'}],
     "data_path" : "./data/supplement/brazil/nutrata",
     "seed_path": "./pages/supplement/brazil/nutrata",

@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "iridium_labs",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "iridium labs",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "iridium labs",
     "location_type_product": [{'tag': 'div', 'class': 't4s-product__description t4s-rte'}],
     "data_path" : "./data/supplement/brazil/iridium_labs",
     "seed_path": "./pages/supplement/brazil/iridium_labs",

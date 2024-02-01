@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "dux_nutrition_lab",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "dux nutrition lab",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "dux nutrition lab",
     "location_type_product": [{'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'}],
     "data_path" : "./data/supplement/brazil/dux_nutrition_lab",
     "seed_path": "./pages/supplement/brazil/dux_nutrition_lab",

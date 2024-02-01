@@ -181,5 +181,5 @@ WORD_LIST_SUPLEMENTO = [['whey'],
 ]
 
 WORD_LIST = {
-    "suplemento": WORD_LIST_SUPLEMENTO,
+    "supplement": WORD_LIST_SUPLEMENTO,
 }

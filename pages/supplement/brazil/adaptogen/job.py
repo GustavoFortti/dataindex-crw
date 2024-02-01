@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "adaptogen",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "adaptogen",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "adaptogen",
     "location_type_product": [{'tag': 'nav', 'class': 'woocommerce-breadcrumb'}],
     "data_path" : "./data/supplement/brazil/adaptogen",
     "seed_path": "./pages/supplement/brazil/adaptogen",

@@ -8,9 +8,8 @@ from shared.ingestion import ingestion
 
 CONF = {
     "name": "integralmedica",
-    "tipo_produto": "suplemento",
-    "word_list": WORD_LIST["suplemento"],
-    "marca": "integralmedica",
+    "word_list": WORD_LIST["supplement"],
+    "brand": "integralmedica",
     "location_type_product": [{'tag': 'section', 'class': '__bs_product-breadcrumb'}],
     "data_path" : "./data/supplement/brazil/integralmedica",
     "seed_path": "./pages/supplement/brazil/integralmedica",

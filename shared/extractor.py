@@ -32,7 +32,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
 
     tree_path = data_path + "/tree.csv"
     tree_temp_path = data_path + "/tree_temp.csv"
-    columns = ["ref", "titulo" ,"preco" ,"link_imagem", "link_produto", "ing_date"]
+    columns = ["ref", "title" ,"price" ,"image_url", "product_url", "ing_date"]
     df_tree = pd.DataFrame(columns=columns)
 
     origin_path = f'{data_path}/origin.csv'
@@ -58,18 +58,18 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             print(f"itens = {n_items}")
             
             for item in items:
-                product_link, title, price, link_imagem = get_elements_seed(item)
+                product_link, title, price, image_url = get_elements_seed(item)
                 ref = generate_hash(product_link)
                 create_directory_if_not_exists(data_path + "/img_tmp/")
-                download_image(link_imagem, data_path + "/img_tmp/", ref)
+                download_image(image_url, data_path + "/img_tmp/", ref)
                 
                 if (price): price = clean_string_break_line(price)
                 if (title): title = clean_string_break_line(title)
 
                 data_atual = date.today()
-                data_formatada = data_atual.strftime(DATE_FORMAT)
+                formatted_date = data_atual.strftime(DATE_FORMAT)
 
-                new_row = {"ref": ref, "titulo": title, "preco": price, "link_imagem": link_imagem, "link_produto": product_link, "ing_date": data_formatada}
+                new_row = {"ref": ref, "title": title, "price": price, "image_url": image_url, "product_url": product_link, "ing_date": formatted_date}
                 index = df_tree["ref"] == new_row['ref']
                 print(new_row)
                 
@@ -94,12 +94,12 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             soup = get_html(driver, url, time, scroll_page)
     
     df_tree_temp = pd.read_csv(tree_temp_path)
-    df_tree_temp = df_tree_temp.drop_duplicates(subset='link_produto').reset_index(drop=True)
+    df_tree_temp = df_tree_temp.drop_duplicates(subset='product_url').reset_index(drop=True)
     df_tree_temp = format_column_date(df_tree_temp, 'ing_date')
 
     if (is_origin):
-        df_tree = df_tree.dropna(subset=['preco'])
-        df_tree = df_tree[~df_tree['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+        df_tree = df_tree.dropna(subset=['price'])
+        df_tree = df_tree[~df_tree['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
         df_tree.to_csv(origin_path, index=False)
 
     df_tree_temp.to_csv(tree_path, index=False)
@@ -131,14 +131,14 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
     origin_temp_path = data_path + "/origin_temp.csv"
 
     # Define as colunas para o DataFrame e cria um arquivo CSV, se não existir
-    columns = ["ref", "titulo" ,"preco" ,"link_imagem", "link_produto", "ing_date"]
+    columns = ["ref", "title" ,"price" ,"image_url", "product_url", "ing_date"]
     head = ",".join(map(str, columns))
     create_file_if_not_exists(origin_temp_path, head)
 
     # Carrega e filtra o DataFrame df_origin por data
-    df_tree = df_tree[~df_tree['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+    df_tree = df_tree[~df_tree['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df_origin_temp = pd.read_csv(origin_temp_path)
-    df_tree = df_tree.dropna(subset=['preco'])
+    df_tree = df_tree.dropna(subset=['price'])
     
     if (df_tree.empty):
         print("df_tree is empty")
@@ -148,10 +148,10 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
     for index, row in df_tree.iterrows():
         # Extrai dados da linha atual
         ref = row['ref']
-        url = row['link_produto']
-        price = row['preco']
-        title = row['titulo']
-        link_imagem = row['link_imagem']
+        url = row['product_url']
+        price = row['price']
+        title = row['title']
+        image_url = row['image_url']
 
         print(f"{index} - {ref} - {url}")
 
@@ -171,14 +171,14 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
             soup = get_html(driver, url, 1, False, False)
         
         # Extrai novo título e formata a data
-        new_title, new_price, new_link_imagem = get_elements_tree(soup)
+        new_title, new_price, new_image_url = get_elements_tree(soup)
 
         data_atual = date.today()
-        data_formatada = data_atual.strftime(DATE_FORMAT)
+        formatted_date = data_atual.strftime(DATE_FORMAT)
 
-        if (new_link_imagem): 
-            link_imagem = new_link_imagem
-            download_image(ref, data_path + "/img_tmp/", new_link_imagem)
+        if (new_image_url): 
+            image_url = new_image_url
+            download_image(ref, data_path + "/img_tmp/", new_image_url)
         if (new_price): price = clean_string_break_line(new_price)
         if (new_title): 
             new_title = clean_string_break_line(new_title)
@@ -186,7 +186,7 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
                 title = new_title
 
         # Cria um novo registro e adiciona ao DataFrame de origem
-        new_row = {"ref": ref, "titulo": title, "preco": price, "link_imagem": link_imagem, "link_produto": url, "ing_date": data_formatada}
+        new_row = {"ref": ref, "title": title, "price": price, "image_url": image_url, "product_url": url, "ing_date": formatted_date}
         print(new_row)
         df_origin_temp.loc[len(df_origin_temp)] = new_row
         

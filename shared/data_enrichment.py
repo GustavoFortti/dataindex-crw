@@ -30,47 +30,47 @@ def process_data(conf, locations):
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")
-    df = df.drop_duplicates(subset='link_produto').reset_index(drop=True)
+    df = df.drop_duplicates(subset='product_url').reset_index(drop=True)
 
-    df_nulos = df[df[['titulo', 'preco', 'link_imagem']].isna().any(axis=1)]
+    df_nulos = df[df[['title', 'price', 'image_url']].isna().any(axis=1)]
     df_nulos.to_csv(file_path + "/origin_del.csv", index=False)
 
-    df = df.dropna(subset=['titulo', 'preco', 'link_imagem'])
+    df = df.dropna(subset=['title', 'price', 'image_url'])
     df = df.reset_index(drop=True)
 
-    df['nome'] = df['titulo'].str.lower()
-    df['preco'] = df['preco'].str.replace('R$', '').str.replace(' ', '')
-    df['marca'] = CONF['marca']
+    df['name'] = df['title'].str.lower()
+    df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
+    df['brand'] = CONF['brand']
    
-    df['preco_numeric'] = df['preco'].str.replace(',', '.').astype(float)
-    df['titulo'] = df['titulo'].apply(clean_text)
-    df['titulo'] = df['titulo'].apply(remove_spaces)
+    df['price_numeric'] = df['price'].str.replace(',', '.').astype(float)
+    df['title'] = df['title'].apply(clean_text)
+    df['title'] = df['title'].apply(remove_spaces)
     
     pattern = r'(\d+([.,]\d+)?)\s*(kg|g|gr|gramas)\s*\w*'
-    df[['quantidade', 'unidade']] = df['nome'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
-    df['quantidade'] = df[['quantidade', 'unidade']].apply(convert_to_grams, axis=1)
-    df['preco_qnt'] = df.apply(relation_qnt_preco, axis=1)
-    df['quantidade'] = df['quantidade'].astype(str).replace("-1", np.nan)
+    df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
+    df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
+    df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
+    df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
 
     # pattern = r'(\d+)\s*(caps|cap|vcaps|capsules|comprimidos|comps|comp|capsulas|soft|softgel)\b'
-    # df[['quantidade_formato', 'formato']] = df['nome'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
+    # df[['quantity_formato', 'formato']] = df['name'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
     # df['formato'] = df['formato'].apply(replace_for_comprimidos)
 
-    df = df[~df['titulo'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+    df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df = keywords_page_specification(df, file_path, locations)
-    df = df.dropna(subset=["ref", "titulo", "preco", "link_imagem", "link_produto"], how="any")
+    df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
     image_processing(df, file_path)
-    df = df[['ref', 'titulo', 'preco', 'link_imagem', 'link_produto', 'ing_date',
-            'nome', 'marca', 'preco_numeric', 'quantidade', 'preco_qnt',
-            'especificacao', 'especificacao_rota']]
+    df = df[['ref', 'title', 'price', 'image_url', 'product_url', 'ing_date',
+            'name', 'brand', 'price_numeric', 'quantity', 'price_qnt',
+            'spec', 'spec_route']]
     
     return df
 
 def keywords_page_specification(df, file_path, locations):
     products_path = f"{file_path}/products"
 
-    df['especificacao_rota'] = None
+    df['spec_route'] = None
     for index, ref in enumerate(df["ref"]):
         loading(index, len(df))
         page_path = f"{products_path}/{ref}.txt"
@@ -97,23 +97,23 @@ def keywords_page_specification(df, file_path, locations):
                 else:
                     keywords = ''
 
-                df.loc[df['ref'] == ref, 'especificacao_rota'] = keywords
+                df.loc[df['ref'] == ref, 'spec_route'] = keywords
                 with open(keywords_path, 'w') as new_file:
                     new_file.write(keywords)
         except:
-            df.loc[df['ref'] == ref, 'especificacao_rota'] = None
+            df.loc[df['ref'] == ref, 'spec_route'] = None
 
     print()
     keywords_page(df, file_path)
     print()
-    df['especificacao'] = df.apply(lambda row: None if row['especificacao_rota'] is not None else row['especificacao'], axis=1)
+    df['spec'] = df.apply(lambda row: None if row['spec_route'] is not None else row['spec'], axis=1)
 
     return df
 
 def keywords_page(df, file_path):
     products_path = f"{file_path}/products"
 
-    df['especificacao'] = ""
+    df['spec'] = ""
     for index, ref in enumerate(df["ref"]):
         loading(index, len(df))
         text_path = f"{products_path}/{ref}_text.txt"
@@ -131,12 +131,12 @@ def keywords_page(df, file_path):
                     product = ' '.join(product.split())
 
                 words = best_words(product)
-                df.loc[df['ref'] == ref, 'especificacao'] = words
+                df.loc[df['ref'] == ref, 'spec'] = words
 
                 with open(text_path, 'w') as new_file:
                     new_file.write(product)
         except:
-            df.loc[df['ref'] == ref, 'especificacao'] = None
+            df.loc[df['ref'] == ref, 'spec'] = None
             print("")
             print("error file: " + str(ref))
             print("")
@@ -290,23 +290,23 @@ def find_pattern_for_quantity(text, pattern):
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
     matches = re.findall(pattern, text, re.IGNORECASE)
     
-    quantidade = None
+    quantity = None
     if ((len(matches) == 1)): 
-        quantidade, unidade = matches[0]
-        quantidade = float(str(quantidade).replace(',', '.'))
+        quantity, unit = matches[0]
+        quantity = float(str(quantity).replace(',', '.'))
     
         padrao = r'\d+x'
         matches_multiply = re.findall(padrao, text)
-        if ((len(matches_multiply) == 1) & (quantidade != None)):
-            quantidade = quantidade * float(matches_multiply[0].replace('x', ''))
+        if ((len(matches_multiply) == 1) & (quantity != None)):
+            quantity = quantity * float(matches_multiply[0].replace('x', ''))
         
-        return quantidade, unidade
+        return quantity, unit
     
     return None, None
 
 def convert_to_grams(row):
-    value = row['quantidade']
-    unit = row['unidade']
+    value = row['quantity']
+    unit = row['unit']
     
     if pd.notna(value):
         if unit in ['kg']:
@@ -328,8 +328,8 @@ def replace_for_comprimidos(texto):
                 return 'comprimidos'
     return texto
 
-def relation_qnt_preco(row):
-    resultado = (row['preco_numeric'] / row['quantidade']) if (row['quantidade'] > 0) else -1
+def relation_qnt_price(row):
+    resultado = (row['price_numeric'] / row['quantity']) if (row['quantity'] > 0) else -1
     if resultado < 0:
         return np.nan
     return round(resultado, 3)
