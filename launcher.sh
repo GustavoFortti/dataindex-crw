@@ -51,4 +51,4 @@ echo "page_type: $page_type"
 echo "country: $country"
 
 echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country"
-python3 main.py --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country --local $LOCAL
+python3 $LOCAL/main.py --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country --local $LOCAL
