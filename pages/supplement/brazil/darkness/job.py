@@ -1,3 +1,5 @@
+from config.env import LOCAL
+
 from .extract import extract
 from .dry import dry
 
@@ -11,8 +13,8 @@ CONF = {
     "word_list": WORD_LIST["supplement"],
     "brand": "darkness",
     "location_type_product": [{'tag': 'section', 'class': 'breadcrumbs'}],
-    "data_path" : "./data/supplement/brazil/darkness",
-    "seed_path": "./pages/supplement/brazil/darkness",
+    "data_path" : f"{LOCAL}/data/supplement/brazil/darkness",
+    "seed_path": f"{LOCAL}/pages/supplement/brazil/darkness",
     "index_name": "brazil_supplement",
     "index_type": "supplement"
 }

@@ -1,3 +1,5 @@
+from config.env import LOCAL
+
 import time
 import logging
 from selenium import webdriver
@@ -27,7 +29,7 @@ def initialize_selenium():
     user_agent = random.choice(user_agents)
     options.add_argument(f'user-agent={user_agent}')
 
-    service = Service(executable_path="./.env/chromedriver")
+    service = Service(executable_path=f"{LOCAL}/packages/chromedriver")
     driver = webdriver.Chrome(service=service, options=options)
 
     # Modificar a propriedade 'navigator.webdriver'

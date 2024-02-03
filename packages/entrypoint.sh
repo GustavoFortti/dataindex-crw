@@ -1,22 +1,6 @@
 #!/bin/bash
 
-calculate_hash() {
-    find . -type f -name '*.conf' -exec md5sum {} + | md5sum | cut -d" " -f1
-}
-
-HASH_FILE="./.env/requirements_hash.txt"
-
-CURRENT_HASH=$(calculate_hash)
-
-if [ -f "$HASH_FILE" ]; then
-    PREVIOUS_HASH=$(cat "$HASH_FILE")
-    if [ "$CURRENT_HASH" == "$PREVIOUS_HASH" ]; then
-        echo "No changes detected. Leaving..."
-        exit 0
-    fi
-fi
-
-main() {
+install_packages() {
     if ! command -v python3 &> /dev/null; then
         echo "Python3 is not installed. Installing..."
         sudo apt update
@@ -49,6 +33,4 @@ main() {
     done < "$REQUIREMENTS"
 }
 
-main
-
-echo "$CURRENT_HASH" > "$HASH_FILE"
+install_packages

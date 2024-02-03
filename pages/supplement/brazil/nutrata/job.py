@@ -1,3 +1,5 @@
+from config.env import LOCAL
+
 from .extract import extract
 from .dry import dry
 
@@ -11,8 +13,8 @@ CONF = {
     "word_list": WORD_LIST["supplement"],
     "brand": "nutrata",
     "location_type_product": [{'tag': 'span', 'class': 'tagged_as'}, {'tag': 'nav', 'class': 'woocommerce-breadcrumb'}, {'tag': 'div', 'class': 'woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab'}],
-    "data_path" : "./data/supplement/brazil/nutrata",
-    "seed_path": "./pages/supplement/brazil/nutrata",
+    "data_path" : f"{LOCAL}/data/supplement/brazil/nutrata",
+    "seed_path": f"{LOCAL}/pages/supplement/brazil/nutrata",
     "index_name": "brazil_supplement",
     "index_type": "supplement"
 }

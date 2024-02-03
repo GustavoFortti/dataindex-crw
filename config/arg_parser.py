@@ -5,5 +5,6 @@ def arg_parser():
     parser.add_argument("job_name", type=str)
     parser.add_argument("job_type", type=str)
     parser.add_argument("--option", type=str, default="")
+    parser.add_argument("--local", type=str, default="")
 
     return parser.parse_args()

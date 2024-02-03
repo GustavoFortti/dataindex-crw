@@ -1,3 +1,5 @@
+from config.env import LOCAL
+
 from .extract import extract
 from .dry import dry
 
@@ -11,8 +13,8 @@ CONF = {
     "word_list": WORD_LIST["supplement"],
     "brand": "atlhetica nutrition",
     "location_type_product": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
-    "data_path" : "./data/supplement/brazil/atlhetica_nutrition",
-    "seed_path": "./pages/supplement/brazil/atlhetica_nutrition",
+    "data_path" : f"{LOCAL}/data/supplement/brazil/atlhetica_nutrition",
+    "seed_path": f"{LOCAL}/pages/supplement/brazil/atlhetica_nutrition",
     "index_name": "brazil_supplement",
     "index_type": "supplement"
 }

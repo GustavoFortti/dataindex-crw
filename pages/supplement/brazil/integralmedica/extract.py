@@ -1,6 +1,8 @@
 from shared.selenium_service import initialize_selenium
 from shared.extractor import map_tree, map_seed
 
+from utils.general_functions import first_exec
+
 def get_last_page_index(soup=None):
     return 1
 
@@ -92,6 +94,8 @@ def extract(conf):
     driver = initialize_selenium()
 
     if (option == "init"):
+        first_exec(conf["data_path"])
+        
         print("MAP FUNCTION: map_seed")
         map_seed(driver, map_seed_conf)
 
@@ -103,7 +107,7 @@ def extract(conf):
     elif (option == "update_pages"):
         print("MAP FUNCTION: map_tree")
         map_tree(driver, map_tree_conf)
-    elif (option == "test_tag"):
+    elif (option == "check_tag"):
         print("MAP FUNCTION: map_seed")
         map_seed_conf["scroll_page"] = False
         map_seed(driver, map_seed_conf)

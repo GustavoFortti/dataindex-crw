@@ -3,6 +3,7 @@ import re
 import csv
 import json
 import math
+import shutil
 import base64
 import hashlib
 import requests
@@ -160,6 +161,11 @@ def remove_nan_from_dict(document):
 
     return new_document
 
+def file_exists(directory, filename):
+    file_path = os.path.join(directory, filename)
+    print(file_path)
+    return os.path.exists(file_path)
+
 def find_in_text_with_word_list(text, word_list):
     match = None
     for word in word_list:
@@ -231,3 +237,25 @@ def check_url_existence(url):
         return response.status_code == 200
     except Exception as e:
         return False
+    
+def delete_directory_and_contents(directory_path):
+    if not os.path.exists(directory_path):
+        print("Directory does not exist.")
+        return
+
+    shutil.rmtree(directory_path)
+    print(f"Directory and all contents deleted: {directory_path}")
+
+def first_exec(data_path):
+    origin = file_exists(data_path, "origin.csv")
+    tree = file_exists(data_path, "tree.csv")
+    img_tmp = file_exists(data_path, "img_tmp")
+    products = file_exists(data_path, "products")
+    
+    if (origin & tree & img_tmp & products):
+        exit(0)
+
+    if (origin or tree or img_tmp or products):
+        delete_directory_and_contents(data_path)
+
+    print("First execution")

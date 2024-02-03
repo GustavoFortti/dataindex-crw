@@ -1,3 +1,5 @@
+from config.env import LOCAL
+
 import os
 import pandas as pd
 from elasticsearch import helpers
@@ -38,7 +40,7 @@ def create_index(es, indice_elasticsearch):
         print(f"Index '{indice_elasticsearch}' exists.")
 
 def get_all_origins():
-    diretorio_inicial = './data'
+    diretorio_inicial = f'{LOCAL}/data'
     nome_arquivo = 'origin_csl.csv'
 
     dataframes = []
