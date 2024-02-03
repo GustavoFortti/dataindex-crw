@@ -1,5 +1,6 @@
 # /bin/bash
 
+# export LOCAL="/home/mage/main/dataindex-crw"
 export LOCAL="/home/crw-system/dataindex-crw"
 export DISPLAY=:1
 bash $LOCAL/setup.sh
@@ -50,4 +51,4 @@ echo "page_type: $page_type"
 echo "country: $country"
 
 echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country"
-python3 --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country --local $LOCAL
+python3 main.py --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country --local $LOCAL
