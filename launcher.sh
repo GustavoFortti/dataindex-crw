@@ -1,6 +1,6 @@
 # /bin/bash
 
-export LOCAL=/home/mage/main/dataindex-crw
+export LOCAL=/home/main/dataindex-crw
 export DISPLAY=:1
 bash $LOCAL/setup.sh
 
