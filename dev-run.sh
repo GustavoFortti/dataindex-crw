@@ -1,4 +1,5 @@
-export LOCAL="/home/mage/main/dataindex-crw"
+# export LOCAL="/home/mage/main/dataindex-crw"
+export LOCAL="/home/crw-system/dataindex-crw"
 
 bash $LOCAL/setup.sh $mode
 
