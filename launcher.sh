@@ -42,8 +42,8 @@ while [ "$1" != "" ]; do
     shift
 done
 
-# export LOCAL="/home/crw-system/dataindex-crw"
-export LOCAL="/home/mage/main/dataindex-crw"
+export LOCAL="/home/crw-system/dataindex-crw"
+# export LOCAL="/home/mage/main/dataindex-crw"
 
 bash $LOCAL/setup.sh $mode
 
