@@ -1,5 +1,6 @@
 from config.env import LOCAL
 
+import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -10,11 +11,15 @@ import time
 
 def initialize_selenium():
     options = webdriver.ChromeOptions()
+    display = os.getenv('DISPLAY')
+    print(f"DISPLAY{display}")
 
     # options.add_argument("--start-maximized")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
+    options.add_argument("--enable-logging")
+    options.add_argument("--v=1")
 
     ua = UserAgent()
     user_agent = ua.random
