@@ -100,7 +100,7 @@ def extract(conf):
     elif (option == "update_pages"):
         print("MAP FUNCTION: map_tree")
         map_tree(driver, map_tree_conf)
-    elif (option == "check_tag"):
+    elif (option == "status_jobs"):
         print("MAP FUNCTION: map_seed")
         map_seed_conf["scroll_page"] = False
         map_seed(driver, map_seed_conf)

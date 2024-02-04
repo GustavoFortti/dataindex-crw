@@ -259,3 +259,13 @@ def first_exec(data_path):
         delete_directory_and_contents(data_path)
 
     print("First execution")
+
+def is_price(string):
+    pattern = r"""
+    (R\$\s?\d{1,3}(\.\d{3})*,\d{2})|  # BRL: R$
+    (€\s?\d{1,3}(\.\d{3})*,\d{2})|    # EUR: €
+    (\$\s?\d{1,3}(,\d{3})*\.\d{2})|   # USD: $
+    (£\s?\d{1,3}(,\d{3})*\.\d{2})     # GBP: £
+    """
+
+    return bool(re.match(pattern, string, re.VERBOSE))

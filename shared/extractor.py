@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import date
 
 from shared.selenium_service import get_html
-from shared.data_quality import tags_work
+from shared.data_quality import status_tag
 from utils.wordlist import BLACK_LIST
 from utils.general_functions import (DATE_FORMAT,
                                  read_json, 
@@ -73,8 +73,8 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
                 index = df_tree["ref"] == new_row['ref']
                 print(new_row)
                 
-                if (option == 'test_tag'):
-                    tags_work(df_tree, columns, new_row)
+                if (option == 'status_job'):
+                    status_tag(new_row)
                 
                 if ((update_fields) and (index.any())):
                     for field in update_fields:

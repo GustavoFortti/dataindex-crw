@@ -8,5 +8,6 @@ def arg_parser():
     parser.add_argument("--page_type", type=str)
     parser.add_argument("--country", type=str, default="")
     parser.add_argument("--local", type=str, default="")
+    parser.add_argument("--mode", type=str, default="")
 
     return parser.parse_args()

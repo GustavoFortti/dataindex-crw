@@ -1,13 +1,21 @@
-import pandas as pd
-from utils.general_functions import create_file_if_not_exists
+from utils import check_url_existence, is_price
 
-def tags_work(df, columns, new_row):
-    tags_path = "./data/tags.csv"
-    head = ",".join(map(str, columns))
-    create_file_if_not_exists(tags_path, head)
-    
-    df_tags = pd.read_csv(tags_path)
-    df_tags.loc[len(df)] = new_row
-    df_tags.to_csv(tags_path, index=False)
-    
-    exit(0)
+def status_tag(new_row):
+    errors = []
+
+    if not is_price(new_row["price"]):
+        errors.append("Invalid price format.")
+
+    if not check_url_existence(new_row["image_url"]):
+        errors.append("Image URL does not exist.")
+
+    if not check_url_existence(new_row["product_url"]):
+        errors.append("Product URL does not exist.")
+
+    if errors:
+        for error in errors:
+            print(error)
+        exit(1)
+    else:
+        print("status_tag: All validations passed successfully.")
+        exit(0)

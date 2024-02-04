@@ -30,6 +30,6 @@ def run(args):
     options = {"extract": extract,
                 "dry": dry,
                 "ingestion": ingestion}
-    
+
     exec = options.get(job_type)
     exec(CONF)
