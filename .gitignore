@@ -1,2 +1,4 @@
 **/data/
 packages/chrome-linux64.zip
+
+**/__pycache__/
