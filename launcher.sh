@@ -45,7 +45,6 @@ done
 export LOCAL="/home/crw-system/dataindex-crw"
 
 bash $LOCAL/setup.sh $mode
-export DISPLAY=:1
 
 echo "Running with the following parameters:"
 echo "job_name: $job_name"
