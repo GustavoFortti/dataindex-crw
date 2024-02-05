@@ -2,7 +2,7 @@
 
 job_name=""
 job_type=""
-option=""
+option="false"
 page_type=""
 country=""
 mode="prd"
