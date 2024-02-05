@@ -34,6 +34,7 @@ def data_history_analysis(conf, df):
 
     create_directory_if_not_exists(history_path)
     if (not has_files(history_path)):
+        data_history_save(conf, df)
         return True
 
     df_history = read_csvs_on_dir_and_union(history_path)
