@@ -52,7 +52,7 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
                 atual_altura = prox_altura - 500
                 driver.execute_script(f"window.scrollTo({atual_altura}, {prox_altura});")
                 print(f"{prox_altura}/{total_altura}")
-                time.sleep(0.4)
+                time.sleep(0.9)
         
         page_html = driver.page_source
         soup = BeautifulSoup(page_html, 'html.parser')

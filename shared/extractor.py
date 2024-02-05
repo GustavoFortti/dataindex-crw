@@ -38,7 +38,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     df_tree = pd.DataFrame(columns=columns)
 
     images_tmp_path = data_path + "/img_tmp/"
-    if (path_exist(images_tmp_path)):
+    if ((path_exist(images_tmp_path)) & (option != 'status_job')):
         for img_tmp in os.listdir(images_tmp_path):
             delete_file(images_tmp_path + img_tmp)
 
