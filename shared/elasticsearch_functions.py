@@ -23,9 +23,14 @@ def data_ingestion(df, conf):
     insert_documents(df, index_name)
 
 def create_connection():
+
     es_hosts = os.getenv('ES_HOSTS')
     es_user =  os.getenv('ES_USER')
     es_pass = os.getenv('ES_PASS')
+
+    print(es_hosts)
+    print(es_user)
+    print(es_pass)
 
     global es
     es = Elasticsearch(

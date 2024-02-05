@@ -21,12 +21,13 @@ from utils.general_functions import (clean_text,
 
 pd.set_option('display.max_rows', None)
 
-def process_data(conf, locations):
+def process_data(conf):
     global CONF
     global WORD_LIST
 
     CONF = conf
     WORD_LIST = CONF['word_list']
+    locations = CONF['location_type_product']
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")

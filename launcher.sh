@@ -42,8 +42,8 @@ while [ "$1" != "" ]; do
     shift
 done
 
-export LOCAL="/home/crw-system/dataindex-crw"
-# export LOCAL="/home/mage/main/dataindex-crw"
+# export LOCAL="/home/crw-system/dataindex-crw"
+export LOCAL="/home/mage/main/dataindex-crw"
 
 bash $LOCAL/setup.sh $mode
 
@@ -62,4 +62,4 @@ python3 $LOCAL/main.py --job_name $job_name \
                        --option $option \
                        --page_type $page_type \
                        --country $country \
-                       --local $LOCAL
+                       --mode $mode

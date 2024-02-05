@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import shutil
 
-from utils.general_functions import check_url_existence, delete_file
+from utils.general_functions import delete_file
 
 def data_ingestion(df, conf):
     global CONF
@@ -30,12 +30,6 @@ def data_ingestion(df, conf):
     url = os.getenv('DATAINDEX_IMG_URL')
     refs = {file.split(".")[0]: url + file for file in files}
 
-    for url in refs.values():
-        res = check_url_existence(url)
-        if (not res):
-            print(f"Error image ingestion url does not exist: {url}")
-            exit(1)
-    
     print("Successfully image ingestion")
     df['image_url_srv'] = df['ref'].map(refs)
 

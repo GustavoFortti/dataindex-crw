@@ -1,12 +1,10 @@
-export LOCAL="/home/mage/main/dataindex-crw"
 # export LOCAL="/home/crw-system/dataindex-crw"
-
-bash $LOCAL/setup.sh $mode
+export LOCAL="/home/mage/main/dataindex-crw"
 
 python3 $LOCAL/main.py \
         --job_name darkness \
-        --job_type extract \
-        --option status_job \
+        --job_type ingestion \
         --page_type supplement \
         --country brazil \
-        --local $LOCAL
+        --mode "dev"
+        # --option default \

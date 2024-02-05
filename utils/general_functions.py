@@ -12,7 +12,7 @@ import pandas as pd
 from PIL import Image
 from datetime import date, timedelta
 
-DATE_FORMAT = "%d/%m/%Y"
+DATE_FORMAT = "%Y-%m-%d"
 
 def read_json(file_path):
     try:
@@ -186,36 +186,33 @@ def save_file(text, path):
         file.write(str(text))
 
 def download_image(image_url, image_path, image_name):
-    try:
-        response = requests.get(image_url)
+    response = requests.get(image_url)
 
-        if response.status_code == 200:
-            # Obtendo o tipo de conteúdo da resposta
-            content_type = response.headers['Content-Type']
-            
-            # Determinando a extensão com base no tipo de conteúdo
-            if 'image/jpeg' in content_type:
-                extension = '.jpg'
-            elif 'image/png' in content_type:
-                extension = '.png'
-            elif 'image/gif' in content_type:
-                extension = '.gif'
-            # Adicione mais condições conforme necessário para outros formatos de imagem
-            else:
-                # Se o formato não for reconhecido, usamos uma extensão genérica
-                extension = '.img'
-
-            # Definindo o nome completo do arquivo com a extensão apropriada
-            file_name_with_extension = image_name + extension
-
-            # Salvando a imagem no formato correto
-            with open(image_path + file_name_with_extension, 'wb') as f:
-                f.write(response.content)
-            return f"Image downloaded successfully! Saved as: {file_name_with_extension}"
+    if response.status_code == 200:
+        # Obtendo o tipo de conteúdo da resposta
+        content_type = response.headers['Content-Type']
+        
+        # Determinando a extensão com base no tipo de conteúdo
+        if 'image/jpeg' in content_type:
+            extension = '.jpg'
+        elif 'image/png' in content_type:
+            extension = '.png'
+        elif 'image/gif' in content_type:
+            extension = '.gif'
+        # Adicione mais condições conforme necessário para outros formatos de imagem
         else:
-            return f"Failed to download the image. HTTP status code: {response.status_code}"
-    except Exception as e:
-        return f"An error occurred: {e}"
+            # Se o formato não for reconhecido, usamos uma extensão genérica
+            extension = '.img'
+
+        # Definindo o nome completo do arquivo com a extensão apropriada
+        file_name_with_extension = image_name + extension
+
+        # Salvando a imagem no formato correto
+        with open(image_path + file_name_with_extension, 'wb') as f:
+            f.write(response.content)
+        return f"Image downloaded successfully! Saved as: {file_name_with_extension}"
+    else:
+        print(f"Failed to download the image. HTTP status code: {response.status_code}")
 
 def convert_image(image_path, save_path, output_format='webp'):
     if (not os.path.isfile(image_path)):
@@ -269,3 +266,50 @@ def is_price(string):
     """
 
     return bool(re.match(pattern, string, re.VERBOSE))
+
+def read_csvs_on_dir_and_union(directory):
+    dfs = []
+
+    for filename in os.listdir(directory):
+        if filename.endswith('.csv'):
+            file_path = os.path.join(directory, filename)
+            df = pd.read_csv(file_path)
+            dfs.append(df)
+    
+    result_df = pd.concat(dfs, ignore_index=True)
+    
+    return result_df
+
+def has_files(directory):
+    items = os.listdir(directory)
+    
+    for item in items:
+        item_path = os.path.join(directory, item)
+        if os.path.isfile(item_path):
+            return True
+    return False
+
+def levenshtein(s1, s2):
+    if len(s1) < len(s2):
+        return levenshtein(s2, s1)
+
+    if len(s2) == 0:
+        return len(s1)
+
+    previous_row = range(len(s2) + 1)
+    for i, c1 in enumerate(s1):
+        current_row = [i + 1]
+        for j, c2 in enumerate(s2):
+            insertions = previous_row[j + 1] + 1
+            deletions = current_row[j] + 1
+            substitutions = previous_row[j] + (c1 != c2)
+            current_row.append(min(insertions, deletions, substitutions))
+        previous_row = current_row
+    
+    return previous_row[-1]
+
+def calc_string_diff_in_df_col(row):
+    distance = levenshtein(row['title_x'], row['title_y'])
+    max_len = max(len(row['title_x']), len(row['title_y']))
+    percent_diff = (distance / max_len) if max_len != 0 else 0
+    return percent_diff
