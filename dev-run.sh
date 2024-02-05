@@ -5,6 +5,6 @@ python3 $LOCAL/main.py \
         --job_name darkness \
         --job_type ingestion \
         --page_type supplement \
-        --country brazil \
-        --mode "dev"
+        --country brazil
+        # --mode "dev"
         # --option default \

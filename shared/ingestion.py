@@ -12,7 +12,7 @@ def ingestion(conf):
     is_success = dq.data_history_analysis(conf, df)
 
     if (not is_success):
-        print("Error: corrupt data")
+        print("Ingestion.py - Error: corrupt data")
         exit(1)
 
     print("START IMAGE INGESTION")
