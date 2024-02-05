@@ -33,10 +33,6 @@ def data_ingestion(df, conf):
     print("Successfully image ingestion")
     df['image_url_srv'] = df['ref'].map(refs)
 
-    images_tmp_path = file_path + "/img_tmp/"
-    for img_tmp in os.listdir(images_tmp_path):
-        delete_file(images_tmp_path + img_tmp)
-
     return df
 
 def execute_git_commands(project_dir):

@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 from datetime import date
 
@@ -34,6 +36,11 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     tree_temp_path = data_path + "/tree_temp.csv"
     columns = ["ref", "title" ,"price" ,"image_url", "product_url", "ing_date"]
     df_tree = pd.DataFrame(columns=columns)
+
+    images_tmp_path = data_path + "/img_tmp/"
+    if (path_exist(images_tmp_path)):
+        for img_tmp in os.listdir(images_tmp_path):
+            delete_file(images_tmp_path + img_tmp)
 
     origin_path = f'{data_path}/origin.csv'
     if (path_exist(origin_path) & (update_fields != [])):

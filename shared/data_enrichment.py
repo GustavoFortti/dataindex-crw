@@ -346,8 +346,6 @@ def image_processing(df, data_path):
     dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp)}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
     
-    print(dict_imgs.keys())
-    print(refs)
     if (not (list(dict_imgs.keys()) == refs)):
         print("ERROR IMAGE PROCESSING")
         exit(1)
