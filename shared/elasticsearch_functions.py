@@ -43,16 +43,15 @@ def create_connection():
     return es
 
 def insert_documents(df, index_name):
-    try:
-        create_index_if_not_exits(index_name)
-        field, value = "brand", CONF['brand']
-        delete_all_documents_on_index_by_field_value(index_name, field, value)
+    create_index_if_not_exits(index_name)
+    field, value = "brand", CONF['brand']
+    delete_all_documents_on_index_by_field_value(index_name, field, value)
 
-        helpers.bulk(es, create_documents_with_pandas(df, index_name))
-        print("Bulkload completed successfully")
+    documents = create_documents_with_pandas(df, index_name)
+    success, errors = helpers.bulk(es, documents)
+    print(success, errors)
 
-    except Exception as e:
-        print(f"Erro ao enviar dados para o Elasticsearch: {str(e)}")
+    print("Bulkload completed successfully")
 
 def delete_all_documents_on_index_by_field_value(index_name, field, value):
     query = {
@@ -75,11 +74,14 @@ def delete_all_documents_on_index_by_field_value(index_name, field, value):
 
 def create_documents_with_pandas(df, index_name):
     for index, row in df.iterrows():
-        yield {
+
+        document = {
             "_op_type": "create",
             "_index": index_name,
             "_source": remove_nan_from_dict(row.to_dict()),
         }
+
+        yield document
 
 def create_index_if_not_exits(index_name):
     index_settings = elasticsearch_index(CONF['index_type'], SYNONYMS_LIST)

@@ -68,7 +68,7 @@ def elasticsearch_index(product, synonyms_list):
                     },
                     "ing_date": {
                         "type": "date",
-                        "format": "dd/MM/yyyy"
+                        "format": "yyyy-MM-dd"
                     },
                     "image_url": {
                         "type": "keyword"
@@ -76,7 +76,7 @@ def elasticsearch_index(product, synonyms_list):
                     "image_url_srv": {
                         "type": "keyword"
                     },
-                    "link_produto": {
+                    "product_url": {
                         "type": "keyword"
                     },
                     "brand": {
@@ -109,10 +109,10 @@ def elasticsearch_index(product, synonyms_list):
                     "preco_qnt": {
                         "type": "float"
                     },
-                    "quantidade_formato": {
+                    "quantity_format": {
                         "type": "integer"
                     },
-                    "formato": {
+                    "format": {
                         "type": "text"
                     }
                 }
