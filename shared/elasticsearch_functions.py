@@ -29,9 +29,7 @@ def create_connection():
     es_pass = os.getenv('ES_PASS')
 
     print(es_hosts)
-    print(es_user)
-    print(es_pass)
-
+    
     global es
     es = Elasticsearch(
         [es_hosts],

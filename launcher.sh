@@ -42,8 +42,17 @@ while [ "$1" != "" ]; do
     shift
 done
 
-export LOCAL="/home/crw-system/dataindex-crw"
-# export LOCAL="/home/mage/main/dataindex-crw"
+prd_path="/home/crw-system/dataindex-crw"
+dev_path="/home/mage/main/dataindex-crw"
+
+if [ -d $prd_path ]; then
+    export LOCAL=$prd_path
+elif [ -d $dev_path ]; then
+    export LOCAL=$dev_path
+else
+    echo "None of the specified directories exist."
+    exit 1
+fi
 
 echo "Running with the following parameters:"
 echo "job_name: $job_name"
@@ -55,9 +64,12 @@ echo "mode: $mode"
 
 echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country"
 
+log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
+mkdir -p $log_path
+
 python3 $LOCAL/main.py --job_name $job_name \
                        --job_type $job_type \
                        --option $option \
                        --page_type $page_type \
                        --country $country \
-                       --mode $mode
+                       --mode $mode >> "${log_path}/$(date +%Y-%m-%d).log"
