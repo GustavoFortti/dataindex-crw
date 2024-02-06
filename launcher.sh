@@ -50,7 +50,7 @@ if [ -d $prd_path ]; then
 elif [ -d $dev_path ]; then
     export LOCAL=$dev_path
 else
-    echo "Nenhum dos diretórios especificados existe."
+    echo "None of the specified directories exist."
     exit 1
 fi
 
@@ -70,6 +70,8 @@ echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option 
 log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
 mkdir -p $log_path
 echo "log_path=$log_path"
+
+echo "$(date '+%Y-%m-%d %H:%M:%S')" >> "${log_path}/$(date +%Y-%m-%d).log"
 
 python3 $LOCAL/main.py --job_name $job_name \
                        --job_type $job_type \
