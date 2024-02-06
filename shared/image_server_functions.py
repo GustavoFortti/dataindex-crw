@@ -46,12 +46,12 @@ def git_pull(project_dir):
         subprocess.check_call(['git', 'checkout', '.'])
         subprocess.check_call(['git', 'pull'])
 
-        print("Pull bem-sucedido.")
+        print("Successful pull.")
 
     except subprocess.CalledProcessError as e:
-        print(f"Erro ao executar o comando Git: {e}")
+        print(f"Error when running Git command: {e}")
     except Exception as e:
-        print(f"Erro ao fazer o pull do repositório: {e}")
+        print(f"Error pulling from repository: {e}")
     finally:
         os.chdir(original_dir)
 

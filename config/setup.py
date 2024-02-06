@@ -86,16 +86,16 @@ def setup_git_config(project_dir, username, email, remote_name, remote_url):
         if remote_name not in remote_check.split():
             subprocess.check_call(['git', 'remote', 'add', remote_name, remote_url])
         else:
-            print(f"Remote '{remote_name}' já existe.")
+            print(f"Remote '{remote_name}' already exists.")
 
-        print("Configuração do usuário Git e remote adicionado com sucesso.")
+        print("Git user configuration and remote added successfully.")
         
         subprocess.check_call(['git', 'pull', remote_name, 'master'])
 
     except subprocess.CalledProcessError as e:
-        print(f"Erro ao executar o comando Git: {e}")
+        print(f"Error executing Git command: {e}")
     except Exception as e:
-        print(f"Erro ao criar o diretório: {e}")
+        print(f"Error creating the directory: {e}")
     finally:
         os.chdir(original_dir)
 
