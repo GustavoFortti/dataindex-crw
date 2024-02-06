@@ -15,6 +15,8 @@ def data_ingestion(df, conf):
     dataindex_img_path = os.getenv('DATAINDEX_IMG_PATH')
     images_server_path = dataindex_img_path + "/imgs"
 
+    git_pull(dataindex_img_path)
+
     if not os.path.exists(images_server_path):
         os.makedirs(images_server_path)
 
@@ -26,7 +28,7 @@ def data_ingestion(df, conf):
             destination_file = os.path.join(images_server_path, file_name)
             shutil.copy(source_file, destination_file)
     
-    execute_git_commands(dataindex_img_path)
+    git_push(dataindex_img_path)
 
     url = os.getenv('DATAINDEX_IMG_URL')
     refs = {file.split(".")[0]: url + file for file in files}
@@ -36,12 +38,29 @@ def data_ingestion(df, conf):
 
     return df
 
-def execute_git_commands(project_dir):
+def git_pull(project_dir):
+    try:
+        original_dir = os.getcwd()
+        os.chdir(project_dir)
+
+        subprocess.check_call(['git', 'checkout', '.'])
+        subprocess.check_call(['git', 'pull'])
+
+        print("Pull bem-sucedido.")
+
+    except subprocess.CalledProcessError as e:
+        print(f"Erro ao executar o comando Git: {e}")
+    except Exception as e:
+        print(f"Erro ao fazer o pull do repositório: {e}")
+    finally:
+        os.chdir(original_dir)
+
+def git_push(project_dir):
     original_dir = os.getcwd()
     
     try:
         os.chdir(project_dir)
-
+        
         if os.system('git add .') != 0:
             print("Error staging files.")
             return
