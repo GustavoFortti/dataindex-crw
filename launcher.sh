@@ -66,6 +66,7 @@ echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option 
 
 log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
 mkdir -p $log_path
+echo "log_path=$log_path"
 
 python3 $LOCAL/main.py --job_name $job_name \
                        --job_type $job_type \

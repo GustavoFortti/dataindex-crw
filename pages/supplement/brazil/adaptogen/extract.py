@@ -77,7 +77,6 @@ map_tree_conf = {
 
 def extract(conf):
     option = conf["option"]
-    print(option)
 
     map_seed_conf["option"] = conf["option"]
     map_seed_conf["data_path"] = conf["data_path"]
