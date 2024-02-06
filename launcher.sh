@@ -42,7 +42,7 @@ while [ "$1" != "" ]; do
     shift
 done
 
-LOCAL="/home/crw-system/dataindex-crw"
+export LOCAL="/home/crw-system/dataindex-crw"
 # export LOCAL="/home/mage/main/dataindex-crw"
 
 echo "Running with the following parameters:"
@@ -52,6 +52,7 @@ echo "option: $option"
 echo "page_type: $page_type"
 echo "country: $country"
 echo "mode: $mode"
+echo "LOCAL $LOCAL"
 
 echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option $option --page_type $page_type --country $country"
 
