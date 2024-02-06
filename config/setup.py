@@ -90,7 +90,6 @@ def setup_git_config(project_dir, username, email, remote_name, remote_url):
 
         print("Configuração do usuário Git e remote adicionado com sucesso.")
         
-        # Executa o git pull da branch 'master' após a configuração do repositório remoto
         subprocess.check_call(['git', 'pull', remote_name, 'master'])
 
     except subprocess.CalledProcessError as e:
