@@ -18,10 +18,10 @@ def ingestion(conf):
     print("START IMAGE INGESTION")
     df = image_srv.data_ingestion(df, conf)
 
-    # if not os.path.exists(conf['data_path']):
-    #     os.makedirs(conf['data_path'])
+    if not os.path.exists(conf['data_path']):
+        os.makedirs(conf['data_path'])
 
-    # df.to_csv(conf['data_path'] + "/origin_csl.csv", index=False)
+    df.to_csv(conf['data_path'] + "/origin_csl.csv", index=False)
 
-    # print("START BULKLOAD")
-    # es.data_ingestion(df, conf)
+    print("START BULKLOAD")
+    es.data_ingestion(df, conf)
