@@ -38,7 +38,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     df_tree = pd.DataFrame(columns=columns)
 
     images_tmp_path = data_path + "/img_tmp/"
-    if ((path_exist(images_tmp_path)) & (option != 'status_job')):
+    if (path_exist(images_tmp_path) & (option != 'status_job')):
         for img_tmp in os.listdir(images_tmp_path):
             delete_file(images_tmp_path + img_tmp)
 
@@ -68,7 +68,8 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
                 product_link, title, price, image_url = get_elements_seed(item)
                 ref = generate_hash(product_link)
                 create_directory_if_not_exists(data_path + "/img_tmp/")
-                download_image(image_url, data_path + "/img_tmp/", ref)
+                if (option != 'status_job'):
+                    download_image(image_url, data_path + "/img_tmp/", ref)
                 
                 if (price): price = clean_string_break_line(price)
                 if (title): title = clean_string_break_line(title)

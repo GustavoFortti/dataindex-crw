@@ -21,6 +21,8 @@ def status_tag(new_row):
     if not check_url_existence(new_row["product_url"]):
         errors.append("Product URL does not exist.")
 
+    print(new_row)
+
     if errors:
         for error in errors:
             print(error)

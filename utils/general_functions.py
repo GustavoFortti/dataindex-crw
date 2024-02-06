@@ -186,6 +186,7 @@ def save_file(text, path):
         file.write(str(text))
 
 def download_image(image_url, image_path, image_name):
+    print(f"Download: {image_url}")
     response = requests.get(image_url)
 
     if response.status_code == 200:

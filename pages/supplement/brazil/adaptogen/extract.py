@@ -70,13 +70,14 @@ map_seed_conf = {
 
 map_tree_conf = {
     "get_elements_tree": get_elements_tree,
-    "time": 1,
+    "time": 3,
     "scroll_page": True,
     "return_text": True,
 }
 
 def extract(conf):
     option = conf["option"]
+    print(option)
 
     map_seed_conf["option"] = conf["option"]
     map_seed_conf["data_path"] = conf["data_path"]
@@ -100,7 +101,7 @@ def extract(conf):
     elif (option == "update_pages"):
         print("MAP FUNCTION: map_tree")
         map_tree(driver, map_tree_conf)
-    elif (option == "status_jobs"):
+    elif (option == "status_job"):
         print("MAP FUNCTION: map_seed")
         map_seed_conf["scroll_page"] = False
         map_seed(driver, map_seed_conf)

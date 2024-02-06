@@ -13,9 +13,9 @@ else
 fi
 
 python3 $LOCAL/main.py \
-        --job_name darkness \
-        --job_type dry \
-        --option default \
+        --job_name adaptogen \
+        --job_type extract \
+        --option init \
         --page_type supplement \
         --country brazil \
         --mode dev

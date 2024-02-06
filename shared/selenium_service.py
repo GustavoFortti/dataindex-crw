@@ -15,7 +15,6 @@ def initialize_selenium():
     display = os.getenv('DISPLAY')
     print(f"DISPLAY{display}")
 
-    options.add_argument("--start-maximized")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     options.add_experimental_option('useAutomationExtension', False)
@@ -28,7 +27,6 @@ def initialize_selenium():
 
     service = Service(executable_path=f"{LOCAL}/packages/chromedriver")
     driver = webdriver.Chrome(service=service, options=options)
-    driver.minimize_window()
     
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     
