@@ -54,8 +54,6 @@ else
     exit 1
 fi
 
-exit 0
-
 echo "Running with the following parameters:"
 echo "job_name: $job_name"
 echo "job_type: $job_type"
@@ -69,13 +67,17 @@ echo "Command: ./launcher.sh --job_name $job_name --job_type $job_type --option 
 
 log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
 mkdir -p $log_path
-echo "log_path=$log_path"
+log_path="${log_path}/$(date +%Y-%m-%d).log"
+touch $log_path
+echo "LOG: $log_path"
 
-echo "$(date '+%Y-%m-%d %H:%M:%S')" >> "${log_path}/$(date +%Y-%m-%d).log"
+echo "job start: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_path
 
 python3 $LOCAL/main.py --job_name $job_name \
                        --job_type $job_type \
                        --option $option \
                        --page_type $page_type \
                        --country $country \
-                       --mode $mode >> "${log_path}/$(date +%Y-%m-%d).log"
+                       --mode $mode >> $log_path
+
+echo "job end: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_path
