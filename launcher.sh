@@ -42,17 +42,8 @@ while [ "$1" != "" ]; do
     shift
 done
 
-prd_path="/home/crw-system/dataindex-crw"
-dev_path="/home/mage/main/dataindex-crw"
-
-if [ -d $prd_path ]; then
-    export LOCAL=$prd_path
-elif [ -d $dev_path ]; then
-    export LOCAL=$dev_path
-else
-    echo "None of the specified directories exist."
-    exit 1
-fi
+LOCAL="/home/crw-system/dataindex-crw"
+# export LOCAL="/home/mage/main/dataindex-crw"
 
 echo "Running with the following parameters:"
 echo "job_name: $job_name"

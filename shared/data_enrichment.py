@@ -343,9 +343,10 @@ def image_processing(df, data_path):
     create_directory_if_not_exists(path_img_csl)
 
     refs = sorted(df['ref'])
-    dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp)}
+    dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp) if i.split(".")[0] in refs}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
-    
+    print(dict_imgs)
+    print(refs)
     if (not (list(dict_imgs.keys()) == refs)):
         print("ERROR IMAGE PROCESSING")
         exit(1)
