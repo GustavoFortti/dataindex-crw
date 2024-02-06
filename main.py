@@ -1,5 +1,5 @@
 import importlib
-from config.env import configure_env
+from config.setup import configure_env
 from config.arg_parser import arg_parser
 
 args = arg_parser()

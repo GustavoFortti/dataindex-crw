@@ -3,7 +3,7 @@ import pandas as pd
 
 from elasticsearch import Elasticsearch, helpers
 
-from shared.elasticsearch_conf import elasticsearch_index
+from shared.elasticsearch_index import elasticsearch_index
 
 from utils.general_functions import remove_nan_from_dict
 from utils.wordlist import get_synonyms
