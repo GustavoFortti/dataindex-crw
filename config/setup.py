@@ -34,7 +34,6 @@ def configure_display():
     return False
 
 def configure_elasticsearch(env):
-    print(es_conf)
     if env == "dev":
         os.environ['ES_HOSTS'] = es_conf["hosts_dev"]
         os.environ['ES_USER'] = es_conf["user_dev"]
@@ -53,6 +52,7 @@ def configure_images_path():
         print(f"{img_path} Ok")
     else:
         clone_repository(git_conf["remote_url"])
+        setup_git_config(img_path, git_conf['username'], git_conf['email'], git_conf['remote_name'], git_conf['remote_url'])
 
 def clone_repository(remote_url):
     try:
@@ -67,6 +67,36 @@ def clone_repository(remote_url):
         print(f"Erro ao executar o comando Git: {e}")
     except Exception as e:
         print(f"Erro ao clonar o repositório: {e}")
+    finally:
+        os.chdir(original_dir)
+
+def setup_git_config(project_dir, username, email, remote_name, remote_url):
+    try:
+        if not os.path.exists(project_dir):
+            os.makedirs(project_dir)
+
+        original_dir = os.getcwd()
+        os.chdir(project_dir)
+
+        subprocess.check_call(['git', 'config', 'init.defaultBranch', 'master'])
+        subprocess.check_call(['git', 'config', 'user.name', username])
+        subprocess.check_call(['git', 'config', 'user.email', email])
+
+        remote_check = subprocess.check_output(['git', 'remote']).decode('utf-8').strip()
+        if remote_name not in remote_check.split():
+            subprocess.check_call(['git', 'remote', 'add', remote_name, remote_url])
+        else:
+            print(f"Remote '{remote_name}' já existe.")
+
+        print("Configuração do usuário Git e remote adicionado com sucesso.")
+        
+        # Executa o git pull da branch 'master' após a configuração do repositório remoto
+        subprocess.check_call(['git', 'pull', remote_name, 'master'])
+
+    except subprocess.CalledProcessError as e:
+        print(f"Erro ao executar o comando Git: {e}")
+    except Exception as e:
+        print(f"Erro ao criar o diretório: {e}")
     finally:
         os.chdir(original_dir)
 

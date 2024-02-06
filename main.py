@@ -9,7 +9,7 @@ country = args.country
 
 configure_env(args)
 
-module_name = f"pages.{page_type}.{country}.{job_name}.job"
-module = importlib.import_module(module_name)
+# module_name = f"pages.{page_type}.{country}.{job_name}.job"
+# module = importlib.import_module(module_name)
 
-module.run(args)
+# module.run(args)
