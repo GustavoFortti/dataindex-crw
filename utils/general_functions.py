@@ -254,7 +254,10 @@ def first_exec(data_path):
         exit(0)
 
     if (origin or tree or img_tmp or products):
-        delete_directory_and_contents(data_path)
+        delete_file(f"{data_path}/origin.csv")
+        delete_file(f"{data_path}/tree.csv")
+        delete_directory_and_contents(f"{data_path}/img_tmp")
+        delete_directory_and_contents(f"{data_path}/products")
 
     print("First execution")
 

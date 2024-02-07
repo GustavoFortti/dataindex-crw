@@ -54,35 +54,35 @@ else
     exit 1
 fi
 
-# log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
-# log_file="$log_path/$(date +%Y-%m-%d).log"
+log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
+log_file="$log_path/$(date +%Y-%m-%d).log"
 
-# if [ ! -d "$log_path" ]; then
-#     mkdir -p "$log_path"
-# fi
+if [ ! -d "$log_path" ]; then
+    mkdir -p "$log_path"
+fi
 
-# if [ -z "$log_file" ]; then
-#     echo "The log_file variable is not set or is empty. Cannot proceed with logging."
-#     exit 1
-# else
-#     touch "$log_file"
-# fi
+if [ -z "$log_file" ]; then
+    echo "The log_file variable is not set or is empty. Cannot proceed with logging."
+    exit 1
+else
+    touch "$log_file"
+fi
 
-# echo "Running with the following parameters:" >> "$log_file"
-# echo "job_name: $job_name" >> "$log_file"
-# echo "job_type: $job_type" >> "$log_file"
-# echo "option: $option" >> "$log_file"
-# echo "page_type: $page_type" >> "$log_file"
-# echo "country: $country" >> "$log_file"
-# echo "mode: $mode" >> "$log_file"
-# echo "LOCAL: $LOCAL" >> "$log_file"
-# echo "Job start: $(date '+%Y-%m-%d %H:%M:%S')" >> "$log_file"
+echo "Running with the following parameters:" >> "$log_file"
+echo "job_name: $job_name" >> "$log_file"
+echo "job_type: $job_type" >> "$log_file"
+echo "option: $option" >> "$log_file"
+echo "page_type: $page_type" >> "$log_file"
+echo "country: $country" >> "$log_file"
+echo "mode: $mode" >> "$log_file"
+echo "LOCAL: $LOCAL" >> "$log_file"
+echo "Job start: $(date '+%Y-%m-%d %H:%M:%S')" >> "$log_file"
 
 python3 "$LOCAL/main.py" --job_name "$job_name" \
                          --job_type "$job_type" \
                          --option "$option" \
                          --page_type "$page_type" \
                          --country "$country" \
-                         --mode "$mode" # >> "$log_file" 2>&1
+                         --mode "$mode" >> "$log_file" 2>&1
 
-# echo "Job end: $(date '+%Y-%m-%d %H:%M:%S')" >> "$log_file"
+echo "Job end: $(date '+%Y-%m-%d %H:%M:%S')" >> "$log_file"
