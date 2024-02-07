@@ -55,10 +55,14 @@ else
 fi
 
 log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
-mkdir -p $log_path
-log_file="$log_path/$(date +%Y-%m-%d).log"
-touch $log_file
-echo "LOG file: $log_file"
+if [ ! -d "$log_path" ]; then
+    mkdir -p "$log_path"
+    log_file="$log_path/$(date +%Y-%m-%d).log"
+    touch "$log_file"
+    echo "LOG file: $log_file"
+else
+    echo "The directory $log_path already exists. No new log file was created."
+fi
 
 echo "Running with the following parameters:"  >> $log_file
 echo "job_name: $job_name"  >> $log_file
