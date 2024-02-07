@@ -56,24 +56,25 @@ fi
 
 log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
 mkdir -p $log_path
-touch "$log_path/$(date +%Y-%m-%d).log"
-echo "LOG: $log_path"
+log_file="$log_path/$(date +%Y-%m-%d).log"
+touch $log_file
+echo "LOG file: $log_file"
 
-echo "Running with the following parameters:"  >> $log_path
-echo "job_name: $job_name"  >> $log_path
-echo "job_type: $job_type"  >> $log_path
-echo "option: $option"  >> $log_path
-echo "page_type: $page_type"  >> $log_path
-echo "country: $country"  >> $log_path
-echo "mode: $mode"  >> $log_path
-echo "LOCAL $LOCAL"  >> $log_path
-echo "job start: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_path
+echo "Running with the following parameters:"  >> $log_file
+echo "job_name: $job_name"  >> $log_file
+echo "job_type: $job_type"  >> $log_file
+echo "option: $option"  >> $log_file
+echo "page_type: $page_type"  >> $log_file
+echo "country: $country"  >> $log_file
+echo "mode: $mode"  >> $log_file
+echo "LOCAL $LOCAL"  >> $log_file
+echo "job start: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_file
 
 # python3 $LOCAL/main.py --job_name $job_name \
 #                        --job_type $job_type \
 #                        --option $option \
 #                        --page_type $page_type \
 #                        --country $country \
-#                        --mode $mode >> $log_path
+#                        --mode $mode >> $log_file
 
-echo "job end: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_path
+echo "job end: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_file
