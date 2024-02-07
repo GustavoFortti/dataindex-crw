@@ -43,7 +43,7 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
 
         if (scroll_page):
             load_page(driver, 1000, 0.3)
-            load_page(driver, 400, 0.2)
+            load_page(driver, 500, 0.3)
             load_page(driver, 100, 0.1)
         
         page_html = driver.page_source
