@@ -70,11 +70,11 @@ echo "mode: $mode"  >> $log_file
 echo "LOCAL $LOCAL"  >> $log_file
 echo "job start: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_file
 
-# python3 $LOCAL/main.py --job_name $job_name \
-#                        --job_type $job_type \
-#                        --option $option \
-#                        --page_type $page_type \
-#                        --country $country \
-#                        --mode $mode >> $log_file
+python3 $LOCAL/main.py --job_name $job_name \
+                       --job_type $job_type \
+                       --option $option \
+                       --page_type $page_type \
+                       --country $country \
+                       --mode $mode >> $log_file
 
 echo "job end: $(date '+%Y-%m-%d %H:%M:%S')" >> $log_file
