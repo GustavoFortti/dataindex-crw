@@ -42,15 +42,9 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
         time.sleep(sleep)
 
         if (scroll_page):
-            prox_altura = 0
-            total_altura = driver.execute_script("return document.body.scrollHeight")
-
-            while (total_altura > prox_altura):
-                prox_altura += 500
-                atual_altura = prox_altura - 500
-                driver.execute_script(f"window.scrollTo({atual_altura}, {prox_altura});")
-                print(f"{prox_altura}/{total_altura}")
-                time.sleep(0.9)
+            load_page(driver, 1000, 0.3)
+            load_page(driver, 400, 0.2)
+            load_page(driver, 100, 0.1)
         
         page_html = driver.page_source
         soup = BeautifulSoup(page_html, 'html.parser')
@@ -59,3 +53,14 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
         return soup
     except Exception as e:
         print(f"Ocorreu um erro: {str(e)}")
+    
+def load_page(driver, size_height, time_sleep):
+    next_height = 0
+    total_height = driver.execute_script("return document.body.scrollHeight")
+
+    while (total_height > next_height):
+        next_height += size_height
+        current_height = next_height - size_height
+        driver.execute_script(f"window.scrollTo({current_height}, {next_height});")
+        print(f"{next_height}/{total_height}")
+        time.sleep(time_sleep)

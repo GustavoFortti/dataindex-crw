@@ -85,4 +85,8 @@ python3 "$LOCAL/main.py" --job_name "$job_name" \
                          --country "$country" \
                          --mode "$mode" >> "$log_file" 2>&1
 
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
 echo "Job end: $(date '+%Y-%m-%d %H:%M:%S')" >> "$log_file"
