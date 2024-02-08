@@ -6,6 +6,7 @@ option="false"
 page_type=""
 country=""
 mode="prd"
+local="/home/crw-system/dataindex-crw"
 
 usage() {
   echo "Usage: $0 --job_name NAME --job_type TYPE --option OPTION --page_type PAGE_TYPE --country COUNTRY"
@@ -36,24 +37,16 @@ while [ "$1" != "" ]; do
         --mode )        shift
                         mode=$1
                         ;;
+        --local )       shift
+                        local=$1
+                        ;;
         * )             usage
                         ;;
     esac
     shift
 done
 
-prd_path="/home/crw-system/dataindex-crw"
-dev_path="/home/mage/main/dataindex-crw"
-
-if [ -d $prd_path ]; then
-    export LOCAL=$prd_path
-elif [ -d $dev_path ]; then
-    export LOCAL=$dev_path
-else
-    echo "None of the specified directories exist."
-    exit 1
-fi
-
+export LOCAL=$local
 log_path="$LOCAL/data/$page_type/$country/$job_name/logs"
 log_file="$log_path/$(date +%Y-%m-%d).log"
 

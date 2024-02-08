@@ -45,7 +45,9 @@ def data_history_analysis(conf, df):
     price_erro, price_alert, df_price = price_analysis(df_history, df)
     title_erro, title_alert, df_title = title_analysis(df_history, df)
 
-    is_success = (price_erro & title_erro & volume_erro)
+    is_success = (price_erro & 
+                  title_erro & 
+                  volume_erro)
 
     if (not is_success):
         print("Ingestion.py - Error: corrupt data")
