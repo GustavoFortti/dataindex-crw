@@ -122,7 +122,6 @@ def extract(conf):
         map_tree(driver, map_tree_conf)
     elif (option == "status_job"):
         print("STATUS_JOB - MAP FUNCTION: map_seed")
-        # map_seed_conf["scroll_page"] = False
         map_seed(driver, map_seed_conf)
 
     driver.quit()

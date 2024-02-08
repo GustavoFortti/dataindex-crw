@@ -19,14 +19,14 @@ fi
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="max_titanium"
-job_type="extract"
-option="status_job"
+job_name="darkness"
+job_type="ingestion"
+option="data_quality"
 page_type="supplement"
 country="brazil"
-mode="prd"
+mode="dev"
 
-python3 $LOCAL/main.py \
+python3 "$LOCAL/main.py" \
         --job_name $job_name \
         --job_type $job_type \
         --option "$option" \

@@ -13,6 +13,5 @@ def dry(conf):
 
     option = CONF["option"]
 
-    if (option == "default"):
-        print("DRY: default")
-        create_origin_dry()
+    print("Data Dry")
+    create_origin_dry()

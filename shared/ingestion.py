@@ -9,11 +9,10 @@ def ingestion(conf):
     print(conf['data_path'])
     df = pd.read_csv(conf['data_path'] + '/origin_dry.csv')
 
-    is_success = dq.data_history_analysis(conf, df)
-
-    if (not is_success):
-        print("Ingestion.py - Error: corrupt data")
-        exit(1)
+    if (conf['option'] == "data_quality"):
+        print("Running Data Quality...")
+        dq.data_history_analysis(conf, df)
+        exit(0)
 
     print("START IMAGE INGESTION")
     df = image_srv.data_ingestion(df, conf)

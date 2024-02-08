@@ -9,6 +9,7 @@ import hashlib
 import requests
 import unicodedata
 import pandas as pd
+from glob import glob
 from PIL import Image
 from datetime import date, timedelta
 
@@ -271,18 +272,21 @@ def is_price(string):
 
     return bool(re.match(pattern, string, re.VERBOSE))
 
-def read_csvs_on_dir_and_union(directory):
-    dfs = []
-
-    for filename in os.listdir(directory):
-        if filename.endswith('.csv'):
-            file_path = os.path.join(directory, filename)
-            df = pd.read_csv(file_path)
-            dfs.append(df)
+def read_csvs_on_dir_and_union(directory, get_only_last):
+    # Usa glob para encontrar todos os arquivos CSV no diretório
+    csv_files = glob(os.path.join(directory, '*.csv'))
     
-    result_df = pd.concat(dfs, ignore_index=True)
-    
-    return result_df
+    if get_only_last and csv_files:
+        # Encontra o arquivo CSV mais recentemente modificado
+        latest_file = max(csv_files, key=os.path.getmtime)
+        return pd.read_csv(latest_file)
+    elif csv_files:
+        # Lê todos os arquivos CSV e os concatena em um único DataFrame
+        dfs = [pd.read_csv(file) for file in csv_files]
+        return pd.concat(dfs, ignore_index=True)
+    else:
+        print("Erro: no historical data")
+        exit(1)
 
 def has_files(directory):
     items = os.listdir(directory)

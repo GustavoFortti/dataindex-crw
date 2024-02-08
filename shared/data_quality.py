@@ -39,19 +39,37 @@ def data_history_analysis(conf, df):
         data_history_save(conf, df)
         return True
 
-    df_history = read_csvs_on_dir_and_union(history_path)
-    df_history['ing_date'] = pd.to_datetime(df_history['ing_date'])
-    max_date = df_history['ing_date'].max()
-    df_history = df_history[df_history['ing_date'] == max_date]
+    df_history = read_csvs_on_dir_and_union(history_path, True)
 
+    volume_erro, volume_alert = volume_analysis(df_history, df)
     price_erro, price_alert, df_price = price_analysis(df_history, df)
     title_erro, title_alert, df_title = title_analysis(df_history, df)
 
-    is_success = (price_erro & title_erro)
-    if (is_success):
+    is_success = (price_erro & title_erro & volume_erro)
+
+    if (not is_success):
+        print("Ingestion.py - Error: corrupt data")
+        exit(1)
+    else:
         data_history_save(conf, df)
+        print("Data ready for ingestion")
 
     return is_success
+
+def volume_analysis(df_history, df, alert_threshold=0.2, error_threshold=0.5):
+    volume_history = len(df_history)
+    volume_current = len(df)
+
+    if volume_history == 0:
+        return True, True
+
+    volume_change = abs((volume_current / volume_history) - 1)
+    print(f"volume_change: {volume_change}")
+
+    volume_error = volume_change < error_threshold
+    volume_alert = volume_change < alert_threshold
+
+    return volume_error, volume_alert
 
 def title_analysis(df_history, df):
     df_history_title = df_history[["ref", "title"]]
@@ -96,3 +114,4 @@ def data_history_save(conf, df):
     formatted_date = data_atual.strftime(DATE_FORMAT)
 
     df.to_csv(f"{history_path}/origin_csl_{formatted_date}.csv", index=False)
+    print(f"Saved historical data in {history_path}/origin_csl_{formatted_date}.csv")
