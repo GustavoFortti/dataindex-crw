@@ -70,15 +70,15 @@ map_seed_conf = {
     "get_last_page_index": get_last_page_index,
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
-    "time": 3,
-    "scroll_page": True,
+    "time_sleep_page": 3,
+    "scroll_page": [{"time_sleep": 0.3, "size_height": 1000}, {"time_sleep": 0.3, "size_height": 100}],
     "return_text": False,
 }
 
 map_tree_conf = {
     "get_elements_tree": get_elements_tree,
     "time": 1,
-    "scroll_page": True,
+    "scroll_page": [{"time_sleep": 0.2, "size_height": 500}],
     "return_text": True,
 }
 

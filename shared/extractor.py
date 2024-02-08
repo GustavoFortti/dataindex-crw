@@ -24,7 +24,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     get_next_url = map_seed_conf["get_next_url"]
     get_last_page_index = map_seed_conf["get_last_page_index"]
     get_items = map_seed_conf["get_items"]
-    time = map_seed_conf["time"]
+    time_sleep_page = map_seed_conf["time_sleep_page"]
     scroll_page = map_seed_conf["scroll_page"]
     get_elements_seed = map_seed_conf["get_elements_seed"]
     option = map_seed_conf['option']
@@ -49,7 +49,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     for seed in seeds:
         url = get_next_url(seed['url'], 1)
         
-        soup = get_html(driver, url, time, scroll_page)
+        soup = get_html(driver, url, time_sleep_page, scroll_page)
         max_itens_by_page = 0
         ref = ""
         last_page_by_ref = ""
@@ -99,7 +99,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             else:
                 break
 
-            soup = get_html(driver, url, time, scroll_page)
+            soup = get_html(driver, url, time_sleep_page, scroll_page)
     
     df_tree_temp = pd.read_csv(tree_temp_path)
     df_tree_temp = df_tree_temp.drop_duplicates(subset='product_url').reset_index(drop=True)
@@ -116,7 +116,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
 def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
     data_path = map_tree_conf['data_path']
     get_elements_tree = map_tree_conf["get_elements_tree"]
-    time = map_tree_conf["time"]
+    time_sleep_page = map_tree_conf["time_sleep_page"]
     scroll_page = map_tree_conf["scroll_page"]
     return_text = map_tree_conf["return_text"]
 
@@ -169,7 +169,7 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
 
         # Processo de requisição e extração de dados da página
         if ((not update) & (is_old_file)):
-            soup, text = get_html(driver, url, time, scroll_page, return_text)
+            soup, text = get_html(driver, url, time_sleep_page, scroll_page, return_text)
             with open(textfile_path, 'w') as file:
                 file.write(text)
                 print(f"File '{textfile_path}' created successfully.")

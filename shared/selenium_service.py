@@ -42,8 +42,8 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
         time.sleep(sleep)
 
         if (scroll_page):
-            load_page(driver, 1000, 0.3)
-            load_page(driver, 100, 0.3)
+            for scroll in scroll_page:
+                load_page(driver, scroll["time_sleep"], scroll["size_height"])
         
         page_html = driver.page_source
         soup = BeautifulSoup(page_html, 'html.parser')
@@ -53,7 +53,7 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
     except Exception as e:
         print(f"Ocorreu um erro: {str(e)}")
     
-def load_page(driver, size_height, time_sleep):
+def load_page(driver, time_sleep, size_height):
     next_height = 0
     total_height = driver.execute_script("return document.body.scrollHeight")
 
