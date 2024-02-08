@@ -11,9 +11,8 @@ def dry(conf):
     global CONF
     CONF = conf
 
-    option = CONF["option"]
-
     print("Data Dry")
     create_origin_dry()
+
 
    
