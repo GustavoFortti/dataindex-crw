@@ -69,7 +69,7 @@ map_seed_conf = {
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
     "time_sleep_page": 5,
-    "scroll_page": [{"time_sleep": 0.5, "size_height": 500}],
+    "scroll_page": [{"time_sleep": 0.5, "size_height": 500}, {"time_sleep": 0.4, "size_height": 100}],
     "return_text": False,
 }
 
