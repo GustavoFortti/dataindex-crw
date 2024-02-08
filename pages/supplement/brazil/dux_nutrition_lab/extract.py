@@ -81,7 +81,7 @@ map_seed_conf = {
 
 map_tree_conf = {
     "get_elements_tree": get_elements_tree,
-    "time": 1,
+    "time_sleep_page": 1,
     "scroll_page": [{"time_sleep": 0.2, "size_height": 500}],
     "return_text": True,
 }
