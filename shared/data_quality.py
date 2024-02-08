@@ -27,9 +27,9 @@ def status_tag(new_row):
         for error in errors:
             print(error)
         exit(1)
-    else:
-        print("status_tag: All validations passed successfully.")
-        exit(0)
+        
+    print("status_tag: All validations passed successfully.")
+    exit(0)
 
 def data_history_analysis(conf, df):
     history_path = conf['data_path'] + "/history"

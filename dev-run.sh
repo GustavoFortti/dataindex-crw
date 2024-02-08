@@ -19,9 +19,9 @@ fi
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="iridium_labs"
+job_name="max_titanium"
 job_type="extract"
-option="init"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"

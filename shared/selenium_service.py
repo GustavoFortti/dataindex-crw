@@ -4,6 +4,10 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -30,7 +34,9 @@ def initialize_selenium():
     
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     
+    driver.maximize_window() 
     print(driver.execute_script("return navigator.userAgent;"))
+   
     return driver
 
 def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
@@ -42,6 +48,7 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
         time.sleep(sleep)
 
         if (scroll_page):
+            print(f"SCROLL_PAGE... {scroll_page}")
             for scroll in scroll_page:
                 load_page(driver, scroll["time_sleep"], scroll["size_height"])
         
@@ -63,3 +70,13 @@ def load_page(driver, time_sleep, size_height):
         driver.execute_script(f"window.scrollTo({current_height}, {next_height});")
         print(f"{next_height}/{total_height}")
         time.sleep(time_sleep)
+
+def move_mouse_over_all_elements(driver):
+    elements = driver.find_elements(By.XPATH, "//*")
+
+    for element in elements:
+        try:
+            if element.is_displayed() and element.size['width'] > 0 and element.size['height'] > 0:
+                ActionChains(driver).move_to_element(element).perform()
+        except Exception as e:
+            continue 
