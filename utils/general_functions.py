@@ -237,10 +237,8 @@ def check_url_existence(url):
         'User-Agent': ua.random
     }
 
-    print(url)
     try:
         response = requests.get(url, headers=headers)
-        print(response)
         return 200 <= response.status_code < 300
     except Exception as e:
         print(e)

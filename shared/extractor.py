@@ -49,7 +49,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     for seed in seeds:
         url = get_next_url(seed['url'], 1)
         
-        soup = get_html(driver, url, time_sleep_page, scroll_page, functions_to_check_load=[get_items, 
+        soup = get_html(driver, url, time_sleep_page, scroll_page, False, functions_to_check_load=[get_items, 
                                                                                     get_elements_seed, 
                                                                                     status_tag])
 

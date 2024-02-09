@@ -46,16 +46,21 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
     driver.get(url)
     driver.implicitly_wait(100)
-    if (sleep != 0): print("*" * sleep)
+    if (sleep != 0): 
+        print("*" * sleep)
     time.sleep(sleep)
+
+    page_html = driver.page_source
+    soup = BeautifulSoup(page_html, 'html.parser')
 
     if (scroll_page):
         print(f"SCROLL_PAGE...")
         # for scroll in scroll_page[0]:
 
         for scroll in [{"time_sleep": 1, "size_height": 1000}, 
-                        {"time_sleep": 1, "size_height": 500}, 
-                        {"time_sleep": 0.5, "size_height": 100}]:
+                       {"time_sleep": 1, "size_height": 500}, 
+                       {"time_sleep": 0.5, "size_height": 500}, 
+                       {"time_sleep": 0.5, "size_height": 100}]:
             
             # scroll = scroll_page[0]
             load_page(driver, scroll["time_sleep"], scroll["size_height"])
@@ -68,8 +73,10 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
             if (is_page_load):
                 break
-    
-    if (return_text): return soup, page_html
+                
+
+    if (return_text): 
+        return soup, page_html
     return soup
 
 def check_load_page(soup, functions_to_check_load):
