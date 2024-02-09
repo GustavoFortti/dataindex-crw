@@ -98,6 +98,7 @@ def check_load_page(soup, functions_to_check_load):
 
         urls_exists = check_urls_in_parallel(url_list)
         if (not urls_exists): return False
+        
         return True
     except:
         print("Erro nas tags")

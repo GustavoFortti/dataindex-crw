@@ -38,17 +38,27 @@ def get_price(soup, map_type):
         price_container = soup.find(class_="t4s-product-price")
         
         if price_container:
+            # Verifica se existe um desconto
             discount_price_element = price_container.find("ins")
             if discount_price_element:
                 final_price = discount_price_element.text.strip()
             else:
-                standard_price_element = price_container.text.strip()
-                if standard_price_element:
-                    final_price = standard_price_element
+                # Se não houver desconto, procura pela tag span com classe t4s-price__sale
+                sale_price_element = price_container.find("span", class_="t4s-price__sale")
+                if sale_price_element:
+                    # Extrai todos os preços usando expressão regular
+                    prices = re.findall(r"\d+,\d+", sale_price_element.text)
+                    # Converte os preços para float e seleciona o menor
+                    prices = [float(price.replace(',', '.')) for price in prices]
+                    final_price = f"R$ {min(prices):.2f}".replace('.', ',')
+                else:
+                    # Se não houver intervalo de preços, pega o preço padrão
+                    standard_price_element = price_container.text.strip()
+                    if standard_price_element:
+                        final_price = standard_price_element
         
         return final_price
     return None
-
 
 def get_link_imagem(soup, map_type):
     if map_type == "seed":
