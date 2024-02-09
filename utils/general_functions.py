@@ -12,6 +12,7 @@ import pandas as pd
 from glob import glob
 from PIL import Image
 from datetime import date, timedelta
+from fake_useragent import UserAgent
 
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -231,10 +232,18 @@ def calculate_precise_image_hash(image_path):
     return image_hash
 
 def check_url_existence(url):
+    ua = UserAgent()
+    headers = {
+        'User-Agent': ua.random
+    }
+
+    print(url)
     try:
-        response = requests.get(url)
-        return response.status_code == 200
+        response = requests.get(url, headers=headers)
+        print(response)
+        return 200 <= response.status_code < 300
     except Exception as e:
+        print(e)
         return False
     
 def delete_directory_and_contents(directory_path):

@@ -13,13 +13,13 @@ def status_tag(new_row, kill_job=True):
     errors = []
 
     if not is_price(new_row["price"]):
-        errors.append("Invalid price format.")
+        errors.append("ERRO: Invalid price format.")
 
     if not check_url_existence(new_row["image_url"]):
-        errors.append("Image URL does not exist.")
+        errors.append("ERRO: Image URL does not exist.")
 
     if not check_url_existence(new_row["product_url"]):
-        errors.append("Product URL does not exist.")
+        errors.append("ERRO: Product URL does not exist.")
 
     print(new_row)
 

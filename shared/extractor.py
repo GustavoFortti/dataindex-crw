@@ -53,7 +53,6 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
                                                                                     get_elements_seed, 
                                                                                     status_tag])
 
-        # exit(0)
         max_itens_by_page = 0
         ref = ""
         last_page_by_ref = ""
