@@ -70,11 +70,12 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
             page_html = driver.page_source
             soup = BeautifulSoup(page_html, 'html.parser')
 
-            is_page_load = check_load_page(soup, functions_to_check_load)
-            print(f"is_page_load {is_page_load}")
+            if (functions_to_check_load):
+                is_page_load = check_load_page(soup, functions_to_check_load)
+                print(f"is_page_load {is_page_load}")
 
-            if (is_page_load):
-                break
+                if (is_page_load):
+                    break
 
     if (return_text): 
         return soup, page_html
@@ -82,8 +83,8 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
 def check_load_page(soup, functions_to_check_load):
     print(f"check_load_page")
-
-    get_items, get_elements_seed, status_tag = functions_to_check_load
+    print(functions_to_check_load)
+    get_items, get_elements_seed = functions_to_check_load
     
     try:
         items = get_items(soup)

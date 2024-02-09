@@ -49,9 +49,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     for seed in seeds:
         url = get_next_url(seed['url'], 1)
         
-        soup = get_html(driver, url, time_sleep_page, scroll_page, False, functions_to_check_load=[get_items, 
-                                                                                    get_elements_seed, 
-                                                                                    status_tag])
+        soup = get_html(driver, url, time_sleep_page, scroll_page, False, functions_to_check_load=[get_items, get_elements_seed])
 
         ref = ""
         last_page_num = get_last_page_index(soup)
@@ -95,9 +93,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             if ((i > last_page_num) or (n_items == 0)): 
                 break
 
-            soup = get_html(driver, url, time_sleep_page, scroll_page, functions_to_check_load=[get_items, 
-                                                                                        get_elements_seed, 
-                                                                                        status_tag])
+            soup = get_html(driver, url, time_sleep_page, scroll_page, functions_to_check_load=[get_items, get_elements_seed])
     
     df_tree_temp = pd.read_csv(tree_temp_path)
     df_tree_temp = df_tree_temp.drop_duplicates(subset='product_url').reset_index(drop=True)
