@@ -13,6 +13,8 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 import time
 
+from utils.general_functions import check_urls_in_parallel, is_price
+
 def initialize_selenium():
     options = webdriver.ChromeOptions()
     
@@ -57,7 +59,8 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
         print(f"SCROLL_PAGE...")
         # for scroll in scroll_page[0]:
 
-        for scroll in [{"time_sleep": 1, "size_height": 1000}, 
+        for scroll in [{"time_sleep": 0.5, "size_height": 1500},
+                       {"time_sleep": 1, "size_height": 1000},
                        {"time_sleep": 1, "size_height": 500}, 
                        {"time_sleep": 2, "size_height": 500}]:
             
@@ -72,7 +75,6 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
             if (is_page_load):
                 break
-                
 
     if (return_text): 
         return soup, page_html
@@ -82,15 +84,20 @@ def check_load_page(soup, functions_to_check_load):
     print(f"check_load_page")
 
     get_items, get_elements_seed, status_tag = functions_to_check_load
+    
     try:
         items = get_items(soup)
+        url_list = []
 
         print(f"items size: {len(items)}")
         for item in items:
             product_url, title, price, image_url = get_elements_seed(item)
-            row = {"price": price, "image_url": image_url, "product_url": product_url}
-            if (not status_tag(row, False)): return False
+            url_list.append(image_url)
+            url_list.append(product_url)
+            if (not is_price(price)): return False
 
+        urls_exists = check_urls_in_parallel(url_list)
+        if (not urls_exists): return False
         return True
     except:
         print("Erro nas tags")

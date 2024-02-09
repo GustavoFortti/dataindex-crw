@@ -13,6 +13,7 @@ from glob import glob
 from PIL import Image
 from datetime import date, timedelta
 from fake_useragent import UserAgent
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -222,8 +223,7 @@ def convert_image(image_path, save_path, output_format='webp'):
         raise FileNotFoundError(f"The file {image_path} does not exist.")
     
     with Image.open(image_path) as img:
-            # Converte a imagem para WebP e salva
-            img.save(save_path + '.' + output_format, output_format.upper())
+        img.save(save_path + '.' + output_format, output_format.upper())
 
 def calculate_precise_image_hash(image_path):
     with open(image_path, "rb") as image_file:
@@ -231,19 +231,36 @@ def calculate_precise_image_hash(image_path):
         image_hash = hashlib.sha256(image_data).hexdigest()
     return image_hash
 
-def check_url_existence(url):
+def check_url_existence(url, timeout=5):
     ua = UserAgent()
-    headers = {
-        'User-Agent': ua.random
-    }
+    headers = {'User-Agent': ua.random}
 
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.head(url, headers=headers, timeout=timeout)
         return 200 <= response.status_code < 300
     except Exception as e:
         print(e)
         return False
-    
+
+def check_urls_in_parallel(urls, timeout=5):
+    all_exist = True  
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        future_to_url = {executor.submit(check_url_existence, url, timeout): url for url in urls}
+
+        for future in as_completed(future_to_url):
+            url = future_to_url[future]
+            try:
+                exists = future.result()
+                print(f"{url} exists: {exists}")
+                if not exists:
+                    all_exist = False
+            except Exception as e:
+                print(f"{url} generated an exception: {e}")
+                all_exist = False  
+
+    return all_exist
+
 def delete_directory_and_contents(directory_path):
     if not os.path.exists(directory_path):
         print("Directory does not exist.")
@@ -270,6 +287,8 @@ def first_exec(data_path):
     print("First execution")
 
 def is_price(string):
+    if (type(string) != str): return True
+
     pattern = r"""
     (R\$\s?\d{1,3}(\.\d{3})*,\d{2})|  # BRL: R$
     (€\s?\d{1,3}(\.\d{3})*,\d{2})|    # EUR: €

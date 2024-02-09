@@ -1,4 +1,6 @@
 [
+    { "id": "aminoacidos-bcaa", "url": "https://www.gsuplementos.com.br/bcaa/", "tipo": "BCAA", "last_extractions": "02/11/2023" },
+    { "id": "vegetarianos", "url": "https://www.gsuplementos.com.br/vegetariano/", "tipo": "Vegetarianos", "last_extractions": "02/11/2023" },
     { "id": "proteina-whey-protein", "url": "https://www.gsuplementos.com.br/whey-protein/", "tipo": "Whey Protein", "last_extractions": "02/11/2023" },
     { "id": "proteina-albumina", "url": "https://www.gsuplementos.com.br/albumina/", "tipo": "Albumina", "last_extractions": "02/11/2023" },
     { "id": "proteina", "url": "https://www.gsuplementos.com.br/proteina/", "tipo": "Proteína", "last_extractions": "02/11/2023" },
@@ -13,7 +15,6 @@
     { "id": "proteina-proteina-de-soja", "url": "https://www.gsuplementos.com.br/proteina-de-soja/", "tipo": "Proteína de Soja", "last_extractions": "02/11/2023" },
     { "id": "proteina-proteina-da-ervilha", "url": "https://www.gsuplementos.com.br/proteina-da-ervilha/", "tipo": "Proteína da Ervilha", "last_extractions": "02/11/2023" },
     { "id": "aminoacidos", "url": "https://www.gsuplementos.com.br/aminoacidos/", "tipo": "Aminoácidos", "last_extractions": "02/11/2023" },
-    { "id": "aminoacidos-bcaa", "url": "https://www.gsuplementos.com.br/bcaa/", "tipo": "BCAA", "last_extractions": "02/11/2023" },
     { "id": "aminoacidos-creatina", "url": "https://www.gsuplementos.com.br/creatina/", "tipo": "Creatina", "last_extractions": "02/11/2023" },
     { "id": "aminoacidos-glutamina", "url": "https://www.gsuplementos.com.br/glutamina/", "tipo": "Glutamina", "last_extractions": "02/11/2023" },
     { "id": "aminoacidos-arginina", "url": "https://www.gsuplementos.com.br/arginina/", "tipo": "Arginina", "last_extractions": "02/11/2023" },
@@ -25,7 +26,6 @@
     { "id": "carboidratos-dextrose", "url": "https://www.gsuplementos.com.br/dextrose-1kg-growth-supplements-p985976", "tipo": "Dextrose", "last_extractions": "02/11/2023" },
     { "id": "carboidratos-palatinose", "url": "https://www.gsuplementos.com.br/energia/palatinose/", "tipo": "Palatinose", "last_extractions": "02/11/2023" },
     { "id": "carboidratos-maltodextrina", "url": "https://www.gsuplementos.com.br/maltodextrina/", "tipo": "Maltodextrina", "last_extractions": "02/11/2023" },
-    { "id": "vegetarianos", "url": "https://www.gsuplementos.com.br/vegetariano/", "tipo": "Vegetarianos", "last_extractions": "02/11/2023" },
     { "id": "vegetarianos-proteinas", "url": "https://www.gsuplementos.com.br/proteina-vegetariana/", "tipo": "Proteínas", "last_extractions": "02/11/2023" },
     { "id": "vegetarianos-aminoacidos", "url": "https://www.gsuplementos.com.br/aminoacidos-vegetariano/", "tipo": "Aminoácidos", "last_extractions": "02/11/2023" },
     { "id": "vegetarianos-carboidratos", "url": "https://www.gsuplementos.com.br/carboidratos-vegetarianos/", "tipo": "Carboidratos", "last_extractions": "02/11/2023" },
