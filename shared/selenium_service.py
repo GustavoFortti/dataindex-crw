@@ -59,8 +59,7 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
         for scroll in [{"time_sleep": 1, "size_height": 1000}, 
                        {"time_sleep": 1, "size_height": 500}, 
-                       {"time_sleep": 0.5, "size_height": 500}, 
-                       {"time_sleep": 0.5, "size_height": 100}]:
+                       {"time_sleep": 2, "size_height": 500}]:
             
             # scroll = scroll_page[0]
             load_page(driver, scroll["time_sleep"], scroll["size_height"])
