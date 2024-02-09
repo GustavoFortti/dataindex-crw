@@ -116,7 +116,7 @@ def extract(conf):
         map_tree(driver, map_tree_conf)
     elif (option == "update_products"):
         print("MAP FUNCTION: map_seed")
-        map_seed(driver, map_seed_conf, True, ["preco", "link_imagem"])
+        map_seed(driver, map_seed_conf, True, ["price", "image_url"])
     elif (option == "update_pages"):
         print("MAP FUNCTION: map_tree")
         map_tree(driver, map_tree_conf)
