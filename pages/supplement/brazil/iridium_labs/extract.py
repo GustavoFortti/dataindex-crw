@@ -34,17 +34,35 @@ def get_title(soup, map_type):
 
 def get_price(soup, map_type):
     if map_type == "seed":
-        price = None
+        final_price = None
         price_container = soup.find(class_="t4s-product-price")
+        
         if price_container:
-            price_element = price_container.find("ins") 
-            price = price_element.text.strip() if price_element else None 
-        return price
+            discount_price_element = price_container.find("ins")
+            if discount_price_element:
+                final_price = discount_price_element.text.strip()
+            else:
+                standard_price_element = price_container.text.strip()
+                if standard_price_element:
+                    final_price = standard_price_element
+        
+        return final_price
     return None
 
+
 def get_link_imagem(soup, map_type):
+    print("++++++++++++++++++++++++++++++++")
+    print("++++++++++++++++++++++++++++++++")
+    print(soup)
+    print("++++++++++++++++++++++++++++++++")
+    print("++++++++++++++++++++++++++++++++")
     if (map_type == "seed"):
         image_element = soup.find(class_='t4s-product-main-img')
+        print("++++++++++++++++++++++++++++++++")
+        print("++++++++++++++++++++++++++++++++")
+        print(image_element)
+        print("++++++++++++++++++++++++++++++++")
+        print("++++++++++++++++++++++++++++++++")
         image = "https:" + image_element['src'] if image_element else None
         return image
     # map_tree
@@ -71,14 +89,14 @@ map_seed_conf = {
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
     "time_sleep_page": 3,
-    "scroll_page": [{"time_sleep": 0.3, "size_height": 1000}, {"time_sleep": 0.4, "size_height": 500}, {"time_sleep": 0.3, "size_height": 100}],
+    "scroll_page": True,
     "return_text": False,
 }
 
 map_tree_conf = {
     "get_elements_tree": get_elements_tree,
     "time_sleep_page": 1,
-    "scroll_page": [{"time_sleep": 0.2, "size_height": 500}],
+    "scroll_page": True,
     "return_text": True,
 }
 

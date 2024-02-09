@@ -1,27 +1,14 @@
 # /bin/bash
 
-prd_path="/home/crw-system/dataindex-crw"
-dev_path="/home/mage/main/dataindex-crw"
-
-local=""
-
-if [ -d $prd_path ]; then
-    echo "prd_path"
-    local="$prd_path"
-elif [ -d $dev_path ]; then
-    echo "dev_path"
-    local="$dev_path"
-else
-    echo "None of the specified directories exist."
-    exit 1
-fi
+# local="/home/crw-system/dataindex-crw"
+local="/home/mage/main/dataindex-crw"
 
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="darkness"
-job_type="ingestion"
-option="data_quality"
+job_name="iridium_labs"
+job_type="extract"
+option="update_products"
 page_type="supplement"
 country="brazil"
 mode="dev"

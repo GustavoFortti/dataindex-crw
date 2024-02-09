@@ -9,7 +9,7 @@ from utils import (DATE_FORMAT,
                    has_files,
                    create_directory_if_not_exists)
 
-def status_tag(new_row):
+def status_tag(new_row, kill_job=True):
     errors = []
 
     if not is_price(new_row["price"]):
@@ -26,10 +26,12 @@ def status_tag(new_row):
     if errors:
         for error in errors:
             print(error)
-        exit(1)
+        if (kill_job): exit(1)
+        else: return False
         
     print("status_tag: All validations passed successfully.")
-    exit(0)
+    if (kill_job): exit(0)
+    else: return True
 
 def data_history_analysis(conf, df):
     history_path = conf['data_path'] + "/history"

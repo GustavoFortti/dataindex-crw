@@ -49,7 +49,11 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     for seed in seeds:
         url = get_next_url(seed['url'], 1)
         
-        soup = get_html(driver, url, time_sleep_page, scroll_page)
+        soup = get_html(driver, url, time_sleep_page, scroll_page, functions_to_check_load=[get_items, 
+                                                                                    get_elements_seed, 
+                                                                                    status_tag])
+
+        # exit(0)
         max_itens_by_page = 0
         ref = ""
         last_page_by_ref = ""
@@ -65,8 +69,8 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             print(f"itens = {n_items}")
             
             for item in items:
-                product_link, title, price, image_url = get_elements_seed(item)
-                ref = generate_hash(product_link)
+                product_url, title, price, image_url = get_elements_seed(item)
+                ref = generate_hash(product_url)
                 create_directory_if_not_exists(data_path + "/img_tmp/")
                 if (option != 'status_job'):
                     download_image(image_url, data_path + "/img_tmp/", ref)
@@ -77,7 +81,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
                 data_atual = date.today()
                 formatted_date = data_atual.strftime(DATE_FORMAT)
 
-                new_row = {"ref": ref, "title": title, "price": price, "image_url": image_url, "product_url": product_link, "ing_date": formatted_date}
+                new_row = {"ref": ref, "title": title, "price": price, "image_url": image_url, "product_url": product_url, "ing_date": formatted_date}
                 index = df_tree["ref"] == new_row['ref']
                 print(new_row)
                 
@@ -99,7 +103,9 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             else:
                 break
 
-            soup = get_html(driver, url, time_sleep_page, scroll_page)
+            soup = get_html(driver, url, time_sleep_page, scroll_page, functions_to_check_load=[get_items, 
+                                                                                        get_elements_seed, 
+                                                                                        status_tag])
     
     df_tree_temp = pd.read_csv(tree_temp_path)
     df_tree_temp = df_tree_temp.drop_duplicates(subset='product_url').reset_index(drop=True)

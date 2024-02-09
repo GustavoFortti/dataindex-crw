@@ -39,27 +39,57 @@ def initialize_selenium():
    
     return driver
 
-def get_html(driver, url, sleep=1, scroll_page=False, return_text=False):
-    try:
-        
-        driver.get(url)
-        driver.implicitly_wait(100)
-        if (sleep != 0): print("*" * sleep)
-        time.sleep(sleep)
+def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functions_to_check_load=False):
+    print("get_html")
+    print(f"url: {url}")
+    print("")
 
-        if (scroll_page):
-            print(f"SCROLL_PAGE... {scroll_page}")
-            for scroll in scroll_page:
-                load_page(driver, scroll["time_sleep"], scroll["size_height"])
-        
-        page_html = driver.page_source
-        soup = BeautifulSoup(page_html, 'html.parser')
-        
-        if (return_text): return soup, page_html
-        return soup
-    except Exception as e:
-        print(f"Ocorreu um erro: {str(e)}")
+    driver.get(url)
+    driver.implicitly_wait(100)
+    if (sleep != 0): print("*" * sleep)
+    time.sleep(sleep)
+
+    if (scroll_page):
+        print(f"SCROLL_PAGE...")
+        # for scroll in scroll_page[0]:
+
+        for scroll in [{"time_sleep": 1, "size_height": 1000}, 
+                        {"time_sleep": 1, "size_height": 500}, 
+                        {"time_sleep": 0.5, "size_height": 100}]:
+            
+            # scroll = scroll_page[0]
+            load_page(driver, scroll["time_sleep"], scroll["size_height"])
     
+            page_html = driver.page_source
+            soup = BeautifulSoup(page_html, 'html.parser')
+
+            is_page_load = check_load_page(soup, functions_to_check_load)
+            print(f"is_page_load {is_page_load}")
+
+            if (is_page_load):
+                break
+    
+    if (return_text): return soup, page_html
+    return soup
+
+def check_load_page(soup, functions_to_check_load):
+    print(f"check_load_page")
+
+    get_items, get_elements_seed, status_tag = functions_to_check_load
+    try:
+        items = get_items(soup)
+
+        print(f"items size: {len(items)}")
+        for item in items:
+            product_url, title, price, image_url = get_elements_seed(item)
+            row = {"price": price, "image_url": image_url, "product_url": product_url}
+            if (not status_tag(row, False)): return False
+
+        return True
+    except:
+        print("Erro nas tags")
+        return False
+
 def load_page(driver, time_sleep, size_height):
     next_height = 0
     total_height = driver.execute_script("return document.body.scrollHeight")

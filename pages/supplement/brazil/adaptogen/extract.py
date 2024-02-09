@@ -64,14 +64,14 @@ map_seed_conf = {
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
     "time_sleep_page": 3,
-    "scroll_page": [{"time_sleep": 0.9, "size_height": 500}],
+    "scroll_page": True,
     "return_text": False,
 }
 
 map_tree_conf = {
     "get_elements_tree": get_elements_tree,
     "time_sleep_page": 3,
-    "scroll_page": [{"time_sleep": 0.2, "size_height": 500}],
+    "scroll_page": True,
     "return_text": True,
 }
 
