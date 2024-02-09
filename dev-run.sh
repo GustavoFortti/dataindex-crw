@@ -6,7 +6,7 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="iridium_labs"
+job_name="nutrata"
 job_type="extract"
 option="update_products"
 page_type="supplement"

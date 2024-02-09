@@ -53,9 +53,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
                                                                                     get_elements_seed, 
                                                                                     status_tag])
 
-        max_itens_by_page = 0
         ref = ""
-        last_page_by_ref = ""
         last_page_num = get_last_page_index(soup)
         i = 1
         while (i <= last_page_num):
@@ -64,7 +62,6 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
             url = get_next_url(seed['url'], i)
             items = get_items(soup)
             n_items = len(items)
-            last_page_by_ref = ref
             print(f"itens = {n_items}")
             
             for item in items:
@@ -95,11 +92,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
 
                 df_tree.to_csv(tree_temp_path, index=False)
 
-            if ((i > last_page_num) or (n_items == 0) or (last_page_by_ref == ref)): 
-                break
-            if (n_items >= max_itens_by_page):
-                max_itens_by_page = n_items
-            else:
+            if ((i > last_page_num) or (n_items == 0)): 
                 break
 
             soup = get_html(driver, url, time_sleep_page, scroll_page, functions_to_check_load=[get_items, 
