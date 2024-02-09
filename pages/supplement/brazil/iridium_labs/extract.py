@@ -51,22 +51,19 @@ def get_price(soup, map_type):
 
 
 def get_link_imagem(soup, map_type):
-    print("++++++++++++++++++++++++++++++++")
-    print("++++++++++++++++++++++++++++++++")
-    print(soup)
-    print("++++++++++++++++++++++++++++++++")
-    print("++++++++++++++++++++++++++++++++")
-    if (map_type == "seed"):
+    if map_type == "seed":
         image_element = soup.find(class_='t4s-product-main-img')
-        print("++++++++++++++++++++++++++++++++")
-        print("++++++++++++++++++++++++++++++++")
-        print(image_element)
-        print("++++++++++++++++++++++++++++++++")
-        print("++++++++++++++++++++++++++++++++")
-        image = "https:" + image_element['src'] if image_element else None
-        return image
-    # map_tree
+        if (image_element and 'srcset' in image_element.attrs):
+            srcset = image_element['srcset']
+            image_urls = [img.strip() for img in srcset.split(',')]
+            highest_res_image = image_urls[-1].split(' ')[0]
+            image_link = "https:" + highest_res_image
+            return image_link
+        elif (image_element and 'src' in image_element.attrs):
+            image_link = "https:" + image_element['src']
+            return image_link
     return None
+
 
 def get_elements_tree(soup):
     title = get_title(soup, "tree")
