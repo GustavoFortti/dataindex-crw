@@ -57,14 +57,12 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
     if (scroll_page):
         print(f"SCROLL_PAGE...")
-        # for scroll in scroll_page[0]:
 
         for scroll in [{"time_sleep": 0.5, "size_height": 1500},
                        {"time_sleep": 1, "size_height": 1000},
                        {"time_sleep": 1, "size_height": 500}, 
                        {"time_sleep": 2, "size_height": 500}]:
             
-            # scroll = scroll_page[0]
             load_page(driver, scroll["time_sleep"], scroll["size_height"])
     
             page_html = driver.page_source
@@ -76,6 +74,8 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
                 if (is_page_load):
                     break
+            else:
+                break
 
     if (return_text): 
         return soup, page_html
@@ -83,7 +83,7 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
 
 def check_load_page(soup, functions_to_check_load):
     print(f"check_load_page")
-    print(functions_to_check_load)
+
     get_items, get_elements_seed = functions_to_check_load
     
     try:
@@ -95,10 +95,14 @@ def check_load_page(soup, functions_to_check_load):
             product_url, title, price, image_url = get_elements_seed(item)
             url_list.append(image_url)
             url_list.append(product_url)
-            if (not is_price(price)): return False
+            if (not is_price(price)): 
+                print("ERROR: is_price")
+                return False
 
         urls_exists = check_urls_in_parallel(url_list)
-        if (not urls_exists): return False
+        if (not urls_exists): 
+            print("ERROR: urls_exists")
+            return False
         
         return True
     except:

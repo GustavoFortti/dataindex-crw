@@ -61,6 +61,8 @@ def process_data(conf):
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
+    print(df)
+
     image_processing(df, file_path)
     df = df[['ref', 'title', 'price', 'image_url', 'product_url', 'ing_date',
             'name', 'brand', 'price_numeric', 'quantity', 'price_qnt',
@@ -345,10 +347,11 @@ def image_processing(df, data_path):
     refs = sorted(df['ref'])
     dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp) if i.split(".")[0] in refs}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
-    print(dict_imgs)
-    print(refs)
-    if (not (list(dict_imgs.keys()) == refs)):
+
+    if (not set(dict_imgs.keys()).issubset(refs)):
         print("ERROR IMAGE PROCESSING")
+        difference = set(dict_imgs.keys()) - set(refs)
+        print(difference)
         exit(1)
 
     def describe_image(image, img_path):

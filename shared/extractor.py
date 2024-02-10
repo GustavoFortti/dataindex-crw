@@ -19,6 +19,9 @@ from utils.general_functions import (DATE_FORMAT,
                                  download_image,
                                  path_exist)
 
+def map_seed_new(driver, map_seed_conf, is_origin=False, update_fields=[]):
+    pass
+
 def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     data_path = map_seed_conf['data_path']
     get_next_url = map_seed_conf["get_next_url"]
@@ -34,6 +37,7 @@ def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
 
     tree_path = data_path + "/tree.csv"
     tree_temp_path = data_path + "/tree_temp.csv"
+    delete_file(tree_temp_path)
     columns = ["ref", "title" ,"price" ,"image_url", "product_url", "ing_date"]
     df_tree = pd.DataFrame(columns=columns)
 
@@ -131,6 +135,7 @@ def map_tree(driver, map_tree_conf, update=False, filter_ref=False):
 
     # Define os caminhos para os arquivos CSV de origem e temporário
     origin_temp_path = data_path + "/origin_temp.csv"
+    delete_file(origin_temp_path)
 
     # Define as colunas para o DataFrame e cria um arquivo CSV, se não existir
     columns = ["ref", "title" ,"price" ,"image_url", "product_url", "ing_date"]
