@@ -348,6 +348,7 @@ def image_processing(df, data_path):
     dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp) if i.split(".")[0] in refs}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
 
+    print(set(dict_imgs.keys()).issubset(refs))
     if (not set(dict_imgs.keys()).issubset(refs)):
         print("ERROR IMAGE PROCESSING")
         difference = set(dict_imgs.keys()) - set(refs)

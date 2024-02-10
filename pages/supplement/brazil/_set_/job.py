@@ -3,7 +3,7 @@ from config.env import LOCAL
 import os
 import pandas as pd
 from elasticsearch import helpers
-from shared.elastic_funcions import create_connection, create_documents_with_pandas
+from shared.elasticsearch_functions import create_connection, create_documents_with_pandas
 
 CONF = {
     "name": "_set_",
@@ -76,7 +76,7 @@ def run(args):
 
     df_index = gen_destaques(wordlist, df)
     df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(10)
+    df_index = df_index.sample(12)
 
     indice_elasticsearch = 'brazil_supplement_whey'
     create_index(es, indice_elasticsearch)
@@ -92,7 +92,7 @@ def run(args):
 
     df_index = gen_destaques(wordlist, df)
     df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(10)
+    df_index = df_index.sample(12)
 
     indice_elasticsearch = 'brazil_supplement_bar'
     create_index(es, indice_elasticsearch)
@@ -107,7 +107,7 @@ def run(args):
     df_index = gen_destaques(wordlist, df)
     df_index = filter_title(df_index, keywords[0])
     print(df_index)
-    df_index = df_index.sample(10)
+    df_index = df_index.sample(12)
 
     indice_elasticsearch = 'brazil_supplement_preworkout'
     create_index(es, indice_elasticsearch)

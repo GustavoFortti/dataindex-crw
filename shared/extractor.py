@@ -19,9 +19,6 @@ from utils.general_functions import (DATE_FORMAT,
                                  download_image,
                                  path_exist)
 
-def map_seed_new(driver, map_seed_conf, is_origin=False, update_fields=[]):
-    pass
-
 def map_seed(driver, map_seed_conf, is_origin=False, update_fields=[]):
     data_path = map_seed_conf['data_path']
     get_next_url = map_seed_conf["get_next_url"]
