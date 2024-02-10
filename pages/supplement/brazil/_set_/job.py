@@ -81,7 +81,8 @@ def run(args):
     indice_elasticsearch = 'brazil_supplement_whey'
     create_index(es, indice_elasticsearch)
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
+    success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
+    print(success, errors)
     
     
     print("brazil_supplement_bar")
@@ -97,7 +98,8 @@ def run(args):
     indice_elasticsearch = 'brazil_supplement_bar'
     create_index(es, indice_elasticsearch)
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
+    success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
+    print(success, errors)
 
     print("brazil_supplement_preworkout")
     keywords = ['pretreino', 'pre treino', 'preworkout', 'pre workout', 'workout']
@@ -112,4 +114,5 @@ def run(args):
     indice_elasticsearch = 'brazil_supplement_preworkout'
     create_index(es, indice_elasticsearch)
     es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
+    success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
+    print(success, errors)
