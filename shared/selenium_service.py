@@ -96,8 +96,7 @@ def check_load_page(soup, functions_to_check_load):
             url_list.append(image_url)
             url_list.append(product_url)
             if (not is_price(price)): 
-                print("ERROR: is_price")
-                return False
+                print(f"ERROR: price error {price}")
 
         urls_exists = check_urls_in_parallel(url_list)
         if (not urls_exists): 
