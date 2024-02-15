@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support import expected_conditions as EC
 
 from bs4 import BeautifulSoup
@@ -52,29 +53,27 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
         print("*" * sleep)
     time.sleep(sleep)
 
-    page_html = driver.page_source
-    soup = BeautifulSoup(page_html, 'html.parser')
+    soup, page_html = load_page(driver)
 
     if (scroll_page):
         print(f"SCROLL_PAGE...")
 
-        scroll_rule = [{"time_sleep": 0.5, "size_height": 1500},
+        scroll_rules = [{"time_sleep": 0.5, "size_height": 1500},
                        {"time_sleep": 1, "size_height": 1000},
                        {"time_sleep": 1, "size_height": 500}, 
                        {"time_sleep": 2, "size_height": 500}]
         
         if (type(scroll_page) == list):
-            scroll_rule = scroll_page
+            scroll_rules = scroll_page
 
-        for scroll in scroll_rule:
+        for scroll_rule in scroll_rules:
             
-            load_page(driver, scroll["time_sleep"], scroll["size_height"])
+            scroll(driver, scroll_rule["time_sleep"], scroll_rule["size_height"])
     
-            page_html = driver.page_source
-            soup = BeautifulSoup(page_html, 'html.parser')
+            soup, page_html = load_page(driver)
 
             if (functions_to_check_load):
-                is_page_load = check_load_page(soup, functions_to_check_load)
+                is_page_load = check_scroll(soup, functions_to_check_load)
                 print(f"is_page_load {is_page_load}")
 
                 if (is_page_load):
@@ -86,8 +85,27 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
         return soup, page_html
     return soup
 
-def check_load_page(soup, functions_to_check_load):
-    print(f"check_load_page")
+def load_page(driver, retry_delay=5):
+    try:
+        print("Tentando obter o page_source da página atual...")
+        page_html = driver.page_source
+        soup = BeautifulSoup(page_html, 'html.parser')
+        return soup, page_html  # Retorna o objeto BeautifulSoup se o page_source for obtido com sucesso
+    except WebDriverException as e:
+        print(f"Erro ao obter o page_source: {e}. Tentando recarregar após {retry_delay} segundos...")
+        time.sleep(retry_delay)  # Espera antes de tentar novamente
+        try:
+            driver.refresh()  # Tentativa de recarregar a página atual
+            page_html = driver.page_source
+            soup = BeautifulSoup(page_html, 'html.parser')
+            return soup, page_html  # Retorna o objeto BeautifulSoup se a página for recarregada com sucesso na segunda tentativa
+        except WebDriverException as e:
+            print(f"Erro ao recarregar a página: {e}. Abortando...")
+            return None  # Retorna None se falhar novamente
+
+
+def check_scroll(soup, functions_to_check_load):
+    print(f"check_scroll")
 
     get_items, get_elements_seed = functions_to_check_load
     
@@ -113,7 +131,7 @@ def check_load_page(soup, functions_to_check_load):
         print("Erro nas tags")
         return False
 
-def load_page(driver, time_sleep, size_height):
+def scroll(driver, time_sleep, size_height):
     total_height = driver.execute_script("return document.body.scrollHeight")
     previous_height = 0
 

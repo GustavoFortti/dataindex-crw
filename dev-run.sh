@@ -6,9 +6,9 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="truesource"
-job_type="dry"
-option="false"
+job_name="vitafor"
+job_type="extract"
+option="update_pages"
 page_type="supplement"
 country="brazil"
 mode="prd"
