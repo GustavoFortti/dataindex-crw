@@ -5,26 +5,27 @@ from shared.extractor import map_tree, map_seed
 from utils.general_functions import first_exec
 
 def get_last_page_index(soup=None):
-    return 40
+    return 1
 
 def get_next_url(url, index):
-    return url + str(index)
+    return url
 
 def get_items(soup):
-    items = soup.find_all('section', class_='vtex-product-summary-2-x-container')
+    items = soup.find_all('div', class_='product-card')
     return items
 
 def get_product_url(soup, map_type):
     if (map_type == "seed"):
-        product_element = soup.find(class_='vtex-product-summary-2-x-clearLink')
-        product_link = "https://www.vitafor.com.br" + product_element['href'] if product_element else None
+        product_element = soup.find('figure', class_='area-photo').find('a', href=True)
+        product_link = product_element['href'] if product_element else None
+        
         return product_link
     # map_tree
     return None
 
 def get_title(soup, map_type):
     if (map_type == "seed"):
-        title_element = soup.find('h3', class_='vtex-product-summary-2-x-productNameContainer')
+        title_element = soup.find('div', class_='area-text').find('h3')
         title = title_element.get_text().strip() if title_element else None
         return title
     # map_tree
@@ -32,23 +33,23 @@ def get_title(soup, map_type):
 
 def get_price(soup, map_type):
     if (map_type == "seed"):
-        price_container = soup.find('div', class_='vtex-product-summary-2-x-sellingPriceContainer')
-        if price_container:
-            currency_code = price_container.find('span', class_='vtex-product-summary-2-x-currencyCode').get_text(strip=True)
-            currency_integer = price_container.find('span', class_='vtex-product-summary-2-x-currencyInteger').get_text(strip=True)
-            currency_decimal = price_container.find('span', class_='vtex-product-summary-2-x-currencyDecimal').get_text(strip=True)
-            currency_fraction = price_container.find('span', class_='vtex-product-summary-2-x-currencyFraction').get_text(strip=True)
+        # Tenta encontrar o elemento 'div' com a classe 'off-sale'
+        off_sale_div = soup.find('div', class_='off-sale')
+        
+        # Se o elemento for encontrado, procura por 'p' com a classe 'price-current'
+        if off_sale_div:
+            price_element = off_sale_div.find('p', class_='price-current')
             
-            price = f"{currency_code} {currency_integer}{currency_decimal}{currency_fraction}"
-            return price
-        else:
-            return None
+            # Se o elemento de preço for encontrado, retorna o texto
+            if price_element:
+                price = price_element.get_text().strip()
+                return price
     # map_tree
     return None
 
 def get_image_url(soup, map_type):
     if (map_type == "seed"):
-        image_element = soup.find('img', class_='vtex-product-summary-2-x-imageNormal')
+        image_element = soup.find('figure', class_='area-photo').find('img', src=True)
         image_link = image_element['src'] if image_element else None
         return image_link
     # map_tree
@@ -75,7 +76,7 @@ map_seed_conf = {
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
     "time_sleep_page": 3,
-    "scroll_page": True,
+    "scroll_page": [{"time_sleep": 0.5, "size_height": 1000}],
     "return_text": False,
 }
 
