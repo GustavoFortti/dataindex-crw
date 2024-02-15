@@ -11,8 +11,8 @@ from shared.ingestion import ingestion
 CONF = {
     "name": "vitafor",
     "word_list": WORD_LIST["supplement"],
-    "brand": "under labz",
-    "location_type_product": [{'tag': 'div', 'class': 'breadcrumbs'}, {'tag': 'p', 'class': 'western'}, {'tag': 'div', 'class': 'tab-pane active'}],
+    "brand": "vitafor",
+    "location_type_product": [{'tag': 'p', 'class': 'vitafor-store-theme-7-x-productPageShortDescription'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/vitafor",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/vitafor",
     "index_name": "brazil_supplement",

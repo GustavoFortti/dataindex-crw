@@ -8,19 +8,16 @@ def get_last_page_index(soup=None):
     return 40
 
 def get_next_url(url, index):
-    return url
+    return url + str(index)
 
 def get_items(soup):
-    items = soup.find_all('article', class_='vtex-product-summary-2-x-element')
-    print(items[0])
-    exit(0)
+    items = soup.find_all('section', class_='vtex-product-summary-2-x-container')
     return items
 
 def get_product_url(soup, map_type):
     if (map_type == "seed"):
-        # Tentativa de encontrar um elemento de link envolvendo o título ou a imagem, se houver
-        product_element = soup.find('a', class_='vtex-product-summary-2-x-clearLink')
-        product_link = product_element['href'] if product_element else None
+        product_element = soup.find(class_='vtex-product-summary-2-x-clearLink')
+        product_link = "https://www.vitafor.com.br" + product_element['href'] if product_element else None
         return product_link
     # map_tree
     return None
@@ -35,9 +32,17 @@ def get_title(soup, map_type):
 
 def get_price(soup, map_type):
     if (map_type == "seed"):
-        price_element = soup.find('div', class_='vtex-product-summary-2-x-sellingPrice')
-        price = price_element.get_text().strip() if price_element else None
-        return price
+        price_container = soup.find('div', class_='vtex-product-summary-2-x-sellingPriceContainer')
+        if price_container:
+            currency_code = price_container.find('span', class_='vtex-product-summary-2-x-currencyCode').get_text(strip=True)
+            currency_integer = price_container.find('span', class_='vtex-product-summary-2-x-currencyInteger').get_text(strip=True)
+            currency_decimal = price_container.find('span', class_='vtex-product-summary-2-x-currencyDecimal').get_text(strip=True)
+            currency_fraction = price_container.find('span', class_='vtex-product-summary-2-x-currencyFraction').get_text(strip=True)
+            
+            price = f"{currency_code} {currency_integer}{currency_decimal}{currency_fraction}"
+            return price
+        else:
+            return None
     # map_tree
     return None
 
@@ -69,7 +74,7 @@ map_seed_conf = {
     "get_last_page_index": get_last_page_index,
     "get_elements_seed": get_elements_seed,
     "get_next_url": get_next_url,
-    "time_sleep_page": 3,
+    "time_sleep_page": 5,
     "scroll_page": True,
     "return_text": False,
 }
