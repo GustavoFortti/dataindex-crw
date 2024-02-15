@@ -18,7 +18,7 @@ def get_items(soup):
             items.append(item)
     return items
 
-def get_product_link(soup, map_type):
+def get_product_url(soup, map_type):
     if (map_type == "seed"):
         product_link_element = soup.find('a', class_='t4s-full-width-link')
         return "https://www.iridiumlabs.com.br" + product_link_element['href'] if product_link_element else None
@@ -33,7 +33,7 @@ def get_title(soup, map_type):
     return None
 
 def get_price(soup, map_type):
-    if map_type == "seed":
+    if (map_type == "seed"):
         final_price = None
         price_container = soup.find(class_="t4s-product-price")
         
@@ -60,8 +60,8 @@ def get_price(soup, map_type):
         return final_price
     return None
 
-def get_link_imagem(soup, map_type):
-    if map_type == "seed":
+def get_image_url(soup, map_type):
+    if (map_type == "seed"):
         image_element = soup.find(class_='t4s-product-main-img')
         if (image_element and 'srcset' in image_element.attrs):
             srcset = image_element['srcset']
@@ -78,15 +78,15 @@ def get_link_imagem(soup, map_type):
 def get_elements_tree(soup):
     title = get_title(soup, "tree")
     price = get_price(soup, "tree")
-    link_imagem = get_link_imagem(soup, "tree")
+    link_imagem = get_image_url(soup, "tree")
 
     return title, price, link_imagem
 
 def get_elements_seed(soup):
-    product_link = get_product_link(soup, "seed")
+    product_link = get_product_url(soup, "seed")
     title = get_title(soup, "seed")
     price = get_price(soup, "seed")
-    link_imagem = get_link_imagem(soup, "seed")
+    link_imagem = get_image_url(soup, "seed")
 
     return product_link, title, price, link_imagem
 

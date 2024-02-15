@@ -13,7 +13,7 @@ def get_items(soup):
     items = soup.find_all('div', class_='item item-rounded item-product box-rounded p-0')
     return items
 
-def get_product_link(soup, map_type):
+def get_product_url(soup, map_type):
     if (map_type == "seed"):
         product_link_container = soup.find('div', class_='position-relative')
         if (product_link_container):
@@ -30,13 +30,13 @@ def get_title(soup, map_type):
     return None
 
 def get_price(soup, map_type):
-    if map_type == "seed":
+    if (map_type == "seed"):
         price_element = soup.find("span", class_="js-price-display item-price")
         price = price_element.get_text() if price_element else None
         return price
     return None
 
-def get_link_imagem(soup, map_type):
+def get_image_url(soup, map_type):
     if (map_type == "seed"):
         image_container = soup.find('div', class_='position-relative')
         if (image_container):
@@ -48,15 +48,15 @@ def get_link_imagem(soup, map_type):
 def get_elements_tree(soup):
     title = get_title(soup, "tree")
     price = get_price(soup, "tree")
-    link_imagem = get_link_imagem(soup, "tree")
+    link_imagem = get_image_url(soup, "tree")
 
     return title, price, link_imagem
 
 def get_elements_seed(soup):
-    product_link = get_product_link(soup, "seed")
+    product_link = get_product_url(soup, "seed")
     title = get_title(soup, "seed")
     price = get_price(soup, "seed")
-    link_imagem = get_link_imagem(soup, "seed")
+    link_imagem = get_image_url(soup, "seed")
 
     return product_link, title, price, link_imagem
 

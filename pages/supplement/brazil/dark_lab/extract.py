@@ -14,7 +14,7 @@ def get_items(soup):
 
     return items
 
-def get_product_link(soup, map_type):
+def get_product_url(soup, map_type):
     if (map_type == "seed"):
         product_link_container = soup.find('div', class_='item-image')
         product_link_element = product_link_container.find('a') if product_link_container else None
@@ -39,7 +39,7 @@ def get_price(soup, map_type):
     # map_tree
     return None
 
-def get_link_imagem(soup, map_type):
+def get_image_url(soup, map_type):
     if (map_type == "seed"):
         link_imagem = None
         image_container = soup.find('div', class_='item-image')
@@ -62,15 +62,15 @@ def get_link_imagem(soup, map_type):
 def get_elements_tree(soup):
     title = get_title(soup, "tree")
     price = get_price(soup, "tree")
-    link_imagem = get_link_imagem(soup, "tree")
+    link_imagem = get_image_url(soup, "tree")
 
     return title, price, link_imagem
 
 def get_elements_seed(soup):
-    product_link = get_product_link(soup, "seed")
+    product_link = get_product_url(soup, "seed")
     title = get_title(soup, "seed")
     price = get_price(soup, "seed")
-    link_imagem = get_link_imagem(soup, "seed")
+    link_imagem = get_image_url(soup, "seed")
 
     return product_link, title, price, link_imagem
 
