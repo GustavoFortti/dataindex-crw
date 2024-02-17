@@ -6,3 +6,5 @@ from .data_enrichment import *
 from .data_quality import *
 from .extractor import *
 from .ingestion import *
+from .crawler import *
+from .page_mapper import *

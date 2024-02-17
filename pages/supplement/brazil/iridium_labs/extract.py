@@ -1,39 +1,35 @@
-import re
-from shared.selenium_service import initialize_selenium
-from shared.extractor import map_tree, map_seed
+from shared.page_mapper import run as run_page_mapper
 
-from utils.general_functions import first_exec
+class Job():
+    def __init__(self, conf) -> None:
+        self.conf = conf
+        conf["index"] = None
 
-def get_last_page_index(soup=None):
-    return 1
+    def get_url(self, url):
+        return url
+    
+    def reset_index(self):
+        self.conf["index"] = None
 
-def get_next_url(url, index):
-    return url
+    def get_items(self, soup):
+        import re
+        items = []
+        items_container = soup.find_all('div', class_='t4s-product-wrapper')
+        for item in items_container:
+            if (not re.search("cdn.shopify.com", str(item))):
+                items.append(item)
+        return items
 
-def get_items(soup):
-    items = []
-    items_container = soup.find_all('div', class_='t4s-product-wrapper')
-    for item in items_container:
-        if (not re.search("cdn.shopify.com", str(item))):
-            items.append(item)
-    return items
-
-def get_product_url(soup, map_type):
-    if (map_type == "seed"):
+    def get_product_url(self, soup):
         product_link_element = soup.find('a', class_='t4s-full-width-link')
         return "https://www.iridiumlabs.com.br" + product_link_element['href'] if product_link_element else None
-    # map_tree
-    return None
 
-def get_title(soup, map_type):
-    if (map_type == "seed"):
+    def get_title(self, soup):
         title_element = soup.find('h3', class_='t4s-product-title')
         return title_element.get_text().strip() if title_element else None
-    # map_tree
-    return None
 
-def get_price(soup, map_type):
-    if (map_type == "seed"):
+    def get_price(self, soup):
+        import re
         final_price = None
         price_container = soup.find(class_="t4s-product-price")
         
@@ -58,10 +54,8 @@ def get_price(soup, map_type):
                         final_price = standard_price_element
         
         return final_price
-    return None
 
-def get_image_url(soup, map_type):
-    if (map_type == "seed"):
+    def get_image_url(self, soup):
         image_element = soup.find(class_='t4s-product-main-img')
         if (image_element and 'srcset' in image_element.attrs):
             srcset = image_element['srcset']
@@ -72,70 +66,14 @@ def get_image_url(soup, map_type):
         elif (image_element and 'src' in image_element.attrs):
             image_link = "https:" + image_element['src']
             return image_link
-    return None
 
+    def get_elements_seed(self, soup):
+        product_link =self. get_product_url(soup)
+        title = self.get_title(soup)
+        price = self.get_price(soup)
+        link_imagem = self.get_image_url(soup)
 
-def get_elements_tree(soup):
-    title = get_title(soup, "tree")
-    price = get_price(soup, "tree")
-    link_imagem = get_image_url(soup, "tree")
-
-    return title, price, link_imagem
-
-def get_elements_seed(soup):
-    product_link = get_product_url(soup, "seed")
-    title = get_title(soup, "seed")
-    price = get_price(soup, "seed")
-    link_imagem = get_image_url(soup, "seed")
-
-    return product_link, title, price, link_imagem
-
-map_seed_conf = {
-    "get_items": get_items,
-    "get_last_page_index": get_last_page_index,
-    "get_elements_seed": get_elements_seed,
-    "get_next_url": get_next_url,
-    "time_sleep_page": 3,
-    "scroll_page": True,
-    "return_text": False,
-}
-
-map_tree_conf = {
-    "get_elements_tree": get_elements_tree,
-    "time_sleep_page": 1,
-    "scroll_page": True,
-    "return_text": True,
-}
+        return product_link, title, price, link_imagem
 
 def extract(conf):
-    option = conf["option"]
-
-    map_seed_conf["option"] = conf["option"]
-    map_seed_conf["data_path"] = conf["data_path"]
-    map_seed_conf["seed_path"] = conf["seed_path"]
-
-    map_tree_conf["option"] = conf["option"]
-    map_tree_conf["data_path"] = conf["data_path"]
-
-    driver = initialize_selenium()
-
-    if (option == "init"):
-        first_exec(conf["data_path"])
-        
-        print("MAP FUNCTION: map_seed")
-        map_seed(driver, map_seed_conf)
-
-        print("MAP FUNCTION: map_tree")
-        map_tree(driver, map_tree_conf)
-    elif (option == "update_products"):
-        print("MAP FUNCTION: map_seed")
-        map_seed(driver, map_seed_conf, True)
-    elif (option == "update_pages"):
-        print("MAP FUNCTION: map_tree")
-        map_tree(driver, map_tree_conf)
-    elif (option == "status_job"):
-        print("STATUS_JOB - MAP FUNCTION: map_seed")
-        map_seed_conf["scroll_page"] = False
-        map_seed(driver, map_seed_conf)
-
-    driver.quit()
+    run_page_mapper(conf, Job)

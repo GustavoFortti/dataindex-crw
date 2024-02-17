@@ -11,6 +11,7 @@ import unicodedata
 import pandas as pd
 from glob import glob
 from PIL import Image
+from utils.log import message
 from datetime import date, timedelta
 from fake_useragent import UserAgent
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -23,23 +24,23 @@ def read_json(file_path):
             data = json.load(file)
             return data
     except FileNotFoundError:
-        print(f"O arquivo {file_path} não foi encontrado.")
+        message(f"O arquivo {file_path} não foi encontrado.")
         return None
     except json.JSONDecodeError:
-        print(f"Erro ao decodificar o arquivo JSON {file_path}.")
+        message(f"Erro ao decodificar o arquivo JSON {file_path}.")
         return None
     except Exception as e:
-        print(f"Um erro ocorreu ao ler o arquivo {file_path}: {e}")
+        message(f"Um erro ocorreu ao ler o arquivo {file_path}: {e}")
         return None
 
 def delete_file(file_path):
     try:
         os.remove(file_path)
-        print(f"File {file_path} has been deleted successfully")
+        message(f"File {file_path} has been deleted successfully")
     except FileNotFoundError:
-        print(f"The file {file_path} does not exist")
+        message(f"The file {file_path} does not exist")
     except Exception as e:
-        print(f"An error occurred: {e}")
+        message(f"An error occurred: {e}")
 
 def path_exist(oath):
     return os.path.exists(oath)
@@ -50,12 +51,12 @@ def create_file_if_not_exists(file_path, text=False):
             with open(file_path, mode='a', newline='') as file:
                 if (text):
                     file.write(text + "\n")
-                    print(f"write '{text}' successfully.")
-                print(f"File '{file_path}' created successfully.")
+                    message(f"write '{text}' successfully.")
+                message(f"File '{file_path}' created successfully.")
         except FileExistsError:
-            print(f"The file '{file_path}' already exists.")
+            message(f"The file '{file_path}' already exists.")
         except Exception as e:
-            print(f"An error occurred: {e}")
+            message(f"An error occurred: {e}")
         
 def encode_base64(val):
     return base64.b64encode(val.encode('utf-8')).decode('utf-8')
@@ -78,16 +79,16 @@ def list_directory(path):
         # Check if the path is a valid directory
         if os.path.isdir(path):
             contents = os.listdir(path)
-            print(f"Contents of directory '{path}':")
+            message(f"Contents of directory '{path}':")
             items = []
             for item in contents:
                 items.append(item)
             
             return items
         else:
-            print(f"'{path}' is not a valid directory.")
+            message(f"'{path}' is not a valid directory.")
     except Exception as e:
-        print(f"Error while listing the directory: {str(e)}")
+        message(f"Error while listing the directory: {str(e)}")
 
 def slice_text(original, start, end):
     start_index = original.find(start)
@@ -107,9 +108,9 @@ def create_directory_if_not_exists(directory_path):
     if not path_exist(directory_path):
         try:
             os.makedirs(directory_path)
-            print(f"Directory '{directory_path}' created successfully.")
+            message(f"Directory '{directory_path}' created successfully.")
         except OSError as error:
-            print(f"Error creating directory '{directory_path}': {error}")
+            message(f"Error creating directory '{directory_path}': {error}")
 
 def check_if_is_old_file(file_path):
     if path_exist(file_path):
@@ -121,6 +122,18 @@ def check_if_is_old_file(file_path):
         return False
         return last_modified_date != today
     return True
+                
+def create_or_read_df(path, columns):
+    message(f"create_or_read_df")
+    if (path_exist(path)):
+        message(f"read file: {path}")
+        df = pd.read_csv(path)
+    else:
+        df = pd.DataFrame(columns=columns)
+        message(f"create file: {path}")
+        df.to_csv(path, index=False)
+    
+    return df
 
 def filter_df_by_days(df, column, n_days_back):
     if (len(df) == 0): return df
@@ -166,7 +179,7 @@ def remove_nan_from_dict(document):
 
 def file_exists(directory, filename):
     file_path = os.path.join(directory, filename)
-    print(file_path)
+    message(file_path)
     return os.path.exists(file_path)
 
 def find_in_text_with_word_list(text, word_list):
@@ -185,11 +198,11 @@ def find_in_text_with_word_list(text, word_list):
 
 def save_file(text, path):
     with open(path, "w") as file:
-        print("file path: " + path)
+        message("file path: " + path)
         file.write(str(text))
 
 def download_image(image_url, image_path, image_name):
-    print(f"Download: {image_url}")
+    message(f"Download: {image_url}")
     response = requests.get(image_url)
 
     if response.status_code == 200:
@@ -216,8 +229,26 @@ def download_image(image_url, image_path, image_name):
             f.write(response.content)
         return f"Image downloaded successfully! Saved as: {file_name_with_extension}"
     else:
-        print(f"Failed to download the image. HTTP status code: {response.status_code}")
+        message(f"Failed to download the image. HTTP status code: {response.status_code}")
 
+
+def download_images_in_parallel(image_urls, image_path, image_names):
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        # Mapeia cada tarefa futura para a respectiva URL usando um dicionário
+        future_to_url = {executor.submit(download_image, url, image_path, name): url for url, name in zip(image_urls, image_names)}
+
+        # Itera sobre as tarefas concluídas conforme elas são finalizadas
+        for future in as_completed(future_to_url):
+            url = future_to_url[future]
+            try:
+                result = future.result()  # Obtém o resultado da tarefa
+                if result:
+                    message(result)  # Imprime o resultado se a imagem foi baixada com sucesso
+                else:
+                    message(f"Download failed for {url}")  # Imprime uma mensagem de falha caso contrário
+            except Exception as e:
+                message(f"{url} generated an exception: {e}")  # Imprime a exceção, se ocorrer
+                
 def convert_image(image_path, save_path, output_format='webp'):
     if (not os.path.isfile(image_path)):
         raise FileNotFoundError(f"The file {image_path} does not exist.")
@@ -239,11 +270,11 @@ def check_url_existence(url, timeout=5):
         response = requests.head(url, headers=headers, timeout=timeout)
         return 200 <= response.status_code < 300
     except Exception as e:
-        print(e)
+        message(e)
         return False
 
 def check_urls_in_parallel(urls, timeout=5):
-    all_exist = True  
+    results = []  # Lista para armazenar os resultados
 
     with ThreadPoolExecutor(max_workers=10) as executor:
         future_to_url = {executor.submit(check_url_existence, url, timeout): url for url in urls}
@@ -252,22 +283,21 @@ def check_urls_in_parallel(urls, timeout=5):
             url = future_to_url[future]
             try:
                 exists = future.result()
-                print(f"{url} exists: {exists}")
-                if not exists:
-                    all_exist = False
+                message(f"{url} exists: {exists}")
+                results.append([url, exists])  # Adiciona a URL e o resultado à lista de resultados
             except Exception as e:
-                print(f"{url} generated an exception: {e}")
-                all_exist = False  
+                message(f"{url} generated an exception: {e}")
+                results.append([url, False])  # Assume que a URL não existe se uma exceção ocorrer
 
-    return all_exist
+    return results
 
 def delete_directory_and_contents(directory_path):
     if not os.path.exists(directory_path):
-        print("Directory does not exist.")
+        message("Directory does not exist.")
         return
 
     shutil.rmtree(directory_path)
-    print(f"Directory and all contents deleted: {directory_path}")
+    message(f"Directory and all contents deleted: {directory_path}")
 
 def first_exec(data_path):
     origin = file_exists(data_path, "origin.csv")
@@ -284,7 +314,7 @@ def first_exec(data_path):
         delete_directory_and_contents(f"{data_path}/img_tmp")
         delete_directory_and_contents(f"{data_path}/products")
 
-    print("First execution")
+    message("First execution")
 
 def is_price(string):
     if not isinstance(string, str):
@@ -312,7 +342,7 @@ def read_csvs_on_dir_and_union(directory, get_only_last):
         dfs = [pd.read_csv(file) for file in csv_files]
         return pd.concat(dfs, ignore_index=True)
     else:
-        print("Erro: no historical data")
+        message("Erro: no historical data")
         exit(1)
 
 def has_files(directory):

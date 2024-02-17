@@ -1,4 +1,5 @@
 from config.env import LOCAL
+from utils.log import message
 
 import os
 import time
@@ -9,6 +10,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException 
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -20,7 +22,7 @@ def initialize_selenium():
     options = webdriver.ChromeOptions()
     
     display = os.getenv('DISPLAY')
-    print(f"DISPLAY{display}")
+    message(f"DISPLAY{display}")
 
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -38,25 +40,54 @@ def initialize_selenium():
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     
     driver.maximize_window() 
-    print(driver.execute_script("return navigator.userAgent;"))
+    message(driver.execute_script("return navigator.userAgent;"))
    
     return driver
 
+def load_url(driver, url, element_selector, timeout=30):
+    driver.get(url)
+    driver.implicitly_wait(100)
+    if element_selector:
+        try:
+            element_present = EC.presence_of_element_located((By.CSS_SELECTOR, element_selector))
+            WebDriverWait(driver, timeout).until(element_present)
+        except TimeoutException:
+            message(f"Timed out waiting for element {element_selector} to be present")
+
+def get_page_source(driver, retry_delay=5):
+    try:
+        message("Tentando obter o page_source da página atual...")
+        page_html = driver.page_source
+        soup = BeautifulSoup(page_html, 'html.parser')
+        return soup, page_html  # Retorna o objeto BeautifulSoup se o page_source for obtido com sucesso
+    except WebDriverException as e:
+        message(f"Erro ao obter o page_source: {e}. Tentando recarregar após {retry_delay} segundos...")
+        time.sleep(retry_delay)  # Espera antes de tentar novamente
+        try:
+            driver.refresh()  # Tentativa de recarregar a página atual
+            page_html = driver.page_source
+            soup = BeautifulSoup(page_html, 'html.parser')
+            return soup, page_html  # Retorna o objeto BeautifulSoup se a página for recarregada com sucesso na segunda tentativa
+        except WebDriverException as e:
+            message(f"Erro ao recarregar a página: {e}. Abortando...")
+            return None  # Retorna None se falhar novamente
+
+
 def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functions_to_check_load=False):
-    print("get_html")
-    print(f"url: {url}")
-    print("")
+    message("get_html")
+    message(f"url: {url}")
+    message("")
 
     driver.get(url)
     driver.implicitly_wait(100)
     if (sleep != 0): 
-        print("*" * sleep)
+        message("*" * sleep)
     time.sleep(sleep)
 
-    soup, page_html = load_page(driver)
+    soup, page_html = load_url(driver)
 
     if (scroll_page):
-        print(f"SCROLL_PAGE...")
+        message(f"SCROLL_PAGE...")
 
         scroll_rules = [{"time_sleep": 0.5, "size_height": 1500},
                        {"time_sleep": 1, "size_height": 1000},
@@ -70,11 +101,11 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
             
             scroll(driver, scroll_rule["time_sleep"], scroll_rule["size_height"])
     
-            soup, page_html = load_page(driver)
+            soup, page_html = load_url(driver)
 
             if (functions_to_check_load):
                 is_page_load = check_scroll(soup, functions_to_check_load)
-                print(f"is_page_load {is_page_load}")
+                message(f"is_page_load {is_page_load}")
 
                 if (is_page_load):
                     break
@@ -85,27 +116,8 @@ def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functio
         return soup, page_html
     return soup
 
-def load_page(driver, retry_delay=5):
-    try:
-        print("Tentando obter o page_source da página atual...")
-        page_html = driver.page_source
-        soup = BeautifulSoup(page_html, 'html.parser')
-        return soup, page_html  # Retorna o objeto BeautifulSoup se o page_source for obtido com sucesso
-    except WebDriverException as e:
-        print(f"Erro ao obter o page_source: {e}. Tentando recarregar após {retry_delay} segundos...")
-        time.sleep(retry_delay)  # Espera antes de tentar novamente
-        try:
-            driver.refresh()  # Tentativa de recarregar a página atual
-            page_html = driver.page_source
-            soup = BeautifulSoup(page_html, 'html.parser')
-            return soup, page_html  # Retorna o objeto BeautifulSoup se a página for recarregada com sucesso na segunda tentativa
-        except WebDriverException as e:
-            print(f"Erro ao recarregar a página: {e}. Abortando...")
-            return None  # Retorna None se falhar novamente
-
-
 def check_scroll(soup, functions_to_check_load):
-    print(f"check_scroll")
+    message(f"check_scroll")
 
     get_items, get_elements_seed = functions_to_check_load
     
@@ -113,23 +125,61 @@ def check_scroll(soup, functions_to_check_load):
         items = get_items(soup)
         url_list = []
 
-        print(f"items size: {len(items)}")
+        message(f"items size: {len(items)}")
         for item in items:
             product_url, title, price, image_url = get_elements_seed(item)
             url_list.append(image_url)
             url_list.append(product_url)
             if (not is_price(price)): 
-                print(f"ERROR: price error {price}")
+                message(f"ERROR: price error {price}")
 
         urls_exists = check_urls_in_parallel(url_list)
         if (not urls_exists): 
-            print("ERROR: urls_exists")
+            message("ERROR: urls_exists")
             return False
         
         return True
     except:
-        print("Erro nas tags")
+        message("Erro nas tags")
         return False
+    
+def dynamic_scroll(driver, time_sleep=0.5, percentage=0.07, return_percentage=0.3, max_return=4000, max_attempts=3):
+    total_height = driver.execute_script("return document.body.scrollHeight")
+    scroll_increment = min(total_height * percentage, 1000)
+    last_scrolled_height = 0
+    attempt_count = 0  # Contador para rastrear tentativas sem mudança na posição de rolagem
+
+    while True:
+        driver.execute_script(f"window.scrollBy(0, {scroll_increment});")
+        time.sleep(time_sleep)  # Espera para o carregamento do conteúdo
+
+        scrolled_height = driver.execute_script("return window.pageYOffset;")
+        message(f"Current scroll position: {scrolled_height}/{total_height}")  # Mostra a posição atual e o tamanho máximo
+
+        if scrolled_height == last_scrolled_height:
+            attempt_count += 1  # Incrementa o contador se a posição de rolagem não mudou
+            if attempt_count >= max_attempts:
+                message("Scroll position unchanged for consecutive attempts. Ending scroll.")
+                break  # Sai do loop se a posição de rolagem permanecer a mesma por várias tentativas
+        else:
+            attempt_count = 0  # Reseta o contador se a posição de rolagem mudar
+
+        last_scrolled_height = scrolled_height  # Atualiza a última posição de rolagem registrada
+
+        new_total_height = driver.execute_script("return document.body.scrollHeight")
+        if new_total_height > total_height:
+            # Ajusta a altura total e o incremento de rolagem se o tamanho da página aumentou
+            total_height = new_total_height
+            scroll_increment = min(total_height * percentage, 1000)
+
+            # Calcula a distância de retorno e ajusta a posição da rolagem
+            return_distance = min(scrolled_height * return_percentage, max_return)
+            new_scroll_position = max(scrolled_height - return_distance, 0)
+            driver.execute_script(f"window.scrollTo(0, {new_scroll_position});")
+            message(f"Page size increased to {total_height}. Returning to position {new_scroll_position} due to size increase.")
+
+        if scrolled_height + scroll_increment >= total_height:
+            break  # Sai do loop se alcançar ou ultrapassar o fundo da página
 
 def scroll(driver, time_sleep, size_height):
     total_height = driver.execute_script("return document.body.scrollHeight")
@@ -149,14 +199,14 @@ def scroll(driver, time_sleep, size_height):
             driver.execute_script("window.scrollTo(0, 0);")  # Volta ao início da página
             total_height = new_total_height  # Atualiza a altura total
             previous_height = 0  # Reseta a altura anterior para começar a rolagem novamente
-            print("Page size increased. Returning to the top of the page.")
+            message("Page size increased. Returning to the top of the page.")
         else:
             # Se a altura total da página não mudou, atualiza a altura anterior e continua a rolagem
             if next_height >= total_height:
                 break  # Sai do loop se alcançar o final da página
             previous_height = next_height
 
-        print(f"Current scroll position: {next_height}/{total_height}")
+        message(f"Current scroll position: {next_height}/{total_height}")
 
 def move_mouse_over_all_elements(driver):
     elements = driver.find_elements(By.XPATH, "//*")

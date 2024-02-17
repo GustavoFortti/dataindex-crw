@@ -9,19 +9,17 @@ from utils import (DATE_FORMAT,
                    has_files,
                    create_directory_if_not_exists)
 
-def status_tag(new_row, kill_job=True):
+def status_tag(data, kill_job=True):
     errors = []
 
-    if not is_price(new_row["price"]):
+    if not is_price(data["price"]):
         errors.append("ERRO: Invalid price format.")
 
-    if not check_url_existence(new_row["image_url"]):
+    if not check_url_existence(data["image_url"]):
         errors.append("ERRO: Image URL does not exist.")
 
-    if not check_url_existence(new_row["product_url"]):
+    if not check_url_existence(data["product_url"]):
         errors.append("ERRO: Product URL does not exist.")
-
-    print(new_row)
 
     if errors:
         for error in errors:
