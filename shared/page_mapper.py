@@ -19,6 +19,8 @@ from utils.general_functions import (DATE_FORMAT,
 def run(conf, Job):
     conf["scroll_page"] = True
     conf["status_job"] = False
+    conf["seed"] = False
+    conf["tree"] = False
 
     if (conf['option'] == "init"):
         message("init")
@@ -37,12 +39,10 @@ def run(conf, Job):
     elif (conf['option'] == "update_products"):
         message("update_products")
         conf["seed"] = True
-        conf["tree"] = False
         job = Job(conf)
         seed(job)
     elif (conf['option'] == "update_pages"):
         message("update_pages")
-        conf["seed"] = False
         conf["tree"] = True
         job = Job(conf)
         tree(job)
