@@ -1,5 +1,6 @@
 from datetime import date
 import pandas as pd
+from utils.log import message
 
 from utils import (DATE_FORMAT,
                    check_url_existence, 
@@ -23,13 +24,18 @@ def status_tag(data, kill_job=True):
 
     if errors:
         for error in errors:
-            print(error)
-        if (kill_job): exit(1)
+            message(error)
+        if (kill_job): 
+            exit(1)
         else: return False
         
-    print("status_tag: All validations passed successfully.")
-    if (kill_job): exit(0)
-    else: return True
+    message("status_tag: All validations passed successfully.")
+    if (kill_job): 
+        message("Kill job")
+        exit(0)
+    else: 
+        message("job running")
+        return True
 
 def data_history_analysis(conf, df):
     history_path = conf['data_path'] + "/history"
@@ -50,11 +56,11 @@ def data_history_analysis(conf, df):
                   volume_erro)
 
     if (not is_success):
-        print("Ingestion.py - Error: corrupt data")
+        message("Ingestion.py - Error: corrupt data")
         exit(1)
     else:
         data_history_save(conf, df)
-        print("Data ready for ingestion")
+        message("Data ready for ingestion")
 
     return is_success
 
@@ -66,7 +72,7 @@ def volume_analysis(df_history, df, alert_threshold=0.2, error_threshold=0.5):
         return True, True
 
     volume_change = abs((volume_current / volume_history) - 1)
-    print(f"volume_change: {volume_change}")
+    message(f"volume_change: {volume_change}")
 
     volume_error = volume_change < error_threshold
     volume_alert = volume_change < alert_threshold
@@ -116,4 +122,4 @@ def data_history_save(conf, df):
     formatted_date = data_atual.strftime(DATE_FORMAT)
 
     df.to_csv(f"{history_path}/origin_csl_{formatted_date}.csv", index=False)
-    print(f"Saved historical data in {history_path}/origin_csl_{formatted_date}.csv")
+    message(f"Saved historical data in {history_path}/origin_csl_{formatted_date}.csv")

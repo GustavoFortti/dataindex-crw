@@ -21,12 +21,13 @@ def crawler(job, url):
 
 def load_page(driver, job, url):
     message("exec load_page")
-    soup, page_html = se.get_page_source(driver)
+
     if (job.conf['scroll_page']):
         se.dynamic_scroll(driver)
-        soup, page_html = se.get_page_source(driver)
-        if (job.conf['seed']):
-            extract_data(job, soup)
+
+    soup, page_html = se.get_page_source(driver)
+    if (job.conf['seed']):
+        extract_data(job, soup)
 
     if (job.conf['tree']):
         ref = generate_hash(url)
@@ -66,7 +67,7 @@ def extract_data(job, soup):
             'ing_date': job.conf['formatted_date']
         }
 
-        if ((job.conf["status_job"])):
+        if (job.conf["status_job"]):
             status_tag(data)
 
         message(data)

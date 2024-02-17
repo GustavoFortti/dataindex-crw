@@ -6,9 +6,9 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="truesource"
+job_name="darkness"
 job_type="extract"
-option="update_pages"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"
