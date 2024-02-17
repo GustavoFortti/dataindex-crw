@@ -106,7 +106,7 @@ def seed(job):
     results = []
     for batch in urls_batch:
         result_batch = check_urls_in_parallel(batch)
-        results.append(result_batch)
+        results.extend(result_batch)
     results_df = pd.DataFrame(results, columns=['product_url', 'exists'])
     remove_urls = results_df[results_df['exists'] == False]['product_url']
     df_tree_temp = df_tree_temp[~df_tree_temp['product_url'].isin(remove_urls)]
@@ -116,7 +116,7 @@ def seed(job):
     results = []
     for batch in urls_batch:
         result_batch = check_urls_in_parallel(batch)
-        results.append(result_batch)
+        results.extend(result_batch)
     results_df = pd.DataFrame(results, columns=['image_url', 'exists'])
     remove_urls = results_df[results_df['exists'] == False]['image_url']
     df_tree_temp = df_tree_temp[~df_tree_temp['image_url'].isin(remove_urls)]
