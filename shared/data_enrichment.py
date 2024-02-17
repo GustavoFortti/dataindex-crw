@@ -32,6 +32,7 @@ def process_data(conf):
 
     df = pd.read_csv(file_path + "/origin.csv")
     df = df.drop_duplicates(subset='product_url').reset_index(drop=True)
+    print(df)
 
     df_nulos = df[df[['title', 'price', 'image_url']].isna().any(axis=1)]
     df_nulos.to_csv(file_path + "/origin_del.csv", index=False)
@@ -48,6 +49,8 @@ def process_data(conf):
     df['title'] = df['title'].apply(remove_spaces)
     
     pattern = r'(\d+([.,]\d+)?)\s*(kg|g|gr|gramas)\s*\w*'
+    x = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
+    exit()
     df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)

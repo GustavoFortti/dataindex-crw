@@ -45,6 +45,11 @@ def run(conf, Job):
         conf["tree"] = True
         job = Job(conf)
         tree(job)
+    elif (conf['option'] == "extract_new_pages"):
+        message("extract_new_pages")
+        conf["tree"] = True
+        job = Job(conf)
+        tree(job)
     elif (conf['option'] == "status_job"):
         message("status_job")
         conf["scroll_page"] = False
@@ -94,12 +99,24 @@ def seed(job):
     df_tree_temp = df_tree_temp[~df_tree_temp['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df_tree_temp = df_tree_temp[df_tree_temp['price'].apply(lambda x: is_price(x))]
 
-    results = check_urls_in_parallel(df_tree_temp["product_url"].values)
+    size_batch = 25
+
+    urls = df_tree_temp["product_url"].values
+    urls_batch = [urls[i:i + size_batch] for i in range(0, len(urls), size_batch)]
+    results = []
+    for batch in urls_batch:
+        result_batch = check_urls_in_parallel(batch)
+        results.append(result_batch)
     results_df = pd.DataFrame(results, columns=['product_url', 'exists'])
     remove_urls = results_df[results_df['exists'] == False]['product_url']
     df_tree_temp = df_tree_temp[~df_tree_temp['product_url'].isin(remove_urls)]
 
-    results = check_urls_in_parallel(df_tree_temp["image_url"].values)
+    urls = df_tree_temp["image_url"].values
+    urls_batch = [urls[i:i + size_batch] for i in range(0, len(urls), size_batch)]
+    results = []
+    for batch in urls_batch:
+        result_batch = check_urls_in_parallel(batch)
+        results.append(result_batch)
     results_df = pd.DataFrame(results, columns=['image_url', 'exists'])
     remove_urls = results_df[results_df['exists'] == False]['image_url']
     df_tree_temp = df_tree_temp[~df_tree_temp['image_url'].isin(remove_urls)]

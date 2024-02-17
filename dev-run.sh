@@ -6,9 +6,9 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="boldsnacks"
-job_type="extract"
-option="status_job"
+job_name="growth_supplements"
+job_type="dry"
+option="false"
 page_type="supplement"
 country="brazil"
 mode="prd"
