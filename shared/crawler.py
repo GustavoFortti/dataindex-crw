@@ -23,9 +23,12 @@ def load_page(driver, job, url):
     message("exec load_page")
     message("3 seconds")
     time.sleep(3)
-    
+
     if (job.conf['scroll_page']):
         se.dynamic_scroll(driver)
+
+    if (job.conf["status_job"]):
+        se.dynamic_scroll(driver, time_sleep=0.2, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
 
     soup, page_html = se.get_page_source(driver)
     if (job.conf['seed']):
