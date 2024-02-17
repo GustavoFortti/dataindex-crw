@@ -48,6 +48,8 @@ def run(conf, Job):
         tree(job)
     elif (conf['option'] == "status_job"):
         message("status_job")
+        conf["scroll_page"] = False
+        conf["seed"] = True
         conf['status_job'] = True
         job = Job(conf)
         seed(job)
