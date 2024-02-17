@@ -55,9 +55,9 @@ def data_history_analysis(conf, df):
                   title_erro & 
                   volume_erro)
 
-    print(price_erro)
-    print(title_erro)
-    print(volume_erro)
+    message(f"price_erro: {price_erro}")
+    message(f"title_erro: {title_erro}")
+    message(f"volume_erro: {volume_erro}")
 
     if (not is_success):
         message("Ingestion.py - Error: corrupt data")
@@ -97,7 +97,7 @@ def title_analysis(df_history, df):
 
     message("TITLE ERROR DATAFRAME")
     df_erro = result_df_title.sort_values('diff_percent')
-    print(df_erro[df_erro['title_erro']])
+    print(df_erro[df_erro['title_erro']][['ref', 'title_x', 'title_y', 'diff_percent', 'title_erro', 'title_alert']])
 
     return  [
                 not (result_df_title["title_erro"] == False).any(),
