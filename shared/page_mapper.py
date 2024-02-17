@@ -13,8 +13,7 @@ from utils.general_functions import (DATE_FORMAT,
                                     find_in_text_with_word_list,
                                     create_directory_if_not_exists,
                                     check_urls_in_parallel, 
-                                    is_price,
-                                    path_exist)
+                                    is_price)
 
 def run(conf, Job):
     conf["scroll_page"] = True

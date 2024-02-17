@@ -6,7 +6,7 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="darkness"
+job_name="boldsnacks"
 job_type="extract"
 option="status_job"
 page_type="supplement"

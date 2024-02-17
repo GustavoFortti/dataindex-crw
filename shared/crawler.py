@@ -1,5 +1,5 @@
 import pandas as pd
-
+import time
 from utils.log import message
 from shared.data_quality import status_tag
 import shared.selenium_service as se 
@@ -21,7 +21,9 @@ def crawler(job, url):
 
 def load_page(driver, job, url):
     message("exec load_page")
-
+    message("3 seconds")
+    time.sleep(3)
+    
     if (job.conf['scroll_page']):
         se.dynamic_scroll(driver)
 

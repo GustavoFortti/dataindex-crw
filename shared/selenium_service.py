@@ -72,50 +72,6 @@ def get_page_source(driver, retry_delay=5):
             message(f"Erro ao recarregar a página: {e}. Abortando...")
             return None  # Retorna None se falhar novamente
 
-
-def get_html(driver, url, sleep=1, scroll_page=False, return_text=False, functions_to_check_load=False):
-    message("get_html")
-    message(f"url: {url}")
-    message("")
-
-    driver.get(url)
-    driver.implicitly_wait(100)
-    if (sleep != 0): 
-        message("*" * sleep)
-    time.sleep(sleep)
-
-    soup, page_html = load_url(driver)
-
-    if (scroll_page):
-        message(f"SCROLL_PAGE...")
-
-        scroll_rules = [{"time_sleep": 0.5, "size_height": 1500},
-                       {"time_sleep": 1, "size_height": 1000},
-                       {"time_sleep": 1, "size_height": 500}, 
-                       {"time_sleep": 2, "size_height": 500}]
-        
-        if (type(scroll_page) == list):
-            scroll_rules = scroll_page
-
-        for scroll_rule in scroll_rules:
-            
-            scroll(driver, scroll_rule["time_sleep"], scroll_rule["size_height"])
-    
-            soup, page_html = load_url(driver)
-
-            if (functions_to_check_load):
-                is_page_load = check_scroll(soup, functions_to_check_load)
-                message(f"is_page_load {is_page_load}")
-
-                if (is_page_load):
-                    break
-            else:
-                break
-
-    if (return_text): 
-        return soup, page_html
-    return soup
-
 def check_scroll(soup, functions_to_check_load):
     message(f"check_scroll")
 
@@ -180,33 +136,6 @@ def dynamic_scroll(driver, time_sleep=0.5, percentage=0.07, return_percentage=0.
 
         if scrolled_height + scroll_increment >= total_height:
             break  # Sai do loop se alcançar ou ultrapassar o fundo da página
-
-def scroll(driver, time_sleep, size_height):
-    total_height = driver.execute_script("return document.body.scrollHeight")
-    previous_height = 0
-
-    while True:
-        # Rola para a próxima "fatia" da página
-        next_height = previous_height + size_height
-        driver.execute_script(f"window.scrollTo(0, {next_height});")
-        time.sleep(time_sleep)  # Espera para o carregamento do conteúdo
-
-        # Verifica a nova altura total da página
-        new_total_height = driver.execute_script("return document.body.scrollHeight")
-
-        if new_total_height > total_height:
-            # Se a altura total da página aumentou, volta ao início da página e ajusta a altura total
-            driver.execute_script("window.scrollTo(0, 0);")  # Volta ao início da página
-            total_height = new_total_height  # Atualiza a altura total
-            previous_height = 0  # Reseta a altura anterior para começar a rolagem novamente
-            message("Page size increased. Returning to the top of the page.")
-        else:
-            # Se a altura total da página não mudou, atualiza a altura anterior e continua a rolagem
-            if next_height >= total_height:
-                break  # Sai do loop se alcançar o final da página
-            previous_height = next_height
-
-        message(f"Current scroll position: {next_height}/{total_height}")
 
 def move_mouse_over_all_elements(driver):
     elements = driver.find_elements(By.XPATH, "//*")
