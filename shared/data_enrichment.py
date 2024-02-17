@@ -49,8 +49,7 @@ def process_data(conf):
     df['title'] = df['title'].apply(remove_spaces)
     
     pattern = r'(\d+([.,]\d+)?)\s*(kg|g|gr|gramas)\s*\w*'
-    x = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
-    exit()
+    
     df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
@@ -64,12 +63,12 @@ def process_data(conf):
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
-    print(df)
 
     image_processing(df, file_path)
     df = df[['ref', 'title', 'price', 'image_url', 'product_url', 'ing_date',
             'name', 'brand', 'price_numeric', 'quantity', 'price_qnt',
             'spec', 'spec_route']]
+    print(df)
     
     return df
 
@@ -348,6 +347,7 @@ def image_processing(df, data_path):
     create_directory_if_not_exists(path_img_csl)
 
     refs = sorted(df['ref'])
+
     dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp) if i.split(".")[0] in refs}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
 

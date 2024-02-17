@@ -6,9 +6,9 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="max_titanium"
-job_type="extract"
-option="status_job"
+job_name="probiotica"
+job_type="ingestion"
+option="data_quality"
 page_type="supplement"
 country="brazil"
 mode="prd"
