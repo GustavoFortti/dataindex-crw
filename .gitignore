@@ -3,3 +3,5 @@ packages/chrome-linux64.zip
 
 */__pycache__/
 *.pyc
+
+/app.log
