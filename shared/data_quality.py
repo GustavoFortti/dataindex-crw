@@ -55,6 +55,10 @@ def data_history_analysis(conf, df):
                   title_erro & 
                   volume_erro)
 
+    print(price_erro)
+    print(title_erro)
+    print(volume_erro)
+
     if (not is_success):
         message("Ingestion.py - Error: corrupt data")
         exit(1)
@@ -91,6 +95,10 @@ def title_analysis(df_history, df):
     result_df_title['title_erro'] = result_df_title['diff_percent'] <= threshold_erro
     result_df_title['title_alert'] = result_df_title['diff_percent'] <= threshold_alert
 
+    message("TITLE ERROR DATAFRAME")
+    df_erro = result_df_title.sort_values('diff_percent')
+    print(df_erro[df_erro['title_erro']])
+
     return  [
                 not (result_df_title["title_erro"] == False).any(),
                 not (result_df_title["title_alert"] == False).any(),
@@ -108,6 +116,10 @@ def price_analysis(df_history, df):
     threshold_alert = 0.40
     result_df_price['price_erro'] = result_df_price['diff_percent'] <= threshold_erro
     result_df_price['price_alert'] = result_df_price['diff_percent'] <= threshold_alert
+
+    df_erro = result_df_price.sort_values('diff_percent')
+    message("PRICE ERROR DATAFRAME")
+    print(df_erro[df_erro['price_erro']])
 
     return  [
                 not (result_df_price["price_erro"] == False).any(),
