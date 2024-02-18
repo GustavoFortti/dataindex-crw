@@ -97,7 +97,7 @@ def title_analysis(df_history, df):
 
     message("TITLE ERROR DATAFRAME")
     df_erro = result_df_title.sort_values('diff_percent')
-    print(df_erro[df_erro['title_erro']][['ref', 'title_x', 'title_y', 'diff_percent', 'title_erro', 'title_alert']])
+    print(df_erro[~df_erro['title_erro']][['ref', 'title_x', 'title_y', 'diff_percent', 'title_erro', 'title_alert']])
 
     return  [
                 not (result_df_title["title_erro"] == False).any(),
@@ -119,7 +119,7 @@ def price_analysis(df_history, df):
 
     df_erro = result_df_price.sort_values('diff_percent')
     message("PRICE ERROR DATAFRAME")
-    print(df_erro[df_erro['price_erro']])
+    print(df_erro[~df_erro['price_erro']])
 
     return  [
                 not (result_df_price["price_erro"] == False).any(),

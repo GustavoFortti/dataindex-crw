@@ -6,7 +6,7 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="probiotica"
+job_name="atlhetica_nutrition"
 job_type="ingestion"
 option="data_quality"
 page_type="supplement"
