@@ -42,7 +42,7 @@ def data_history_analysis(conf, df):
 
     create_directory_if_not_exists(history_path)
     if (not has_files(history_path)):
-        data_history_save(conf, df)
+        save_history_data(conf, df)
         return True
 
     df_history = read_csvs_on_dir_and_union(history_path, True)
@@ -61,10 +61,7 @@ def data_history_analysis(conf, df):
 
     if (not is_success):
         message("Ingestion.py - Error: corrupt data")
-        exit(1)
-    else:
-        data_history_save(conf, df)
-        message("Data ready for ingestion")
+        exit(1)       
 
     return is_success
 
@@ -127,7 +124,7 @@ def price_analysis(df_history, df):
                 result_df_price
             ]
 
-def data_history_save(conf, df):
+def save_history_data(conf, df):
     history_path = conf['data_path'] + "/history"
 
     data_atual = date.today()

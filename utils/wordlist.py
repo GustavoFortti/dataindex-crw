@@ -25,7 +25,10 @@ BLACK_LIST = [
     'blusa',
     'top dux',
     'viseira',
-    'bermuda'
+    'bermuda',
+    'necessaire',
+    'bolsa',
+    'moletom'
 ]
 
 WORD_LIST_SUPLEMENTO = [['whey'],

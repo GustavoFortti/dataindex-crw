@@ -6,9 +6,9 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="atlhetica_nutrition"
-job_type="ingestion"
-option="data_quality"
+job_name="truesource"
+job_type="dry"
+option="false"
 page_type="supplement"
 country="brazil"
 mode="prd"

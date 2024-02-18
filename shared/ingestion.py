@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 
+from utils.log import message
 import shared.elasticsearch_functions as es
 import shared.image_server_functions as image_srv
 import shared.data_quality as dq
@@ -13,6 +14,9 @@ def ingestion(conf):
         print("Running Data Quality...")
         dq.data_history_analysis(conf, df)
         exit(0)
+
+    dq.save_history_data(conf, df)
+    message("Data ready for ingestion")
 
     print("START IMAGE INGESTION")
     df = image_srv.data_ingestion(df, conf)
