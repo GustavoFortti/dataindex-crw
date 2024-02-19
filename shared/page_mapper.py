@@ -134,8 +134,6 @@ def seed(job):
     message(f"write origin: {path_origin}")
     df_tree_temp.to_csv(path_origin, index=False)
 
-    delete_file(path_tree_temp)
-
 def tree(job):
     path_origin = f"{job.conf['data_path']}/origin.csv"
     job.conf['path_origin'] = path_origin

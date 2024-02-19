@@ -71,34 +71,7 @@ def get_page_source(driver, retry_delay=5):
         except WebDriverException as e:
             message(f"Erro ao recarregar a página: {e}. Abortando...")
             return None  # Retorna None se falhar novamente
-
-def check_scroll(soup, functions_to_check_load):
-    message(f"check_scroll")
-
-    get_items, get_elements_seed = functions_to_check_load
-    
-    try:
-        items = get_items(soup)
-        url_list = []
-
-        message(f"items size: {len(items)}")
-        for item in items:
-            product_url, title, price, image_url = get_elements_seed(item)
-            url_list.append(image_url)
-            url_list.append(product_url)
-            if (not is_price(price)): 
-                message(f"ERROR: price error {price}")
-
-        urls_exists = check_urls_in_parallel(url_list)
-        if (not urls_exists): 
-            message("ERROR: urls_exists")
-            return False
-        
-        return True
-    except:
-        message("Erro nas tags")
-        return False
-    
+   
 def dynamic_scroll(driver, time_sleep=0.5, percentage=0.07, return_percentage=0.3, max_return=4000, max_attempts=3):
     total_height = driver.execute_script("return document.body.scrollHeight")
     scroll_increment = min(total_height * percentage, 1000)
