@@ -6,9 +6,9 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_name="growth_supplements"
-job_type="dry"
-option="false"
+job_name="atlhetica_nutrition"
+job_type="extract"
+option="update_products"
 page_type="supplement"
 country="brazil"
 mode="prd"

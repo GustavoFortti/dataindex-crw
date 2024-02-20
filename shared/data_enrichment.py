@@ -9,15 +9,15 @@ from bs4 import BeautifulSoup
 
 from utils.wordlist import BLACK_LIST
 from utils.general_functions import (clean_text,
-                                 path_exist,
-                                 remove_spaces,
-                                 save_file,
-                                 list_directory,
-                                 convert_image,
-                                 calculate_precise_image_hash,
-                                 loading,
-                                 create_directory_if_not_exists,
-                                 find_in_text_with_word_list)
+                                    path_exist,
+                                    remove_spaces,
+                                    save_file,
+                                    list_directory,
+                                    convert_image,
+                                    calculate_precise_image_hash,
+                                    loading,
+                                    create_directory_if_not_exists,
+                                    find_in_text_with_word_list)
 
 pd.set_option('display.max_rows', None)
 
@@ -216,79 +216,6 @@ def find_matches(text, max_size=10):
         keywords = keywords[:max_size] if (len(keywords) > max_size) else keywords
         return ' '.join(keywords)
     return None
-
-def create_table(soup):
-    try:
-        dfs = []
-        tables = soup.find_all('table')
-        for table in tables:
-            table_data = []
-
-            # Loop pelas linhas da tabela
-            for row in table.find_all('tr'):
-                cells = row.find_all('td')
-                data_row = [cell.text.strip() for cell in cells]
-                table_data.append(data_row)
-
-            # Remova as linhas vazias
-            table_data = [row for row in table_data if row]
-
-            # Verifique se há dados suficientes para criar um DataFrame
-            if len(table_data) > 1 and all(len(row) == len(table_data[0]) for row in table_data):
-                # A primeira linha contém os cabeçalhos das colunas
-                columns = table_data[0]
-                
-                # Os dados reais começam na segunda linha
-                data = table_data[1:]
-                
-                # Criar um DataFrame pandas a partir dos dados
-                df = pd.DataFrame(data, columns=columns)
-                
-                # Exibir o DataFrame
-                primeira_coluna = df['A']
-                for valor in primeira_coluna:
-                    comando = f'echo {valor}>>./wordlist.txt'
-                    os.system(comando)
-
-                dfs.append(df)
-            else:
-                print("Não há dados suficientes para criar um DataFrame.")
-
-            return dfs
-    except:
-        return None
-
-def create_table_2(soup):
-    try: 
-        tables = []
-        tags = [tag for tag in soup.find_all() if any(re.search(r'\b(tabela|table)\b', class_, re.IGNORECASE) for class_ in tag.get('class', []))]
-        for tag in tags:
-            body_el = tag.find_all(recursive=False)
-            for table_el in body_el:
-                table = []
-                rows_el = table_el.find_all(recursive=False)
-                for row_el in rows_el:
-                    row = row_el.find_all()
-                    table.append([(clean_text(col.text)) for col in row])
-                tables.append(table)
-
-        dfs = []
-        for table in tables:
-            data = []
-            if (len(table) > 1):
-                for row in table:
-                    if (len(row) == 3):
-                        data.append(row)
-                        palavra = row[0]
-                        comando = f'echo {palavra}>>./wordlist.txt'
-                        os.system(comando)
-
-            df = pd.DataFrame(data)
-            dfs.append(df)
-
-        return dfs
-    except:
-        return None
     
 def find_pattern_for_quantity(text, pattern):
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
@@ -393,8 +320,4 @@ def image_processing(df, data_path):
     for ref, image_info in images_info.items():
         save_path = path_img_csl + ref
         img_path = image_info["img_path"]
-        manipulating_image(img_path, save_path)
-
-def manipulating_image(img_path, save_path, img_format='webp'):
-    
-    convert_image(img_path, save_path, img_format)
+        convert_image(img_path, save_path)
