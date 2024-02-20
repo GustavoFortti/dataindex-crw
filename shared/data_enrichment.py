@@ -31,7 +31,7 @@ def process_data(conf):
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")
-    df = df.drop_duplicates(subset='product_url').reset_index(drop=True)
+    df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     print(df)
 
     df_nulos = df[df[['title', 'price', 'image_url']].isna().any(axis=1)]
@@ -62,7 +62,6 @@ def process_data(conf):
     df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
-
 
     image_processing(df, file_path)
     df = df[['ref', 'title', 'price', 'image_url', 'product_url', 'ing_date',
@@ -182,7 +181,7 @@ def best_words(text):
     words_count = {}
     for item in WORD_LIST:
         for sub_item in item:
-            count = len(re.findall(clean_text(sub_item), text))
+            count = len(re.findall(" " + clean_text(sub_item) + " ", text))
             if (count != 0):
                 words_count[sub_item] = count
                 break

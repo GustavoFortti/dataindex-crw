@@ -1,8 +1,11 @@
-import pandas as pd
 import time
-from utils.log import message
-from shared.data_quality import status_tag
+import pandas as pd
+import asyncio
+from pyppeteer import launch
+
 import shared.selenium_service as se 
+from shared.data_quality import status_tag
+from utils.log import message
 from utils.general_functions import (generate_hash,
                                      create_or_read_df,
                                      clean_string_break_line)
@@ -13,33 +16,49 @@ def crawler(job, url):
         message("initialize_selenium")
         job.conf["driver"] = se.initialize_selenium()
     
-    driver = job.conf["driver"]
+    load_page(job, url)
 
-    element_selector = None
-    se.load_url(driver, url, element_selector)
-    load_page(driver, job, url)
-
-def load_page(driver, job, url):
+def load_page(job, url):
     message("exec load_page")
-    message("3 seconds")
-    time.sleep(3)
 
-    if (job.conf['scroll_page']):
-        se.dynamic_scroll(driver)
-
-    if (job.conf["status_job"]):
-        se.dynamic_scroll(driver, time_sleep=0.2, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
-
-    soup, page_html = se.get_page_source(driver)
     if (job.conf['seed']):
+        message("seed")
+        message("3 seconds")
+        time.sleep(3)
+
+        driver = job.conf["driver"]
+
+        element_selector = None
+        se.load_url(driver, url, element_selector)
+
+        if (job.conf['scroll_page']):
+            se.dynamic_scroll(driver)
+
+        if (job.conf["status_job"]):
+            se.dynamic_scroll(driver, time_sleep=0.2, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+
+        soup, page_html = se.get_page_source(driver)
+        
         extract_data(job, soup)
 
     if (job.conf['tree']):
+        message("tree")
         ref = generate_hash(url)
         data_path = job.conf['data_path']
         file_name = f"{data_path}/products/{ref}.txt"
+
+        async def get_page_text(url):
+            browser = await launch()
+            page = await browser.newPage()
+            await page.goto(url)
+            await page.waitForSelector('body')
+            page_content = await page.content()
+            await browser.close()
+            return page_content
+
+        page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
         with open(file_name, 'w') as file:
-            file.write(page_html)
+            file.write(page_text)
             message(f"File '{file_name}' created successfully.")
 
 def extract_data(job, soup):

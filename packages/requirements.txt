@@ -8,3 +8,4 @@ Pillow
 requests
 imagehash
 scikit-learn
+pyppeteer

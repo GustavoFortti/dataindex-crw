@@ -34,7 +34,7 @@ BLACK_LIST = [
 WORD_LIST_SUPLEMENTO = [['whey'],
  ['protein', 'proteina', 'proteica'],
  ['fibras'],
- ['beta alanina', 'betalanina', 'alanina'],
+ ['beta alanina', 'betaalanina', 'alanina'],
  ['hair', 'cabelo'],
  ['nail', 'unha'],
  ['antioxidantes'],

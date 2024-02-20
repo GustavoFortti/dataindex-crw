@@ -12,7 +12,6 @@ from utils.general_functions import (DATE_FORMAT,
                                     download_images_in_parallel,
                                     find_in_text_with_word_list,
                                     create_directory_if_not_exists,
-                                    check_urls_in_parallel, 
                                     is_price)
 
 def run(conf, Job):
@@ -98,28 +97,6 @@ def seed(job):
 
     df_tree_temp = df_tree_temp[~df_tree_temp['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
     df_tree_temp = df_tree_temp[df_tree_temp['price'].apply(lambda x: is_price(x))]
-
-    size_batch = 25
-
-    urls = df_tree_temp["product_url"].values
-    urls_batch = [urls[i:i + size_batch] for i in range(0, len(urls), size_batch)]
-    results = []
-    for batch in urls_batch:
-        result_batch = check_urls_in_parallel(batch)
-        results.extend(result_batch)
-    results_df = pd.DataFrame(results, columns=['product_url', 'exists'])
-    remove_urls = results_df[results_df['exists'] == False]['product_url']
-    df_tree_temp = df_tree_temp[~df_tree_temp['product_url'].isin(remove_urls)]
-
-    urls = df_tree_temp["image_url"].values
-    urls_batch = [urls[i:i + size_batch] for i in range(0, len(urls), size_batch)]
-    results = []
-    for batch in urls_batch:
-        result_batch = check_urls_in_parallel(batch)
-        results.extend(result_batch)
-    results_df = pd.DataFrame(results, columns=['image_url', 'exists'])
-    remove_urls = results_df[results_df['exists'] == False]['image_url']
-    df_tree_temp = df_tree_temp[~df_tree_temp['image_url'].isin(remove_urls)]
 
     path_tree_droped = f"{job.conf['data_path']}/tree_droped.csv"
     delete_file(path_tree_droped)
