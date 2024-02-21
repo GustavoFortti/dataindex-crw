@@ -8,14 +8,15 @@ from PIL import Image
 from bs4 import BeautifulSoup
 
 from utils.wordlist import BLACK_LIST
+from utils.log import message
 from utils.general_functions import (clean_text,
                                     path_exist,
                                     remove_spaces,
                                     save_file,
                                     list_directory,
                                     convert_image,
+                                    read_file,
                                     calculate_precise_image_hash,
-                                    loading,
                                     create_directory_if_not_exists,
                                     find_in_text_with_word_list)
 
@@ -27,19 +28,22 @@ def process_data(conf):
 
     CONF = conf
     WORD_LIST = CONF['word_list']
-    locations = CONF['location_type_product']
+    product_desc_tag_loc = CONF['product_desc_tag_loc']
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")
     df = df.drop_duplicates(subset='ref').reset_index(drop=True)
+    message("dataframe origin")
     print(df)
+    print()
 
+    message("filtro de nulos")
     df_nulos = df[df[['title', 'price', 'image_url']].isna().any(axis=1)]
     df_nulos.to_csv(file_path + "/origin_del.csv", index=False)
-
     df = df.dropna(subset=['title', 'price', 'image_url'])
     df = df.reset_index(drop=True)
 
+    message("outros filtros")
     df['name'] = df['title'].str.lower()
     df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
     df['brand'] = CONF['brand']
@@ -48,18 +52,24 @@ def process_data(conf):
     df['title'] = df['title'].apply(clean_text)
     df['title'] = df['title'].apply(remove_spaces)
     
+    message("criando coluna quantidade")
     pattern = r'(\d+([.,]\d+)?)\s*(kg|g|gr|gramas)\s*\w*'
-    
     df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
     df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
 
-    # pattern = r'(\d+)\s*(caps|cap|vcaps|capsules|comprimidos|comps|comp|capsulas|soft|softgel)\b'
-    # df[['quantity_formato', 'formato']] = df['name'].apply(lambda text: find_pattern_for_quantity(clean_text(text), pattern)).apply(pd.Series)
-    # df['formato'] = df['formato'].apply(replace_for_comprimidos)
-
+    message("removendo produtos da blacklist")
     df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+
+    spec_title = find_keywords(df=df, column="title")
+    spec_route = find_keywords(df=df, file_path=file_path, product_desc_tag_loc=product_desc_tag_loc)
+    spec = find_keywords(df=df, file_path=file_path)
+
+    print(spec_title)
+    print(spec_route)
+    print(spec)
+    exit()
     df = keywords_page_specification(df, file_path, locations)
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
@@ -71,82 +81,88 @@ def process_data(conf):
     
     return df
 
-def keywords_page_specification(df, file_path, locations):
-    products_path = f"{file_path}/products"
-
-    df['spec_route'] = None
+def find_keywords(df, file_path=None, product_desc_tag_loc=None, column=None):
+    refs = {}
     for index, ref in enumerate(df["ref"]):
-        loading(index, len(df))
-        page_path = f"{products_path}/{ref}.txt"
-        keywords_path = f"{products_path}/{ref}_spec.txt"
-        
-        if path_exist(page_path):
-            product_keywords_path = page_path
+        keywords = []
+        if (column):
+            text = df[df['ref'] == ref][column].values[0]
+            matchs = find_matches(text)
+            if (matchs):
+                keywords.append(matchs)
+            else:
+                keywords = None
+
+        elif (product_desc_tag_loc):
+            page_path = f"{file_path}/products/{ref}.txt"
+            text_html = read_file(page_path)
+
+            if (not text_html):
+                keywords.append(None)
+                continue
+            
+            matchs = find_keyword_in_text_html_with_tag(text_html, product_desc_tag_loc)
+
+            if (matchs):
+                keywords.append(matchs)
+            else:
+                keywords = None
+
         else:
-            continue            
-        
-        try:
-            with open(product_keywords_path, 'r') as product_file:
-                product = product_file.read()
-                keywords = []
-                
-                if (product):
-                    soup = BeautifulSoup(product, 'html.parser')
-                    for location in locations:
-                        tag = soup.find(location['tag'], class_=location['class'])
-                        if (tag == None): continue
-                        keywords = find_matches(tag.text, 3)
-                        
-                        if (keywords != []): break
+            page_path = f"{file_path}/products/{ref}.txt"
+            text_html = read_file(page_path)
+
+            if (not text_html):
+                keywords.append(None)
+                continue
+            
+            text_html = clear_page(text_html)
+            matchs = find_matches(text_html)
+            if (matchs):
+                keywords.append(matchs)
+            else:
+                keywords = None
+
+        refs[ref] = keywords
+
+    return refs
+
+def find_keyword_in_text_html_with_tag(text_html, locations):
+    soup = BeautifulSoup(text_html, 'html.parser')
+    keywords = []
+    for location in locations:
+        tag = soup.find(location['tag'], class_=location['class'])
+        if (tag == None): continue
+        matches = find_matches(tag.text, 3)
+        if (not matches):
+            continue
+
+        keywords += matches
+    
+    if (not keywords):
+        return None
+    
+    return keywords
+
+def find_matches(text, limit_words=10):
+    text = re.escape(text)
+    keywords = {}
+    for value, subject in enumerate(WORD_LIST):
+        for word in subject:
+            word_clean = r'\b' + re.escape(clean_text(word, False)) + r'\b'
+            was_found = re.findall(word_clean, text)
+            if (was_found):
+                if (f"{value}" in keywords.keys()):
+                    keywords[f"{value}"]['count'] += len(was_found)
                 else:
-                    keywords = ''
-
-                df.loc[df['ref'] == ref, 'spec_route'] = keywords
-                with open(keywords_path, 'w') as new_file:
-                    new_file.write(keywords)
-        except:
-            df.loc[df['ref'] == ref, 'spec_route'] = None
-
-    print()
-    keywords_page(df, file_path)
-    print()
-    df['spec'] = df.apply(lambda row: None if row['spec_route'] is not None else row['spec'], axis=1)
-
-    return df
-
-def keywords_page(df, file_path):
-    products_path = f"{file_path}/products"
-
-    df['spec'] = ""
-    for index, ref in enumerate(df["ref"]):
-        loading(index, len(df))
-        text_path = f"{products_path}/{ref}_text.txt"
-        page_path = f"{products_path}/{ref}.txt"
-        text_exist = path_exist(text_path)
-        
-        try:
-            product_text_path = text_path if text_exist else page_path
-
-            with open(product_text_path, 'r') as product_file:
-                product = product_file.read()
-
-                if (not text_exist):
-                    product = clear_page(product)
-                    product = ' '.join(product.split())
-
-                words = best_words(product)
-                df.loc[df['ref'] == ref, 'spec'] = words
-
-                with open(text_path, 'w') as new_file:
-                    new_file.write(product)
-        except:
-            df.loc[df['ref'] == ref, 'spec'] = None
-            print("")
-            print("error file: " + str(ref))
-            print("")
-
-    return df
-
+                    keywords[f"{value}"] = {"subject": subject, "count": len(was_found)}
+                
+    keywords = sorted(keywords.values(), key=lambda x: x['count'], reverse=True)
+    if (keywords == []):
+        return None
+    
+    return keywords
+                
 def clear_page(html_text):
     soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -174,48 +190,6 @@ def clear_page(html_text):
         tag.decompose()
 
     return soup.get_text()
-
-def best_words(text):
-    text = clean_text(text)
-
-    words_count = {}
-    for item in WORD_LIST:
-        for sub_item in item:
-            count = len(re.findall(" " + clean_text(sub_item) + " ", text))
-            if (count != 0):
-                words_count[sub_item] = count
-                break
-
-    if (words_count == {}):
-        return None
-
-    words_count = dict(sorted(words_count.items(), key=lambda item: item[1], reverse=True))
-    limit = int(list(words_count.values())[0] * 0.30)
-    words = ""
-    limit_size = 3
-    for item, value in words_count.items():
-        if ((value >= limit) & (limit_size > 0)): 
-            limit_size -= 1
-            words += f" {item}"
-        else: break
-
-    return words
-
-def find_matches(text, max_size=10):
-    text = clean_text(text)
-    keywords = []
-    
-    for item in WORD_LIST:
-        for sub_item in item:
-            word = clean_text(sub_item)
-            if (re.search(word, text)):
-                keywords.append(word)
-                break
-
-    if (keywords):
-        keywords = keywords[:max_size] if (len(keywords) > max_size) else keywords
-        return ' '.join(keywords)
-    return None
     
 def find_pattern_for_quantity(text, pattern):
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
@@ -296,8 +270,6 @@ def image_processing(df, data_path):
     images_info = {}
 
     for index, (ref, img_file_name) in enumerate(dict_imgs.items()):
-        loading(index, len(df))
-
         img_path = path_img_tmp + img_file_name
         image = Image.open(img_path)
         new_image_hash = calculate_precise_image_hash(img_path)

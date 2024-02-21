@@ -12,7 +12,7 @@ CONF = {
     "name": "dux_nutrition_lab",
     "word_list": WORD_LIST["supplement"],
     "brand": "dux nutrition lab",
-    "location_type_product": [{'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'}],
+    "product_desc_tag_loc": [{'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/dux_nutrition_lab",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/dux_nutrition_lab",
     "index_name": "brazil_supplement",

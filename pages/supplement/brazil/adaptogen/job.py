@@ -12,7 +12,7 @@ CONF = {
     "name": "adaptogen",
     "word_list": WORD_LIST["supplement"],
     "brand": "adaptogen",
-    "location_type_product": [{'tag': 'nav', 'class': 'woocommerce-breadcrumb'}],
+    "product_desc_tag_loc": [{'tag': 'nav', 'class': 'woocommerce-breadcrumb'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/adaptogen",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/adaptogen",
     "index_name": "brazil_supplement",

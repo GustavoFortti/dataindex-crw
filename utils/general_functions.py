@@ -63,14 +63,17 @@ def encode_base64(val):
 def generate_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
 
-def clean_text(texto):
+def clean_text(texto, clean_spaces=True):
     # Normaliza o texto para decompor acentos e caracteres especiais
     if isinstance(texto, str):
         texto = unicodedata.normalize('NFKD', texto)
         # Mantém apenas caracteres alfanuméricos e espaços
         texto = u"".join([c for c in texto if not unicodedata.combining(c)])
         # Remove tudo que não for letra, número ou espaço
-        return remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
+        if (clean_spaces):
+            texto = remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
+
+        return texto
     return texto
 
 def list_directory(path):
@@ -343,6 +346,18 @@ def read_csvs_on_dir_and_union(directory, get_only_last):
     else:
         message("Erro: no historical data")
         exit(1)
+
+def read_file(file_path):
+    """Reads a file and returns its contents as a string."""
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        print("The file was not found.")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
 
 def has_files(directory):
     items = os.listdir(directory)

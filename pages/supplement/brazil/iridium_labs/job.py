@@ -12,7 +12,7 @@ CONF = {
     "name": "iridium_labs",
     "word_list": WORD_LIST["supplement"],
     "brand": "iridium labs",
-    "location_type_product": [{'tag': 'div', 'class': 't4s-product__description t4s-rte'}],
+    "product_desc_tag_loc": [{'tag': 'div', 'class': 't4s-product__description t4s-rte'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/iridium_labs",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/iridium_labs",
     "index_name": "brazil_supplement",

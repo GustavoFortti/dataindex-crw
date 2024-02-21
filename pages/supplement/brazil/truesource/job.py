@@ -12,7 +12,7 @@ CONF = {
     "name": "truesource",
     "word_list": WORD_LIST["supplement"],
     "brand": "truesource",
-    "location_type_product": [{'tag': 'div', 'class': 'productDescription'}],
+    "product_desc_tag_loc": [{'tag': 'div', 'class': 'productDescription'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/truesource",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/truesource",
     "index_name": "brazil_supplement",

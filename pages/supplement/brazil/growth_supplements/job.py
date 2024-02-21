@@ -12,7 +12,7 @@ CONF = {
     "name": "growth_supplements",
     "word_list": WORD_LIST["supplement"],
     "brand": "growth supplements",
-    "location_type_product": [{'tag': 'section', 'class': 'breadcrumb-produto'}],
+    "product_desc_tag_loc": [{'tag': 'section', 'class': 'breadcrumb-produto'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/growth_supplements",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/growth_supplements",
     "index_name": "brazil_supplement",

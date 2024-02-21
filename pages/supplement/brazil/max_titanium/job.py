@@ -12,7 +12,7 @@ CONF = {
     "name": "max_titanium",
     "word_list": WORD_LIST["supplement"],
     "brand": "max titanium",
-    "location_type_product": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
+    "product_desc_tag_loc": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/max_titanium",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/max_titanium",
     "index_name": "brazil_supplement",

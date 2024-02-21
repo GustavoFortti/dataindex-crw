@@ -12,7 +12,7 @@ CONF = {
     "name": "atlhetica_nutrition",
     "word_list": WORD_LIST["supplement"],
     "brand": "atlhetica nutrition",
-    "location_type_product": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
+    "product_desc_tag_loc": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/atlhetica_nutrition",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/atlhetica_nutrition",
     "index_name": "brazil_supplement",
