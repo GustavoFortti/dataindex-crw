@@ -61,7 +61,7 @@ WORD_LIST_SUPLEMENTO = [['whey'],
  ['zinco'],
  ['creatina', 'creatine', 'creatin', 'creapure'],
  ['monohidratada'],
- ['glutamin', 'glutamina', 'lglutamina'],
+ ['glutamin', 'glutamine', 'glutamina', 'lglutamina'],
  ['arginin', 'arginine', 'arginina'],
  ['bcaa', 'bca'],
  ['hmb', 'hydroxymethylbutyrate'],
@@ -185,4 +185,19 @@ WORD_LIST_SUPLEMENTO = [['whey'],
 
 WORD_LIST = {
     "supplement": WORD_LIST_SUPLEMENTO,
+}
+
+pronomes_pessoais = ['Eu', 'Tu', 'Ele', 'Ela', 'Nós', 'Vós', 'Eles', 'Elas', 'Mim', 'Ti', 'Si', 'Consigo']
+pronomes_obliquos = ['Me', 'Te', 'Se', 'Nos', 'Vos', 'O', 'A', 'Lhe', 'Os', 'As', 'Nos', 'Vos', 'Se', 'Convosco', 'Lhes', 'Contigo']
+pronomes_demonstrativos = ['Este', 'Esse', 'Aquele', 'Esta', 'Essa', 'Aquela', 'Isto', 'Isso', 'Aquilo', 'Estes', 'Esses', 'Aqueles', 'Estas', 'Essas', 'Aquelas', 'Iste']
+pronomes_possessivos = ['Meu', 'Teu', 'Seu', 'Nosso', 'Vosso', 'Seu', 'Minha', 'Tua', 'Sua', 'Nossa', 'Vossa', 'Sua', 'Meus', 'Teus', 'Seus', 'Nossos', 'Vossos', 'Minhas', 'Tuas', 'Suas', 'Nossas', 'Vossas']
+pronomes_indefinidos = ['Alguém', 'Ninguém', 'Todo', 'Algum', 'Nenhum', 'Outro', 'Muito', 'Pouco', 'Tanto', 'Cada', 'Algo', 'Tudo', 'Nada', 'Cada um', 'Qualquer', 'Poucos', 'Muitos', 'Vários', 'Outrem']
+pronomes_relativos = ['Que', 'Qual', 'Quem', 'Onde', 'Cujo', 'O qual', 'Cuja', 'Quanto']
+pronomes_interrogativos = ['Quem', 'O que', 'Qual', 'Quanto', 'Onde', 'Quando', 'Como', 'Por que', 'Qualquer coisa', 'Quanto a']
+preposicoes = ['A', 'Ante', 'Até', 'Após', 'Com', 'Contra', 'De', 'Desde', 'Em', 'Entre', 'Para', 'Por', 'Perante', 'Sem', 'Sob', 'Sobre', 'Trás', 'Conforme', 'Contudo', 'Durante', 'Exceto', 'Mediant', 'Menos', 'Salvo', 'Segundo', 'Visto']
+
+BRAZIL_PRONOUNS = pronomes_pessoais + pronomes_obliquos + pronomes_demonstrativos + pronomes_possessivos + pronomes_indefinidos + pronomes_relativos + pronomes_interrogativos + preposicoes
+
+PRONOUNS = {
+    "brazil": BRAZIL_PRONOUNS
 }

@@ -21,9 +21,9 @@ CONF = {
 
 def run(args):
     print("JOB_NAME: " + CONF["name"], end="")
-    CONF["option"] = args.option
+    CONF.update(vars(args))
 
-    job_type = args.job_type
+    job_type = CONF["job_type"]
     print(" - EXEC: " + job_type)
     create_directory_if_not_exists(CONF['data_path'])
 

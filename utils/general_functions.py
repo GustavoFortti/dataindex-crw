@@ -6,6 +6,7 @@ import shutil
 import base64
 import hashlib
 import requests
+import statistics
 import unicodedata
 import pandas as pd
 from glob import glob
@@ -392,3 +393,25 @@ def calc_string_diff_in_df_col(row):
     max_len = max(len(row['title_x']), len(row['title_y']))
     percent_diff = (distance / max_len) if max_len != 0 else 0
     return percent_diff
+
+def calculate_statistics(lst):
+    statistics_result = {
+        'maximum': max(lst),
+        'minimum': min(lst),
+        'mean': statistics.mean(lst),
+        'standard_deviation': statistics.stdev(lst)
+    }
+    return statistics_result
+
+def flatten_list(list_of_lists):
+    if list_of_lists is None:
+        return []
+
+    flattened_list = []
+    for element in list_of_lists:
+        if isinstance(element, list):
+            for subelement in element:
+                flattened_list.append(subelement)
+        else:
+            flattened_list.append(element)
+    return flattened_list
