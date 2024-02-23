@@ -32,7 +32,7 @@ def process_data(conf):
 
     CONF = conf
     WORD_LIST = CONF['word_list']
-    product_desc_tag_loc = CONF['product_desc_tag_loc']
+    product_desc_tag = CONF['product_desc_tag']
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")
@@ -66,8 +66,9 @@ def process_data(conf):
     message("removendo produtos da blacklist")
     df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
 
-    spec_title = find_keywords(df=df, file_path=file_path, column="title")
-    spec_route = find_keywords(df=df, file_path=file_path, product_desc_tag_loc=product_desc_tag_loc)
+    # spec_title = find_keywords(df=df, file_path=file_path, column="title")
+    spec_route = find_keywords(df=df, file_path=file_path, product_desc_tag=product_desc_tag)
+    exit()
     spec = find_keywords(df=df, file_path=file_path)
 
     df_spec = processing_keywords(spec_title, spec_route, spec)
@@ -254,7 +255,7 @@ def create_range_list(statistics_dict):
 
     return range_list
 
-def find_keywords(df, file_path=None, product_desc_tag_loc=None, column=None):
+def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
     refs = {}
     for index, ref in enumerate(df["ref"]):
         keywords = []
@@ -265,14 +266,14 @@ def find_keywords(df, file_path=None, product_desc_tag_loc=None, column=None):
             text = df[df['ref'] == ref][column].values[0]
             matchs = find_matches(text)
 
-        elif ((product_desc_tag_loc != None) & (file_exist)):
+        elif ((product_desc_tag != None) & (file_exist)):
             text_html = read_file(page_path)
 
             if (not text_html):
                 keywords.append(None)
                 continue
-            
-            matchs = find_keyword_in_text_html_with_tag(text_html, product_desc_tag_loc)
+            print(ref)
+            matchs = find_keyword_in_text_html_with_tag(text_html, product_desc_tag)
 
         elif (file_exist):
             text_html = read_file(page_path)
@@ -296,15 +297,19 @@ def find_keywords(df, file_path=None, product_desc_tag_loc=None, column=None):
 def find_keyword_in_text_html_with_tag(text_html, locations):
     soup = BeautifulSoup(text_html, 'html.parser')
     keywords = []
-    for location in locations:
+    for location in locations[2:]:
+        print(location)
         tag = soup.find(location['tag'], class_=location['class'])
+        print(tag)
+        exit()
         if (tag == None): continue
         matches = find_matches(tag.text, 3)
         if (not matches):
             continue
-
+        
+        print(matches)
         keywords += matches
-    
+        
     if (not keywords):
         return None
     

@@ -12,7 +12,7 @@ CONF = {
     "name": "new_millen",
     "word_list": WORD_LIST["supplement"],
     "brand": "new millen",
-    "product_desc_tag_loc": [{'tag': 'div', 'class': 'breadcrumbs'}],
+    "product_desc_tag": [{'tag': 'div', 'class': 'breadcrumbs'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/new_millen",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/new_millen",
     "index_name": "brazil_supplement",

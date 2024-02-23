@@ -12,7 +12,7 @@ CONF = {
     "name": "vitafor",
     "word_list": WORD_LIST["supplement"],
     "brand": "vitafor",
-    "product_desc_tag_loc": [{'tag': 'p', 'class': 'vitafor-store-theme-7-x-productPageShortDescription'}],
+    "product_desc_tag": [{'tag': 'p', 'class': 'vitafor-store-theme-7-x-productPageShortDescription'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/vitafor",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/vitafor",
     "index_name": "brazil_supplement",

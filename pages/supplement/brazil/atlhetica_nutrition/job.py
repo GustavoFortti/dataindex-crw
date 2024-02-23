@@ -2,6 +2,7 @@ from config.env import LOCAL
 
 from .extract import extract
 from .dry import dry
+from .vars import PRODUCT_DESC_TAG
 
 from utils.wordlist import WORD_LIST
 from utils.general_functions import create_directory_if_not_exists
@@ -12,7 +13,7 @@ CONF = {
     "name": "atlhetica_nutrition",
     "word_list": WORD_LIST["supplement"],
     "brand": "atlhetica nutrition",
-    "product_desc_tag_loc": [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}],
+    "product_desc_tag": PRODUCT_DESC_TAG,
     "data_path" : f"{LOCAL}/data/supplement/brazil/atlhetica_nutrition",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/atlhetica_nutrition",
     "index_name": "brazil_supplement",

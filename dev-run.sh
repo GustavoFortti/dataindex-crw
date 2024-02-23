@@ -24,12 +24,12 @@ echo $LOCAL
 # Lista de job_names
 
 job_names=(
-#     "adaptogen"
+    "adaptogen"
 #     "atlhetica_nutrition"
 #     "black_skull"
 #     "boldsnacks"
 #     "dark_lab"
-    "darkness"
+#     "darkness"
 #     "dux_nutrition_lab"
 #     "growth_supplements"
 #     "integralmedica"
@@ -45,7 +45,7 @@ job_names=(
 find ./ -type f -name '*_spec.txt' -exec rm {} +
 
 # Variáveis comuns para todos os jobs
-job_type="ingestion"
+job_type="dry"
 option="false"
 page_type="supplement"
 country="brazil"

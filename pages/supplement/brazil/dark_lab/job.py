@@ -12,7 +12,7 @@ CONF = {
     "name": "dark_lab",
     "word_list": WORD_LIST["supplement"],
     "brand": "dark lab",
-    "product_desc_tag_loc": [{'tag': 'div', 'class': 'breadcrumbs'}],
+    "product_desc_tag": [{'tag': 'div', 'class': 'breadcrumbs'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/dark_lab",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/dark_lab",
     "index_name": "brazil_supplement",

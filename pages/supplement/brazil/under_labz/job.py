@@ -12,7 +12,7 @@ CONF = {
     "name": "under_labz",
     "word_list": WORD_LIST["supplement"],
     "brand": "under labz",
-    "product_desc_tag_loc": [{'tag': 'div', 'class': 'breadcrumbs'}, {'tag': 'p', 'class': 'western'}, {'tag': 'div', 'class': 'tab-pane active'}],
+    "product_desc_tag": [{'tag': 'div', 'class': 'breadcrumbs'}, {'tag': 'p', 'class': 'western'}, {'tag': 'div', 'class': 'tab-pane active'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/under_labz",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/under_labz",
     "index_name": "brazil_supplement",

@@ -12,7 +12,7 @@ CONF = {
     "name": "black_skull",
     "word_list": WORD_LIST["supplement"],
     "brand": "black skull",
-    "product_desc_tag_loc": [{'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'}],
+    "product_desc_tag": [{'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'}],
     "data_path" : f"{LOCAL}/data/supplement/brazil/black_skull",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/black_skull",
     "index_name": "brazil_supplement",
