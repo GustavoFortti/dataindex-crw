@@ -335,10 +335,12 @@ def is_price(string):
 def read_csvs_on_dir_and_union(directory, get_only_last):
     # Usa glob para encontrar todos os arquivos CSV no diretório
     csv_files = glob(os.path.join(directory, '*.csv'))
-    
+    csv_files = sorted(csv_files, reverse=True)
+
     if get_only_last and csv_files:
         # Encontra o arquivo CSV mais recentemente modificado
-        latest_file = max(csv_files, key=os.path.getmtime)
+        latest_file = csv_files[0]
+        message(latest_file)
         return pd.read_csv(latest_file)
     elif csv_files:
         # Lê todos os arquivos CSV e os concatena em um único DataFrame
@@ -395,12 +397,22 @@ def calc_string_diff_in_df_col(row):
     return percent_diff
 
 def calculate_statistics(lst):
+    # Inicializa o resultado com valores máximos e mínimos
     statistics_result = {
-        'maximum': max(lst),
-        'minimum': min(lst),
-        'mean': statistics.mean(lst),
-        'standard_deviation': statistics.stdev(lst)
+        'maximum': max(lst) if lst else None,
+        'minimum': min(lst) if lst else None,
+        'mean': None,
+        'standard_deviation': None
     }
+
+    # Calcula a média se a lista não estiver vazia
+    if lst:
+        statistics_result['mean'] = statistics.mean(lst)
+
+    # Calcula o desvio padrão apenas se houver dois ou mais elementos na lista
+    if len(lst) >= 2:
+        statistics_result['standard_deviation'] = statistics.stdev(lst)
+
     return statistics_result
 
 def flatten_list(list_of_lists):

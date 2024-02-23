@@ -45,6 +45,8 @@ def data_history_analysis(conf, df):
         save_history_data(conf, df)
         return True
 
+    message("CARREGANDO DATAFRAME HISTORICO...")
+    message(history_path)
     df_history = read_csvs_on_dir_and_union(history_path, True)
 
     volume_erro, volume_alert = volume_analysis(df_history, df)

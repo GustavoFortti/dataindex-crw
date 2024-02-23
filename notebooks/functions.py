@@ -41,7 +41,7 @@ def clean_text(texto):
 
 def get_all_origins():
     diretorio_inicial = local
-    nome_arquivo = 'origin_csl.csv'
+    nome_arquivo = 'origin_dry.csv'
 
     dataframes = []
 

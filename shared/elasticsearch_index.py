@@ -46,7 +46,7 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "spec": {
+                    "spec_5": {
                         "type": "text",
                         "analyzer": "title_analyzer",
                         "fields": {
@@ -56,7 +56,37 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "spec_route": {
+                    "spec_4": {
+                        "type": "text",
+                        "analyzer": "title_analyzer",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "spec_3": {
+                        "type": "text",
+                        "analyzer": "title_analyzer",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "spec_2": {
+                        "type": "text",
+                        "analyzer": "title_analyzer",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "spec_1": {
                         "type": "text",
                         "analyzer": "title_analyzer",
                         "fields": {

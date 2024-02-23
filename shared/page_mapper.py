@@ -9,6 +9,7 @@ from utils.general_functions import (DATE_FORMAT,
                                     first_exec,
                                     create_or_read_df,
                                     delete_file,
+                                    list_directory,
                                     download_images_in_parallel,
                                     find_in_text_with_word_list,
                                     create_directory_if_not_exists,
@@ -32,7 +33,7 @@ def run(conf, Job):
         conf["seed"] = False
         conf["tree"] = True
         job = Job(conf)
-        tree(job)
+        tree_update(job)
 
     elif (conf['option'] == "update_products"):
         message("update_products")
@@ -43,12 +44,12 @@ def run(conf, Job):
         message("update_pages")
         conf["tree"] = True
         job = Job(conf)
-        tree(job)
+        tree_update(job)
     elif (conf['option'] == "extract_new_pages"):
         message("extract_new_pages")
         conf["tree"] = True
         job = Job(conf)
-        tree(job)
+        tree_create(job)
     elif (conf['option'] == "status_job"):
         message("status_job")
         conf["scroll_page"] = False
@@ -111,7 +112,8 @@ def seed(job):
     message(f"write origin: {path_origin}")
     df_tree_temp.to_csv(path_origin, index=False)
 
-def tree(job):
+def tree_update(job):
+    message("tree_update")
     path_origin = f"{job.conf['data_path']}/origin.csv"
     job.conf['path_origin'] = path_origin
     df_origin = pd.read_csv(path_origin)
@@ -119,6 +121,30 @@ def tree(job):
 
     urls = df_origin['product_url'].values
     for value, url in enumerate(urls):
+        size_urls = len(urls) - 1
         message(f"seed: {url}")
-        message(f"index: {value} / {len(urls)}")
+        message(f"index: {value} / {size_urls}")
+        crawler(job, url)
+
+def tree_create(job):
+    message("tree_create")
+    path_origin = f"{job.conf['data_path']}/origin.csv"
+    job.conf['path_origin'] = path_origin
+    df_origin = pd.read_csv(path_origin)
+
+    pagas_path = job.conf['data_path'] + "/products"
+    all_pages = [i for i in list_directory(pagas_path)]
+    refs = [f"{i}.txt" for i in df_origin['ref'].values]
+    pages_to_create = [i.replace(".txt", "") for i in refs if i not in all_pages]
+    df_origin = df_origin[df_origin["ref"].isin(pages_to_create)]
+
+    print(pages_to_create)
+
+    create_directory_if_not_exists(job.conf['data_path'] + "/products")
+
+    urls = df_origin['product_url'].values
+    for value, url in enumerate(urls):
+        size_urls = len(urls) - 1
+        message(f"seed: {url}")
+        message(f"index: {value} / {size_urls}")
         crawler(job, url)

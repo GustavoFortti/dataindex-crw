@@ -70,7 +70,7 @@ def process_data(conf):
     message("removendo produtos da blacklist")
     df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
 
-    spec_title = find_keywords(df=df, column="title")
+    spec_title = find_keywords(df=df, file_path=file_path, column="title")
     spec_route = find_keywords(df=df, file_path=file_path, product_desc_tag_loc=product_desc_tag_loc)
     spec = find_keywords(df=df, file_path=file_path)
 
@@ -204,8 +204,8 @@ def processing_keywords(spec_title, spec_route, spec):
                 spec_list_3_temp.append(item["subject"])
                 spec_list_4_temp.append(None)
             elif (score >= 0.5):
-                spec_list_3_temp.append(item["subject"])
-                spec_list_4_temp.append(None)
+                spec_list_3_temp.append(None)
+                spec_list_4_temp.append(item["subject"])
             else:
                 spec_list_3_temp.append(None)
                 spec_list_4_temp.append(None)
@@ -239,17 +239,22 @@ def replace_empty_list_with_none(element):
         return None
     return element
 
-
 def create_range_list(statistics_dict):
-    if (not statistics_dict):
+    if not statistics_dict:
         return []
-    
+
+    std_dev = statistics_dict.get("standard_deviation", 0) or 0
+
+    mean = statistics_dict.get("mean", 0)
+
     range_list = [
-        statistics_dict["maximum"],
-        statistics_dict["mean"] - statistics_dict["standard_deviation"],
-        statistics_dict["mean"] + statistics_dict["standard_deviation"],
-        statistics_dict["minimum"]
+        statistics_dict.get("maximum"),
+        mean - std_dev,
+        mean + std_dev,
+        statistics_dict.get("minimum")
     ]
+
+    range_list = [x for x in range_list if x is not None]
 
     return range_list
 
@@ -257,12 +262,14 @@ def find_keywords(df, file_path=None, product_desc_tag_loc=None, column=None):
     refs = {}
     for index, ref in enumerate(df["ref"]):
         keywords = []
-        if (column):
+        page_path = f"{file_path}/products/{ref}.txt"
+        file_exist = path_exist(page_path)
+        matchs = None
+        if ((column != None) & (file_exist)):
             text = df[df['ref'] == ref][column].values[0]
             matchs = find_matches(text)
 
-        elif (product_desc_tag_loc):
-            page_path = f"{file_path}/products/{ref}.txt"
+        elif ((product_desc_tag_loc != None) & (file_exist)):
             text_html = read_file(page_path)
 
             if (not text_html):
@@ -271,8 +278,7 @@ def find_keywords(df, file_path=None, product_desc_tag_loc=None, column=None):
             
             matchs = find_keyword_in_text_html_with_tag(text_html, product_desc_tag_loc)
 
-        else:
-            page_path = f"{file_path}/products/{ref}.txt"
+        elif (file_exist):
             text_html = read_file(page_path)
 
             if (not text_html):
