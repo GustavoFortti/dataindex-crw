@@ -8,10 +8,6 @@ from PIL import Image
 from bs4 import BeautifulSoup
 from copy import deepcopy
 
-import nltk
-from nltk.tokenize import word_tokenize
-nltk.download('punkt')
-
 from utils.wordlist import BLACK_LIST, PRONOUNS
 from utils.log import message
 from utils.general_functions import (clean_text,

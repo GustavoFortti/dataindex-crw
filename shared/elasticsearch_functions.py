@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+from utils.log import message
+
 from elasticsearch import Elasticsearch, helpers
 
 from shared.elasticsearch_index import elasticsearch_index
@@ -82,10 +84,14 @@ def create_documents_with_pandas(df, index_name):
         yield document
 
 def create_index_if_not_exits(index_name):
+    message("create_index_if_not_exits")
     index_settings = elasticsearch_index(CONF['index_type'], SYNONYMS_LIST)
 
     if not es.indices.exists(index=index_name):
-        es.indices.create(index=index_name, body=index_settings)
+        message("CREATING NEW INDEX")
+        res = es.indices.create(index=index_name, body=index_settings)
+        message(res)
         print(f"Índice '{index_name}' criado.")
     else:
+        message("INDEX EXISTS")
         print(f"Índice '{index_name}' já existe.")

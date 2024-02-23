@@ -45,8 +45,8 @@ def run(conf, Job):
         conf["tree"] = True
         job = Job(conf)
         tree_update(job)
-    elif (conf['option'] == "extract_new_pages"):
-        message("extract_new_pages")
+    elif (conf['option'] == "create_pages"):
+        message("create_pages")
         conf["tree"] = True
         job = Job(conf)
         tree_create(job)
