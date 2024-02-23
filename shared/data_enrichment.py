@@ -88,173 +88,6 @@ def process_data(conf):
     
     return df
 
-def processing_keywords(spec_title, spec_route, spec):
-    spec_list_0 = []
-    spec_list_1 = []
-    spec_list_2 = []
-    spec_list_3 = []
-    spec_list_4 = []
-
-    statistcs_spec_route = []
-    statistcs_spec = []
-    mid_statistcs_spec_route = []
-    mid_statistcs_spec = []
-    not_statistcs_spec_route = []
-    not_statistcs_spec = []
-    for key in spec_title.keys():
-        flatten_spec_title = flatten_list(spec_title[key])
-        label = [i["subject"][0] for i in flatten_spec_title]
-        spec_list_0.append(flatten_list([i["subject"] for i in flatten_spec_title]))
-
-        flatten_spec_route = flatten_list(spec_route[key])
-        flatten_spec = flatten_list(spec[key])
-
-        subtect_spec_route = [i["subject"][0] for i in flatten_spec_route]
-        subtect_spec = [i["subject"][0] for i in flatten_spec]
-
-        spec_route_info = [round(i["count"] / i["total_words"], 9) for i in flatten_spec_route]
-        if (spec_route_info != []):
-            for item in subtect_spec_route:
-                if item in label:
-                    statistcs_spec_route.append(spec_route_info)
-                elif item in subtect_spec:
-                    mid_statistcs_spec_route.append(spec_route_info)
-                else:
-                    not_statistcs_spec_route.append(spec_route_info)
-
-        spec_info = [round(i["count"] / i["total_words"], 12) for i in flatten_spec]
-        if (spec_info != []):
-            for item in subtect_spec:
-                if item in label:
-                    statistcs_spec.append(spec_info)
-                elif item in subtect_spec_route:
-                    mid_statistcs_spec.append(spec_info)
-                else:
-                    not_statistcs_spec.append(spec_info)
-            
-    calc_statistcs_spec_route = None
-    calc_mid_statistcs_spec_route = None
-    calc_not_statistcs_spec_route = None
-
-    statistcs_spec_route = flatten_list(statistcs_spec_route)
-    if (statistcs_spec_route != []):
-        calc_statistcs_spec_route = calculate_statistics(statistcs_spec_route)
-    mid_statistcs_spec_route = flatten_list(mid_statistcs_spec_route)
-    if (mid_statistcs_spec_route != []):
-        calc_mid_statistcs_spec_route = calculate_statistics(mid_statistcs_spec_route)
-    not_statistcs_spec_route = flatten_list(not_statistcs_spec_route)
-    if (not_statistcs_spec_route != []):
-        calc_not_statistcs_spec_route = calculate_statistics(not_statistcs_spec_route)
-
-    spec_route_range = sorted(list(set(create_range_list(calc_statistcs_spec_route) + \
-                        create_range_list(calc_mid_statistcs_spec_route) + \
-                        create_range_list(calc_not_statistcs_spec_route))), reverse=True)
-    
-    for key in spec_title.keys():
-        flatten_spec_route = flatten_list(spec_route[key])
-        spec_list_1_temp = []
-        spec_list_2_temp = []
-        for item in flatten_spec_route:
-            value = item['count'] / item["total_words"]
-            temp_spec_route_range = deepcopy(spec_route_range)
-            temp_spec_route_range.append(value)
-            temp_spec_route_range.sort()
-            score = temp_spec_route_range.index(value) / len(temp_spec_route_range)
-            if (score >= 0.5):
-                spec_list_1_temp.append(item["subject"])
-                spec_list_2_temp.append(None)
-            else:
-                spec_list_1_temp.append(None)
-                spec_list_2_temp.append(item["subject"])
-        spec_list_1.append(spec_list_1_temp)
-        spec_list_2.append(spec_list_2_temp)
-    
-    calc_statistcs_spec = None
-    calc_mid_statistcs_spec = None
-    calc_not_statistcs_spec = None
-    
-    statistcs_spec = flatten_list(statistcs_spec)
-    if (statistcs_spec != []):
-        calc_statistcs_spec = calculate_statistics(statistcs_spec)
-    mid_statistcs_spec = flatten_list(mid_statistcs_spec)
-    if (mid_statistcs_spec != []):
-        calc_mid_statistcs_spec = calculate_statistics(mid_statistcs_spec)
-    not_statistcs_spec = flatten_list(not_statistcs_spec)
-    if (not_statistcs_spec != []):
-        calc_not_statistcs_spec = calculate_statistics(not_statistcs_spec)
-
-    spec_range = sorted(list(set(create_range_list(calc_statistcs_spec) + \
-                create_range_list(calc_mid_statistcs_spec) + \
-                create_range_list(calc_not_statistcs_spec))), reverse=True)
-    
-    for key in spec_title.keys():
-        flatten_spec = flatten_list(spec[key])
-        spec_list_3_temp = []
-        spec_list_4_temp = []
-        for item in flatten_spec:
-            value = item['count'] / item["total_words"]
-            temp_spec_range = deepcopy(spec_range)
-            temp_spec_range.append(value)
-            temp_spec_range.sort()
-            score = temp_spec_range.index(value) / len(temp_spec_range)
-            if (score >= 0.7):
-                spec_list_3_temp.append(item["subject"])
-                spec_list_4_temp.append(None)
-            elif (score >= 0.5):
-                spec_list_3_temp.append(None)
-                spec_list_4_temp.append(item["subject"])
-            else:
-                spec_list_3_temp.append(None)
-                spec_list_4_temp.append(None)
-        spec_list_3.append(spec_list_3_temp)
-        spec_list_4.append(spec_list_4_temp)
-
-    specs = [spec_list_0,
-        spec_list_1,
-        spec_list_2,
-        spec_list_3,
-        spec_list_4]
-    
-    df = pd.DataFrame(specs).T
-    df.columns = ["spec_5", "spec_4", "spec_3", "spec_2", "spec_1"]
-    df['spec_1'] = df['spec_1'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_2'] = df['spec_2'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_3'] = df['spec_3'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_4'] = df['spec_4'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_5'] = df['spec_5'].apply(lambda x: [i for i in x if i is not None])
-
-    df['spec_1'] = df['spec_1'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_2'] = df['spec_2'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_3'] = df['spec_3'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_4'] = df['spec_4'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_5'] = df['spec_5'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-
-    return df
-
-def replace_empty_list_with_none(element):
-    if isinstance(element, list) and not element:
-        return None
-    return element
-
-def create_range_list(statistics_dict):
-    if not statistics_dict:
-        return []
-
-    std_dev = statistics_dict.get("standard_deviation", 0) or 0
-
-    mean = statistics_dict.get("mean", 0)
-
-    range_list = [
-        statistics_dict.get("maximum"),
-        mean - std_dev,
-        mean + std_dev,
-        statistics_dict.get("minimum")
-    ]
-
-    range_list = [x for x in range_list if x is not None]
-
-    return range_list
-
 def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
     refs = {}
     for index, ref in enumerate(df["ref"]):
@@ -297,7 +130,8 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
 def find_keyword_in_text_html_with_tag(text_html, locations):
     soup = BeautifulSoup(text_html, 'html.parser')
     keywords = []
-    for location in locations[2:]:
+    print(locations)
+    for location in locations[-1:]:
         print(location)
         tag = soup.find(location['tag'], class_=location['class'])
         print(tag)
@@ -477,3 +311,171 @@ def image_processing(df, data_path):
         save_path = path_img_csl + ref
         img_path = image_info["img_path"]
         convert_image(img_path, save_path)
+
+
+def processing_keywords(spec_title, spec_route, spec):
+    spec_list_0 = []
+    spec_list_1 = []
+    spec_list_2 = []
+    spec_list_3 = []
+    spec_list_4 = []
+
+    statistcs_spec_route = []
+    statistcs_spec = []
+    mid_statistcs_spec_route = []
+    mid_statistcs_spec = []
+    not_statistcs_spec_route = []
+    not_statistcs_spec = []
+    for key in spec_title.keys():
+        flatten_spec_title = flatten_list(spec_title[key])
+        label = [i["subject"][0] for i in flatten_spec_title]
+        spec_list_0.append(flatten_list([i["subject"] for i in flatten_spec_title]))
+
+        flatten_spec_route = flatten_list(spec_route[key])
+        flatten_spec = flatten_list(spec[key])
+
+        subtect_spec_route = [i["subject"][0] for i in flatten_spec_route]
+        subtect_spec = [i["subject"][0] for i in flatten_spec]
+
+        spec_route_info = [round(i["count"] / i["total_words"], 9) for i in flatten_spec_route]
+        if (spec_route_info != []):
+            for item in subtect_spec_route:
+                if item in label:
+                    statistcs_spec_route.append(spec_route_info)
+                elif item in subtect_spec:
+                    mid_statistcs_spec_route.append(spec_route_info)
+                else:
+                    not_statistcs_spec_route.append(spec_route_info)
+
+        spec_info = [round(i["count"] / i["total_words"], 12) for i in flatten_spec]
+        if (spec_info != []):
+            for item in subtect_spec:
+                if item in label:
+                    statistcs_spec.append(spec_info)
+                elif item in subtect_spec_route:
+                    mid_statistcs_spec.append(spec_info)
+                else:
+                    not_statistcs_spec.append(spec_info)
+            
+    calc_statistcs_spec_route = None
+    calc_mid_statistcs_spec_route = None
+    calc_not_statistcs_spec_route = None
+
+    statistcs_spec_route = flatten_list(statistcs_spec_route)
+    if (statistcs_spec_route != []):
+        calc_statistcs_spec_route = calculate_statistics(statistcs_spec_route)
+    mid_statistcs_spec_route = flatten_list(mid_statistcs_spec_route)
+    if (mid_statistcs_spec_route != []):
+        calc_mid_statistcs_spec_route = calculate_statistics(mid_statistcs_spec_route)
+    not_statistcs_spec_route = flatten_list(not_statistcs_spec_route)
+    if (not_statistcs_spec_route != []):
+        calc_not_statistcs_spec_route = calculate_statistics(not_statistcs_spec_route)
+
+    spec_route_range = sorted(list(set(create_range_list(calc_statistcs_spec_route) + \
+                        create_range_list(calc_mid_statistcs_spec_route) + \
+                        create_range_list(calc_not_statistcs_spec_route))), reverse=True)
+    
+    for key in spec_title.keys():
+        flatten_spec_route = flatten_list(spec_route[key])
+        spec_list_1_temp = []
+        spec_list_2_temp = []
+        for item in flatten_spec_route:
+            value = item['count'] / item["total_words"]
+            temp_spec_route_range = deepcopy(spec_route_range)
+            temp_spec_route_range.append(value)
+            temp_spec_route_range.sort()
+            score = temp_spec_route_range.index(value) / len(temp_spec_route_range)
+            if (score >= 0.5):
+                spec_list_1_temp.append(item["subject"])
+                spec_list_2_temp.append(None)
+            else:
+                spec_list_1_temp.append(None)
+                spec_list_2_temp.append(item["subject"])
+        spec_list_1.append(spec_list_1_temp)
+        spec_list_2.append(spec_list_2_temp)
+    
+    calc_statistcs_spec = None
+    calc_mid_statistcs_spec = None
+    calc_not_statistcs_spec = None
+    
+    statistcs_spec = flatten_list(statistcs_spec)
+    if (statistcs_spec != []):
+        calc_statistcs_spec = calculate_statistics(statistcs_spec)
+    mid_statistcs_spec = flatten_list(mid_statistcs_spec)
+    if (mid_statistcs_spec != []):
+        calc_mid_statistcs_spec = calculate_statistics(mid_statistcs_spec)
+    not_statistcs_spec = flatten_list(not_statistcs_spec)
+    if (not_statistcs_spec != []):
+        calc_not_statistcs_spec = calculate_statistics(not_statistcs_spec)
+
+    spec_range = sorted(list(set(create_range_list(calc_statistcs_spec) + \
+                create_range_list(calc_mid_statistcs_spec) + \
+                create_range_list(calc_not_statistcs_spec))), reverse=True)
+    
+    for key in spec_title.keys():
+        flatten_spec = flatten_list(spec[key])
+        spec_list_3_temp = []
+        spec_list_4_temp = []
+        for item in flatten_spec:
+            value = item['count'] / item["total_words"]
+            temp_spec_range = deepcopy(spec_range)
+            temp_spec_range.append(value)
+            temp_spec_range.sort()
+            score = temp_spec_range.index(value) / len(temp_spec_range)
+            if (score >= 0.7):
+                spec_list_3_temp.append(item["subject"])
+                spec_list_4_temp.append(None)
+            elif (score >= 0.5):
+                spec_list_3_temp.append(None)
+                spec_list_4_temp.append(item["subject"])
+            else:
+                spec_list_3_temp.append(None)
+                spec_list_4_temp.append(None)
+        spec_list_3.append(spec_list_3_temp)
+        spec_list_4.append(spec_list_4_temp)
+
+    specs = [spec_list_0,
+        spec_list_1,
+        spec_list_2,
+        spec_list_3,
+        spec_list_4]
+    
+    df = pd.DataFrame(specs).T
+    df.columns = ["spec_5", "spec_4", "spec_3", "spec_2", "spec_1"]
+    df['spec_1'] = df['spec_1'].apply(lambda x: [i for i in x if i is not None])
+    df['spec_2'] = df['spec_2'].apply(lambda x: [i for i in x if i is not None])
+    df['spec_3'] = df['spec_3'].apply(lambda x: [i for i in x if i is not None])
+    df['spec_4'] = df['spec_4'].apply(lambda x: [i for i in x if i is not None])
+    df['spec_5'] = df['spec_5'].apply(lambda x: [i for i in x if i is not None])
+
+    df['spec_1'] = df['spec_1'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
+    df['spec_2'] = df['spec_2'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
+    df['spec_3'] = df['spec_3'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
+    df['spec_4'] = df['spec_4'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
+    df['spec_5'] = df['spec_5'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
+
+    return df
+
+def replace_empty_list_with_none(element):
+    if isinstance(element, list) and not element:
+        return None
+    return element
+
+def create_range_list(statistics_dict):
+    if not statistics_dict:
+        return []
+
+    std_dev = statistics_dict.get("standard_deviation", 0) or 0
+
+    mean = statistics_dict.get("mean", 0)
+
+    range_list = [
+        statistics_dict.get("maximum"),
+        mean - std_dev,
+        mean + std_dev,
+        statistics_dict.get("minimum")
+    ]
+
+    range_list = [x for x in range_list if x is not None]
+
+    return range_list

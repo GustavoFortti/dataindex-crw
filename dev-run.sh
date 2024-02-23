@@ -24,9 +24,9 @@ echo $LOCAL
 # Lista de job_names
 
 job_names=(
-    "adaptogen"
+#     "adaptogen"
 #     "atlhetica_nutrition"
-#     "black_skull"
+    "black_skull"
 #     "boldsnacks"
 #     "dark_lab"
 #     "darkness"
