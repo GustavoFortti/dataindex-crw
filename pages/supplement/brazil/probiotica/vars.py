@@ -1,0 +1,1 @@
+PRODUCT_DESC_TAG = [{'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}]

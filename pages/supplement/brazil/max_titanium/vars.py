@@ -1,0 +1,1 @@
+PRODUCT_DESC_TAG = [{'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}]

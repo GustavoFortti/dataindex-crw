@@ -1,0 +1,1 @@
+PRODUCT_DESC_TAG = [{'tag': 'section', 'class': '__bs_product-breadcrumb'}]

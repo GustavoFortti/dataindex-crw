@@ -26,7 +26,7 @@ from utils.general_functions import (clean_text,
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
-def process_data(conf):
+def process_data(conf, df):
     global CONF
     global WORD_LIST
 
@@ -35,7 +35,6 @@ def process_data(conf):
     product_desc_tag = CONF['product_desc_tag']
     file_path = CONF['data_path']
 
-    df = pd.read_csv(file_path + "/origin.csv")
     df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     message("dataframe origin")
     print(df)
@@ -66,27 +65,60 @@ def process_data(conf):
     message("removendo produtos da blacklist")
     df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
 
-    # spec_title = find_keywords(df=df, file_path=file_path, column="title")
+    spec_title = find_keywords(df=df, file_path=file_path, column="title")
     spec_route = find_keywords(df=df, file_path=file_path, product_desc_tag=product_desc_tag)
-    exit()
     spec = find_keywords(df=df, file_path=file_path)
 
-    df_spec = processing_keywords(spec_title, spec_route, spec)
-
-    df = pd.concat([df, df_spec], axis=1)
-
-    print(df.info())
+    df = processing_keywords(df, spec_title, spec_route, spec)
 
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
+    print(df.info())
+
     image_processing(df, file_path)
+    
     df = df[['ref', 'title', 'price', 'image_url', 'product_url', 'ing_date',
             'name', 'brand', 'price_numeric', 'quantity', 'price_qnt', 'spec_5',
             'spec_4', 'spec_3', 'spec_2', 'spec_1']]
     
-    print(df)
+    return df
+
+def processing_keywords(df, spec_title, spec_route, spec):
+    df["spec_5"] = None
+    df["spec_4"] = None
+    df["spec_3"] = None
+    df["spec_2"] = None
+    df["spec_1"] = None
+
+    for ref in df["ref"]:
+        
+        spec_title_route = combine_and_sum_scores(spec_title[ref], spec_route[ref])
+        spec_all = combine_and_sum_scores(spec_title_route, spec[ref])
+        spec_reduced = [i['subject'] for i in spec_all[:5]]
+
+        for index, item in enumerate(spec_reduced):
+            reversed_index = 5 - index
+            df.loc[df["ref"] == ref, "spec_" + str(reversed_index)] = " ".join(item)
     
     return df
+
+def combine_and_sum_scores(list1, list2):
+    list1_sets = [{tuple(sorted(item['subject'])): item['score']} for item in list1]
+    list2_sets = [{tuple(sorted(item['subject'])): item['score']} for item in list2]
+
+    combined = {}
+
+    for item in list1_sets:
+        for subjects, score in item.items():
+            combined[subjects] = combined.get(subjects, 0) + score
+
+    for item in list2_sets:
+        for subjects, score in item.items():
+            combined[subjects] = combined.get(subjects, 0) + score
+
+    result = [{'subject': list(subject), 'score': score} for subject, score in combined.items()]
+
+    return result
 
 def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
     refs = {}
@@ -95,9 +127,9 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
         page_path = f"{file_path}/products/{ref}.txt"
         file_exist = path_exist(page_path)
         matchs = None
-        if ((column != None) & (file_exist)):
+        if (column != None):
             text = df[df['ref'] == ref][column].values[0]
-            matchs = find_matches(text)
+            matchs = find_matches(text, is_substring=True, score_by_index=True)
 
         elif ((product_desc_tag != None) & (file_exist)):
             text_html = read_file(page_path)
@@ -105,8 +137,8 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
             if (not text_html):
                 keywords.append(None)
                 continue
-            print(ref)
             matchs = find_keyword_in_text_html_with_tag(text_html, product_desc_tag)
+            
 
         elif (file_exist):
             text_html = read_file(page_path)
@@ -123,25 +155,20 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
         else:
             keywords = None
 
-        refs[ref] = keywords
+        refs[ref] = flatten_list(keywords)
 
     return refs
 
 def find_keyword_in_text_html_with_tag(text_html, locations):
     soup = BeautifulSoup(text_html, 'html.parser')
     keywords = []
-    print(locations)
-    for location in locations[-1:]:
-        print(location)
+    for location in locations[:]:
         tag = soup.find(location['tag'], class_=location['class'])
-        print(tag)
-        exit()
         if (tag == None): continue
-        matches = find_matches(tag.text, 3)
+        matches = find_matches(tag.text, score_by_index=True)
         if (not matches):
             continue
         
-        print(matches)
         keywords += matches
         
     if (not keywords):
@@ -149,27 +176,45 @@ def find_keyword_in_text_html_with_tag(text_html, locations):
     
     return keywords
 
-def find_matches(text, limit_words=10):
+def find_matches(text, limit_words=10, is_substring=False, score_by_index=False):
     text = clean_text(text, False)
-    total_words = len(remove_prepositions_pronouns(text).split())
-
+    text_words_size = len(text.split())
+    text_char_size = len(text)
     keywords = {}
+
     for value, subject in enumerate(WORD_LIST):
+        scores = []
+        score = 0
+        matches = None
+        key = " ".join(subject)
+        text_temp = deepcopy(text)
         for word in subject:
             word_clean = r'\b' + re.escape(clean_text(word, False)) + r'\b'
-            was_found = re.findall(word_clean, text)
-            if (was_found):
-                if (f"{value}" in keywords.keys()):
-                    keywords[f"{value}"]['count'] += len(was_found)
-                else:
-                    keywords[f"{value}"] = {"subject": subject, "count": len(was_found), "total_words": total_words}
+            if (is_substring):
+                word_clean = clean_text(word, False)
+
+            if (score_by_index):
+                matches = re.finditer(word_clean, text_temp)
+                for match in matches:
+                    score += abs((match.start() / text_char_size) - 1)
+                if (is_substring):
+                    text_temp = text_temp.replace(word, (len(word) * "*"))
+            else:
+                matches = re.findall(word_clean, text_temp)
+                score = len(matches) / text_words_size
+
+        if (matches):
+            scores.append(score)
+        keywords[key] = {"subject": subject, "score": sum(scores)}
                 
-    keywords = sorted(keywords.values(), key=lambda x: x['count'], reverse=True)
+    keywords = sorted(keywords.values(), key=lambda x: x['score'], reverse=True)
+    keywords = [x for x in keywords if x['score'] != 0]
+
     if (keywords == []):
         return None
     
     return keywords
-                
+
 def clear_page(html_text):
     soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -258,6 +303,7 @@ def relation_qnt_price(row):
     return round(resultado, 3)
 
 def image_processing(df, data_path):
+    message("image_processing")
     path_img_tmp = data_path + "/img_tmp/"
     path_img_hash = data_path + "/img_hash/"
     path_img_csl = data_path + "/img_csl/"
@@ -269,13 +315,13 @@ def image_processing(df, data_path):
     dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp) if i.split(".")[0] in refs}
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
 
-    print(set(dict_imgs.keys()).issubset(refs))
     if (not set(dict_imgs.keys()).issubset(refs)):
         print("ERROR IMAGE PROCESSING")
         difference = set(dict_imgs.keys()) - set(refs)
         print(difference)
         exit(1)
 
+    message("LOADING IMAGES")
     def describe_image(image, img_path):
         width, height = image.size
         file_size = os.path.getsize(img_path)  
@@ -311,150 +357,7 @@ def image_processing(df, data_path):
         save_path = path_img_csl + ref
         img_path = image_info["img_path"]
         convert_image(img_path, save_path)
-
-
-def processing_keywords(spec_title, spec_route, spec):
-    spec_list_0 = []
-    spec_list_1 = []
-    spec_list_2 = []
-    spec_list_3 = []
-    spec_list_4 = []
-
-    statistcs_spec_route = []
-    statistcs_spec = []
-    mid_statistcs_spec_route = []
-    mid_statistcs_spec = []
-    not_statistcs_spec_route = []
-    not_statistcs_spec = []
-    for key in spec_title.keys():
-        flatten_spec_title = flatten_list(spec_title[key])
-        label = [i["subject"][0] for i in flatten_spec_title]
-        spec_list_0.append(flatten_list([i["subject"] for i in flatten_spec_title]))
-
-        flatten_spec_route = flatten_list(spec_route[key])
-        flatten_spec = flatten_list(spec[key])
-
-        subtect_spec_route = [i["subject"][0] for i in flatten_spec_route]
-        subtect_spec = [i["subject"][0] for i in flatten_spec]
-
-        spec_route_info = [round(i["count"] / i["total_words"], 9) for i in flatten_spec_route]
-        if (spec_route_info != []):
-            for item in subtect_spec_route:
-                if item in label:
-                    statistcs_spec_route.append(spec_route_info)
-                elif item in subtect_spec:
-                    mid_statistcs_spec_route.append(spec_route_info)
-                else:
-                    not_statistcs_spec_route.append(spec_route_info)
-
-        spec_info = [round(i["count"] / i["total_words"], 12) for i in flatten_spec]
-        if (spec_info != []):
-            for item in subtect_spec:
-                if item in label:
-                    statistcs_spec.append(spec_info)
-                elif item in subtect_spec_route:
-                    mid_statistcs_spec.append(spec_info)
-                else:
-                    not_statistcs_spec.append(spec_info)
-            
-    calc_statistcs_spec_route = None
-    calc_mid_statistcs_spec_route = None
-    calc_not_statistcs_spec_route = None
-
-    statistcs_spec_route = flatten_list(statistcs_spec_route)
-    if (statistcs_spec_route != []):
-        calc_statistcs_spec_route = calculate_statistics(statistcs_spec_route)
-    mid_statistcs_spec_route = flatten_list(mid_statistcs_spec_route)
-    if (mid_statistcs_spec_route != []):
-        calc_mid_statistcs_spec_route = calculate_statistics(mid_statistcs_spec_route)
-    not_statistcs_spec_route = flatten_list(not_statistcs_spec_route)
-    if (not_statistcs_spec_route != []):
-        calc_not_statistcs_spec_route = calculate_statistics(not_statistcs_spec_route)
-
-    spec_route_range = sorted(list(set(create_range_list(calc_statistcs_spec_route) + \
-                        create_range_list(calc_mid_statistcs_spec_route) + \
-                        create_range_list(calc_not_statistcs_spec_route))), reverse=True)
-    
-    for key in spec_title.keys():
-        flatten_spec_route = flatten_list(spec_route[key])
-        spec_list_1_temp = []
-        spec_list_2_temp = []
-        for item in flatten_spec_route:
-            value = item['count'] / item["total_words"]
-            temp_spec_route_range = deepcopy(spec_route_range)
-            temp_spec_route_range.append(value)
-            temp_spec_route_range.sort()
-            score = temp_spec_route_range.index(value) / len(temp_spec_route_range)
-            if (score >= 0.5):
-                spec_list_1_temp.append(item["subject"])
-                spec_list_2_temp.append(None)
-            else:
-                spec_list_1_temp.append(None)
-                spec_list_2_temp.append(item["subject"])
-        spec_list_1.append(spec_list_1_temp)
-        spec_list_2.append(spec_list_2_temp)
-    
-    calc_statistcs_spec = None
-    calc_mid_statistcs_spec = None
-    calc_not_statistcs_spec = None
-    
-    statistcs_spec = flatten_list(statistcs_spec)
-    if (statistcs_spec != []):
-        calc_statistcs_spec = calculate_statistics(statistcs_spec)
-    mid_statistcs_spec = flatten_list(mid_statistcs_spec)
-    if (mid_statistcs_spec != []):
-        calc_mid_statistcs_spec = calculate_statistics(mid_statistcs_spec)
-    not_statistcs_spec = flatten_list(not_statistcs_spec)
-    if (not_statistcs_spec != []):
-        calc_not_statistcs_spec = calculate_statistics(not_statistcs_spec)
-
-    spec_range = sorted(list(set(create_range_list(calc_statistcs_spec) + \
-                create_range_list(calc_mid_statistcs_spec) + \
-                create_range_list(calc_not_statistcs_spec))), reverse=True)
-    
-    for key in spec_title.keys():
-        flatten_spec = flatten_list(spec[key])
-        spec_list_3_temp = []
-        spec_list_4_temp = []
-        for item in flatten_spec:
-            value = item['count'] / item["total_words"]
-            temp_spec_range = deepcopy(spec_range)
-            temp_spec_range.append(value)
-            temp_spec_range.sort()
-            score = temp_spec_range.index(value) / len(temp_spec_range)
-            if (score >= 0.7):
-                spec_list_3_temp.append(item["subject"])
-                spec_list_4_temp.append(None)
-            elif (score >= 0.5):
-                spec_list_3_temp.append(None)
-                spec_list_4_temp.append(item["subject"])
-            else:
-                spec_list_3_temp.append(None)
-                spec_list_4_temp.append(None)
-        spec_list_3.append(spec_list_3_temp)
-        spec_list_4.append(spec_list_4_temp)
-
-    specs = [spec_list_0,
-        spec_list_1,
-        spec_list_2,
-        spec_list_3,
-        spec_list_4]
-    
-    df = pd.DataFrame(specs).T
-    df.columns = ["spec_5", "spec_4", "spec_3", "spec_2", "spec_1"]
-    df['spec_1'] = df['spec_1'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_2'] = df['spec_2'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_3'] = df['spec_3'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_4'] = df['spec_4'].apply(lambda x: [i for i in x if i is not None])
-    df['spec_5'] = df['spec_5'].apply(lambda x: [i for i in x if i is not None])
-
-    df['spec_1'] = df['spec_1'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_2'] = df['spec_2'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_3'] = df['spec_3'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_4'] = df['spec_4'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-    df['spec_5'] = df['spec_5'].apply(lambda x: None if x == [] else " ".join(flatten_list(x)))
-
-    return df
+    message("Images processing ok")
 
 def replace_empty_list_with_none(element):
     if isinstance(element, list) and not element:

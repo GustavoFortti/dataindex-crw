@@ -24,25 +24,24 @@ echo $LOCAL
 # Lista de job_names
 
 job_names=(
-#     "adaptogen"
-#     "atlhetica_nutrition"
-    "black_skull"
-#     "boldsnacks"
-#     "dark_lab"
-#     "darkness"
-#     "dux_nutrition_lab"
-#     "growth_supplements"
-#     "integralmedica"
-#     "iridium_labs"
-#     "max_titanium"
-#     "new_millen"
-#     "nutrata"
-#     "probiotica"
-#     "truesource"
-#     "under_labz"
-#     "vitafor"
+    # "adaptogen"
+    # "atlhetica_nutrition"
+    # "black_skull"
+    # "boldsnacks"
+    # "dark_lab"
+    # "darkness"
+    # "dux_nutrition_lab"
+    # "growth_supplements"
+    # "integralmedica"
+    # "iridium_labs"
+    # "max_titanium"
+    # "new_millen"
+    # "nutrata"
+    # "probiotica"
+    # "truesource"
+    # "under_labz"
+    "vitafor"
 )
-find ./ -type f -name '*_spec.txt' -exec rm {} +
 
 # Variáveis comuns para todos os jobs
 job_type="dry"

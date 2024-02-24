@@ -1,0 +1,1 @@
+PRODUCT_DESC_TAG = [{'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'}]

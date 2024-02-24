@@ -2,6 +2,7 @@ from config.env import LOCAL
 
 from .extract import extract
 from .dry import dry
+from .vars import PRODUCT_DESC_TAG
 
 from utils.wordlist import WORD_LIST
 from utils.general_functions import create_directory_if_not_exists
@@ -12,7 +13,7 @@ CONF = {
     "name": "under_labz",
     "word_list": WORD_LIST["supplement"],
     "brand": "under labz",
-    "product_desc_tag": [{'tag': 'div', 'class': 'breadcrumbs'}, {'tag': 'p', 'class': 'western'}, {'tag': 'div', 'class': 'tab-pane active'}],
+    "product_desc_tag": PRODUCT_DESC_TAG,
     "data_path" : f"{LOCAL}/data/supplement/brazil/under_labz",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/under_labz",
     "index_name": "brazil_supplement",

@@ -1,0 +1,1 @@
+PRODUCT_DESC_TAG = [{'tag': 'section', 'class': 'breadcrumb'}, {'tag': 'div', 'class': 'productDescription'}]

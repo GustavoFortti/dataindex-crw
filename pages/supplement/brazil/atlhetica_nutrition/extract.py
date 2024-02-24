@@ -8,7 +8,7 @@ class Job():
     def get_url(self, url):
         if (not self.conf["index"]):
             self.conf["index"] = 1
-            return url + str(1)
+            return url #+ str(1)
         self.conf["index"] += 1
         return url + str(self.conf["index"])
     

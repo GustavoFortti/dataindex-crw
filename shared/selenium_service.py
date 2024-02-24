@@ -72,7 +72,7 @@ def get_page_source(driver, retry_delay=5):
             message(f"Erro ao recarregar a página: {e}. Abortando...")
             return None  # Retorna None se falhar novamente
    
-def dynamic_scroll(driver, time_sleep=0.5, percentage=0.07, return_percentage=0.3, max_return=4000, max_attempts=3):
+def dynamic_scroll(driver, time_sleep=0.7, percentage=0.06, return_percentage=0.3, max_return=4000, max_attempts=3):
     total_height = driver.execute_script("return document.body.scrollHeight")
     scroll_increment = min(total_height * percentage, 1000)
     last_scrolled_height = 0
