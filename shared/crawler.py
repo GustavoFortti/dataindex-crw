@@ -47,7 +47,7 @@ def load_page(job, url):
                                         max_attempts=max_attempts)
             
         if (job.conf["status_job"]):
-            se.dynamic_scroll(driver, time_sleep=0.2, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+            se.dynamic_scroll(driver, time_sleep=0.2, scroll_step=1000, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
 
         soup, page_html = se.get_page_source(driver)
         
@@ -59,19 +59,38 @@ def load_page(job, url):
         data_path = job.conf['data_path']
         file_name = f"{data_path}/products/{ref}.txt"
 
-        async def get_page_text(url):
-            browser = await launch()
-            page = await browser.newPage()
-            await page.goto(url, timeout=60000)
-            await page.waitForSelector('body', timeout=60000)
-            page_content = await page.content()
-            await browser.close()
-            return page_content
-
         page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
+
+        if (not page_text):
+            se.load_url(driver, url, element_selector)
+
+            se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=500, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+
+            soup, page_text = se.get_page_source(driver)
+
         with open(file_name, 'w') as file:
             file.write(page_text)
             message(f"File '{file_name}' created successfully.")
+
+async def get_page_text(url, retries=3, delay=1):
+    attempt = 0
+    while attempt < retries:
+        try:
+            browser = await launch()
+            page = await browser.newPage()
+            await page.goto(url, {'timeout': 60000})
+            await page.waitForSelector('body', {'timeout': 60000})
+            page_content = await page.content()
+            await browser.close()
+            return page_content
+        except Exception as e:
+            message(f"Erro ao tentar acessar {url}: {e}")
+            attempt += 1
+            await asyncio.sleep(delay)
+            delay *= 2  # Aumenta o delay para a próxima tentativa
+    message(f"Não foi possível acessar {url} após {retries} tentativas.")
+    return None  # Retorna None se todas as tentativas falharem
+
 
 def extract_data(job, soup):
     message("exec extract_data")
