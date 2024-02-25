@@ -44,7 +44,7 @@ def initialize_selenium():
    
     return driver
 
-def load_url(driver, url, element_selector, timeout=30):
+def load_url(driver, url, element_selector=None, timeout=30):
     driver.get(url)
     driver.implicitly_wait(100)
     if element_selector:

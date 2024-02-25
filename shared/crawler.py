@@ -63,15 +63,13 @@ def load_page(job, url):
         file_name = f"{data_path}/products/{ref}.txt"
         
         time.sleep(1)
-        page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
+        if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
+            driver = se.initialize_selenium()
 
-        if page_text is None:
-            if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
-                driver = se.initialize_selenium()
-            message("Falha ao recuperar o texto da página, tentando método alternativo.")
-            se.load_url(driver, url, element_selector)
-            se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=500, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
-            soup, page_text = se.get_page_source(driver)
+        message("Falha ao recuperar o texto da página, tentando método alternativo.")
+        se.load_url(driver, url)
+        se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=1000, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+        soup, page_text = se.get_page_source(driver)
 
         with open(file_name, 'w') as file:
             file.write(page_text)
