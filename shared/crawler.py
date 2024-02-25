@@ -18,7 +18,7 @@ def crawler(job, url):
     
     load_page(job, url)
 
-def load_page(job, url):
+async def load_page(job, url):
     message("exec load_page")
 
     if (job.conf['seed']):
@@ -59,24 +59,12 @@ def load_page(job, url):
         data_path = job.conf['data_path']
         file_name = f"{data_path}/products/{ref}.txt"
         
-        time.sleep(3)
-        page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
-        time.sleep(1)
-        print("==========================")
-        print("==========================")
-        print("==========================")
-        print("==========================")
-        print(page_text)
-        print("==========================")
-        print("==========================")
-        print("==========================")
-        print("==========================")
+        page_text =  await get_page_text(url)
 
-        if (not page_text):
+        if page_text is None:
+            message("Falha ao recuperar o texto da página, tentando método alternativo.")
             se.load_url(driver, url, element_selector)
-
             se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=500, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
-
             soup, page_text = se.get_page_source(driver)
 
         with open(file_name, 'w') as file:
