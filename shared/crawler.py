@@ -61,6 +61,7 @@ def load_page(job, url):
         
         time.sleep(3)
         page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
+        time.sleep(1)
         print("==========================")
         print("==========================")
         print("==========================")
