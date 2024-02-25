@@ -60,6 +60,22 @@ def load_page(job, url):
         file_name = f"{data_path}/products/{ref}.txt"
 
         page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print(page_text)
+        print(page_text)
+        print(page_text)
+        message(page_text)
+        message(page_text)
+        message(page_text)
+        message(page_text)
+        message(page_text)
+        print("==========================")
+        print("==========================")
+        print("==========================")
+        print("==========================")
 
         if (not page_text):
             se.load_url(driver, url, element_selector)
