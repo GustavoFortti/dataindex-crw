@@ -58,20 +58,14 @@ def load_page(job, url):
         ref = generate_hash(url)
         data_path = job.conf['data_path']
         file_name = f"{data_path}/products/{ref}.txt"
-
+        
+        time.sleep(3)
         page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
         print("==========================")
         print("==========================")
         print("==========================")
         print("==========================")
         print(page_text)
-        print(page_text)
-        print(page_text)
-        message(page_text)
-        message(page_text)
-        message(page_text)
-        message(page_text)
-        message(page_text)
         print("==========================")
         print("==========================")
         print("==========================")
