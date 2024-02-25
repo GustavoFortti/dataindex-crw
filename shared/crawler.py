@@ -14,12 +14,15 @@ def crawler(job, url):
     message("exec crawler")
     if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
         message("initialize_selenium")
-        job.conf["driver"] = se.initialize_selenium()
+        if (job.conf['seed']):
+            job.conf["driver"] = se.initialize_selenium()
     
     load_page(job, url)
 
-async def load_page(job, url):
+def load_page(job, url):
     message("exec load_page")
+
+    driver = None
 
     if (job.conf['seed']):
         message("seed")
@@ -59,9 +62,12 @@ async def load_page(job, url):
         data_path = job.conf['data_path']
         file_name = f"{data_path}/products/{ref}.txt"
         
-        page_text =  await get_page_text(url)
+        time.sleep(1)
+        page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
 
         if page_text is None:
+            if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
+                driver = se.initialize_selenium()
             message("Falha ao recuperar o texto da página, tentando método alternativo.")
             se.load_url(driver, url, element_selector)
             se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=500, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
@@ -74,22 +80,38 @@ async def load_page(job, url):
 async def get_page_text(url, retries=3, delay=1):
     attempt = 0
     while attempt < retries:
+        browser = None
+        page = None
         try:
             browser = await launch()
             page = await browser.newPage()
-            await page.goto(url, {'timeout': 60000})
-            await page.waitForSelector('body', {'timeout': 60000})
+            await page.goto(url, {'timeout': 30000})
+            await page.waitForSelector('body', {'timeout': 30000})
             page_content = await page.content()
-            await browser.close()
             return page_content
         except Exception as e:
             message(f"Erro ao tentar acessar {url}: {e}")
             attempt += 1
             await asyncio.sleep(delay)
-            delay *= 2  # Aumenta o delay para a próxima tentativa
-    message(f"Não foi possível acessar {url} após {retries} tentativas.")
-    return None  # Retorna None se todas as tentativas falharem
+            delay *= 2
+        finally:
+            if page:
+                try:
+                    await page.goto('about:blank')
+                except Exception as e:
+                    message(f"Erro ao navegar para about:blank: {e}")
+                try:
+                    await page.close()
+                except Exception as e:
+                    message(f"Erro ao fechar a página: {e}")
+            if browser:
+                try:
+                    await browser.close()
+                except Exception as e:
+                    message(f"Erro ao fechar o navegador: {e}")
 
+    message(f"Não foi possível acessar {url} após {retries} tentativas.")
+    return None
 
 def extract_data(job, soup):
     message("exec extract_data")
