@@ -72,9 +72,9 @@ def get_page_source(driver, retry_delay=5):
             message(f"Erro ao recarregar a página: {e}. Abortando...")
             return None  # Retorna None se falhar novamente
    
-def dynamic_scroll(driver, time_sleep=0.7, percentage=0.06, return_percentage=0.3, max_return=4000, max_attempts=3):
+def dynamic_scroll(driver, time_sleep=0.7, scroll_step=1000, percentage=0.06, return_percentage=0.3, max_return=4000, max_attempts=3):
     total_height = driver.execute_script("return document.body.scrollHeight")
-    scroll_increment = min(total_height * percentage, 1000)
+    scroll_increment = min(total_height * percentage, scroll_step)
     last_scrolled_height = 0
     attempt_count = 0  # Contador para rastrear tentativas sem mudança na posição de rolagem
 
@@ -99,7 +99,7 @@ def dynamic_scroll(driver, time_sleep=0.7, percentage=0.06, return_percentage=0.
         if new_total_height > total_height:
             # Ajusta a altura total e o incremento de rolagem se o tamanho da página aumentou
             total_height = new_total_height
-            scroll_increment = min(total_height * percentage, 1000)
+            scroll_increment = min(total_height * percentage, scroll_step)
 
             # Calcula a distância de retorno e ajusta a posição da rolagem
             return_distance = min(scrolled_height * return_percentage, max_return)

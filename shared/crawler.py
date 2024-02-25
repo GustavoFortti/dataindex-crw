@@ -32,13 +32,15 @@ def load_page(job, url):
         se.load_url(driver, url, element_selector)
 
         time_sleep = job.conf['dynamic_scroll']['time_sleep']
+        scroll_step = job.conf['dynamic_scroll']['scroll_step']
         percentage = job.conf['dynamic_scroll']['percentage']
         return_percentage = job.conf['dynamic_scroll']['return_percentage']
         max_return = job.conf['dynamic_scroll']['max_return']
         max_attempts = job.conf['dynamic_scroll']['max_attempts']
 
         if (job.conf['scroll_page']):
-            se.dynamic_scroll(driver, time_sleep=time_sleep, 
+            se.dynamic_scroll(driver, time_sleep=time_sleep,
+                                        scroll_step=scroll_step,
                                         percentage=percentage, 
                                         return_percentage=return_percentage, 
                                         max_return=max_return, 
