@@ -1,7 +1,7 @@
 # /bin/bash
 
-# local="/home/crw-system/dataindex-crw"
-local="/home/mage/main/dataindex-crw"
+local="/home/crw-system/dataindex-crw"
+# local="/home/mage/main/dataindex-crw"
 
 export LOCAL="$local"
 echo $LOCAL

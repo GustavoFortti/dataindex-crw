@@ -60,18 +60,13 @@ def load_page(job, url):
         async def get_page_text(url):
             browser = await launch()
             page = await browser.newPage()
-            await page.goto(url)
-            await page.waitForSelector('body')
+            await page.goto(url, timeout=60000)
+            await page.waitForSelector('body', timeout=60000)
             page_content = await page.content()
             await browser.close()
             return page_content
 
         page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
-        # try:
-        # except:
-        #     pass
-
-
         with open(file_name, 'w') as file:
             file.write(page_text)
             message(f"File '{file_name}' created successfully.")
