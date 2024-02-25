@@ -44,8 +44,8 @@ job_names=(
 )
 
 # Variáveis comuns para todos os jobs
-job_type="dry"
-option="false"
+job_type="extract"
+option="create_pages"
 page_type="supplement"
 country="brazil"
 mode="prd"

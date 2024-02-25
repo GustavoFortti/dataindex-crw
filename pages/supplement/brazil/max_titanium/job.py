@@ -2,7 +2,7 @@ from config.env import LOCAL
 
 from .extract import extract
 from .dry import dry
-from .vars import PRODUCT_DESC_TAG
+from .vars import PRODUCT_DESC_TAG, DYNAMIC_SCROLL
 
 from utils.wordlist import WORD_LIST
 from utils.general_functions import create_directory_if_not_exists
@@ -14,6 +14,7 @@ CONF = {
     "word_list": WORD_LIST["supplement"],
     "brand": "max titanium",
     "product_desc_tag": PRODUCT_DESC_TAG,
+    "dynamic_scroll": DYNAMIC_SCROLL,
     "data_path" : f"{LOCAL}/data/supplement/brazil/max_titanium",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/max_titanium",
     "index_name": "brazil_supplement",

@@ -31,9 +31,19 @@ def load_page(job, url):
         element_selector = None
         se.load_url(driver, url, element_selector)
 
-        if (job.conf['scroll_page']):
-            se.dynamic_scroll(driver)
+        time_sleep = job.conf['dynamic_scroll']['time_sleep']
+        percentage = job.conf['dynamic_scroll']['percentage']
+        return_percentage = job.conf['dynamic_scroll']['return_percentage']
+        max_return = job.conf['dynamic_scroll']['max_return']
+        max_attempts = job.conf['dynamic_scroll']['max_attempts']
 
+        if (job.conf['scroll_page']):
+            se.dynamic_scroll(driver, time_sleep=time_sleep, 
+                                        percentage=percentage, 
+                                        return_percentage=return_percentage, 
+                                        max_return=max_return, 
+                                        max_attempts=max_attempts)
+            
         if (job.conf["status_job"]):
             se.dynamic_scroll(driver, time_sleep=0.2, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
 
@@ -57,6 +67,11 @@ def load_page(job, url):
             return page_content
 
         page_text = asyncio.get_event_loop().run_until_complete(get_page_text(url))
+        # try:
+        # except:
+        #     pass
+
+
         with open(file_name, 'w') as file:
             file.write(page_text)
             message(f"File '{file_name}' created successfully.")
