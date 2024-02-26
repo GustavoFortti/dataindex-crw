@@ -32,6 +32,7 @@ class Job():
         else:
             title = None
         return title
+    
     def get_price(self, soup):
         price = None
         price_element = soup.find('span', class_='vtex-product-price-1-x-sellingPriceValue')

@@ -37,7 +37,7 @@ def process_data(conf, df):
 
     df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     message("dataframe origin")
-    print(df)
+    # print(df)
     print()
 
     message("filtro de nulos")
@@ -56,8 +56,13 @@ def process_data(conf, df):
     df['title'] = df['title'].apply(remove_spaces)
     
     message("criando coluna quantidade")
-    pattern = r'(\d+([.,]\d+)?)\s*(kg|g|gr|gramas)\s*\w*'
-    df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text, pattern)).apply(pd.Series)
+    # df = df[df['ref'] == 'd6d8855d']
+    df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text)).apply(pd.Series)
+
+    print(df[['title', 'quantity', 'unit']])
+
+    exit()
+
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
     df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
@@ -254,14 +259,19 @@ def remove_prepositions_pronouns(text):
     
     return text
 
-def find_pattern_for_quantity(text, pattern):
+def find_pattern_for_quantity(text):
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
     matches = re.findall(pattern, text, re.IGNORECASE)
     
     quantity = None
     if ((len(matches) == 1)): 
         quantity, unit = matches[0]
-        quantity = float(str(quantity).replace(',', '.'))
+        quantity = str(quantity).replace(',', '.')
+
+        if ((unit in ['g', 'gr', 'gramas']) & ("." in quantity)):
+            quantity = quantity.replace(".", "")
+
+        quantity = float(quantity)
     
         padrao = r'\d+x'
         matches_multiply = re.findall(padrao, text)

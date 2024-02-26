@@ -32,7 +32,7 @@ BLACK_LIST = [
 ]
 
 WORD_LIST_SUPLEMENTO = [
- ['whey', 'whey protein', 'whey protein isolado', 'whey protein concentrado'],
+ ['whey', 'whey protein'],
  ['protein', 'proteina', 'proteica'],
  ['beef', 'carn'],
  ['fibras'],
