@@ -28,7 +28,7 @@ job_names=(
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
-    # "dark_lab"
+    "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
@@ -40,12 +40,12 @@ job_names=(
     # "probiotica"
     # "truesource"
     # "under_labz"
-    "vitafor"
+    # "vitafor"
 )
 
 # Variáveis comuns para todos os jobs
 job_type="extract"
-option="create_pages"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"

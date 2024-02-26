@@ -50,7 +50,7 @@ def load_page(job, url):
                                         max_attempts=max_attempts)
             
         if (job.conf["status_job"]):
-            se.dynamic_scroll(driver, time_sleep=0.2, scroll_step=1000, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+            se.dynamic_scroll(driver, time_sleep=0.4, scroll_step=1000, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
 
         soup, page_html = se.get_page_source(driver)
         
