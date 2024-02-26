@@ -32,9 +32,10 @@ BLACK_LIST = [
 ]
 
 WORD_LIST_SUPLEMENTO = [['whey'],
+ ['whey protein']
  ['protein', 'proteina', 'proteica'],
  ['fibras'],
- ['beta alanina', 'betaalanina', 'alanina'],
+ ['beta alanina', 'betaalanina', 'alanina', 'alanine'],
  ['hair', 'cabelo'],
  ['nail', 'unha'],
  ['antioxidantes'],
@@ -69,7 +70,7 @@ WORD_LIST_SUPLEMENTO = [['whey'],
  ['carnitin', 'carnitina', 'lcarnitina'],
  ['aminoacido'],
  ['triptofano'],
- ['taurina'],
+ ['taurina', 'taurine', 'taurin'],
  ['maca peruana'],
  ['leucin', 'leucine', 'lleucine'],
  ['mass', 'hipercalorico'],
