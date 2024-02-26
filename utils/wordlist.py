@@ -31,9 +31,10 @@ BLACK_LIST = [
     'moletom'
 ]
 
-WORD_LIST_SUPLEMENTO = [['whey'],
- ['whey protein']
+WORD_LIST_SUPLEMENTO = [
+ ['whey', 'whey protein', 'whey protein isolado', 'whey protein concentrado'],
  ['protein', 'proteina', 'proteica'],
+ ['beef', 'carn']
  ['fibras'],
  ['beta alanina', 'betaalanina', 'alanina', 'alanine'],
  ['hair', 'cabelo'],
