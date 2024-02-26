@@ -34,7 +34,7 @@ BLACK_LIST = [
 WORD_LIST_SUPLEMENTO = [
  ['whey', 'whey protein', 'whey protein isolado', 'whey protein concentrado'],
  ['protein', 'proteina', 'proteica'],
- ['beef', 'carn']
+ ['beef', 'carn'],
  ['fibras'],
  ['beta alanina', 'betaalanina', 'alanina', 'alanine'],
  ['hair', 'cabelo'],
@@ -95,7 +95,7 @@ WORD_LIST_SUPLEMENTO = [
  ['cafein', 'cafe', 'cafeina', 'coffe', 'caffe', 'coffee'],
  ['cafe verde'],
  ['termogenico'],
- ['pretreino', 'workout', 'pretrein', 'preworkout', 'pre workout'],
+ ['pretreino', 'pre treino', 'workout', 'work out', 'pretrein', 'preworkout', 'pre workout'],
  ['biotina'],
  ['hialuronico'],
  ['optimsm'],
