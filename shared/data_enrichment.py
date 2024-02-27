@@ -56,12 +56,7 @@ def process_data(conf, df):
     df['title'] = df['title'].apply(remove_spaces)
     
     message("criando coluna quantidade")
-    # df = df[df['ref'] == 'd6d8855d']
     df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text)).apply(pd.Series)
-
-    print(df[['title', 'quantity', 'unit']])
-
-    exit()
 
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
