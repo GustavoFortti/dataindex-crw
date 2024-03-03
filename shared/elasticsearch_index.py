@@ -1,3 +1,8 @@
+INDEX_SUPPLEMENT_BRAZIL = {
+    "index": "brazil_supplement_03032024",
+    "type": "supplement"
+}
+
 def elasticsearch_index(product, synonyms_list):
     index = {}
     
@@ -37,6 +42,16 @@ def elasticsearch_index(product, synonyms_list):
                         "type": "keyword"
                     },
                     "title": {
+                        "type": "text",
+                        "analyzer": "title_analyzer",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "spec_component": {
                         "type": "text",
                         "analyzer": "title_analyzer",
                         "fields": {

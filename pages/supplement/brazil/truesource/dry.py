@@ -10,7 +10,7 @@ def create_origin_dry():
     df['name'] = df['name'].str.replace('True Source', '')
     
     df.to_csv(file_path + "/origin_dry.csv", index=False)
-    print("Success in saving origin_csl")
+    print("Success in saving origin_dry")
 
 def dry(conf):
     global CONF

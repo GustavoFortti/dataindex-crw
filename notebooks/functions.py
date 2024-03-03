@@ -103,7 +103,7 @@ def relation_qnt_preco(row):
 
 
 
-WORD_LIST_SUPLEMENTO = [['whey'],
+WORDLIST_SUPLEMENTO = [['whey'],
  ['protein', 'proteina', 'proteica'],
  ['fibras'],
  ['beta alanina', 'betaalanina', 'alanina'],
@@ -255,15 +255,15 @@ WORD_LIST_SUPLEMENTO = [['whey'],
  ['vitamina s', 'aminobenzoico']
 ]
 
-WORD_LIST = {
-    "supplement": WORD_LIST_SUPLEMENTO,
+WORDLIST = {
+    "supplement": WORDLIST_SUPLEMENTO,
 }
 
 def best_words(text):
     text = clean_text(text)
 
     words_count = {}
-    for item in WORD_LIST:
+    for item in WORDLIST:
         for sub_item in item:
             count = len(re.findall(" " + clean_text(sub_item) + " ", text))
             if (count != 0):

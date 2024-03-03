@@ -10,7 +10,7 @@ CONF = {
 }
 
 def filter_title(df, keyword):
-    filtered_df = df[df['title'].str.contains(keyword, case=False)]
+    filtered_df = df[df['title'].str.contains(keyword, case=False) | df['spec_component'].str.contains(keyword, case=False)]
     return filtered_df
 
 def exclude_in_title(df, keyword):

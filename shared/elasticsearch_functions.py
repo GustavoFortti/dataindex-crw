@@ -17,9 +17,9 @@ def data_ingestion(df, conf):
     global SYNONYMS_LIST
 
     CONF = conf
-    SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(CONF['word_list'])]
+    SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(component_list=CONF['wordlist'])]
 
-    index_name = CONF['index_name'] 
+    index_name = CONF['index_name']
 
     create_connection()
     insert_documents(df, index_name)

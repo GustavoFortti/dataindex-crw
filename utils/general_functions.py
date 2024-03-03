@@ -64,19 +64,24 @@ def encode_base64(val):
 def generate_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
 
-def clean_text(texto, clean_spaces=True):
-    # Normaliza o texto para decompor acentos e caracteres especiais
+def clean_text(texto, clean_spaces=True, remove_final_s=False):
     if isinstance(texto, str):
         texto = unicodedata.normalize('NFKD', texto)
-        # Mantém apenas caracteres alfanuméricos e espaços
-        texto = u"".join([c for c in texto if not unicodedata.combining(c)])
-        # Remove tudo que não for letra, número ou espaço
+        texto = "".join([c for c in texto if not unicodedata.combining(c)])
+        
+        texto = re.sub(r'[^\w\s]', ' ', texto)
+        
+        texto = re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower()
+        
         if (clean_spaces):
-            texto = remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
+            texto = remove_spaces(texto)
+
+        if (remove_final_s):
+            texto = re.sub(r'(?<!s)s\b', '', texto)
 
         return texto
     return texto
-
+    
 def list_directory(path):
     try:
         # Check if the path is a valid directory
@@ -185,9 +190,9 @@ def file_exists(directory, filename):
     message(file_path)
     return os.path.exists(file_path)
 
-def find_in_text_with_word_list(text, word_list):
+def find_in_text_with_wordlist(text, wordlist):
     match = None
-    for word in word_list:
+    for word in wordlist:
         clean_word = clean_text(word)
         text = clean_text(text)
         

@@ -11,7 +11,7 @@ from utils.general_functions import (DATE_FORMAT,
                                     delete_file,
                                     list_directory,
                                     download_images_in_parallel,
-                                    find_in_text_with_word_list,
+                                    find_in_text_with_wordlist,
                                     create_directory_if_not_exists,
                                     is_price)
 
@@ -96,7 +96,7 @@ def seed(job):
     df_tree_temp = df_tree_temp.drop_duplicates(subset='ref').reset_index(drop=True)
     df_tree_temp = df_tree_temp.dropna(subset=['price'])
 
-    df_tree_temp = df_tree_temp[~df_tree_temp['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+    df_tree_temp = df_tree_temp[~df_tree_temp['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
     df_tree_temp = df_tree_temp[df_tree_temp['price'].apply(lambda x: is_price(x))]
 
     path_tree_droped = f"{job.conf['data_path']}/tree_droped.csv"

@@ -12,7 +12,7 @@ job_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    # "darkness"
+    "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -23,11 +23,11 @@ job_names=(
     # "probiotica"
     # "truesource"
     # "under_labz"
-    "vitafor"
+    # "vitafor"
 )
 
 # Variáveis comuns para todos os jobs
-job_type="dry"
+job_type="ingestion"
 option="false"
 page_type="supplement"
 country="brazil"
@@ -44,6 +44,12 @@ do
         --page_type "$page_type" \
         --country "$country" \
         --mode "$mode"
+    
+    # Verifica se o comando anterior falhou
+    if [ $? -ne 0 ]; then
+        echo "Erro ao executar job: $job_name. Interrompendo a execução dos demais jobs."
+        break
+    fi
 done
 
 echo "Todos os jobs foram executados."

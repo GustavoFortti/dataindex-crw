@@ -1,5 +1,6 @@
 import os
 import re
+import ast
 import imagehash
 import hashlib
 import numpy as np
@@ -13,7 +14,6 @@ from utils.log import message
 from utils.general_functions import (clean_text,
                                     path_exist,
                                     remove_spaces,
-                                    calculate_statistics,
                                     flatten_list,
                                     save_file,
                                     list_directory,
@@ -21,23 +21,23 @@ from utils.general_functions import (clean_text,
                                     read_file,
                                     calculate_precise_image_hash,
                                     create_directory_if_not_exists,
-                                    find_in_text_with_word_list)
+                                    find_in_text_with_wordlist)
 
 pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
+# pd.set_option('display.max_columns', None)
 
 def process_data(conf, df):
     global CONF
-    global WORD_LIST
+    global WORDLIST
 
     CONF = conf
-    WORD_LIST = CONF['word_list']
+    WORDLIST = CONF['wordlist']
     product_desc_tag = CONF['product_desc_tag']
     file_path = CONF['data_path']
 
     df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     message("dataframe origin")
-    # print(df)
+    print(df)
     print()
 
     message("filtro de nulos")
@@ -63,13 +63,21 @@ def process_data(conf, df):
     df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
 
     message("removendo produtos da blacklist")
-    df = df[~df['title'].apply(lambda x: find_in_text_with_word_list(x, BLACK_LIST))]
+    df = df[~df['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
 
+    message("preparando keywords")
     spec_title = find_keywords(df=df, file_path=file_path, column="title")
     spec_route = find_keywords(df=df, file_path=file_path, product_desc_tag=product_desc_tag)
     spec = find_keywords(df=df, file_path=file_path)
 
-    df = processing_keywords(df, spec_title, spec_route, spec)
+    message("adicionando keywords")
+    df = create_spec_columns_with_keywords(df, spec_title, spec_route, spec)
+
+    message("adicionando componentes")
+    df = create_component_column_with_specs(df)
+
+    message("achatando colunas spec")
+    df = normalize_spec_columns(df)
 
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
@@ -78,12 +86,112 @@ def process_data(conf, df):
     image_processing(df, file_path)
     
     df = df[['ref', 'title', 'price', 'image_url', 'product_url', 'ing_date',
-            'name', 'brand', 'price_numeric', 'quantity', 'price_qnt', 'spec_5',
-            'spec_4', 'spec_3', 'spec_2', 'spec_1']]
+            'name', 'brand', 'price_numeric', 'quantity', 'price_qnt', 'spec_component', 
+            'spec_5', 'spec_4', 'spec_3', 'spec_2', 'spec_1']]
     
     return df
 
-def processing_keywords(df, spec_title, spec_route, spec):
+def normalize_spec_columns(df):
+    columns = ['spec_5', 'spec_4', 'spec_3', 'spec_2', 'spec_1']
+
+    for col in columns:
+        spects_to_string = lambda row: " ".join(ast.literal_eval(row)) if not pd.isna(row) else None
+        df[col] = df[col].apply(spects_to_string)
+        
+    return df
+
+def create_component_column_with_specs(df):
+    # Inicializa uma nova coluna no DataFrame para armazenar os componentes especificados
+    df['spec_component'] = ""
+    
+    # Itera sobre cada linha do DataFrame
+    for index, row in df.iterrows():
+        
+        # Extrai os valores das colunas especificadas para análise
+        specs = row[['spec_5', 'spec_4', 'spec_3', 'spec_2', 'spec_1']].values
+        spec_component = []
+        
+        # Itera sobre cada item no dicionário WORDLIST para verificar a presença de componentes específicos
+        for key, value in WORDLIST.items():
+            # Verifica se os componentes especificados estão presentes nas especificações da linha atual
+            if (check_component(specs, value)):
+                subject = value['subject']
+                # Se o assunto for uma lista, estende a lista de componentes especificados
+                if isinstance(subject, list):
+                    spec_component.extend(subject)
+                else:
+                    spec_component.append(subject)
+        
+        # Converte os componentes especificados para string
+        spec_component = [str(item) for item in spec_component]
+        # Atualiza a coluna 'spec_component' na linha atual com os componentes especificados, se houver
+        df.loc[df["ref"] == row['ref'], "spec_component"] = " ".join(spec_component) if spec_component else None
+
+    return df
+
+def check_component(specs, wordlist_item):
+    # Copia o valor mínimo de componentes necessário para considerar uma correspondência válida
+    minimum_of_components = deepcopy(wordlist_item['minimum_of_components'])
+    # Se não houver um mínimo necessário, retorna False
+    if (not minimum_of_components):
+        return False
+
+    # Verifica a presença de componentes que podem conter no item da lista de palavras
+    for may_contain in wordlist_item['may_contain']:
+        may_contain_subject = WORDLIST[may_contain]['subject']
+        for spec in specs:
+            if pd.isna(spec):
+                continue
+            
+            spec_temp = ast.literal_eval(spec)
+            specs_temp = [ast.literal_eval(terms) for terms in specs if terms is not None and not pd.isna(terms)]
+            specs_flatten = flatten_list(specs_temp)
+
+            subject = wordlist_item['subject']
+            # Verifica se o componente específico está presente em 'spec_5'
+            is_in_spec_5 = any(term in specs_temp[0] for term in subject)
+            if (is_in_spec_5):
+                continue
+            
+            is_required = wordlist_item['subject_required_in_components']
+            if (is_required):
+                subject_is_in_specs = any(term in specs_flatten for term in subject)
+
+                if (not subject_is_in_specs):
+                    continue
+
+            # Verifica a presença de componentes que não devem estar contidos
+            not_contain = wordlist_item['not_contain']
+            not_contain_flag = False
+
+            if (not_contain != []):
+                for not_contain_item in not_contain:
+                    not_contain_subject = WORDLIST[not_contain_item]['subject']
+                    # Função para verificar se um componente não permitido está presente
+                    not_contain_spec = lambda aux_spec: any(term in aux_spec for term in not_contain_subject) if (aux_spec) else None
+
+                    # Verifica a presença de componentes não permitidos nas especificações
+                    not_contain_flag = not_contain_spec(specs_temp[0]) or \
+                                       not_contain_spec(specs_temp[1]) or \
+                                       not_contain_spec(specs_temp[2])
+
+                    if (not_contain_flag):
+                        break
+
+            if (not_contain_flag):
+                continue
+
+            # Verifica se o componente permitido está presente
+            contain_subject = any(term in spec_temp for term in may_contain_subject)
+            if (contain_subject):
+                minimum_of_components -= 1
+            
+            # Se todos os requisitos forem atendidos, retorna True
+            if ((minimum_of_components == 0) and (subject != specs_temp[0])):
+                return True
+    return False
+
+def create_spec_columns_with_keywords(df, spec_title, spec_route, spec):
     df["spec_5"] = None
     df["spec_4"] = None
     df["spec_3"] = None
@@ -98,7 +206,7 @@ def processing_keywords(df, spec_title, spec_route, spec):
 
         for index, item in enumerate(spec_reduced):
             reversed_index = 5 - index
-            df.loc[df["ref"] == ref, "spec_" + str(reversed_index)] = " ".join(item)
+            df.loc[df["ref"] == ref, "spec_" + str(reversed_index)] = str(item)
     
     return df
 
@@ -127,11 +235,12 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
         page_path = f"{file_path}/products/{ref}.txt"
         file_exist = path_exist(page_path)
         matchs = None
-        if (column != None):
+
+        if (column != None): # spec_title
             text = df[df['ref'] == ref][column].values[0]
             matchs = find_matches(text, is_substring=True, score_by_index=True)
 
-        elif ((product_desc_tag != None) & (file_exist)):
+        elif ((product_desc_tag != None) & (file_exist)): # spec_route
             text_html = read_file(page_path)
 
             if (not text_html):
@@ -139,8 +248,7 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
                 continue
             matchs = find_keyword_in_text_html_with_tag(text_html, product_desc_tag)
             
-
-        elif (file_exist):
+        elif (file_exist): # spec
             text_html = read_file(page_path)
 
             if (not text_html):
@@ -162,7 +270,7 @@ def find_keywords(df, file_path=None, product_desc_tag=None, column=None):
 def find_keyword_in_text_html_with_tag(text_html, locations):
     soup = BeautifulSoup(text_html, 'html.parser')
     keywords = []
-    for location in locations[:]:
+    for location in locations:
         tag = soup.find(location['tag'], class_=location['class'])
         if (tag == None): continue
         matches = find_matches(tag.text, score_by_index=True)
@@ -177,16 +285,16 @@ def find_keyword_in_text_html_with_tag(text_html, locations):
     return keywords
 
 def find_matches(text, limit_words=10, is_substring=False, score_by_index=False):
-    text = clean_text(text, False)
+    text = clean_text(text, False, True)
     text_words_size = len(text.split())
     text_char_size = len(text)
     keywords = {}
 
-    for value, subject in enumerate(WORD_LIST):
+    for key, value in WORDLIST.items():
+        subject = value['subject']
         scores = []
         score = 0
         matches = None
-        key = " ".join(subject)
         text_temp = deepcopy(text)
         for word in subject:
             word_clean = r'\b' + re.escape(clean_text(word, False)) + r'\b'
