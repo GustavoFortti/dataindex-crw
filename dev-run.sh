@@ -12,10 +12,10 @@ job_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    "darkness"
+    # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
-    # "integralmedica"
+    "integralmedica"
     # "iridium_labs"
     # "max_titanium"
     # "new_millen"
@@ -27,8 +27,8 @@ job_names=(
 )
 
 # Variáveis comuns para todos os jobs
-job_type="ingestion"
-option="false"
+job_type="extract"
+option="update_products"
 page_type="supplement"
 country="brazil"
 mode="prd"
@@ -36,7 +36,7 @@ mode="prd"
 # Loop pela lista de job_names e execução do script para cada um
 for job_name in "${job_names[@]}"
 do
-    echo "Executando job: $job_name"
+    echo "Executing job: $job_name"
     python3 "$LOCAL/main.py" \
         --job_name "$job_name" \
         --job_type "$job_type" \
@@ -45,9 +45,9 @@ do
         --country "$country" \
         --mode "$mode"
     
-    # Verifica se o comando anterior falhou
+    # Check if the previous command failed
     if [ $? -ne 0 ]; then
-        echo "Erro ao executar job: $job_name. Interrompendo a execução dos demais jobs."
+        echo "Error executing job: $job_name. Stopping execution of remaining jobs."
         break
     fi
 done

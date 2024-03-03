@@ -84,7 +84,6 @@ def run(args):
     success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
     print(success, errors)
     
-    
     print("brazil_supplement_bar")
     sabores = ["avela", "banoffee", "beijinho", "beijinho de coco", "berries crispies", "bombom de coco", "brigadeiro", "brownie chocolate", "brownie crispies", "cafe", "cafe doce de leite", "caramelo amendoim", "caramelo crocante", "cheesecake de maracuja", "cheesecake de morango", "chocolate", "churros", "cookie", "cookies cream", "crisp gourmet", "doce de leite", "dulce de leche e limao siciliano", "dulce de leche havanna", "duo bianco al latte", "floresta negra", "leite cacau avelã", "leite condensado", "morango com chantilly", "morango perfetto", "mousse de maracujá", "pacoca", "pacoca chocolate", "pao de mel", "peanut butter", "penaut caramel", "protein crisp", "torta al limone", "torta cioccolato bianco", "torta de banana", "torta de limao", "trufa de avelã", "trufa de chocolate", "trufa de morango"]
     blacklist = ['wafer', 'kit', 'combo']

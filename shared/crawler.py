@@ -140,10 +140,10 @@ def extract_data(job, soup):
             'ing_date': job.conf['formatted_date']
         }
 
+        message(data)
         if (job.conf["status_job"]):
             status_tag(data)
 
-        message(data)
         temp_df = pd.DataFrame([data])
         df_tree_temp = pd.concat([df_tree_temp, temp_df], ignore_index=True)
         df_tree_temp.to_csv(path_tree_temp, index=False)
