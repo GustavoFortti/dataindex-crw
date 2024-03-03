@@ -15,9 +15,9 @@ job_names=(
     # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
-    "integralmedica"
+    # "integralmedica"
     # "iridium_labs"
-    # "max_titanium"
+    "max_titanium"
     # "new_millen"
     # "nutrata"
     # "probiotica"
@@ -28,7 +28,7 @@ job_names=(
 
 # Variáveis comuns para todos os jobs
 job_type="extract"
-option="update_products"
+option="update_old_pages"
 page_type="supplement"
 country="brazil"
 mode="prd"

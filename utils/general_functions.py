@@ -120,17 +120,25 @@ def create_directory_if_not_exists(directory_path):
         except OSError as error:
             message(f"Error creating directory '{directory_path}': {error}")
 
-def check_if_is_old_file(file_path):
-    if path_exist(file_path):
-        modification_time = os.path.getmtime(file_path)
-        last_modified_date = date.fromtimestamp(modification_time)
+def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):
+    all_files = [file for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]
+    files_info = []
 
-        today = date.today()
+    for file in all_files:
+        file_path = os.path.join(directory_path, file)
+        last_modification_time = os.path.getmtime(file_path)
+        last_modification_date = pd.to_datetime(last_modification_time, unit='s')
+        files_info.append((file, last_modification_date))
 
-        return False
-        return last_modified_date != today
-    return True
-                
+    files_info.sort(key=lambda x: x[1], reverse=not sort_ascending)
+
+    files_count = len(files_info)
+    slice_count = max(1, int(int((percentage / 100.0) * files_count)))
+
+    selected_files = [file_info[0] for file_info in files_info[:slice_count]]
+
+    return selected_files
+
 def create_or_read_df(path, columns):
     message(f"create_or_read_df")
     if (path_exist(path)):

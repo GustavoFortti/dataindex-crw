@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from datetime import date
 
@@ -11,6 +12,7 @@ from utils.general_functions import (DATE_FORMAT,
                                     delete_file,
                                     list_directory,
                                     download_images_in_parallel,
+                                    get_old_files_by_percent,
                                     find_in_text_with_wordlist,
                                     create_directory_if_not_exists,
                                     is_price)
@@ -45,6 +47,11 @@ def run(conf, Job):
         conf["tree"] = True
         job = Job(conf)
         tree_update(job)
+    elif (conf['option'] == "update_old_pages"):
+        message("update_pages")
+        conf["tree"] = True
+        job = Job(conf)
+        tree_update_old_pages(job)
     elif (conf['option'] == "create_pages"):
         message("create_pages")
         conf["tree"] = True
@@ -117,6 +124,32 @@ def tree_update(job):
     path_origin = f"{job.conf['data_path']}/origin.csv"
     job.conf['path_origin'] = path_origin
     df_origin = pd.read_csv(path_origin)
+    create_directory_if_not_exists(job.conf['data_path'] + "/products")
+
+    urls = df_origin['product_url'].values
+    for value, url in enumerate(urls):
+        size_urls = len(urls) - 1
+        message(f"seed: {url}")
+        message(f"index: {value} / {size_urls}")
+        crawler(job, url)
+
+def tree_update_old_pages(job):
+    message("update_old_pages")
+    path_origin = f"{job.conf['data_path']}/origin.csv"
+    job.conf['path_origin'] = path_origin
+    df_origin = pd.read_csv(path_origin)
+
+    pagas_path = job.conf['data_path'] + "/products"
+    old_files = get_old_files_by_percent(pagas_path)
+    refs = [i.replace(".txt", "") for i in old_files]
+
+    df_origin = df_origin[df_origin['ref'].isin(refs)]
+
+    refs_to_delete = list(set(refs) - set(df_origin['ref']))
+    if (refs_to_delete != []):
+        for ref in refs_to_delete:
+            delete_file(f"{pagas_path}/{ref}.txt")
+
     create_directory_if_not_exists(job.conf['data_path'] + "/products")
 
     urls = df_origin['product_url'].values
