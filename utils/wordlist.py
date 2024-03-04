@@ -124,8 +124,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
+        "minimum_of_components": 1,
+        "subject_required_in_components": True,
         "not_contain": []
     },
     "astaxantina": {

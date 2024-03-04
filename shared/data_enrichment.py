@@ -167,9 +167,11 @@ def check_component(specs, wordlist_item):
                     not_contain_spec = lambda aux_spec: any(term in aux_spec for term in not_contain_subject) if (aux_spec) else None
 
                     # Verifica a presença de componentes não permitidos nas especificações
-                    not_contain_flag = not_contain_spec(specs_temp[0]) or \
-                                       not_contain_spec(specs_temp[1]) or \
-                                       not_contain_spec(specs_temp[2])
+                    not_contain_flag = False
+                    for index in range(len(specs_temp)):
+                        not_contain_flag = not_contain_spec(specs_temp[index])
+                        if ((not_contain_flag) or (index == 2)):
+                            break
 
                     if (not_contain_flag):
                         break
