@@ -1,43 +1,41 @@
 from config.env import LOCAL
+from utils.wordlist import WORDLIST
+from utils.log import message
 
 import os
 import pandas as pd
 from elasticsearch import helpers
 from shared.elasticsearch_functions import create_connection, create_documents_with_pandas
+from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 
 CONF = {
     "name": "_set_",
 }
 
-def filter_title(df, keyword):
-    filtered_df = df[df['title'].str.contains(keyword, case=False) | df['spec_component'].str.contains(keyword, case=False)]
-    return filtered_df
-
-def exclude_in_title(df, keyword):
-    filtered_df = df[~df['title'].str.contains(keyword, case=False)]
-    return filtered_df
-
-def gen_destaques(wordlist, df):
-    df_index = None
-    for words in wordlist:
-        for keyword in words['keywords']:
-            if (words['type'] == 'filter'):
-                df_aux = filter_title(df, keyword)
-                if df_index is None:
-                    df_index = df_aux
-                else:
-                    df_index = pd.concat([df_index, df_aux], ignore_index=True)
-            else:
-                df_index = exclude_in_title(df_index, keyword)
+def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
+    # Inicializa uma máscara global com False para todos os registros
+    global_mask = pd.Series([False] * len(df), index=df.index)
     
-    return df_index
+    for col in columns:
+        # Atualiza a máscara global para incluir registros que contêm as palavras-chave
+        global_mask |= df[col].str.contains('|'.join(keywords), case=False, na=False)
+    
+    # Aplica a máscara global para filtrar as linhas com palavras-chave
+    filtered_df = df[global_mask]
+    
+    # Se uma blacklist é fornecida, aplica a blacklist para remover linhas indesejadas
+    if blacklist:
+        for col in columns:
+            # Cria uma máscara para excluir linhas com substrings da blacklist
+            blacklist_mask = ~filtered_df[col].str.contains('|'.join(blacklist), case=False, na=False)
+            # Aplica a máscara da blacklist
+            filtered_df = filtered_df[blacklist_mask]
+    
+    # Remove linhas duplicadas do resultado final
+    filtered_df = filtered_df.drop_duplicates().reset_index(drop=True)
+    
+    return filtered_df
 
-def create_index(es, indice_elasticsearch):
-    if not es.indices.exists(index=indice_elasticsearch):
-        es.indices.create(index=indice_elasticsearch)
-        print(f"Index '{indice_elasticsearch}' created.")
-    else:
-        print(f"Index '{indice_elasticsearch}' exists.")
 
 def get_all_origins():
     diretorio_inicial = f'{LOCAL}/data'
@@ -57,6 +55,19 @@ def get_all_origins():
     df = pd.concat(dataframes, ignore_index=True)
     return df
 
+def create_index(es, indice_elasticsearch):
+    if not es.indices.exists(index=indice_elasticsearch):
+        es.indices.create(index=indice_elasticsearch)
+        print(f"Index '{indice_elasticsearch}' created.")
+    else:
+        print(f"Index '{indice_elasticsearch}' exists.")
+
+def elasticsearch_ingestion(es, indice_elasticsearch, df):
+    create_index(es, indice_elasticsearch)
+    es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
+    success, errors = helpers.bulk(es, create_documents_with_pandas(df, indice_elasticsearch))
+    print(success, errors)
+
 def run(args):
     print("JOB_NAME: " + CONF["name"], end="")
     CONF.update(vars(args))
@@ -67,51 +78,37 @@ def run(args):
     es = create_connection()
     
     df = get_all_origins()
-    
-    print("brazil_supplement_whey")
-    sabores = ["banana cream", "baunilha", "beijinho", "beijinho de coco", "brigadeiro","brownie chocolate","cafe","cappuccino","caramelo crocante","cheesecake chocolate","cheesecake de maracuja","cheesecake de morango","chocolate","chocolate crocante","churros","cocco cioccolato","cocco e cioccolato","cookies","cookies cream","cookies e cream","doce de leite","dulce de leche premium","duo bianco al latte","leite cacau avela","leite de coco","limão","maracuja mousse","milho verde","morango","morango com chantilly","napolitano","pao de mel","peanut butter","strawberry milk shake","strawberry milkshake","torta al limone","torta cioccolato bianco","torta de banana","torta de limão","vanilla cream","vitamina de frutas"]
-    blacklist = ["barrinha", "barra", 'break', 'bar', 'wafer', 'kit', 'combo']
-    keywords = ['whey']
-    wordlist = [{"keywords": sabores, "type": "filter"}, {"keywords": blacklist, "type": "exclude"}]
+    df = df.drop_duplicates(subset='ref').reset_index(drop=True)
 
-    df_index = gen_destaques(wordlist, df)
-    df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(12)
+    wordlist = WORDLIST["supplement"]
 
-    indice_elasticsearch = 'brazil_supplement_whey'
-    create_index(es, indice_elasticsearch)
-    es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
-    print(success, errors)
-    
-    print("brazil_supplement_bar")
-    sabores = ["avela", "banoffee", "beijinho", "beijinho de coco", "berries crispies", "bombom de coco", "brigadeiro", "brownie chocolate", "brownie crispies", "cafe", "cafe doce de leite", "caramelo amendoim", "caramelo crocante", "cheesecake de maracuja", "cheesecake de morango", "chocolate", "churros", "cookie", "cookies cream", "crisp gourmet", "doce de leite", "dulce de leche e limao siciliano", "dulce de leche havanna", "duo bianco al latte", "floresta negra", "leite cacau avelã", "leite condensado", "morango com chantilly", "morango perfetto", "mousse de maracujá", "pacoca", "pacoca chocolate", "pao de mel", "peanut butter", "penaut caramel", "protein crisp", "torta al limone", "torta cioccolato bianco", "torta de banana", "torta de limao", "trufa de avelã", "trufa de chocolate", "trufa de morango"]
-    blacklist = ['wafer', 'kit', 'combo']
-    keywords = ['bar']
-    wordlist = [{"keywords": sabores, "type": "filter"}, {"keywords": blacklist, "type": "exclude"}]
+    message("set whey")
+    keywords = wordlist["whey"]["subject"]
+    barrinha = wordlist["barrinha"]["subject"]
+    alfajor = wordlist["alfajor"]["subject"]
+    wafer = wordlist["wafer"]["subject"]
+    blacklist = ["combo", "pack", "kit"] + barrinha + alfajor + wafer
 
-    df_index = gen_destaques(wordlist, df)
-    df_index = filter_title(df_index, keywords[0])
-    df_index = df_index.sample(12)
+    df_whey = filter_dataframe_for_columns(df, ["title", "spec_component"], keywords, blacklist)
+    df_whey = df_whey.sample(18)
+    print(df_whey)
+    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["whey"], df_whey)
 
-    indice_elasticsearch = 'brazil_supplement_bar'
-    create_index(es, indice_elasticsearch)
-    es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
-    print(success, errors)
+    message("set barrinha")
+    keywords = wordlist["barrinha"]["subject"]
+    blacklist = ["combo", "pack", "kit"]
 
-    print("brazil_supplement_preworkout")
-    keywords = ['pretreino', 'pre treino', 'preworkout', 'pre workout', 'workout']
-    blacklist = ['whey', 'creatina']
-    wordlist = [{"keywords": keywords, "type": "filter"},{"keywords": blacklist, "type": "exclude"}]
+    df_barrinha = filter_dataframe_for_columns(df, ["title", "spec_component"], keywords, blacklist)
+    df_barrinha = df_barrinha.sample(18)
+    print(df_barrinha)
+    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["bar"], df_barrinha)
 
-    df_index = gen_destaques(wordlist, df)
-    df_index = filter_title(df_index, keywords[0])
-    print(df_index)
-    df_index = df_index.sample(12)
+    message("set pretreino")
+    keywords = wordlist["pretreino"]["subject"]
+    beauty = wordlist["beauty"]["subject"]
+    blacklist = ["combo", "pack", "kit", "brain"] + beauty
 
-    indice_elasticsearch = 'brazil_supplement_preworkout'
-    create_index(es, indice_elasticsearch)
-    es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    success, errors = helpers.bulk(es, create_documents_with_pandas(df_index, indice_elasticsearch))
-    print(success, errors)
+    df_pretreino = filter_dataframe_for_columns(df, ["title", "spec_component"], keywords, blacklist)
+    df_pretreino = df_pretreino.sample(18)
+    print(df_pretreino)
+    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["preworkout"], df_pretreino)

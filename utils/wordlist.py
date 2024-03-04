@@ -142,11 +142,14 @@ SUPPLEMENT_COMPONENT_LIST = {
             "barrinha",
             "barra",
             "bar",
+            "crunch",
+            "snack",
         ],
         "may_contain": [
             "protein",
+            "whey",
         ],
-        "minimum_of_components": 1,
+        "minimum_of_components": 2,
         "subject_required_in_components": True,
         "not_contain": []
     },

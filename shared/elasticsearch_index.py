@@ -1,6 +1,11 @@
 INDEX_SUPPLEMENT_BRAZIL = {
     "index": "brazil_supplement_03032024",
-    "type": "supplement"
+    "type": "supplement",
+    "set": {
+        "whey": "brazil_supplement_whey_03032024",
+        "bar": "brazil_supplement_bar_03032024",
+        "preworkout": "brazil_supplement_preworkout_03032024"
+    }
 }
 
 def elasticsearch_index(product, synonyms_list):
