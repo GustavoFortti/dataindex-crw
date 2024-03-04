@@ -148,10 +148,6 @@ def check_component(specs, wordlist_item):
             specs_flatten = flatten_list(specs_temp)
 
             subject = wordlist_item['subject']
-            # Verifica se o componente específico está presente em 'spec_5'
-            is_in_spec_5 = any(term in specs_temp[0] for term in subject)
-            if (is_in_spec_5):
-                continue
             
             is_required = wordlist_item['subject_required_in_components']
             if (is_required):

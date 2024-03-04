@@ -786,15 +786,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "subject_required_in_components": False,
         "not_contain": []
     },
-    "nut": {
-        "subject": [
-            "nut"
-        ],
-        "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
-        "not_contain": []
-    },
     "oleo": {
         "subject": [
             "oleo"
