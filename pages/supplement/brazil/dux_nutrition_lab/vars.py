@@ -1,7 +1,7 @@
 JOB_NAME = "dux_nutrition_lab"
 BRAND = "dux nutrition lab"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'}
 ]
 

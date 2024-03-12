@@ -1,7 +1,7 @@
 JOB_NAME = "iridium_labs"
 BRAND = "iridium labs"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 't4s-product__description t4s-rte'}
 ]
 

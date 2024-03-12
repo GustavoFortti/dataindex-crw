@@ -25,6 +25,7 @@ job_names=(
     "under_labz"
     "vitafor"
     # "_set_"
+    # "_models_"
 )
 
 # Variáveis comuns para todos os jobs

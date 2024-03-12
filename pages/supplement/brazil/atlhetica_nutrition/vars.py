@@ -1,7 +1,7 @@
 JOB_NAME = "atlhetica_nutrition"
 BRAND = "atlhetica nutrition"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}
 ]
 

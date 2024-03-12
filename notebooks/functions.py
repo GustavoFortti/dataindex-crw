@@ -39,9 +39,9 @@ def clean_text(texto):
     # Remove tudo que não for letra, número ou espaço
     return remove_spaces(re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower())
 
-def get_all_origins():
+def get_all_origins(file):
     diretorio_inicial = local
-    nome_arquivo = 'origin_dry.csv'
+    nome_arquivo = file + '.csv'
 
     dataframes = []
 

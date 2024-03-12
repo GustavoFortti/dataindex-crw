@@ -1,9 +1,74 @@
+import re
+from copy import deepcopy
+
+from utils.general_functions import clean_text
 
 def get_synonyms(component_list):
     keywords_list = []
     for component, attributes in component_list.items():
         keywords_list.append(attributes.get("subject"))
     return keywords_list
+
+def get_word_index_in_text(word, text):
+    text_temp = deepcopy(text)
+    word_clean = clean_text(word, False, False, False)
+    matches = re.finditer(" " + word_clean, text_temp)
+
+    locations = []
+    for match in matches:
+        start_index = match.start()
+        locations.append(start_index)
+
+    return locations
+
+def get_back_words(text, text_accents, locations, word_size):
+    size_max = 30
+    slice_min = lambda value: value if value >= 0 else 0
+    slice_max = lambda value: value if value <= len(text) else len(text)
+
+    import pandas as pd
+    df = pd.DataFrame(columns=['back_words', 'back_words_original'])
+
+    for location in locations:
+        start = slice_min(location - size_max)
+        end = slice_max(location + (word_size + 1))
+
+        back_words = (text[start:end].replace("\n", ""))
+        back_words_original = (text_accents[start:end].replace("\n", ""))
+
+        back_words = back_words.split(" ")
+        back_words_original = back_words_original.split(" ")
+
+        df = df._append({'back_words': back_words, 'back_words_original': back_words_original}, ignore_index=True)
+
+    df.to_csv('back_words.csv', index=False)
+        # print(text[start:location + 1].split(" "))
+        # print(text_accents[start:location + 1].split(" "))
+
+        # is_only_one_word = False
+        # first_chat = (back_words[-word_size:])
+        # if (not first_chat.isalpha()):
+        #     is_only_one_word = True
+
+        # context_words = [i for i in back_words[:-word_size].split(" ") if i != '']
+        # print(context_words)
+
+    return
+
+def find_subject_in_wordlist(word, wordlist):
+    for values in wordlist.values():
+        subject = values['subject']
+        if (word in subject):
+            return subject
+
+def remove_prepositions_pronouns(text, pronouns):
+    pronouns = set(pronouns)
+
+    for pronoun in pronouns:
+        space_pronoun = " " * len(pronoun)
+        text = text.replace(pronoun, space_pronoun)
+    
+    return text
 
 BLACK_LIST = [
     "regata",
@@ -34,10 +99,6 @@ BLACK_LIST = [
     "moletom"
 ]
 
-"""
-
-"""
-
 SUPPLEMENT_COMPONENT_LIST = {
     "nac": {
         "subject": [
@@ -53,21 +114,17 @@ SUPPLEMENT_COMPONENT_LIST = {
             "aminoacido",
             "antioxidante",
         ],
-        "minimum_of_components": 2,
-        "subject_required_in_components": True,
         "not_contain": []
     },
     "albumina": {
         "subject": [
-            "albumina"
-            "albumin"
-            "albumi"
+            "albumina",
+            "albumin",
+            "albumi",
         ],
         "may_contain": [
             "egg",
         ],
-        "minimum_of_components": 1,
-        "subject_required_in_components": True,
         "not_contain": []
     },
     "alfajor": {
@@ -75,8 +132,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "alfajor"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "alho": {
@@ -84,8 +139,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "alho"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "aminoacido": {
@@ -93,8 +146,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "aminoacido"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "antiox": {
@@ -102,8 +153,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "antiox"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "antioxidante": {
@@ -111,8 +160,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "antioxidante"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "arginin": {
@@ -124,8 +171,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": 1,
-        "subject_required_in_components": True,
         "not_contain": []
     },
     "astaxantina": {
@@ -133,8 +178,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "astaxantina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "barrinha": {
@@ -142,15 +185,11 @@ SUPPLEMENT_COMPONENT_LIST = {
             "barrinha",
             "barra",
             "bar",
-            "crunch",
-            "snack",
         ],
         "may_contain": [
             "protein",
             "whey",
         ],
-        "minimum_of_components": 2,
-        "subject_required_in_components": True,
         "not_contain": []
     },
     "batata doce": {
@@ -158,8 +197,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "batata doce"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "bcaa": {
@@ -168,10 +205,11 @@ SUPPLEMENT_COMPONENT_LIST = {
             "bca"
         ],
         "may_contain": [
-            "aminoacido"
+            "aminoacido",
+            "leucina",
+            "valina",
+            "isoleucina",
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "beauty": {
@@ -180,8 +218,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "beleza"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "beef": {
@@ -193,8 +229,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "protein"
         ],
-        "minimum_of_components": 1,
-        "subject_required_in_components": True,
         "not_contain": []
     },
     "betaalanina": {
@@ -205,8 +239,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "alanine"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "betacaroteno": {
@@ -214,8 +246,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "betacaroteno"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "biotina": {
@@ -223,8 +253,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "biotina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "blend": {
@@ -233,8 +261,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "mistura"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "borragem": {
@@ -242,8 +268,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "borragem"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "cafein": {
@@ -256,8 +280,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "coffee"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "termogenico": {
@@ -273,8 +295,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "cafein",
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "calcio": {
@@ -282,8 +302,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "calcio"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "carboidrato": {
@@ -301,8 +319,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "carb",
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "carnitin": {
@@ -315,8 +331,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "cartamo": {
@@ -324,8 +338,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cartamo"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "caseinato": {
@@ -333,8 +345,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "caseinato"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "cha": {
@@ -342,17 +352,14 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cha"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
-    "cha verde": {
+    "chaverde": {
         "subject": [
+            "chaverde",
             "cha verde"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "chia": {
@@ -360,8 +367,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "chia"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "chocolate": {
@@ -369,8 +374,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "chocolate"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "cistein": {
@@ -379,8 +382,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lcisteina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "coco": {
@@ -389,8 +390,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "coco"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "colageno": {
@@ -399,8 +398,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "colagen"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "complexo b": {
@@ -409,8 +406,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "concentrad": {
@@ -418,8 +413,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "concentrad"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "creatina": {
@@ -433,8 +426,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "monohidratada",
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "crisp": {
@@ -442,8 +433,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "crisp"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "cromo": {
@@ -452,8 +441,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cromo"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "curcuma": {
@@ -462,8 +449,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "acafrao"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "dextrose": {
@@ -472,8 +457,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "maltodextrose"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "dribose": {
@@ -484,8 +467,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "dribose"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "egg": {
@@ -496,8 +477,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "protein"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "ervilha": {
@@ -508,8 +487,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "protein"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "espirulina": {
@@ -517,8 +494,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "espirulina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "fibra": {
@@ -526,8 +501,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "fibra"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "fosfatidilserina": {
@@ -535,17 +508,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "fosfatidilserina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "frutose": {
         "subject": [
             "frutose"
         ],
-        "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
+        "may_contain": [
+            "carboidrato"
+        ],
         "not_contain": []
     },
     "gengibre": {
@@ -553,8 +524,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "gengibre"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "gergelim": {
@@ -562,8 +531,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "gergelim"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "glutamin": {
@@ -576,8 +543,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido",
         ],
-        "minimum_of_components": 1,
-        "subject_required_in_components": True,
         "not_contain": [
             "whey"
         ]
@@ -588,8 +553,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cabelo"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "hialuronico": {
@@ -597,8 +560,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hialuronico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "hidrolisad": {
@@ -606,8 +567,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hidrolisad"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "hmb": {
@@ -618,8 +577,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "imune": {
@@ -628,8 +585,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "imunidade"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "iso": {
@@ -640,8 +595,14 @@ SUPPLEMENT_COMPONENT_LIST = {
             "isolada"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
+        "not_contain": []
+    },
+    "kit": {
+        "subject": [
+            "kit",
+            "combo",
+        ],
+        "may_contain": [],
         "not_contain": []
     },
     "krill": {
@@ -649,8 +610,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "krill"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "lecitina": {
@@ -658,8 +617,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lecitina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "leucin": {
@@ -671,8 +628,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "levagen": {
@@ -680,8 +635,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "levagen"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "linhaca": {
@@ -689,8 +642,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "linhaca"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "maca peruana": {
@@ -698,8 +649,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "maca peruana"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "magnesio": {
@@ -708,8 +657,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "magnesi"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "malto": {
@@ -718,9 +665,9 @@ SUPPLEMENT_COMPONENT_LIST = {
             "dextrina",
             "maltodextrina"
         ],
-        "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
+        "may_contain": [
+            "carboidrato"
+        ],
         "not_contain": []
     },
     "mass": {
@@ -733,8 +680,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "malto",
             "waxymaize"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "melatonina": {
@@ -743,8 +688,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "melatonina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "monohidratada": {
@@ -752,8 +695,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "monohidratada"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "multivitaminico": {
@@ -762,8 +703,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "polivitaminico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "minerail": {
@@ -772,8 +711,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "minerail"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "nail": {
@@ -782,8 +719,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "unha"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "oleo": {
@@ -791,8 +726,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "oleo"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "optimsm": {
@@ -800,28 +733,90 @@ SUPPLEMENT_COMPONENT_LIST = {
             "optimsm"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "palatinose": {
         "subject": [
-            "palatinose"
+            "palatinose",
+            "isomaltulose"
         ],
-        "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
+        "may_contain": [
+            "carboidrato"
+        ],
         "not_contain": []
     },
-    "pastadeamendoim": {
+    "enzima": {
+        "subject": [
+            "enzima",
+            "enzimas",
+            "enzyme",
+            "enzymes"
+        ],
+        "may_contain": [],
+        "not_contain": []
+    },
+    "protease": {
+        "subject": [
+            "protease",
+            "proteasa",
+            "protease"
+        ],
+        "may_contain": [
+            "enzima"
+        ],
+        "not_contain": []
+    },
+    "lactase": {
+        "subject": [
+            "lactase",
+            "lactasa",
+            "lactase"
+        ],
+        "may_contain": [
+            "enzima"
+        ],
+        "not_contain": []
+    },
+    "lipase": {
+        "subject": [
+            "lipase",
+            "lipasa",
+            "lipase"
+        ],
+        "may_contain": [
+            "enzima"
+        ],
+        "not_contain": []
+    },
+    "bromelina": {
+        "subject": [
+            "bromelina",
+            "bromelain",
+            "bromelina"
+        ],
+        "may_contain": [
+            "enzima"
+        ],
+        "not_contain": []
+    },
+    "amilase": {
+        "subject": [
+            "amilase",
+            "amylase",
+            "amilasa"
+        ],
+        "may_contain": [
+            "enzima"
+        ],
+        "not_contain": []
+    },
+    "peanut": {
         "subject": [
             "pasta de amendoim",
             "peanut",
             "amendoim"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "omega 3": {
@@ -832,8 +827,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "omega 3",
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "omega 6": {
@@ -842,8 +835,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "linoléico",
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "picolinato": {
@@ -852,8 +843,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "picolinato"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "pretreino": {
@@ -864,6 +853,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "workout",
             "work out",
             "pretrein",
+            "pre trein",
             "preworkout",
             "pre workout"
         ],
@@ -875,8 +865,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tyrosin",
             "pretreino",
         ],
-        "minimum_of_components": 2,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "primula": {
@@ -884,8 +872,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "primula"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "propoli": {
@@ -893,8 +879,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "propoli"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "protein": {
@@ -908,8 +892,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "iso", 
             "hidrolisad",
         ],
-        "minimum_of_components": 2,
-        "subject_required_in_components": True,
         "not_contain": []
     },
     "psyllium": {
@@ -917,8 +899,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "psyllium"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "quitosana": {
@@ -926,8 +906,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "quitosana"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "resveratrol": {
@@ -935,8 +913,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "resveratrol"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "rice": {
@@ -947,8 +923,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "protein"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "semente": {
@@ -956,8 +930,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "semente"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "skin": {
@@ -966,8 +938,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pele"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "soy": {
@@ -978,8 +948,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "protein"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "spirulina": {
@@ -987,8 +955,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "spirulina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "taurina": {
@@ -1000,8 +966,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "tempero": {
@@ -1009,17 +973,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tempero"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
-        "not_contain": []
-    },
-    "termogenico": {
-        "subject": [
-            "termogenico"
-        ],
-        "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "testofen": {
@@ -1027,8 +980,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "testofen"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "tyrosin": {
@@ -1046,17 +997,14 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ltirosine",
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "transresveratrol": {
         "subject": [
-            "transresveratrol"
+            "transresveratrol",
+            "trans resveratrol"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "triptofano": {
@@ -1066,8 +1014,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "leucina": {
@@ -1077,8 +1023,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "valina": {
@@ -1088,8 +1032,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "isoleucina": {
@@ -1099,8 +1041,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "lisina": {
@@ -1110,8 +1050,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "fenilalanina": {
@@ -1121,8 +1059,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "treonina": {
@@ -1132,8 +1068,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "metionina": {
@@ -1141,10 +1075,17 @@ SUPPLEMENT_COMPONENT_LIST = {
             "metionina"
         ],
         "may_contain": [
+            "aminoacido",
+        ],
+        "not_contain": []
+    },
+    "silimarina": {
+            "subject": [
+            "silimarina"
+        ],
+        "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "histidina": {
@@ -1156,8 +1097,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "may_contain": [
             "aminoacido"
         ],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "veg": {
@@ -1169,8 +1108,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vegana"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "verisol": {
@@ -1178,414 +1115,371 @@ SUPPLEMENT_COMPONENT_LIST = {
             "verisol"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina": {
         "subject": [
             "vitamina",
+            "vitaminas",
             "vitamin"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina a": {
         "subject": [
             "vitamina a"
+            "vitaminas a"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b1": {
         "subject": [
             "vitamina b1",
+            "vitaminas b1",
             "tiamina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b10": {
         "subject": [
             "vitamina b10",
+            "vitaminas b10",
             "paraaminobenzoico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b11": {
         "subject": [
             "vitamina b11",
+            "vitaminas b11",
             "salicilico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b12": {
         "subject": [
             "vitamina b12",
+            "vitaminas b12",
             "cobalamina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b13": {
         "subject": [
             "vitamina b13",
+            "vitaminas b13",
             "orotico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b15": {
         "subject": [
             "vitamina b15",
+            "vitaminas b15",
             "pangamico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b17": {
         "subject": [
             "vitamina b17",
+            "vitaminas b17",
             "amigdalina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b2": {
         "subject": [
             "vitamina b2",
+            "vitaminas b2",
             "riboflavina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b22": {
         "subject": [
             "vitamina b22",
+            "vitaminas b22",
             "ratanhia"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b3": {
         "subject": [
             "vitamina b3",
+            "vitaminas b3",
             "niacina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b4": {
         "subject": [
             "vitamina b4",
+            "vitaminas b4",
             "adenina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b5": {
         "subject": [
             "vitamina b5",
+            "vitaminas b5",
             "pantotenico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b6": {
         "subject": [
             "vitamina b6",
+            "vitaminas b6",
             "piridoxina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b7": {
         "subject": [
             "vitamina b7",
+            "vitaminas b7",
             "biotina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b8": {
         "subject": [
             "vitamina b8",
+            "vitaminas b8",
             "inositol"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina b9": {
         "subject": [
             "vitamina b9",
+            "vitaminas b9",
             "folico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina c": {
         "subject": [
             "vitamina c",
+            "vitaminas c",
             "ascorbico",
             "ascorbato",
             "ascorbila",
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina d": {
         "subject": [
             "vitamina d",
+            "vitaminas d",
             "calciferol"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina e": {
         "subject": [
             "vitamina e",
+            "vitaminas e",
             "tocoferol"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina f": {
         "subject": [
             "vitamina f",
+            "vitaminas f",
             "graxos essenciais"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina g": {
         "subject": [
             "vitamina g",
+            "vitaminas g",
             "monofosfato de nicotinamida"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina h": {
         "subject": [
             "vitamina h",
+            "vitaminas h",
             "biotina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina j": {
         "subject": [
             "vitamina j",
+            "vitaminas j",
             "lipoico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina k": {
         "subject": [
             "vitamina k",
+            "vitaminas k",
             "filoquinona"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina k1": {
         "subject": [
             "vitamina k1",
+            "vitaminas k1",
             "fitoquinona"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina k2": {
         "subject": [
             "vitamina k2",
+            "vitaminas k2",
             "menaquinona"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina k7": {
         "subject": [
             "vitamina k7",
+            "vitaminas k7",
             "mk7"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina l": {
         "subject": [
             "vitamina l",
+            "vitaminas l",
             "adipico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina l1": {
         "subject": [
             "vitamina l1"
+            "vitaminas l1"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina l2": {
         "subject": [
             "vitamina l2"
+            "vitaminas l2"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina m": {
         "subject": [
             "vitamina m"
+            "vitaminas m"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina n": {
         "subject": [
             "vitamina n",
+            "vitaminas n",
             "pantotenico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina o": {
         "subject": [
             "vitamina o"
+            "vitaminas o"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina p": {
         "subject": [
             "vitamina p",
+            "vitaminas p",
             "bioflavonoides"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina q": {
         "subject": [
             "vitamina q",
+            "vitaminas q",
             "coenzima q10"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina r": {
         "subject": [
             "vitamina r",
+            "vitaminas r",
             "flavina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina s": {
         "subject": [
             "vitamina s",
+            "vitaminas s",
             "aminobenzoico"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina t": {
         "subject": [
             "vitamina t",
+            "vitaminas t",
             "bioflavonoides"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "vitamina w": {
         "subject": [
             "vitamina w"
+            "vitaminas w"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "wafer": {
@@ -1596,18 +1490,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cookie"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "waxymaize": {
         "subject": [
+            "waxymaize",
             "waxy maize",
             "amido de milho"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "whey": {
@@ -1621,8 +1512,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "iso",
             "hidrolisad",
         ],
-        "minimum_of_components": 2,
-        "subject_required_in_components": True,
         "not_contain": [
             "barrinha",
             "alfajor",
@@ -1637,8 +1526,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "adocante"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "zeaxantina": {
@@ -1646,8 +1533,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zeaxantina"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "zinco": {
@@ -1657,8 +1542,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zinco"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     },
     "zma": {
@@ -1666,8 +1549,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zma"
         ],
         "may_contain": [],
-        "minimum_of_components": None,
-        "subject_required_in_components": False,
         "not_contain": []
     }
 }

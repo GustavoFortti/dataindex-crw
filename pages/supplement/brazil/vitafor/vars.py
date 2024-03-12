@@ -1,7 +1,7 @@
 JOB_NAME = "vitafor"
 BRAND = "vitafor"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     # {'tag': 'p', 'class': 'vitafor-store-theme-7-x-productPageShortDescription'},
     {'tag': 'div', 'class': 'vitafor-store-theme-7-x-description'}
 ]

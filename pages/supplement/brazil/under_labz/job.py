@@ -3,13 +3,13 @@ from config.env import LOCAL
 from .extract import extract
 from .dry import dry
 from .vars import (
-    PRODUCT_DESC_TAG, 
+    PRODUCT_DEFINITION_TAG, 
     DYNAMIC_SCROLL, 
     JOB_NAME, 
     BRAND
 )
 
-from utils.wordlist import WORDLIST
+from utils.wordlist import WORDLIST, PRONOUNS
 from utils.general_functions import create_directory_if_not_exists
 
 from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
@@ -18,11 +18,13 @@ from shared.ingestion import ingestion
 conf = {
     "name": JOB_NAME,
     "wordlist": WORDLIST["supplement"],
+    "pronouns": PRONOUNS["brazil"],
     "brand": BRAND,
-    "product_desc_tag": PRODUCT_DESC_TAG,
+    "product_definition_tag": PRODUCT_DEFINITION_TAG,
     "dynamic_scroll": DYNAMIC_SCROLL,
     "data_path": f"{LOCAL}/data/supplement/brazil/{JOB_NAME}",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/{JOB_NAME}",
+    "models_path": f"{LOCAL}/data/supplement/brazil/_models_",
     "index_name": INDEX_SUPPLEMENT_BRAZIL["index"],
     "index_type": INDEX_SUPPLEMENT_BRAZIL["type"]
 }

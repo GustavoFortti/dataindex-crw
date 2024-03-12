@@ -1,7 +1,7 @@
 JOB_NAME = "puravida"
 BRAND = "puravida"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
 ]
 

@@ -1,7 +1,7 @@
 JOB_NAME = "boldsnacks"
 BRAND = "boldsnacks"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'product__description'},
 ]
 

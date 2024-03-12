@@ -1,7 +1,7 @@
 JOB_NAME = "max_titanium"
 BRAND = "max titanium"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'},
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow vtex-flex-layout-0-x-flexRow--specification'}
 ]

@@ -33,6 +33,10 @@ def read_json(file_path):
         message(f"Um erro ocorreu ao ler o arquivo {file_path}: {e}")
         return None
 
+def save_json(file_name, data):
+    with open(file_name, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False)
+
 def delete_file(file_path):
     try:
         os.remove(file_path)
@@ -61,27 +65,55 @@ def create_file_if_not_exists(file_path, text=False):
 def encode_base64(val):
     return base64.b64encode(val.encode('utf-8')).decode('utf-8')
 
+def generate_numeric_hash(data):
+    hash_value = hash(data)
+    numeric_hash = abs(hash_value)
+    
+    return numeric_hash
+
 def generate_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
 
-def clean_text(texto, clean_spaces=True, remove_final_s=False):
+def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_line=True, remove_accents=False):
     if isinstance(texto, str):
-        texto = unicodedata.normalize('NFKD', texto)
-        texto = "".join([c for c in texto if not unicodedata.combining(c)])
-        
-        texto = re.sub(r'[^\w\s]', ' ', texto)
-        
-        texto = re.sub(r'[^A-Za-z0-9 ]+', '', texto).lower()
-        
-        if (clean_spaces):
-            texto = remove_spaces(texto)
+        original_length = len(texto)
 
-        if (remove_final_s):
-            texto = re.sub(r'(?<!s)s\b', '', texto)
+        if remove_accents:
+            # Substituir acentos pelos caracteres sem acento, sem modificar o tamanho do texto.
+            texto = unicodedata.normalize('NFKD', texto)
+            texto = ''.join([c if not unicodedata.combining(c) else '' for c in texto])
+        else:
+            # Manter o texto como está, sem alterar os acentos.
+            texto = texto
+
+        # Substituir caracteres não alfanuméricos (exceto espaços) por espaços, mantendo o comprimento.
+        texto = re.sub(r'[^\w\s]', lambda match: ' ' if match.group(0) != ' ' else ' ', texto)
+        
+        if remove_break_line:
+            # Substituir quebras de linha por espaços.
+            texto = re.sub(r'\n', ' ', texto)
+        
+        if remove_final_s:
+            # Substituir 's' no final de palavras por espaços, mantendo o comprimento.
+            texto = re.sub(r's\b', ' ', texto)
+
+        if clean_spaces:
+            # Neste caso, permitir que o tamanho do texto se altere, removendo espaços extras.
+            texto = re.sub(r'\s+', ' ', texto).strip()
+        else:
+            # Ajustar espaços sem alterar o comprimento do texto.
+            texto = re.sub(r'\s+', lambda match: ' ' * len(match.group(0)), texto)
+
+        # Manter o texto em minúsculas.
+        texto = texto.lower()
+
+        # Ajustar o texto para garantir que ele tenha exatamente o mesmo número de caracteres que o original, se não estiver removendo espaços.
+        if not clean_spaces:
+            texto = texto.ljust(original_length)[:original_length]
 
         return texto
     return texto
-    
+
 def list_directory(path):
     try:
         # Check if the path is a valid directory
@@ -440,3 +472,18 @@ def flatten_list(list_of_lists):
         else:
             flattened_list.append(element)
     return flattened_list
+
+def get_all_dfs_in_dir(path, file):
+    nome_arquivo = file + '.csv'
+
+    dataframes = []
+
+    for pasta_raiz, _, arquivos in os.walk(path):
+        for nome_arquivo_encontrado in arquivos:
+            if nome_arquivo_encontrado == nome_arquivo:
+                caminho_completo = os.path.join(pasta_raiz, nome_arquivo_encontrado)
+                df = pd.read_csv(caminho_completo)
+                dataframes.append(df)
+
+    df = pd.concat(dataframes, ignore_index=True)
+    return df

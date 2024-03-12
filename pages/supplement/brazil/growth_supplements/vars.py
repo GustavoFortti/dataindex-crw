@@ -1,7 +1,7 @@
 JOB_NAME = "growth_supplements"
 BRAND = "growth supplements"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'section', 'class': 'breadcrumb-produto'}
 ]
 

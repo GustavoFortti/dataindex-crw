@@ -38,7 +38,7 @@ def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
 
 
 def get_all_origins():
-    diretorio_inicial = f'{LOCAL}/data'
+    diretorio_inicial = f'{LOCAL}/data/supplement/brazil'
     nome_arquivo = 'origin_csl.csv'
 
     dataframes = []

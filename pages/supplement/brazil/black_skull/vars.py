@@ -1,7 +1,7 @@
 JOB_NAME = "black_skull"
 BRAND = "black skull"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'},
     {'tag': 'div', 'class': 'vtex-full-description-box'}
 ]

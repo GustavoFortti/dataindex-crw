@@ -1,7 +1,7 @@
 JOB_NAME = "integralmedica"
 BRAND = "integralmedica"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'section', 'class': '__bs_product-breadcrumb'}
 ]
 

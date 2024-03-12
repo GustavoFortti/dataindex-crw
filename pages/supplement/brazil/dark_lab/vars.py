@@ -1,7 +1,7 @@
 JOB_NAME = "dark_lab"
 BRAND = "dark lab"
 
-PRODUCT_DESC_TAG = [
+PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'breadcrumbs'},
 ]
 
