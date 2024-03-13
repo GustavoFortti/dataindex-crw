@@ -9,12 +9,14 @@ import requests
 import statistics
 import unicodedata
 import pandas as pd
+
 from glob import glob
 from PIL import Image
-from utils.log import message
 from datetime import date, timedelta
 from fake_useragent import UserAgent
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
+from utils.log import message
 
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -74,7 +76,7 @@ def generate_numeric_hash(data):
 def generate_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
 
-def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_line=True, remove_accents=False):
+def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_line=True, remove_accents=True, add_space_firts=False):
     if isinstance(texto, str):
         original_length = len(texto)
 
@@ -96,6 +98,10 @@ def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_lin
         if remove_final_s:
             # Substituir 's' no final de palavras por espaços, mantendo o comprimento.
             texto = re.sub(r's\b', ' ', texto)
+        
+        if add_space_firts:
+            # Adiciona um espaço no inicio de todo texto
+            texto = " " + texto
 
         if clean_spaces:
             # Neste caso, permitir que o tamanho do texto se altere, removendo espaços extras.

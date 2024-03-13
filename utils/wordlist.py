@@ -11,7 +11,7 @@ def get_synonyms(component_list):
 
 def get_word_index_in_text(word, text):
     text_temp = deepcopy(text)
-    word_clean = clean_text(word, False, False, False)
+    word_clean = clean_text(word, False, False, False, True)
     matches = re.finditer(" " + word_clean, text_temp)
 
     locations = []
@@ -24,36 +24,23 @@ def get_word_index_in_text(word, text):
 def get_back_words(text, text_accents, locations, word_size):
     size_max = 30
     slice_min = lambda value: value if value >= 0 else 0
-    slice_max = lambda value: value if value <= len(text) else len(text)
-
-    import pandas as pd
-    df = pd.DataFrame(columns=['back_words', 'back_words_original'])
-
+    erro_words = []
+    erro_words = []
+    back_words = []
     for location in locations:
         start = slice_min(location - size_max)
-        end = slice_max(location + (word_size + 1))
 
-        back_words = (text[start:end].replace("\n", ""))
-        back_words_original = (text_accents[start:end].replace("\n", ""))
+        back_words_aux = (text_accents[start:location].replace("\n", ""))
+        back_words_aux = [i for i in back_words_aux.split(" ") if i != '']
+        back_words.append(back_words_aux)
 
-        back_words = back_words.split(" ")
-        back_words_original = back_words_original.split(" ")
+        first_chat = text_accents[start:location + 1].replace("\n", "")[-1:]
+        if (first_chat.isalpha()):
+            erro_words.append(True)
+        else:
+            erro_words.append(False)
 
-        df = df._append({'back_words': back_words, 'back_words_original': back_words_original}, ignore_index=True)
-
-    df.to_csv('back_words.csv', index=False)
-        # print(text[start:location + 1].split(" "))
-        # print(text_accents[start:location + 1].split(" "))
-
-        # is_only_one_word = False
-        # first_chat = (back_words[-word_size:])
-        # if (not first_chat.isalpha()):
-        #     is_only_one_word = True
-
-        # context_words = [i for i in back_words[:-word_size].split(" ") if i != '']
-        # print(context_words)
-
-    return
+    return back_words, erro_words
 
 def find_subject_in_wordlist(word, wordlist):
     for values in wordlist.values():

@@ -84,7 +84,7 @@ def data_enrichment(conf, df):
     df = df[~df['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
 
     
-    df = df[df['ref'].isin(["e266cf88", "46f6caa2", "ee122115", "8b5f971a"])]
+    # df = df[df['ref'].isin(["08b35dad"])]
     message("Criando colunas de definição para produtos")
     df = create_product_definition_columns(df, CONF)
     exit()

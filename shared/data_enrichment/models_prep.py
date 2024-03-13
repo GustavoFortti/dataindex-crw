@@ -11,6 +11,7 @@ from utils.general_functions import (
     path_exist,
     delete_file,
     save_json,
+    flatten_list,
     read_json,
     generate_numeric_hash,
 )
@@ -35,9 +36,12 @@ def load_models_prep(df, conf):
     DATA_PATH = CONF["data_path"]
 
     keywords_json_file = f"{DATA_PATH}/keywords.json"
-    keywords_data = extract_keywords_from_products(df)
-    exit()
     
+    # keywords_data = extract_keywords_from_products(df)
+    # save_json(keywords_json_file, keywords_data)
+    # exit()
+    
+    # usado para desenvolvimento
     if (not path_exist(keywords_json_file)):
         keywords_data = extract_keywords_from_products(df)
         save_json(keywords_json_file, keywords_data)
@@ -51,14 +55,43 @@ def load_models_prep(df, conf):
     delete_file(file_path_x)
     delete_file(file_path_y)
 
+    df_back_words = None
     for idx, row in df.iterrows():
         ref = row['ref']
+        message(f"Preparando {ref}")
+        
+        df_back_words = create_back_words_df(df_back_words, ref, keywords_data)
 
         keywords_exponent = lambda index: exponent if ((index > 0) & (index < (len(keywords_data[ref]) - 1))) else 1
         keywords_score = [calc_keywords_score(keywords, keywords_exponent(index))
                           if keywords != {} else None for index, keywords in enumerate(keywords_data[ref])]
         
         export_keywords_score(ref, keywords_score)
+    
+    back_words_file = f"{DATA_PATH}/back_words.csv"
+    df_back_words.to_csv(back_words_file)
+    message("Preparação para os modelos finalizada com sucesso!")
+
+def create_back_words_df(df, ref, keywords_data):
+    title_keywords = keywords_data[ref][0]
+    if not title_keywords:
+        return df
+
+    subjects = {entry['subject'] for entry in title_keywords.values()}
+    data = []
+    for keywords_exclude_title in keywords_data[ref][1:]:
+        back_words = [{"ref": ref, "back_word": word, "location": entry['location'], "subject": entry['subject']} 
+                      for entry in keywords_exclude_title.values() 
+                      if entry['subject'] in subjects 
+                      for word in entry.get('back_words', [])]
+        data.extend(back_words)
+
+    new_df = pd.DataFrame(data)
+    if df is None:
+        return new_df
+    new_df = pd.concat([df, new_df]).reset_index(drop=True)
+    new_df['row_number'] = new_df.groupby(['ref', 'location']).cumcount() + 1
+    return new_df
 
 def export_keywords_score(ref, keywords_score):
     keys = list(WORDLIST.keys())
@@ -272,6 +305,64 @@ def extract_subject_from_html_text(html_text, tag=None):
 
     return text
 
+def extract_keywords_from_products(df):
+    keywords_data = {}
+    for idx, row in df.iterrows():
+        ref = row['ref']
+        title = row['title']
+        
+        message(f"extraindo dados de {ref} - {title}")
+
+        page_path = f"{DATA_PATH}/products/{ref}.txt"
+
+        html_text = read_file(page_path)
+
+        product_documents = []
+
+        product_documents.append(title)
+
+        product_documents.extend([extract_subject_from_html_text(html_text, tag) for tag in  CONF["product_definition_tag"]])
+
+        text_from_html = extract_subject_from_html_text(html_text)
+        product_documents.append(text_from_html)
+
+        keywords_info = [get_keywords_info(document) for document in product_documents]
+        keywords_data[ref] = keywords_info
+    
+    return keywords_data
+
+def get_keywords_info(document):
+    documents_accents = clean_text(document, False, False, False, False, True)
+    documents_cleaned = clean_text(document, False, False, False, True, True)
+
+    keywords_info = {}
+    for key, value in WORDLIST.items():
+        subject = value['subject']
+
+        for word in subject:
+            locations = get_word_index_in_text(word, documents_cleaned)
+            if (locations != []):
+                back_words, erro_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
+
+                for location, sub_back_words, erro_word in zip(locations, back_words, erro_words):
+                    if (erro_word):
+                        continue
+
+                    keywords_info[f"{word}_{location}"] = {}
+                    keywords_info[f"{word}_{location}"]["location"] = location
+                    keywords_info[f"{word}_{location}"]["word_number"] = len(documents_cleaned[:location].split())
+                    keywords_info[f"{word}_{location}"]["size_word"] = len(word)
+                    keywords_info[f"{word}_{location}"]["qnt_locations"] = len(locations)
+                    keywords_info[f"{word}_{location}"]["subject"] = key
+                    keywords_info[f"{word}_{location}"]["back_words"] = sub_back_words[-3:]
+
+    if (keywords_info == {}):
+        return {}
+    
+    keywords_info = filter_unique_locations(keywords_info)
+    keywords_info = normalize_data(keywords_info, ["location"])
+    return keywords_info
+
 def filter_unique_locations(data):
     sorted_items = sorted(data.items(), key=lambda x: (x[1]['location'], -x[1]['size_word']))
 
@@ -338,67 +429,6 @@ def normalize_list_of_dicts(data, columns):
         normalized_data.append(normalized_entry)
 
     return normalized_data
-
-def extract_keywords_from_products(df):
-    keywords_data = {}
-    for idx, row in df.iterrows():
-        ref = row['ref']
-        title = row['title']
-        
-        message(f"{ref} - {title}")
-
-        page_path = f"{DATA_PATH}/products/{ref}.txt"
-
-        html_text = read_file(page_path)
-
-        product_documents = []
-
-        product_documents.append(title)
-
-        product_documents.extend([extract_subject_from_html_text(html_text, tag) for tag in  CONF["product_definition_tag"]])
-        get_keywords_info(product_documents[1])
-        continue
-        exit()
-
-        text_from_html = extract_subject_from_html_text(html_text)
-        product_documents.append(text_from_html)
-
-        keywords_info = [get_keywords_info(document) for document in product_documents]
-        keywords_data[ref] = keywords_info
-    
-    return keywords_data
-
-def get_keywords_info(document):
-    documents_accents = clean_text(document, False, False, False, False)
-    documents_cleaned = clean_text(document, False, False, False, True)
-    documents_cleaned = remove_prepositions_pronouns(documents_cleaned, PRONOUNS)
-
-    keywords_info = {}
-    for key, value in WORDLIST.items():
-        subject = value['subject']
-
-        for word in subject:
-            if (word not in ['pretreino', 'pre-treino', 'workout', 'work out', 'pretrein', 'pre trein', 'preworkout', 'pre workout']):
-                continue
-            locations = get_word_index_in_text(word, documents_cleaned)
-            print(word)
-            print(locations)
-            if (locations != []):
-                back_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
-                for location in locations:
-                    keywords_info[f"{word}_{location}"] = {}
-                    keywords_info[f"{word}_{location}"]["location"] = location
-                    keywords_info[f"{word}_{location}"]["word_number"] = len(documents_cleaned[:location].split())
-                    keywords_info[f"{word}_{location}"]["size_word"] = len(word)
-                    keywords_info[f"{word}_{location}"]["qnt_locations"] = len(locations)
-                    keywords_info[f"{word}_{location}"]["subject"] = key
-
-    if (keywords_info == {}):
-        return {}
-    
-    keywords_info = filter_unique_locations(keywords_info)
-    keywords_info = normalize_data(keywords_info, ["location"])
-    return keywords_info
 
 def normalize_rows(df, exclude_columns):
     # Cria uma cópia do DataFrame para não modificar o original.
