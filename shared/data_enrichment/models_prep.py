@@ -1,3 +1,4 @@
+import ast
 import numpy as np
 import pandas as pd
 
@@ -50,48 +51,97 @@ def load_models_prep(df, conf):
 
     exponent = 8 # calc_best_exponent(df, keywords_data)
 
-    file_path_x = f"{DATA_PATH}/model_x.csv"
-    file_path_y = f"{DATA_PATH}/model_y.csv"
-    delete_file(file_path_x)
-    delete_file(file_path_y)
+    global FILE_PATH_X
+    global FILE_PATH_Y
+    global PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE
+    global PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE
+    global PATH_BACK_WORDS_WITHOUT_TITLE
 
-    df_back_words = None
+    FILE_PATH_X = f"{DATA_PATH}/model_x.csv"
+    FILE_PATH_Y = f"{DATA_PATH}/model_y.csv"
+    PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE = f"{DATA_PATH}/back_words_contained_in_the_title.csv"
+    PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE = f"{DATA_PATH}/back_words_not_contained_in_the_title.csv"
+    PATH_BACK_WORDS_WITHOUT_TITLE = f"{DATA_PATH}/back_words_without_title.csv"
+
+    delete_file(FILE_PATH_X)
+    delete_file(FILE_PATH_Y)
+    delete_file(PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE)
+    delete_file(PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE)
+    delete_file(PATH_BACK_WORDS_WITHOUT_TITLE)
+
     for idx, row in df.iterrows():
         ref = row['ref']
         message(f"Preparando {ref}")
         
-        df_back_words = create_back_words_df(df_back_words, ref, keywords_data)
+        create_back_words_data(ref, keywords_data)
 
         keywords_exponent = lambda index: exponent if ((index > 0) & (index < (len(keywords_data[ref]) - 1))) else 1
         keywords_score = [calc_keywords_score(keywords, keywords_exponent(index))
                           if keywords != {} else None for index, keywords in enumerate(keywords_data[ref])]
         
         export_keywords_score(ref, keywords_score)
-    
-    back_words_file = f"{DATA_PATH}/back_words.csv"
-    df_back_words.to_csv(back_words_file)
-    message("Preparação para os modelos finalizada com sucesso!")
 
-def create_back_words_df(df, ref, keywords_data):
+def create_back_words_data(ref, keywords_data):
     title_keywords = keywords_data[ref][0]
-    if not title_keywords:
-        return df
+    subjects = {keyword['subject'] for keyword in title_keywords.values()}
+    if (title_keywords != {}):
+        dfs = []
+        for contained in (True, False):
+            df_title_back_words = pd.concat([create_back_words_dataframe(keywords_exclude_title, subjects, ref, contained) 
+                                     for keywords_exclude_title in keywords_data[ref][1:]], ignore_index=True)
+            dfs.append(df_title_back_words)
+        
+        df_contained_in_the_title = dfs[0]
+        df_not_contained_in_the_title = dfs[1]
+        
+        append_new_df_and_save(PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE, df_contained_in_the_title)
+        append_new_df_and_save(PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE, df_not_contained_in_the_title)
+    else:
+        df_back_words_without_title = pd.concat([create_back_words_dataframe(keywords_exclude_title, subjects, ref, False) 
+                                    for keywords_exclude_title in keywords_data[ref][1:]], ignore_index=True)
+        
+        
+        append_new_df_and_save(PATH_BACK_WORDS_WITHOUT_TITLE, df_back_words_without_title)
 
-    subjects = {entry['subject'] for entry in title_keywords.values()}
-    data = []
-    for keywords_exclude_title in keywords_data[ref][1:]:
-        back_words = [{"ref": ref, "back_word": word, "location": entry['location'], "subject": entry['subject']} 
-                      for entry in keywords_exclude_title.values() 
-                      if entry['subject'] in subjects 
-                      for word in entry.get('back_words', [])]
-        data.extend(back_words)
+def create_back_words_dataframe(keywords_exclude_title, subjects, ref, contained):
+    back_words = [
+        {
+            "ref": ref, 
+            "back_word": keyword['back_words'], 
+            "location": keyword['location'], 
+            "subject": keyword['subject']
+        } 
+        for keyword in keywords_exclude_title.values() 
+        if (keyword['subject'] in subjects) == contained 
+    ]
 
-    new_df = pd.DataFrame(data)
-    if df is None:
-        return new_df
-    new_df = pd.concat([df, new_df]).reset_index(drop=True)
-    new_df['row_number'] = new_df.groupby(['ref', 'location']).cumcount() + 1
-    return new_df
+    df = pd.DataFrame(back_words)
+
+    split_columns = df['back_word'].apply(pd.Series)
+    split_columns.columns = ['word_1', 'word_2', 'word_3', 'word_4', 'word_5']
+
+    # Merging the split columns back with the original dataframe
+    df = pd.concat([df.drop('back_word', axis=1), split_columns], axis=1)
+    df = shift_words(df, split_columns.columns)
+    
+    print(df)
+    exit()
+    if not df.empty:
+        df['row_number'] = df.groupby(['ref', 'location']).cumcount() + 1
+    return df
+
+def shift_words(df, columns):
+    def shift_words_to_right(row):
+        words = [row[col] for col in columns]
+        filtered_words = [w for w in words if pd.notnull(w)]
+        none_filled = [None] * (len(columns) - len(filtered_words))
+        return none_filled + filtered_words
+
+    for index, row in df.iterrows():
+        new_words = shift_words_to_right(row)
+        for i, col in enumerate(columns):
+            df.at[index, col] = new_words[i]
+    return df
 
 def export_keywords_score(ref, keywords_score):
     keys = list(WORDLIST.keys())
@@ -161,16 +211,10 @@ def save_model_df(df):
     cols_with_target = [col for col in df.columns if 'target' in col]
     df_y = df[['ref'] + cols_with_target]
 
-    file_path_x = f"{DATA_PATH}/model_x.csv"
-    file_path_y = f"{DATA_PATH}/model_y.csv"
-    if (path_exist(file_path_x) & path_exist(file_path_y)):
-        df_x = pd.concat([pd.read_csv(file_path_x), df_x], ignore_index=True)
-        df_y = pd.concat([pd.read_csv(file_path_y), df_y], ignore_index=True)
-    
     df_y = convert_float_to_int(df_y, ['ref'])
 
-    df_x.to_csv(file_path_x, index=False)
-    df_y.to_csv(file_path_y, index=False)
+    append_new_df_and_save(FILE_PATH_X, df_x)
+    append_new_df_and_save(FILE_PATH_Y, df_y)
 
 def convert_float_to_int(df, exclude_cols):
     df_copy = df.copy()
@@ -269,42 +313,6 @@ def calc_keywords_score(keywords, exponent):
 
     return keywords_data
 
-def extract_subject_from_html_text(html_text, tag=None):
-    soup = BeautifulSoup(html_text, 'html.parser')
-    text = ""
-
-    if (not tag):
-        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']
-        for remove_tag in remove_tags:
-            for tag in soup.find_all(remove_tag):
-                tag.decompose()
-
-        tags_com_hidden = soup.find_all(lambda tag: tag.get('class') and 'hidden' in ' '.join(tag.get('class')))
-        for tag in tags_com_hidden:
-            tag.extract()
-            
-        def remove_empty_tags(tag):
-            if not tag.text.strip():
-                tag.extract()
-
-        for tag in soup.find_all():
-            remove_empty_tags(tag)
-
-        tags_with_char_count = [(tag, len(tag.get_text(strip=True))) for tag in soup.find_all()]
-        sorted_tags = sorted(tags_with_char_count, key=lambda x: x[1], reverse=True)
-        half_count = int(len(sorted_tags) // 3)
-
-        for tag, _ in sorted_tags[half_count:]:
-            tag.decompose()
-
-        text = soup.get_text()
-    else:
-        html = soup.find(tag['tag'], class_=tag['class'])
-        if (html != None):
-            text = html.text
-
-    return text
-
 def extract_keywords_from_products(df):
     keywords_data = {}
     for idx, row in df.iterrows():
@@ -354,7 +362,7 @@ def get_keywords_info(document):
                     keywords_info[f"{word}_{location}"]["size_word"] = len(word)
                     keywords_info[f"{word}_{location}"]["qnt_locations"] = len(locations)
                     keywords_info[f"{word}_{location}"]["subject"] = key
-                    keywords_info[f"{word}_{location}"]["back_words"] = sub_back_words[-3:]
+                    keywords_info[f"{word}_{location}"]["back_words"] = sub_back_words[-5:]
 
     if (keywords_info == {}):
         return {}
@@ -452,3 +460,48 @@ def normalize_rows(df, exclude_columns):
             df_normalized.loc[index, ~df_normalized.columns.isin(exclude_columns)] = 0
         
     return df_normalized
+
+def extract_subject_from_html_text(html_text, tag=None):
+    soup = BeautifulSoup(html_text, 'html.parser')
+    text = ""
+
+    if (not tag):
+        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']
+        for remove_tag in remove_tags:
+            for tag in soup.find_all(remove_tag):
+                tag.decompose()
+
+        tags_com_hidden = soup.find_all(lambda tag: tag.get('class') and 'hidden' in ' '.join(tag.get('class')))
+        for tag in tags_com_hidden:
+            tag.extract()
+            
+        def remove_empty_tags(tag):
+            if not tag.text.strip():
+                tag.extract()
+
+        for tag in soup.find_all():
+            remove_empty_tags(tag)
+
+        tags_with_char_count = [(tag, len(tag.get_text(strip=True))) for tag in soup.find_all()]
+        sorted_tags = sorted(tags_with_char_count, key=lambda x: x[1], reverse=True)
+        half_count = int(len(sorted_tags) // 3)
+
+        for tag, _ in sorted_tags[half_count:]:
+            tag.decompose()
+
+        text = soup.get_text()
+    else:
+        html = soup.find(tag['tag'], class_=tag['class'])
+        if (html != None):
+            text = html.text
+
+    return text
+
+def append_new_df_and_save(path, new_df):
+    if path_exist(path):
+        existing_df = pd.read_csv(path)
+        combined_df = pd.concat([existing_df, new_df], ignore_index=True)
+    else:
+        combined_df = new_df
+    
+    combined_df.to_csv(path, index=False)

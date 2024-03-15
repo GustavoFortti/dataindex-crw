@@ -1,4 +1,5 @@
 import re
+import numpy as np
 from copy import deepcopy
 
 from utils.general_functions import clean_text
@@ -24,7 +25,6 @@ def get_word_index_in_text(word, text):
 def get_back_words(text, text_accents, locations, word_size):
     size_max = 30
     slice_min = lambda value: value if value >= 0 else 0
-    erro_words = []
     erro_words = []
     back_words = []
     for location in locations:
@@ -1549,6 +1549,8 @@ relative_pronouns = ["Que", "Qual", "Quem", "Onde", "Cujo", "O qual", "Cuja", "Q
 interrogative_pronouns = ["Quem", "O que", "Qual", "Quanto", "Onde", "Quando", "Como", "Por que", "Qualquer coisa", "Quanto a"]
 prepositions = ["A", "Ante", "Até", "Após", "Com", "Contra", "De", "Desde", "Em", "Entre", "Para", "Por", "Perante", "Sem", "Sob", "Sobre", "Trás", "Conforme", "Contudo", "Durante", "Exceto", "Mediant", "Menos", "Salvo", "Segundo", "Visto"]
 BRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns + possessive_pronouns + indefinite_pronouns + relative_pronouns + interrogative_pronouns + prepositions
+
+BRAZI_CONECTORES = ['e', 'ou', 'nem', 'mas', 'porque', 'como', 'apesar', 'além', 'entretanto', 'porém', 'todavia', 'logo', 'portanto', 'assim', 'contudo', 'embora', 'ainda', 'também', 'quer', 'seja', 'isto', 'aquilo']
 
 PRONOUNS = {
     "brazil": BRAZIL_PRONOUNS

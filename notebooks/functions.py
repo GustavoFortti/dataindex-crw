@@ -54,8 +54,7 @@ def get_all_origins(file):
                 dataframes.append(df)
 
     # Una todos os DataFrames em um único DataFrame
-    df = pd.concat(dataframes, ignore_index=True)
-    return df
+    return pd.concat(dataframes, ignore_index=True)
 
 def find_pattern_for_quantity(text, pattern):
     matches = re.findall(pattern, text)
