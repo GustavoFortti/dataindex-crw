@@ -1,11 +1,11 @@
 import pandas as pd
-from shared.data_enrichment.brain import data_enrichment
+from shared.data_prep.data_manager import data_prep
 
 def create_origin_dry():
     file_path = CONF['data_path']
 
     df = pd.read_csv(file_path + "/origin.csv")
-    df = data_enrichment(CONF, df)
+    df = data_prep(CONF, df)
     df['name'] = df['name'].str.replace(' - vitafor', '')
     
     df.to_csv(file_path + "/origin_dry.csv", index=False)

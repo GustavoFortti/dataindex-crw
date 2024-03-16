@@ -90,7 +90,6 @@ def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_lin
 
         # Substituir caracteres não alfanuméricos (exceto espaços) por espaços, mantendo o comprimento.
         texto = re.sub(r'[^\w\s]', lambda match: ' ' if match.group(0) != ' ' else ' ', texto)
-        
         if remove_break_line:
             # Substituir quebras de linha por espaços.
             texto = re.sub(r'\n', ' ', texto)
@@ -100,6 +99,7 @@ def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_lin
             texto = re.sub(r's\b', ' ', texto)
         
         if add_space_firts:
+
             # Adiciona um espaço no inicio de todo texto
             texto = " " + texto
 
@@ -115,7 +115,10 @@ def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_lin
 
         # Ajustar o texto para garantir que ele tenha exatamente o mesmo número de caracteres que o original, se não estiver removendo espaços.
         if not clean_spaces:
-            texto = texto.ljust(original_length)[:original_length]
+            add_length = 0
+            if (add_space_firts):
+                add_length = 1
+            texto = texto.ljust(original_length + add_length)[:original_length + add_length]
 
         return texto
     return texto

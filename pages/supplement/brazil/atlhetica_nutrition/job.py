@@ -24,7 +24,6 @@ conf = {
     "dynamic_scroll": DYNAMIC_SCROLL,
     "data_path": f"{LOCAL}/data/supplement/brazil/{JOB_NAME}",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/{JOB_NAME}",
-    "models_path": f"{LOCAL}/data/supplement/brazil/_models_",
     "index_name": INDEX_SUPPLEMENT_BRAZIL["index"],
     "index_type": INDEX_SUPPLEMENT_BRAZIL["type"]
 }

@@ -23,9 +23,10 @@ job_names=(
     # "probiotica"
     # "truesource"
     # "under_labz"
-    "vitafor"
+    # "vitafor"
     # "_set_"
     # "_models_"
+    "_score_model_"
 )
 
 # Variáveis comuns para todos os jobs

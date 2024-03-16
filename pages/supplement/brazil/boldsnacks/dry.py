@@ -1,5 +1,5 @@
 import pandas as pd
-from shared.data_enrichment.brain import data_enrichment
+from shared.data_prep.data_manager import data_prep
 
 def create_origin_dry():
     file_path = CONF['data_path']
@@ -9,7 +9,7 @@ def create_origin_dry():
     def_string = "barrinha "
     df['title'] = def_string + df['title']
 
-    df = data_enrichment(CONF, df)
+    df = data_prep(CONF, df)
 
     df['name'] = df['name'].str.slice(len(def_string))
 

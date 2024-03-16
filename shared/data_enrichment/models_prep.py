@@ -20,7 +20,6 @@ from utils.general_functions import (
 from utils.wordlist import (
     get_word_index_in_text,
     find_subject_in_wordlist,
-    remove_prepositions_pronouns,
     get_back_words
 )
 
@@ -28,12 +27,10 @@ def load_models_prep(df, conf):
     message("Running model prep...")
     global CONF
     global WORDLIST
-    global PRONOUNS
     global DATA_PATH
 
     CONF = conf
     WORDLIST = conf["wordlist"]
-    PRONOUNS = conf["pronouns"]
     DATA_PATH = CONF["data_path"]
 
     keywords_json_file = f"{DATA_PATH}/keywords.json"
@@ -51,89 +48,89 @@ def load_models_prep(df, conf):
 
     exponent = 8 # calc_best_exponent(df, keywords_data)
 
-    global FILE_PATH_X
-    global FILE_PATH_Y
-    global PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE
-    global PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE
-    global PATH_BACK_WORDS_WITHOUT_TITLE
+    global FILE_PATH_PRODUCT_X
+    global FILE_PATH_PRODUCT_Y
+    global FILE_PATH_PREP_SCORES
 
-    FILE_PATH_X = f"{DATA_PATH}/model_x.csv"
-    FILE_PATH_Y = f"{DATA_PATH}/model_y.csv"
-    PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE = f"{DATA_PATH}/back_words_contained_in_the_title.csv"
-    PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE = f"{DATA_PATH}/back_words_not_contained_in_the_title.csv"
-    PATH_BACK_WORDS_WITHOUT_TITLE = f"{DATA_PATH}/back_words_without_title.csv"
+    FILE_PATH_PRODUCT_X = f"{DATA_PATH}/product_models_x.csv"
+    FILE_PATH_PRODUCT_Y = f"{DATA_PATH}/product_models_y.csv"
+    FILE_PATH_PREP_SCORES = f"{DATA_PATH}/score_models.csv"
 
-    delete_file(FILE_PATH_X)
-    delete_file(FILE_PATH_Y)
-    delete_file(PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE)
-    delete_file(PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE)
-    delete_file(PATH_BACK_WORDS_WITHOUT_TITLE)
+    # delete old data for new load
+    delete_file(FILE_PATH_PRODUCT_X)
+    delete_file(FILE_PATH_PRODUCT_Y)
+    delete_file(FILE_PATH_PREP_SCORES)
 
     for idx, row in df.iterrows():
         ref = row['ref']
         message(f"Preparando {ref}")
-        
-        create_back_words_data(ref, keywords_data)
 
-        keywords_exponent = lambda index: exponent if ((index > 0) & (index < (len(keywords_data[ref]) - 1))) else 1
-        keywords_score = [calc_keywords_score(keywords, keywords_exponent(index))
-                          if keywords != {} else None for index, keywords in enumerate(keywords_data[ref])]
-        
-        export_keywords_score(ref, keywords_score)
+        load_prep_scores(ref, keywords_data)
 
-def create_back_words_data(ref, keywords_data):
+        # keywords_exponent = lambda index: exponent if ((index > 0) & (index < (len(keywords_data[ref]) - 1))) else 1
+        # keywords_score = [calc_keywords_score(keywords, keywords_exponent(index))
+        #                   if keywords != {} else None for index, keywords in enumerate(keywords_data[ref])]
+        
+        # export_keywords_score(ref, keywords_score)
+
+def load_prep_scores(ref, keywords_data):
     title_keywords = keywords_data[ref][0]
     subjects = {keyword['subject'] for keyword in title_keywords.values()}
-    if (title_keywords != {}):
-        dfs = []
-        for contained in (True, False):
-            df_title_back_words = pd.concat([create_back_words_dataframe(keywords_exclude_title, subjects, ref, contained) 
-                                     for keywords_exclude_title in keywords_data[ref][1:]], ignore_index=True)
-            dfs.append(df_title_back_words)
-        
-        df_contained_in_the_title = dfs[0]
-        df_not_contained_in_the_title = dfs[1]
-        
-        append_new_df_and_save(PATH_BACK_WORDS_CONTAINED_IN_THE_TITLE, df_contained_in_the_title)
-        append_new_df_and_save(PATH_BACK_WORDS_NOT_CONTAINED_IN_THE_TITLE, df_not_contained_in_the_title)
-    else:
-        df_back_words_without_title = pd.concat([create_back_words_dataframe(keywords_exclude_title, subjects, ref, False) 
-                                    for keywords_exclude_title in keywords_data[ref][1:]], ignore_index=True)
-        
-        
-        append_new_df_and_save(PATH_BACK_WORDS_WITHOUT_TITLE, df_back_words_without_title)
+    excluded_title_keywords = keywords_data[ref][1:]
 
-def create_back_words_dataframe(keywords_exclude_title, subjects, ref, contained):
-    back_words = [
+    if title_keywords:
+        for contained in (True, False):
+            dfs_temp = [create_scores_dataframe(keywords, subjects, ref, contained) for keywords in excluded_title_keywords]
+            df_prep_scores = pd.concat(dfs_temp, ignore_index=True)
+            df_prep_scores['target'] = int(contained)
+            append_new_df_and_save(FILE_PATH_PREP_SCORES, df_prep_scores)
+    else:
+        df_prep_scores = pd.concat([create_scores_dataframe(keywords, subjects, ref, False) for keywords in excluded_title_keywords], ignore_index=True)
+        df_prep_scores['target'] = -1
+        append_new_df_and_save(FILE_PATH_PREP_SCORES, df_prep_scores)
+
+def create_scores_dataframe(keywords, subjects, ref, contained):
+    prep_scores = [
         {
             "ref": ref, 
             "back_word": keyword['back_words'], 
-            "location": keyword['location'], 
-            "subject": keyword['subject']
+            "subject": keyword['subject'],
+            "location": int(keyword['location']), 
+            "word_number": int(keyword['word_number']),
+            "sum_locations": int(keyword['sum_locations']),
+            "qnt_locations": int(keyword['qnt_locations']),
+            "document_size": int(keyword['document_size'])
         } 
-        for keyword in keywords_exclude_title.values() 
+        for keyword in keywords.values() 
         if (keyword['subject'] in subjects) == contained 
     ]
 
-    df = pd.DataFrame(back_words)
+    df = pd.DataFrame(prep_scores)
+
+    if df.empty:
+        return pd.DataFrame(columns=df.columns)
+    
+    df['document_num_words'] = int(df.shape[0])
+    df['sum_locations_document'] = int(sum(list(df['location'].values)))
+    df['num_of_possible_titles'] = df['subject'].nunique()
 
     split_columns = df['back_word'].apply(pd.Series)
-    split_columns.columns = ['word_1', 'word_2', 'word_3', 'word_4', 'word_5']
+    split_columns = split_columns.reindex(columns=range(5), fill_value=None)
+    split_columns.columns = ['word_5', 'word_4', 'word_3', 'word_2', 'word_1']
 
-    # Merging the split columns back with the original dataframe
     df = pd.concat([df.drop('back_word', axis=1), split_columns], axis=1)
     df = shift_words(df, split_columns.columns)
-    
-    print(df)
-    exit()
-    if not df.empty:
-        df['row_number'] = df.groupby(['ref', 'location']).cumcount() + 1
+
     return df
 
 def shift_words(df, columns):
+    for col in columns:
+        if df[col].dtype != 'object':
+            df[col] = df[col].astype('object')
+
     def shift_words_to_right(row):
         words = [row[col] for col in columns]
-        filtered_words = [w for w in words if pd.notnull(w)]
+        filtered_words = [w for w in words if pd.notna(w)]
         none_filled = [None] * (len(columns) - len(filtered_words))
         return none_filled + filtered_words
 
@@ -141,6 +138,7 @@ def shift_words(df, columns):
         new_words = shift_words_to_right(row)
         for i, col in enumerate(columns):
             df.at[index, col] = new_words[i]
+
     return df
 
 def export_keywords_score(ref, keywords_score):
@@ -213,8 +211,8 @@ def save_model_df(df):
 
     df_y = convert_float_to_int(df_y, ['ref'])
 
-    append_new_df_and_save(FILE_PATH_X, df_x)
-    append_new_df_and_save(FILE_PATH_Y, df_y)
+    append_new_df_and_save(FILE_PATH_PRODUCT_X, df_x)
+    append_new_df_and_save(FILE_PATH_PRODUCT_Y, df_y)
 
 def convert_float_to_int(df, exclude_cols):
     df_copy = df.copy()
@@ -350,19 +348,19 @@ def get_keywords_info(document):
         for word in subject:
             locations = get_word_index_in_text(word, documents_cleaned)
             if (locations != []):
-                back_words, erro_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
+                back_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
 
-                for location, sub_back_words, erro_word in zip(locations, back_words, erro_words):
-                    if (erro_word):
-                        continue
+                for location, sub_prep_scores in zip(locations, back_words):
 
                     keywords_info[f"{word}_{location}"] = {}
                     keywords_info[f"{word}_{location}"]["location"] = location
                     keywords_info[f"{word}_{location}"]["word_number"] = len(documents_cleaned[:location].split())
                     keywords_info[f"{word}_{location}"]["size_word"] = len(word)
                     keywords_info[f"{word}_{location}"]["qnt_locations"] = len(locations)
+                    keywords_info[f"{word}_{location}"]["sum_locations"] = sum(locations)
                     keywords_info[f"{word}_{location}"]["subject"] = key
-                    keywords_info[f"{word}_{location}"]["back_words"] = sub_back_words[-5:]
+                    keywords_info[f"{word}_{location}"]["back_words"] = sub_prep_scores[-5:]
+                    keywords_info[f"{word}_{location}"]["document_size"] = len(documents_cleaned)
 
     if (keywords_info == {}):
         return {}

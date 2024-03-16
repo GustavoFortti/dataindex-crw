@@ -25,7 +25,6 @@ def get_word_index_in_text(word, text):
 def get_back_words(text, text_accents, locations, word_size):
     size_max = 30
     slice_min = lambda value: value if value >= 0 else 0
-    erro_words = []
     back_words = []
     for location in locations:
         start = slice_min(location - size_max)
@@ -34,13 +33,7 @@ def get_back_words(text, text_accents, locations, word_size):
         back_words_aux = [i for i in back_words_aux.split(" ") if i != '']
         back_words.append(back_words_aux)
 
-        first_chat = text_accents[start:location + 1].replace("\n", "")[-1:]
-        if (first_chat.isalpha()):
-            erro_words.append(True)
-        else:
-            erro_words.append(False)
-
-    return back_words, erro_words
+    return back_words
 
 def find_subject_in_wordlist(word, wordlist):
     for values in wordlist.values():
@@ -312,7 +305,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "subject": [
             "carnitin",
             "carnitina",
-            "lcarnitina"
+            "lcarnitina",
             "l carnitina"
         ],
         "may_contain": [
@@ -812,6 +805,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "dha",
             "epa",
             "omega 3",
+            "omega",
         ],
         "may_contain": [],
         "not_contain": []
@@ -1078,7 +1072,7 @@ SUPPLEMENT_COMPONENT_LIST = {
     "histidina": {
         "subject": [
             "histidina",
-            "lhistidina"
+            "lhistidina",
             "l histidina"
         ],
         "may_contain": [
@@ -1115,7 +1109,7 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "vitamina a": {
         "subject": [
-            "vitamina a"
+            "vitamina a",
             "vitaminas a"
         ],
         "may_contain": [],
@@ -1350,7 +1344,7 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "vitamina k2": {
         "subject": [
-            "vitamina k2",
+            "vitamina k2"
             "vitaminas k2",
             "menaquinona"
         ],
@@ -1377,7 +1371,7 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "vitamina l1": {
         "subject": [
-            "vitamina l1"
+            "vitamina l1",
             "vitaminas l1"
         ],
         "may_contain": [],
@@ -1385,15 +1379,15 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "vitamina l2": {
         "subject": [
-            "vitamina l2"
-            "vitaminas l2"
+            "vitamina l2",
+            "vitaminas l2",
         ],
         "may_contain": [],
         "not_contain": []
     },
     "vitamina m": {
         "subject": [
-            "vitamina m"
+            "vitamina m",
             "vitaminas m"
         ],
         "may_contain": [],
@@ -1410,8 +1404,8 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "vitamina o": {
         "subject": [
-            "vitamina o"
-            "vitaminas o"
+            "vitamina o",
+            "vitaminas o",
         ],
         "may_contain": [],
         "not_contain": []
@@ -1463,7 +1457,7 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "vitamina w": {
         "subject": [
-            "vitamina w"
+            "vitamina w",
             "vitaminas w"
         ],
         "may_contain": [],
@@ -1548,9 +1542,9 @@ indefinite_pronouns = ["Alguém", "Ninguém", "Todo", "Algum", "Nenhum", "Outro"
 relative_pronouns = ["Que", "Qual", "Quem", "Onde", "Cujo", "O qual", "Cuja", "Quanto"]
 interrogative_pronouns = ["Quem", "O que", "Qual", "Quanto", "Onde", "Quando", "Como", "Por que", "Qualquer coisa", "Quanto a"]
 prepositions = ["A", "Ante", "Até", "Após", "Com", "Contra", "De", "Desde", "Em", "Entre", "Para", "Por", "Perante", "Sem", "Sob", "Sobre", "Trás", "Conforme", "Contudo", "Durante", "Exceto", "Mediant", "Menos", "Salvo", "Segundo", "Visto"]
-BRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns + possessive_pronouns + indefinite_pronouns + relative_pronouns + interrogative_pronouns + prepositions
 
-BRAZI_CONECTORES = ['e', 'ou', 'nem', 'mas', 'porque', 'como', 'apesar', 'além', 'entretanto', 'porém', 'todavia', 'logo', 'portanto', 'assim', 'contudo', 'embora', 'ainda', 'também', 'quer', 'seja', 'isto', 'aquilo']
+BRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns + possessive_pronouns + indefinite_pronouns + relative_pronouns + interrogative_pronouns + prepositions
+BRAZIL_CONECTORES = ['a', 'o', 'e', 'ou', 'nem', 'mas', 'porque', 'como', 'apesar', 'além', 'entretanto', 'porém', 'todavia', 'logo', 'portanto', 'assim', 'contudo', 'embora', 'ainda', 'também', 'quer', 'seja', 'isto', 'aquilo']
 
 PRONOUNS = {
     "brazil": BRAZIL_PRONOUNS
