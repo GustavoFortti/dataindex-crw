@@ -33,9 +33,9 @@ def load_score_prep(df, conf):
 
     FILE_PATH_KEYWORDS = f"{DATA_PATH}/keywords.json"
     FILE_PATH_PREP_SCORES = f"{DATA_PATH}/score_model.csv"
-    
-    # keywords_data = extract_keywords_from_products(df)
-    # save_json(FILE_PATH_KEYWORDS, keywords_data)
+
+    keywords_data = extract_keywords_from_products(df)
+    save_json(FILE_PATH_KEYWORDS, keywords_data)
     # exit()
     
     # usado para desenvolvimento
@@ -49,24 +49,24 @@ def load_score_prep(df, conf):
 
     for idx, row in df.iterrows():
         ref = row['ref']
-        message(f"Preparando {ref}")
+        message(f"prepere data {ref}")
 
         load_prep_scores(ref, keywords_data)
 
 def load_prep_scores(ref, keywords_data):
     title_keywords = keywords_data[ref][0]
-    subjects = {keyword['subject'] for keyword in title_keywords.values()}
+    valid_keywords, others_keywords = treat_relationship_between_keywords(title_keywords)
     excluded_title_keywords = keywords_data[ref][1:]
-        
-    if title_keywords:
+
+    if valid_keywords:
         for contained in (True, False):
-            dfs_temp = [create_scores_dataframe(keywords, subjects, ref, contained, index) for index, keywords in enumerate(excluded_title_keywords)]
+            dfs_temp = [create_scores_dataframe(keywords, valid_keywords, ref, contained, index) for index, keywords in enumerate(excluded_title_keywords)]
             df_prep_scores = pd.concat(dfs_temp, ignore_index=True)
             df_prep_scores['target'] = int(contained)
 
             append_new_df_and_save(FILE_PATH_PREP_SCORES, df_prep_scores)
     else:
-        df_prep_scores = pd.concat([create_scores_dataframe(keywords, subjects, ref, False, index) for index, keywords in enumerate(excluded_title_keywords)], ignore_index=True)
+        df_prep_scores = pd.concat([create_scores_dataframe(keywords, [], ref, False, index) for index, keywords in enumerate(excluded_title_keywords)], ignore_index=True)
         df_prep_scores['target'] = -1
         append_new_df_and_save(FILE_PATH_PREP_SCORES, df_prep_scores)
 
@@ -79,7 +79,8 @@ def create_scores_dataframe(keywords, subjects, ref, contained, index):
             "location": int(keyword['location']), 
             "word_number": int(keyword['word_number']),
             "document_size": int(keyword['document_size']),
-            "document_index": int(index)
+            "document_index": int(index),
+            "brand": CONF['brand']
         } 
         for keyword in keywords.values()
         if (keyword['subject'] in subjects) == contained 
@@ -89,7 +90,7 @@ def create_scores_dataframe(keywords, subjects, ref, contained, index):
 
     if df.empty:
         return pd.DataFrame(columns=df.columns)
-
+    
     split_columns = df['back_word'].apply(pd.Series)
     split_columns = split_columns.reindex(columns=range(5), fill_value=None)
     split_columns.columns = ['word_5', 'word_4', 'word_3', 'word_2', 'word_1']
@@ -117,6 +118,25 @@ def shift_words(df, columns):
 
     return df
 
+def treat_relationship_between_keywords(keywrods):
+    if (keywrods == {}):
+        return False, False
+    
+    subjects_keywords = list(set([keyword['subject'] for keyword in keywrods.values()]))
+    valid_keywords = []
+    others_keywords = []
+    for subject_keywords in subjects_keywords:
+        subject = WORDLIST[subject_keywords]
+
+        if ((subject['product']) &
+            (not bool(set(subject['conflict']).intersection(subjects_keywords)))):
+            valid_keywords.append(subject_keywords)
+            continue
+
+        others_keywords.append(subject_keywords)
+
+    return valid_keywords, others_keywords
+
 def extract_keywords_from_products(df):
     keywords_data = {}
     for idx, row in df.iterrows():
@@ -138,21 +158,25 @@ def extract_keywords_from_products(df):
         text_from_html = extract_subject_from_html_text(html_text)
         product_documents.append(text_from_html)
 
-        keywords_info = [get_keywords_info(document) for document in product_documents]
+        keywords_info = [get_keywords_info(document, index) for index, document in enumerate(product_documents)]
         keywords_data[ref] = keywords_info
     
     return keywords_data
 
-def get_keywords_info(document):
+def get_keywords_info(document, index):
     documents_accents = clean_text(document, False, False, False, False, True)
     documents_cleaned = clean_text(document, False, False, False, True, True)
+
+    first_doc = False
+    if (index == 0):
+        first_doc = True
 
     keywords_info = {}
     for key, value in WORDLIST.items():
         subject = value['subject']
 
         for word in subject:
-            locations = get_word_index_in_text(word, documents_cleaned)
+            locations = get_word_index_in_text(word, documents_cleaned, first_doc)
             if (locations != []):
                 back_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
 

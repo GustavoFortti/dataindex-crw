@@ -26,7 +26,7 @@ job_names=(
     # "vitafor"
     # "_set_"
     # "_models_"
-    "_score_model_"
+    "_set_product_def_"
 )
 
 # Variáveis comuns para todos os jobs
