@@ -140,7 +140,7 @@ def tree_update_old_pages(job):
     df_origin = pd.read_csv(path_origin)
 
     pagas_path = job.conf['data_path'] + "/products"
-    old_files = get_old_files_by_percent(pagas_path, True, 25)
+    old_files = get_old_files_by_percent(pagas_path, True, 15)
     refs = [i.replace(".txt", "") for i in old_files]
 
     df_origin = df_origin[df_origin['ref'].isin(refs)]
