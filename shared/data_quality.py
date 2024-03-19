@@ -10,6 +10,9 @@ from utils import (DATE_FORMAT,
                    has_files,
                    create_directory_if_not_exists)
 
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+
 def status_tag(data, kill_job=True):
     errors = []
 
