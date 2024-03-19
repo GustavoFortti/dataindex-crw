@@ -17,8 +17,13 @@ def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
     global_mask = pd.Series([False] * len(df), index=df.index)
     
     for col in columns:
-        # Atualiza a máscara global para incluir registros que contêm as palavras-chave
-        global_mask |= df[col].str.contains('|'.join(keywords), case=False, na=False)
+        # Check the type of the column
+        if isinstance(df[col], str):
+            # Atualiza a máscara global para incluir registros que contêm as palavras-chave
+            global_mask |= df[col].str.contains('|'.join(keywords), case=False, na=False)
+        else:
+            # If the column is not a string, you might want to handle it differently
+            raise TypeError(f"Column '{col}' is not a string type.")
     
     # Aplica a máscara global para filtrar as linhas com palavras-chave
     filtered_df = df[global_mask]

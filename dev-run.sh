@@ -14,7 +14,7 @@ job_names=(
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
-    "growth_supplements"
+    # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
@@ -25,7 +25,7 @@ job_names=(
     # "under_labz"
     # "vitafor"
     # "_set_carousel_"
-    # "_set_product_def_"
+    "_set_product_def_"
 )
 
 # Variáveis comuns para todos os jobs
