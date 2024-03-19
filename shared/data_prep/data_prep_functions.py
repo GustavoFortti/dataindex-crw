@@ -1,16 +1,6 @@
-import os
 import re
-import ast
-import imagehash
-import hashlib
-
 import numpy as np
 import pandas as pd
-
-from PIL import Image
-from bs4 import BeautifulSoup
-from copy import deepcopy
-from sklearn.preprocessing import MinMaxScaler
 
 from utils.log import message
 
@@ -18,17 +8,39 @@ from utils.general_functions import (
     clean_text,
     remove_spaces,
     find_in_text_with_wordlist,
+    path_exist
 )
+
+from shared.data_prep.product_def_prep import load_product_def_prep
 
 from utils.wordlist import (
     BLACK_LIST, 
 )
 
-from shared.data_enrichment.enrichment_general_functions import (
-    find_pattern_for_quantity,
-    relation_qnt_price,
-    convert_to_grams,
-)
+def create_product_def_cols(df, conf):
+    message("criada colunas de definição do produto")
+
+    product_def_path = conf['product_def_path']
+
+    message("Load_models_prep")
+    load_product_def_prep(df, conf)
+
+    path_product_def = f"{product_def_path}/product_def.csv"
+    path_product_def_predicted = f"{product_def_path}/product_def_predicted.csv"
+
+    if ((path_exist(path_product_def)) & (path_exist(path_product_def_predicted))):
+
+        df_product_def = pd.read_csv(path_product_def)
+        df_product_def_predicted = pd.read_csv(path_product_def_predicted)
+        
+        df = pd.merge(df, df_product_def, on='ref', how='left')
+        df = pd.merge(df, df_product_def_predicted, on='ref', how='left')
+    else:
+        message("execute _set_product_def_ para criar os arquivos de definição do produto")
+        df['product_def'] = None
+        df['product_def_pred'] = None
+
+    return df
 
 def filter_nulls(df, data_path):
     """Filter rows with null values in specific columns and save them to a CSV file."""
@@ -56,3 +68,48 @@ def create_quantity_column(df):
 def remove_blacklisted_products(df):
     """Remove products based on a blacklist."""
     return df[~df['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
+
+def find_pattern_for_quantity(text):
+    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
+    matches = re.findall(pattern, text, re.IGNORECASE)
+    
+    quantity = None
+    if ((len(matches) == 1)): 
+        quantity, unit = matches[0]
+        quantity = str(quantity).replace(',', '.')
+
+        if ((unit in ['g', 'gr', 'gramas']) & ("." in quantity)):
+            quantity = quantity.replace(".", "")
+
+        quantity = float(quantity)
+    
+        padrao = r'\d+x'
+        matches_multiply = re.findall(padrao, text)
+        if ((len(matches_multiply) == 1) & (quantity != None)):
+            quantity = quantity * float(matches_multiply[0].replace('x', ''))
+        
+        return quantity, unit
+    
+    return None, None
+
+def convert_to_grams(row):
+    value = row['quantity']
+    unit = row['unit']
+    
+    if pd.notna(value):
+        if unit in ['kg']:
+            value = float(value) * 1000
+        try:
+            value = int(float(value))
+        except ValueError:
+            pass
+    else:
+        value = -1
+    
+    return value
+
+def relation_qnt_price(row):
+    resultado = (row['price_numeric'] / row['quantity']) if (row['quantity'] > 0) else -1
+    if resultado < 0:
+        return np.nan
+    return round(resultado, 3)

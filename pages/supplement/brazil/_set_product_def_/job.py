@@ -44,11 +44,11 @@ def run(args):
 
     create_directory_if_not_exists(DATA_PATH)
 
-    message("READ all score_model.csv")
-    df = get_all_dfs_in_dir(DATA_PATH_FILE_SYSTEM, "score_model")
+    message("READ all product_info.csv")
+    df = get_all_dfs_in_dir(DATA_PATH_FILE_SYSTEM, "product_info")
 
     message("exec data_prep")
-    df_train, df_ref_train, df_predict, df_ref_predict, df_product_definition = data_prep(df)
+    df_train, df_ref_train, df_predict, df_ref_predict, df_product_def = data_prep(df)
 
     message("load train")
     model = run_score_train(df_train)
@@ -57,16 +57,16 @@ def run(args):
     df_predicted = run_score_predict(df_predict, model)
     df_predicted = pd.merge(df_predicted, df_ref_predict, on=['ref', 'subject_encoded', 'document_index', 'location'])
 
-    # df_predicted.to_csv("./scores.csv", index=False)
-    # df_predicted = pd.read_csv("./scores.csv")
+    df_product_def_predicted = calc_def_product(df_predicted)
 
-    df_product_definition_predicted = calc_definition_product(df_predicted)
+    df_product_def_predicted = add_synonyms_to_cols_with_wordlist(df_product_def_predicted, "subject")
+    df_product_def_predicted = df_product_def_predicted.rename(columns={'subject': 'product_def_pred'})
+    
+    df_product_def = add_synonyms_to_cols_with_wordlist(df_product_def, "subject")
+    df_product_def = df_product_def.rename(columns={'subject': 'product_def'})
 
-    df_product_definition_predicted = add_synonyms_to_cols_with_wordlist(df_product_definition_predicted, "subject")
-    df_product_definition = add_synonyms_to_cols_with_wordlist(df_product_definition, "subject")
-
-    df_product_definition_predicted.to_csv(f"{DATA_PATH}/product_definition_predicted.csv", index=False)
-    df_product_definition.to_csv(f"{DATA_PATH}/product_definition.csv", index=False)
+    df_product_def_predicted.to_csv(f"{DATA_PATH}/product_def_predicted.csv", index=False)
+    df_product_def.to_csv(f"{DATA_PATH}/product_def.csv", index=False)
 
 def add_synonyms_to_cols_with_wordlist(df, col):
     for idx, row in df.iterrows():
@@ -83,7 +83,7 @@ def add_synonyms_to_cols_with_wordlist(df, col):
 
     return df
 
-def calc_definition_product(df):
+def calc_def_product(df):
     df_filtered = df[(df['product_predicted'] != 0) & 
                     (df['probability_class_1'] >= 0.7)]
     
@@ -223,56 +223,78 @@ def data_prep(df):
     df_ref_train = df_predict[['ref', 'subject', 'document_index', 'subject_encoded', 'location']]
     df_ref_predict = df_predict[['ref', 'subject', 'document_index', 'subject_encoded', 'location']]
 
-    df_product_definition = df[df['target'] == 1][['ref', 'subject']]
-    df_product_definition = df_product_definition.groupby('ref')['subject'].unique().reset_index()
-    df_product_definition['subject'] = df_product_definition['subject'].apply(lambda x: ', '.join(x))
+    df_product_def = df[df['target'] == 1][['ref', 'subject']]
+    df_product_def = df_product_def.groupby('ref')['subject'].unique().reset_index()
+    df_product_def['subject'] = df_product_def['subject'].apply(lambda x: ', '.join(x))
 
     df_train = select_cols(df_train)
     df_predict = select_cols(df_predict)
 
-    return df_train, df_ref_train, df_predict, df_ref_predict, df_product_definition
+    return df_train, df_ref_train, df_predict, df_ref_predict, df_product_def
 
 def create_new_features(df):
+    # Grouping by columns 'ref', 'subject', and 'document_index'
     cols = ['ref', 'subject', 'document_index']
+    
+    # Aggregating 'subject_encoded' by count and 'location' by taking the mean of the smallest 20% or 1 observation
     grouped_df = df.groupby(cols).agg({
-        'subject_encoded': 'count', 
-        'location': (lambda x: x.nsmallest(max(int(len(x) * 0.20), 1)).mean()),
+        'subject_encoded': 'count',  # Counting occurrences of 'subject_encoded'
+        'location': (lambda x: x.nsmallest(max(int(len(x) * 0.20), 1)).mean()),  # Calculating the mean of the smallest 20% or 1 observation of 'location'
     }).reset_index()
+    
+    # Renaming columns for clarity
     grouped_df = grouped_df[['ref', 'subject', 'document_index', 'subject_encoded', 'location']]
     grouped_df.columns = [
         'ref', 
         'subject', 
         'document_index', 
-        'subject_encoded_count',
-        'location_mean', 
+        'subject_encoded_count',  # Renaming 'subject_encoded' count column
+        'location_mean',  # Renaming 'location' mean column
     ]
+    
+    # Merging the aggregated data back to the original DataFrame based on 'ref', 'subject', and 'document_index'
     df = df.merge(grouped_df, on=cols)
 
+    # Grouping by columns 'ref' and 'document_index'
     cols = ['ref', 'document_index']
+    
+    # Aggregating 'subject_encoded' by count and 'location' by taking the mean
     grouped_df = df.groupby(cols).agg({
-        'subject_encoded': 'count', 
-        'location': 'mean',
+        'subject_encoded': 'count',  # Counting occurrences of 'subject_encoded'
+        'location': 'mean',  # Calculating the mean of 'location'
     }).reset_index()
+    
+    # Renaming columns for clarity
     grouped_df.columns = [
         'ref', 
         'document_index', 
-        'subject_encoded_count_total', 
-        'location_mean_total', 
+        'subject_encoded_count_total',  # Renaming 'subject_encoded' count column
+        'location_mean_total',  # Renaming 'location' mean column
     ]
+    
+    # Merging the aggregated data back to the original DataFrame based on 'ref' and 'document_index'
     df = df.merge(grouped_df, on=cols)
 
+    # Grouping by columns 'ref' and 'document_index'
     cols = ['ref', 'document_index']
+    
+    # Aggregating 'subject_encoded_count' by taking the mean
     grouped_df = df.groupby(cols).agg({
-        'subject_encoded_count': 'mean', 
+        'subject_encoded_count': 'mean',  # Calculating the mean of 'subject_encoded_count'
     }).reset_index()
+    
+    # Renaming columns for clarity
     grouped_df.columns = [
         'ref', 
         'document_index', 
-        'subject_encoded_count_max', 
+        'subject_encoded_count_max',  # Renaming 'subject_encoded_count' mean column
     ]
+    
+    # Merging the aggregated data back to the original DataFrame based on 'ref' and 'document_index'
     df = df.merge(grouped_df, on=cols)
 
     return df
+
 
 def convert_type_columns(df, cols, cols_types):
     for col in cols:

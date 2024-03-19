@@ -312,6 +312,17 @@ SUPPLEMENT_COMPONENT_LIST = {
         ],
         "conflict": []
     },
+    "tcm": {
+        "subject": [
+            "tcm",
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [
+            "cafein",
+        ],
+        "conflict": []
+    },
     "calcio": {
         "subject": [
             "calcio"

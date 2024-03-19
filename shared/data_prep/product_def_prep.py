@@ -1,7 +1,4 @@
-import ast
-import numpy as np
 import pandas as pd
-
 from bs4 import BeautifulSoup
 
 from utils.log import message
@@ -11,8 +8,6 @@ from utils.general_functions import (
     read_file,
     path_exist,
     delete_file,
-    save_json,
-    read_json,
 )
 
 from utils.wordlist import (
@@ -20,58 +15,48 @@ from utils.wordlist import (
     get_back_words
 )
 
-def load_score_prep(df, conf):
+def load_product_def_prep(df, conf):
     message("Running model prep...")
     global CONF
     global WORDLIST
     global DATA_PATH
-    global FILE_PATH_PREP_SCORES
+    global FILE_PATH_PRODUCT_INFO
 
     CONF = conf
     WORDLIST = conf["wordlist"]
     DATA_PATH = CONF["data_path"]
 
-    FILE_PATH_KEYWORDS = f"{DATA_PATH}/keywords.json"
-    FILE_PATH_PREP_SCORES = f"{DATA_PATH}/score_model.csv"
-
+    FILE_PATH_PRODUCT_INFO = f"{DATA_PATH}/product_info.csv"
     keywords_data = extract_keywords_from_products(df)
-    save_json(FILE_PATH_KEYWORDS, keywords_data)
-    # exit()
-    
-    # usado para desenvolvimento
-    if (not path_exist(FILE_PATH_KEYWORDS)):
-        keywords_data = extract_keywords_from_products(df)
-        save_json(FILE_PATH_KEYWORDS, keywords_data)
-    else:
-        keywords_data = read_json(FILE_PATH_KEYWORDS)
 
-    delete_file(FILE_PATH_PREP_SCORES)
+    delete_file(FILE_PATH_PRODUCT_INFO)
 
     for idx, row in df.iterrows():
         ref = row['ref']
         message(f"prepere data {ref}")
 
-        load_prep_scores(ref, keywords_data)
+        generates_and_stacks_product_info_by_ref(ref, keywords_data)
 
-def load_prep_scores(ref, keywords_data):
+def generates_and_stacks_product_info_by_ref(ref, keywords_data):
     title_keywords = keywords_data[ref][0]
     valid_keywords, others_keywords = treat_relationship_between_keywords(title_keywords)
     excluded_title_keywords = keywords_data[ref][1:]
 
     if valid_keywords:
         for contained in (True, False):
-            dfs_temp = [create_scores_dataframe(keywords, valid_keywords, ref, contained, index) for index, keywords in enumerate(excluded_title_keywords)]
-            df_prep_scores = pd.concat(dfs_temp, ignore_index=True)
-            df_prep_scores['target'] = int(contained)
+            dfs_temp = [create_product_info_dataframe(keywords, valid_keywords, ref, contained, index) for index, keywords in enumerate(excluded_title_keywords)]
+            df_product_ref_info = pd.concat(dfs_temp, ignore_index=True)
+            df_product_ref_info['target'] = int(contained)
 
-            append_new_df_and_save(FILE_PATH_PREP_SCORES, df_prep_scores)
+            append_new_df_and_save(FILE_PATH_PRODUCT_INFO, df_product_ref_info)
     else:
-        df_prep_scores = pd.concat([create_scores_dataframe(keywords, [], ref, False, index) for index, keywords in enumerate(excluded_title_keywords)], ignore_index=True)
-        df_prep_scores['target'] = -1
-        append_new_df_and_save(FILE_PATH_PREP_SCORES, df_prep_scores)
+        dfs_temp = [create_product_info_dataframe(keywords, [], ref, False, index) for index, keywords in enumerate(excluded_title_keywords)]
+        df_product_ref_info = pd.concat(dfs_temp, ignore_index=True)
+        df_product_ref_info['target'] = -1
+        append_new_df_and_save(FILE_PATH_PRODUCT_INFO, df_product_ref_info)
 
-def create_scores_dataframe(keywords, subjects, ref, contained, index):
-    prep_scores = [
+def create_product_info_dataframe(keywords, subjects, ref, contained, index):
+    product_ref_info = [
         {
             "ref": ref, 
             "back_word": keyword['back_words'], 
@@ -86,7 +71,7 @@ def create_scores_dataframe(keywords, subjects, ref, contained, index):
         if (keyword['subject'] in subjects) == contained 
     ]
 
-    df = pd.DataFrame(prep_scores)
+    df = pd.DataFrame(product_ref_info)
 
     if df.empty:
         return pd.DataFrame(columns=df.columns)
@@ -178,16 +163,16 @@ def get_keywords_info(document, index):
         for word in subject:
             locations = get_word_index_in_text(word, documents_cleaned, first_doc)
             if (locations != []):
-                back_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
+                loc_back_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
 
-                for location, sub_prep_scores in zip(locations, back_words):
+                for location, back_words in zip(locations, loc_back_words):
 
                     keywords_info[f"{word}_{location}"] = {}
                     keywords_info[f"{word}_{location}"]["location"] = location
                     keywords_info[f"{word}_{location}"]["word_number"] = len(documents_cleaned[:location].split())
                     keywords_info[f"{word}_{location}"]["size_word"] = len(word)
                     keywords_info[f"{word}_{location}"]["subject"] = key
-                    keywords_info[f"{word}_{location}"]["back_words"] = sub_prep_scores[-5:]
+                    keywords_info[f"{word}_{location}"]["back_words"] = back_words[-5:]
                     keywords_info[f"{word}_{location}"]["document_size"] = len(documents_cleaned)
 
     if (keywords_info == {}):
@@ -255,11 +240,11 @@ def normalize_list_of_dicts(data, columns):
     for entry in data:
         normalized_entry = entry.copy()
         for col in columns:
-            score = entry[col]
+            array = entry[col]
             max_val = max_values[col]
             min_val = min_values[col]
-            normalized_score = (score - min_val) / (max_val - min_val) if max_val != min_val else 0
-            normalized_entry[col + '_normalized'] = normalized_score
+            normalized_array = (array - min_val) / (max_val - min_val) if max_val != min_val else 0
+            normalized_entry[col + '_normalized'] = normalized_array
         normalized_data.append(normalized_entry)
 
     return normalized_data

@@ -23,6 +23,7 @@ conf = {
     "product_definition_tag": PRODUCT_DEFINITION_TAG,
     "dynamic_scroll": DYNAMIC_SCROLL,
     "data_path": f"{LOCAL}/data/supplement/brazil/{JOB_NAME}",
+    "product_def_path": f"{LOCAL}/data/supplement/brazil/_set_product_def_",
     "seed_path": f"{LOCAL}/pages/supplement/brazil/{JOB_NAME}",
     "index_name": INDEX_SUPPLEMENT_BRAZIL["index"],
     "index_type": INDEX_SUPPLEMENT_BRAZIL["type"]

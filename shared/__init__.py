@@ -2,15 +2,10 @@ from .selenium_service import *
 from .elasticsearch_functions import *
 from .elasticsearch_index import *
 from .image_server_functions import *
-from .data_enrichment import *
 from .data_quality import *
 from .ingestion import *
 from .crawler import *
 from .page_mapper import *
-from .data_enrichment.brain import *
-from .data_enrichment.models import *
-from .data_enrichment.models_prep import *
-from .data_enrichment.enrichment_general_functions import *
-
 from .data_prep.data_manager import *
 from .data_prep.data_prep_functions import *
+from .data_prep.product_def_prep import *
