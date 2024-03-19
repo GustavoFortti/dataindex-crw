@@ -35,6 +35,7 @@ def run(args):
     global DATA_PATH_FILE_SYSTEM
     global DATA_PATH
     global WORDLIST
+    global LOCAL
 
     print("JOB_NAME: " + CONF["name"])
     CONF.update(vars(args))
@@ -183,8 +184,7 @@ def data_prep(df):
     subjects = np.array(flatten_list(subjects))
 
     message("read dictionaries")
-    module = importlib.import_module("packages.dictionaries.pt_br")
-    dictionaries = getattr(module, 'DICTIONARY')
+    dictionaries = importlib.import_module("packages.dictionaries.pt_br").get_dictionary(LOCAL)
 
     brands = np.array(list(set(df['brand'].values)))
     dictionaries = np.unique(np.concatenate([dictionaries, subjects, brands]))
