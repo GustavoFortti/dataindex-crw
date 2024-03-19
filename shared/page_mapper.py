@@ -98,6 +98,7 @@ def seed(job):
                 break
         job.reset_index()
     
+    exit()
     message(f"read file: {path_tree_temp}")
     df_tree_temp = pd.read_csv(path_tree_temp)
     df_tree_temp = df_tree_temp.drop_duplicates(subset='ref').reset_index(drop=True)

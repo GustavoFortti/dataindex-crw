@@ -12,36 +12,54 @@ class Job():
         self.conf["index"] = None
 
     def get_items(self, soup):
-        items = soup.find_all('div', class_='product-grid-item')
+        items = soup.find_all('div', class_='product-item')
         return items
 
     def get_product_url(self, soup):
-        product_link_element = soup.find('a', class_='product__media__holder')
+        product_link_element = soup.find('a', class_='card-title link-underline card-title-ellipsis')
         product_link = "https://www.boldsnacks.com.br" + product_link_element['href'] if product_link_element else None
         return product_link
 
     def get_title(self, soup):
-        title_element = soup.find('a', class_='product-grid-item__title')
+        title_element = soup.find('a', class_='card-title link-underline card-title-ellipsis')
         title = title_element.get_text().strip() if title_element else None
         return title
 
     def get_price(self, soup):
-        price_element = soup.find('a', class_='product-grid-item__price price')
-        if price_element:
-            price_span = price_element.find('span', class_='product-grid-item__price__new')
-            if price_span:
-                return price_span.get_text().strip()
+        def format_price(price_text):
+            cleaned_price = price_text.strip()
+            if "," in cleaned_price:
+                return None
             else:
-                return price_element.get_text().strip()
+                return cleaned_price + ",00"
+
+        price_sale_span = soup.find('span', class_='price-item--sale')
+        if price_sale_span:
+            price_text = price_sale_span.get_text()
+            return format_price(price_text)
+
+        price_regular_span = soup.find('span', class_='price-item--regular')
+        if price_regular_span:
+            price_text = price_regular_span.get_text()
+            return format_price(price_text)
+        
+        return None
 
     def get_image_url(self, soup):
-        image_container = soup.find('picture')
-        link_imagem = None
-        if image_container:
-            image_element = image_container.find('source')
-            link_imagem = image_element['srcset'].split(" ")[3] if image_element else None
-            link_imagem = ("https:" + link_imagem if link_imagem[:2] == "//" else link_imagem)
-        return link_imagem
+        div_container = soup.find('div', class_='card-product__wrapper')
+    
+        if div_container:
+            # Now that we have confirmed the div exists, find the img within it
+            image_element = div_container.find('img')
+            if image_element and 'data-srcset' in image_element.attrs:
+                srcset = image_element['data-srcset']
+                images = srcset.split(",")  # Splits the srcset into a list of URLs
+                
+                # Pick a resolution, here we choose the middle one for demonstration
+                middle_image = images[len(images) // 2].split(" ")[0].strip()
+                image_url = "https:" + middle_image if middle_image.startswith("//") else middle_image
+                return image_url
+        return None
 
     def get_elements_seed(self, soup):
         product_link =self. get_product_url(soup)
