@@ -75,7 +75,7 @@ def add_synonyms_to_cols_with_wordlist(df, col):
         synonyms = []
         for key, value in WORDLIST.items():
             words = value['subject']
-            aux_subject = [words for subject in row['subject'].split(",") if subject in words]
+            aux_subject = [words for subject in row['subject'].split(", ") if subject in words]
             if (aux_subject != []):
                 synonyms.extend(aux_subject)
         
@@ -222,7 +222,7 @@ def data_prep(df):
     df_predict = df[df['target'] == -1]
     df_ref_train = df_predict[['ref', 'subject', 'document_index', 'subject_encoded', 'location']]
     df_ref_predict = df_predict[['ref', 'subject', 'document_index', 'subject_encoded', 'location']]
-
+    
     df_product_def = df[df['target'] == 1][['ref', 'subject']]
     df_product_def = df_product_def.groupby('ref')['subject'].unique().reset_index()
     df_product_def['subject'] = df_product_def['subject'].apply(lambda x: ', '.join(x))

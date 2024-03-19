@@ -444,9 +444,9 @@ def levenshtein(s1, s2):
     
     return previous_row[-1]
 
-def calc_string_diff_in_df_col(row):
-    distance = levenshtein(row['title_x'], row['title_y'])
-    max_len = max(len(row['title_x']), len(row['title_y']))
+def calc_string_diff_in_df_col(title_x, title_y):
+    distance = levenshtein(title_x, title_y)
+    max_len = max(len(title_x), len(title_y))
     percent_diff = (distance / max_len) if max_len != 0 else 0
     return percent_diff
 

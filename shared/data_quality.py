@@ -79,7 +79,7 @@ def volume_analysis(df_history, df, alert_threshold=0.2, error_threshold=0.5):
 
     if volume_history == 0:
         return True, True
-
+    
     volume_change = abs((volume_current / volume_history) - 1)
     message(f"volume_change: {volume_change}")
 
@@ -93,7 +93,11 @@ def title_analysis(df_history, df):
     df_title = df[["ref", "title"]]
     result_df_title = df_history_title.merge(df_title, on='ref', how='inner')
 
-    result_df_title['diff_percent'] = result_df_title.apply(calc_string_diff_in_df_col, axis=1)
+    if (result_df_title.empty):
+        message("ERRO RESULT_DF_TITLE.EMPTY")
+        return False, False, df
+
+    result_df_title['diff_percent'] = result_df_title.apply(lambda row: calc_string_diff_in_df_col(row['title_x'], row['title_y']), axis=1).astype(float)
 
     threshold_erro = 0.60
     threshold_alert = 0.20

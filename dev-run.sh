@@ -29,8 +29,8 @@ job_names=(
 )
 
 # Variáveis comuns para todos os jobs
-job_type="ingestion"
-option="data_quality"
+job_type="dry"
+option="false"
 page_type="supplement"
 country="brazil"
 mode="prd"
