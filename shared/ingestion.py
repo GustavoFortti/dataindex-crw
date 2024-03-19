@@ -11,14 +11,14 @@ def ingestion(conf):
     df = pd.read_csv(conf['data_path'] + '/origin_dry.csv')
 
     if (conf['option'] == "data_quality"):
-        print("Running Data Quality...")
+        message("Running Data Quality...")
         dq.data_history_analysis(conf, df)
         exit(0)
 
     dq.save_history_data(conf, df)
     message("Data ready for ingestion")
 
-    print("START IMAGE INGESTION")
+    message("START IMAGE INGESTION")
     df = image_srv.data_ingestion(df, conf)
 
     if not os.path.exists(conf['data_path']):
@@ -26,5 +26,5 @@ def ingestion(conf):
 
     df.to_csv(conf['data_path'] + "/origin_csl.csv", index=False)
 
-    print("START BULKLOAD")
+    message("START BULKLOAD")
     es.data_ingestion(df, conf)

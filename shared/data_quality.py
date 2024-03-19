@@ -52,8 +52,11 @@ def data_history_analysis(conf, df):
     message(history_path)
     df_history = read_csvs_on_dir_and_union(history_path, True)
 
+    message("ANALISE volume")
     volume_erro, volume_alert = volume_analysis(df_history, df)
+    message("ANALISE price")
     price_erro, price_alert, df_price = price_analysis(df_history, df)
+    message("ANALISE title")
     title_erro, title_alert, df_title = title_analysis(df_history, df)
 
     is_success = (price_erro & 
@@ -122,6 +125,8 @@ def price_analysis(df_history, df):
     df_erro = result_df_price.sort_values('diff_percent')
     message("PRICE ERROR DATAFRAME")
     print(df_erro[~df_erro['price_erro']])
+    message("PRICE DATAFRAME")
+    print(df_erro[df_erro['price_erro']])
 
     return  [
                 not (result_df_price["price_erro"] == False).any(),

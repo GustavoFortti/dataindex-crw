@@ -10,11 +10,11 @@ job_names=(
     # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
-    "boldsnacks"
+    # "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
-    # "growth_supplements"
+    "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
@@ -29,8 +29,8 @@ job_names=(
 )
 
 # Variáveis comuns para todos os jobs
-job_type="extract"
-option="status_job"
+job_type="ingestion"
+option="data_quality"
 page_type="supplement"
 country="brazil"
 mode="prd"
