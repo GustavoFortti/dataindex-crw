@@ -9,7 +9,7 @@ from shared.elasticsearch_functions import create_connection, create_documents_w
 from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 
 CONF = {
-    "name": "_set_",
+    "name": "_set_carousel_",
 }
 
 def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
@@ -89,7 +89,7 @@ def run(args):
     wafer = wordlist["wafer"]["subject"]
     blacklist = ["combo", "pack", "kit"] + barrinha + alfajor + wafer
 
-    df_whey = filter_dataframe_for_columns(df, ["title", "spec_component"], keywords, blacklist)
+    df_whey = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
     df_whey = df_whey.sample(18)
     print(df_whey)
     elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["whey"], df_whey)
@@ -98,7 +98,7 @@ def run(args):
     keywords = wordlist["barrinha"]["subject"]
     blacklist = ["combo", "pack", "kit"]
 
-    df_barrinha = filter_dataframe_for_columns(df, ["title", "spec_component"], keywords, blacklist)
+    df_barrinha = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
     df_barrinha = df_barrinha.sample(18)
     print(df_barrinha)
     elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["bar"], df_barrinha)
@@ -108,7 +108,7 @@ def run(args):
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "pack", "kit", "brain"] + beauty
 
-    df_pretreino = filter_dataframe_for_columns(df, ["title", "spec_component"], keywords, blacklist)
+    df_pretreino = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
     df_pretreino = df_pretreino.sample(18)
     print(df_pretreino)
     elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["preworkout"], df_pretreino)
