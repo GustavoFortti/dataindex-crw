@@ -17,13 +17,10 @@ def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
     global_mask = pd.Series([False] * len(df), index=df.index)
     
     for col in columns:
-        # Check the type of the column
-        if isinstance(df[col], str):
-            # Atualiza a máscara global para incluir registros que contêm as palavras-chave
-            global_mask |= df[col].str.contains('|'.join(keywords), case=False, na=False)
-        else:
-            # If the column is not a string, you might want to handle it differently
-            raise TypeError(f"Column '{col}' is not a string type.")
+        # Converte a coluna para string e substitui valores nulos por string vazia
+        df[col] = df[col].astype(str).fillna('')
+        # Atualiza a máscara global para incluir registros que contêm as palavras-chave
+        global_mask |= df[col].str.contains('|'.join(keywords), case=False)
     
     # Aplica a máscara global para filtrar as linhas com palavras-chave
     filtered_df = df[global_mask]
@@ -32,7 +29,7 @@ def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
     if blacklist:
         for col in columns:
             # Cria uma máscara para excluir linhas com substrings da blacklist
-            blacklist_mask = ~filtered_df[col].str.contains('|'.join(blacklist), case=False, na=False)
+            blacklist_mask = ~filtered_df[col].str.contains('|'.join(blacklist), case=False)
             # Aplica a máscara da blacklist
             filtered_df = filtered_df[blacklist_mask]
     
@@ -40,6 +37,7 @@ def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
     filtered_df = filtered_df.drop_duplicates().reset_index(drop=True)
     
     return filtered_df
+
 
 
 def get_all_origins():
