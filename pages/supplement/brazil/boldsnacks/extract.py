@@ -49,13 +49,11 @@ class Job():
         div_container = soup.find('div', class_='card-product__wrapper')
     
         if div_container:
-            # Now that we have confirmed the div exists, find the img within it
             image_element = div_container.find('img')
             if image_element and 'data-srcset' in image_element.attrs:
                 srcset = image_element['data-srcset']
-                images = srcset.split(",")  # Splits the srcset into a list of URLs
+                images = srcset.split(",")
                 
-                # Pick a resolution, here we choose the middle one for demonstration
                 middle_image = images[len(images) // 2].split(" ")[0].strip()
                 image_url = "https:" + middle_image if middle_image.startswith("//") else middle_image
                 return image_url
