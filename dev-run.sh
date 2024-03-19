@@ -17,7 +17,7 @@ job_names=(
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
-    # "max_titanium"
+    "max_titanium"
     # "new_millen"
     # "nutrata"
     # "probiotica"
@@ -25,12 +25,12 @@ job_names=(
     # "under_labz"
     # "vitafor"
     # "_set_carousel_"
-    "_set_product_def_"
+    # "_set_product_def_"
 )
 
 # Variáveis comuns para todos os jobs
-job_type="dry"
-option="false"
+job_type="extract"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"

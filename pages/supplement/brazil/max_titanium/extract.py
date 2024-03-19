@@ -35,11 +35,14 @@ class Job():
     
     def get_price(self, soup):
         price = None
-        price_element = soup.find('span', class_='vtex-product-price-1-x-sellingPriceValue')
+        price_element = soup.find('span', class_='vtex-product-price-1-x-spotPriceValue')
         if price_element:
             currency_container = price_element.find('span', class_='vtex-product-price-1-x-currencyContainer')
             if currency_container:
-                price = ''.join([elem.text for elem in currency_container.find_all('span')])
+                currency_code = currency_container.find('span', class_='vtex-product-price-1-x-currencyCode').text
+                currency_integer = currency_container.find('span', class_='vtex-product-price-1-x-currencyInteger').text
+                currency_fraction = currency_container.find('span', class_='vtex-product-price-1-x-currencyFraction').text
+                price = f"{currency_code} {currency_integer},{currency_fraction}"
                 price = price.replace('\xa0', ' ').strip()
         return price
 
