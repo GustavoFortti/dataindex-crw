@@ -1,10 +1,10 @@
 INDEX_SUPPLEMENT_BRAZIL = {
-    "index": "brazil_supplement_03032024",
+    "index": "brazil_supplement_18032024",
     "type": "supplement",
     "set": {
-        "whey": "brazil_supplement_whey_03032024",
-        "bar": "brazil_supplement_bar_03032024",
-        "preworkout": "brazil_supplement_preworkout_03032024"
+        "whey": "brazil_supplement_whey_18032024",
+        "bar": "brazil_supplement_bar_18032024",
+        "preworkout": "brazil_supplement_preworkout_18032024"
     }
 }
 
@@ -56,87 +56,18 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "spec_component": {
-                        "type": "text",
-                        "analyzer": "title_analyzer",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "spec_5": {
-                        "type": "text",
-                        "analyzer": "title_analyzer",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "spec_4": {
-                        "type": "text",
-                        "analyzer": "title_analyzer",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "spec_3": {
-                        "type": "text",
-                        "analyzer": "title_analyzer",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "spec_2": {
-                        "type": "text",
-                        "analyzer": "title_analyzer",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "spec_1": {
-                        "type": "text",
-                        "analyzer": "title_analyzer",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
-                    },
-                    "ing_date": {
-                        "type": "date",
-                        "format": "yyyy-MM-dd"
+                    "price": {
+                        "type": "text"
                     },
                     "image_url": {
-                        "type": "keyword"
-                    },
-                    "image_url_srv": {
                         "type": "keyword"
                     },
                     "product_url": {
                         "type": "keyword"
                     },
-                    "brand": {
-                        "type": "text",
-                        "fields": {
-                            "keyword": {
-                                "type": "keyword",
-                                "ignore_above": 256
-                            }
-                        }
+                    "ing_date": {
+                        "type": "date",
+                        "format": "yyyy-MM-dd"
                     },
                     "name": {
                         "type": "text",
@@ -147,8 +78,14 @@ def elasticsearch_index(product, synonyms_list):
                             }
                         }
                     },
-                    "price": {
-                        "type": "text"
+                    "brand": {
+                        "type": "text",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
                     },
                     "price_numeric": {
                         "type": "float"
@@ -159,12 +96,29 @@ def elasticsearch_index(product, synonyms_list):
                     "preco_qnt": {
                         "type": "float"
                     },
-                    "quantity_format": {
-                        "type": "integer"
+                    "product_def": {
+                        "type": "text",
+                        "analyzer": "title_analyzer",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
                     },
-                    "format": {
-                        "type": "text"
-                    }
+                    "product_def_pred": {
+                        "type": "text",
+                        "analyzer": "title_analyzer",
+                        "fields": {
+                            "keyword": {
+                                "type": "keyword",
+                                "ignore_above": 256
+                            }
+                        }
+                    },
+                    "image_url_srv": {
+                        "type": "keyword"
+                    },
                 }
             }
         }
