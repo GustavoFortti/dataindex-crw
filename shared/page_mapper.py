@@ -5,17 +5,19 @@ from datetime import date
 from utils.log import message
 from shared.crawler import crawler
 from utils.wordlist import BLACK_LIST
-from utils.general_functions import (DATE_FORMAT,
-                                    read_json,
-                                    first_exec,
-                                    create_or_read_df,
-                                    delete_file,
-                                    list_directory,
-                                    download_images_in_parallel,
-                                    get_old_files_by_percent,
-                                    find_in_text_with_wordlist,
-                                    create_directory_if_not_exists,
-                                    is_price)
+from utils.general_functions import (
+    DATE_FORMAT,
+    read_json,
+    first_exec,
+    create_or_read_df,
+    delete_file,
+    list_directory,
+    download_images_in_parallel,
+    get_old_files_by_percent,
+    find_in_text_with_wordlist,
+    create_directory_if_not_exists,
+    is_price
+)
 
 def run(conf, Job):
     conf["scroll_page"] = True

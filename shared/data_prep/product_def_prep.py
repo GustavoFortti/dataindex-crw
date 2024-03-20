@@ -176,7 +176,6 @@ def get_keywords_info(document, index):
                     keywords_info[f"{word}_{location}"]["back_words"] = back_words[-5:]
                     keywords_info[f"{word}_{location}"]["document_size"] = len(documents_cleaned)
 
-    exit()
     if (keywords_info == {}):
         return {}
     
