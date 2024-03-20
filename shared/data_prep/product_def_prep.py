@@ -163,7 +163,6 @@ def get_keywords_info(document, index):
         for word in subject:
             locations = get_word_index_in_text(word, documents_cleaned, first_doc)
             if (locations != []):
-                print(word)
                 loc_back_words = get_back_words(documents_cleaned, documents_accents, locations, len(word))
 
                 for location, back_words in zip(locations, loc_back_words):

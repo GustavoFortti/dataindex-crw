@@ -284,7 +284,7 @@ def download_image(image_url, image_path, image_name):
         # Salvando a imagem no formato correto
         with open(image_path + file_name_with_extension, 'wb') as f:
             f.write(response.content)
-        return f"Image downloaded successfully! Saved as: {file_name_with_extension}"
+        return f"Image downloaded successfully! Saved as: {image_path}{file_name_with_extension}"
     else:
         message(f"Failed to download the image. HTTP status code: {response.status_code}")
 

@@ -1,6 +1,8 @@
 import re
 import numpy as np
 import pandas as pd
+import imagehash
+from PIL import Image
 
 from utils.log import message
 
@@ -8,7 +10,12 @@ from utils.general_functions import (
     clean_text,
     remove_spaces,
     find_in_text_with_wordlist,
-    path_exist
+    path_exist,
+    calculate_precise_image_hash,
+    create_directory_if_not_exists,
+    list_directory,
+    save_file,
+    convert_image
 )
 
 from shared.data_prep.product_def_prep import load_product_def_prep
@@ -113,3 +120,60 @@ def relation_qnt_price(row):
     if resultado < 0:
         return np.nan
     return round(resultado, 3)
+
+def image_processing(df, data_path):
+    message("image_processing")
+    path_img_tmp = data_path + "/img_tmp/"
+    path_img_hash = data_path + "/img_hash/"
+    path_img_csl = data_path + "/img_csl/"
+    create_directory_if_not_exists(path_img_hash)
+    create_directory_if_not_exists(path_img_csl)
+
+    refs = sorted(df['ref'])
+
+    dict_imgs = {i.split(".")[0]: i for i in list_directory(path_img_tmp) if i.split(".")[0] in refs}
+    dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
+
+    if (not set(dict_imgs.keys()).issubset(refs)):
+        print("ERROR IMAGE PROCESSING")
+        difference = set(dict_imgs.keys()) - set(refs)
+        print(difference)
+        exit(1)
+
+    message("LOADING IMAGES")
+    def describe_image(image, img_path):
+        width, height = image.size
+        file_size = os.path.getsize(img_path)  
+        return {
+            "dimensions": (width, height),
+            "size": file_size,
+            "img_path": img_path
+        }
+    
+    images_info = {}
+
+    for index, (ref, img_file_name) in enumerate(dict_imgs.items()):
+        img_path = path_img_tmp + img_file_name
+        image = Image.open(img_path)
+        new_image_hash = calculate_precise_image_hash(img_path)
+        new_image_hash = imagehash.hex_to_hash(new_image_hash)
+
+        path_ref_img_hash = path_img_hash + ref + ".txt"
+        if path_exist(path_ref_img_hash):
+            
+            with open(path_ref_img_hash, "r") as file:
+                old_image_hash_str = file.read()
+                old_image_hash = imagehash.hex_to_hash(old_image_hash_str)
+
+            if new_image_hash != old_image_hash:
+                save_file(new_image_hash, path_ref_img_hash)
+                images_info[ref] = describe_image(image, img_path)
+        else:
+            save_file(new_image_hash, path_ref_img_hash)
+            images_info[ref] = describe_image(image, img_path)
+    
+    for ref, image_info in images_info.items():
+        save_path = path_img_csl + ref
+        img_path = image_info["img_path"]
+        convert_image(img_path, save_path)
+    message("Images processing ok")
