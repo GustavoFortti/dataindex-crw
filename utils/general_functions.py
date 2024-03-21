@@ -401,8 +401,7 @@ def read_csvs_on_dir_and_union(directory, get_only_last):
         dfs = [pd.read_csv(file) for file in csv_files]
         return pd.concat(dfs, ignore_index=True)
     else:
-        message("Erro: no historical data")
-        exit(1)
+        raise Exception("Error: no data")
 
 def read_file(file_path):
     """Reads a file and returns its contents as a string."""

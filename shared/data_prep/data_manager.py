@@ -35,9 +35,10 @@ def data_prep(conf, df):
     message("Criando colunas de definição para produtos")
     df = create_product_def_cols(df, CONF)
 
-    df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
-
+    message("Processamento de novas imagens dos produtos")
     image_processing(df, DATA_PATH)
+
+    df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
     
     df = df[
         [

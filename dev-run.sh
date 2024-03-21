@@ -7,7 +7,7 @@ export LOCAL="$local"
 echo $LOCAL
 
 job_names=(
-    # "adaptogen"
+    "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
@@ -23,14 +23,14 @@ job_names=(
     # "probiotica"
     # "truesource"
     # "under_labz"
-    "vitafor"
+    # "vitafor"
     # "_set_carousel_"
     # "_set_product_def_"
 )
 
 # Variáveis comuns para todos os jobs
-job_type="dry"
-option="false"
+job_type="extract"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"

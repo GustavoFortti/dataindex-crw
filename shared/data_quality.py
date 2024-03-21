@@ -28,9 +28,12 @@ def status_tag(data, kill_job=True):
     if errors:
         for error in errors:
             message(error)
+
         if (kill_job): 
-            exit(1)
-        else: return False
+            message("JOB KILLED BY FLAG WITH ERROR")
+            raise Exception(str(errors))
+        else: 
+            return False
         
     message("status_tag: All validations passed successfully.")
     if (kill_job): 

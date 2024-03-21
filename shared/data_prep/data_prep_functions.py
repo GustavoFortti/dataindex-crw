@@ -33,6 +33,7 @@ def create_product_def_cols(df, conf):
     message("Load_models_prep")
     load_product_def_prep(df, conf)
 
+    message("carregando colunas de definição")
     path_product_def = f"{product_def_path}/product_def.csv"
     path_product_def_predicted = f"{product_def_path}/product_def_predicted.csv"
 
@@ -136,10 +137,9 @@ def image_processing(df, data_path):
     dict_imgs = dict(sorted(dict_imgs.items(), key=lambda item: item[1]))
 
     if (not set(dict_imgs.keys()).issubset(refs)):
-        print("ERROR IMAGE PROCESSING")
         difference = set(dict_imgs.keys()) - set(refs)
         print(difference)
-        exit(1)
+        raise Exception("ERROR IMAGE PROCESSING")
 
     message("LOADING IMAGES")
     def describe_image(image, img_path):

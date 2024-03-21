@@ -27,6 +27,7 @@ def load_product_def_prep(df, conf):
     DATA_PATH = CONF["data_path"]
 
     FILE_PATH_PRODUCT_INFO = f"{DATA_PATH}/product_info.csv"
+    message("Extrai palavras chave das paginas dos produtos")
     keywords_data = extract_keywords_from_products(df)
 
     delete_file(FILE_PATH_PRODUCT_INFO)
@@ -303,8 +304,9 @@ def extract_subject_from_html_text(html_text, tag=None):
         text = soup.get_text()
     else:
         html = soup.find(tag['tag'], class_=tag['class'])
-        if (html != None):
-            text = html.text
+        if html is None:
+            raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
+        text = html.text
 
     return text
 

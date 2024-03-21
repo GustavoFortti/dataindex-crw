@@ -20,22 +20,29 @@ class Job():
         return items
 
     def get_product_url(self, soup):
-        product_link_element = soup.find('a', class_='vitrine-nomeProduto')
+        product_link_element = soup.find('a', class_='cardprod-nomeProduto')
         return product_link_element['href'] if product_link_element else None
 
-
     def get_title(self, soup):
-        title_element = soup.find('a', class_='vitrine-nomeProduto')
+        title_element = soup.find('h3', class_='cardprod-nomeProduto-t1')
         return title_element.get_text().strip() if title_element else None
 
     def get_price(self, soup):
-        price_element = soup.find('span', class_='vitrine-valor')
-        return price_element.get_text().strip() if price_element else None
-
+        price_element = soup.find('span', class_='cardprod-valor')
+        if price_element:
+            full_text = price_element.get_text().strip()
+            price = full_text.split('\n')[0].strip()
+            return price
+        else:
+            return None
 
     def get_image_url(self, soup):
-        image_element = soup.find('img', class_='lazy')
-        return image_element['src'] if image_element else None
+        card_topo = soup.find('div', class_='cardProd-topo')
+        if card_topo:
+            image_element = card_topo.find('img')
+            return image_element['src'] if image_element else None
+        else:
+            return None
 
     def get_elements_seed(self, soup):
         product_link =self. get_product_url(soup)
