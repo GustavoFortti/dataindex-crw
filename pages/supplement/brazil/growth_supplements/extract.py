@@ -1,4 +1,5 @@
 from shared.page_mapper import run as run_page_mapper
+from urllib.parse import urljoin
 
 class Job():
     def __init__(self, conf) -> None:
@@ -21,7 +22,9 @@ class Job():
 
     def get_product_url(self, soup):
         product_link_element = soup.find('a', class_='cardprod-nomeProduto')
-        return product_link_element['href'] if product_link_element else None
+        if product_link_element and 'href' in product_link_element.attrs:
+            return "https://www.gsuplementos.com.br" + product_link_element['href']
+        return None
 
     def get_title(self, soup):
         title_element = soup.find('h3', class_='cardprod-nomeProduto-t1')
@@ -45,7 +48,7 @@ class Job():
             return None
 
     def get_elements_seed(self, soup):
-        product_link =self. get_product_url(soup)
+        product_link = self. get_product_url(soup)
         title = self.get_title(soup)
         price = self.get_price(soup)
         link_imagem = self.get_image_url(soup)

@@ -7,14 +7,14 @@ export LOCAL="$local"
 echo $LOCAL
 
 job_names=(
-    "adaptogen"
+    # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
-    # "growth_supplements"
+    "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
