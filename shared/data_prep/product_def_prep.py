@@ -145,8 +145,6 @@ def extract_keywords_from_products(df):
         if (document_from_tag == []):
             raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
 
-        print(document_from_tag)
-        continue
         product_documents.extend(document_from_tag)
 
         text_from_html = extract_subject_from_html_text(html_text)
