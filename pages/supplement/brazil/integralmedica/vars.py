@@ -2,7 +2,8 @@ JOB_NAME = "integralmedica"
 BRAND = "integralmedica"
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'section', 'class': '__bs_product-breadcrumb'}
+    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow vtex-flex-layout-0-x-flexRow--pdpProductInfo'},
+    {'tag': 'div', 'class': 'integralmedica-store-components-0-x-doubleImageAndTopicsCardContainer'},
 ]
 
 DYNAMIC_SCROLL = {
