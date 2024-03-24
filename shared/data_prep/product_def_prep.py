@@ -142,10 +142,11 @@ def extract_keywords_from_products(df):
         document_from_tag = [extract_subject_from_html_text(html_text, tag) for tag in CONF["product_definition_tag"]]
         document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
-        print(document_from_tag)
         if (document_from_tag == []):
             raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
 
+        print(document_from_tag)
+        continue
         product_documents.extend(document_from_tag)
 
         text_from_html = extract_subject_from_html_text(html_text)

@@ -2,7 +2,9 @@ JOB_NAME = "dux_nutrition_lab"
 BRAND = "dux nutrition lab"
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'}
+    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'},
+    {'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'},
+    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'}
 ]
 
 DYNAMIC_SCROLL = {
