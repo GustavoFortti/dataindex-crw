@@ -2,7 +2,7 @@ JOB_NAME = "boldsnacks"
 BRAND = "boldsnacks"
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'product__description'},
+    {'tag': 'div', 'class': 'productView-desc halo-text-format'},
 ]
 
 DYNAMIC_SCROLL = {

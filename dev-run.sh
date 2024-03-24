@@ -13,13 +13,13 @@ job_names=(
     # "boldsnacks"
     # "dark_lab"
     # "darkness"
-    # "dux_nutrition_lab"
-    "growth_supplements"
-    # "integralmedica"
+        "dux_nutrition_lab"
+        # "growth_supplements"
+        # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
     # "new_millen"
-    # "nutrata"
+        # "nutrata"
     # "probiotica"
     # "truesource"
     # "under_labz"
@@ -29,13 +29,12 @@ job_names=(
 )
 
 # Variáveis comuns para todos os jobs
-job_type="extract"
-option="status_job"
+job_type="dry"
+option="false"
 page_type="supplement"
 country="brazil"
 mode="prd"
 
-# Loop pela lista de job_names e execução do script para cada um
 for job_name in "${job_names[@]}"
 do
     echo "Executing job: $job_name"
@@ -47,7 +46,6 @@ do
         --country "$country" \
         --mode "$mode"
     
-    # Check if the previous command failed
     if [ $? -ne 0 ]; then
         echo "Error executing job: $job_name. Stopping execution of remaining jobs."
         break

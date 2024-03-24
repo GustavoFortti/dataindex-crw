@@ -139,7 +139,14 @@ def extract_keywords_from_products(df):
 
         product_documents.append(title)
 
-        product_documents.extend([extract_subject_from_html_text(html_text, tag) for tag in  CONF["product_definition_tag"]])
+        document_from_tag = [extract_subject_from_html_text(html_text, tag) for tag in CONF["product_definition_tag"]]
+        document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
+        
+        print(document_from_tag)
+        if (document_from_tag == []):
+            raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
+
+        product_documents.extend(document_from_tag)
 
         text_from_html = extract_subject_from_html_text(html_text)
         product_documents.append(text_from_html)
@@ -305,7 +312,7 @@ def extract_subject_from_html_text(html_text, tag=None):
     else:
         html = soup.find(tag['tag'], class_=tag['class'])
         if html is None:
-            raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
+            return None
         text = html.text
 
     return text

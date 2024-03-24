@@ -2,9 +2,7 @@ JOB_NAME = "under_labz"
 BRAND = "under labz"
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'breadcrumbs'},
-    {'tag': 'p', 'class': 'western'},
-    {'tag': 'div', 'class': 'tab-pane active'}
+    {'tag': 'div', 'class': 'abas-custom'},
 ]
 
 DYNAMIC_SCROLL = {

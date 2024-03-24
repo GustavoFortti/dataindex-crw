@@ -2,8 +2,10 @@ JOB_NAME = "darkness"
 BRAND = "darkness"
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'section', 'class': 'breadcrumb'}, 
-    {'tag': 'div', 'class': 'productDescription'}
+    {'tag': 'section', 'class': 'product-information'}, 
+    {'tag': 'div', 'class': '__bs-nutri-table-container'}, 
+    {'tag': 'div', 'class': 'col-md-6'},
+    {'tag': 'div', 'class': '__bs-evora-list-text'}, 
 ]
 
 DYNAMIC_SCROLL = {
