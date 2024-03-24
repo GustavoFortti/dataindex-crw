@@ -2,7 +2,8 @@ JOB_NAME = "growth_supplements"
 BRAND = "growth supplements"
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'section', 'class': 'breadcrumb-produto'}
+    {'tag': 'section', 'class': 'breadcrumb-produto'},
+    {'tag': 'ul', 'class': 'breadcrumb-container'},
 ]
 
 DYNAMIC_SCROLL = {
