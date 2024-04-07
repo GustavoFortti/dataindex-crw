@@ -1,13 +1,11 @@
 import os
+
 import pandas as pd
-
-from utils.log import message
-
 from elasticsearch import Elasticsearch, helpers
 
 from shared.elasticsearch_index import elasticsearch_index
-
 from utils.general_functions import remove_nan_from_dict
+from utils.log import message
 from utils.wordlist import get_synonyms
 
 os.environ['PYTHONWARNINGS'] = 'ignore'

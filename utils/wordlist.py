@@ -1,8 +1,10 @@
 import re
-import numpy as np
 from copy import deepcopy
 
+import numpy as np
+
 from utils.general_functions import clean_text
+
 
 def get_synonyms(component_list):
     keywords_list = []
@@ -829,7 +831,8 @@ SUPPLEMENT_COMPONENT_LIST = {
     "minerail": {
         "subject": [
             "minerai",
-            "minerail"
+            "minerail",
+            "mineral",
         ],
         "product": False,
         "may_feature": False,
@@ -893,6 +896,17 @@ SUPPLEMENT_COMPONENT_LIST = {
             "protease",
             "proteasa",
             "protease"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [
+            "enzima"
+        ],
+        "conflict": []
+    },
+    "propolis": {
+        "subject": [
+            "propolis",
         ],
         "product": True,
         "may_feature": False,
@@ -1312,6 +1326,19 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vegano",
             "vegie",
             "vegana"
+        ],
+        "product": False,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
+    "vegetarian": {
+        "subject": [
+            "vegetarian",
+            "vegetariano",
+            "vegetariana",
+            "veggie",
+            "vegetarianismo"
         ],
         "product": False,
         "may_feature": False,
@@ -1842,6 +1869,16 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zinco",
             "zinco",
             "zinco"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
+    "selenio": {
+        "subject": [
+            "selenio",
+            "seleni",
         ],
         "product": True,
         "may_feature": False,

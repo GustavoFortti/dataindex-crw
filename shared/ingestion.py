@@ -1,10 +1,12 @@
 import os
+
 import pandas as pd
 
-from utils.log import message
+import shared.data_quality as dq
 import shared.elasticsearch_functions as es
 import shared.image_server_functions as image_srv
-import shared.data_quality as dq
+from utils.log import message
+
 
 def ingestion(conf):
     print(conf['data_path'])

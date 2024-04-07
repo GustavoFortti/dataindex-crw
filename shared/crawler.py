@@ -1,14 +1,15 @@
-import time
-import pandas as pd
 import asyncio
+import time
+
+import pandas as pd
 from pyppeteer import launch
 
-import shared.selenium_service as se 
+import shared.selenium_service as se
 from shared.data_quality import status_tag
+from utils.general_functions import (clean_string_break_line,
+                                     create_or_read_df, generate_hash)
 from utils.log import message
-from utils.general_functions import (generate_hash,
-                                     create_or_read_df,
-                                     clean_string_break_line)
+
 
 def crawler(job, url):
     message("exec crawler")

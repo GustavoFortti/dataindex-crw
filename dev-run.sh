@@ -12,14 +12,14 @@ job_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    # "darkness"
+    "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
     # "new_millen"
-        "nutrata"
+        # "nutrata"
     # "probiotica"
     # "truesource"
     # "under_labz"
@@ -29,8 +29,8 @@ job_names=(
 )
 
 # Variáveis comuns para todos os jobs
-job_type="dry"
-option="false"
+job_type="extract"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"

@@ -1,45 +1,46 @@
-import os
-import re
-import json
-import math
-import shutil
 import base64
 import hashlib
-import requests
+import json
+import math
+import os
+import re
+import shutil
 import statistics
 import unicodedata
-import pandas as pd
-
-from glob import glob
-from PIL import Image
-from datetime import date, timedelta
-from fake_useragent import UserAgent
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import date, timedelta
+from glob import glob
+from typing import Any, Optional
+
+import pandas as pd
+import requests
+from fake_useragent import UserAgent
+from PIL import Image
 
 from utils.log import message
 
 DATE_FORMAT = "%Y-%m-%d"
 
-def read_json(file_path):
+def read_json(file_path: str) -> Optional[Any]:
+    """Reads a JSON file and returns its content or None in case of an error."""
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
-            data = json.load(file)
-            return data
+            return json.load(file)
     except FileNotFoundError:
-        message(f"O arquivo {file_path} não foi encontrado.")
-        return None
+        message(f"The file {file_path} was not found.")
     except json.JSONDecodeError:
-        message(f"Erro ao decodificar o arquivo JSON {file_path}.")
-        return None
+        message(f"Error decoding the JSON file {file_path}.")
     except Exception as e:
-        message(f"Um erro ocorreu ao ler o arquivo {file_path}: {e}")
-        return None
+        message(f"An error occurred while reading the file {file_path}: {e}")
+    return None
 
-def save_json(file_name, data):
+def save_json(file_name: str, data: Any) -> None:
+    """Saves data to a JSON file."""
     with open(file_name, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False)
 
-def delete_file(file_path):
+def delete_file(file_path: str) -> None:
+    """Deletes a file if it exists, logging the outcome."""
     try:
         os.remove(file_path)
         message(f"File {file_path} has been deleted successfully")
@@ -48,14 +49,16 @@ def delete_file(file_path):
     except Exception as e:
         message(f"An error occurred: {e}")
 
-def path_exist(oath):
-    return os.path.exists(oath)
+def path_exists(path: str) -> bool:
+    """Checks if a path exists."""
+    return os.path.exists(path)
 
-def create_file_if_not_exists(file_path, text=False):
-    if not path_exist(file_path):
+def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> None:
+    """Creates a file if it doesn't exist. Optionally writes text to it."""
+    if not path_exists(file_path):
         try:
-            with open(file_path, mode='a', newline='') as file:
-                if (text):
+            with open(file_path, mode='a', encoding='utf-8') as file:
+                if text:
                     file.write(text + "\n")
                     message(f"write '{text}' successfully.")
                 message(f"File '{file_path}' created successfully.")
@@ -63,65 +66,48 @@ def create_file_if_not_exists(file_path, text=False):
             message(f"The file '{file_path}' already exists.")
         except Exception as e:
             message(f"An error occurred: {e}")
-        
-def encode_base64(val):
-    return base64.b64encode(val.encode('utf-8')).decode('utf-8')
 
-def generate_numeric_hash(data):
+def encode_to_base64(value: str) -> str:
+    """Encodes a string to Base64."""
+    return base64.b64encode(value.encode('utf-8')).decode('utf-8')
+
+def generate_numeric_hash(data: str) -> int:
+    """Generates a numeric hash value for the given data."""
     hash_value = hash(data)
-    numeric_hash = abs(hash_value)
-    
-    return numeric_hash
+    return abs(hash_value)
 
 def generate_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
 
-def clean_text(texto, clean_spaces=False, remove_final_s=False, remove_break_line=True, remove_accents=True, add_space_firts=False):
-    if isinstance(texto, str):
-        original_length = len(texto)
+def clean_text(text: str, clean_spaces: bool = False, remove_final_s: bool = False, 
+               remove_break_line: bool = True, remove_accents: bool = True, 
+               add_space_first: bool = False) -> Optional[str]:
+    """Cleans and formats text based on the provided parameters."""
+    if not isinstance(text, str):
+        return None
 
-        if remove_accents:
-            # Substituir acentos pelos caracteres sem acento, sem modificar o tamanho do texto.
-            texto = unicodedata.normalize('NFKD', texto)
-            texto = ''.join([c if not unicodedata.combining(c) else '' for c in texto])
-        else:
-            # Manter o texto como está, sem alterar os acentos.
-            texto = texto
+    if remove_accents:
+        text = ''.join(c for c in unicodedata.normalize('NFKD', text) if not unicodedata.combining(c))
 
-        # Substituir caracteres não alfanuméricos (exceto espaços) por espaços, mantendo o comprimento.
-        texto = re.sub(r'[^\w\s]', lambda match: ' ' if match.group(0) != ' ' else ' ', texto)
-        if remove_break_line:
-            # Substituir quebras de linha por espaços.
-            texto = re.sub(r'\n', ' ', texto)
-        
-        if remove_final_s:
-            # Substituir 's' no final de palavras por espaços, mantendo o comprimento.
-            texto = re.sub(r's\b', ' ', texto)
-        
-        if add_space_firts:
+    text = re.sub(r'[^\w\s]', ' ', text)
+    
+    if remove_break_line:
+        text = text.replace('\n', ' ')
+    
+    if remove_final_s:
+        text = re.sub(r's\b', ' ', text)
+    
+    if add_space_first:
+        text = ' ' + text
 
-            # Adiciona um espaço no inicio de todo texto
-            texto = " " + texto
+    if clean_spaces:
+        text = re.sub(r'\s+', ' ', text).strip()
+    else:
+        text = re.sub(r'\s+', lambda match: ' ' * len(match.group(0)), text)
 
-        if clean_spaces:
-            # Neste caso, permitir que o tamanho do texto se altere, removendo espaços extras.
-            texto = re.sub(r'\s+', ' ', texto).strip()
-        else:
-            # Ajustar espaços sem alterar o comprimento do texto.
-            texto = re.sub(r'\s+', lambda match: ' ' * len(match.group(0)), texto)
+    text = text.lower()
 
-        # Manter o texto em minúsculas.
-        texto = texto.lower()
-
-        # Ajustar o texto para garantir que ele tenha exatamente o mesmo número de caracteres que o original, se não estiver removendo espaços.
-        if not clean_spaces:
-            add_length = 0
-            if (add_space_firts):
-                add_length = 1
-            texto = texto.ljust(original_length + add_length)[:original_length + add_length]
-
-        return texto
-    return texto
+    return text
 
 def list_directory(path):
     try:
@@ -154,7 +140,7 @@ def slice_text(original, start, end):
     return original[start_index:end_index + len(end)]
 
 def create_directory_if_not_exists(directory_path):
-    if not path_exist(directory_path):
+    if not path_exists(directory_path):
         try:
             os.makedirs(directory_path)
             message(f"Directory '{directory_path}' created successfully.")
@@ -182,7 +168,7 @@ def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):
 
 def create_or_read_df(path, columns):
     message(f"create_or_read_df")
-    if (path_exist(path)):
+    if (path_exists(path)):
         message(f"read file: {path}")
         df = pd.read_csv(path)
     else:

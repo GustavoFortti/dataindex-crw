@@ -1,29 +1,21 @@
 import os
 import re
+
+import imagehash
 import numpy as np
 import pandas as pd
-import imagehash
 from PIL import Image
 
-from utils.log import message
-
-from utils.general_functions import (
-    clean_text,
-    remove_spaces,
-    find_in_text_with_wordlist,
-    path_exist,
-    calculate_precise_image_hash,
-    create_directory_if_not_exists,
-    list_directory,
-    save_file,
-    convert_image
-)
-
 from shared.data_prep.product_def_prep import load_product_def_prep
+from utils.general_functions import (calculate_precise_image_hash, clean_text,
+                                     convert_image,
+                                     create_directory_if_not_exists,
+                                     find_in_text_with_wordlist,
+                                     list_directory, path_exists,
+                                     remove_spaces, save_file)
+from utils.log import message
+from utils.wordlist import BLACK_LIST
 
-from utils.wordlist import (
-    BLACK_LIST, 
-)
 
 def create_product_def_cols(df, conf):
     message("criada colunas de definição do produto")
@@ -37,7 +29,7 @@ def create_product_def_cols(df, conf):
     path_product_def = f"{product_def_path}/product_def.csv"
     path_product_def_predicted = f"{product_def_path}/product_def_predicted.csv"
 
-    if ((path_exist(path_product_def)) & (path_exist(path_product_def_predicted))):
+    if ((path_exists(path_product_def)) & (path_exists(path_product_def_predicted))):
 
         df_product_def = pd.read_csv(path_product_def)
         df_product_def_predicted = pd.read_csv(path_product_def_predicted)
@@ -160,7 +152,7 @@ def image_processing(df, data_path):
         new_image_hash = imagehash.hex_to_hash(new_image_hash)
 
         path_ref_img_hash = path_img_hash + ref + ".txt"
-        if path_exist(path_ref_img_hash):
+        if path_exists(path_ref_img_hash):
             
             with open(path_ref_img_hash, "r") as file:
                 old_image_hash_str = file.read()

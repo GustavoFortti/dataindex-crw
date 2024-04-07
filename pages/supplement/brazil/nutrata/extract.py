@@ -12,7 +12,6 @@ class Job():
         self.conf["index"] += 1
         return url + 'page/' + str(self.conf["index"]) + '/'
     
-        return url + 'page/' + str(index) + '/'
     def reset_index(self):
         self.conf["index"] = None
 

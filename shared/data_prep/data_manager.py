@@ -1,15 +1,13 @@
 import pandas as pd
 
+from shared.data_prep.data_prep_functions import (apply_generic_filters,
+                                                  create_product_def_cols,
+                                                  create_quantity_column,
+                                                  filter_nulls,
+                                                  image_processing,
+                                                  remove_blacklisted_products)
 from utils.log import message
 
-from shared.data_prep.data_prep_functions import (
-    filter_nulls,
-    apply_generic_filters,
-    create_quantity_column,
-    remove_blacklisted_products,
-    create_product_def_cols,
-    image_processing
-)
 
 def data_prep(conf, df):
     global CONF

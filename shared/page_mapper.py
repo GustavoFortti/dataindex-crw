@@ -1,23 +1,19 @@
 import os
-import pandas as pd
 from datetime import date
 
-from utils.log import message
+import pandas as pd
+
 from shared.crawler import crawler
+from utils.general_functions import (DATE_FORMAT,
+                                     create_directory_if_not_exists,
+                                     create_or_read_df, delete_file,
+                                     download_images_in_parallel,
+                                     find_in_text_with_wordlist, first_exec,
+                                     get_old_files_by_percent, is_price,
+                                     list_directory, read_json)
+from utils.log import message
 from utils.wordlist import BLACK_LIST
-from utils.general_functions import (
-    DATE_FORMAT,
-    read_json,
-    first_exec,
-    create_or_read_df,
-    delete_file,
-    list_directory,
-    download_images_in_parallel,
-    get_old_files_by_percent,
-    find_in_text_with_wordlist,
-    create_directory_if_not_exists,
-    is_price
-)
+
 
 def run(conf, Job):
     conf["scroll_page"] = True

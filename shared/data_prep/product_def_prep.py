@@ -1,19 +1,11 @@
 import pandas as pd
 from bs4 import BeautifulSoup
 
+from utils.general_functions import (clean_text, delete_file, path_exists,
+                                     read_file)
 from utils.log import message
+from utils.wordlist import get_back_words, get_word_index_in_text
 
-from utils.general_functions import (
-    clean_text,
-    read_file,
-    path_exist,
-    delete_file,
-)
-
-from utils.wordlist import (
-    get_word_index_in_text,
-    get_back_words
-)
 
 def load_product_def_prep(df, conf):
     message("Running model prep...")
@@ -317,7 +309,7 @@ def extract_subject_from_html_text(html_text, tag=None):
     return text
 
 def append_new_df_and_save(path, new_df):
-    if path_exist(path):
+    if path_exists(path):
         existing_df = pd.read_csv(path)
         combined_df = pd.concat([existing_df, new_df], ignore_index=True)
     else:

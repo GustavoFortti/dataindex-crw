@@ -1,14 +1,11 @@
 from datetime import date
-import pandas as pd
-from utils.log import message
 
-from utils import (DATE_FORMAT,
-                   check_url_existence, 
-                   is_price, 
-                   read_csvs_on_dir_and_union,
-                   calc_string_diff_in_df_col,
-                   has_files,
-                   create_directory_if_not_exists)
+import pandas as pd
+
+from utils import (DATE_FORMAT, calc_string_diff_in_df_col,
+                   check_url_existence, create_directory_if_not_exists,
+                   has_files, is_price, read_csvs_on_dir_and_union)
+from utils.log import message
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)

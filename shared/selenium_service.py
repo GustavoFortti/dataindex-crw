@@ -1,22 +1,20 @@
-from config.env import LOCAL
-from utils.log import message
-
 import os
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException 
 
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-import time
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException, WebDriverException
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
+from config.env import LOCAL
 from utils.general_functions import check_urls_in_parallel, is_price
+from utils.log import message
+
 
 def initialize_selenium():
     options = webdriver.ChromeOptions()

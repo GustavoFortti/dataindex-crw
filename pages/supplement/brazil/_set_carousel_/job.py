@@ -1,12 +1,14 @@
-from config.env import LOCAL
-from utils.wordlist import WORDLIST
-from utils.log import message
-
 import os
+
 import pandas as pd
 from elasticsearch import helpers
-from shared.elasticsearch_functions import create_connection, create_documents_with_pandas
+
+from config.env import LOCAL
+from shared.elasticsearch_functions import (create_connection,
+                                            create_documents_with_pandas)
 from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
+from utils.log import message
+from utils.wordlist import WORDLIST
 
 CONF = {
     "name": "_set_carousel_",
@@ -37,8 +39,6 @@ def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
     filtered_df = filtered_df.drop_duplicates().reset_index(drop=True)
     
     return filtered_df
-
-
 
 def get_all_origins():
     diretorio_inicial = f'{LOCAL}/data/supplement/brazil'
