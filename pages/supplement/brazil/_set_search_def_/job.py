@@ -1,4 +1,5 @@
 import os
+from copy import deepcopy
 
 import pandas as pd
 from elasticsearch import helpers
@@ -7,131 +8,96 @@ from config.env import LOCAL
 from shared.elasticsearch_functions import (create_connection,
                                             create_documents_with_pandas)
 from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
+from shared.dataframe_functions import filter_dataframe_for_columns
+from shared.set_functions import get_all_origins
 from utils.log import message
 from utils.wordlist import WORDLIST
+from shared.elasticsearch_functions import data_ingestion
 
 CONF = {
-    "name": "_set_carousel_",
+    "name": "_set_search_def_",
+    "wordlist": WORDLIST["supplement"],
+    "data_path": f"{LOCAL}/data/supplement/brazil/_set_search_def_",
+    "all_data_path": f"{LOCAL}/data/supplement/brazil/",
+    "brand": False,
+    "index_type": "supplement"
 }
 
-def filter_dataframe_for_columns(df, columns, keywords, blacklist=None):
-    # Inicializa uma máscara global com False para todos os registros
-    global_mask = pd.Series([False] * len(df), index=df.index)
-    
-    for col in columns:
-        # Converte a coluna para string e substitui valores nulos por string vazia
-        df[col] = df[col].astype(str).fillna('')
-        # Atualiza a máscara global para incluir registros que contêm as palavras-chave
-        global_mask |= df[col].str.contains('|'.join(keywords), case=False)
-    
-    # Aplica a máscara global para filtrar as linhas com palavras-chave
-    filtered_df = df[global_mask]
-    
-    # Se uma blacklist é fornecida, aplica a blacklist para remover linhas indesejadas
-    if blacklist:
-        for col in columns:
-            # Cria uma máscara para excluir linhas com substrings da blacklist
-            blacklist_mask = ~filtered_df[col].str.contains('|'.join(blacklist), case=False)
-            # Aplica a máscara da blacklist
-            filtered_df = filtered_df[blacklist_mask]
-    
-    # Remove linhas duplicadas do resultado final
-    filtered_df = filtered_df.drop_duplicates().reset_index(drop=True)
-    
-    return filtered_df
-
-def get_all_origins():
-    diretorio_inicial = f'{LOCAL}/data/supplement/brazil'
-    nome_arquivo = 'origin_csl.csv'
-
-    dataframes = []
-
-    # Percorre recursivamente o diretório e seus subdiretórios
-    for pasta_raiz, _, arquivos in os.walk(diretorio_inicial):
-        for nome_arquivo_encontrado in arquivos:
-            if nome_arquivo_encontrado == nome_arquivo:
-                caminho_completo = os.path.join(pasta_raiz, nome_arquivo_encontrado)
-                df = pd.read_csv(caminho_completo)
-                dataframes.append(df)
-
-    # Una todos os DataFrames em um único DataFrame
-    df = pd.concat(dataframes, ignore_index=True)
-    return df
-
-def create_index(es, indice_elasticsearch):
-    if not es.indices.exists(index=indice_elasticsearch):
-        es.indices.create(index=indice_elasticsearch)
-        print(f"Index '{indice_elasticsearch}' created.")
-    else:
-        print(f"Index '{indice_elasticsearch}' exists.")
-
-def elasticsearch_ingestion(es, indice_elasticsearch, df):
-    create_index(es, indice_elasticsearch)
-    es.delete_by_query(index=indice_elasticsearch, body={"query": {"match_all": {}}})
-    success, errors = helpers.bulk(es, create_documents_with_pandas(df, indice_elasticsearch))
-    print(success, errors)
-
-def promocoes(es, df):
+def promocoes(df):
     keywords = wordlist["pretreino"]["subject"]
-    blacklist = ""
+    blacklist = []
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["promocoes"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["promocoes"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def whey_protein(es, df):
+def whey_protein(df):
     keywords = wordlist["whey"]["subject"]
     barrinha = wordlist["barrinha"]["subject"]
     alfajor = wordlist["alfajor"]["subject"]
     wafer = wordlist["wafer"]["subject"]
     blacklist = ["combo", "kit"] + barrinha + alfajor + wafer
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["whey_protein"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["whey_protein"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def creatina(es, df):
+def creatina(df):
     keywords = wordlist["creatina"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["creatina"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["creatina"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def proteinas(es, df):
+def proteinas(df):
     keywords = (wordlist["protein"]["subject"] + 
                  wordlist["whey"]["subject"] + 
-                 wordlist["carn"]["subject"] + 
+                 wordlist["beef"]["subject"] + 
                  wordlist["albumina"]["subject"] + 
                  wordlist["soy"]["subject"] + 
                  wordlist["ervilha"]["subject"])
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["proteinas"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["proteinas"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def barrinhas_de_proteina(es, df):
+def barrinhas_de_proteina(df):
     keywords = wordlist["barrinha"]["subject"]
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["barrinhas_de_proteina"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["barrinhas_de_proteina"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def pre_treino(es, df):
+def pre_treino(df):
     keywords = wordlist["pretreino"]["subject"]
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["pre_treino"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["pre_treino"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def cafeina(es, df):
+def cafeina(df):
     keywords = wordlist["cafein"]["subject"]
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["cafeina"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["cafeina"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def energia(es, df):
+def energia(df):
     keywords = (wordlist["pretreino"]["subject"] + 
                 wordlist["taurina"]["subject"] +
                 wordlist["palatinose"]["subject"] +
@@ -139,19 +105,23 @@ def energia(es, df):
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["energia"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["energia"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def resistencia(es, df):
+def resistencia(df):
     keywords = (wordlist["bcaa"]["subject"] + 
                 wordlist["betaalanina"]["subject"])
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["resistencia"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["resistencia"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def imunidade(es, df):
+def imunidade(df):
     keywords = (wordlist["glutamin"]["subject"] + 
                 wordlist["propolis"]["subject"] +
                 wordlist["curcuma"]["subject"] +
@@ -161,18 +131,22 @@ def imunidade(es, df):
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["imunidade"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["imunidade"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def hipercalorico(es, df):
-    keywords = wordlist["hipercalorico"]["subject"]
+def hipercalorico(df):
+    keywords = wordlist["mass"]["subject"]
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["hipercalorico"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["hipercalorico"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def carboidratos(es, df):
+def carboidratos(df):
     keywords = (wordlist["malto"]["subject"] + 
                 wordlist["waxymaize"]["subject"] +
                 wordlist["palatinose"]["subject"] +
@@ -181,69 +155,97 @@ def carboidratos(es, df):
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["carboidratos"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["carboidratos"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def beta_alanina(es, df):
+def beta_alanina(df):
     keywords = wordlist["betaalanina"]["subject"]
     beauty = wordlist["beauty"]["subject"]
     blacklist = ["combo", "kit"] + beauty
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["beta_alanina"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["beta_alanina"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def termogenico(es, df):
+def termogenico(df):
     keywords = wordlist["termogenico"]["subject"] + wordlist["cafein"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["termogenico"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["termogenico"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def oleos(es, df):
+def oleos(df):
     keywords = (wordlist["cartamo"]["subject"] + 
-                ["oleo de coco"])
+                wordlist["oleo de coco"]["subject"])
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["oleos"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["oleos"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def temperos(es, df):
+def temperos(df):
     keywords = (wordlist["curcuma"]["subject"] + 
+                wordlist["oleo de coco"]["subject"] + 
+                wordlist["ketchup"]["subject"] + 
+                wordlist["barbecue"]["subject"] + 
+                wordlist["mostarda"]["subject"] + 
+                wordlist["maionese"]["subject"] + 
                 wordlist["tempero"]["subject"])
-    blacklist = ["combo", "kit"]
+    blacklist = ["combo", "kit", "caps"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["temperos"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["temperos"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def adocantes(es, df):
+def adocantes(df):
     keywords = wordlist["xylitol"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["adocantes"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["adocantes"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def pasta_de_amendoim(es, df):
+def pasta_de_amendoim(df):
     keywords = wordlist["peanut"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["pasta_de_amendoim"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["pasta_de_amendoim"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def vegano(es, df):
+def vegano(df):
     keywords = wordlist["veg"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["vegano"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["vegano"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def vegetariano(es, df):
-    keywords = wordlist["vegetarian"]["subject"]
+def vegetariano(df):
+    keywords = (wordlist["vegetarian"]["subject"] +
+                wordlist["veg"]["subject"] + 
+                wordlist["omega 3"]["subject"] + 
+                wordlist["bcaa"]["subject"] + 
+                wordlist["soy"]["subject"] + 
+                 wordlist["ervilha"]["subject"])
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["vegetariano"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["vegetariano"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def vitaminas(es, df):
+def vitaminas(df):
     keywords = (wordlist["vitamina"]["subject"] + 
                 wordlist["vitamina a"]["subject"] +
                 wordlist["vitamina b1"]["subject"] +
@@ -287,10 +289,12 @@ def vitaminas(es, df):
                 wordlist["vitamina w"]["subject"])
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["vitaminas"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["vitaminas"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def minerais(es, df):
+def minerais(df):
     keywords = (wordlist["calcio"]["subject"] + 
                 wordlist["cromo"]["subject"] +
                 wordlist["magnesio"]["subject"] +
@@ -299,58 +303,75 @@ def minerais(es, df):
                 wordlist["carboidrato"]["subject"])
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["minerais"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["minerais"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def sono(es, df):
+def sono(df):
     keywords = (wordlist["melatonina"]["subject"] + 
                 wordlist["magnesio"]["subject"] +
                 wordlist["triptofano"]["subject"])
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["sono"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["sono"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def magnesio(es, df):
+def magnesio(df):
     keywords = wordlist["magnesio"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["magnesio"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["magnesio"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def pele(es, df):
+def pele(df):
     keywords = wordlist["skin"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["pele"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["pele"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def cabelo(es, df):
+def cabelo(df):
     keywords = wordlist["hair"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["cabelo"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["cabelo"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def omega(es, df):
+def omega(df):
     keywords = wordlist["omega 3"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["omega"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["omega"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def colageno(es, df):
+def colageno(df):
     keywords = wordlist["colageno"]["subject"]
     blacklist = ["combo", "kit"]
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["colageno"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["colageno"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
-def combos(es, df):
+def combos(df):
     keywords = ["combo", "kit"]
+    blacklist = []
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL["combos"]
-    # elasticsearch_ingestion(es, index, df_filtered)
+    index = INDEX_SUPPLEMENT_BRAZIL['set']["combos"]
+    conf = deepcopy(CONF)
+    conf["index_name"] = index
+    data_ingestion(df_filtered, conf)
 
 def run(args):
     print("JOB_NAME: " + CONF["name"], end="")
@@ -362,63 +383,64 @@ def run(args):
     global wordlist
     wordlist = WORDLIST["supplement"]
     es = create_connection()
-    df = ""
+    df = get_all_origins(CONF['all_data_path'], "origin_csl.csv")
+    df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     
-    message("exec - promocoes")
-    promocoes(es, df)
-    message("exec - whey_protein")
-    whey_protein(es, df)
-    message("exec - creatina")
-    creatina(es, df)
-    message("exec - proteinas")
-    proteinas(es, df)
-    message("exec - barrinhas_de_proteina")
-    barrinhas_de_proteina(es, df)
-    message("exec - pre_treino")
-    pre_treino(es, df)
-    message("exec - cafeina")
-    cafeina(es, df)
-    message("exec - energia")
-    energia(es, df)
-    message("exec - resistencia")
-    resistencia(es, df)
-    message("exec - imunidade")
-    imunidade(es, df)
-    message("exec - hipercalorico")
-    hipercalorico(es, df)
-    message("exec - carboidratos")
-    carboidratos(es, df)
-    message("exec - beta_alanina")
-    beta_alanina(es, df)
-    message("exec - termogenico")
-    termogenico(es, df)
-    message("exec - oleos")
-    oleos(es, df)
-    message("exec - temperos")
-    temperos(es, df)
-    message("exec - adocantes")
-    adocantes(es, df)
-    message("exec - pasta_de_amendoim")
-    pasta_de_amendoim(es, df)
-    message("exec - vegano")
-    vegano(es, df)
-    message("exec - vegetariano")
-    vegetariano(es, df)
-    message("exec - vitaminas")
-    vitaminas(es, df)
-    message("exec - minerais")
-    minerais(es, df)
-    message("exec - sono")
-    sono(es, df)
-    message("exec - magnesio")
-    magnesio(es, df)
-    message("exec - pele")
-    pele(es, df)
-    message("exec - cabelo")
-    cabelo(es, df)
-    message("exec - omega")
-    omega(es, df)
-    message("exec - colageno")
-    colageno(es, df)
-    message("exec - combos")
-    combos(es, df)
+    # message("exec - promocoes")
+    # promocoes(df)
+    # message("exec - whey_protein")
+    # whey_protein(df)
+    # message("exec - creatina")
+    # creatina(df)
+    # message("exec - proteinas")
+    # proteinas(df)
+    # message("exec - barrinhas_de_proteina")
+    # barrinhas_de_proteina(df)
+    # message("exec - pre_treino")
+    # pre_treino(df)
+    # message("exec - cafeina")
+    # cafeina(df)
+    # message("exec - energia")
+    # energia(df)
+    # message("exec - resistencia")
+    # resistencia(df)
+    # message("exec - imunidade")
+    # imunidade(df)
+    # message("exec - hipercalorico")
+    # hipercalorico(df)
+    # message("exec - carboidratos")
+    # carboidratos(df)
+    # message("exec - beta_alanina")
+    # beta_alanina(df)
+    # message("exec - termogenico")
+    # termogenico(df)
+    # message("exec - oleos")
+    # oleos(df)
+    # message("exec - temperos")
+    # temperos(df)
+    # message("exec - adocantes")
+    # adocantes(df)
+    # message("exec - pasta_de_amendoim")
+    # pasta_de_amendoim(df)
+    # message("exec - vegano")
+    # vegano(df)
+    # message("exec - vegetariano")
+    # vegetariano(df)
+    # message("exec - vitaminas")
+    # vitaminas(df)
+    # message("exec - minerais")
+    # minerais(df)
+    # message("exec - sono")
+    # sono(df)
+    # message("exec - magnesio")
+    # magnesio(df)
+    # message("exec - pele")
+    # pele(df)
+    # message("exec - cabelo")
+    # cabelo(df)
+    # message("exec - omega")
+    # omega(df)
+    # message("exec - colageno")
+    # colageno(df)
+    # message("exec - combos")
+    # combos(df)

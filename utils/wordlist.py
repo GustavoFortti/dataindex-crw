@@ -857,6 +857,51 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [],
         "conflict": []
     },
+    "oleo de coco": {
+        "subject": [
+            "oleo de coco"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
+    "ketchup": {
+        "subject": [
+            "ketchup"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
+    "barbecue": {
+        "subject": [
+            "barbecue"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
+    "mostarda": {
+        "subject": [
+            "mostarda"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
+    "maionese": {
+        "subject": [
+            "mostarda"
+        ],
+        "product": True,
+        "may_feature": False,
+        "from": [],
+        "conflict": []
+    },
     "optimsm": {
         "subject": [
             "optimsm"

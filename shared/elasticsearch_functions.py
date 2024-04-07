@@ -1,4 +1,5 @@
 import os
+from typing import Tuple
 
 import pandas as pd
 from elasticsearch import Elasticsearch, helpers
@@ -42,8 +43,12 @@ def create_connection():
 
 def insert_documents(df, index_name):
     create_index_if_not_exits(index_name)
+    
     field, value = "brand", CONF['brand']
-    delete_all_documents_on_index_by_field_value(index_name, field, value)
+    if (value):
+        delete_all_documents_on_index_by_field_value(index_name, field, value)
+    else:
+        delete_all_documents_in_index(index_name)
 
     documents = create_documents_with_pandas(df, index_name)
     success, errors = helpers.bulk(es, documents)
@@ -69,6 +74,15 @@ def delete_all_documents_on_index_by_field_value(index_name, field, value):
         print(f"Documentos excluídos: {results['deleted']}")
     except Exception as e:
         print(f"Erro ao excluir documentos: {str(e)}")
+        
+def delete_all_documents_in_index(index_name: str) -> Tuple[int, str]:
+    query = {"query": {"match_all": {}}}
+
+    try:
+        results = es.delete_by_query(index=index_name, body=query)
+        return results['deleted'], "Success"
+    except Exception as e:
+        return 0, str(e)
 
 def create_documents_with_pandas(df, index_name):
     for index, row in df.iterrows():

@@ -1,26 +1,16 @@
 import importlib
+
 import numpy as np
 import pandas as pd
-from xgboost import XGBClassifier
-from sklearn.model_selection import KFold
-
-from utils.wordlist import WORDLIST
 from config.env import LOCAL
+from sklearn.metrics import (accuracy_score, f1_score, precision_score,
+                             recall_score, roc_auc_score)
+from sklearn.model_selection import KFold
+from utils.general_functions import (create_directory_if_not_exists,
+                                     flatten_list, get_all_dfs_in_dir)
 from utils.log import message
-
-from utils.general_functions import (
-    get_all_dfs_in_dir,
-    create_directory_if_not_exists,
-    flatten_list
-)
-
-from sklearn.metrics import (
-    accuracy_score,
-    precision_score,
-    recall_score,
-    f1_score,
-    roc_auc_score
-)
+from utils.wordlist import WORDLIST
+from xgboost import XGBClassifier
 
 CONF = {
     "name": "_set_product_def_",
@@ -294,7 +284,6 @@ def create_new_features(df):
     df = df.merge(grouped_df, on=cols)
 
     return df
-
 
 def convert_type_columns(df, cols, cols_types):
     for col in cols:

@@ -32,7 +32,7 @@ def data_prep(conf, df):
 
     message("Criando colunas de definição para produtos")
     df = create_product_def_cols(df, CONF)
-
+    
     message("Processamento de novas imagens dos produtos")
     image_processing(df, DATA_PATH)
 
