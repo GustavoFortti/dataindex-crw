@@ -73,7 +73,7 @@ def data_history_analysis(conf, df):
 
     return is_success
 
-def volume_analysis(df_history, df, alert_threshold=0.2, error_threshold=0.5):
+def volume_analysis(df_history, df, alert_threshold=0.1, error_threshold=0.2):
     volume_history = len(df_history)
     volume_current = len(df)
 

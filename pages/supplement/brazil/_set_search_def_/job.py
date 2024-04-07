@@ -9,7 +9,7 @@ from shared.elasticsearch_functions import (create_connection,
                                             create_documents_with_pandas)
 from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 from shared.dataframe_functions import filter_dataframe_for_columns
-from shared.set_functions import get_all_origins
+from utils.general_functions import get_all_origins
 from utils.log import message
 from utils.wordlist import WORDLIST
 from shared.elasticsearch_functions import data_ingestion
@@ -18,7 +18,7 @@ CONF = {
     "name": "_set_search_def_",
     "wordlist": WORDLIST["supplement"],
     "data_path": f"{LOCAL}/data/supplement/brazil/_set_search_def_",
-    "all_data_path": f"{LOCAL}/data/supplement/brazil/",
+    "all_data_path": f"{LOCAL}/data/supplement/brazil",
     "brand": False,
     "index_type": "supplement"
 }
@@ -382,14 +382,13 @@ def run(args):
     
     global wordlist
     wordlist = WORDLIST["supplement"]
-    es = create_connection()
     df = get_all_origins(CONF['all_data_path'], "origin_csl.csv")
     df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     
     # message("exec - promocoes")
     # promocoes(df)
-    # message("exec - whey_protein")
-    # whey_protein(df)
+    message("exec - whey_protein")
+    whey_protein(df)
     # message("exec - creatina")
     # creatina(df)
     # message("exec - proteinas")

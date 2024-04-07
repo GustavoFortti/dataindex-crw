@@ -12,6 +12,7 @@ from utils.wordlist import get_synonyms
 os.environ['PYTHONWARNINGS'] = 'ignore'
 
 def data_ingestion(df, conf):
+    message("data_ingestion")
     global CONF
     global SYNONYMS_LIST
 
@@ -29,7 +30,7 @@ def create_connection():
     es_user =  os.getenv('ES_USER')
     es_pass = os.getenv('ES_PASS')
 
-    print(es_hosts)
+    message(es_hosts)
     
     global es
     es = Elasticsearch(
@@ -38,7 +39,7 @@ def create_connection():
         verify_certs=False 
     )
 
-    print(f"Elasticsearch connection... {es.ping()}")
+    message(f"Elasticsearch connection... {es.ping()}")
     return es
 
 def insert_documents(df, index_name):
@@ -54,9 +55,10 @@ def insert_documents(df, index_name):
     success, errors = helpers.bulk(es, documents)
     print(success, errors)
 
-    print("Bulkload completed successfully")
+    message("Bulkload completed successfully")
 
 def delete_all_documents_on_index_by_field_value(index_name, field, value):
+    message("delete_all_documents_on_index_by_field_value")
     query = {
         "query": {
             "bool": {
@@ -71,18 +73,19 @@ def delete_all_documents_on_index_by_field_value(index_name, field, value):
 
     try:
         results = es.delete_by_query(index=index_name, body=query)
-        print(f"Documentos excluídos: {results['deleted']}")
+        message(f"Documentos excluídos: {results['deleted']}")
     except Exception as e:
-        print(f"Erro ao excluir documentos: {str(e)}")
+        message(f"Erro ao excluir documentos: {str(e)}")
         
 def delete_all_documents_in_index(index_name: str) -> Tuple[int, str]:
+    message("delete_all_documents_in_index")
     query = {"query": {"match_all": {}}}
 
     try:
         results = es.delete_by_query(index=index_name, body=query)
-        return results['deleted'], "Success"
+        message(f"Documentos excluídos: {results['deleted']}")
     except Exception as e:
-        return 0, str(e)
+        message(f"Erro ao excluir documentos: {str(e)}")
 
 def create_documents_with_pandas(df, index_name):
     for index, row in df.iterrows():

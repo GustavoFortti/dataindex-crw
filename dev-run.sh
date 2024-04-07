@@ -26,8 +26,8 @@ job_names=(
     # "vitafor"
     # "_set_carousel_"
     # "_set_product_def_"
-    "_set_search_def_"
-    # "_set_history_price_"
+    # "_set_search_def_"
+    "_set_history_price_"
 )
 
 # Variáveis comuns para todos os jobs

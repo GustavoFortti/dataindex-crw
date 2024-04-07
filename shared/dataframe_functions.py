@@ -19,3 +19,7 @@ def filter_dataframe_for_columns(df: pd.DataFrame, columns: List[str], keywords:
     filtered_df = filtered_df.drop_duplicates().reset_index(drop=True)
     
     return filtered_df
+
+def drop_duplicates_for_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    """Drop duplicates based on specific columns"""
+    return df.drop_duplicates(subset=columns)
