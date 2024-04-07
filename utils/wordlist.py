@@ -828,10 +828,9 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [],
         "conflict": []
     },
-    "minerail": {
+    "mineral": {
         "subject": [
             "minerai",
-            "minerail",
             "mineral",
         ],
         "product": False,
