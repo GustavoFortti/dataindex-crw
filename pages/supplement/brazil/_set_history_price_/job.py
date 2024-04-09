@@ -70,8 +70,8 @@ def run(args):
     
     dfs = [df_origin]
     for page_data_path in CONF["pages_data_path"]:
-        dir = f"{all_data_path}/{page_data_path}/history"
-        df_temp = read_csvs_on_dir_and_union(dir, False)
+        path = f"{all_data_path}/{page_data_path}/history"
+        df_temp = read_csvs_on_dir_and_union(path, False)
         df_temp = df_temp[cols]
         dfs.append(df_temp)
         
@@ -91,8 +91,15 @@ def run(args):
         df_price = df[df["ref"] == ref]
         
         prices_dates = df_price[["price_numeric", "ing_date"]].values.tolist()
+        
+        prices = df_price["price_numeric"].values
+        
+        price_discount_percent = 0.0
+        if (len(prices) > 1):
+            price_discount_percent = -round((prices[0] - prices[1]) / prices[1], 2)
+        
         brand = df_price["brand"].values[0]
-        all_prices_dates.append({"ref": ref, "prices": prices_dates, "brand": brand})
+        all_prices_dates.append({"ref": ref, "prices": prices_dates, "brand": brand, "price_discount_percent": price_discount_percent})
     
     df = pd.DataFrame(all_prices_dates)
     date_today = datetime.today()

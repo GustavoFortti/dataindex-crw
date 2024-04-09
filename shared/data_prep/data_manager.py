@@ -5,6 +5,7 @@ from shared.data_prep.data_prep_functions import (apply_generic_filters,
                                                   create_quantity_column,
                                                   filter_nulls,
                                                   image_processing,
+                                                  create_price_discount_percent_col,
                                                   remove_blacklisted_products)
 from utils.log import message
 
@@ -30,6 +31,10 @@ def data_prep(conf, df):
     message("Removendo produtos da blacklist")
     df = remove_blacklisted_products(df)
 
+    message("Criando coluna de desconto")
+    df = create_price_discount_percent_col(df, DATA_PATH)
+    
+    exit()
     message("Criando colunas de definição para produtos")
     df = create_product_def_cols(df, CONF)
     
@@ -59,3 +64,4 @@ def data_prep(conf, df):
     print(df.info())
 
     return df
+

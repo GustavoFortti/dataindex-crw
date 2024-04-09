@@ -1,18 +1,18 @@
 import os
 from copy import deepcopy
+from typing import List, Tuple
 
 import pandas as pd
-from elasticsearch import helpers
-
 from config.env import LOCAL
-from shared.elasticsearch_functions import (create_connection,
-                                            create_documents_with_pandas)
-from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
+from elasticsearch import helpers
 from shared.dataframe_functions import filter_dataframe_for_columns
+from shared.elasticsearch_functions import (create_connection,
+                                            create_documents_with_pandas,
+                                            data_ingestion)
+from shared.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 from utils.general_functions import get_all_origins
 from utils.log import message
 from utils.wordlist import WORDLIST
-from shared.elasticsearch_functions import data_ingestion
 
 CONF = {
     "name": "_set_search_def_",
@@ -24,13 +24,16 @@ CONF = {
 }
 
 def promocoes(df):
-    keywords = wordlist["pretreino"]["subject"]
-    blacklist = []
-    df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    index = INDEX_SUPPLEMENT_BRAZIL['set']["promocoes"]
-    conf = deepcopy(CONF)
-    conf["index_name"] = index
-    data_ingestion(df_filtered, conf)
+    all_data_path = CONF['all_data_path']
+    df_discount = pd.read_csv(f'{all_data_path}/_set_history_price_/history_price.csv')
+    df_discount = df_discount[df_discount["price_discount_percent"] > 0]
+    
+    print(df_discount['ref'])
+
+    # index = INDEX_SUPPLEMENT_BRAZIL['set']["promocoes"]
+    # conf = deepcopy(CONF)
+    # conf["index_name"] = index
+    # data_ingestion(df_filtered, conf)
 
 def whey_protein(df):
     keywords = wordlist["whey"]["subject"]
@@ -385,10 +388,10 @@ def run(args):
     df = get_all_origins(CONF['all_data_path'], "origin_csl.csv")
     df = df.drop_duplicates(subset='ref').reset_index(drop=True)
     
-    # message("exec - promocoes")
-    # promocoes(df)
-    message("exec - whey_protein")
-    whey_protein(df)
+    message("exec - promocoes")
+    promocoes(df)
+    # message("exec - whey_protein")
+    # whey_protein(df)
     # message("exec - creatina")
     # creatina(df)
     # message("exec - proteinas")

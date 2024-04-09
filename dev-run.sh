@@ -13,7 +13,7 @@ job_names=(
     # "boldsnacks"
     # "dark_lab"
     # "darkness"
-    # "dux_nutrition_lab"
+    "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
@@ -27,7 +27,7 @@ job_names=(
     # "_set_carousel_"
     # "_set_product_def_"
     # "_set_search_def_"
-    "_set_history_price_"
+    # "_set_history_price_"
 )
 
 # Variáveis comuns para todos os jobs

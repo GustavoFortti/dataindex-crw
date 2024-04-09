@@ -1,18 +1,20 @@
 import os
 import re
+from copy import deepcopy
 
 import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
-
 from shared.data_prep.product_def_prep import load_product_def_prep
+from shared.dataframe_functions import drop_duplicates_for_columns
 from utils.general_functions import (calculate_precise_image_hash, clean_text,
                                      convert_image,
                                      create_directory_if_not_exists,
                                      find_in_text_with_wordlist,
                                      list_directory, path_exists,
-                                     remove_spaces, save_file)
+                                     read_csvs_on_dir_and_union, remove_spaces,
+                                     save_file)
 from utils.log import message
 from utils.wordlist import BLACK_LIST
 
@@ -170,3 +172,53 @@ def image_processing(df, data_path):
         img_path = image_info["img_path"]
         convert_image(img_path, save_path)
     message("Images processing ok")
+    
+def filter_df_price_when_alter_price(df, refs):
+    for ref in refs:
+        df_temp = df[df["ref"] == ref].sort_values('ing_date')
+        
+        last_price = False
+        for idx, row in df_temp.iterrows():
+            price = row['price_numeric']
+            is_alter_price = False
+            
+            if ((not last_price) | bool(last_price != price)):
+                last_price = price
+                is_alter_price = True
+                
+            df.loc[idx, "is_alter_price"] = is_alter_price
+    df = df[df['is_alter_price']]
+    return df
+
+def create_price_discount_percent_col(df, data_path):
+    df_new = deepcopy(df)
+    
+    refs = df['ref'].values
+
+    path = f"{data_path}/history"
+    df_temp = read_csvs_on_dir_and_union(path, False)
+    df_temp = df_temp[df_temp["ref"].isin(refs)]
+    df_price = pd.concat([df, df_temp], ignore_index=True)
+    
+    df_price_temp = filter_df_price_when_alter_price(df_price, refs)
+    df_price_temp = df_price_temp[['ref', 'price_numeric', 'ing_date']]
+
+    refs_processed = []
+    for idx, row in df_price_temp.iterrows():
+        ref = row['ref']
+        if (ref in refs_processed):
+            continue
+        
+        refs_processed.append(ref)
+        
+        df_price_temp_sorted = df_price_temp[df_price_temp["ref"] == ref].sort_values('ing_date', ascending=False)
+        prices = df_price_temp_sorted["price_numeric"].values
+        
+        price_discount_percent = 0.0
+        if (len(prices) > 1):
+            price_discount_percent = round((prices[0] - prices[1]) / prices[1], 2)
+        
+        
+        df_new.loc[df_new['ref'] == ref, "price_discount_percent"] = price_discount_percent
+    
+    return df_new
