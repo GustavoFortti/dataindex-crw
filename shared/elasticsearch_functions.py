@@ -17,8 +17,11 @@ def data_ingestion(df, conf):
     global SYNONYMS_LIST
 
     CONF = conf
-    SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(component_list=CONF['wordlist'])]
-
+    
+    SYNONYMS_LIST = []
+    if (CONF['wordlist']):
+        SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(component_list=CONF['wordlist'])]
+    
     index_name = CONF['index_name']
 
     create_connection()
@@ -95,7 +98,7 @@ def create_documents_with_pandas(df, index_name):
             "_index": index_name,
             "_source": remove_nan_from_dict(row.to_dict()),
         }
-
+        
         yield document
 
 def create_index_if_not_exits(index_name):

@@ -403,7 +403,6 @@ def get_all_origins(data_path: str, file_name: str) -> pd.DataFrame:
     combined_df = pd.concat(dataframes, ignore_index=True)
     return combined_df
 
-
 def read_file(file_path):
     """Reads a file and returns its contents as a string."""
     try:
