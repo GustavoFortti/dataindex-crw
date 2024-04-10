@@ -7,31 +7,34 @@ export LOCAL="$local"
 echo $LOCAL
 
 job_names=(
-    # "adaptogen"
-    # "atlhetica_nutrition"
-    # "black_skull"
-    # "boldsnacks"
-    # "dark_lab"
-    # "darkness"
-    "dux_nutrition_lab"
-    # "growth_supplements"
-    # "integralmedica"
-    # "iridium_labs"
-    # "max_titanium"
-    # "new_millen"
-    # "nutrata"
-    # "probiotica"
-    # "truesource"
-    # "under_labz"
-    # "vitafor"
+    "_set_page_"
     # "_set_carousel_"
     # "_set_product_def_"
     # "_set_search_def_"
     # "_set_history_price_"
 )
 
+# "adaptogen"
+# "atlhetica_nutrition"
+# "black_skull"
+# "boldsnacks"
+# "dark_lab"
+# "darkness"
+# "dux_nutrition_lab"
+# "growth_supplements"
+# "integralmedica"
+# "iridium_labs"
+# "max_titanium"
+# "new_millen"
+# "nutrata"
+# "probiotica"
+# "truesource"
+# "under_labz"
+# "vitafor"
+
 # Variáveis comuns para todos os jobs
-job_type="dry"
+page_name="dux_nutrition_lab"
+job_type="ingestion"
 option="false"
 page_type="supplement"
 country="brazil"
@@ -42,6 +45,7 @@ do
     echo "Executing job: $job_name"
     python3 "$LOCAL/main.py" \
         --job_name "$job_name" \
+        --page_name "$page_name" \
         --job_type "$job_type" \
         --option "$option" \
         --page_type "$page_type" \
