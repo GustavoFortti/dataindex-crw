@@ -1,9 +1,9 @@
-JOB_NAME = "iridium_labs"
-BRAND = "iridium labs"
-PRD = True
+JOB_NAME = "dark_lab"
+BRAND = "dark lab"
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 't4s-product__description t4s-rte'}
+    {'tag': 'div', 'class': 'breadcrumbs'},
 ]
 
 DYNAMIC_SCROLL = {

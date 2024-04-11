@@ -1,7 +1,7 @@
 import importlib
 
 from config.env import LOCAL
-from lib.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
+from lib.elasticsearch.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 from lib.ingestion import ingestion
 from utils.log import message
 from utils.general_functions import create_directory_if_not_exists
@@ -11,7 +11,7 @@ CONF = {
     "wordlist": WORDLIST["supplement"],
     "pronouns": PRONOUNS["brazil"],
     "product_def_path": f"{LOCAL}/data/supplement/brazil/_set_product_def_",
-    "index_name": INDEX_SUPPLEMENT_BRAZIL["index"],
+    "index_name": INDEX_SUPPLEMENT_BRAZIL["index"]["product"],
     "index_type": INDEX_SUPPLEMENT_BRAZIL["type"]
 }
 
@@ -24,15 +24,15 @@ def run(args):
     message(f"JOB NAME: {job_name}")
     message(f"PAGE NAME: {page_name}")
     
-    module_name = f"jobs.{page_type}.{country}.pages.{page_name}.vars"
-    vars = importlib.import_module(module_name)
+    module_name = f"jobs.{page_type}.{country}.pages.{page_name}.conf"
+    page_conf = importlib.import_module(module_name)
     
-    CONF["name"] = vars.JOB_NAME
-    CONF["brand"] = vars.BRAND
-    CONF["product_definition_tag"] = vars.PRODUCT_DEFINITION_TAG
-    CONF["dynamic_scroll"] = vars.DYNAMIC_SCROLL
-    CONF["data_path"] = f"{LOCAL}/data/supplement/brazil/{vars.JOB_NAME}"
-    CONF["seed_path"] = f"{LOCAL}/pages/supplement/brazil/pages/{vars.JOB_NAME}"
+    CONF["name"] = page_conf.JOB_NAME
+    CONF["brand"] = page_conf.BRAND
+    CONF["product_definition_tag"] = page_conf.PRODUCT_DEFINITION_TAG
+    CONF["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
+    CONF["data_path"] = f"{LOCAL}/data/supplement/brazil/{page_conf.JOB_NAME}"
+    CONF["seed_path"] = f"{LOCAL}/pages/supplement/brazil/pages/{page_conf.JOB_NAME}"
     CONF.update(args.__dict__)
 
     job_type = CONF["job_type"]
@@ -47,8 +47,8 @@ def run(args):
     dry = importlib.import_module(module_name)
     
     options = {
-        "extract": extract,
-        "dry": dry,
+        "extract": extract.extract,
+        "dry": dry.dry,
         "ingestion": ingestion
     }
     

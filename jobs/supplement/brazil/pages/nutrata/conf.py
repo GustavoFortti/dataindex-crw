@@ -1,6 +1,6 @@
 JOB_NAME = "nutrata"
 BRAND = "nutrata"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     {'tag': 'span', 'class': 'tagged_as'}, 

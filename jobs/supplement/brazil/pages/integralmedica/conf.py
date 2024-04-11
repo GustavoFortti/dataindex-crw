@@ -1,6 +1,6 @@
 JOB_NAME = "integralmedica"
 BRAND = "integralmedica"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow vtex-flex-layout-0-x-flexRow--pdpProductInfo'},

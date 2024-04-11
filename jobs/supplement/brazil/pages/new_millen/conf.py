@@ -1,10 +1,9 @@
-JOB_NAME = "growth_supplements"
-BRAND = "growth supplements"
-PRD = True
+JOB_NAME = "new_millen"
+BRAND = "new millen"
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'section', 'class': 'breadcrumb-produto'},
-    {'tag': 'ul', 'class': 'breadcrumb-container'},
+    {'tag': 'div', 'class': 'breadcrumbs'}
 ]
 
 DYNAMIC_SCROLL = {

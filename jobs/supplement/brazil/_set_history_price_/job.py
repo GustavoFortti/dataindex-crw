@@ -1,15 +1,18 @@
+import importlib
 import os
 from copy import deepcopy
 from datetime import datetime
 
 import pandas as pd
-from config.env import LOCAL
 from elasticsearch import helpers
+
+from config.env import LOCAL
 from lib.dataframe_functions import drop_duplicates_for_columns
-from lib.elasticsearch_functions import data_ingestion
-from lib.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
+from lib.elasticsearch.elasticsearch_functions import data_ingestion
+from lib.elasticsearch.elasticsearch_index import INDEX_SUPPLEMENT_PRICE_BRAZIL
 from utils.general_functions import (DATE_FORMAT,
                                      create_directory_if_not_exists,
+                                     list_directory,
                                      read_csvs_on_dir_and_union)
 from utils.log import message
 from utils.wordlist import WORDLIST
@@ -18,30 +21,26 @@ CONF = {
     "name": "_set_history_price_",
     "data_path": f"{LOCAL}/data/supplement/brazil/_set_history_price_",
     "all_data_path": f"{LOCAL}/data/supplement/brazil",
-    "brand": False,
+    "all_pages_path": f"{LOCAL}/jobs/supplement/brazil/pages",
     "wordlist": False,
-    "index_name": INDEX_SUPPLEMENT_BRAZIL["set"]["history_price"],
-    "index_type": "supplement_prices",
-    "pages_data_path": [
-        "adaptogen",
-        "atlhetica_nutrition",
-        "black_skull",
-        "boldsnacks",
-        "dark_lab",
-        "darkness",
-        "dux_nutrition_lab",
-        "growth_supplements",
-        "integralmedica",
-        "iridium_labs",
-        "max_titanium",
-        "new_millen",
-        "nutrata",
-        "probiotica",
-        "truesource",
-        "under_labz",
-        "vitafor"
-    ]
+    "index_name": INDEX_SUPPLEMENT_PRICE_BRAZIL["index"]["history_price"],
+    "index_type": INDEX_SUPPLEMENT_PRICE_BRAZIL["type"],
+    "pages_data_path": []
 }
+
+def get_pages_data_path():
+    pages = (list_directory(CONF["all_pages_path"]))
+    page_type = CONF["page_type"]
+    country = CONF["country"]
+    
+    pages_data_path = []
+    for page in pages:
+        module_name = f"jobs.{page_type}.{country}.pages.{page}.conf"
+        page_conf = importlib.import_module(module_name)
+        if (page_conf.STATUS):
+            pages_data_path.append(page)
+            
+    return sorted(pages_data_path)
 
 def run(args):
     print("JOB_NAME: " + CONF["name"], end="")
@@ -52,6 +51,7 @@ def run(args):
     
     data_path = CONF["data_path"]
     create_directory_if_not_exists(data_path)
+    CONF["pages_data_path"] = get_pages_data_path()
     
     global wordlist
     
@@ -113,7 +113,7 @@ def batch_ingestion(df):
     
     for brand in conf['pages_data_path']:
         df_ing = df[df['brand'] == brand]
-        
-        message(f"history_price brand: {brand}")
-        
-        data_ingestion(df_ing, conf)
+        if (not df_ing.empty):
+            message(f"history_price brand: {brand}")
+            conf["brand"] = brand
+            data_ingestion(df_ing, conf)

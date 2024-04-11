@@ -1,6 +1,6 @@
 JOB_NAME = "max_titanium"
 BRAND = "max titanium"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'},

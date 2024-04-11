@@ -4,9 +4,9 @@ import pandas as pd
 from elasticsearch import helpers
 
 from config.env import LOCAL
-from lib.elasticsearch_functions import (create_connection,
+from lib.elasticsearch.elasticsearch_functions import (create_connection,
                                             create_documents_with_pandas)
-from lib.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
+from lib.elasticsearch.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 from utils.log import message
 from utils.wordlist import WORDLIST
 
@@ -95,7 +95,7 @@ def run(args):
     df_whey = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
     df_whey = df_whey.sample(18)
     print(df_whey)
-    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["whey"], df_whey)
+    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["index"]["whey"], df_whey)
 
     message("set barrinha")
     keywords = wordlist["barrinha"]["subject"]
@@ -104,7 +104,7 @@ def run(args):
     df_barrinha = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
     df_barrinha = df_barrinha.sample(18)
     print(df_barrinha)
-    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["bar"], df_barrinha)
+    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["index"]["bar"], df_barrinha)
 
     message("set pretreino")
     keywords = wordlist["pretreino"]["subject"]
@@ -114,4 +114,4 @@ def run(args):
     df_pretreino = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
     df_pretreino = df_pretreino.sample(18)
     print(df_pretreino)
-    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["set"]["preworkout"], df_pretreino)
+    elasticsearch_ingestion(es, INDEX_SUPPLEMENT_BRAZIL["index"]["preworkout"], df_pretreino)

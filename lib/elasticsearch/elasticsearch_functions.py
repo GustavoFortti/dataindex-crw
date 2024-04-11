@@ -4,7 +4,7 @@ from typing import Tuple
 import pandas as pd
 from elasticsearch import Elasticsearch, helpers
 
-from lib.elasticsearch_index import elasticsearch_index
+from lib.elasticsearch.elasticsearch_index import elasticsearch_index
 from utils.general_functions import remove_nan_from_dict
 from utils.log import message
 from utils.wordlist import get_synonyms
@@ -16,16 +16,19 @@ def data_ingestion(df, conf):
     global CONF
     global SYNONYMS_LIST
 
+    SYNONYMS_LIST = prepare_synonyms(conf)
     CONF = conf
-    
-    SYNONYMS_LIST = []
-    if (CONF['wordlist']):
-        SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(component_list=CONF['wordlist'])]
-    
     index_name = CONF['index_name']
 
     create_connection()
     insert_documents(df, index_name)
+
+def prepare_synonyms(conf):
+    SYNONYMS_LIST = []
+    if (conf['wordlist']):
+        SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(component_list=conf['wordlist'])]
+        
+    return SYNONYMS_LIST
 
 def create_connection():
 
@@ -46,12 +49,14 @@ def create_connection():
     return es
 
 def insert_documents(df, index_name):
-    create_index_if_not_exits(index_name)
+    create_index_if_not_exits(es, index_name, CONF["index_type"], SYNONYMS_LIST)
     
-    field, value = "brand", CONF['brand']
-    if (value):
+    if ("brand" in CONF.keys()):
+        message("delete by brand")
+        field, value = "brand", CONF['brand']
         delete_all_documents_on_index_by_field_value(index_name, field, value)
     else:
+        message("delete all")
         delete_all_documents_in_index(index_name)
 
     documents = create_documents_with_pandas(df, index_name)
@@ -65,11 +70,7 @@ def delete_all_documents_on_index_by_field_value(index_name, field, value):
     query = {
         "query": {
             "bool": {
-                "must": [{
-                    "term": {
-                        f"{field}.keyword": value
-                    }
-                }]
+                "must": [{ "match": { field: value }}]
             }
         }
     }
@@ -101,9 +102,9 @@ def create_documents_with_pandas(df, index_name):
         
         yield document
 
-def create_index_if_not_exits(index_name):
+def create_index_if_not_exits(es, index_name, index_type, synonyms_list):
     message("create_index_if_not_exits")
-    index_settings = elasticsearch_index(CONF['index_type'], SYNONYMS_LIST)
+    index_settings = elasticsearch_index(index_type, synonyms_list)
 
     if not es.indices.exists(index=index_name):
         message("CREATING NEW INDEX")
@@ -113,3 +114,37 @@ def create_index_if_not_exits(index_name):
     else:
         message("INDEX EXISTS")
         print(f"Índice '{index_name}' já existe.")
+        
+def check_elasticsearch_health(es) -> Tuple[str, dict]:
+    """Check the health and indices of the Elasticsearch cluster."""
+    try:
+        # Fetching the overall health status of the Elasticsearch cluster.
+        health = es.cluster.health()
+        # Fetching a list of indices along with their details in a JSON format.
+        indices = es.cat.indices(format="json")
+        # Logging the health status of the Elasticsearch cluster.
+        message(f"Elasticsearch Cluster Health Status: {health['status']}")
+        # Returning the health status and a dictionary of indices with their details.
+        return health['status'], {index['index']: index for index in indices}
+    except Exception as e:
+        # Logging the error message if the health check fails.
+        message(f"Error checking Elasticsearch health and indices: {str(e)}")
+        # Returning "error" status and an empty dictionary in case of an exception.
+        return "error", {}
+
+def list_all_indices(es) -> dict:
+    """List all indices in the Elasticsearch cluster."""
+    try:
+        # Fetching a list of all indices and their details.
+        indices = es.cat.indices(format="json")
+        # Logging the action of listing all indices.
+        message("Listing all indices in the Elasticsearch cluster.")
+        # Returning a dictionary with index names and their details.
+        for index in indices:
+            message(index)
+            message(index["index"])
+    except Exception as e:
+        # Logging the error if unable to list the indices.
+        message(f"Error listing all indices: {str(e)}")
+        # Returning an empty dictionary in case of an exception.
+        return {}

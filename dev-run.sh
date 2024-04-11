@@ -7,10 +7,11 @@ export LOCAL="$local"
 echo $LOCAL
 
 job_names=(
-    "_set_page_"
+    # "_set_page_"
     # "_set_carousel_"
     # "_set_product_def_"
-    # "_set_search_def_"
+    "_set_search_def_"
+    # "_set_elaticsearch_"
     # "_set_history_price_"
 )
 
@@ -33,8 +34,8 @@ job_names=(
 # "vitafor"
 
 # Variáveis comuns para todos os jobs
-page_name="dux_nutrition_lab"
-job_type="ingestion"
+page_name="false"
+job_type="dry"
 option="false"
 page_type="supplement"
 country="brazil"

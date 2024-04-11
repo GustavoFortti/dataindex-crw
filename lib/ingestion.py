@@ -3,7 +3,7 @@ import os
 import pandas as pd
 
 import lib.data_quality as dq
-import lib.elasticsearch_functions as es
+import lib.elasticsearch.elasticsearch_functions as es
 import lib.image_server_functions as image_srv
 from utils.log import message
 

@@ -1,6 +1,6 @@
 JOB_NAME = "darkness"
 BRAND = "darkness"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     {'tag': 'section', 'class': 'product-information'}, 

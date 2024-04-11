@@ -1,6 +1,6 @@
 JOB_NAME = "adaptogen"
 BRAND = "adaptogen"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     {'tag': 'nav', 'class': 'woocommerce-breadcrumb'},

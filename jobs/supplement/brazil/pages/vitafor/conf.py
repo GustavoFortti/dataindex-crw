@@ -1,6 +1,6 @@
 JOB_NAME = "vitafor"
 BRAND = "vitafor"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     # {'tag': 'p', 'class': 'vitafor-store-theme-7-x-productPageShortDescription'},

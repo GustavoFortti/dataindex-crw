@@ -1,9 +1,9 @@
-JOB_NAME = "probiotica"
-BRAND = "probiotica"
-PRD = True
+JOB_NAME = "under_labz"
+BRAND = "under labz"
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
+    {'tag': 'div', 'class': 'abas-custom'},
 ]
 
 DYNAMIC_SCROLL = {

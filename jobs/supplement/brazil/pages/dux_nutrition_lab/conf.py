@@ -1,6 +1,6 @@
 JOB_NAME = "dux_nutrition_lab"
 BRAND = "dux nutrition lab"
-PRD = True
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'},

@@ -1,9 +1,9 @@
-JOB_NAME = "puravida"
-BRAND = "puravida"
-PRD = False
+JOB_NAME = "truesource"
+BRAND = "truesource"
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
+    {'tag': 'div', 'class': 'productDescription'}
 ]
 
 DYNAMIC_SCROLL = {

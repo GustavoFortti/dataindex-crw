@@ -1,9 +1,9 @@
-JOB_NAME = "atlhetica_nutrition"
-BRAND = "atlhetica nutrition"
-PRD = True
+JOB_NAME = "probiotica"
+BRAND = "probiotica"
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}
+    {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
 ]
 
 DYNAMIC_SCROLL = {

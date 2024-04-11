@@ -1,9 +1,10 @@
-JOB_NAME = "boldsnacks"
-BRAND = "boldsnacks"
-PRD = True
+JOB_NAME = "black_skull"
+BRAND = "black skull"
+STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'productView-desc halo-text-format'},
+    {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'},
+    {'tag': 'div', 'class': 'vtex-full-description-box'}
 ]
 
 DYNAMIC_SCROLL = {
