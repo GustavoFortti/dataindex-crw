@@ -2,41 +2,45 @@ import importlib
 
 import numpy as np
 import pandas as pd
-from config.env import LOCAL
 from sklearn.metrics import (accuracy_score, f1_score, precision_score,
                              recall_score, roc_auc_score)
 from sklearn.model_selection import KFold
+from xgboost import XGBClassifier
+
+from config.env import LOCAL
+from lib.dataframe_functions import read_and_stack_csvs_dataframes
+from lib.set_functions import get_pages_with_status_true
 from utils.general_functions import (create_directory_if_not_exists,
-                                     flatten_list, get_all_dfs_in_dir)
+                                     flatten_list)
 from utils.log import message
 from utils.wordlist import WORDLIST
-from xgboost import XGBClassifier
 
 CONF = {
     "name": "_set_product_def_",
     "languages": ['pt_br'],
     "wordlist": WORDLIST["supplement"],
     "data_path": f"{LOCAL}/data/supplement/brazil/_set_product_def_",
+    "src_data_path": f"{LOCAL}/data/supplement/brazil",
+    "pages_path": f"{LOCAL}/jobs/supplement/brazil/pages",
 }
 
 pd.set_option('display.max_rows', None)
 
 def run(args):
-    global DATA_PATH_FILE_SYSTEM
     global DATA_PATH
     global WORDLIST
-    global LOCAL
 
     print("JOB_NAME: " + CONF["name"])
     CONF.update(vars(args))
-    DATA_PATH_FILE_SYSTEM = (f'{LOCAL}/data/supplement/brazil')
+    src_data_path = CONF["src_data_path"]
     WORDLIST = CONF['wordlist']
     DATA_PATH = CONF['data_path']
 
     create_directory_if_not_exists(DATA_PATH)
 
     message("READ all product_info.csv")
-    df = get_all_dfs_in_dir(DATA_PATH_FILE_SYSTEM, "product_info")
+    pages_with_status_true = get_pages_with_status_true(CONF)
+    df = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "product_info.csv")
 
     message("exec data_prep")
     df_train, df_ref_train, df_predict, df_ref_predict, df_product_def = data_prep(df)

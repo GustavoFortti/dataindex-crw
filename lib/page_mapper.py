@@ -6,9 +6,10 @@ import pandas as pd
 from lib.crawler import crawler
 from utils.general_functions import (DATE_FORMAT,
                                      create_directory_if_not_exists,
-                                     create_or_read_df, delete_file,
-                                     download_images_in_parallel,
-                                     find_in_text_with_wordlist, first_exec,
+                                     create_or_read_df,
+                                     delete_directory_and_contents,
+                                     delete_file, download_images_in_parallel,
+                                     file_exists, find_in_text_with_wordlist,
                                      get_old_files_by_percent, is_price,
                                      list_directory, read_json)
 from utils.log import message
@@ -179,3 +180,20 @@ def tree_create(job):
         message(f"seed: {url}")
         message(f"index: {value} / {size_urls}")
         crawler(job, url)
+        
+def first_exec(data_path):
+    origin = file_exists(data_path, "origin.csv")
+    tree = file_exists(data_path, "tree.csv")
+    img_tmp = file_exists(data_path, "img_tmp")
+    products = file_exists(data_path, "products")
+    
+    if (origin & tree & img_tmp & products):
+        exit(0)
+
+    if (origin or tree or img_tmp or products):
+        delete_file(f"{data_path}/origin.csv")
+        delete_file(f"{data_path}/tree.csv")
+        delete_directory_and_contents(f"{data_path}/img_tmp")
+        delete_directory_and_contents(f"{data_path}/products")
+
+    message("First execution")

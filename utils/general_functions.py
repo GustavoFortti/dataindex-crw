@@ -9,7 +9,7 @@ import statistics
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, timedelta
-from glob import glob
+
 from typing import Any, List, Optional
 
 import pandas as pd
@@ -274,7 +274,6 @@ def download_image(image_url, image_path, image_name):
     else:
         message(f"Failed to download the image. HTTP status code: {response.status_code}")
 
-
 def download_images_in_parallel(image_urls, image_path, image_names):
     with ThreadPoolExecutor(max_workers=10) as executor:
         # Mapeia cada tarefa futura para a respectiva URL usando um dicionário
@@ -342,23 +341,6 @@ def delete_directory_and_contents(directory_path):
     shutil.rmtree(directory_path)
     message(f"Directory and all contents deleted: {directory_path}")
 
-def first_exec(data_path):
-    origin = file_exists(data_path, "origin.csv")
-    tree = file_exists(data_path, "tree.csv")
-    img_tmp = file_exists(data_path, "img_tmp")
-    products = file_exists(data_path, "products")
-    
-    if (origin & tree & img_tmp & products):
-        exit(0)
-
-    if (origin or tree or img_tmp or products):
-        delete_file(f"{data_path}/origin.csv")
-        delete_file(f"{data_path}/tree.csv")
-        delete_directory_and_contents(f"{data_path}/img_tmp")
-        delete_directory_and_contents(f"{data_path}/products")
-
-    message("First execution")
-
 def is_price(string):
     if not isinstance(string, str):
         return False
@@ -371,38 +353,7 @@ def is_price(string):
     """
 
     return bool(re.match(pattern, string, re.VERBOSE))
-
-def read_csvs_on_dir_and_union(directory, get_only_last):
-    # Usa glob para encontrar todos os arquivos CSV no diretório
-    csv_files = glob(os.path.join(directory, '*.csv'))
-    csv_files = sorted(csv_files, reverse=True)
-
-    if get_only_last and csv_files:
-        # Encontra o arquivo CSV mais recentemente modificado
-        latest_file = csv_files[0]
-        message(latest_file)
-        return pd.read_csv(latest_file)
-    elif csv_files:
-        # Lê todos os arquivos CSV e os concatena em um único DataFrame
-        dfs = [pd.read_csv(file) for file in csv_files]
-        return pd.concat(dfs, ignore_index=True)
-    else:
-        raise Exception("Error: no data")
     
-def get_all_origins(data_path: str, file_name: str) -> pd.DataFrame:
-    """Recursively traverse directory and its subdirectories to find and concatenate all files with the given name into a single DataFrame"""
-    dataframes: List[pd.DataFrame] = []
-
-    for root, _, files in os.walk(data_path):
-        for file_found in files:
-            if file_found == file_name:
-                full_path = os.path.join(root, file_found)
-                df = pd.read_csv(full_path)
-                dataframes.append(df)
-
-    combined_df = pd.concat(dataframes, ignore_index=True)
-    return combined_df
-
 def read_file(file_path):
     """Reads a file and returns its contents as a string."""
     try:
@@ -443,12 +394,6 @@ def levenshtein(s1, s2):
     
     return previous_row[-1]
 
-def calc_string_diff_in_df_col(title_x, title_y):
-    distance = levenshtein(title_x, title_y)
-    max_len = max(len(title_x), len(title_y))
-    percent_diff = (distance / max_len) if max_len != 0 else 0
-    return percent_diff
-
 def calculate_statistics(lst):
     # Inicializa o resultado com valores máximos e mínimos
     statistics_result = {
@@ -480,18 +425,3 @@ def flatten_list(list_of_lists):
         else:
             flattened_list.append(element)
     return flattened_list
-
-def get_all_dfs_in_dir(path, file):
-    nome_arquivo = file + '.csv'
-
-    dataframes = []
-
-    for pasta_raiz, _, arquivos in os.walk(path):
-        for nome_arquivo_encontrado in arquivos:
-            if nome_arquivo_encontrado == nome_arquivo:
-                caminho_completo = os.path.join(pasta_raiz, nome_arquivo_encontrado)
-                df = pd.read_csv(caminho_completo)
-                dataframes.append(df)
-
-    df = pd.concat(dataframes, ignore_index=True)
-    return df

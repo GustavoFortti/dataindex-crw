@@ -2,9 +2,10 @@ from datetime import date
 
 import pandas as pd
 
-from utils import (DATE_FORMAT, calc_string_diff_in_df_col,
-                   check_url_existence, create_directory_if_not_exists,
-                   has_files, is_price, read_csvs_on_dir_and_union)
+from lib.dataframe_functions import (calc_string_diff_in_df_col,
+                                     read_and_stack_historical_csvs_dataframes)
+from utils import (DATE_FORMAT, check_url_existence,
+                   create_directory_if_not_exists, has_files, is_price)
 from utils.log import message
 
 pd.set_option('display.max_rows', None)
@@ -50,7 +51,7 @@ def data_history_analysis(conf, df):
 
     message("CARREGANDO DATAFRAME HISTORICO...")
     message(history_path)
-    df_history = read_csvs_on_dir_and_union(history_path, True)
+    df_history = read_and_stack_historical_csvs_dataframes(history_path, True)
 
     message("ANALISE volume")
     volume_erro, volume_alert = volume_analysis(df_history, df)

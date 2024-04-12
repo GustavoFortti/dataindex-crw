@@ -6,15 +6,15 @@ import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
+
 from lib.data_prep.product_def_prep import load_product_def_prep
-from lib.dataframe_functions import drop_duplicates_for_columns
+from lib.dataframe_functions import read_and_stack_historical_csvs_dataframes
 from utils.general_functions import (calculate_precise_image_hash, clean_text,
                                      convert_image,
                                      create_directory_if_not_exists,
                                      find_in_text_with_wordlist,
                                      list_directory, path_exists,
-                                     read_csvs_on_dir_and_union, remove_spaces,
-                                     save_file)
+                                     remove_spaces, save_file)
 from utils.log import message
 from utils.wordlist import BLACK_LIST
 
@@ -196,7 +196,7 @@ def create_price_discount_percent_col(df, data_path):
     refs = df['ref'].values
 
     path = f"{data_path}/history"
-    df_temp = read_csvs_on_dir_and_union(path, False)
+    df_temp = read_and_stack_historical_csvs_dataframes(path, False)
     df_temp = df_temp[df_temp["ref"].isin(refs)]
     df_price = pd.concat([df, df_temp], ignore_index=True)
     

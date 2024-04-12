@@ -13,32 +13,27 @@ os.environ['PYTHONWARNINGS'] = 'ignore'
 
 def data_ingestion(df, conf):
     message("data_ingestion")
-    global CONF
-    global SYNONYMS_LIST
 
-    SYNONYMS_LIST = prepare_synonyms(conf)
-    CONF = conf
-    index_name = CONF['index_name']
+    synonyms_list = prepare_synonyms(conf)
+    conf['synonyms_list'] = synonyms_list
 
-    create_connection()
-    insert_documents(df, index_name)
+    es = create_connection()
+    insert_documents(es, conf, df)
 
 def prepare_synonyms(conf):
-    SYNONYMS_LIST = []
+    synonyms_list = []
     if (conf['wordlist']):
-        SYNONYMS_LIST = [", ".join(i) for i in get_synonyms(component_list=conf['wordlist'])]
+        synonyms_list = [", ".join(i) for i in get_synonyms(component_list=conf['wordlist'])]
         
-    return SYNONYMS_LIST
+    return synonyms_list
 
 def create_connection():
-
     es_hosts = os.getenv('ES_HOSTS')
     es_user =  os.getenv('ES_USER')
     es_pass = os.getenv('ES_PASS')
 
     message(es_hosts)
     
-    global es
     es = Elasticsearch(
         [es_hosts],
         http_auth=(es_user, es_pass),
@@ -48,16 +43,19 @@ def create_connection():
     message(f"Elasticsearch connection... {es.ping()}")
     return es
 
-def insert_documents(df, index_name):
-    create_index_if_not_exits(es, index_name, CONF["index_type"], SYNONYMS_LIST)
+def insert_documents(es, conf, df):
+    index_name = conf['index_name']
+    index_type = conf['index_type']
+    synonyms_list = conf['synonyms_list']
     
-    if ("brand" in CONF.keys()):
+    create_index_if_not_exits(es, index_name, index_type, synonyms_list)
+    
+    if ("brand" in conf.keys()):
         message("delete by brand")
-        field, value = "brand", CONF['brand']
-        delete_all_documents_on_index_by_field_value(index_name, field, value)
+        delete_all_documents_on_index_by_field_value(es, index_name, "brand", conf['brand'])
     else:
         message("delete all")
-        delete_all_documents_in_index(index_name)
+        delete_all_documents_in_index(es, index_name)
 
     documents = create_documents_with_pandas(df, index_name)
     success, errors = helpers.bulk(es, documents)
@@ -65,7 +63,7 @@ def insert_documents(df, index_name):
 
     message("Bulkload completed successfully")
 
-def delete_all_documents_on_index_by_field_value(index_name, field, value):
+def delete_all_documents_on_index_by_field_value(es, index_name, field, value):
     message("delete_all_documents_on_index_by_field_value")
     query = {
         "query": {
@@ -81,7 +79,7 @@ def delete_all_documents_on_index_by_field_value(index_name, field, value):
     except Exception as e:
         message(f"Erro ao excluir documentos: {str(e)}")
         
-def delete_all_documents_in_index(index_name: str) -> Tuple[int, str]:
+def delete_all_documents_in_index(es, index_name: str) -> Tuple[int, str]:
     message("delete_all_documents_in_index")
     query = {"query": {"match_all": {}}}
 
@@ -148,3 +146,11 @@ def list_all_indices(es) -> dict:
         message(f"Error listing all indices: {str(e)}")
         # Returning an empty dictionary in case of an exception.
         return {}
+
+def batch_ingestion_by_field_values(conf, df, field, values):
+    for valeu in values:
+        df_ing = df[df[field] == valeu]
+        if (not df_ing.empty):
+            message(f"history_price {field}: {valeu}")
+            conf[field] = valeu
+            data_ingestion(df_ing, conf)

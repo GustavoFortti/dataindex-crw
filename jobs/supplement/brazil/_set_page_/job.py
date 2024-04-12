@@ -11,6 +11,7 @@ CONF = {
     "wordlist": WORDLIST["supplement"],
     "pronouns": PRONOUNS["brazil"],
     "product_def_path": f"{LOCAL}/data/supplement/brazil/_set_product_def_",
+    "src_data_path": f"{LOCAL}/data/supplement/brazil",
     "index_name": INDEX_SUPPLEMENT_BRAZIL["index"]["product"],
     "index_type": INDEX_SUPPLEMENT_BRAZIL["type"]
 }
@@ -32,7 +33,7 @@ def run(args):
     CONF["product_definition_tag"] = page_conf.PRODUCT_DEFINITION_TAG
     CONF["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     CONF["data_path"] = f"{LOCAL}/data/supplement/brazil/{page_conf.JOB_NAME}"
-    CONF["seed_path"] = f"{LOCAL}/pages/supplement/brazil/pages/{page_conf.JOB_NAME}"
+    CONF["seed_path"] = f"{LOCAL}/jobs/supplement/brazil/pages/{page_conf.JOB_NAME}"
     CONF.update(args.__dict__)
 
     job_type = CONF["job_type"]

@@ -10,9 +10,9 @@ job_names=(
     # "_set_page_"
     # "_set_carousel_"
     # "_set_product_def_"
-    "_set_search_def_"
+    # "_set_search_def_"
     # "_set_elaticsearch_"
-    # "_set_history_price_"
+    "_set_history_price_"
 )
 
 # "adaptogen"
@@ -34,7 +34,7 @@ job_names=(
 # "vitafor"
 
 # Variáveis comuns para todos os jobs
-page_name="false"
+page_name="darkness"
 job_type="dry"
 option="false"
 page_type="supplement"
