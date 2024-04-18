@@ -37,22 +37,6 @@ def calc_string_diff_in_df_col(title_x, title_y):
     percent_diff = (distance / max_len) if max_len != 0 else 0
     return percent_diff
 
-def get_all_dfs_in_dir(path, file):
-    pass
-    # nome_arquivo = file + '.csv'
-
-    # dataframes = []
-
-    # for pasta_raiz, _, arquivos in os.walk(path):
-    #     for nome_arquivo_encontrado in arquivos:
-    #         if nome_arquivo_encontrado == nome_arquivo:
-    #             caminho_completo = os.path.join(pasta_raiz, nome_arquivo_encontrado)
-    #             df = pd.read_csv(caminho_completo)
-    #             dataframes.append(df)
-
-    # df = pd.concat(dataframes, ignore_index=True)
-    # return df
-
 def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):
     # Usa glob para encontrar todos os arquivos CSV no diretório
     csv_files = glob(os.path.join(history_data_path, '*.csv'))

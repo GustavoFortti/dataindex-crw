@@ -6,44 +6,44 @@ local="/home/mage/main/dataindex-crw"
 export LOCAL="$local"
 echo $LOCAL
 
-job_names=(
-    # "_set_page_"
-    # "_set_carousel_"
-    # "_set_product_def_"
-    # "_set_search_def_"
-    # "_set_elaticsearch_"
-    "_set_history_price_"
+page_names=(
+    # "adaptogen"
+    # "atlhetica_nutrition"
+    # "black_skull"
+    "boldsnacks"
+    # "dark_lab"
+    # "darkness"
+    # "dux_nutrition_lab"
+    # "growth_supplements"
+    # "integralmedica"
+    # "iridium_labs"
+    # "max_titanium"
+    # "new_millen"
+    # "nutrata"
+    # "probiotica"
+    # "truesource"
+    # "under_labz"
+    # "vitafor"
 )
 
-# "adaptogen"
-# "atlhetica_nutrition"
-# "black_skull"
-# "boldsnacks"
-# "dark_lab"
-# "darkness"
-# "dux_nutrition_lab"
-# "growth_supplements"
-# "integralmedica"
-# "iridium_labs"
-# "max_titanium"
-# "new_millen"
-# "nutrata"
-# "probiotica"
-# "truesource"
-# "under_labz"
-# "vitafor"
 
 # Variáveis comuns para todos os jobs
-page_name="darkness"
-job_type="dry"
-option="false"
+job_name="_set_page_"
+# job_name="_set_carousel_"
+# job_name="_set_product_def_"
+# job_name="_set_search_def_"
+# job_name="_set_elaticsearch_"
+# job_name="_set_history_price_"
+
+job_type="extract"
+option="status_job"
 page_type="supplement"
 country="brazil"
 mode="prd"
 
-for job_name in "${job_names[@]}"
+for page_name in "${page_names[@]}"
 do
-    echo "Executing job: $job_name"
+    echo "Executing job: $page_name"
     python3 "$LOCAL/main.py" \
         --job_name "$job_name" \
         --page_name "$page_name" \

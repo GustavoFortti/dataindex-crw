@@ -2,10 +2,6 @@ import os
 import shutil
 import subprocess
 
-import pandas as pd
-
-from utils.general_functions import delete_file
-
 
 def data_ingestion(df, conf):
     global CONF

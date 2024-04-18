@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 import pandas as pd
 
 from config.env import LOCAL

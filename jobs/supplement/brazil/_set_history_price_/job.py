@@ -1,4 +1,3 @@
-from copy import deepcopy
 from datetime import datetime
 
 import pandas as pd
@@ -28,14 +27,14 @@ def run(args):
     CONF.update(vars(args))
     
     job_type = CONF["job_type"]
-    print(" - EXEC: " + job_type)
+    message(" - EXEC: " + job_type)
     
     global WORDLIST
     WORDLIST = WORDLIST["supplement"]
     data_path = CONF["data_path"]
     src_data_path = CONF["src_data_path"]
     
-    
+    message("read data")
     create_directory_if_not_exists(data_path)
     pages_with_status_true = get_pages_with_status_true(CONF)
     df_origin = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "origin_csl.csv")
@@ -55,6 +54,7 @@ def run(args):
     df = drop_duplicates_for_columns(df, ["ref", "price", "price_numeric"])
     df = df[df["ref"].isin(refs)]
 
+    message("process prices")
     all_prices_dates = []
     refs_processed = []
     for idx, row in df.iterrows():
@@ -77,10 +77,12 @@ def run(args):
         brand = df_price["brand"].values[0]
         all_prices_dates.append({"ref": ref, "prices": prices_dates, "brand": brand, "price_discount_percent": price_discount_percent})
     
+    message("create dataframe")
     df = pd.DataFrame(all_prices_dates)
     date_today = datetime.today()
     df['ing_date'] = date_today.strftime(DATE_FORMAT)
     df.to_csv(f"{data_path}/history_price.csv", index=False)
     
+    message("ingestion")
     brands_with_status_true = get_pages_with_status_true(CONF, False)
     batch_ingestion_by_field_values(CONF, df, "brand", brands_with_status_true)

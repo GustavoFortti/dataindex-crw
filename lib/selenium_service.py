@@ -12,7 +12,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
 from config.env import LOCAL
-from utils.general_functions import check_urls_in_parallel, is_price
 from utils.log import message
 
 

@@ -1,13 +1,6 @@
-import os
-
-import pandas as pd
-from elasticsearch import helpers
-
 from config.env import LOCAL
-from lib.dataframe_functions import (drop_duplicates_for_columns,
-                                     filter_dataframe_for_columns,
-                                     read_and_stack_csvs_dataframes,
-                                     read_and_stack_historical_csvs_dataframes)
+from lib.dataframe_functions import (filter_dataframe_for_columns,
+                                     read_and_stack_csvs_dataframes)
 from lib.elasticsearch.elasticsearch_functions import data_ingestion
 from lib.elasticsearch.elasticsearch_index import INDEX_SUPPLEMENT_BRAZIL
 from lib.set_functions import get_pages_with_status_true

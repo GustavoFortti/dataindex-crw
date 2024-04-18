@@ -1,8 +1,6 @@
 import re
 from copy import deepcopy
 
-import numpy as np
-
 from utils.general_functions import clean_text
 
 
@@ -25,7 +23,7 @@ def get_word_index_in_text(word, text, add_space_firts):
 
     return locations
 
-def get_back_words(text, text_accents, locations, word_size):
+def get_back_words(text_accents, locations):
     size_max = 30
     slice_min = lambda value: value if value >= 0 else 0
     back_words = []

@@ -7,6 +7,7 @@ import lib.elasticsearch.elasticsearch_functions as es
 import lib.image_server_functions as image_srv
 from utils.log import message
 
+
 def ingestion(conf):
     print(conf['data_path'])
     df = pd.read_csv(conf['data_path'] + '/origin_dry.csv')
