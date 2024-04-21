@@ -90,8 +90,6 @@ echo "mode: $mode" >> "$log_file"
 echo "LOCAL: $LOCAL" >> "$log_file"
 echo "Job start: $(date '+%Y-%m-%d %H:%M:%S')" >> "$log_file"
 
-exit 0
-
 python3 "$LOCAL/main.py" --job_name "$job_name" \
                          --page_name "$page_name" \
                          --job_type "$job_type" \
