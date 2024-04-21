@@ -43,7 +43,7 @@ def run(args):
     df_whey = df_whey.sample(18)
     print(df_whey)
     CONF["index_name"] = INDEX_SUPPLEMENT_BRAZIL["index"]["whey"]
-    data_ingestion(df, CONF)
+    data_ingestion(df_whey, CONF)
 
     message("set barrinha")
     keywords = WORDLIST["barrinha"]["subject"]
@@ -53,7 +53,7 @@ def run(args):
     df_barrinha = df_barrinha.sample(18)
     print(df_barrinha)
     CONF["index_name"] = INDEX_SUPPLEMENT_BRAZIL["index"]["bar"]
-    data_ingestion(df, CONF)
+    data_ingestion(df_barrinha, CONF)
 
     message("set pretreino")
     keywords = WORDLIST["pretreino"]["subject"]
@@ -64,4 +64,4 @@ def run(args):
     df_pretreino = df_pretreino.sample(18)
     print(df_pretreino)
     CONF["index_name"] = INDEX_SUPPLEMENT_BRAZIL["index"]["preworkout"]
-    data_ingestion(df, CONF)
+    data_ingestion(df_pretreino, CONF)
