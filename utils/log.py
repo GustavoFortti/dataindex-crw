@@ -1,6 +1,6 @@
 import logging
 
-logging.basicConfig(level=logging.INFO,
+logging.basicConfig(filename='app.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 console_handler = logging.StreamHandler()
@@ -10,5 +10,5 @@ console_handler.setFormatter(formatter)
 
 logging.getLogger('').addHandler(console_handler)
 
-def message(message: str) -> None:
+def message(message):
     logging.info(message)
