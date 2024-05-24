@@ -2,7 +2,6 @@ import os
 import shutil
 import subprocess
 
-
 def data_ingestion(df, conf):
     global CONF
     CONF = conf

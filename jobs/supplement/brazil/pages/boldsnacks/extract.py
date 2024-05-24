@@ -16,16 +16,17 @@ class Job():
         self.conf["index"] = None
 
     def get_items(self, soup):
-        items = soup.find_all('div', class_='product-item')
+        items = soup.find_all('li', class_='product collection-product-list')
         return items
 
     def get_product_url(self, soup):
-        product_link_element = soup.find('a', class_='card-title link-underline card-title-ellipsis')
+        product_link_element = soup.find('a', class_='card-link')
         product_link = "https://www.boldsnacks.com.br" + product_link_element['href'] if product_link_element else None
+        
         return product_link
 
     def get_title(self, soup):
-        title_element = soup.find('a', class_='card-title link-underline card-title-ellipsis')
+        title_element = soup.find('h3', class_='card__heading').find('a', class_='card-title center link-underline card-title-ellipsis')
         title = title_element.get_text().strip() if title_element else None
         return title
 
@@ -64,11 +65,11 @@ class Job():
         return None
 
     def get_elements_seed(self, soup):
-        product_link =self. get_product_url(soup)
+        product_link = self. get_product_url(soup)
         title = self.get_title(soup)
         price = self.get_price(soup)
         link_imagem = self.get_image_url(soup)
-
+        
         return product_link, title, price, link_imagem
 
 def extract(conf):

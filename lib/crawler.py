@@ -10,7 +10,6 @@ from utils.general_functions import (clean_string_break_line,
                                      create_or_read_df, generate_hash)
 from utils.log import message
 
-
 def crawler(job, url):
     message("exec crawler")
     if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
