@@ -1,5 +1,6 @@
 JOB_NAME = "vitafor"
 BRAND = "vitafor"
+URL = "https://www.vitafor.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

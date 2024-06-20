@@ -1,21 +1,23 @@
 # /bin/bash
 
 job_name=""
-page_name=false
-job_type=""
-option=false
 page_type=""
 country=""
 mode="prd"
+
+job_type=false
+page_name=false
+option=false
+
 local="/home/crw-system/dataindex-crw"
 
 usage() {
     echo "Usage: $0 [OPTIONS]"
     echo "Options:"
     echo "  --job_name NAME      Set the job name to NAME"
-    echo "  --page_name NAME     Set the page name to NAME"
     echo "  --job_type TYPE      Set the job type to TYPE"
     echo "  --option OPTION      Set the option to OPTION"
+    echo "  --page_name NAME     Set the page name to NAME"
     echo "  --page_type TYPE     Set the page type to TYPE"
     echo "  --country COUNTRY    Set the country to COUNTRY"
     echo "  --mode MODE          Set the mode to MODE"

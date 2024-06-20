@@ -1,5 +1,6 @@
 JOB_NAME = "integralmedica"
 BRAND = "integralmedica"
+URL = "https://www.integralmedica.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

@@ -1,5 +1,6 @@
 JOB_NAME = "black_skull"
 BRAND = "black skull"
+URL = "https://www.blackskullusa.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

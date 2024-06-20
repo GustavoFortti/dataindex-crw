@@ -1,5 +1,6 @@
 JOB_NAME = "new_millen"
 BRAND = "new millen"
+URL = ""
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

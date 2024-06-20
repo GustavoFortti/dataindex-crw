@@ -1,5 +1,6 @@
 JOB_NAME = "max_titanium"
 BRAND = "max titanium"
+URL = "https://www.maxtitanium.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

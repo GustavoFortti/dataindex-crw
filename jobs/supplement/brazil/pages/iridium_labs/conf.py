@@ -1,5 +1,6 @@
 JOB_NAME = "iridium_labs"
 BRAND = "iridium labs"
+URL = "https://www.iridiumlabs.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

@@ -1,5 +1,6 @@
 JOB_NAME = "puravida"
 BRAND = "puravida"
+URL = "https://www.puravida.com.br"
 STATUS = False
 
 PRODUCT_DEFINITION_TAG = [

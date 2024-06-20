@@ -12,23 +12,23 @@ page_names=(
     # "black_skull"
     # # "boldsnacks"
     # "dark_lab"
-    # # "darkness"
+    # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
-    # # "max_titanium"
+    # "max_titanium"
     # "new_millen"
     # "nutrata"
     # "probiotica"
-    # "truesource"
+    "truesource"
     # "under_labz"
     # "vitafor"
     # "tiktok"
 )
 
-
 # Variáveis comuns para todos os jobs
+# job_name="_set_coder_"
 job_name="_set_page_"
 # job_name="_set_carousel_"
 # job_name="_set_product_def_"
@@ -37,7 +37,18 @@ job_name="_set_page_"
 # job_name="_set_history_price_"
 
 job_type="extract"
-option="status_job"
+option="update_products"
+
+# job_type="extract"
+    # --option status_job
+    # --option update_products
+    # --option create_pages
+    # --option update_old_pages
+# --job_type dry
+# --job_type ingestion
+    # --option data_quality
+    # --option 
+
 page_type="supplement"
 country="brazil"
 mode="prd"

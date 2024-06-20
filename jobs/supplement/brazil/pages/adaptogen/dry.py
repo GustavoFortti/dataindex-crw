@@ -16,6 +16,3 @@ def dry(conf):
 
     print("Data Dry")
     create_origin_dry()
-
-
-   

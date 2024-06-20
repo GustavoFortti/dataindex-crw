@@ -10,60 +10,70 @@ from utils.general_functions import (clean_string_break_line,
                                      create_or_read_df, generate_hash)
 from utils.log import message
 
-def crawler(job, url):
+def crawler(page, url):
     message("exec crawler")
-    if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
+    if (("driver" not in page.conf.keys()) or (not page.conf["driver"])):
         message("initialize_selenium")
-        if (job.conf['seed']):
-            job.conf["driver"] = se.initialize_selenium()
+        if (page.conf['seed']):
+            page.conf["driver"] = se.initialize_selenium()
     
-    load_page(job, url)
+    load_page(page, url)
 
-def load_page(job, url):
+def load_page(page, url):
     message("exec load_page")
 
     driver = None
 
-    if (job.conf['seed']):
+    if (page.conf['seed']):
         message("seed")
         message("3 seconds")
         time.sleep(3)
 
-        driver = job.conf["driver"]
+        driver = page.conf["driver"]
 
         element_selector = None
         se.load_url(driver, url, element_selector)
 
-        time_sleep = job.conf['dynamic_scroll']['time_sleep']
-        scroll_step = job.conf['dynamic_scroll']['scroll_step']
-        percentage = job.conf['dynamic_scroll']['percentage']
-        return_percentage = job.conf['dynamic_scroll']['return_percentage']
-        max_return = job.conf['dynamic_scroll']['max_return']
-        max_attempts = job.conf['dynamic_scroll']['max_attempts']
+        time_sleep = page.conf['dynamic_scroll']['time_sleep']
+        scroll_step = page.conf['dynamic_scroll']['scroll_step']
+        percentage = page.conf['dynamic_scroll']['percentage']
+        return_percentage = page.conf['dynamic_scroll']['return_percentage']
+        max_return = page.conf['dynamic_scroll']['max_return']
+        max_attempts = page.conf['dynamic_scroll']['max_attempts']
 
-        if (job.conf['scroll_page']):
-            se.dynamic_scroll(driver, time_sleep=time_sleep,
-                                        scroll_step=scroll_step,
-                                        percentage=percentage, 
-                                        return_percentage=return_percentage, 
-                                        max_return=max_return, 
-                                        max_attempts=max_attempts)
+        if (page.conf['scroll_page']):
+            se.dynamic_scroll(
+                driver=driver,
+                time_sleep=time_sleep,
+                scroll_step=scroll_step,
+                percentage=percentage,
+                return_percentage=return_percentage,
+                max_return=max_return,
+                max_attempts=max_attempts
+            )
             
-        if (job.conf["status_job"]):
-            se.dynamic_scroll(driver, time_sleep=0.4, scroll_step=1000, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+        if (page.conf["status_job"]):
+            se.dynamic_scroll(driver,
+                time_sleep=0.4,
+                scroll_step=1000,
+                percentage=0.5,
+                return_percentage=0.1,
+                max_return=100,
+                max_attempts=2
+            )
 
         soup, page_html = se.get_page_source(driver)
         
-        extract_data(job, soup)
+        extract_data(page, soup)
 
-    if (job.conf['tree']):
+    if (page.conf['tree']):
         message("tree")
         ref = generate_hash(url)
-        data_path = job.conf['data_path']
+        data_path = page.conf['data_path']
         file_name = f"{data_path}/products/{ref}.txt"
         
         time.sleep(1)
-        if (("driver" not in job.conf.keys()) or (not job.conf["driver"])):
+        if (("driver" not in page.conf.keys()) or (not page.conf["driver"])):
             driver = se.initialize_selenium()
 
         se.load_url(driver, url)
@@ -78,13 +88,13 @@ async def get_page_text(url, retries=3, delay=1):
     attempt = 0
     while attempt < retries:
         browser = None
-        page = None
+        page_html = None
         try:
             browser = await launch()
-            page = await browser.newPage()
-            await page.goto(url, {'timeout': 30000})
-            await page.waitForSelector('body', {'timeout': 30000})
-            page_content = await page.content()
+            page_html = await browser.newPage()
+            await page_html.goto(url, {'timeout': 30000})
+            await page_html.waitForSelector('body', {'timeout': 30000})
+            page_content = await page_html.content()
             return page_content
         except Exception as e:
             message(f"Erro ao tentar acessar {url}: {e}")
@@ -92,13 +102,13 @@ async def get_page_text(url, retries=3, delay=1):
             await asyncio.sleep(delay)
             delay *= 2
         finally:
-            if page:
+            if page_html:
                 try:
-                    await page.goto('about:blank')
+                    await page_html.goto('about:blank')
                 except Exception as e:
                     message(f"Erro ao navegar para about:blank: {e}")
                 try:
-                    await page.close()
+                    await page_html.close()
                 except Exception as e:
                     message(f"Erro ao fechar a página: {e}")
             if browser:
@@ -110,22 +120,23 @@ async def get_page_text(url, retries=3, delay=1):
     message(f"Não foi possível acessar {url} após {retries} tentativas.")
     return None
 
-def extract_data(job, soup):
+def extract_data(page, soup):
     message("exec extract_data")
-    path_tree_temp = job.conf['path_tree_temp']
-    df_tree_temp = create_or_read_df(path_tree_temp, job.conf['df_tree'].columns)
+    path_tree_temp = page.conf['path_tree_temp']
+    df_tree_temp = create_or_read_df(path_tree_temp, page.conf['df_tree'].columns)
     size_tree_temp = len(df_tree_temp)
-    items = job.get_items(soup)
+    items = page.get_items(soup)
     size_items = len(items)
-    job.conf['size_items'] = size_items
+    page.conf['size_items'] = size_items
 
     if (size_items == 0):
-        message("size_items: 0")
-        return
+        message("ERRO size_items: 0 - necessario validar extração da pagina")
+        message(items)
+        exit(1)
 
     for item in items:
         
-        product_url, title, price, image_url = job.get_elements_seed(item)
+        product_url, title, price, image_url = page.get_item_elements(item)
         ref = generate_hash(product_url)
 
         if (price): price = clean_string_break_line(price)
@@ -137,11 +148,11 @@ def extract_data(job, soup):
             'title': title,
             'price': price,
             'image_url': image_url,
-            'ing_date': job.conf['formatted_date']
+            'ing_date': page.conf['formatted_date']
         }
 
         message(data)
-        if (job.conf["status_job"]):
+        if (page.conf["status_job"]):
             status_tag(data)
 
         temp_df = pd.DataFrame([data])
@@ -152,7 +163,7 @@ def extract_data(job, soup):
 
     if (size_tree_temp == len(df_tree_temp)):
         message("No change in dataframe")
-        job.conf['size_items'] = 0
+        page.conf['size_items'] = 0
         return
 
     df_tree_temp.to_csv(path_tree_temp, index=False)

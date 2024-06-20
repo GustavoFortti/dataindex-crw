@@ -1,5 +1,6 @@
 JOB_NAME = "atlhetica_nutrition"
 BRAND = "atlhetica nutrition"
+URL = "https://www.atlheticanutrition.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

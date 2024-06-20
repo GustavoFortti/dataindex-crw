@@ -18,7 +18,7 @@ def run(args):
     CONF.update(vars(args))
 
     job_type = CONF["job_type"]
-    print(" - EXEC: " + job_type)
+    print(" - job_type: " + job_type)
     
     data_path = CONF["data_path"]
     create_directory_if_not_exists(data_path)
@@ -39,7 +39,6 @@ def prepare_indices(es):
     module = importlib.import_module(module_name)
     conf_set_page_ = module.CONF
     synonyms = prepare_synonyms(conf_set_page_)
-    
     
     for indices in ALL_INDEXS:
         for key, index_name in indices['index'].items():

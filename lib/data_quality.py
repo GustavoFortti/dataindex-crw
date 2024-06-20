@@ -1,7 +1,6 @@
 from datetime import date
 
 import pandas as pd
-
 from lib.dataframe_functions import (calc_string_diff_in_df_col,
                                      read_and_stack_historical_csvs_dataframes)
 from utils import (DATE_FORMAT, check_url_existence,

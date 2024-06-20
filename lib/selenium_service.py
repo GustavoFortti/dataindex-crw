@@ -53,7 +53,7 @@ def load_url(driver, url, element_selector=None, timeout=30):
 
 def get_page_source(driver, retry_delay=5):
     try:
-        message("Tentando obter o page_source da página atual...")
+        message("Tentando obter a página atual...")
         page_html = driver.page_source
         soup = BeautifulSoup(page_html, 'html.parser')
         return soup, page_html  # Retorna o objeto BeautifulSoup se o page_source for obtido com sucesso

@@ -1,5 +1,6 @@
 JOB_NAME = "nutrata"
 BRAND = "nutrata"
+URL = ""
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

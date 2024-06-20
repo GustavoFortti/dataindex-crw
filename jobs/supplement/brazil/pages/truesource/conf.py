@@ -1,5 +1,6 @@
 JOB_NAME = "truesource"
 BRAND = "truesource"
+URL = "https://www.truesource.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

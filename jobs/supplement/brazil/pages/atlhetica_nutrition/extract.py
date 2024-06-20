@@ -48,13 +48,12 @@ class Job():
         # Retorna None se nenhum preço for encontrado
         return None
 
-
     def get_image_url(self, soup):
         image_element = soup.find('img', class_='vtex-product-summary-2-x-imageNormal')
         return image_element['src'] if image_element else None
 
-    def get_elements_seed(self, soup):
-        product_link = self. get_product_url(soup)
+    def get_item_elements(self, soup):
+        product_link = self.get_product_url(soup)
         title = self.get_title(soup)
         price = self.get_price(soup)
         link_imagem = self.get_image_url(soup)

@@ -19,6 +19,80 @@ CONF = {
     "index_type": INDEX_SUPPLEMENT_BRAZIL['type']
 }
 
+def run(args):
+    print("JOB_NAME: " + CONF["name"], end="")
+    CONF.update(vars(args))
+
+    job_type = CONF["job_type"]
+    print(" - EXEC: " + job_type)
+    
+    global wordlist
+    wordlist = WORDLIST["supplement"]
+    src_data_path = CONF["src_data_path"]
+    
+    pages_with_status_true = get_pages_with_status_true(CONF)
+    df = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "origin_csl.csv")
+    df = df.drop_duplicates(subset='ref').reset_index(drop=True)
+    
+    message("exec - promocoes")
+    promocoes(df)
+    message("exec - whey_protein")
+    whey_protein(df)
+    message("exec - creatina")
+    creatina(df)
+    message("exec - proteinas")
+    proteinas(df)
+    message("exec - barrinhas_de_proteina")
+    barrinhas_de_proteina(df)
+    message("exec - pre_treino")
+    pre_treino(df)
+    message("exec - cafeina")
+    cafeina(df)
+    message("exec - energia")
+    energia(df)
+    message("exec - resistencia")
+    resistencia(df)
+    message("exec - imunidade")
+    imunidade(df)
+    message("exec - hipercalorico")
+    hipercalorico(df)
+    message("exec - carboidratos")
+    carboidratos(df)
+    message("exec - beta_alanina")
+    beta_alanina(df)
+    message("exec - termogenico")
+    termogenico(df)
+    message("exec - oleos")
+    oleos(df)
+    message("exec - temperos")
+    temperos(df)
+    message("exec - adocantes")
+    adocantes(df)
+    message("exec - pasta_de_amendoim")
+    pasta_de_amendoim(df)
+    message("exec - vegano")
+    vegano(df)
+    message("exec - vegetariano")
+    vegetariano(df)
+    message("exec - vitaminas")
+    vitaminas(df)
+    message("exec - minerais")
+    minerais(df)
+    message("exec - sono")
+    sono(df)
+    message("exec - magnesio")
+    magnesio(df)
+    message("exec - pele")
+    pele(df)
+    message("exec - cabelo")
+    cabelo(df)
+    message("exec - omega")
+    omega(df)
+    message("exec - colageno")
+    colageno(df)
+    message("exec - combos")
+    combos(df)
+
 def promocoes(df):
     src_data_path = CONF['src_data_path']
     df_discount = pd.read_csv(f'{src_data_path}/_set_history_price_/history_price.csv')
@@ -275,7 +349,7 @@ def vitaminas(df):
 
 def minerais(df):
     keywords = (wordlist["calcio"]["subject"] + 
-                wordlist["cromo"]["subject"] +
+    print(" - job_type: " + job_type)["subject"] +
                 wordlist["magnesio"]["subject"] +
                 wordlist["zinco"]["subject"] +
                 wordlist["selenio"]["subject"] +
@@ -343,77 +417,3 @@ def combos(df):
     index = INDEX_SUPPLEMENT_BRAZIL['index']["combos"]
     CONF["index_name"] = index
     data_ingestion(df_filtered, CONF)
-
-def run(args):
-    print("JOB_NAME: " + CONF["name"], end="")
-    CONF.update(vars(args))
-
-    job_type = CONF["job_type"]
-    print(" - EXEC: " + job_type)
-    
-    global wordlist
-    wordlist = WORDLIST["supplement"]
-    src_data_path = CONF["src_data_path"]
-    
-    pages_with_status_true = get_pages_with_status_true(CONF)
-    df = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "origin_csl.csv")
-    df = df.drop_duplicates(subset='ref').reset_index(drop=True)
-    
-    message("exec - promocoes")
-    promocoes(df)
-    message("exec - whey_protein")
-    whey_protein(df)
-    message("exec - creatina")
-    creatina(df)
-    message("exec - proteinas")
-    proteinas(df)
-    message("exec - barrinhas_de_proteina")
-    barrinhas_de_proteina(df)
-    message("exec - pre_treino")
-    pre_treino(df)
-    message("exec - cafeina")
-    cafeina(df)
-    message("exec - energia")
-    energia(df)
-    message("exec - resistencia")
-    resistencia(df)
-    message("exec - imunidade")
-    imunidade(df)
-    message("exec - hipercalorico")
-    hipercalorico(df)
-    message("exec - carboidratos")
-    carboidratos(df)
-    message("exec - beta_alanina")
-    beta_alanina(df)
-    message("exec - termogenico")
-    termogenico(df)
-    message("exec - oleos")
-    oleos(df)
-    message("exec - temperos")
-    temperos(df)
-    message("exec - adocantes")
-    adocantes(df)
-    message("exec - pasta_de_amendoim")
-    pasta_de_amendoim(df)
-    message("exec - vegano")
-    vegano(df)
-    message("exec - vegetariano")
-    vegetariano(df)
-    message("exec - vitaminas")
-    vitaminas(df)
-    message("exec - minerais")
-    minerais(df)
-    message("exec - sono")
-    sono(df)
-    message("exec - magnesio")
-    magnesio(df)
-    message("exec - pele")
-    pele(df)
-    message("exec - cabelo")
-    cabelo(df)
-    message("exec - omega")
-    omega(df)
-    message("exec - colageno")
-    colageno(df)
-    message("exec - combos")
-    combos(df)

@@ -1,12 +1,14 @@
 import importlib
 
 from config.env import LOCAL
+from lib.crawler import crawler
 from utils.log import message
-from utils.general_functions import create_directory_if_not_exists
 
 CONF = {
-    "product_def_path": f"{LOCAL}/data/cuts/all/_set_product_def_",
-    "src_data_path": f"{LOCAL}/data/cuts/all",
+    "name": "_set_coder_",
+    "data_path": f"{LOCAL}/data/supplement/brazil/_set_coder_",
+    "src_data_path": f"{LOCAL}/data/supplement/brazil",
+    "pages_path": f"{LOCAL}/jobs/supplement/brazil/pages",
 }
 
 def run(args):
@@ -22,24 +24,17 @@ def run(args):
     page_conf = importlib.import_module(module_name)
     
     CONF["name"] = page_conf.JOB_NAME
+    CONF["brand"] = page_conf.BRAND
+    CONF["product_definition_tag"] = page_conf.PRODUCT_DEFINITION_TAG
     CONF["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
-    CONF["data_path"] = f"{LOCAL}/data/cuts/all/{page_conf.JOB_NAME}"
-    CONF["seed_path"] = f"{LOCAL}/jobs/cuts/all/pages/{page_conf.JOB_NAME}"
+    CONF["data_path"] = f"{LOCAL}/data/supplement/brazil/{page_conf.JOB_NAME}"
+    CONF["seed_path"] = f"{LOCAL}/jobs/supplement/brazil/pages/{page_conf.JOB_NAME}"
     CONF.update(args.__dict__)
 
     job_type = CONF["job_type"]
     page_type = CONF["page_type"]
     message(f"JOB_TYPE: {job_type}")
     message(f"PAGE_TYPE: {page_type}")
-    create_directory_if_not_exists(CONF['data_path'])
-
-    module_name = f"jobs.{page_type}.{country}.pages.{page_name}.extract"
-    extract = importlib.import_module(module_name)
     
-    options = {
-        "extract": extract.extract,
-    }
-    
-    exec_function = options.get(job_type)
-    if (exec_function):
-        exec_function(CONF)
+def update():
+    pass

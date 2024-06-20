@@ -1,5 +1,6 @@
 JOB_NAME = "boldsnacks"
 BRAND = "boldsnacks"
+URL = ""
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

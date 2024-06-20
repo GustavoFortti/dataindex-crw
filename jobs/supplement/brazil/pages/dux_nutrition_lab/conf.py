@@ -1,5 +1,6 @@
 JOB_NAME = "dux_nutrition_lab"
 BRAND = "dux nutrition lab"
+URL = "https://www.duxnutrition.com"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

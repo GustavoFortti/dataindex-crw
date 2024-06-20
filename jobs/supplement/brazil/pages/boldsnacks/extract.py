@@ -64,8 +64,8 @@ class Job():
                 return image_url
         return None
 
-    def get_elements_seed(self, soup):
-        product_link = self. get_product_url(soup)
+    def get_item_elements(self, soup):
+        product_link = self.get_product_url(soup)
         title = self.get_title(soup)
         price = self.get_price(soup)
         link_imagem = self.get_image_url(soup)

@@ -12,4 +12,4 @@ def run(args):
     CONF.update(vars(args))
 
     job_type = CONF["job_type"]
-    print(" - EXEC: " + job_type)
+    print(" - job_type: " + job_type)

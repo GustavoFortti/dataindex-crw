@@ -1,5 +1,6 @@
 JOB_NAME = "darkness"
 BRAND = "darkness"
+URL = "https://www.darkness.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
