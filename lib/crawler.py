@@ -130,9 +130,13 @@ def extract_data(page, soup):
     page.conf['size_items'] = size_items
 
     if (size_items == 0):
-        message("ERRO size_items: 0 - necessario validar extração da pagina")
+        index = page.conf["index"]
+        message(f"size_items: 0 - não foram encontrados produtos na pagina numero {index}")
         message(items)
-        exit(1)
+        if (index == 1):
+            message("ERRO size_items: 0 - não foram encontrados produtos na primeira pagina, necessario validar extração da pagina")
+            message("Finalizando programa com erro")
+            exit(1)
 
     for item in items:
         

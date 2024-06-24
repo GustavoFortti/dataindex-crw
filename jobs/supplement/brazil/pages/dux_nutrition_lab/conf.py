@@ -10,7 +10,7 @@ PRODUCT_DEFINITION_TAG = [
 ]
 
 DYNAMIC_SCROLL = {
-    "time_sleep": 0.5,
+    "time_sleep": 1,
     "scroll_step": 1000,
     "percentage": 0.07,
     "return_percentage": 0.3,
