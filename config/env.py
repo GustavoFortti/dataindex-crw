@@ -9,7 +9,7 @@ GIT_CONF = {
 }
 
 ELASTICSEARCH_CONF = {
-    "hosts_prd": "https://dataindex-elk-1.ngrok.app/",
+    "hosts_prd": "https://dataindex-elk-node-1.ngrok.app/",
     "user_prd": "elastic",
     "password_prd": "RJ6XXwfjHzYICKfGRTSn",
     "hosts_dev": "http://192.168.0.102:9200",

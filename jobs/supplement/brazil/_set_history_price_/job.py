@@ -75,7 +75,7 @@ def run(args):
             price_discount_percent = -round((prices[0] - prices[1]) / prices[1], 2)
         
         brand = df_price["brand"].values[0]
-        all_prices_dates.append({"ref": ref, "prices": prices_dates, "brand": brand, "price_discount_percent": price_discount_percent})
+        all_prices_dates.append({"ref": ref, "prices": {"price": prices_dates[0][0], "date": prices_dates[0][1]}, "brand": brand, "price_discount_percent": str(price_discount_percent)})
     
     message("create dataframe")
     df = pd.DataFrame(all_prices_dates)
