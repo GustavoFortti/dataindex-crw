@@ -21,7 +21,7 @@ option="false"
 
 page_type="supplement"
 country="brazil"
-mode="dev"
+mode="prd"
 
 echo "Executing job: $job_name"
 echo "Executing job: $page_name"
