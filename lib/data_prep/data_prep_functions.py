@@ -187,6 +187,7 @@ def filter_df_price_when_alter_price(df, refs):
                 is_alter_price = True
                 
             df.loc[idx, "is_alter_price"] = is_alter_price
+    
     df = df[df['is_alter_price']]
     return df
 
@@ -204,6 +205,7 @@ def create_price_discount_percent_col(df, data_path):
     df_price_temp = df_price_temp[['ref', 'price_numeric', 'ing_date']]
 
     refs_processed = []
+    
     for idx, row in df_price_temp.iterrows():
         ref = row['ref']
         if (ref in refs_processed):
@@ -217,8 +219,10 @@ def create_price_discount_percent_col(df, data_path):
         price_discount_percent = 0.0
         if (len(prices) > 1):
             price_discount_percent = round((prices[0] - prices[1]) / prices[1], 2)
-        
+            
+        if (price_discount_percent <= 0.01):
+            price_discount_percent = 0
         
         df_new.loc[df_new['ref'] == ref, "price_discount_percent"] = price_discount_percent
-    
+        
     return df_new
