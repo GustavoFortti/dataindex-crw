@@ -1,4 +1,5 @@
 import importlib
+import time
 
 from config.env import LOCAL
 from lib.elasticsearch.elasticsearch_functions import (
@@ -42,6 +43,21 @@ def prepare_indices(es):
     
     for indices in ALL_INDEXS:
         for key, index_name in indices['index'].items():
-            message(f"create {key}")
-            message(index_name)
-            create_index_if_not_exits(es, index_name, indices['type'], synonyms)
+            attempts = 0
+            max_attempts = 4
+            while attempts < max_attempts:
+                try:
+                    message(f"Attempting to create {key}")
+                    message(index_name)
+                    create_index_if_not_exits(es, index_name, indices['type'], synonyms)
+                    break
+                except Exception as e:
+                    attempts += 1
+                    message(f"WAITING - Failed to create {key}, attempt {attempts}. Error: {str(e)}")
+                    if attempts < max_attempts:
+                        time_sleep = 10 * (attempts + 2)
+                        message(f"WAITING - {time_sleep} seconds before retrying...")
+                        time.sleep(time_sleep)
+                    else:
+                        message("ERROR - Maximum retry attempts reached, moving to next index.")
+                        exit(1)

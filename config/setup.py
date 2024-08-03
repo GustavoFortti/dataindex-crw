@@ -1,10 +1,11 @@
 import os
 import subprocess
 import time
+from datetime import datetime
 
-from .env import (ELASTICSEARCH_CONF as es_conf, 
-                  GIT_CONF as git_conf,
-                  LOCAL)
+from .env import ELASTICSEARCH_CONF as es_conf
+from .env import GIT_CONF as git_conf
+from .env import LOCAL
 
 
 def configure_display():
@@ -42,6 +43,11 @@ def configure_elasticsearch(env):
         os.environ['ES_HOSTS'] = es_conf["hosts_prd"]
         os.environ['ES_USER'] = es_conf["user_prd"]
         os.environ['ES_PASS'] = es_conf["password_prd"]
+        
+    data_atual = datetime.now()
+    INDEX_DATE = data_atual.strftime("%d%m%Y")
+    
+    os.environ['INDEX_DATE'] = INDEX_DATE
 
 def configure_images_path():
     os.environ['DATAINDEX_IMG_PATH'] = os.path.join(LOCAL, '..', 'dataindex-img')

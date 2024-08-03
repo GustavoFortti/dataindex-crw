@@ -37,7 +37,7 @@ def create_connection():
     es = Elasticsearch(
         [es_hosts],
         http_auth=(es_user, es_pass),
-        verify_certs=False 
+        verify_certs=False,
     )
 
     message(f"Elasticsearch connection... {es.ping()}")

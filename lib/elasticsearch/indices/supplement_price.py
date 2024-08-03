@@ -6,10 +6,7 @@ def get_index(synonyms):
                     "type": "keyword"
                 },
                 "prices": {
-                    "type": "text"
-                },
-                "price_discount_percent": {
-                    "type": "float"
+                    "type": "object"
                 },
                 "brand": {
                     "type": "text"

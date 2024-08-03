@@ -1,6 +1,9 @@
+import os
+from datetime import datetime
+
 from lib.elasticsearch.indices import supplement, supplement_price
 
-INDEX_DATE = "09042024"
+INDEX_DATE = os.getenv('INDEX_DATE')
 
 INDEX_SUPPLEMENT_PRICE_BRAZIL = {
     "type": "supplement_price",

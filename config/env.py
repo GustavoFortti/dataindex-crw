@@ -18,4 +18,3 @@ ELASTICSEARCH_CONF = {
 }
 
 LOCAL = os.getenv("LOCAL")
-DATA_PATH = LOCAL
