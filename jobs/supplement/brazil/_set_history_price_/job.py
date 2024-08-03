@@ -23,7 +23,7 @@ CONF = {
 }
 
 def run(args):
-    print("JOB_NAME: " + CONF["name"], end="")
+    print("JOB_NAME: " + CONF["name"])
     CONF.update(vars(args))
     
     job_type = CONF["job_type"]
@@ -68,14 +68,8 @@ def run(args):
         
         prices_dates = df_price[["price_numeric", "ing_date"]].values.tolist()
         
-        prices = df_price["price_numeric"].values
-        
-        price_discount_percent = 0.0
-        if (len(prices) > 1):
-            price_discount_percent = -round((prices[0] - prices[1]) / prices[1], 2)
-        
         brand = df_price["brand"].values[0]
-        all_prices_dates.append({"ref": ref, "prices": str({"price": prices_dates[0][0], "date": prices_dates[0][1]}), "brand": brand, "price_discount_percent": str(price_discount_percent)})
+        all_prices_dates.append({"ref": ref, "prices": {"price": prices_dates[0][0], "date": prices_dates[0][1]}, "brand": brand})
     
     message("create dataframe")
     df = pd.DataFrame(all_prices_dates)

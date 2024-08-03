@@ -6,7 +6,16 @@ def get_index(synonyms):
                     "type": "keyword"
                 },
                 "prices": {
-                    "type": "object"
+                    "type": "object",
+                    "properties": {
+                        "price": {
+                            "type": "float"
+                        },
+                        "date": {
+                            "type": "date",
+                            "format": "yyyy-MM-dd"
+                        }
+                    }
                 },
                 "brand": {
                     "type": "text"
@@ -14,7 +23,7 @@ def get_index(synonyms):
                 "ing_date": {
                     "type": "date",
                     "format": "yyyy-MM-dd"
-                },
+                }
             }
         }
     }

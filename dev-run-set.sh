@@ -13,8 +13,8 @@ page_names='false'
 # job_name="_set_carousel_"
 # job_name="_set_product_def_"
 # job_name="_set_search_def_"
-job_name="_set_elaticsearch_"
-# job_name="_set_history_price_"
+# job_name="_set_elaticsearch_"
+job_name="_set_history_price_"
 
 job_type="false"
 option="false"
@@ -23,8 +23,8 @@ page_type="supplement"
 country="brazil"
 mode="prd"
 
-echo "Executing job: $job_name"
-echo "Executing job: $page_name"
+echo "Executing job_name: $job_name"
+echo "Executing page_name: $page_name"
 python3 "$LOCAL/main.py" \
     --job_name "$job_name" \
     --page_name "$page_name" \
