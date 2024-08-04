@@ -7,7 +7,6 @@ from .env import ELASTICSEARCH_CONF as es_conf
 from .env import GIT_CONF as git_conf
 from .env import LOCAL
 
-
 def configure_display():
     display_values = [":0", ":1", ":0.0"]
     chrome_command = "/usr/local/bin/chrome"
