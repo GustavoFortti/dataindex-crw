@@ -23,38 +23,45 @@ class Job():
         
     def get_items(self, soup):
         return self.page_elements.get_items(self.conf, soup)
+    
+    def get_element(self, el_name, get_function, soup):
+        try:
+            el = get_function(self.conf, soup)
+            self.check_element(el, el_name)
+            return el
+        except Exception as e:
+            raise ValueError(f"Error obtaining {el_name}: {e}")
 
     def get_item_elements(self, soup):
-        try:
-            product_link = self.page_elements.get_product_url(self.conf, soup)
-        except Exception as e:
-            raise ValueError(f"Error obtaining product link: {e}")
-        
-        try:
-            title = self.page_elements.get_title(self.conf, soup)
-        except Exception as e:
-            raise ValueError(f"Error obtaining title: {e}")
+        product_url = self.get_element(
+            "product_url",
+            self.page_elements.get_product_url,
+            soup
+        )
 
-        try:
-            price = self.page_elements.get_price(self.conf, soup)
-        except Exception as e:
-            raise ValueError(f"Error obtaining price: {e}")
+        title = self.get_element(
+            "title",
+            self.page_elements.get_title,
+            soup
+        )
 
-        try:
-            image_link = self.page_elements.get_image_url(self.conf, soup)
-        except Exception as e:
-            raise ValueError(f"Error obtaining image link: {e}")
+        price = self.get_element(
+            "price",
+            self.page_elements.get_price,
+            soup
+        )
 
-        if self.conf["status_job"]:
-            self.validate_strings(product_link, title, price, image_link)
+        image_url = self.get_element(
+            "image_url",
+            self.page_elements.get_image_url,
+            soup
+        )
 
-        return product_link, title, price, image_link
+        return product_url, title, price, image_url
 
-    def validate_strings(self, *args) -> None:
-        for index, arg in enumerate(args):
-            if not isinstance(arg, str):
-                raise ValueError(f"Invalid type detected at index {index}: {arg} is not a string.")
-
+    def check_element(self, el, el_name) -> None:
+        if not isinstance(el, str):
+            raise ValueError(f"Invalid type detected at el_name {el_name}: {el} is not a string.")
             
 def extract(conf):
     run_page_mapper(conf, Job)

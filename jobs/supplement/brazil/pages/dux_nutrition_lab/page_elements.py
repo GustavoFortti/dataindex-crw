@@ -24,9 +24,9 @@ def get_price(conf, soup):
     return price
 
 def get_image_url(conf, soup):
-    image_container = soup.find('div', class_='vtex-product-summary-2-x-imageContainer')
-    link_imagem = None
-    if image_container:
-        image_element = image_container.find('img')
-        link_imagem = image_element['src'] if image_element else None
-    return link_imagem
+    image_div = soup.find('div', class_='duxnutrition-product-0-x-imageStackContainer')
+    if image_div:
+        image_element = image_div.find('img', class_='duxnutrition-product-0-x-imageNormal')
+        if image_element and 'src' in image_element.attrs:
+            return image_element['src']
+    return None
