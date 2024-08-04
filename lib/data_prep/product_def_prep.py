@@ -301,7 +301,12 @@ def extract_subject_from_html_text(html_text, tag=None):
 
         text = soup.get_text()
     else:
-        html = soup.find(tag['tag'], class_=tag['class'])
+        tag_type = list(tag.keys())[1]
+        if (tag_type == "id"):
+            html = soup.find(tag['tag'], id=tag['id'])
+        else:
+            html = soup.find(tag['tag'], class_=tag['class'])
+        
         if html is None:
             return None
         text = html.text

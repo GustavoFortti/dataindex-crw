@@ -8,6 +8,8 @@ PRODUCT_DEFINITION_TAG = [
     {'tag': 'div', 'class': '__bs-nutri-table-container'}, 
     {'tag': 'div', 'class': 'col-md-6'},
     {'tag': 'div', 'class': '__bs-evora-list-text'}, 
+    {'tag': 'div', 'id': 'descricao'},
+    {'tag': 'div', 'id': 'sugestoes'},
 ]
 
 DYNAMIC_SCROLL = {

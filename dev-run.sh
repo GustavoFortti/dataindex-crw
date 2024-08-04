@@ -10,9 +10,9 @@ page_names=(
     # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
-    "boldsnacks"
+    # "boldsnacks"
     # "dark_lab"
-    # "darkness"
+    "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -29,12 +29,12 @@ page_names=(
 # Variáveis comuns para todos os jobs
 job_name="_set_page_"
 
-job_type="extract"
-# job_type="dry"
+# job_type="extract"
+job_type="dry"
 # job_type="false"
 
-option="update_products"
-# option="false"
+# option="update_products"
+option="false"
 
 # job_type="extract"
     # --option status_job
