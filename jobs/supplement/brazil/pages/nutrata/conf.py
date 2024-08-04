@@ -1,6 +1,6 @@
 JOB_NAME = "nutrata"
 BRAND = "nutrata"
-URL = ""
+URL = "https://nutrata.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

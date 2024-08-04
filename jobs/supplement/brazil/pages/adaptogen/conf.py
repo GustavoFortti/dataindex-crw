@@ -1,6 +1,6 @@
 JOB_NAME = "adaptogen"
 BRAND = "adaptogen"
-URL = ""
+URL = "https://adaptogen.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

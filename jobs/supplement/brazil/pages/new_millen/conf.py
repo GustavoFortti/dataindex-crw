@@ -1,6 +1,6 @@
 JOB_NAME = "new_millen"
 BRAND = "new millen"
-URL = ""
+URL = "https://loja.newmillen.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

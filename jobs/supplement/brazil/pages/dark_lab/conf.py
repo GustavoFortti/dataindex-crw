@@ -1,6 +1,6 @@
 JOB_NAME = "dark_lab"
 BRAND = "dark lab"
-URL = ""
+URL = "https://darklabsuplementos.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [

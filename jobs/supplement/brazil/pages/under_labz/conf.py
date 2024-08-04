@@ -1,6 +1,6 @@
 JOB_NAME = "under_labz"
 BRAND = "under labz"
-URL = ""
+URL = "https://underlabz.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
