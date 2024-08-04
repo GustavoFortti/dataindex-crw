@@ -9,7 +9,7 @@ def get_product_url(conf, soup):
     return product_link
 
 def get_title(conf, soup):
-    title_element = soup.find('h3', class_='card__heading').find('a', class_='card-title center link-underline card-title-ellipsis')
+    title_element = soup.find('a', class_='card-title center link-underline card-title-ellipsis')
     title = title_element.get_text().strip() if title_element else None
     return title
 

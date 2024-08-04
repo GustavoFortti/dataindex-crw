@@ -127,6 +127,7 @@ def extract_data(page, soup):
     size_tree_temp = len(df_tree_temp)
     items = page.get_items(soup)
     size_items = len(items)
+    message(f"size_items = {size_items}")
     page.conf['size_items'] = size_items
 
     if (size_items == 0):
@@ -137,11 +138,15 @@ def extract_data(page, soup):
             message("ERRO size_items: 0 - não foram encontrados produtos na primeira pagina, necessario validar extração da pagina")
             message("Finalizando programa com erro")
             exit(1)
-
+    
+    message(f"size_items valido")
+    count_size_items = 0
     for item in items:
+        message(f"size_items {count_size_items}")
         
         product_url, title, price, image_url = page.get_item_elements(item)
         ref = generate_hash(product_url)
+        message(f"generete ref - {ref}")
 
         if (price): price = clean_string_break_line(price)
         if (title): title = clean_string_break_line(title)
@@ -162,6 +167,8 @@ def extract_data(page, soup):
         temp_df = pd.DataFrame([data])
         df_tree_temp = pd.concat([df_tree_temp, temp_df], ignore_index=True)
         df_tree_temp.to_csv(path_tree_temp, index=False)
+        
+        count_size_items -= 1
 
     df_tree_temp = df_tree_temp.drop_duplicates(subset='ref').reset_index(drop=True)
 

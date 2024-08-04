@@ -8,9 +8,9 @@ echo $LOCAL
 
 page_names=(
     # "adaptogen"
-    "atlhetica_nutrition"
+    # "atlhetica_nutrition"
     # "black_skull"
-    # "boldsnacks"
+    "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
