@@ -31,16 +31,23 @@ def get_price(conf, soup):
             if sale_price_element:
                 # Extrai todos os preços usando expressão regular
                 prices = re.findall(r"\d+,\d+", sale_price_element.text)
-                # Converte os preços para float e seleciona o menor
+                # Converte os preços para float e seleciona o maior
                 prices = [float(price.replace(',', '.')) for price in prices]
-                final_price = f"R$ {min(prices):.2f}".replace('.', ',')
+                final_price = f"R$ {max(prices):.2f}".replace('.', ',')
             else:
                 # Se não houver intervalo de preços, pega o preço padrão
                 standard_price_element = price_container.text.strip()
                 if standard_price_element:
-                    final_price = standard_price_element
+                    # Verifica se há mais de um preço no preço padrão
+                    prices = re.findall(r"\d+,\d+", standard_price_element)
+                    if prices:
+                        prices = [float(price.replace(',', '.')) for price in prices]
+                        final_price = f"R$ {max(prices):.2f}".replace('.', ',')
+                    else:
+                        final_price = standard_price_element
     
     return final_price
+
 
 def get_image_url(conf, soup):
     image_element = soup.find(class_='t4s-product-main-img')
