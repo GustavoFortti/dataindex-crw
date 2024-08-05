@@ -77,7 +77,7 @@ def load_page(page, url):
             driver = se.initialize_selenium()
 
         se.load_url(driver, url)
-        se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=1000, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+        se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=500, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
         soup, page_text = se.get_page_source(driver)
 
         with open(file_name, 'w') as file:

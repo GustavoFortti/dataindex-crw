@@ -1,6 +1,9 @@
+import time
+
 import pandas as pd
 from bs4 import BeautifulSoup
-
+from lib.extract import Page
+from lib.page_mapper import tree_update_old_pages_by_ref
 from utils.general_functions import (clean_text, delete_file, path_exists,
                                      read_file)
 from utils.log import message
@@ -20,7 +23,7 @@ def load_product_def_prep(df, conf):
 
     FILE_PATH_PRODUCT_INFO = f"{DATA_PATH}/product_info.csv"
     message("Extrai palavras chave das paginas dos produtos")
-    keywords_data = extract_keywords_from_products(df)
+    keywords_data = extract_keywords_from_products(df, conf)
 
     delete_file(FILE_PATH_PRODUCT_INFO)
 
@@ -115,7 +118,7 @@ def treat_relationship_between_keywords(keywrods):
 
     return valid_keywords, others_keywords
 
-def extract_keywords_from_products(df):
+def extract_keywords_from_products(df, conf):
     keywords_data = {}
     for idx, row in df.iterrows():
         ref = row['ref']
@@ -130,13 +133,22 @@ def extract_keywords_from_products(df):
         product_documents = []
 
         product_documents.append(title)
-
+        
         document_from_tag = [extract_subject_from_html_text(html_text, tag) for tag in CONF["product_definition_tag"]]
         document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
         if (document_from_tag == []):
+            message(f"extract tree_update_old_pages_by_ref {ref} - {title}")
+            url = row['product_url']
+            tree_update_old_pages_by_ref(conf, Page, url)
+            
+            html_text = read_file(page_path)
+            document_from_tag = [extract_subject_from_html_text(html_text, tag) for tag in CONF["product_definition_tag"]]
+            document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
+        
+        if (document_from_tag == []):
             raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
-
+        
         product_documents.extend(document_from_tag)
 
         text_from_html = extract_subject_from_html_text(html_text)

@@ -15,7 +15,12 @@ from utils.log import message
 from utils.wordlist import BLACK_LIST
 
 
-def run(conf, Page):
+def run(conf: dict, Page: object):
+    """
+        Seed: utilizado para atualizar paginas de listas de produtos
+        Tree: utilizado para atualizar paginas dos produtos
+    """
+    
     conf["scroll_page"] = True
     conf["status_job"] = False
     conf["seed"] = False
@@ -156,6 +161,17 @@ def tree_update_old_pages(page):
         message(f"seed: {url}")
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
+        
+def tree_update_old_pages_by_ref(conf: dict, Page: object, url: str):
+    message("update_old_page by ref if page is with error in tags")
+    conf["scroll_page"] = True
+    conf["status_job"] = False
+    conf["seed"] = False
+    conf["tree"] = True
+    
+    page = Page(conf)
+    message(f"seed: {url}")
+    crawler(page, url)
 
 def tree_create(page):
     message("tree_create")

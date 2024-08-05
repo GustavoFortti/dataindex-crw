@@ -1,7 +1,7 @@
 import importlib
 from lib.page_mapper import run as run_page_mapper
 
-class Job():
+class Page():
     def __init__(self, conf) -> None:
         self.conf = conf
         
@@ -64,4 +64,4 @@ class Job():
             raise ValueError(f"Invalid type detected at el_name {el_name}: {el} is not a string.")
             
 def extract(conf):
-    run_page_mapper(conf, Job)
+    run_page_mapper(conf, Page)

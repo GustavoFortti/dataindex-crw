@@ -48,7 +48,6 @@ def get_price(conf, soup):
     
     return final_price
 
-
 def get_image_url(conf, soup):
     image_element = soup.find(class_='t4s-product-main-img')
     if (image_element and 'srcset' in image_element.attrs):
