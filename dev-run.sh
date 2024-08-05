@@ -21,8 +21,8 @@ page_names=(
     # "new_millen"
     # "nutrata"
     # "probiotica"
-    "truesource"
-    # "under_labz"
+    # "truesource"
+    "under_labz"
     # "vitafor"
 )
 

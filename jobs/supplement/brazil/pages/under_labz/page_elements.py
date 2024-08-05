@@ -4,7 +4,7 @@ def get_items(conf, soup):
 
 def get_product_url(conf, soup):
     product_link_element = soup.find('a')
-    return product_link_element['href'] if product_link_element else None
+    return conf["url"] + product_link_element['href'] if product_link_element else None
 
 def get_title(conf, soup):
     title_element = soup.find('h3', class_='card__title')
@@ -16,4 +16,4 @@ def get_price(conf, soup):
 
 def get_image_url(conf, soup):
     image_element = soup.find('img', class_='motion-reduce media--first')
-    return image_element['src'] if image_element else None
+    return "https:" + image_element['src'] if image_element else None
