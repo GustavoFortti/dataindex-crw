@@ -13,7 +13,7 @@ def get_title(conf, soup):
     return title
 
 def get_price(conf, soup):
-    price_element = soup.find('div', class_='text-dark text-xs lg:text-sm')
+    price_element = soup.find('span', class_='text-dark text-xs lg:text-sm')
     price = price_element.get_text(strip=True) if price_element else None
     return price
 

@@ -17,11 +17,11 @@ page_names=(
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
-    "max_titanium"
+    # "max_titanium"
     # "new_millen"
     # "nutrata"
     # "probiotica"
-    # "truesource"
+    "truesource"
     # "under_labz"
     # "vitafor"
 )
@@ -29,12 +29,12 @@ page_names=(
 # Variáveis comuns para todos os jobs
 job_name="_set_page_"
 
-# job_type="extract"
-job_type="dry"
+job_type="extract"
+# job_type="dry"
 # job_type="false"
 
-# option="update_products"
-option="false"
+option="update_products"
+# option="false"
 
 # job_type="extract"
     # --option status_job
