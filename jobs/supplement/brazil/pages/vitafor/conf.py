@@ -4,8 +4,8 @@ URL = "https://www.vitafor.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG = [
-    # {'tag': 'p', 'class': 'vitafor-store-theme-7-x-productPageShortDescription'},
-    {'tag': 'div', 'class': 'vitafor-store-theme-7-x-description'}
+    {'tag': 'p', 'class': 'vitafor-store-theme-9-x-productPageShortDescription'},
+    {'tag': 'div', 'class': 'vitafor-store-theme-9-x-description'}
 ]
 
 DYNAMIC_SCROLL = {
