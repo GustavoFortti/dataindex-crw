@@ -29,13 +29,13 @@ def run(args: Any) -> None:
     es = create_connection()
     
     message("check_elasticsearch_health")
-    # check_elasticsearch_health(es)
+    check_elasticsearch_health(es)
     
     message("list_all_indices")
     indices = list_all_indices(es)
     
-    # message("prepare_indices")
-    # prepare_indices(es)
+    message("prepare_indices")
+    prepare_indices(es)
     
     filtered_indices = filter_recent_indices(indices, 140)
     delete_indices(es, filtered_indices)
