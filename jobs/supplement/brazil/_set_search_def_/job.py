@@ -110,8 +110,19 @@ def whey_protein(df):
     barrinha = wordlist["barrinha"]["subject"]
     alfajor = wordlist["alfajor"]["subject"]
     wafer = wordlist["wafer"]["subject"]
-    blacklist = ["combo", "kit"] + barrinha + alfajor + wafer
+    
+    product_ban = [
+        "collagen diet lima limao",
+        "complete senior 50 chocolate",
+        "complete senior 50 morango",
+    ]
+    
+    blacklist = ["combo", "kit", "display"] + barrinha + alfajor + wafer + product_ban
+    
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
+    
+    df_filtered = df_filtered[df_filtered['title'] == 'complete senior 50 morango']
+    
     index = INDEX_SUPPLEMENT_BRAZIL['index']["whey_protein"]
     CONF["index_name"] = index
     data_ingestion(df_filtered, CONF)
