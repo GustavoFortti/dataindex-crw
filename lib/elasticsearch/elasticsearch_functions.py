@@ -1,9 +1,8 @@
 import os
-from typing import Tuple
+from typing import Any, List, Tuple
 
 import pandas as pd
 from elasticsearch import Elasticsearch, helpers
-
 from lib.elasticsearch.elasticsearch_index import elasticsearch_index
 from utils.general_functions import remove_nan_from_dict
 from utils.log import message
@@ -131,21 +130,26 @@ def check_elasticsearch_health(es) -> Tuple[str, dict]:
         return "error", {}
 
 def list_all_indices(es) -> dict:
-    """List all indices in the Elasticsearch cluster."""
+    """List all indices in the Elasticsearch cluster and return the list along with the count of indices."""
     try:
         # Fetching a list of all indices and their details.
         indices = es.cat.indices(format="json")
         # Logging the action of listing all indices.
         message("Listing all indices in the Elasticsearch cluster.")
-        # Returning a dictionary with index names and their details.
+        # Preparing the result dictionary with index names and their details.
+        indices_list = {index["index"]: index for index in indices}
+        # Logging each index name.
         for index in indices:
             message(index)
             message(index["index"])
+        # Returning the dictionary of indices and the total count.
+        indices = [{"name": i, "date": i[-8:]} for i in indices_list.keys()]
+        return indices
     except Exception as e:
         # Logging the error if unable to list the indices.
         message(f"Error listing all indices: {str(e)}")
-        # Returning an empty dictionary in case of an exception.
-        return {}
+        # Returning an empty dictionary and zero count in case of an exception.
+        return {"indices": {}, "count": 0}
 
 def batch_ingestion_by_field_values(conf, df, field, values):
     for valeu in values:
@@ -154,3 +158,15 @@ def batch_ingestion_by_field_values(conf, df, field, values):
             message(f"history_price {field}: {valeu}")
             conf[field] = valeu
             data_ingestion(df_ing, conf)
+
+def delete_indices(es: Any, indices_to_delete: List[dict]) -> None:
+    """
+    Deletes a list of indices from the Elasticsearch cluster.
+    """
+    for index_name in indices_to_delete:
+        try:
+            message(f"Attempting to delete index: {index_name}")
+            es.indices.delete(index=index_name)
+            message(f"Successfully deleted index: {index_name}")
+        except Exception as e:
+            message(f"Error deleting index {index_name}: {str(e)}")
