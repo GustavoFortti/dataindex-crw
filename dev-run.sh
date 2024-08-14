@@ -48,7 +48,7 @@ option="update_products"
 
 page_type="supplement"
 country="brazil"
-mode="prd"
+mode="dev"
 
 for page_name in "${page_names[@]}"
 do
