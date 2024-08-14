@@ -13,7 +13,7 @@ page_names=(
     # "boldsnacks"
     # "dark_lab"
     # "darkness"
-    "dux_nutrition_lab"
+    # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
@@ -22,7 +22,7 @@ page_names=(
     # "nutrata"
     # "probiotica"
     # "truesource"
-    # "under_labz"
+    "under_labz"
     # "vitafor"
 )
 
@@ -33,7 +33,7 @@ job_name="_set_page_"
 job_type="extract"
 # job_type="false"
 
-option="update_products"
+option="status_job"
 # option="false"
 
 # job_type="extract"

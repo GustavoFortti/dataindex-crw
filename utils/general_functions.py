@@ -346,10 +346,10 @@ def is_price(string):
         return False
 
     pattern = r"""
-    (R\$\s?\d{1,3}(?:\.\d{3})*,\d{2})|  # BRL: R$
-    (€\s?\d{1,3}(?:\.\d{3})*,\d{2})|    # EUR: €
-    (\$\s?\d{1,3}(?:,\d{3})*\.\d{2})|   # USD: $
-    (£\s?\d{1,3}(?:,\d{3})*\.\d{2})     # GBP: £
+    (R\$\s?\d{1,3}(?:\.\d{3})*[,.]\d{2})|  # BRL: R$
+    (€\s?\d{1,3}(?:\.\d{3})*,\d{2})|       # EUR: €
+    (\$\s?\d{1,3}(?:,\d{3})*\.\d{2})|      # USD: $
+    (£\s?\d{1,3}(?:,\d{3})*\.\d{2})        # GBP: £
     """
 
     return bool(re.match(pattern, string, re.VERBOSE))
