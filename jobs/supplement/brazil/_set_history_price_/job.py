@@ -56,6 +56,7 @@ def run(args):
 
     message("process prices")
     all_prices_dates = []
+    data = []
     refs_processed = []
     for idx, row in df.iterrows():
         ref = row['ref']
@@ -63,16 +64,22 @@ def run(args):
             continue
         
         refs_processed.append(ref)
-        
+
         df_price = df[df["ref"] == ref]
-        
+
         prices_dates = df_price[["price_numeric", "ing_date"]].values.tolist()
-        
+
         brand = df_price["brand"].values[0]
-        all_prices_dates.append({"ref": ref, "prices": {"price": prices_dates[0][0], "date": prices_dates[0][1]}, "brand": brand})
+
+        for price, date in prices_dates:
+            all_prices_dates.append({"price": price, "date": date})
+            
+        data.append({"ref": ref, "prices": all_prices_dates, "brand": brand})
+        
+        all_prices_dates = []
     
     message("create dataframe")
-    df = pd.DataFrame(all_prices_dates)
+    df = pd.DataFrame(data)
     date_today = datetime.today()
     df['ing_date'] = date_today.strftime(DATE_FORMAT)
     df.to_csv(f"{data_path}/history_price.csv", index=False)

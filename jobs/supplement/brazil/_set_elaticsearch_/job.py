@@ -40,7 +40,6 @@ def run(args: Any) -> None:
     filtered_indices = filter_recent_indices(indices, 140)
     delete_indices(es, filtered_indices)
 
-
 def prepare_indices(es: Any) -> None:
     """
     Prepares indices by attempting to create them if they do not already exist.

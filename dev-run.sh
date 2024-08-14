@@ -20,21 +20,21 @@ page_names=(
     # "max_titanium"
     # "new_millen"
     # "nutrata"
-    # "probiotica"
+    "probiotica"
     # "truesource"
     # "under_labz"
-    "vitafor"
+    # "vitafor"
 )
 
 # Variáveis comuns para todos os jobs
 job_name="_set_page_"
 
-# job_type="extract"
-job_type="dry"
+job_type="extract"
+# job_type="dry"
 # job_type="false"
 
-# option="update_products"
-option="false"
+option="update_products"
+# option="false"
 
 # job_type="extract"
     # --option status_job

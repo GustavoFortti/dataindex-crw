@@ -27,7 +27,6 @@ class Page():
     def get_element(self, el_name, get_function, soup):
         try:
             el = get_function(self.conf, soup)
-            self.check_element(el, el_name)
             return el
         except Exception as e:
             raise ValueError(f"Error obtaining {el_name}: {e}")
