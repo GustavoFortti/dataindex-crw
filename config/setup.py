@@ -107,7 +107,7 @@ def setup_git_config(project_dir, username, email, remote_name, remote_url):
 def configure_env(args):
 
     job_type = args.job_type
-    if (job_type == "extract"):
+    if (job_type in ["extract", "dry"]):
         configure_display()
     
     configure_elasticsearch(args.mode)

@@ -127,6 +127,7 @@ def price_analysis(df_history, df):
     result_df_price['price_alert'] = result_df_price['diff_percent'] <= threshold_alert
 
     df_erro = result_df_price.sort_values('diff_percent')
+    print(df_erro)
     message("PRICE ERROR DATAFRAME")
     print(df_erro[~df_erro['price_erro']])
     message("PRICE DATAFRAME")
