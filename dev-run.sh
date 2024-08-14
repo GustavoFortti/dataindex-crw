@@ -8,9 +8,9 @@ echo $LOCAL
 
 page_names=(
     # "adaptogen"
-    "atlhetica_nutrition"
+    # "atlhetica_nutrition"
     # "black_skull"
-    # "boldsnacks"
+    "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
@@ -29,11 +29,11 @@ page_names=(
 # Variáveis comuns para todos os jobs
 job_name="_set_page_"
 
-job_type="extract"
+job_type="ingestion"
 # job_type="dry"
 # job_type="false"
 
-option="update_products"
+option="data_quality"
 # option="false"
 
 # job_type="extract"
