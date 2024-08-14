@@ -8,7 +8,7 @@ echo $LOCAL
 
 page_names=(
     # "adaptogen"
-    # "atlhetica_nutrition"
+    "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
@@ -20,7 +20,7 @@ page_names=(
     # "max_titanium"
     # "new_millen"
     # "nutrata"
-    "probiotica"
+    # "probiotica"
     # "truesource"
     # "under_labz"
     # "vitafor"
