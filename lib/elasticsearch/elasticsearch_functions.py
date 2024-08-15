@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from typing import Any, List, Tuple
 
 import pandas as pd
@@ -143,8 +144,12 @@ def list_all_indices(es) -> dict:
             message(index)
             message(index["index"])
         # Returning the dictionary of indices and the total count.
-        indices = [{"name": i, "date": i[-8:]} for i in indices_list.keys()]
-        return indices
+        dated_indices = [{"name": i, "date": i[-8:]} 
+           for i in indices_list.keys() 
+           if len(i) > 8 and 
+           i[-8:].isdigit() and 
+           datetime.strptime(i[-8:], '%d%m%Y')]
+        return dated_indices
     except Exception as e:
         # Logging the error if unable to list the indices.
         message(f"Error listing all indices: {str(e)}")
