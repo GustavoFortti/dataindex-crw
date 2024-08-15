@@ -33,8 +33,6 @@ def run(args: Any) -> None:
     
     message("list_all_indices")
     dated_indices = list_all_indices(es)
-    print(dated_indices)
-    exit()
     
     message("prepare_indices")
     prepare_indices(es)
