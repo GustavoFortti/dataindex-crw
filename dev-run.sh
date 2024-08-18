@@ -10,7 +10,7 @@ page_names=(
     # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
-    # "boldsnacks"
+    "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
@@ -22,7 +22,7 @@ page_names=(
     # "nutrata"
     # "probiotica"
     # "truesource"
-    "under_labz"
+    # "under_labz"
     # "vitafor"
 )
 
@@ -30,11 +30,11 @@ page_names=(
 job_name="_set_page_"
 
 # job_type="ingestion"
-job_type="extract"
+job_type="dry"
 # job_type="false"
 
-option="status_job"
-# option="false"
+# option="status_job"
+option="false"
 
 # job_type="extract"
     # --option status_job

@@ -12,9 +12,9 @@ page_names='false'
 # job_name="_set_coder_"
 # job_name="_set_carousel_"
 # job_name="_set_product_def_"
-# job_name="_set_search_def_"
+job_name="_set_search_def_"
 # job_name="_set_elaticsearch_"
-job_name="_set_history_price_"
+# job_name="_set_history_price_"
 
 job_type="false"
 option="false"

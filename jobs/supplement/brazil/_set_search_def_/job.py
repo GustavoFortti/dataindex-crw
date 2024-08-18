@@ -96,7 +96,7 @@ def run(args):
 def promocoes(df):
     src_data_path = CONF['src_data_path']
     df_discount = pd.read_csv(f'{src_data_path}/_set_history_price_/history_price.csv')
-    df_discount = df_discount[df_discount["price_discount_percent"] > 0]
+    df_discount = df_discount[df_discount["price_discount_percent"] != "False"]
     
     refs = df_discount['ref'].values
     df_promocoes = df[df['ref'].isin(refs)]
@@ -120,8 +120,6 @@ def whey_protein(df):
     blacklist = ["combo", "kit", "display"] + barrinha + alfajor + wafer + product_ban
     
     df_filtered = filter_dataframe_for_columns(df, ["title", "product_def", "product_def_pred"], keywords, blacklist)
-    
-    df_filtered = df_filtered[df_filtered['title'] == 'complete senior 50 morango']
     
     index = INDEX_SUPPLEMENT_BRAZIL['index']["whey_protein"]
     CONF["index_name"] = index
