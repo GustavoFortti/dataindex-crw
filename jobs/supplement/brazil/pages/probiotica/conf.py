@@ -3,7 +3,7 @@ BRAND = "probiotica"
 URL = "https://www.probiotica.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
 ]
 

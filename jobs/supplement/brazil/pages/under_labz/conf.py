@@ -3,7 +3,7 @@ BRAND = "under labz"
 URL = "https://underlabz.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'abas-custom'},
 ]
 

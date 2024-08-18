@@ -134,7 +134,7 @@ def extract_keywords_from_products(df, conf):
 
         product_documents.append(title)
         
-        document_from_tag = [extract_subject_from_html_text(html_text, tag) for tag in CONF["product_definition_tag"]]
+        document_from_tag = [extract_subject_from_html_text(html_text, tag_map) for tag_map in CONF["product_definition_tag_map"]]
         document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
         if (document_from_tag == []):
@@ -143,7 +143,7 @@ def extract_keywords_from_products(df, conf):
             tree_update_old_pages_by_ref(conf, Page, url)
             
             html_text = read_file(page_path)
-            document_from_tag = [extract_subject_from_html_text(html_text, tag) for tag in CONF["product_definition_tag"]]
+            document_from_tag = [extract_subject_from_html_text(html_text, tag_map) for tag_map in CONF["product_definition_tag_map"]]
             document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
         if (document_from_tag == []):
@@ -283,41 +283,41 @@ def normalize_rows(df, exclude_columns):
         
     return df_normalized
 
-def extract_subject_from_html_text(html_text, tag=None):
+def extract_subject_from_html_text(html_text, tag_map=None):
     soup = BeautifulSoup(html_text, 'html.parser')
     text = ""
 
-    if (not tag):
+    if (not tag_map):
         remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']
         for remove_tag in remove_tags:
-            for tag in soup.find_all(remove_tag):
-                tag.decompose()
+            for tag_map in soup.find_all(remove_tag):
+                tag_map.decompose()
 
-        tags_com_hidden = soup.find_all(lambda tag: tag.get('class') and 'hidden' in ' '.join(tag.get('class')))
-        for tag in tags_com_hidden:
-            tag.extract()
+        tags_com_hidden = soup.find_all(lambda element: element.get('class') and 'hidden' in ' '.join(element.get('class')))
+        for tag_map in tags_com_hidden:
+            tag_map.extract()
             
-        def remove_empty_tags(tag):
-            if not tag.text.strip():
-                tag.extract()
+        def remove_empty_tags(tag_map):
+            if not tag_map.text.strip():
+                tag_map.extract()
 
-        for tag in soup.find_all():
-            remove_empty_tags(tag)
+        for tag_map in soup.find_all():
+            remove_empty_tags(tag_map)
 
-        tags_with_char_count = [(tag, len(tag.get_text(strip=True))) for tag in soup.find_all()]
+        tags_with_char_count = [(element, len(element.get_text(strip=True))) for element in soup.find_all()]
         sorted_tags = sorted(tags_with_char_count, key=lambda x: x[1], reverse=True)
         half_count = int(len(sorted_tags) // 3)
 
-        for tag, _ in sorted_tags[half_count:]:
-            tag.decompose()
+        for tag_map, _ in sorted_tags[half_count:]:
+            tag_map.decompose()
 
         text = soup.get_text()
     else:
-        tag_type = list(tag.keys())[1]
-        if (tag_type == "id"):
-            html = soup.find(tag['tag'], id=tag['id'])
+        tag_type = list(tag_map.keys())[1]
+        if (tag_type in "path"):
+            html = soup.select_one(tag_map['path'])
         else:
-            html = soup.find(tag['tag'], class_=tag['class'])
+            html = soup.find(tag_map['tag'], id=tag_map[tag_type])
         
         if html is None:
             return None

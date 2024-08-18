@@ -3,7 +3,7 @@ BRAND = "atlhetica nutrition"
 URL = "https://www.atlheticanutrition.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}
 ]
 

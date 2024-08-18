@@ -3,7 +3,7 @@ BRAND = "vitafor"
 URL = "https://www.vitafor.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'p', 'class': 'vitafor-store-theme-9-x-productPageShortDescription'},
     {'tag': 'div', 'class': 'vitafor-store-theme-9-x-description'}
 ]

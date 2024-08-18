@@ -3,7 +3,7 @@ BRAND = "boldsnacks"
 URL = "https://www.boldsnacks.com.br/"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'productView-desc halo-text-format'},
 ]
 

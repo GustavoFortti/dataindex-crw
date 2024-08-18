@@ -3,7 +3,7 @@ BRAND = "growth supplements"
 URL = "https://www.gsuplementos.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'section', 'class': 'breadcrumb-produto'},
     {'tag': 'ul', 'class': 'breadcrumb-container'},
 ]

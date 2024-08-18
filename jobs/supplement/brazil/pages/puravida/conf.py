@@ -3,7 +3,7 @@ BRAND = "puravida"
 URL = "https://www.puravida.com.br"
 STATUS = False
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
 ]
 

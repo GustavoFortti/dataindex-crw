@@ -25,7 +25,7 @@ def run(args):
     
     CONF["name"] = page_conf.JOB_NAME
     CONF["brand"] = page_conf.BRAND
-    CONF["product_definition_tag"] = page_conf.PRODUCT_DEFINITION_TAG
+    CONF["product_definition_tag_map"] = page_conf.PRODUCT_DEFINITION_TAG_MAP
     CONF["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     CONF["data_path"] = f"{LOCAL}/data/supplement/brazil/{page_conf.JOB_NAME}"
     CONF["seed_path"] = f"{LOCAL}/jobs/supplement/brazil/pages/{page_conf.JOB_NAME}"

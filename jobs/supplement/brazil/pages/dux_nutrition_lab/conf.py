@@ -3,7 +3,7 @@ BRAND = "dux nutrition lab"
 URL = "https://www.duxnutrition.com"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'},
     {'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'},
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'}

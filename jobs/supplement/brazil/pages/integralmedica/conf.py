@@ -3,7 +3,7 @@ BRAND = "integralmedica"
 URL = "https://www.integralmedica.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow vtex-flex-layout-0-x-flexRow--pdpProductInfo'},
     {'tag': 'div', 'class': 'integralmedica-store-components-0-x-doubleImageAndTopicsCardContainer'},
 ]

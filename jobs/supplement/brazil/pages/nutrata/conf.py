@@ -3,7 +3,7 @@ BRAND = "nutrata"
 URL = "https://nutrata.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'span', 'class': 'tagged_as'}, 
     {'tag': 'nav', 'class': 'woocommerce-breadcrumb'}, 
     {'tag': 'div', 'class': 'woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab'},

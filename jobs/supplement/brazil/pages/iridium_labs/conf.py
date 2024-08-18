@@ -3,7 +3,7 @@ BRAND = "iridium labs"
 URL = "https://www.iridiumlabs.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 't4s-product__description t4s-rte'}
 ]
 

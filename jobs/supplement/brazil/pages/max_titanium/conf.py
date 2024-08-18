@@ -3,7 +3,7 @@ BRAND = "max titanium"
 URL = "https://www.maxtitanium.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'},
     {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow vtex-flex-layout-0-x-flexRow--specification'},
     {'tag': 'div', 'class': 'pr0 items-stretch vtex-flex-layout-0-x-stretchChildrenWidth   flex'}

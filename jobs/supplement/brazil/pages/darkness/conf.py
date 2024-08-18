@@ -3,7 +3,7 @@ BRAND = "darkness"
 URL = "https://www.darkness.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'section', 'class': 'product-information'}, 
     {'tag': 'div', 'class': '__bs-nutri-table-container'}, 
     {'tag': 'div', 'class': 'col-md-6'},

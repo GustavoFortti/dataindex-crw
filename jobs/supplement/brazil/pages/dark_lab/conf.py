@@ -3,7 +3,7 @@ BRAND = "dark lab"
 URL = "https://darklabsuplementos.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'breadcrumbs'},
 ]
 

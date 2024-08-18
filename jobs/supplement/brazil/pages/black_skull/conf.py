@@ -3,7 +3,7 @@ BRAND = "black skull"
 URL = "https://www.blackskullusa.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
+PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'},
     {'tag': 'div', 'class': 'vtex-full-description-box'}
 ]

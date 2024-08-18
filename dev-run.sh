@@ -10,7 +10,7 @@ page_names=(
     # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
-    "boldsnacks"
+    # "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
@@ -21,7 +21,7 @@ page_names=(
     # "new_millen"
     # "nutrata"
     # "probiotica"
-    # "truesource"
+    "truesource"
     # "under_labz"
     # "vitafor"
 )
