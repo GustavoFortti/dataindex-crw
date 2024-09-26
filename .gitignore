@@ -5,3 +5,5 @@ packages/chrome-linux64.zip
 *.pyc
 
 /app.log
+
+/venv

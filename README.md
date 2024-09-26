@@ -1,115 +1,66 @@
-# comandos ELASTICSEARCH PROD
+# Projeto de Extração e Processamento de Dados de Suplementos
 
-### indices
-brazil_supplement_
-brazil_supplement_whey_
-brazil_supplement_bar_
-brazil_supplement_preworkout_
-brazil_supplement_promocoes_
-brazil_supplement_whey_protein_
-brazil_supplement_creatina_
-brazil_supplement_proteinas_
-brazil_supplement_barrinhas_de_proteina_
-brazil_supplement_pre_treino_
-brazil_supplement_cafeina_
-brazil_supplement_energia_
-brazil_supplement_resistencia_
-brazil_supplement_imunidade_
-brazil_supplement_hipercalorico_
-brazil_supplement_carboidratos_
-brazil_supplement_beta_alanina_
-brazil_supplement_termogenico_
-brazil_supplement_oleos_
-brazil_supplement_temperos_
-brazil_supplement_adocantes_
-brazil_supplement_pasta_de_amendoim_
-brazil_supplement_vegano_
-brazil_supplement_vegetariano_
-brazil_supplement_vitaminas_
-brazil_supplement_minerais_
-brazil_supplement_sono_
-brazil_supplement_magnesio_
-brazil_supplement_pele_
-brazil_supplement_cabelo_
-brazil_supplement_omega_
-brazil_supplement_colageno_
-brazil_supplement_combos_
+## Visão Geral
 
+Este projeto tem como objetivo realizar a extração, processamento e armazenamento de dados relacionados a suplementos de diversas marcas no mercado brasileiro. Utilizando técnicas de web scraping, os dados são extraídos de sites e processados para posterior ingestão em um sistema de banco de dados ou sistema de busca como o Elasticsearch.
 
-### queries | GET
+A arquitetura do projeto está organizada em diferentes módulos, cada um responsável por uma etapa específica do pipeline de dados, como extração, transformação e carregamento (ETL).
 
-curl -X GET "https://dataindex-elk-node-1.ngrok.app/brazil_supplement_whey_protein_09042024/_search?size=5" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn" -d'
-{
-  "query": {
-    "function_score": {
-      "query": {
-        "multi_match": {
-          "query": "whey",
-          "fields": [
-            "title^10",
-            "brand^3",
-            "product_def^10",
-            "product_def_pred^1"
-          ],
-          "type": "best_fields"
-        }
-      },
-      "boost_mode": "multiply",
-      "functions": [
-        {
-          "filter": { "match": { "title": "whey" } },
-          "weight": 2
-        }
-      ]
-    }
-  }
-}' | jq
+## Estrutura de Diretórios
 
+### `config/`
+Este diretório contém configurações e scripts de inicialização. Alguns dos arquivos principais são:
 
+- `entrypoint/`: Scripts necessários para inicialização e configuração de dependências, como:
+  - `entrypoint.sh`: Script de inicialização do ambiente.
+  - `requirements.sh`: Instalação das dependências.
+  - `requirements.txt`: Arquivo de dependências Python.
+- `setup/`: Scripts para configurar e inicializar serviços específicos, como:
+  - `display.py`: Configurações de exibição de dados.
+  - `elasticsearch.py`: Configurações do Elasticsearch.
+  - `image_server.py`: Configuração de um servidor de imagens.
 
+### `jobs/`
+Esta pasta armazena os jobs que executam os processos de coleta de dados para diferentes páginas e marcas de suplementos.
 
+- `data_intelligence/`: Contém jobs específicos para definição de produtos.
+- `master_page/` e `slave_page/`: Responsáveis por coordenar o scraping de páginas principais e secundárias. Dentro de `pages/`, há subdiretórios com configurações específicas para diferentes marcas de suplementos.
 
-curl -X DELETE "https://dataindex-elk-node-1.ngrok.app/brazil_supplement_history_price_03082024" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn"
-curl -X GET "https://dataindex-elk-node-1.ngrok.app/brazil_supplement" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn"
+### `lib/`
+Contém bibliotecas de suporte para as operações do projeto.
 
-curl -X HEAD "https://dataindex-elk-node-1.ngrok.app/brazil_supplement" -I -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn"
+- `extract/`: Módulos responsáveis pela extração dos dados das páginas.
+  - `crawler.py`: Contém o código para crawling de páginas web.
+  - `extract.py`: Funções específicas de extração de dados.
+  - `selenium_service.py`: Serviço para manipulação do Selenium no processo de scraping.
 
-curl -X GET "https://dataindex-elk-node-1.ngrok.app/brazil_supplement_history_price_09042024/_search?size=10" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn" -d'
-{
-  "query": {
-    "bool": {
-      "must": [
-        { "match": { "ref": "5c3be2f2" }}
-      ]
-    }
-  }
-}'
+- `load/`: Responsável pela ingestão dos dados extraídos em bancos de dados ou sistemas de busca.
+  - `image_ingestion.py`: Ingestão de dados relacionados a imagens.
+  - `ingestion.py`: Funções gerais de ingestão de dados.
 
-curl -X GET "https://dataindex-elk-node-1.ngrok.app/_cluster/health" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn"
+- `transform/`: Realiza a transformação e enriquecimento dos dados.
+  - `product_definition.py`: Definição dos dados transformados relacionados aos produtos.
+  - `transform_functions.py`: Funções auxiliares para a transformação de dados.
 
+### `utils/`
+Contém funções utilitárias usadas em várias partes do projeto:
 
-curl -X GET "https://dataindex-elk-node-1.ngrok.app/brazil_supplement_history_price_09042024/_count" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn" | grep -o '"count":[0-9]*' | cut -d: -f2
+- `dataframe.py`: Funções para manipulação de dataframes.
+- `file_system.py`: Funções auxiliares para manipulação de arquivos.
+- `log.py`: Configurações e funções para logging.
+- `py_functions.py`: Funções utilitárias gerais em Python.
+- `wordlist/`: Diretório contendo listas de palavras e dicionários específicos para o mercado brasileiro.
 
+## Principais Tecnologias
 
-curl -X POST "https://dataindex-elk-node-1.ngrok.app/_reindex" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn" -d'
-{
-  "source": {
-    "index": "brazil_supplement_preworkout"
-  },
-  "dest": {
-    "index": "brazil_supplement_preworkout_temp"
-  }
-}'
+- **Python**: Linguagem de programação principal utilizada para a implementação do projeto.
+- **Selenium**: Utilizado para a automação e scraping de páginas web.
+- **Elasticsearch**: Sistema de busca utilizado para armazenar e consultar os dados processados.
+- **Docker**: O projeto pode ser executado em contêineres para garantir a consistência do ambiente.
 
-curl -X GET "https://dataindex-elk-node-1.ngrok.app/brazil_supplement_bar_09042024/_search?size=18" -H "Content-Type: application/json" -u "elastic:RJ6XXwfjHzYICKfGRTSn" -d'
-{
-  "query": {
-    "match_all": {}
-  }
-}'
+## Como Executar o Projeto
 
-curl -X POST "https://dataindex-elk-node-1.ngrok.app/brazil_supplement_09042024/_count" -H "Content-Type: application/json" -d '{
-  "query": {
-    "match_all": {}
-  }
-}' -u "elastic:RJ6XXwfjHzYICKfGRTSn"
+1. Clone o repositório:
+   ```bash
+   git clone <URL-do-repositorio>
+   cd <diretorio-do-projeto>

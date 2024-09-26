@@ -1,13 +1,9 @@
 # /bin/bash
 
-# local="/home/crw-system/dataindex-crw"
-local="/home/mage/main/dataindex-crw"
+local=$(pwd)
 
 export LOCAL="$local"
 echo $LOCAL
-
-job_name="master_page"
-job_sub_name="master"
 
 page_names=(
     # "adaptogen"
@@ -25,49 +21,67 @@ page_names=(
     # "nutrata"
     # "probiotica"
     # "truesource"
-    "under_labz"
+    # "under_labz"
     # "vitafor"
 )
 
-job_type="extract"
-# job_type="dry"
-# job_type="ingestion"
-# job_type="false"
+# job_type="master_page"
+# job_name="master"
+# exec_type="extract"
+# exec_flag="status_job"
+# exec_flag="new_page"
+# exec_flag="products_update"
+# exec_flag="products_metadata_create_pages_if_not_exist"
+# exec_flag="products_metadata_update_old_pages"
 
-option="status_job"
-# option="false"
+# exec_type="dry"
+# exec_flag="false"
 
-# job_type="extract"
-    # --option status_job
-    # --option update_products
-    # --option create_pages
-    # --option update_old_pages
-# --job_type dry
-# --job_type ingestion
-    # --option data_quality
-    # --option 
+# exec_type="ingestion"
+# exec_flag="data_quality"
+# exec_flag="false"
+
+# exec_type="false"
+# page_names="false"
+
+
+job_type="data_intelligence"
+job_name="product_definition"
+exec_type="false"
+exec_flag="false"
 
 page_type="supplement"
 country="brazil"
 mode="dev"
 
-for page_name in "${page_names[@]}"
-do
-    echo "Executing job: $page_name"
+if [ -z "$page_names" ]; then
     python3 "$LOCAL/main.py" \
-        --job_name "$job_name" \
-        --job_sub_name "$job_sub_name" \
-        --page_name "$page_name" \
-        --job_type "$job_type" \
-        --option "$option" \
-        --page_type "$page_type" \
-        --country "$country" \
-        --mode "$mode"
-    
-    if [ $? -ne 0 ]; then
-        echo "Error executing job: $job_name. Stopping execution of remaining jobs."
-        break
-    fi
-done
+            --job_type "$job_type" \
+            --job_name "$job_name" \
+            --exec_type "$exec_type" \
+            --exec_flag "$exec_flag" \
+            --page_type "$page_type" \
+            --country "$country" \
+            --mode "$mode"
+else
+    for page_name in "${page_names[@]}"
+    do
+        python3 "$LOCAL/main.py" \
+            --job_type "$job_type" \
+            --job_name "$job_name" \
+            --page_name "$page_name" \
+            --exec_type "$exec_type" \
+            --exec_flag "$exec_flag" \
+            --page_type "$page_type" \
+            --country "$country" \
+            --mode "$mode"
+        
+        if [ $? -ne 0 ]; then
+            echo "Error executing job: $job_name. Stopping execution of remaining jobs."
+            break
+        fi
+    done
 
-echo "Todos os jobs foram executados."
+    echo "Todos os jobs foram executados."
+fi
+

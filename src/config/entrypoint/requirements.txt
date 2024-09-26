@@ -1,0 +1,13 @@
+selenium
+beautifulsoup4
+elasticsearch
+pandas
+webdriver_manager
+fake_useragent
+Pillow
+requests
+imagehash
+scikit-learn
+pyppeteer
+numpy
+fake_useragent
