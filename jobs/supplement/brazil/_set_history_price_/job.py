@@ -97,3 +97,14 @@ def run(args):
     message("ingestion")
     brands_with_status_true = get_pages_with_status_true(CONF, False)
     batch_ingestion_by_field_values(CONF, df, "brand", brands_with_status_true)
+ 
+    # curl -u "elastic:RJ6XXwfjHzYICKfGRTSn" -X POST "https://dataindex-elk-node-1.ngrok.app:443/brazil_supplement_history_price_20082024/_search" -H 'Content-Type: application/json' -d'
+    # {
+    # "query": {
+    #     "term": {
+    #     "ref": "creatian"
+    #     }
+    # }
+    # }
+    # '
+

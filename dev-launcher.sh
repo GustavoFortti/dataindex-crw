@@ -1,0 +1,73 @@
+# /bin/bash
+
+# local="/home/crw-system/dataindex-crw"
+local="/home/mage/main/dataindex-crw"
+
+export LOCAL="$local"
+echo $LOCAL
+
+job_name="master_page"
+job_sub_name="master"
+
+page_names=(
+    # "adaptogen"
+    # "atlhetica_nutrition"
+    # "black_skull"
+    # "boldsnacks"
+    # "dark_lab"
+    # "darkness"
+    # "dux_nutrition_lab"
+    # "growth_supplements"
+    # "integralmedica"
+    # "iridium_labs"
+    # "max_titanium"
+    # "new_millen"
+    # "nutrata"
+    # "probiotica"
+    # "truesource"
+    "under_labz"
+    # "vitafor"
+)
+
+job_type="extract"
+# job_type="dry"
+# job_type="ingestion"
+# job_type="false"
+
+option="status_job"
+# option="false"
+
+# job_type="extract"
+    # --option status_job
+    # --option update_products
+    # --option create_pages
+    # --option update_old_pages
+# --job_type dry
+# --job_type ingestion
+    # --option data_quality
+    # --option 
+
+page_type="supplement"
+country="brazil"
+mode="dev"
+
+for page_name in "${page_names[@]}"
+do
+    echo "Executing job: $page_name"
+    python3 "$LOCAL/main.py" \
+        --job_name "$job_name" \
+        --job_sub_name "$job_sub_name" \
+        --page_name "$page_name" \
+        --job_type "$job_type" \
+        --option "$option" \
+        --page_type "$page_type" \
+        --country "$country" \
+        --mode "$mode"
+    
+    if [ $? -ne 0 ]; then
+        echo "Error executing job: $job_name. Stopping execution of remaining jobs."
+        break
+    fi
+done
+
+echo "Todos os jobs foram executados."

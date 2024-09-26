@@ -21,16 +21,17 @@ page_names=(
     # "new_millen"
     # "nutrata"
     # "probiotica"
-    "truesource"
-    # "under_labz"
+    # "truesource"
+    "under_labz"
     # "vitafor"
 )
 
 # Variáveis comuns para todos os jobs
 job_name="_set_page_"
 
-# job_type="ingestion"
+# job_type="extract"
 job_type="dry"
+# job_type="ingestion"
 # job_type="false"
 
 # option="status_job"

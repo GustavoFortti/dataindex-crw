@@ -47,7 +47,7 @@ def insert_documents(es, conf, df):
     index_name = conf['index_name']
     index_type = conf['index_type']
     synonyms_list = conf['synonyms_list']
-    
+
     create_index_if_not_exits(es, index_name, index_type, synonyms_list)
     
     if ("brand" in conf.keys()):
@@ -60,6 +60,10 @@ def insert_documents(es, conf, df):
     documents = create_documents_with_pandas(df, index_name)
     success, errors = helpers.bulk(es, documents)
     print(success, errors)
+    
+    print(df)
+    exit()
+    
 
     message("Bulkload completed successfully")
 
@@ -157,11 +161,11 @@ def list_all_indices(es) -> dict:
         return {"indices": {}, "count": 0}
 
 def batch_ingestion_by_field_values(conf, df, field, values):
-    for valeu in values:
-        df_ing = df[df[field] == valeu]
+    for value in values[1:]:
+        df_ing = df[df[field] == value]
         if (not df_ing.empty):
-            message(f"history_price {field}: {valeu}")
-            conf[field] = valeu
+            message(f"history_price {field}: {value}")
+            conf[field] = value
             data_ingestion(df_ing, conf)
 
 def delete_indices(es: Any, indices_to_delete: List[dict]) -> None:
