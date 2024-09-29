@@ -11,7 +11,7 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    # "darkness"
+    "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -25,8 +25,9 @@ page_names=(
     # "vitafor"
 )
 
-# job_type="master_page"
-# job_name="master"
+job_type="master_page"
+job_name="master"
+
 # exec_type="extract"
 # exec_flag="status_job"
 # exec_flag="new_page"
@@ -34,21 +35,22 @@ page_names=(
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-# exec_type="dry"
+# exec_type="transform"
 # exec_flag="false"
 
-# exec_type="ingestion"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false"
+exec_flag="false"
+
+# job_type="data_intelligence"
+# job_name="product_definition"
+
+# job_type="data_shelf"
+# job_name="history_price"
 
 # exec_type="false"
+# exec_flag="false"
 # page_names="false"
-
-
-job_type="data_intelligence"
-job_name="product_definition"
-exec_type="false"
-exec_flag="false"
 
 page_type="supplement"
 country="brazil"

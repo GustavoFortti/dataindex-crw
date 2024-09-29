@@ -15,7 +15,7 @@ GIT_CONF = {
 
 
 def configure_image_server():
-    os.environ['DATAINDEX_IMG_PATH'] = os.path.join(LOCAL, '..', 'dataindex-img')
+    os.environ['DATAINDEX_IMG_PATH'] = os.path.join(LOCAL, '..', 'image-server')
     os.environ['DATAINDEX_IMG_URL'] = GIT_CONF["dataindex_img_url"]
 
     img_path = os.environ.get('DATAINDEX_IMG_PATH')

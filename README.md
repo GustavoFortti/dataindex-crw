@@ -64,3 +64,10 @@ Contém funções utilitárias usadas em várias partes do projeto:
    ```bash
    git clone <URL-do-repositorio>
    cd <diretorio-do-projeto>
+
+
+# Para ativar o ambiente virtual (Linux/macOS):
+source venv/bin/activate
+
+# Para desativar o ambiente virtual (sair da venv):
+deactivate

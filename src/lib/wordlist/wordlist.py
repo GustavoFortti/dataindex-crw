@@ -97,7 +97,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "aminoacido",
             "antioxidante",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "NAC",
     },
     "albumina": {
         "subject": [
@@ -110,7 +111,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "egg",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "albumina",
     },
     "alfajor": {
         "subject": [
@@ -119,7 +121,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "alfajor",
     },
     "alho": {
         "subject": [
@@ -128,7 +131,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "alho",
     },
     "aminoacido": {
         "subject": [
@@ -137,7 +141,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "aminoácido",
     },
     "antioxidante": {
         "subject": [
@@ -147,7 +152,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "antioxidante",
     },
     "arginin": {
         "subject": [
@@ -160,7 +166,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "arginina",
     },
     "astaxantina": {
         "subject": [
@@ -169,7 +176,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "astaxantina",
     },
     "barrinha": {
         "subject": [
@@ -180,7 +188,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "barrinha",
     },
     "batata doce": {
         "subject": [
@@ -189,7 +198,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "batata doce",
     },
     "bcaa": {
         "subject": [
@@ -204,7 +214,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "valina",
             "isoleucina",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "BCAA",
     },
     "beauty": {
         "subject": [
@@ -214,7 +225,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "beleza",
     },
     "beef": {
         "subject": [
@@ -227,7 +239,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "protein"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "carne",
     },
     "betaalanina": {
         "subject": [
@@ -239,7 +252,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "beta-alanina",
     },
     "betacaroteno": {
         "subject": [
@@ -248,7 +262,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "betacaroteno",
     },
     "biotina": {
         "subject": [
@@ -257,7 +272,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "biotina",
     },
     "blend": {
         "subject": [
@@ -267,7 +283,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "mistura",
     },
     "borragem": {
         "subject": [
@@ -276,7 +293,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "borragem",
     },
     "cafein": {
         "subject": [
@@ -296,7 +314,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [
             "barrinha",
             "whey"
-        ]
+        ],
+        "brazil": "cafeína",
     },
     "termogenico": {
         "subject": [
@@ -310,7 +329,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "cafein",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "termogênico",
     },
     "tcm": {
         "subject": [
@@ -321,7 +341,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "cafein",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "TCM",
     },
     "calcio": {
         "subject": [
@@ -330,7 +351,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "cálcio",
     },
     "carboidrato": {
         "subject": [
@@ -349,7 +371,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "carboidrato",
     },
     "carnitin": {
         "subject": [
@@ -363,7 +386,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "carnitina",
     },
     "cartamo": {
         "subject": [
@@ -372,7 +396,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "cártamo",
     },
     "caseinato": {
         "subject": [
@@ -381,7 +406,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "caseinato",
     },
     "cha": {
         "subject": [
@@ -390,7 +416,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "chá",
     },
     "chaverde": {
         "subject": [
@@ -400,7 +427,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "chá verde",
     },
     "chia": {
         "subject": [
@@ -409,7 +437,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "chia",
     },
     "chocolate": {
         "subject": [
@@ -418,7 +447,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": True,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "chocolate",
     },
     "cistein": {
         "subject": [
@@ -428,7 +458,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "cisteína",
     },
     "coco": {
         "subject": [
@@ -437,7 +468,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": True,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "coco",
     },
     "colageno": {
         "subject": [
@@ -447,7 +479,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "colágeno",
     },
     "complexo b": {
         "subject": [
@@ -457,7 +490,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "complexo B",
     },
     "concentrad": {
         "subject": [
@@ -466,7 +500,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "concentrado",
     },
     "creatina": {
         "subject": [
@@ -481,7 +516,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "monohidratada",
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "creatina",
     },
     "crisp": {
         "subject": [
@@ -490,7 +526,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "crisp",
     },
     "cromo": {
         "subject": [
@@ -500,7 +537,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "cromo",
     },
     "curcuma": {
         "subject": [
@@ -510,7 +548,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "cúrcuma",
     },
     "dextrose": {
         "subject": [
@@ -520,7 +559,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "dextrose",
     },
     "dribose": {
         "subject": [
@@ -532,7 +572,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ribose",
     },
     "egg": {
         "subject": [
@@ -544,7 +585,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "protein"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ovo",
     },
     "ervilha": {
         "subject": [
@@ -556,7 +598,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "protein"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ervilha",
     },
     "espirulina": {
         "subject": [
@@ -565,7 +608,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "espirulina",
     },
     "fibra": {
         "subject": [
@@ -574,7 +618,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "fibra",
     },
     "fosfatidilserina": {
         "subject": [
@@ -583,7 +628,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "fosfatidilserina",
     },
     "frutose": {
         "subject": [
@@ -594,7 +640,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "carboidrato"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "frutose",
     },
     "gengibre": {
         "subject": [
@@ -603,7 +650,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "gengibre",
     },
     "gergelim": {
         "subject": [
@@ -612,7 +660,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "gergelim",
     },
     "glutamin": {
         "subject": [
@@ -626,7 +675,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "glutamina",
     },
     "hair": {
         "subject": [
@@ -636,7 +686,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "cabelo",
     },
     "hialuronico": {
         "subject": [
@@ -645,7 +696,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "hialurônico",
     },
     "hidrolisad": {
         "subject": [
@@ -654,7 +706,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "hidrolisado",
     },
     "hmb": {
         "subject": [
@@ -666,7 +719,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "HMB",
     },
     "imune": {
         "subject": [
@@ -676,7 +730,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "imunidade",
     },
     "iso": {
         "subject": [
@@ -688,7 +743,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "isolado",
     },
     "kit": {
         "subject": [
@@ -698,7 +754,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "kit",
     },
     "krill": {
         "subject": [
@@ -707,7 +764,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "krill",
     },
     "lecitina": {
         "subject": [
@@ -716,7 +774,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "lecitina",
     },
     "leucin": {
         "subject": [
@@ -729,7 +788,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "leucina",
     },
     "levagen": {
         "subject": [
@@ -738,7 +798,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "levagen",
     },
     "linhaca": {
         "subject": [
@@ -747,7 +808,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "linhaça",
     },
     "maca peruana": {
         "subject": [
@@ -756,7 +818,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "maca peruana",
     },
     "magnesio": {
         "subject": [
@@ -766,7 +829,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "magnésio",
     },
     "malto": {
         "subject": [
@@ -779,7 +843,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "carboidrato"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "maltodextrina",
     },
     "mass": {
         "subject": [
@@ -793,7 +858,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "malto",
             "waxymaize"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "massa",
     },
     "melatonina": {
         "subject": [
@@ -803,7 +869,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "melatonina",
     },
     "monohidratada": {
         "subject": [
@@ -814,7 +881,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "creatina"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "monohidratada",
     },
     "multivitaminico": {
         "subject": [
@@ -824,7 +892,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "multivitamínico",
     },
     "mineral": {
         "subject": [
@@ -834,7 +903,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "mineral",
     },
     "nail": {
         "subject": [
@@ -844,7 +914,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "unha",
     },
     "oleo": {
         "subject": [
@@ -853,7 +924,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "óleo",
     },
     "oleo de coco": {
         "subject": [
@@ -862,7 +934,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "óleo de coco",
     },
     "ketchup": {
         "subject": [
@@ -871,7 +944,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ketchup",
     },
     "barbecue": {
         "subject": [
@@ -880,7 +954,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "barbecue",
     },
     "mostarda": {
         "subject": [
@@ -889,16 +964,18 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "mostarda",
     },
     "maionese": {
         "subject": [
-            "mostarda"
+            "maionese"
         ],
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "maionese",
     },
     "optimsm": {
         "subject": [
@@ -907,7 +984,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "optimsm",
     },
     "palatinose": {
         "subject": [
@@ -919,7 +997,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "carboidrato"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "palatinose",
     },
     "enzima": {
         "subject": [
@@ -931,7 +1010,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "enzima",
     },
     "protease": {
         "subject": [
@@ -944,7 +1024,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "enzima"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "protease",
     },
     "propolis": {
         "subject": [
@@ -955,7 +1036,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "enzima"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "própolis",
     },
     "lactase": {
         "subject": [
@@ -968,7 +1050,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "enzima"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "lactase",
     },
     "lipase": {
         "subject": [
@@ -981,7 +1064,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "enzima"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "lipase",
     },
     "bromelina": {
         "subject": [
@@ -994,7 +1078,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "enzima"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "bromelina",
     },
     "amilase": {
         "subject": [
@@ -1007,7 +1092,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "enzima"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "amilase",
     },
     "peanut": {
         "subject": [
@@ -1018,7 +1104,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "amendoim",
     },
     "omega 3": {
         "subject": [
@@ -1031,7 +1118,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ômega 3",
     },
     "omega 6": {
         "subject": [
@@ -1041,7 +1129,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ômega 6",
     },
     "picolinato": {
         "subject": [
@@ -1051,7 +1140,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "picolinato",
     },
     "pretreino": {
         "subject": [
@@ -1075,7 +1165,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tyrosin",
             "termogenico"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "pré-treino",
     },
     "primula": {
         "subject": [
@@ -1084,7 +1175,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "prímula",
     },
     "propoli": {
         "subject": [
@@ -1093,7 +1185,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "própolis",
     },
     "protein": {
         "subject": [
@@ -1108,7 +1201,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "iso", 
             "hidrolisad",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "proteína",
     },
     "psyllium": {
         "subject": [
@@ -1117,7 +1211,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "psílio",
     },
     "quitosana": {
         "subject": [
@@ -1126,7 +1221,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "quitosana",
     },
     "resveratrol": {
         "subject": [
@@ -1135,7 +1231,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "resveratrol",
     },
     "rice": {
         "subject": [
@@ -1147,7 +1244,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "protein"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "arroz",
     },
     "semente": {
         "subject": [
@@ -1156,7 +1254,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "semente",
     },
     "skin": {
         "subject": [
@@ -1166,7 +1265,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "pele",
     },
     "soy": {
         "subject": [
@@ -1178,7 +1278,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "protein"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "soja",
     },
     "spirulina": {
         "subject": [
@@ -1187,7 +1288,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "spirulina",
     },
     "taurina": {
         "subject": [
@@ -1200,7 +1302,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "taurina",
     },
     "tempero": {
         "subject": [
@@ -1209,7 +1312,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "tempero",
     },
     "testofen": {
         "subject": [
@@ -1218,7 +1322,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "testofen",
     },
     "tyrosin": {
         "subject": [
@@ -1237,7 +1342,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "tirosina",
     },
     "transresveratrol": {
         "subject": [
@@ -1247,7 +1353,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "trans-resveratrol",
     },
     "triptofano": {
         "subject": [
@@ -1258,7 +1365,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "triptofano",
     },
     "leucina": {
         "subject": [
@@ -1269,7 +1377,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "leucina",
     },
     "valina": {
         "subject": [
@@ -1280,7 +1389,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "valina",
     },
     "isoleucina": {
         "subject": [
@@ -1291,7 +1401,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "isoleucina",
     },
     "lisina": {
         "subject": [
@@ -1302,7 +1413,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "lisina",
     },
     "fenilalanina": {
         "subject": [
@@ -1313,7 +1425,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "fenilalanina",
     },
     "treonina": {
         "subject": [
@@ -1324,10 +1437,11 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "treonina",
     },
     "metionina": {
-            "subject": [
+        "subject": [
             "metionina"
         ],
         "product": True,
@@ -1335,10 +1449,11 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido",
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "metionina",
     },
     "silimarina": {
-            "subject": [
+        "subject": [
             "silimarina"
         ],
         "product": True,
@@ -1346,7 +1461,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "silimarina",
     },
     "histidina": {
         "subject": [
@@ -1359,7 +1475,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "from": [
             "aminoacido"
         ],
-        "conflict": []
+        "conflict": [],
+        "brazil": "histidina",
     },
     "veg": {
         "subject": [
@@ -1372,7 +1489,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vegano",
     },
     "vegetarian": {
         "subject": [
@@ -1385,7 +1503,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": False,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vegetariano",
     },
     "verisol": {
         "subject": [
@@ -1394,7 +1513,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "verisol",
     },
     "vitamina": {
         "subject": [
@@ -1405,7 +1525,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina",
     },
     "vitamina a": {
         "subject": [
@@ -1415,7 +1536,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina A",
     },
     "vitamina b1": {
         "subject": [
@@ -1426,7 +1548,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B1",
     },
     "vitamina b10": {
         "subject": [
@@ -1437,7 +1560,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B10",
     },
     "vitamina b11": {
         "subject": [
@@ -1448,7 +1572,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B11",
     },
     "vitamina b12": {
         "subject": [
@@ -1459,7 +1584,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B12",
     },
     "vitamina b13": {
         "subject": [
@@ -1470,7 +1596,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B13",
     },
     "vitamina b15": {
         "subject": [
@@ -1481,7 +1608,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B15",
     },
     "vitamina b17": {
         "subject": [
@@ -1492,7 +1620,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B17",
     },
     "vitamina b2": {
         "subject": [
@@ -1503,7 +1632,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B2",
     },
     "vitamina b22": {
         "subject": [
@@ -1514,7 +1644,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B22",
     },
     "vitamina b3": {
         "subject": [
@@ -1525,7 +1656,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B3",
     },
     "vitamina b4": {
         "subject": [
@@ -1536,7 +1668,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B4",
     },
     "vitamina b5": {
         "subject": [
@@ -1547,7 +1680,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B5",
     },
     "vitamina b6": {
         "subject": [
@@ -1558,7 +1692,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B6",
     },
     "vitamina b7": {
         "subject": [
@@ -1569,7 +1704,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B7",
     },
     "vitamina b8": {
         "subject": [
@@ -1580,7 +1716,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B8",
     },
     "vitamina b9": {
         "subject": [
@@ -1591,7 +1728,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina B9",
     },
     "vitamina c": {
         "subject": [
@@ -1604,7 +1742,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina C",
     },
     "vitamina d": {
         "subject": [
@@ -1615,7 +1754,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina D",
     },
     "vitamina e": {
         "subject": [
@@ -1626,7 +1766,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina E",
     },
     "vitamina f": {
         "subject": [
@@ -1637,7 +1778,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina F",
     },
     "vitamina g": {
         "subject": [
@@ -1648,7 +1790,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina G",
     },
     "vitamina h": {
         "subject": [
@@ -1659,7 +1802,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina H",
     },
     "vitamina j": {
         "subject": [
@@ -1670,7 +1814,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina J",
     },
     "vitamina k": {
         "subject": [
@@ -1681,7 +1826,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina K",
     },
     "vitamina k1": {
         "subject": [
@@ -1692,18 +1838,20 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina K1",
     },
     "vitamina k2": {
         "subject": [
-            "vitamina k2"
+            "vitamina k2",
             "vitaminas k2",
             "menaquinona"
         ],
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina K2",
     },
     "vitamina k7": {
         "subject": [
@@ -1714,7 +1862,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina K7",
     },
     "vitamina l": {
         "subject": [
@@ -1725,7 +1874,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina L",
     },
     "vitamina l1": {
         "subject": [
@@ -1735,7 +1885,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina L1",
     },
     "vitamina l2": {
         "subject": [
@@ -1745,7 +1896,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina L2",
     },
     "vitamina m": {
         "subject": [
@@ -1755,7 +1907,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina M",
     },
     "vitamina n": {
         "subject": [
@@ -1766,7 +1919,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina N",
     },
     "vitamina o": {
         "subject": [
@@ -1776,7 +1930,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina O",
     },
     "vitamina p": {
         "subject": [
@@ -1787,7 +1942,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina P",
     },
     "vitamina q": {
         "subject": [
@@ -1798,7 +1954,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina Q",
     },
     "vitamina r": {
         "subject": [
@@ -1809,7 +1966,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina R",
     },
     "vitamina s": {
         "subject": [
@@ -1820,7 +1978,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina S",
     },
     "vitamina t": {
         "subject": [
@@ -1831,7 +1990,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina T",
     },
     "vitamina w": {
         "subject": [
@@ -1841,7 +2001,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "vitamina W",
     },
     "wafer": {
         "subject": [
@@ -1853,7 +2014,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "wafer",
     },
     "waxymaize": {
         "subject": [
@@ -1864,7 +2026,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "waxymaize",
     },
     "whey": {
         "subject": [
@@ -1883,7 +2046,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "barrinha",
             "alfajor",
             "wafer",
-        ]
+        ],
+        "brazil": "whey",
     },
     "xylitol": {
         "subject": [
@@ -1895,7 +2059,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "xilitol",
     },
     "zeaxantina": {
         "subject": [
@@ -1904,7 +2069,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "zeaxantina",
     },
     "zinco": {
         "subject": [
@@ -1915,7 +2081,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "zinco",
     },
     "selenio": {
         "subject": [
@@ -1925,7 +2092,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "selênio",
     },
     "zma": {
         "subject": [
@@ -1934,9 +2102,12 @@ SUPPLEMENT_COMPONENT_LIST = {
         "product": True,
         "may_feature": False,
         "from": [],
-        "conflict": []
+        "conflict": [],
+        "brazil": "ZMA",
     }
 }
+
+COLLECTION = {}
 
 personal_pronouns = ["Eu", "Tu", "Ele", "Ela", "Nós", "Vós", "Eles", "Elas", "Mim", "Ti", "Si", "Consigo"]
 oblique_pronouns = ["Me", "Te", "Se", "Nos", "Vos", "O", "A", "Lhe", "Os", "As", "Nos", "Vos", "Se", "Convosco", "Lhes", "Contigo"]
@@ -1951,7 +2122,7 @@ BRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns 
 BRAZIL_CONECTORES = ['a', 'o', 'e', 'ou', 'nem', 'mas', 'porque', 'como', 'apesar', 'além', 'entretanto', 'porém', 'todavia', 'logo', 'portanto', 'assim', 'contudo', 'embora', 'ainda', 'também', 'quer', 'seja', 'isto', 'aquilo']
 
 PRONOUNS = {
-    "brazil": BRAZIL_PRONOUNS
+    "brazil": BRAZIL_PRONOUNS,
 }
 
 WORDLIST = {

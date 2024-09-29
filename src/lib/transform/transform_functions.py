@@ -6,17 +6,17 @@ import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
-from src.lib.utils.log import message
-from src.lib.utils.wordlist import BLACK_LIST
-
 from src.lib.transform.product_definition import load_product_definition
 from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes
 from src.lib.utils.file_system import (create_directory_if_not_exists,
-                                   list_directory, path_exists, save_file)
+                                       list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
-                                       convert_image)
-from src.lib.utils.text_functions import (clean_text, find_in_text_with_wordlist,
-                                      remove_spaces)
+                                           convert_image)
+from src.lib.utils.log import message
+from src.lib.utils.text_functions import (clean_text,
+                                          find_in_text_with_wordlist,
+                                          remove_spaces)
+from src.lib.wordlist.wordlist import BLACK_LIST
 
 
 def create_product_def_cols(df, conf):
@@ -25,16 +25,16 @@ def create_product_def_cols(df, conf):
     product_definition = conf['product_definition']
 
     message("Load_models_prep")
-    load_product_definition(df, conf)
+    # load_product_definition(df, conf)
 
     message("carregando colunas de definição")
-    path_product_def = f"{product_definition}/product_definition_by_titile.csv"
-    path_product_def_predicted = f"{product_definition}/product_definition_by_ml.csv"
+    product_definition_by_titile = f"{product_definition}/product_definition_by_titile.csv"
+    product_definition_by_ml = f"{product_definition}/product_definition_by_ml.csv"
 
-    if ((path_exists(path_product_def)) & (path_exists(path_product_def_predicted))):
+    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):
 
-        df_product_def = pd.read_csv(path_product_def)
-        df_product_def_predicted = pd.read_csv(path_product_def_predicted)
+        df_product_def = pd.read_csv(product_definition_by_titile)
+        df_product_def_predicted = pd.read_csv(product_definition_by_ml)
         
         df = pd.merge(df, df_product_def, on='ref', how='left')
         df = pd.merge(df, df_product_def_predicted, on='ref', how='left')
@@ -51,6 +51,7 @@ def filter_nulls(df):
 
 def apply_generic_filters(df, conf):
     """Apply various data cleaning and transformation filters."""
+    df['title_extract'] = df['title']
     df['name'] = df['title'].str.lower()
     df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
     df['brand'] = conf['brand']
@@ -196,8 +197,8 @@ def create_price_discount_percent_col(df, data_path):
 
     path = f"{data_path}/history"
     df_temp = read_and_stack_historical_csvs_dataframes(path, False)
-    
-    if (not df_temp):
+
+    if (df_temp.empty):
         df["price_discount_percent"] = 0
         return df
     
@@ -222,10 +223,13 @@ def create_price_discount_percent_col(df, data_path):
         price_discount_percent = 0.0
         if (len(prices) > 1):
             price_discount_percent = round((prices[0] - prices[1]) / prices[1], 2)
+            compare_at_price = prices[1]
             
         if (price_discount_percent <= 0.01):
             price_discount_percent = 0
+            compare_at_price = None
         
         df_new.loc[df_new['ref'] == ref, "price_discount_percent"] = price_discount_percent
+        df_new.loc[df_new['ref'] == ref, "compare_at_price"] = compare_at_price
         
     return df_new

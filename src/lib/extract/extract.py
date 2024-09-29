@@ -12,13 +12,14 @@ from src.lib.utils.file_system import (DATE_FORMAT, create_directory_if_not_exis
                                    read_json, save_images)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
-from src.lib.utils.wordlist import BLACK_LIST
+from src.lib.wordlist.wordlist import BLACK_LIST
 
 
 def extract(conf: dict):
+    message("EXTRACT")
     page = Page(conf)
 
-    if (conf['option'] == "new_page"):
+    if (conf['exec_flag'] == "new_page"):
         message("initializing_new_page")
         delete_directory_and_contents(f"{conf["data_path"]}")
 
@@ -29,23 +30,23 @@ def extract(conf: dict):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-    elif (conf['option'] == "products_update"):
+    elif (conf['exec_flag'] == "products_update"):
         conf["products_update"] = True
         page = Page(conf)
         products_update(page)
-    elif (conf['option'] == "products_metadata_update"):
+    elif (conf['exec_flag'] == "products_metadata_update"):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-    elif (conf['option'] == "products_metadata_update_old_pages"):
+    elif (conf['exec_flag'] == "products_metadata_update_old_pages"):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update_old_pages(page)
-    elif (conf['option'] == "products_metadata_create_pages_if_not_exist"):
+    elif (conf['exec_flag'] == "products_metadata_create_pages_if_not_exist"):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_create_pages_if_not_exist(page)
-    elif (conf['option'] == "status_job"):
+    elif (conf['exec_flag'] == "status_job"):
         conf["scroll_page"] = False
         conf["products_update"] = True
         conf['status_job'] = True

@@ -147,9 +147,11 @@ def save_history_data(conf, df):
 
     data_atual = date.today()
     formatted_date = data_atual.strftime(DATE_FORMAT)
+    
+    create_directory_if_not_exists(history_path)
 
-    df.to_csv(f"{history_path}/origin_csl_{formatted_date}.csv", index=False)
-    message(f"Saved historical data in {history_path}/origin_csl_{formatted_date}.csv")
+    df.to_csv(f"{history_path}/products_load_csl_{formatted_date}.csv", index=False)
+    message(f"Saved historical data in {history_path}/products_load_csl_{formatted_date}.csv")
     
 
 def is_price(string):

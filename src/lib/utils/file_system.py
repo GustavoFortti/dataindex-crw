@@ -64,6 +64,7 @@ def delete_file(file_path: str) -> None:
 
 def path_exists(path: str) -> bool:
     """Checks if a path exists."""
+    message(f"check - {path}")
     return os.path.exists(path)
 
 
@@ -120,6 +121,7 @@ def download_image(image_url, image_path, image_name):
         return f"Image downloaded successfully! Saved as: {image_path}{file_name_with_extension}"
     else:
         message(f"Failed to download the image. HTTP status code: {response.status_code}")
+
 
 def save_images(image_urls, image_path, image_names):
     with ThreadPoolExecutor(max_workers=10) as executor:

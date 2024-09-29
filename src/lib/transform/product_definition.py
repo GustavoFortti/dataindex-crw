@@ -6,7 +6,7 @@ from src.lib.extract.page_elements import Page
 from src.lib.utils.file_system import delete_file, path_exists, read_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
-from src.lib.utils.wordlist import get_back_words, get_word_index_in_text
+from src.lib.wordlist.wordlist import get_back_words, get_word_index_in_text
 
 
 def load_product_definition(df, conf):

@@ -13,7 +13,7 @@ from src.lib.utils.file_system import create_directory_if_not_exists
 from src.lib.utils.general_functions import get_pages_with_status_true
 from src.lib.utils.log import message
 from src.lib.utils.py_functions import flatten_list
-from src.lib.wordlist.wordlist import WORDLIST
+from src.lib.wordlist.wordlist import WORDLIST 
 
 pd.set_option('display.max_rows', None)
 
@@ -32,7 +32,7 @@ def set_conf(args, local):
 
 def run(args):
     global DATA_PATH
-    global WORDLIST
+    global WORDLIST_CONF
     global LOCAL
     
     LOCAL = os.getenv('LOCAL')
@@ -41,7 +41,7 @@ def run(args):
     print("JOB_NAME: " + conf["job_name"])
     conf.update(vars(args))
     src_data_path = conf["src_data_path"]
-    WORDLIST = conf['wordlist']
+    WORDLIST_CONF = conf['wordlist']
     DATA_PATH = conf['data_path']
 
     create_directory_if_not_exists(DATA_PATH)
@@ -63,27 +63,35 @@ def run(args):
 
     df_product_def_predicted = calc_def_product(df_predicted)
 
-    df_product_def_predicted = add_synonyms_to_cols_with_wordlist(df_product_def_predicted, "subject")
+    df_product_def_predicted = add_synonyms_to_cols_with_wordlist(df_product_def_predicted, "subject", conf)
     df_product_def_predicted = df_product_def_predicted.rename(columns={'subject': 'product_def_pred'})
+    df_product_def_predicted = df_product_def_predicted.rename(columns={'subject_tag': 'product_def_pred_tag'})
     
-    df_product_def = add_synonyms_to_cols_with_wordlist(df_product_def, "subject")
+    df_product_def = add_synonyms_to_cols_with_wordlist(df_product_def, "subject", conf)
     df_product_def = df_product_def.rename(columns={'subject': 'product_def'})
+    df_product_def = df_product_def.rename(columns={'subject_tag': 'product_def_tag'})
 
-    df_product_def_predicted.to_csv(f"{DATA_PATH}/product_def_predicted.csv", index=False)
-    df_product_def.to_csv(f"{DATA_PATH}/product_def.csv", index=False)
+    df_product_def_predicted.to_csv(f"{DATA_PATH}/product_definition_by_ml.csv", index=False)
+    df_product_def.to_csv(f"{DATA_PATH}/product_definition_by_titile.csv", index=False)
 
-def add_synonyms_to_cols_with_wordlist(df, col):
+def add_synonyms_to_cols_with_wordlist(df, col, conf):
     for idx, row in df.iterrows():
         ref = row['ref']
         synonyms = []
-        for key, value in WORDLIST.items():
+        synonym = []
+        for key, value in WORDLIST_CONF.items():
             words = value['subject']
+            tag = value[conf["country"]]
             aux_subject = [words for subject in row['subject'].split(", ") if subject in words]
             if (aux_subject != []):
                 synonyms.extend(aux_subject)
+                capitalized_tag = ' '.join(word[0].upper() + word[1:] for word in tag.split())
+                synonym.append(capitalized_tag)
         
         synonyms = ", ".join(flatten_list(synonyms))
+        synonym = ", ".join(flatten_list(synonym))
         df.loc[idx, col] = synonyms
+        df.loc[idx, col + "_tag"] = synonym
 
     return df
 
@@ -181,7 +189,7 @@ def data_prep(df, conf):
     df = df.drop_duplicates()
 
     subjects = []
-    for items in WORDLIST.values():
+    for items in WORDLIST_CONF.values():
         subjects.append(items['subject'])
 
     subjects = np.array(flatten_list(subjects))
