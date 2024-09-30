@@ -196,7 +196,6 @@ def data_prep(df, conf):
 
     message("read dictionaries")
     dictionaries = importlib.import_module(f"src.lib.wordlist.{conf["country"]}.dictionary").get_dictionary(LOCAL)
-
     brands = np.array(list(set(df['brand'].values)))
     dictionaries = np.unique(np.concatenate([dictionaries, subjects, brands]))
 

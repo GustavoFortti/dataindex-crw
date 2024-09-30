@@ -32,6 +32,8 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["products_update"] = False
     conf["products_metadata_update"] = False
     
+    create_directory_if_not_exists(conf['data_path'] + "/products")
+    
     conf.update(vars(args))
     return conf
 
@@ -42,7 +44,7 @@ def run(args):
     conf = set_conf(args, local)
     
     message("Configuração inicial:")
-    message(conf)
+    # message(conf)
     
     module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.conf"
     page_conf = importlib.import_module(module_name)
@@ -50,7 +52,7 @@ def run(args):
     conf = update_conf_with_page_config(conf, page_conf, local, args)
     
     message("Configuração atualizada:")
-    message(conf)
+    # message(conf)
     
     create_directory_if_not_exists(conf['data_path'])
     

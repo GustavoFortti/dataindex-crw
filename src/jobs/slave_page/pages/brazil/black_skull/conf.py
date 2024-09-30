@@ -4,8 +4,7 @@ URL = "https://www.blackskullusa.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container'},
-    {'tag': 'div', 'class': 'vtex-full-description-box'}
+    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    
 ]
 
 DYNAMIC_SCROLL = {

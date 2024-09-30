@@ -4,7 +4,7 @@ URL = "https://loja.newmillen.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'breadcrumbs'}
+    {'tag': None, 'path': '#product-description'},
 ]
 
 DYNAMIC_SCROLL = {

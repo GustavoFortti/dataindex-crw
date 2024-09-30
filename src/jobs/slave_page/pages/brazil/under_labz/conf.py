@@ -1,11 +1,10 @@
 JOB_NAME = "under_labz"
 BRAND = "under labz"
 URL = "https://underlabz.com.br"
-STATUS = True
+STATUS = False
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'abas-custom'},
-    {'tag': 'main', 'id': 'MainContent'},
+    {'tag': None, 'path': ''},
 ]
 
 DYNAMIC_SCROLL = {

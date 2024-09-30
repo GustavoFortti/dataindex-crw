@@ -25,7 +25,7 @@ def create_product_def_cols(df, conf):
     product_definition = conf['product_definition']
 
     message("Load_models_prep")
-    # load_product_definition(df, conf)
+    load_product_definition(df, conf)
 
     message("carregando colunas de definição")
     product_definition_by_titile = f"{product_definition}/product_definition_by_titile.csv"
@@ -61,10 +61,21 @@ def apply_generic_filters(df, conf):
 
 def create_quantity_column(df):
     """Extract and convert quantity information into a uniform format."""
-    df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text)).apply(pd.Series)
+    # Garantir que sempre retornamos dois elementos para evitar o erro de tamanho de coluna
+    df['quantity_unit'] = df['name'].apply(lambda text: find_pattern_for_quantity(text))
+    
+    # Separar a coluna 'quantity_unit' em 'quantity' e 'unit'
+    df[['quantity', 'unit']] = pd.DataFrame(df['quantity_unit'].tolist(), index=df.index)
+
+    # Aplicar conversão para gramas
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
+    
+    # Calcular o preço por quantidade
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
+    
+    # Substituir valores inválidos por NaN
     df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
+    
     return df
 
 def remove_blacklisted_products(df):
@@ -75,24 +86,23 @@ def find_pattern_for_quantity(text):
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
     matches = re.findall(pattern, text, re.IGNORECASE)
     
-    quantity = None
-    if ((len(matches) == 1)): 
+    quantity, unit = None, None
+    if len(matches) == 1:
         quantity, unit = matches[0]
         quantity = str(quantity).replace(',', '.')
-
-        if ((unit in ['g', 'gr', 'gramas']) & ("." in quantity)):
+        
+        if unit in ['g', 'gr', 'gramas'] and "." in quantity:
             quantity = quantity.replace(".", "")
-
+        
         quantity = float(quantity)
-    
+        
+        # Verificar se há múltiplos de unidades, como "3x"
         padrao = r'\d+x'
         matches_multiply = re.findall(padrao, text)
-        if ((len(matches_multiply) == 1) & (quantity != None)):
-            quantity = quantity * float(matches_multiply[0].replace('x', ''))
-        
-        return quantity, unit
-    
-    return None, None
+        if len(matches_multiply) == 1 and quantity is not None:
+            quantity *= float(matches_multiply[0].replace('x', ''))
+
+    return quantity, unit
 
 def convert_to_grams(row):
     value = row['quantity']
@@ -200,6 +210,8 @@ def create_price_discount_percent_col(df, data_path):
 
     if (df_temp.empty):
         df["price_discount_percent"] = 0
+        df["compare_at_price"] = None
+        
         return df
     
     df_temp = df_temp[df_temp["ref"].isin(refs)]
@@ -231,5 +243,5 @@ def create_price_discount_percent_col(df, data_path):
         
         df_new.loc[df_new['ref'] == ref, "price_discount_percent"] = price_discount_percent
         df_new.loc[df_new['ref'] == ref, "compare_at_price"] = compare_at_price
-        
+
     return df_new

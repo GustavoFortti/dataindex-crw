@@ -11,7 +11,7 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    "darkness"
+    # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -20,27 +20,28 @@ page_names=(
     # "new_millen"
     # "nutrata"
     # "probiotica"
+    # "puravida"
     # "truesource"
     # "under_labz"
-    # "vitafor"
+    "vitafor"
 )
 
 job_type="master_page"
 job_name="master"
 
-# exec_type="extract"
+exec_type="extract"
 # exec_flag="status_job"
-# exec_flag="new_page"
+exec_flag="new_page"
 # exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-# exec_type="transform"
-# exec_flag="false"
-
-exec_type="load"
-# exec_flag="data_quality"
+exec_type="transform"
 exec_flag="false"
+
+# exec_type="load"
+# exec_flag="data_quality"
+# exec_flag="false"
 
 # job_type="data_intelligence"
 # job_name="product_definition"
@@ -64,10 +65,15 @@ if [ -z "$page_names" ]; then
             --exec_flag "$exec_flag" \
             --page_type "$page_type" \
             --country "$country" \
-            --mode "$mode"
+            --mode "$mode" >> "$log_file" 2>&1
 else
     for page_name in "${page_names[@]}"
     do
+        log_path="$LOCAL/data/$page_type/$country/$page_name/logs"
+        log_file="$log_path/$(date +%Y-%m-%d).log"
+
+        mkdir -p "$log_path"
+
         python3 "$LOCAL/main.py" \
             --job_type "$job_type" \
             --job_name "$job_name" \
@@ -77,11 +83,12 @@ else
             --page_type "$page_type" \
             --country "$country" \
             --mode "$mode"
-        
-        if [ $? -ne 0 ]; then
-            echo "Error executing job: $job_name. Stopping execution of remaining jobs."
-            break
-        fi
+            #  >> "$log_file" 2>&1
+
+        # if [ $? -ne 0 ]; then
+        #     echo "Error executing job: $job_name. Stopping execution of remaining jobs."
+        #     break
+        # fi
     done
 
     echo "Todos os jobs foram executados."

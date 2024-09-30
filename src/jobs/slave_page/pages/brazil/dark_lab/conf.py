@@ -4,7 +4,7 @@ URL = "https://darklabsuplementos.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'breadcrumbs'},
+    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},
 ]
 
 DYNAMIC_SCROLL = {

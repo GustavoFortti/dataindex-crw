@@ -21,7 +21,7 @@ def extract(conf: dict):
 
     if (conf['exec_flag'] == "new_page"):
         message("initializing_new_page")
-        delete_directory_and_contents(f"{conf["data_path"]}")
+        delete_directory_and_contents(f"{conf["data_path"]}/*")
 
         conf["products_update"] = True
         products_update(page)
@@ -82,7 +82,9 @@ def products_update(page):
             crawler(page, url)
 
             if ((page.conf["size_items"] == 0) | (not index)):
-                message(f"break size_items = 0")
+                message(f"size_items = {page.conf["size_items"]}")
+                message(f"index = {index}")
+                message("EXECUTANDO PROXIMA SEED - devido ao index ou size_items")
                 break
         page.reset_index()
     
@@ -105,7 +107,6 @@ def products_metadata_update(page):
     message("products_metadata_update")
     page.conf['products_extract_csl'] = f"{page.conf['data_path']}/products_extract_csl.csv"
     df_products_extract_csl = pd.read_csv(page.conf['products_extract_csl'])
-    create_directory_if_not_exists(page.conf['data_path'] + "/products")
 
     urls = df_products_extract_csl['product_url'].values
     for value, url in enumerate(urls):
@@ -146,8 +147,8 @@ def products_metadata_update_old_pages_by_ref(conf: dict, Page: object, url: str
     message("update_old_page by ref if page is with error in tags")
     conf["scroll_page"] = True
     conf["status_job"] = False
-    conf["products_metadata_update"] = False
-    conf["products_update"] = True
+    conf["products_metadata_update"] = True
+    conf["products_update"] = False
     
     page = Page(conf)
     message(f"seed: {url}")

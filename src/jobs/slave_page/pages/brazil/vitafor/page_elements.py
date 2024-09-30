@@ -13,17 +13,16 @@ def get_title(conf, soup):
     return title
 
 def get_price(conf, soup):
-    price_container = soup.find('div', class_='vtex-product-summary-2-x-sellingPriceContainer')
+    # Encontra o contêiner que contém o preço
+    price_container = soup.find('span', class_='vitafor-store-theme-9-x-customPrice')
+    
     if price_container:
-        currency_code = price_container.find('span', class_='vtex-product-summary-2-x-currencyCode').get_text(strip=True)
-        currency_integer = price_container.find('span', class_='vtex-product-summary-2-x-currencyInteger').get_text(strip=True)
-        currency_decimal = price_container.find('span', class_='vtex-product-summary-2-x-currencyDecimal').get_text(strip=True)
-        currency_fraction = price_container.find('span', class_='vtex-product-summary-2-x-currencyFraction').get_text(strip=True)
-        
-        price = f"{currency_code} {currency_integer}{currency_decimal}{currency_fraction}"
+        # Captura o texto do preço e remove espaços extras
+        price = price_container.get_text(strip=True)
         return price
     else:
         return None
+
 
 def get_image_url(conf, soup):
     image_element = soup.find('img', class_='vtex-product-summary-2-x-imageNormal')

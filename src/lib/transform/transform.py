@@ -29,10 +29,10 @@ def transform(conf, df):
     df = create_product_def_cols(df, conf)
     
     message("Criando colunas coleção de produtos")
-    df = create_product_collection_col(df, conf)
+    df = create_product_collection_col(df)
     
-    message("Processamento de novas imagens dos produtos")
-    image_processing(df, conf['data_path'])
+    # message("Processamento de novas imagens dos produtos")
+    # image_processing(df, conf['data_path'])
 
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
     
@@ -64,7 +64,7 @@ def transform(conf, df):
 
     return df
 
-def create_product_collection_col(df, conf):
+def create_product_collection_col(df):
     import numpy as np
     
     def assign_collection(row):

@@ -1,13 +1,10 @@
 JOB_NAME = "nutrata"
 BRAND = "nutrata"
-URL = "https://nutrata.com.br"
+URL = "https://loja.nutrata.com.br/"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'span', 'class': 'tagged_as'}, 
-    {'tag': 'nav', 'class': 'woocommerce-breadcrumb'}, 
-    {'tag': 'div', 'class': 'woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab'},
-    {'tag': 'div', 'class': 'woocommerce-tabs et-clearfix et_element wc-tabs-wrapper type-accordion opened-all-tabs toggles-by-arrow loaded'}
+    {'tag': None, 'path': '#descricao > div.board'},
 ]
 
 DYNAMIC_SCROLL = {

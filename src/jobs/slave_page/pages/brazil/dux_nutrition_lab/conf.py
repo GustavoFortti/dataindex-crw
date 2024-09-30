@@ -4,9 +4,7 @@ URL = "https://www.duxnutrition.com"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'},
-    {'tag': 'div', 'class': 'duxnutrition-product-0-x-basic-description'},
-    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexColChild vtex-flex-layout-0-x-flexColChild--product__content--col pb0'}
+    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},
 ]
 
 DYNAMIC_SCROLL = {

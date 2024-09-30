@@ -4,7 +4,7 @@ URL = "https://www.atlheticanutrition.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow--breadcrumb'}
+    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}
 ]
 
 DYNAMIC_SCROLL = {

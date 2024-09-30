@@ -39,6 +39,7 @@ def run(args):
     pages_with_status_true = get_pages_with_status_true(conf)
     df_products_load_csl = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "products_load_csl.csv")
     df_products_load_csl = df_products_load_csl.drop_duplicates(subset='ref').reset_index(drop=True)
+    
     refs = df_products_load_csl['ref'].values
     cols = ["ref", "price", "price_numeric", "ing_date", "brand"]
     df_products_load_csl = df_products_load_csl[cols]

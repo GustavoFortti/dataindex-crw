@@ -80,7 +80,6 @@ def load_page(page, url):
 
 def extract_data(page, soup):
     message("exec extract_data")
-    print(page.conf)
     path_products_extract_temp = page.conf['path_products_extract_temp']
     df_products_temp = create_or_read_df(path_products_extract_temp, page.conf['df_products'].columns)
     size_products_temp = len(df_products_temp)
@@ -98,10 +97,10 @@ def extract_data(page, soup):
             message("Finalizando programa com erro")
             exit(1)
     
-    message(f"size_items valido")
+    message(f"size_items valido para extração")
     count_size_items = 0
     for item in items:
-        message(f"size_items {count_size_items}")
+        message(f"INDEX: {abs(count_size_items)} item")
         
         product_url, title, price, image_url = page.get_item_elements(item)
         ref = generate_hash(product_url)
