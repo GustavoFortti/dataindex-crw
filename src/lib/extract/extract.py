@@ -12,15 +12,16 @@ from src.lib.utils.file_system import (DATE_FORMAT, create_directory_if_not_exis
                                    read_json, save_images)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
-from src.lib.utils.wordlist import BLACK_LIST
+from src.lib.wordlist.wordlist import BLACK_LIST
 
 
 def extract(conf: dict):
+    message("EXTRACT")
     page = Page(conf)
 
-    if (conf['option'] == "new_page"):
+    if (conf['exec_flag'] == "new_page"):
         message("initializing_new_page")
-        delete_directory_and_contents(f"{conf["data_path"]}")
+        delete_directory_and_contents(f"{conf["data_path"]}/*")
 
         conf["products_update"] = True
         products_update(page)
@@ -29,23 +30,23 @@ def extract(conf: dict):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-    elif (conf['option'] == "products_update"):
+    elif (conf['exec_flag'] == "products_update"):
         conf["products_update"] = True
         page = Page(conf)
         products_update(page)
-    elif (conf['option'] == "products_metadata_update"):
+    elif (conf['exec_flag'] == "products_metadata_update"):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-    elif (conf['option'] == "products_metadata_update_old_pages"):
+    elif (conf['exec_flag'] == "products_metadata_update_old_pages"):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update_old_pages(page)
-    elif (conf['option'] == "products_metadata_create_pages_if_not_exist"):
+    elif (conf['exec_flag'] == "products_metadata_create_pages_if_not_exist"):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_create_pages_if_not_exist(page)
-    elif (conf['option'] == "status_job"):
+    elif (conf['exec_flag'] == "status_job"):
         conf["scroll_page"] = False
         conf["products_update"] = True
         conf['status_job'] = True
@@ -81,7 +82,9 @@ def products_update(page):
             crawler(page, url)
 
             if ((page.conf["size_items"] == 0) | (not index)):
-                message(f"break size_items = 0")
+                message(f"size_items = {page.conf["size_items"]}")
+                message(f"index = {index}")
+                message("EXECUTANDO PROXIMA SEED - devido ao index ou size_items")
                 break
         page.reset_index()
     
@@ -104,7 +107,6 @@ def products_metadata_update(page):
     message("products_metadata_update")
     page.conf['products_extract_csl'] = f"{page.conf['data_path']}/products_extract_csl.csv"
     df_products_extract_csl = pd.read_csv(page.conf['products_extract_csl'])
-    create_directory_if_not_exists(page.conf['data_path'] + "/products")
 
     urls = df_products_extract_csl['product_url'].values
     for value, url in enumerate(urls):
@@ -145,8 +147,8 @@ def products_metadata_update_old_pages_by_ref(conf: dict, Page: object, url: str
     message("update_old_page by ref if page is with error in tags")
     conf["scroll_page"] = True
     conf["status_job"] = False
-    conf["products_metadata_update"] = False
-    conf["products_update"] = True
+    conf["products_metadata_update"] = True
+    conf["products_update"] = False
     
     page = Page(conf)
     message(f"seed: {url}")

@@ -4,7 +4,6 @@ URL = "https://www.truesource.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'productDescription'},
     {'tag': None, 'path': '#\\39 21277609-0 > div > div:nth-child(2)'}
 ]
 

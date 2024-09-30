@@ -1,10 +1,10 @@
 JOB_NAME = "puravida"
 BRAND = "puravida"
 URL = "https://www.puravida.com.br"
-STATUS = False
+STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'vtex-breadcrumb-1-x-container vtex-breadcrumb-1-x-container--default pv3'}
+    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},
 ]
 
 DYNAMIC_SCROLL = {

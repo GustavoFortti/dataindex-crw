@@ -5,9 +5,8 @@ from typing import List, Optional
 import pandas as pd
 from src.lib.utils.file_system import path_exists
 from src.lib.utils.log import message
-
-from src.lib.utils.log import message
 from src.lib.utils.text_functions import DATE_FORMAT, levenshtein
+
 
 def format_column_date(df, column):
     df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)
@@ -48,6 +47,7 @@ def filter_dataframe_for_columns(df: pd.DataFrame, columns: List[str], keywords:
     
     return filtered_df
 
+
 def drop_duplicates_for_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
     """Drop duplicates based on specific columns"""
     return df.drop_duplicates(subset=columns)
@@ -57,6 +57,7 @@ def calc_string_diff_in_df_col(title_x, title_y):
     max_len = max(len(title_x), len(title_y))
     percent_diff = (distance / max_len) if max_len != 0 else 0
     return percent_diff
+
 
 def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):
     # Usa glob para encontrar todos os arquivos CSV no diretório
@@ -73,7 +74,8 @@ def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):
         dfs = [pd.read_csv(file) for file in csv_files]
         return pd.concat(dfs, ignore_index=True)
     else:
-        return False
+        return pd.DataFrame()
+
 
 def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str) -> pd.DataFrame:
     pages_path = [f"{data_path}/{page}" for page in pages]

@@ -4,7 +4,7 @@ URL = "https://ifood.com.br/"
 STATUS = False
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'productView-desc halo-text-format'},
+    {'tag': None, 'path': ''},
 ]
 
 DYNAMIC_SCROLL = {

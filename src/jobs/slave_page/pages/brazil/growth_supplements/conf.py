@@ -4,8 +4,7 @@ URL = "https://www.gsuplementos.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'section', 'class': 'breadcrumb-produto'},
-    {'tag': 'ul', 'class': 'breadcrumb-container'},
+    {'tag': None, 'path': '#breadcrumb'},
 ]
 
 DYNAMIC_SCROLL = {

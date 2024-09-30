@@ -6,17 +6,17 @@ import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
-from src.lib.utils.log import message
-from src.lib.utils.wordlist import BLACK_LIST
-
 from src.lib.transform.product_definition import load_product_definition
 from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes
 from src.lib.utils.file_system import (create_directory_if_not_exists,
-                                   list_directory, path_exists, save_file)
+                                       list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
-                                       convert_image)
-from src.lib.utils.text_functions import (clean_text, find_in_text_with_wordlist,
-                                      remove_spaces)
+                                           convert_image)
+from src.lib.utils.log import message
+from src.lib.utils.text_functions import (clean_text,
+                                          find_in_text_with_wordlist,
+                                          remove_spaces)
+from src.lib.wordlist.wordlist import BLACK_LIST
 
 
 def create_product_def_cols(df, conf):
@@ -28,13 +28,13 @@ def create_product_def_cols(df, conf):
     load_product_definition(df, conf)
 
     message("carregando colunas de definição")
-    path_product_def = f"{product_definition}/product_definition_by_titile.csv"
-    path_product_def_predicted = f"{product_definition}/product_definition_by_ml.csv"
+    product_definition_by_titile = f"{product_definition}/product_definition_by_titile.csv"
+    product_definition_by_ml = f"{product_definition}/product_definition_by_ml.csv"
 
-    if ((path_exists(path_product_def)) & (path_exists(path_product_def_predicted))):
+    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):
 
-        df_product_def = pd.read_csv(path_product_def)
-        df_product_def_predicted = pd.read_csv(path_product_def_predicted)
+        df_product_def = pd.read_csv(product_definition_by_titile)
+        df_product_def_predicted = pd.read_csv(product_definition_by_ml)
         
         df = pd.merge(df, df_product_def, on='ref', how='left')
         df = pd.merge(df, df_product_def_predicted, on='ref', how='left')
@@ -51,6 +51,7 @@ def filter_nulls(df):
 
 def apply_generic_filters(df, conf):
     """Apply various data cleaning and transformation filters."""
+    df['title_extract'] = df['title']
     df['name'] = df['title'].str.lower()
     df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
     df['brand'] = conf['brand']
@@ -60,10 +61,21 @@ def apply_generic_filters(df, conf):
 
 def create_quantity_column(df):
     """Extract and convert quantity information into a uniform format."""
-    df[['quantity', 'unit']] = df['name'].apply(lambda text: find_pattern_for_quantity(text)).apply(pd.Series)
+    # Garantir que sempre retornamos dois elementos para evitar o erro de tamanho de coluna
+    df['quantity_unit'] = df['name'].apply(lambda text: find_pattern_for_quantity(text))
+    
+    # Separar a coluna 'quantity_unit' em 'quantity' e 'unit'
+    df[['quantity', 'unit']] = pd.DataFrame(df['quantity_unit'].tolist(), index=df.index)
+
+    # Aplicar conversão para gramas
     df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
+    
+    # Calcular o preço por quantidade
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
+    
+    # Substituir valores inválidos por NaN
     df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
+    
     return df
 
 def remove_blacklisted_products(df):
@@ -74,24 +86,23 @@ def find_pattern_for_quantity(text):
     pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
     matches = re.findall(pattern, text, re.IGNORECASE)
     
-    quantity = None
-    if ((len(matches) == 1)): 
+    quantity, unit = None, None
+    if len(matches) == 1:
         quantity, unit = matches[0]
         quantity = str(quantity).replace(',', '.')
-
-        if ((unit in ['g', 'gr', 'gramas']) & ("." in quantity)):
+        
+        if unit in ['g', 'gr', 'gramas'] and "." in quantity:
             quantity = quantity.replace(".", "")
-
+        
         quantity = float(quantity)
-    
+        
+        # Verificar se há múltiplos de unidades, como "3x"
         padrao = r'\d+x'
         matches_multiply = re.findall(padrao, text)
-        if ((len(matches_multiply) == 1) & (quantity != None)):
-            quantity = quantity * float(matches_multiply[0].replace('x', ''))
-        
-        return quantity, unit
-    
-    return None, None
+        if len(matches_multiply) == 1 and quantity is not None:
+            quantity *= float(matches_multiply[0].replace('x', ''))
+
+    return quantity, unit
 
 def convert_to_grams(row):
     value = row['quantity']
@@ -196,9 +207,11 @@ def create_price_discount_percent_col(df, data_path):
 
     path = f"{data_path}/history"
     df_temp = read_and_stack_historical_csvs_dataframes(path, False)
-    
-    if (not df_temp):
+
+    if (df_temp.empty):
         df["price_discount_percent"] = 0
+        df["compare_at_price"] = None
+        
         return df
     
     df_temp = df_temp[df_temp["ref"].isin(refs)]
@@ -222,10 +235,13 @@ def create_price_discount_percent_col(df, data_path):
         price_discount_percent = 0.0
         if (len(prices) > 1):
             price_discount_percent = round((prices[0] - prices[1]) / prices[1], 2)
+            compare_at_price = prices[1]
             
         if (price_discount_percent <= 0.01):
             price_discount_percent = 0
+            compare_at_price = None
         
         df_new.loc[df_new['ref'] == ref, "price_discount_percent"] = price_discount_percent
-        
+        df_new.loc[df_new['ref'] == ref, "compare_at_price"] = compare_at_price
+
     return df_new

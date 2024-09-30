@@ -3,9 +3,8 @@ BRAND = "integralmedica"
 URL = "https://www.integralmedica.com.br"
 STATUS = True
 
-PRODUCT_DEFINITION_TAG = [
-    {'tag': 'div', 'class': 'vtex-flex-layout-0-x-flexRow vtex-flex-layout-0-x-flexRow--pdpProductInfo'},
-    {'tag': 'div', 'class': 'integralmedica-store-components-0-x-doubleImageAndTopicsCardContainer'},
+PRODUCT_DEFINITION_TAG_MAP = [
+    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},
 ]
 
 DYNAMIC_SCROLL = {

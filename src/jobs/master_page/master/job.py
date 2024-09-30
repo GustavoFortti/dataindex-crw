@@ -4,7 +4,8 @@ import os
 from src.lib.utils.file_system import create_directory_if_not_exists
 from src.lib.utils.log import message
 from src.lib.extract.extract import extract
-from src.lib.wordlist import WORDLIST
+from src.lib.load.load import load
+from src.lib.wordlist.wordlist import WORDLIST
 
 def set_conf(args, local):
     conf = {}
@@ -24,12 +25,14 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["product_definition_tag_map"] = page_conf.PRODUCT_DEFINITION_TAG_MAP
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     conf["data_path"] = f"{conf['src_data_path']}/{page_conf.JOB_NAME}"
-    conf["seed_path"] = f"{local}/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}"
-    conf["product_definition"] = f"{local}/data/brazil/{conf['page_type']}/product_definition",
+    conf["seed_path"] = f"{local}/src/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}"
+    conf["product_definition"] = f"{local}/data/{conf['page_type']}/brazil/product_definition"
     conf["scroll_page"] = True
     conf["status_job"] = False
     conf["products_update"] = False
     conf["products_metadata_update"] = False
+    
+    create_directory_if_not_exists(conf['data_path'] + "/products")
     
     conf.update(vars(args))
     return conf
@@ -41,7 +44,7 @@ def run(args):
     conf = set_conf(args, local)
     
     message("Configuração inicial:")
-    message(conf)
+    # message(conf)
     
     module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.conf"
     page_conf = importlib.import_module(module_name)
@@ -49,7 +52,7 @@ def run(args):
     conf = update_conf_with_page_config(conf, page_conf, local, args)
     
     message("Configuração atualizada:")
-    message(conf)
+    # message(conf)
     
     create_directory_if_not_exists(conf['data_path'])
     
@@ -58,10 +61,10 @@ def run(args):
     
     options = {
         "extract": extract,
-        "dry": dry.dry,
-        # "ingestion": ingestion
+        "transform": dry.dry,
+        "load": load
     }
     
-    exec_function = options.get(conf["job_type"])
+    exec_function = options.get(conf["exec_type"])
     if (exec_function):
         exec_function(conf)

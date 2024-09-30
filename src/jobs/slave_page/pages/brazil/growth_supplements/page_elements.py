@@ -1,11 +1,20 @@
 def get_items(conf, soup):
-    items = soup.find_all('div', class_='vitrine-prod')
-    return items
+    return soup.find_all('a', class_='cardprod text-decoration-none')
 
 def get_product_url(conf, soup):
-    product_link_element = soup.find('a', class_='cardprod-nomeProduto')
-    if product_link_element and 'href' in product_link_element.attrs:
-        return conf["url"] + product_link_element['href']
+    import re
+    if not isinstance(soup, str):
+        html_content = str(soup)
+    else:
+        html_content = soup
+    
+    pattern = r'<a[^>]*class="[^"]*cardprod[^"]*text-decoration-none[^"]*"[^>]*href="([^"]+)"'
+    
+    match = re.search(pattern, html_content)
+    
+    if match:
+        product_link_element = conf['url'] + match.group(1).strip() 
+        return product_link_element
     return None
 
 def get_title(conf, soup):
@@ -15,16 +24,13 @@ def get_title(conf, soup):
 def get_price(conf, soup):
     price_element = soup.find('span', class_='cardprod-valor')
     if price_element:
-        full_text = price_element.get_text().strip()
-        price = full_text.split('\n')[0].strip()
-        return price
-    else:
-        return None
+        # Obtém apenas o texto direto dentro do span, ignorando elementos filhos
+        price_text = ''.join(price_element.find_all(string=True, recursive=False)).strip()
+        # Remove o símbolo "R$" e quaisquer espaços
+        price_without_symbol = price_text.strip()
+        return price_without_symbol
+    return None
 
 def get_image_url(conf, soup):
-    card_topo = soup.find('div', class_='cardProd-topo')
-    if card_topo:
-        image_element = card_topo.find('img')
-        return image_element['src'] if image_element else None
-    else:
-        return None
+    image_element = soup.find('img')
+    return image_element['src'] if image_element and image_element.has_attr('src') else None

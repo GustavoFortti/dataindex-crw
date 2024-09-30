@@ -9,9 +9,9 @@ class Page():
         country = self.conf["country"]
         page_name = self.conf["page_name"]
         
-        page_elements_str = f"jobs.slave_page.pages.{country}.{page_name}.page_elements"
+        page_elements_str = f"src.jobs.slave_page.pages.{country}.{page_name}.page_elements"
         self.page_elements = importlib.import_module(page_elements_str)
-        page_url_str = f"jobs.slave_page.pages.{country}.{page_name}.page_url"
+        page_url_str = f"src.jobs.slave_page.pages.{country}.{page_name}.page_url"
         self.page_url = importlib.import_module(page_url_str)
         
     def get_url(self, url):

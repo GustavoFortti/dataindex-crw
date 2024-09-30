@@ -4,7 +4,6 @@ import sys
 import traceback
 
 from src.config.setup.display import configure_display
-from src.config.setup.elasticsearch import configure_elasticsearch
 from src.config.setup.image_server import configure_image_server
 from src.lib.utils.log import message
 
@@ -17,7 +16,7 @@ def parse_arguments():
     parser.add_argument("--job_type", type=str, help="")
     parser.add_argument("--job_name", type=str, help="Nome do trabalho a ser executado.")
     parser.add_argument("--page_name", type=str, help="Nome da página.")
-    parser.add_argument("--exec_type", type=str, required=True, choices=["extract", "dry", "ingestion", "false"], help="Tipo de trabalho.")
+    parser.add_argument("--exec_type", type=str, required=True, choices=["extract", "transform", "load", "false"], help="Tipo de trabalho.")
     parser.add_argument("--exec_flag", type=str, default="", help="Opções adicionais.")
     parser.add_argument("--page_type", type=str, help="Tipo de página.")
     parser.add_argument("--country", type=str, help="País de operação.")
@@ -39,9 +38,6 @@ def configure_system(args):
     # Configurações específicas para tipos de trabalho
     if args.job_type in ["extract", "dry"]:
         configure_display()
-
-    # Configura o Elasticsearch
-    configure_elasticsearch(args.mode)
 
     # Configura o servidor de imagens
     configure_image_server()

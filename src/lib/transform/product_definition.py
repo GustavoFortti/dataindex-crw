@@ -6,7 +6,7 @@ from src.lib.extract.page_elements import Page
 from src.lib.utils.file_system import delete_file, path_exists, read_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
-from src.lib.utils.wordlist import get_back_words, get_word_index_in_text
+from src.lib.wordlist.wordlist import get_back_words, get_word_index_in_text
 
 
 def load_product_definition(df, conf):
@@ -119,6 +119,7 @@ def treat_relationship_between_keywords(keywrods):
 
 def extract_keywords_from_products(df, conf):
     keywords_data = {}
+    document_from_tag_count = 3
     for idx, row in df.iterrows():
         ref = row['ref']
         title = row['title']
@@ -128,7 +129,13 @@ def extract_keywords_from_products(df, conf):
         page_path = f"{DATA_PATH}/products/{ref}.txt"
 
         html_text = read_file(page_path)
-
+        document_from_tag_flag = True
+        if (html_text == None):
+            url = row['product_url']
+            products_metadata_update_old_pages_by_ref(conf, Page, url)
+            html_text = read_file(page_path)
+            document_from_tag_flag = False
+            
         product_documents = []
 
         product_documents.append(title)
@@ -136,7 +143,7 @@ def extract_keywords_from_products(df, conf):
         document_from_tag = [extract_subject_from_html_text(html_text, tag_map) for tag_map in CONF["product_definition_tag_map"]]
         document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
-        if (document_from_tag == []):
+        if ((document_from_tag == []) & (document_from_tag_flag)):
             message(f"extract products_metadata_update_old_pages_by_ref {ref} - {title}")
             url = row['product_url']
             products_metadata_update_old_pages_by_ref(conf, Page, url)
@@ -146,7 +153,11 @@ def extract_keywords_from_products(df, conf):
             document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
         if (document_from_tag == []):
-            raise ValueError("A tag especificada não foi encontrada ou está desatualizada.")
+            message(f"A tag especificada está pode estar desatualizada. - CONTAGEM PARA ERRO {document_from_tag_count}")
+            document_from_tag_count -= 1
+        
+        if (document_from_tag_count == 0):
+            raise ValueError("A tag especificada está desatualizada.")
         
         product_documents.extend(document_from_tag)
 

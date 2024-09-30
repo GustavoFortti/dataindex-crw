@@ -4,7 +4,7 @@ URL = "https://www.boldsnacks.com.br/"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 'productView-desc halo-text-format'},
+    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},
 ]
 
 DYNAMIC_SCROLL = {

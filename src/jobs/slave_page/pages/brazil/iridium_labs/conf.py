@@ -4,7 +4,7 @@ URL = "https://www.iridiumlabs.com.br"
 STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': 'div', 'class': 't4s-product__description t4s-rte'}
+    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},
 ]
 
 DYNAMIC_SCROLL = {
