@@ -58,7 +58,7 @@ country="brazil"
 mode="dev"
 
 if [ -z "$page_names" ]; then
-    python3 "$LOCAL/main.py" \
+    python3.12 "$LOCAL/main.py" \
             --job_type "$job_type" \
             --job_name "$job_name" \
             --exec_type "$exec_type" \
@@ -74,7 +74,7 @@ else
 
         mkdir -p "$log_path"
 
-        python3 "$LOCAL/main.py" \
+        python3.12 "$LOCAL/main.py" \
             --job_type "$job_type" \
             --job_name "$job_name" \
             --page_name "$page_name" \
