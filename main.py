@@ -72,9 +72,11 @@ def main():
     message("START SYSTEM")
     # Analisa os argumentos da linha de comando
     args = parse_arguments()
+    
+    print(args)
 
     # Configura o sistema
-    # configure_system(args)
+    configure_system(args)
 
     # Executa o job
     run_job(args)
