@@ -36,8 +36,8 @@ exec_flag="new_page"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-exec_type="transform"
-exec_flag="false"
+# exec_type="transform"
+# exec_flag="false"
 
 # exec_type="load"
 # exec_flag="data_quality"

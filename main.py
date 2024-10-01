@@ -36,7 +36,7 @@ def configure_system(args):
     message("CONFIGURE SYSTEM")
 
     # Configurações específicas para tipos de trabalho
-    if args.job_type in ["extract", "dry"]:
+    if args.exec_type in ["extract", "transform"]:
         configure_display()
 
     # Configura o servidor de imagens
