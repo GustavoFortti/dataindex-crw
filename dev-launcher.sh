@@ -1,9 +1,11 @@
 # /bin/bash
 
 local=$(pwd)
-
 export LOCAL="$local"
 echo $LOCAL
+
+export USE_HEADLESS="false"
+# source ./env/display.sh
 
 page_names=(
     # "adaptogen"
@@ -11,7 +13,7 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    # "darkness"
+    "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -23,7 +25,7 @@ page_names=(
     # "puravida"
     # "truesource"
     # "under_labz"
-    "vitafor"
+    # "vitafor"
 )
 
 job_type="master_page"
@@ -31,17 +33,17 @@ job_name="master"
 
 exec_type="extract"
 # exec_flag="status_job"
-exec_flag="new_page"
-# exec_flag="products_update"
+# exec_flag="new_page"
+exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
 # exec_type="transform"
 # exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false"
+exec_flag="false"
 
 # job_type="data_intelligence"
 # job_name="product_definition"
@@ -56,6 +58,7 @@ exec_flag="new_page"
 page_type="supplement"
 country="brazil"
 mode="dev"
+
 
 if [ -z "$page_names" ]; then
     python3 "$LOCAL/main.py" \

@@ -375,6 +375,14 @@
         "documentation": {}
     },
     {
+        "label": "path_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
         "label": "DATE_FORMAT",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
@@ -1075,12 +1083,92 @@
         "documentation": {}
     },
     {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "requests",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "requests",
         "description": "requests",
         "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "parse_qs",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
         "documentation": {}
     },
     {
@@ -1259,62 +1347,6 @@
         "description": "glob",
         "isExtraImport": true,
         "detail": "glob",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
         "documentation": {}
     },
     {
@@ -4222,7 +4254,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.selenium_service",
         "description": "src.lib.extract.selenium_service",
-        "peekOfCode": "def initialize_selenium():\n    options = webdriver.ChromeOptions()\n    display = os.getenv('DISPLAY')\n    message(f\"DISPLAY - {display}\")\n    options.add_argument(\"--disable-blink-features=AutomationControlled\")\n    options.add_experimental_option(\"excludeSwitches\", [\"enable-automation\"])\n    options.add_experimental_option('useAutomationExtension', False)\n    options.add_argument(\"--enable-logging\")\n    options.add_argument(\"--v=1\")\n    ua = UserAgent()",
+        "peekOfCode": "def initialize_selenium():\n    options = webdriver.ChromeOptions()\n    display = os.getenv('DISPLAY')\n    message(f\"DISPLAY - {display}\")\n    options.add_argument(\"--no-sandbox\")\n    options.add_argument(\"--disable-dev-shm-usage\")\n    options.add_argument(\"--disable-software-rasterizer\")\n    options.add_argument(\"--disable-gpu\")\n    options.add_argument(\"--remote-debugging-port=9222\")\n    options.add_argument(\"--window-size=1920,1080\")",
         "detail": "src.lib.extract.selenium_service",
         "documentation": {}
     },
@@ -4258,7 +4290,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def test_connection() -> None:\n    \"\"\"\n    Testa a conexão com a API da Shopify.\n    \"\"\"\n    url = f\"{BASE_URL}products.json\"\n    response = requests.get(url, headers=HEADERS)\n    if response.status_code == 200:\n        message(\"Conexão bem-sucedida! A API está acessível.\")\n    else:\n        message(f\"Erro ao conectar: {response.status_code} - {response.text}\")",
+        "peekOfCode": "def test_connection() -> None:\n    \"\"\"\n    Testa a conexão com a API da Shopify.\n    \"\"\"\n    url = f\"{BASE_URL}products.json\"\n    response = requests.get(url, headers=HEADERS)\n    if response.status_code == 200:\n        message(\"Conexão bem-sucedida! A API está acessível.\")\n        return True\n    else:",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4267,34 +4299,61 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def format_product_for_shopify(row: pd.Series) -> dict:\n    \"\"\"\n    Formata os dados de um produto para o formato esperado pela API da Shopify.\n    \"\"\"\n    try:\n        product_type = row['product_def_pred_tag'] if pd.notna(row['product_def_pred_tag']) else row['product_def_tag']\n        button_html = f'''\n            <a href=\"{row['product_url']}\" target=\"_blank\" id=\"product_url-link\">\n                <button id=\"product_url\" role=\"button\">Ir para loja do suplemento</button>\n            </a>",
+        "peekOfCode": "def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:\n    \"\"\"\n    Formata os dados de um produto para o formato esperado pela API da Shopify.\n    Returns:\n    - product_data: dict com dados do produto\n    - variant_data: dict com dados da variante\n    \"\"\"\n    try:\n        product_type = row['product_def_pred_tag'] if pd.notna(row['product_def_pred_tag']) else row['product_def_tag']\n        button_html = f'''",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "search_products_by_sku",
+        "label": "get_all_skus_with_product_ids",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def search_products_by_sku(sku: str) -> list:\n    \"\"\"\n    Busca produtos na Shopify pelo SKU (ref) e retorna uma lista de produtos que possuem o SKU.\n    \"\"\"\n    try:\n        url = f\"{BASE_URL}products.json?limit=250&fields=id,variants\"\n        response = requests.get(url, headers=HEADERS)\n        if response.status_code == 200:\n            products = response.json().get('products', [])\n            matching_products = [product for product in products if any(variant['sku'] == sku for variant in product['variants'])]",
+        "peekOfCode": "def get_all_skus_with_product_ids() -> dict:\n    \"\"\"\n    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id.\n    Returns:\n    - dict: Um dicionário onde as chaves são SKUs e os valores são listas de dicionários\n            contendo 'variant_id' e 'product_id'.\n    \"\"\"\n    try:\n        session = requests.Session()\n        session.headers.update(HEADERS)",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "delete_products_by_sku",
+        "label": "find_duplicate_skus",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def delete_products_by_sku(sku: str) -> None:\n    \"\"\"\n    Deleta todos os produtos na Shopify que possuem o SKU fornecido.\n    \"\"\"\n    matching_products = search_products_by_sku(sku)\n    if matching_products:\n        for product in matching_products:\n            product_id = product['id']\n            try:\n                url = f\"{BASE_URL}products/{product_id}.json\"",
+        "peekOfCode": "def find_duplicate_skus(sku_data: dict) -> dict:\n    \"\"\"\n    Encontra SKUs duplicadas no dicionário de SKUs.\n    Args:\n    - sku_data (dict): O dicionário retornado pela função get_all_skus_with_product_ids.\n    Returns:\n    - dict: Um dicionário onde as chaves são SKUs duplicadas e os valores são listas\n            de variantes (com 'variant_id' e 'product_id') associadas a essa SKU.\n    \"\"\"\n    duplicate_skus = {}",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "create_product_on_shopify",
+        "label": "delete_duplicates_products",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def create_product_on_shopify(product_data: dict) -> None:\n    \"\"\"\n    Envia os dados formatados de um produto para a API da Shopify para criação.\n    \"\"\"\n    try:\n        url = f\"{BASE_URL}products.json\"\n        response = requests.post(url, headers=HEADERS, data=json.dumps({\"product\": product_data}))\n        if response.status_code == 201:\n            product = response.json()['product']\n            message(f\"Produto '{product_data['title']}' criado com sucesso! ID: {product['id']}\")",
+        "peekOfCode": "def delete_duplicates_products(duplicate_skus):\n    if duplicate_skus:\n        message(f\"Encontrado {len(duplicate_skus)} SKUs duplicadas.\")\n        # Deletar todos os produtos e variantes encontrados\n        for sku, variants in duplicate_skus.items():\n            for variant in variants:\n                product_id = variant['product_id']\n                variant_id = variant['variant_id']\n                # Verifica o número de variantes restantes no produto\n                session = requests.Session()",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "get_variant_count",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def get_variant_count(session, product_id):\n    \"\"\"\n    Obtém o número de variantes de um produto.\n    Args:\n    - session: Sessão de requisição autenticada.\n    - product_id: ID do produto.\n    Returns:\n    - int: Número de variantes do produto.\n    \"\"\"\n    response = session.get(f\"{BASE_URL}products/{product_id}.json\", params={\"fields\": \"variants\"})",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "delete_variant",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def delete_variant(session, variant_id):\n    \"\"\"\n    Deleta uma variante específica.\n    Args:\n    - session: Sessão de requisição autenticada.\n    - variant_id: ID da variante a ser deletada.\n    \"\"\"\n    response = session.delete(f\"{BASE_URL}variants/{variant_id}.json\")\n    if response.status_code != 200:\n        message(f\"Erro ao deletar variante {variant_id}: {response.status_code} - {response.text}\")",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "delete_product",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def delete_product(session, product_id):\n    \"\"\"\n    Deleta um produto específico.\n    Args:\n    - session: Sessão de requisição autenticada.\n    - product_id: ID do produto a ser deletado.\n    \"\"\"\n    response = session.delete(f\"{BASE_URL}products/{product_id}.json\")\n    if response.status_code != 200:\n        message(f\"Erro ao deletar produto {product_id}: {response.status_code} - {response.text}\")",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4303,61 +4362,61 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def update_product_by_sku(sku: str, updated_data: dict) -> None:\n    \"\"\"\n    Atualiza o produto encontrado na Shopify pelo SKU fornecido.\n    Args:\n    - sku (str): O SKU do produto a ser atualizado.\n    - updated_data (dict): Os dados formatados do produto no formato esperado pela API da Shopify.\n    \"\"\"\n    # Busca produtos com o SKU fornecido\n    matching_products = search_products_by_sku(sku)\n    if not matching_products:",
+        "peekOfCode": "def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row: pd.Series, sku_data: dict) -> bool:\n    session = requests.Session()\n    session.headers.update(HEADERS)\n    if sku in sku_data:\n        variants = sku_data[sku]\n        product_id = variants[0]['product_id']\n        variant_id = variants[0]['variant_id']\n        # Atualiza o produto\n        product_success = update_product(session, product_id, product_data)\n        # Atualiza a variante",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "sku_exists_in_shopify",
+        "label": "update_product",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def sku_exists_in_shopify(sku: str) -> tuple:\n    \"\"\"\n    Verifica se um produto com o SKU fornecido existe na Shopify e retorna quantas vezes foi encontrado.\n    Args:\n    - sku (str): O SKU do produto que será verificado.\n    Returns:\n    - tuple: (bool, int) \n        - bool: True se o SKU for encontrado, False caso contrário.\n        - int: O número de vezes que o SKU foi encontrado.\n    \"\"\"",
+        "peekOfCode": "def update_product(session, product_id: int, product_data: dict) -> bool:\n    url = f\"{BASE_URL}products/{product_id}.json\"\n    product_data['id'] = product_id\n    response = session.put(url, json={\"product\": product_data})\n    if response.status_code == 200:\n        message(f\"Produto {product_id} atualizado com sucesso.\")\n        return True\n    else:\n        error_message = response.json().get('errors', response.text)\n        message(f\"Erro ao atualizar o produto {product_id}: {response.status_code} - {error_message}\")",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "get_collection_by_title",
+        "label": "update_images",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def get_collection_by_title(title: str) -> dict:\n    try:\n        url = f\"{BASE_URL}custom_collections.json?title={requests.utils.quote(title)}\"\n        response = requests.get(url, headers=HEADERS)\n        if response.status_code == 200:\n            collections = response.json().get('custom_collections', [])\n            if collections:\n                return collections[0]\n            else:\n                return None",
+        "peekOfCode": "def update_images(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Atualiza as imagens de um produto na Shopify.\n    \"\"\"\n    try:\n        # Obtém as imagens atuais do produto\n        response = session.get(f\"{BASE_URL}products/{product_id}/images.json\")\n        if response.status_code != 200:\n            message(f\"Erro ao obter imagens do produto {product_id}: {response.status_code} - {response.text}\")\n            return False",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "create_custom_collection",
+        "label": "update_collections",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def create_custom_collection(title: str) -> dict:\n    try:\n        url = f\"{BASE_URL}custom_collections.json\"\n        payload = {\n            \"custom_collection\": {\n                \"title\": title\n            }\n        }\n        response = requests.post(url, headers=HEADERS, data=json.dumps(payload))\n        if response.status_code == 201:",
+        "peekOfCode": "def update_collections(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Adiciona o produto a uma coleção manual na Shopify.\n    \"\"\"\n    try:\n        collection_title = row['collection'] if pd.notna(row['collection']) else \"Sem coleção\"\n        # Obtém todas as coleções manuais (Custom Collections)\n        response = session.get(f\"{BASE_URL}custom_collections.json\", params={\"title\": collection_title})\n        if response.status_code != 200:\n            message(f\"Erro ao obter coleções: {response.status_code} - {response.text}\")",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "assign_product_to_collection",
+        "label": "update_variant",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def assign_product_to_collection(product_id: int, collection_id: int) -> bool:\n    \"\"\"\n    Atribui um produto a uma coleção no Shopify, verificando previamente se já está atribuído.\n    Args:\n    - product_id (int): ID do produto.\n    - collection_id (int): ID da coleção.\n    Returns:\n    - bool: True se a atribuição foi bem-sucedida ou já existente, False caso contrário.\n    \"\"\"\n    try:",
+        "peekOfCode": "def update_variant(session, product_id: int, variant_id: int, variant_data: dict) -> bool:\n    url = f\"{BASE_URL}variants/{variant_id}.json\"\n    variant_data['id'] = variant_id\n    response = session.put(url, json={\"variant\": variant_data})\n    if response.status_code == 200:\n        message(f\"Variante {variant_id} do produto {product_id} atualizada com sucesso.\")\n        return True\n    else:\n        try:\n            error_message = response.json().get('errors', response.text)",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "is_product_in_collection",
+        "label": "create_product",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def is_product_in_collection(product_id: int, collection_id: int) -> bool:\n    \"\"\"\n    Verifica se um produto já está atribuído a uma coleção específica.\n    Args:\n    - product_id (int): ID do produto.\n    - collection_id (int): ID da coleção.\n    Returns:\n    - bool: True se o produto já estiver na coleção, False caso contrário.\n    \"\"\"\n    try:",
+        "peekOfCode": "def create_product(product_data: dict):\n    \"\"\"\n    Cria um novo produto na Shopify com os dados fornecidos.\n    Args:\n    - product_data (dict): Dados formatados do produto para criação.\n    Returns:\n    - dict: O produto criado retornado pela API Shopify, ou None em caso de erro.\n    \"\"\"\n    session = requests.Session()\n    session.headers.update(HEADERS)",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
     {
-        "label": "create_product_on_shopify",
+        "label": "get_product_by_sku",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def create_product_on_shopify(product_data: dict) -> int:\n    try:\n        url = f\"{BASE_URL}products.json\"\n        response = requests.post(url, headers=HEADERS, data=json.dumps({\"product\": product_data}))\n        if response.status_code == 201:\n            product = response.json()['product']\n            message(f\"Produto '{product_data['title']}' criado com sucesso! ID: {product['id']}\")\n            return product['id']\n        else:\n            message(f\"Erro ao criar o produto '{product_data['title']}': {response.status_code} - {response.text}\")",
+        "peekOfCode": "def get_product_by_sku(sku: str):\n    \"\"\"\n    Obtém o produto com base no SKU.\n    \"\"\"\n    session = requests.Session()\n    session.headers.update(HEADERS)\n    params = {\n        \"fields\": \"id,variants\",\n        \"limit\": 250,\n        \"variants.sku\": sku",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4366,7 +4425,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame) -> None:\n    for index, row in df.iterrows():\n        product_data = format_product_for_shopify(row)\n        if product_data is None:\n            continue\n        sku = row['ref']\n        product_exists, n_of_times = sku_exists_in_shopify(sku)\n        # Gerenciar a coleção\n        collection_title = row['collection'] if pd.notna(row['collection']) else \"Sem coleção\"\n        collection = get_collection_by_title(collection_title)",
+        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame) -> None:\n    is_connected = test_connection()\n    if (not is_connected):\n        raise ValueError(f\"no connection with the Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)\n    # Atualiza sku_data após deletar duplicatas\n    sku_data = get_all_skus_with_product_ids()\n    for index, row in df.iterrows():",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4402,7 +4461,7 @@
         "kind": 2,
         "importPath": "src.lib.load.load",
         "description": "src.lib.load.load",
-        "peekOfCode": "def load(conf):\n    print(conf['data_path'])\n    df = pd.read_csv(conf['data_path'] + '/products_transform_csl.csv')\n    # if (conf['exec_flag'] == \"data_quality\"):\n    #     message(\"Running Data Quality...\")\n    #     dq.data_history_analysis(conf, df)\n    #     exit(0)\n    dq.save_history_data(conf, df)\n    message(\"Data ready for ingestion\")\n    process_and_ingest_products(df)",
+        "peekOfCode": "def load(conf):\n    print(conf['data_path'])\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = pd.read_csv(conf['data_path'] + '/products_transform_csl.csv')\n    df_products_transform_csl['is_transform_data'] = 1\n    df_products_load_csl = pd.read_csv(conf['data_path'] + '/products_load_csl.csv')\n    df_products_load_csl['is_transform_data'] = 0\n    # Unir os DataFrames\n    df_union = pd.concat([df_products_transform_csl, df_products_load_csl])\n    # Remover a coluna 'is_transform_data' apenas para identificar duplicatas",
         "detail": "src.lib.load.load",
         "documentation": {}
     },
@@ -4556,6 +4615,15 @@
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
         "peekOfCode": "def create_product_def_cols(df, conf):\n    message(\"criada colunas de definição do produto\")\n    product_definition = conf['product_definition']\n    message(\"Load_models_prep\")\n    load_product_definition(df, conf)\n    message(\"carregando colunas de definição\")\n    product_definition_by_titile = f\"{product_definition}/product_definition_by_titile.csv\"\n    product_definition_by_ml = f\"{product_definition}/product_definition_by_ml.csv\"\n    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):\n        df_product_def = pd.read_csv(product_definition_by_titile)",
+        "detail": "src.lib.transform.transform_functions",
+        "documentation": {}
+    },
+    {
+        "label": "ensure_columns_exist",
+        "kind": 2,
+        "importPath": "src.lib.transform.transform_functions",
+        "description": "src.lib.transform.transform_functions",
+        "peekOfCode": "def ensure_columns_exist(df, columns):\n    for column in columns:\n        if column not in df.columns:\n            df[column] = np.nan  # Adiciona a coluna com valores NaN (nulos)\n    return df\ndef filter_nulls(df):\n    \"\"\"Filter rows with null values in specific columns and save them to a CSV file.\"\"\"\n    return df.dropna(subset=['title', 'price', 'image_url']).reset_index(drop=True)\ndef apply_generic_filters(df, conf):\n    \"\"\"Apply various data cleaning and transformation filters.\"\"\"",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },
@@ -5401,7 +5469,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def configure_system(args):\n    \"\"\"\n    Configura o sistema com base nos argumentos fornecidos.\n    \"\"\"\n    message(\"CONFIGURE SYSTEM\")\n    # Configurações específicas para tipos de trabalho\n    if args.job_type in [\"extract\", \"dry\"]:\n        configure_display()\n    # Configura o servidor de imagens\n    configure_image_server()",
+        "peekOfCode": "def configure_system(args):\n    \"\"\"\n    Configura o sistema com base nos argumentos fornecidos.\n    \"\"\"\n    message(\"CONFIGURE SYSTEM\")\n    # Configurações específicas para tipos de trabalho\n    if args.exec_type in [\"extract\", \"transform\"]:\n        configure_display()\n    # Configura o servidor de imagens\n    configure_image_server()",
         "detail": "main",
         "documentation": {}
     },
@@ -5419,7 +5487,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def main():\n    message(\"START SYSTEM\")\n    # Analisa os argumentos da linha de comando\n    args = parse_arguments()\n    # Configura o sistema\n    # configure_system(args)\n    # Executa o job\n    run_job(args)\nif __name__ == \"__main__\":\n    main()",
+        "peekOfCode": "def main():\n    message(\"START SYSTEM\")\n    # Analisa os argumentos da linha de comando\n    args = parse_arguments()\n    print(args)\n    # Executa o job\n    run_job(args)\nif __name__ == \"__main__\":\n    main()",
         "detail": "main",
         "documentation": {}
     }
