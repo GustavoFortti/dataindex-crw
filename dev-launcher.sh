@@ -5,7 +5,7 @@ export LOCAL="$local"
 echo $LOCAL
 
 export USE_HEADLESS="false"
-# source ./env/display.sh
+source ./env/display.sh
 
 page_names=(
     # "adaptogen"
