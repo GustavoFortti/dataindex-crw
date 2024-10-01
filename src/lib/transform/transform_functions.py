@@ -43,11 +43,23 @@ def create_product_def_cols(df, conf):
         df['product_def'] = None
         df['product_def_pred'] = None
 
+    required_columns = ['product_def_tag', 'product_def_pred_tag']
+    df = ensure_columns_exist(df, required_columns)
+    
     return df
+
+
+def ensure_columns_exist(df, columns):
+    for column in columns:
+        if column not in df.columns:
+            df[column] = np.nan  # Adiciona a coluna com valores NaN (nulos)
+    return df
+
 
 def filter_nulls(df):
     """Filter rows with null values in specific columns and save them to a CSV file."""
     return df.dropna(subset=['title', 'price', 'image_url']).reset_index(drop=True)
+
 
 def apply_generic_filters(df, conf):
     """Apply various data cleaning and transformation filters."""

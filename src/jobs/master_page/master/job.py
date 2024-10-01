@@ -1,7 +1,7 @@
 import importlib
 import os
 
-from src.lib.utils.file_system import create_directory_if_not_exists
+from src.lib.utils.file_system import create_directory_if_not_exists, path_exists
 from src.lib.utils.log import message
 from src.lib.extract.extract import extract
 from src.lib.load.load import load
@@ -33,8 +33,11 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["products_metadata_update"] = False
     
     create_directory_if_not_exists(conf['data_path'] + "/products")
-    
     conf.update(vars(args))
+    
+    if (not path_exists(conf["data_path"] + "/*.*")):
+        conf["exec_flag"] = "new_page"
+
     return conf
 
 def run(args):
@@ -50,11 +53,9 @@ def run(args):
     page_conf = importlib.import_module(module_name)
     
     conf = update_conf_with_page_config(conf, page_conf, local, args)
-    
+
     message("Configuração atualizada:")
     # message(conf)
-    
-    create_directory_if_not_exists(conf['data_path'])
     
     module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.dry"
     dry = importlib.import_module(module_name)

@@ -75,9 +75,6 @@ def main():
     
     print(args)
 
-    # Configura o sistema
-    configure_system(args)
-
     # Executa o job
     run_job(args)
     

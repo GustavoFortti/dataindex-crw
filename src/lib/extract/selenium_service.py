@@ -17,26 +17,49 @@ from src.lib.utils.log import message
 
 def initialize_selenium():
     options = webdriver.ChromeOptions()
-    
+
     display = os.getenv('DISPLAY')
     message(f"DISPLAY - {display}")
 
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    options.add_experimental_option('useAutomationExtension', False)
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--remote-debugging-port=9222")
+    options.add_argument("--window-size=1920,1080")
     options.add_argument("--enable-logging")
     options.add_argument("--v=1")
+    
+    use_headless = os.getenv('USE_HEADLESS')
+    if (use_headless == "true"):
+        options.add_argument("--headless")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option('useAutomationExtension', False)
+        options.add_argument("--window-size=1280,720")  
+
+    options.binary_location = "/usr/bin/google-chrome"
 
     ua = UserAgent()
     user_agent = ua.random
     options.add_argument(f'user-agent={user_agent}')
 
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="121.0.6167.85").install()), options=options)
+    try:
+        # Use a versão correta do ChromeDriver
+        driver = webdriver.Chrome(
+            service=Service(ChromeDriverManager(driver_version="129.0.6668.70").install()),  # Verifique a versão exata do seu Chrome
+            options=options
+        )
+    except Exception as e:
+        message(f"Erro ao inicializar o WebDriver: {e}")
+        raise e
+
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
-    
-    driver.maximize_window() 
+
+    # Maximizar a janela
+    driver.maximize_window()
     message(driver.execute_script("return navigator.userAgent;"))
-   
+
     return driver
 
 def load_url(driver, url, element_selector=None, timeout=30):
