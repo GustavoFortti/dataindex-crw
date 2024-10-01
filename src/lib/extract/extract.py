@@ -31,7 +31,6 @@ def extract(conf: dict):
         page = Page(conf)
         products_metadata_update(page)
         
-    exit()
     if (conf['exec_flag'] == "products_update"):
         conf["products_update"] = True
         page = Page(conf)
