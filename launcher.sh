@@ -9,6 +9,8 @@ page_name=false
 exec_flag=false
 local="/home/crw-system/shape-data-shelf-crw"
 
+export USE_HEADLESS="false"
+
 usage() {
     echo "Usage: $0"
     echo "flags:"
