@@ -319,6 +319,14 @@
         "documentation": {}
     },
     {
+        "label": "create_or_read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
         "label": "read_and_stack_historical_csvs_dataframes",
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
@@ -1197,6 +1205,30 @@
         "documentation": {}
     },
     {
+        "label": "deepcopy",
+        "importPath": "copy",
+        "description": "copy",
+        "isExtraImport": true,
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "deepcopy",
+        "importPath": "copy",
+        "description": "copy",
+        "isExtraImport": true,
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "deepcopy",
+        "importPath": "copy",
+        "description": "copy",
+        "isExtraImport": true,
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
         "label": "process_and_ingest_products",
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
@@ -1258,22 +1290,6 @@
         "description": "src.lib.transform.transform_functions",
         "isExtraImport": true,
         "detail": "src.lib.transform.transform_functions",
-        "documentation": {}
-    },
-    {
-        "label": "deepcopy",
-        "importPath": "copy",
-        "description": "copy",
-        "isExtraImport": true,
-        "detail": "copy",
-        "documentation": {}
-    },
-    {
-        "label": "deepcopy",
-        "importPath": "copy",
-        "description": "copy",
-        "isExtraImport": true,
-        "detail": "copy",
         "documentation": {}
     },
     {
@@ -4461,7 +4477,7 @@
         "kind": 2,
         "importPath": "src.lib.load.load",
         "description": "src.lib.load.load",
-        "peekOfCode": "def load(conf):\n    print(conf['data_path'])\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = pd.read_csv(conf['data_path'] + '/products_transform_csl.csv')\n    df_products_transform_csl['is_transform_data'] = 1\n    df_products_load_csl = pd.read_csv(conf['data_path'] + '/products_load_csl.csv')\n    df_products_load_csl['is_transform_data'] = 0\n    # Unir os DataFrames\n    df_union = pd.concat([df_products_transform_csl, df_products_load_csl])\n    # Remover a coluna 'is_transform_data' apenas para identificar duplicatas",
+        "peekOfCode": "def load(conf):\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = pd.read_csv(conf['data_path'] + '/products_transform_csl.csv')\n    df_products_transform_csl['is_transform_data'] = 1\n    products_load_csl_path = conf['data_path'] + '/products_load_csl.csv'\n    df_products_load_csl = create_or_read_df(products_load_csl_path, df_products_transform_csl.columns)\n    if (not df_products_load_csl.empty):\n        df_products_load_csl['is_transform_data'] = 0\n        # Unir os DataFrames\n        df_union = pd.concat([df_products_transform_csl, df_products_load_csl])",
         "detail": "src.lib.load.load",
         "documentation": {}
     },

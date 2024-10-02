@@ -10,6 +10,7 @@ exec_flag=false
 local="/home/crw-system/shape-data-shelf-crw"
 
 export USE_HEADLESS="false"
+source $local/env/display.sh
 
 usage() {
     echo "Usage: $0"
