@@ -45,7 +45,8 @@ def load(conf):
     message("Data ready for ingestion")
     
     if (not df.empty):
-        process_and_ingest_products(df)
+        refs = df_products_transform_csl["ref"].values
+        process_and_ingest_products(df, refs, conf['brand'])
         df.to_csv(conf['path_products_shopify_csl'], index=False)
         message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
         

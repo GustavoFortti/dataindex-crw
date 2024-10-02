@@ -70,7 +70,6 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
             "vendor": row['brand'].title(),
             "tags": product_type if pd.notna(product_type) else "Outros",
             "product_type": "",
-            # Removemos 'variants', 'images' e 'collections' do produto para atualização
         }
         
         variant_data = {
@@ -90,11 +89,11 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
 @retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def get_all_skus_with_product_ids() -> dict:
     """
-    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id.
-    
+    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id e o vendor.
+
     Returns:
     - dict: Um dicionário onde as chaves são SKUs e os valores são listas de dicionários
-            contendo 'variant_id' e 'product_id'.
+            contendo 'variant_id', 'product_id' e 'vendor'.
     """
     try:
         session = requests.Session()
@@ -104,7 +103,7 @@ def get_all_skus_with_product_ids() -> dict:
         limit = 250
         params = {
             "limit": limit,
-            "fields": "id,variants"
+            "fields": "id,variants,vendor"
         }
         next_page_info = None
         has_more = True
@@ -124,6 +123,7 @@ def get_all_skus_with_product_ids() -> dict:
 
             for product in products:
                 product_id = product.get('id')
+                vendor = product.get('vendor', '')
                 for variant in product.get('variants', []):
                     variant_id = variant.get('id')
                     sku = variant.get('sku', '').strip()
@@ -132,7 +132,8 @@ def get_all_skus_with_product_ids() -> dict:
                             sku_variants[sku] = []
                         sku_variants[sku].append({
                             'variant_id': variant_id,
-                            'product_id': product_id
+                            'product_id': product_id,
+                            'vendor': vendor
                         })
 
             # Verifica se há mais páginas utilizando os headers de Link
@@ -166,13 +167,13 @@ def get_all_skus_with_product_ids() -> dict:
 def find_duplicate_skus(sku_data: dict) -> dict:
     """
     Encontra SKUs duplicadas no dicionário de SKUs.
-    
+
     Args:
     - sku_data (dict): O dicionário retornado pela função get_all_skus_with_product_ids.
-    
+
     Returns:
     - dict: Um dicionário onde as chaves são SKUs duplicadas e os valores são listas
-            de variantes (com 'variant_id' e 'product_id') associadas a essa SKU.
+            de variantes (com 'variant_id', 'product_id', 'vendor') associadas a essa SKU.
     """
     duplicate_skus = {}
 
@@ -187,14 +188,14 @@ def delete_duplicates_products(duplicate_skus):
     if duplicate_skus:
         message(f"Encontrado {len(duplicate_skus)} SKUs duplicadas.")
         # Deletar todos os produtos e variantes encontrados
+        session = requests.Session()
+        session.headers.update(HEADERS)
         for sku, variants in duplicate_skus.items():
             for variant in variants:
                 product_id = variant['product_id']
                 variant_id = variant['variant_id']
                 
                 # Verifica o número de variantes restantes no produto
-                session = requests.Session()
-                session.headers.update(HEADERS)
                 variant_count = get_variant_count(session, product_id)
                 
                 if variant_count > 1:
@@ -209,6 +210,84 @@ def delete_duplicates_products(duplicate_skus):
         message("Processo de remoção de SKUs duplicadas concluído.")
     else:
         message("Nenhuma SKU duplicada encontrada.")
+
+def delete_extra_skus(skus_to_delete: list):
+    if skus_to_delete:
+        message(f"Encontrado {len(skus_to_delete)} SKUs para deletar.")
+        session = requests.Session()
+        session.headers.update(HEADERS)
+        # Deletar todos os produtos e variantes encontrados
+        for item in skus_to_delete:
+            product_id = item['product_id']
+            variant_id = item['variant_id']
+            sku = item['sku']
+
+            # Verifica o número de variantes restantes no produto
+            variant_count = get_variant_count(session, product_id)
+
+            if variant_count > 1:
+                # Se o produto tem mais de uma variante, apenas a variante será deletada
+                delete_variant(session, variant_id)
+                message(f"Variante {variant_id} do produto {product_id} (SKU {sku}) deletada.")
+            else:
+                # Se o produto só tem uma variante, o produto será deletado
+                delete_product(session, product_id)
+                message(f"Produto {product_id} (SKU {sku}) deletado porque tinha apenas uma variante.")
+
+        message("Processo de deleção de SKUs concluído.")
+    else:
+        message("Nenhuma SKU para deletar.")
+
+def delete_extra_skus(skus_to_delete: list):
+    if skus_to_delete:
+        message(f"Encontrado {len(skus_to_delete)} SKUs para deletar.")
+        session = requests.Session()
+        session.headers.update(HEADERS)
+        # Deletar todos os produtos e variantes encontrados
+        for item in skus_to_delete:
+            product_id = item['product_id']
+            variant_id = item['variant_id']
+            sku = item['sku']
+
+            # Verifica o número de variantes restantes no produto
+            variant_count = get_variant_count(session, product_id)
+
+            if variant_count > 1:
+                # Se o produto tem mais de uma variante, apenas a variante será deletada
+                delete_variant(session, variant_id)
+                message(f"Variante {variant_id} do produto {product_id} (SKU {sku}) deletada.")
+            else:
+                # Se o produto só tem uma variante, o produto será deletado
+                delete_product(session, product_id)
+                message(f"Produto {product_id} (SKU {sku}) deletado porque tinha apenas uma variante.")
+
+        message("Processo de deleção de SKUs concluído.")
+    else:
+        message("Nenhuma SKU para deletar.")
+
+def find_extra_skus_to_delete(sku_data: dict, refs: list, brand: str) -> list:
+    """
+    Encontra SKUs que estão na Shopify mas não estão na lista de 'refs', para um determinado 'brand' (vendor).
+
+    Args:
+    - sku_data (dict): Dicionário retornado pela função get_all_skus_with_product_ids.
+    - refs (list): Lista de SKUs que deveriam existir.
+    - brand (str): O 'vendor' (marca) para filtrar.
+
+    Returns:
+    - list: Lista de dicionários com 'sku', 'variant_id', 'product_id' que precisam ser deletados.
+    """
+    skus_to_delete = []
+    for sku, variants in sku_data.items():
+        for variant in variants:
+            if variant['vendor'].lower() == brand.lower():
+                if sku not in refs:
+                    skus_to_delete.append({
+                        'sku': sku,
+                        'variant_id': variant['variant_id'],
+                        'product_id': variant['product_id']
+                    })
+    return skus_to_delete
 
 @retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def get_variant_count(session, product_id):
@@ -484,27 +563,37 @@ def get_product_by_sku(sku: str):
         message(f"Erro ao buscar produto pelo SKU '{sku}': {response.status_code} - {response.text}")
     return None
 
-def process_and_ingest_products(df: pd.DataFrame) -> None:
+# Atualiza a função process_and_ingest_products para incluir ambas as funcionalidades
+def process_and_ingest_products(df: pd.DataFrame, refs: list, brand: str) -> None:
     is_connected = test_connection()
-    
+
     if not is_connected:
         raise ValueError("Sem conexão com a Shopify") 
-    
+
     sku_data = get_all_skus_with_product_ids()
 
+    # Encontra SKUs duplicadas e deleta
     duplicate_skus = find_duplicate_skus(sku_data)
     delete_duplicates_products(duplicate_skus)
-
     # Atualiza sku_data após deletar duplicatas
     sku_data = get_all_skus_with_product_ids()
 
+    # Encontra SKUs extras e deleta
+    skus_to_delete = find_extra_skus_to_delete(sku_data, refs, brand)
+    delete_extra_skus(skus_to_delete)
+
+    # Atualiza sku_data após deletar SKUs extras
+    sku_data = get_all_skus_with_product_ids()
+
+    message("INGESTION START")
+    
     for index, row in df.iterrows():
         product_data, variant_data = format_product_for_shopify(row)
         if product_data is None or variant_data is None:
             continue
 
         sku = row['ref']
-        message("START PRODUCT INGESTION | REF - {sku}")
+        message(f"REF - {sku} - {row['title']}")
 
         product_exist = update_product_by_sku(sku, product_data, variant_data, row, sku_data)
 
@@ -521,5 +610,5 @@ def process_and_ingest_products(df: pd.DataFrame) -> None:
             if created_product:
                 product_id = created_product['id']
                 update_collections(requests.Session(), product_id, row)
-                
+
     message("INGESTION END")

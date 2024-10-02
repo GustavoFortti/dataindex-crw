@@ -4389,7 +4389,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def get_all_skus_with_product_ids() -> dict:\n    \"\"\"\n    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id.\n    Returns:\n    - dict: Um dicionário onde as chaves são SKUs e os valores são listas de dicionários\n            contendo 'variant_id' e 'product_id'.\n    \"\"\"\n    try:\n        session = requests.Session()\n        session.headers.update(HEADERS)",
+        "peekOfCode": "def get_all_skus_with_product_ids() -> dict:\n    \"\"\"\n    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id e o vendor.\n    Returns:\n    - dict: Um dicionário onde as chaves são SKUs e os valores são listas de dicionários\n            contendo 'variant_id', 'product_id' e 'vendor'.\n    \"\"\"\n    try:\n        session = requests.Session()\n        session.headers.update(HEADERS)",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4398,7 +4398,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def find_duplicate_skus(sku_data: dict) -> dict:\n    \"\"\"\n    Encontra SKUs duplicadas no dicionário de SKUs.\n    Args:\n    - sku_data (dict): O dicionário retornado pela função get_all_skus_with_product_ids.\n    Returns:\n    - dict: Um dicionário onde as chaves são SKUs duplicadas e os valores são listas\n            de variantes (com 'variant_id' e 'product_id') associadas a essa SKU.\n    \"\"\"\n    duplicate_skus = {}",
+        "peekOfCode": "def find_duplicate_skus(sku_data: dict) -> dict:\n    \"\"\"\n    Encontra SKUs duplicadas no dicionário de SKUs.\n    Args:\n    - sku_data (dict): O dicionário retornado pela função get_all_skus_with_product_ids.\n    Returns:\n    - dict: Um dicionário onde as chaves são SKUs duplicadas e os valores são listas\n            de variantes (com 'variant_id', 'product_id', 'vendor') associadas a essa SKU.\n    \"\"\"\n    duplicate_skus = {}",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4407,7 +4407,34 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def delete_duplicates_products(duplicate_skus):\n    if duplicate_skus:\n        message(f\"Encontrado {len(duplicate_skus)} SKUs duplicadas.\")\n        # Deletar todos os produtos e variantes encontrados\n        for sku, variants in duplicate_skus.items():\n            for variant in variants:\n                product_id = variant['product_id']\n                variant_id = variant['variant_id']\n                # Verifica o número de variantes restantes no produto\n                session = requests.Session()",
+        "peekOfCode": "def delete_duplicates_products(duplicate_skus):\n    if duplicate_skus:\n        message(f\"Encontrado {len(duplicate_skus)} SKUs duplicadas.\")\n        # Deletar todos os produtos e variantes encontrados\n        session = requests.Session()\n        session.headers.update(HEADERS)\n        for sku, variants in duplicate_skus.items():\n            for variant in variants:\n                product_id = variant['product_id']\n                variant_id = variant['variant_id']",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "delete_extra_skus",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def delete_extra_skus(skus_to_delete: list):\n    if skus_to_delete:\n        message(f\"Encontrado {len(skus_to_delete)} SKUs para deletar.\")\n        session = requests.Session()\n        session.headers.update(HEADERS)\n        # Deletar todos os produtos e variantes encontrados\n        for item in skus_to_delete:\n            product_id = item['product_id']\n            variant_id = item['variant_id']\n            sku = item['sku']",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "delete_extra_skus",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def delete_extra_skus(skus_to_delete: list):\n    if skus_to_delete:\n        message(f\"Encontrado {len(skus_to_delete)} SKUs para deletar.\")\n        session = requests.Session()\n        session.headers.update(HEADERS)\n        # Deletar todos os produtos e variantes encontrados\n        for item in skus_to_delete:\n            product_id = item['product_id']\n            variant_id = item['variant_id']\n            sku = item['sku']",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "find_extra_skus_to_delete",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def find_extra_skus_to_delete(sku_data: dict, refs: list, brand: str) -> list:\n    \"\"\"\n    Encontra SKUs que estão na Shopify mas não estão na lista de 'refs', para um determinado 'brand' (vendor).\n    Args:\n    - sku_data (dict): Dicionário retornado pela função get_all_skus_with_product_ids.\n    - refs (list): Lista de SKUs que deveriam existir.\n    - brand (str): O 'vendor' (marca) para filtrar.\n    Returns:\n    - list: Lista de dicionários com 'sku', 'variant_id', 'product_id' que precisam ser deletados.\n    \"\"\"",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4506,7 +4533,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame) -> None:\n    is_connected = test_connection()\n    if not is_connected:\n        raise ValueError(\"Sem conexão com a Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)\n    # Atualiza sku_data após deletar duplicatas\n    sku_data = get_all_skus_with_product_ids()\n    for index, row in df.iterrows():",
+        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame, refs: list, brand: str) -> None:\n    is_connected = test_connection()\n    if not is_connected:\n        raise ValueError(\"Sem conexão com a Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    # Encontra SKUs duplicadas e deleta\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)\n    # Atualiza sku_data após deletar duplicatas\n    sku_data = get_all_skus_with_product_ids()",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
