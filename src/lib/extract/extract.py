@@ -110,12 +110,6 @@ def products_update(page):
     
     message(f"write origin: {page.conf['path_products_extract_csl']}")
     df_products_extract_temp.to_csv(page.conf['path_products_extract_csl'], index=False)
-    
-    if (page.conf['status_job']):
-        df_products = create_or_read_df(page.conf['path_products_extract_csl'], columns)
-        if (df_products.empty):
-            delete_file(page.conf['path_products_extract_csl'])
-
 
 def products_metadata_update(page):
     message("products_metadata_update")

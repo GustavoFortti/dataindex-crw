@@ -120,7 +120,7 @@ def extract_data(page, soup):
 
         message(data)
         if (page.conf["status_job"]):
-            status_tag(data)
+            status_tag(page, data)
 
         temp_df = pd.DataFrame([data])
         df_products_temp = pd.concat([df_products_temp, temp_df], ignore_index=True)

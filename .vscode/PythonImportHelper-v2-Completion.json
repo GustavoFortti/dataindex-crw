@@ -343,6 +343,14 @@
         "documentation": {}
     },
     {
+        "label": "create_or_read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
         "label": "read_and_stack_historical_csvs_dataframes",
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
@@ -536,6 +544,14 @@
     },
     {
         "label": "create_directory_if_not_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "delete_file",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -4805,7 +4821,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.data_quality",
         "description": "src.lib.utils.data_quality",
-        "peekOfCode": "def status_tag(data, kill_job=True):\n    errors = []\n    if not is_price(data[\"price\"]):\n        errors.append(\"ERRO: Invalid price format.\")\n    if not check_url_existence(data[\"image_url\"]):\n        errors.append(\"ERRO: Image URL does not exist.\")\n    if not check_url_existence(data[\"product_url\"]):\n        errors.append(\"ERRO: Product URL does not exist.\")\n    if errors:\n        for error in errors:",
+        "peekOfCode": "def status_tag(page, data, kill_job=True):\n    errors = []\n    if not is_price(data[\"price\"]):\n        errors.append(\"ERRO: Invalid price format.\")\n    if not check_url_existence(data[\"image_url\"]):\n        errors.append(\"ERRO: Image URL does not exist.\")\n    if not check_url_existence(data[\"product_url\"]):\n        errors.append(\"ERRO: Product URL does not exist.\")\n    if errors:\n        for error in errors:",
         "detail": "src.lib.utils.data_quality",
         "documentation": {}
     },
