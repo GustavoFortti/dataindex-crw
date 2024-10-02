@@ -36,10 +36,10 @@ def load(conf):
 
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
     
-    if (conf['exec_flag'] == "data_quality"):
-        message("Running Data Quality...")
-        dq.data_history_analysis(conf, df)
-        exit(0)
+    # if (conf['exec_flag'] == "data_quality"):
+    #     message("Running Data Quality...")
+    #     dq.data_history_analysis(conf, df)
+    #     exit(0)
     
     dq.save_history_data(conf, df_products_transform_csl)
     message("Data ready for ingestion")
