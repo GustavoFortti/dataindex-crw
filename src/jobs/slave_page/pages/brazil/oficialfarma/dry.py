@@ -12,7 +12,6 @@ def create_origin_dry():
     df = transform(CONF, df)
 
     df['name'] = df['name'].str.slice(len(def_string))
-    df['title_extract'] = df['title_extract'].str.slice(len(def_string))
 
     df.to_csv(file_path + "/products_transform_csl.csv", index=False)
     print("Success in saving products_transform_csl")
