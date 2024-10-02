@@ -7,3 +7,5 @@ packages/chrome-linux64.zip
 /app.log
 
 /venv
+
+/.key
