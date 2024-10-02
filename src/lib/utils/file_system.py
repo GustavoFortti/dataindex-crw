@@ -1,4 +1,3 @@
-import datetime
 from datetime import datetime, timedelta
 import json
 import os
@@ -175,7 +174,7 @@ def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):
     for file in all_files:
         file_path = os.path.join(directory_path, file)
         last_modification_time = os.path.getmtime(file_path)
-        last_modification_date = datetime.datetime.fromtimestamp(last_modification_time)
+        last_modification_date = datetime.fromtimestamp(last_modification_time)
         files_info.append((file, last_modification_date))
 
     files_info.sort(key=lambda x: x[1], reverse=not sort_ascending)
