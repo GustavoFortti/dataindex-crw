@@ -1,11 +1,38 @@
-import json
+import functools
+import time
 from typing import Tuple
+from urllib.parse import parse_qs, urlparse
+
 import pandas as pd
 import requests
-from urllib.parse import urlparse, parse_qs
+
 from src.config.setup.shopify import BASE_URL, HEADERS
 from src.lib.utils.log import message
 
+
+def retry_on_failure(max_retries, wait_seconds):
+    def decorator_retry(func):
+        @functools.wraps(func)
+        def wrapper_retry(*args, **kwargs):
+            retries = 0
+            while True:
+                try:
+                    return func(*args, **kwargs)
+                except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
+                    retries += 1
+                    if retries >= max_retries:
+                        message(f"Máximo de tentativas alcançado para função '{func.__name__}'. Erro: {e}")
+                        raise
+                    else:
+                        message(f"Erro de conexão na função '{func.__name__}'. Tentativa {retries}/{max_retries}. Aguardando {wait_seconds} segundos antes de tentar novamente.")
+                        time.sleep(wait_seconds)
+        return wrapper_retry
+    return decorator_retry
+
+MAX_RETRIES = 3  # Número máximo de tentativas
+WAIT_SECONDS = 3  # Tempo de espera entre as tentativas em segundos
+
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def test_connection() -> None:
     """
     Testa a conexão com a API da Shopify.
@@ -60,10 +87,11 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
         message(f"Erro ao formatar o produto '{row['title_extract']}': {e}")
         return None, None
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def get_all_skus_with_product_ids() -> dict:
     """
     Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id.
-
+    
     Returns:
     - dict: Um dicionário onde as chaves são SKUs e os valores são listas de dicionários
             contendo 'variant_id' e 'product_id'.
@@ -138,10 +166,10 @@ def get_all_skus_with_product_ids() -> dict:
 def find_duplicate_skus(sku_data: dict) -> dict:
     """
     Encontra SKUs duplicadas no dicionário de SKUs.
-
+    
     Args:
     - sku_data (dict): O dicionário retornado pela função get_all_skus_with_product_ids.
-
+    
     Returns:
     - dict: Um dicionário onde as chaves são SKUs duplicadas e os valores são listas
             de variantes (com 'variant_id' e 'product_id') associadas a essa SKU.
@@ -171,14 +199,10 @@ def delete_duplicates_products(duplicate_skus):
                 
                 if variant_count > 1:
                     # Se o produto tem mais de uma variante, apenas a variante duplicada será deletada
-                    session = requests.Session()
-                    session.headers.update(HEADERS)
                     delete_variant(session, variant_id)
                     message(f"Variante {variant_id} do produto {product_id} deletada.")
                 else:
                     # Se o produto só tem uma variante, o produto será deletado
-                    session = requests.Session()
-                    session.headers.update(HEADERS)
                     delete_product(session, product_id)
                     message(f"Produto {product_id} deletado porque tinha apenas uma variante.")
 
@@ -186,6 +210,7 @@ def delete_duplicates_products(duplicate_skus):
     else:
         message("Nenhuma SKU duplicada encontrada.")
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def get_variant_count(session, product_id):
     """
     Obtém o número de variantes de um produto.
@@ -193,7 +218,7 @@ def get_variant_count(session, product_id):
     Args:
     - session: Sessão de requisição autenticada.
     - product_id: ID do produto.
-
+    
     Returns:
     - int: Número de variantes do produto.
     """
@@ -206,6 +231,7 @@ def get_variant_count(session, product_id):
         message(f"Erro ao obter variantes do produto {product_id}: {response.status_code} - {response.text}")
         return 0
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def delete_variant(session, variant_id):
     """
     Deleta uma variante específica.
@@ -218,10 +244,11 @@ def delete_variant(session, variant_id):
     if response.status_code != 200:
         message(f"Erro ao deletar variante {variant_id}: {response.status_code} - {response.text}")
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def delete_product(session, product_id):
     """
     Deleta um produto específico.
-
+    
     Args:
     - session: Sessão de requisição autenticada.
     - product_id: ID do produto a ser deletado.
@@ -250,7 +277,8 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
     else:
         message(f"SKU '{sku}' não encontrado nos dados da Shopify.")
         return False
-    
+
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def update_product(session, product_id: int, product_data: dict) -> bool:
     url = f"{BASE_URL}products/{product_id}.json"
     product_data['id'] = product_id
@@ -264,6 +292,7 @@ def update_product(session, product_id: int, product_data: dict) -> bool:
         message(f"Erro ao atualizar o produto {product_id}: {response.status_code} - {error_message}")
         return False
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def update_images(session, product_id: int, row: pd.Series) -> bool:
     """
     Atualiza as imagens de um produto na Shopify, garantindo que apenas a nova imagem esteja associada ao produto.
@@ -320,7 +349,7 @@ def update_images(session, product_id: int, row: pd.Series) -> bool:
         message(f"Erro ao atualizar imagens do produto {product_id}: {e}")
         return False
 
-
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def update_collections(session, product_id: int, row: pd.Series) -> bool:
     """
     Adiciona o produto a uma coleção manual na Shopify.
@@ -383,6 +412,7 @@ def update_collections(session, product_id: int, row: pd.Series) -> bool:
         message(f"Erro ao atualizar coleções do produto {product_id}: {e}")
         return False
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def update_variant(session, product_id: int, variant_id: int, variant_data: dict) -> bool:
     url = f"{BASE_URL}variants/{variant_id}.json"
 
@@ -401,6 +431,7 @@ def update_variant(session, product_id: int, variant_id: int, variant_data: dict
         message(f"Erro ao atualizar a variante {variant_id} do produto {product_id}: {response.status_code} - {error_message}")
         return False
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def create_product(product_data: dict):
     """
     Cria um novo produto na Shopify com os dados fornecidos.
@@ -430,6 +461,7 @@ def create_product(product_data: dict):
         message(f"Erro ao criar o produto '{product_data.get('title')}': {response.status_code} - {error_message}")
         return None
 
+@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def get_product_by_sku(sku: str):
     """
     Obtém o produto com base no SKU.
@@ -453,11 +485,10 @@ def get_product_by_sku(sku: str):
     return None
 
 def process_and_ingest_products(df: pd.DataFrame) -> None:
-    
     is_connected = test_connection()
     
-    if (not is_connected):
-        raise ValueError(f"no connection with the Shopify") 
+    if not is_connected:
+        raise ValueError("Sem conexão com a Shopify") 
     
     sku_data = get_all_skus_with_product_ids()
 

@@ -9,12 +9,12 @@ export CHECKPOINT_PRODUCTS_UPDATE="false"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    # "adaptogen"
+    "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    "darkness"
+    # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -42,9 +42,9 @@ exec_flag="products_metadata_update_old_pages"
 # exec_type="transform"
 # exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false"
+exec_flag="false"
 
 # job_type="data_intelligence"
 # job_name="product_definition"

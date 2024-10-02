@@ -1105,12 +1105,12 @@
         "documentation": {}
     },
     {
-        "label": "json",
+        "label": "functools",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "importPath": "functools",
+        "description": "functools",
+        "detail": "functools",
         "documentation": {}
     },
     {
@@ -1178,12 +1178,11 @@
         "documentation": {}
     },
     {
-        "label": "requests",
-        "kind": 6,
+        "label": "parse_qs",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
         "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
+        "detail": "urllib.parse",
         "documentation": {}
     },
     {
@@ -1195,11 +1194,12 @@
         "documentation": {}
     },
     {
-        "label": "parse_qs",
-        "importPath": "urllib.parse",
-        "description": "urllib.parse",
+        "label": "requests",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "urllib.parse",
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
         "documentation": {}
     },
     {
@@ -1386,6 +1386,15 @@
         "description": "glob",
         "isExtraImport": true,
         "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -4325,6 +4334,15 @@
         "documentation": {}
     },
     {
+        "label": "retry_on_failure",
+        "kind": 2,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "def retry_on_failure(max_retries, wait_seconds):\n    def decorator_retry(func):\n        @functools.wraps(func)\n        def wrapper_retry(*args, **kwargs):\n            retries = 0\n            while True:\n                try:\n                    return func(*args, **kwargs)\n                except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:\n                    retries += 1",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
         "label": "test_connection",
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
@@ -4464,7 +4482,25 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame) -> None:\n    is_connected = test_connection()\n    if (not is_connected):\n        raise ValueError(f\"no connection with the Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)\n    # Atualiza sku_data após deletar duplicatas\n    sku_data = get_all_skus_with_product_ids()\n    for index, row in df.iterrows():",
+        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame) -> None:\n    is_connected = test_connection()\n    if not is_connected:\n        raise ValueError(\"Sem conexão com a Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)\n    # Atualiza sku_data após deletar duplicatas\n    sku_data = get_all_skus_with_product_ids()\n    for index, row in df.iterrows():",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "MAX_RETRIES",
+        "kind": 5,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "MAX_RETRIES = 3  # Número máximo de tentativas\nWAIT_SECONDS = 3  # Tempo de espera entre as tentativas em segundos\n@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)\ndef test_connection() -> None:\n    \"\"\"\n    Testa a conexão com a API da Shopify.\n    \"\"\"\n    url = f\"{BASE_URL}products.json\"\n    response = requests.get(url, headers=HEADERS)\n    if response.status_code == 200:",
+        "detail": "src.lib.load.connection.shopify",
+        "documentation": {}
+    },
+    {
+        "label": "WAIT_SECONDS",
+        "kind": 5,
+        "importPath": "src.lib.load.connection.shopify",
+        "description": "src.lib.load.connection.shopify",
+        "peekOfCode": "WAIT_SECONDS = 3  # Tempo de espera entre as tentativas em segundos\n@retry_on_failure(MAX_RETRIES, WAIT_SECONDS)\ndef test_connection() -> None:\n    \"\"\"\n    Testa a conexão com a API da Shopify.\n    \"\"\"\n    url = f\"{BASE_URL}products.json\"\n    response = requests.get(url, headers=HEADERS)\n    if response.status_code == 200:\n        message(\"Conexão bem-sucedida! A API está acessível.\")",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
