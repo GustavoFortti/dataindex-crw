@@ -35,7 +35,7 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     create_directory_if_not_exists(conf['data_path'] + "/products")
     conf.update(vars(args))
     
-    if (not path_exists(conf["data_path"] + "/*.*")):
+    if ((not path_exists(conf["data_path"] + "/*.*") & (conf["exec_flag"] != "status_job"))):
         conf["exec_flag"] = "new_page"
 
     return conf

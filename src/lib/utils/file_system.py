@@ -1,4 +1,5 @@
 import datetime
+from datetime import datetime, timedelta
 import json
 import os
 import shutil
@@ -30,7 +31,6 @@ def read_file(file_path):
         print(f"An error occurred: {e}")
         return None
 
-
 def read_json(file_path: str) -> Optional[Any]:
     """Reads a JSON file and returns its content or None in case of an error."""
     try:
@@ -44,12 +44,10 @@ def read_json(file_path: str) -> Optional[Any]:
         message(f"An error occurred while reading the file {file_path}: {e}")
     return None
 
-
 def save_json(file_name: str, data: Any) -> None:
     """Saves data to a JSON file."""
     with open(file_name, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False)
-
 
 def delete_file(file_path: str) -> None:
     """Deletes a file if it exists, logging the outcome."""
@@ -61,12 +59,30 @@ def delete_file(file_path: str) -> None:
     except Exception as e:
         message(f"An error occurred: {e}")
 
+def file_modified_within_x_hours(file_path, hours):
+    # Check if the file exists
+    if not os.path.isfile(file_path):
+        return False
+    
+    # Get the current time
+    now = datetime.now()
+    
+    # Get the last modification time of the file
+    last_modification = datetime.fromtimestamp(os.path.getmtime(file_path))
+    
+    # Calculate the difference between now and the last modification
+    difference = now - last_modification
+    
+    # Check if the file was modified within the specified number of hours
+    if difference <= timedelta(hours=hours):
+        return True
+    else:
+        return False
 
 def path_exists(path: str) -> bool:
     """Checks if a path exists."""
     message(f"check - {path}")
     return os.path.exists(path)
-
 
 def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> None:
     """Creates a file if it doesn't exist. Optionally writes text to it."""
@@ -82,7 +98,6 @@ def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> Non
         except Exception as e:
             message(f"An error occurred: {e}")
 
-
 def create_directory_if_not_exists(directory_path):
     if not path_exists(directory_path):
         try:
@@ -91,7 +106,6 @@ def create_directory_if_not_exists(directory_path):
         except OSError as error:
             message(f"Error creating directory '{directory_path}': {error}")
             
-
 def download_image(image_url, image_path, image_name):
     message(f"Download: {image_url}")
     response = requests.get(image_url)
@@ -122,7 +136,6 @@ def download_image(image_url, image_path, image_name):
     else:
         message(f"Failed to download the image. HTTP status code: {response.status_code}")
 
-
 def save_images(image_urls, image_path, image_names):
     with ThreadPoolExecutor(max_workers=10) as executor:
         # Mapeia cada tarefa futura para a respectiva URL usando um dicionário
@@ -139,13 +152,11 @@ def save_images(image_urls, image_path, image_names):
                     message(f"Download failed for {url}")  # Imprime uma mensagem de falha caso contrário
             except Exception as e:
                 message(f"{url} generated an exception: {e}")  # Imprime a exceção, se ocorrer
-                
-                
+   
 def file_exists(directory, filename):
     file_path = os.path.join(directory, filename)
     message(file_path)
     return os.path.exists(file_path)
-
                 
 def delete_directory_and_contents(directory_path):
     if not os.path.exists(directory_path):
@@ -154,7 +165,6 @@ def delete_directory_and_contents(directory_path):
 
     shutil.rmtree(directory_path)
     message(f"Directory and all contents deleted: {directory_path}")
-
 
 def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):
     all_files = [file for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]
@@ -175,7 +185,6 @@ def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):
 
     return selected_files
 
-
 def list_directory(path):
     try:
         # Check if the path is a valid directory
@@ -192,7 +201,6 @@ def list_directory(path):
     except Exception as e:
         message(f"Error while listing the directory: {str(e)}")
         
-
 def has_files(directory):
     items = os.listdir(directory)
     

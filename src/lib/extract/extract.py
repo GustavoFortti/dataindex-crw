@@ -1,3 +1,4 @@
+import os
 from datetime import date
 
 import pandas as pd
@@ -6,10 +7,11 @@ from src.lib.extract.crawler import crawler
 from src.lib.extract.page_elements import Page
 from src.lib.utils.data_quality import is_price
 from src.lib.utils.dataframe import create_or_read_df
-from src.lib.utils.file_system import (DATE_FORMAT, create_directory_if_not_exists,
-                                   delete_directory_and_contents, delete_file,
-                                   get_old_files_by_percent, list_directory,
-                                   read_json, save_images)
+from src.lib.utils.file_system import (DATE_FORMAT,
+                                       create_directory_if_not_exists,
+                                       delete_directory_and_contents,
+                                       delete_file, get_old_files_by_percent,
+                                       list_directory, read_json, save_images)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST
@@ -32,6 +34,10 @@ def extract(conf: dict):
         products_metadata_update(page)
         
     if (conf['exec_flag'] == "products_update"):
+        checkpoint_products_update = os.getenv('CHECKPOINT_PRODUCTS_UPDATE')
+        if (checkpoint_products_update):
+            return
+        
         conf["products_update"] = True
         page = Page(conf)
         products_update(page)

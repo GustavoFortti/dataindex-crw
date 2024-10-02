@@ -656,6 +656,22 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "extract",
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
@@ -4900,7 +4916,16 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def delete_file(file_path: str) -> None:\n    \"\"\"Deletes a file if it exists, logging the outcome.\"\"\"\n    try:\n        os.remove(file_path)\n        message(f\"File {file_path} has been deleted successfully\")\n    except FileNotFoundError:\n        message(f\"The file {file_path} does not exist\")\n    except Exception as e:\n        message(f\"An error occurred: {e}\")\ndef path_exists(path: str) -> bool:",
+        "peekOfCode": "def delete_file(file_path: str) -> None:\n    \"\"\"Deletes a file if it exists, logging the outcome.\"\"\"\n    try:\n        os.remove(file_path)\n        message(f\"File {file_path} has been deleted successfully\")\n    except FileNotFoundError:\n        message(f\"The file {file_path} does not exist\")\n    except Exception as e:\n        message(f\"An error occurred: {e}\")\ndef file_modified_within_x_hours(file_path, hours):",
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "file_modified_within_x_hours",
+        "kind": 2,
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "peekOfCode": "def file_modified_within_x_hours(file_path, hours):\n    # Check if the file exists\n    if not os.path.isfile(file_path):\n        return False\n    # Get the current time\n    now = datetime.now()\n    # Get the last modification time of the file\n    last_modification = datetime.fromtimestamp(os.path.getmtime(file_path))\n    # Calculate the difference between now and the last modification\n    difference = now - last_modification",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
