@@ -640,15 +640,6 @@
     },
     {
         "label": "datetime",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "datetime",
-        "description": "datetime",
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -5013,7 +5004,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):\n    all_files = [file for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]\n    files_info = []\n    for file in all_files:\n        file_path = os.path.join(directory_path, file)\n        last_modification_time = os.path.getmtime(file_path)\n        last_modification_date = datetime.datetime.fromtimestamp(last_modification_time)\n        files_info.append((file, last_modification_date))\n    files_info.sort(key=lambda x: x[1], reverse=not sort_ascending)\n    files_count = len(files_info)",
+        "peekOfCode": "def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):\n    all_files = [file for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))]\n    files_info = []\n    for file in all_files:\n        file_path = os.path.join(directory_path, file)\n        last_modification_time = os.path.getmtime(file_path)\n        last_modification_date = datetime.fromtimestamp(last_modification_time)\n        files_info.append((file, last_modification_date))\n    files_info.sort(key=lambda x: x[1], reverse=not sort_ascending)\n    files_count = len(files_info)",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
