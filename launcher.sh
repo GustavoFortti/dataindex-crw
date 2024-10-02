@@ -95,7 +95,6 @@ python3 "$LOCAL/main.py" --job_type "$job_type" \
                             --page_type "$page_type" \
                             --country "$country" \
                             --mode "$mode" >> "$log_file" 2>&1
-echo "ok"
 
 if [ $? -ne 0 ]; then
     exit 1
