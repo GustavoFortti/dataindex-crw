@@ -10,12 +10,11 @@ from src.lib.utils.log import message
 
 def load(conf):
     # Carregar os DataFrames e adicionar a coluna 'transform'
-    df_products_transform_csl = pd.read_csv(conf['data_path'] + '/products_transform_csl.csv')
+    df_products_transform_csl = pd.read_csv(conf['path_products_transform_csl'])
     df_products_transform_csl['is_transform_data'] = 1
     
-    products_load_csl_path = conf['data_path'] + '/products_load_csl.csv'
     
-    df_products_load_csl = create_or_read_df(products_load_csl_path, df_products_transform_csl.columns)
+    df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)
     if (not df_products_load_csl.empty):
         df_products_load_csl['is_transform_data'] = 0
 
@@ -27,14 +26,13 @@ def load(conf):
 
         # Identificar as duplicatas sem considerar a coluna 'is_transform_data'
         duplicates = df_union_no_transform[df_union_no_transform.duplicated(keep=False)]
-
         # Remover duplicatas e suas originais do DataFrame original (com 'is_transform_data')
         df = df_union.drop(duplicates.index)
-        df = df.drop(columns=['is_transform_data'])
         df = df[df['is_transform_data'] == 1]
     else:
         df = deepcopy(df_products_transform_csl)
-        df = df.drop(columns=['is_transform_data'])
+
+    df = df.drop(columns=['is_transform_data'])
 
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
     
@@ -48,6 +46,6 @@ def load(conf):
     
     if (not df.empty):
         process_and_ingest_products(df)
-        df.to_csv(conf['data_path'] + "/products_shopify_csl.csv", index=False)
+        df.to_csv(conf['path_products_shopify_csl'], index=False)
         
-    df_products_transform_csl.to_csv(conf['data_path'] + "/products_load_csl.csv", index=False)
+    df_products_transform_csl.to_csv(conf['path_products_transform_csl'], index=False)

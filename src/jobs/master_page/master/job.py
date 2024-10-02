@@ -1,7 +1,7 @@
 import importlib
 import os
 
-from src.lib.utils.file_system import create_directory_if_not_exists, path_exists
+from src.lib.utils.file_system import create_directory_if_not_exists, file_exists, path_exists
 from src.lib.utils.log import message
 from src.lib.extract.extract import extract
 from src.lib.load.load import load
@@ -35,9 +35,16 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     create_directory_if_not_exists(conf['data_path'] + "/products")
     conf.update(vars(args))
     
-    if (not path_exists(conf["data_path"] + "/*.*")):
+    conf["path_products_extract_csl"] = os.path.join(conf['data_path'], "products_extract_csl.csv")
+    conf["path_products_extract_temp"] = os.path.join(conf['data_path'], "products_extract_temp.csv")
+    conf["path_products_transform_csl"] = os.path.join(conf['data_path'], "products_transform_csl.csv")
+    conf["path_products_metadata_transform"] = os.path.join(conf['data_path'], "products_metadata_transform.csv")
+    conf["path_products_load_csl"] = os.path.join(conf['data_path'], "products_load_csl.csv")
+    conf["path_products_shopify_csl"] = os.path.join(conf['data_path'], "products_shopify_csl.csv")
+    
+    if ((not path_exists(conf["path_products_extract_csl"])) & (conf["exec_flag"] != "status_job")):
         conf["exec_flag"] = "new_page"
-
+        
     return conf
 
 def run(args):

@@ -20,7 +20,7 @@ def load_product_definition(df, conf):
     WORDLIST = conf["wordlist"]
     DATA_PATH = CONF["data_path"]
 
-    FILE_PATH_PRODUCT_METADATA = f"{DATA_PATH}/products_metadata_transform.csv"
+    FILE_PATH_PRODUCT_METADATA = CONF["path_products_metadata_transform"]
     message("Extrai palavras chave das paginas dos produtos")
     keywords_data = extract_keywords_from_products(df, conf)
 
