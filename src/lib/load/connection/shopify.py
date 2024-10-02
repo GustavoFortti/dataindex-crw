@@ -504,6 +504,7 @@ def process_and_ingest_products(df: pd.DataFrame) -> None:
             continue
 
         sku = row['ref']
+        message("START PRODUCT INGESTION | REF - {sku}")
 
         product_exist = update_product_by_sku(sku, product_data, variant_data, row, sku_data)
 
@@ -520,3 +521,5 @@ def process_and_ingest_products(df: pd.DataFrame) -> None:
             if created_product:
                 product_id = created_product['id']
                 update_collections(requests.Session(), product_id, row)
+                
+    message("INGESTION END")
