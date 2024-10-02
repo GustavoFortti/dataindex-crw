@@ -383,6 +383,14 @@
         "documentation": {}
     },
     {
+        "label": "file_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
         "label": "path_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
@@ -416,6 +424,14 @@
     },
     {
         "label": "delete_file",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "file_modified_within_x_hours",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -4232,7 +4248,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_update(page):\n    seed_path = page.conf['seed_path'] + \"/seed.json\"\n    seeds = read_json(seed_path)\n    page.conf['products_extract_csl'] = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_temp'] = f\"{page.conf['data_path']}/products_extract_temp.csv\"\n    delete_file(page.conf['path_products_extract_temp'])\n    columns = [\"ref\", \"title\" ,\"price\" ,\"image_url\", \"product_url\", \"ing_date\"]\n    df_products = create_or_read_df(page.conf['products_extract_csl'], columns)\n    data_atual = date.today()\n    page.conf['formatted_date'] = data_atual.strftime(DATE_FORMAT)",
+        "peekOfCode": "def products_update(page):\n    seed_path = page.conf['seed_path'] + \"/seed.json\"\n    seeds = read_json(seed_path)\n    delete_file(page.conf['path_products_extract_temp'])\n    columns = [\"ref\", \"title\" ,\"price\" ,\"image_url\", \"product_url\", \"ing_date\"]\n    df_products = create_or_read_df(page.conf['path_products_extract_csl'], columns)\n    data_atual = date.today()\n    page.conf['formatted_date'] = data_atual.strftime(DATE_FORMAT)\n    page.conf['df_products'] = df_products\n    page.conf[\"size_items\"] = 0",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -4241,7 +4257,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_metadata_update(page):\n    message(\"products_metadata_update\")\n    page.conf['products_extract_csl'] = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    df_products_extract_csl = pd.read_csv(page.conf['products_extract_csl'])\n    urls = df_products_extract_csl['product_url'].values\n    for value, url in enumerate(urls):\n        size_urls = len(urls) - 1\n        message(f\"seed: {url}\")\n        message(f\"index: {value} / {size_urls}\")\n        crawler(page, url)",
+        "peekOfCode": "def products_metadata_update(page):\n    message(\"products_metadata_update\")\n    page.conf['path_products_extract_csl'] = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    df_products_extract_csl = pd.read_csv(page.conf['path_products_extract_csl'])\n    urls = df_products_extract_csl['product_url'].values\n    for value, url in enumerate(urls):\n        size_urls = len(urls) - 1\n        message(f\"seed: {url}\")\n        message(f\"index: {value} / {size_urls}\")\n        crawler(page, url)",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -4250,7 +4266,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_metadata_update_old_pages(page):\n    message(\"PRODUCTS_METADATA_UPDATE_OLD_PAGES\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = pd.read_csv(products_extract_csl)\n    pagas_path = page.conf['data_path'] + \"/products\"\n    old_files = get_old_files_by_percent(pagas_path, True, 5)\n    refs = [i.replace(\".txt\", \"\") for i in old_files]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]\n    refs_to_delete = list(set(refs) - set(df_products_extract_csl['ref']))",
+        "peekOfCode": "def products_metadata_update_old_pages(page):\n    message(\"PRODUCTS_METADATA_UPDATE_OLD_PAGES\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = pd.read_csv(products_extract_csl)\n    pagas_path = page.conf['data_path'] + \"/products\"\n    old_files = get_old_files_by_percent(pagas_path, True, 5)\n    refs = [i.replace(\".txt\", \"\") for i in old_files]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]\n    refs_to_delete = list(set(refs) - set(df_products_extract_csl['ref']))",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -4268,7 +4284,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_metadata_create_pages_if_not_exist(page):\n    message(\"PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = pd.read_csv(products_extract_csl)\n    pagas_path = page.conf['data_path'] + \"/products\"\n    all_pages = [i for i in list_directory(pagas_path)]\n    refs = [f\"{i}.txt\" for i in df_products_extract_csl['ref'].values]\n    pages_to_create = [i.replace(\".txt\", \"\") for i in refs if i not in all_pages]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl[\"ref\"].isin(pages_to_create)]",
+        "peekOfCode": "def products_metadata_create_pages_if_not_exist(page):\n    message(\"PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = pd.read_csv(products_extract_csl)\n    pagas_path = page.conf['data_path'] + \"/products\"\n    all_pages = [i for i in list_directory(pagas_path)]\n    refs = [f\"{i}.txt\" for i in df_products_extract_csl['ref'].values]\n    pages_to_create = [i.replace(\".txt\", \"\") for i in refs if i not in all_pages]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl[\"ref\"].isin(pages_to_create)]",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -4412,7 +4428,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def update_images(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Atualiza as imagens de um produto na Shopify.\n    \"\"\"\n    try:\n        # Obtém as imagens atuais do produto\n        response = session.get(f\"{BASE_URL}products/{product_id}/images.json\")\n        if response.status_code != 200:\n            message(f\"Erro ao obter imagens do produto {product_id}: {response.status_code} - {response.text}\")\n            return False",
+        "peekOfCode": "def update_images(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Atualiza as imagens de um produto na Shopify, garantindo que apenas a nova imagem esteja associada ao produto.\n    \"\"\"\n    try:\n        # Obtém as imagens atuais do produto\n        response = session.get(f\"{BASE_URL}products/{product_id}/images.json\")\n        if response.status_code != 200:\n            message(f\"Erro ao obter imagens do produto {product_id}: {response.status_code} - {response.text}\")\n            return False",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -4493,7 +4509,7 @@
         "kind": 2,
         "importPath": "src.lib.load.load",
         "description": "src.lib.load.load",
-        "peekOfCode": "def load(conf):\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = pd.read_csv(conf['data_path'] + '/products_transform_csl.csv')\n    df_products_transform_csl['is_transform_data'] = 1\n    products_load_csl_path = conf['data_path'] + '/products_load_csl.csv'\n    df_products_load_csl = create_or_read_df(products_load_csl_path, df_products_transform_csl.columns)\n    if (not df_products_load_csl.empty):\n        df_products_load_csl['is_transform_data'] = 0\n        # Unir os DataFrames\n        df_union = pd.concat([df_products_transform_csl, df_products_load_csl])",
+        "peekOfCode": "def load(conf):\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = pd.read_csv(conf['path_products_transform_csl'])\n    df_products_transform_csl['is_transform_data'] = 1\n    df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)\n    if (not df_products_load_csl.empty):\n        df_products_load_csl['is_transform_data'] = 0\n        # Unir os DataFrames\n        df_union = pd.concat([df_products_transform_csl, df_products_load_csl])\n        # Remover a coluna 'is_transform_data' apenas para identificar duplicatas",
         "detail": "src.lib.load.load",
         "documentation": {}
     },
@@ -4502,7 +4518,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.product_definition",
         "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def load_product_definition(df, conf):\n    message(\"RUNNING MODEL PREP...\")\n    global CONF\n    global WORDLIST\n    global DATA_PATH\n    global FILE_PATH_PRODUCT_METADATA\n    CONF = conf\n    WORDLIST = conf[\"wordlist\"]\n    DATA_PATH = CONF[\"data_path\"]\n    FILE_PATH_PRODUCT_METADATA = f\"{DATA_PATH}/products_metadata_transform.csv\"",
+        "peekOfCode": "def load_product_definition(df, conf):\n    message(\"RUNNING MODEL PREP...\")\n    global CONF\n    global WORDLIST\n    global DATA_PATH\n    global FILE_PATH_PRODUCT_METADATA\n    CONF = conf\n    WORDLIST = conf[\"wordlist\"]\n    DATA_PATH = CONF[\"data_path\"]\n    FILE_PATH_PRODUCT_METADATA = CONF[\"path_products_metadata_transform\"]",
         "detail": "src.lib.transform.product_definition",
         "documentation": {}
     },
@@ -4925,7 +4941,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def file_modified_within_x_hours(file_path, hours):\n    # Check if the file exists\n    if not os.path.isfile(file_path):\n        return False\n    # Get the current time\n    now = datetime.now()\n    # Get the last modification time of the file\n    last_modification = datetime.fromtimestamp(os.path.getmtime(file_path))\n    # Calculate the difference between now and the last modification\n    difference = now - last_modification",
+        "peekOfCode": "def file_modified_within_x_hours(file_path, hours):\n    # Check if the file exists\n    if not os.path.isfile(file_path):\n        message(\"File not exist\")\n        return False\n    # Get the current time\n    now = datetime.now()\n    # Get the last modification time of the file\n    last_modification = datetime.fromtimestamp(os.path.getmtime(file_path))\n    print(last_modification)",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },

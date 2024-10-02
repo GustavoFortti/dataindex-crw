@@ -266,7 +266,7 @@ def update_product(session, product_id: int, product_data: dict) -> bool:
 
 def update_images(session, product_id: int, row: pd.Series) -> bool:
     """
-    Atualiza as imagens de um produto na Shopify.
+    Atualiza as imagens de um produto na Shopify, garantindo que apenas a nova imagem esteja associada ao produto.
     """
     try:
         # Obtém as imagens atuais do produto
@@ -278,10 +278,17 @@ def update_images(session, product_id: int, row: pd.Series) -> bool:
         current_images = response.json().get('images', [])
         new_image_src = row['image_url']
 
-        # Verifica se a imagem já existe
-        image_exists = any(img.get('src') == new_image_src for img in current_images)
+        if pd.notna(new_image_src):
+            # Remove todas as imagens atuais
+            for image in current_images:
+                image_id = image.get('id')
+                delete_response = session.delete(f"{BASE_URL}products/{product_id}/images/{image_id}.json")
+                if delete_response.status_code not in [200, 204]:
+                    message(f"Erro ao deletar imagem {image_id} do produto {product_id}: {delete_response.status_code} - {delete_response.text}")
+                    return False
+                else:
+                    message(f"Imagem {image_id} do produto {product_id} deletada.")
 
-        if not image_exists and pd.notna(new_image_src):
             # Adiciona a nova imagem
             image_payload = {
                 "image": {
@@ -289,20 +296,30 @@ def update_images(session, product_id: int, row: pd.Series) -> bool:
                 }
             }
             response = session.post(f"{BASE_URL}products/{product_id}/images.json", json=image_payload)
-            
             if response.status_code in [200, 201]:
-                message(f"Imagem adicionada ao produto {product_id}.")
+                message(f"Nova imagem adicionada ao produto {product_id}.")
                 return True
             else:
                 error_message = response.json().get('errors', response.text)
                 message(f"Erro ao adicionar imagem ao produto {product_id}: {response.status_code} - {error_message}")
                 return False
         else:
-            message(f"A imagem já existe no produto {product_id}.")
+            # Se não houver uma nova imagem, mas o produto possui imagens atuais, removê-las
+            if current_images:
+                for image in current_images:
+                    image_id = image.get('id')
+                    delete_response = session.delete(f"{BASE_URL}products/{product_id}/images/{image_id}.json")
+                    if delete_response.status_code not in [200, 204]:
+                        message(f"Erro ao deletar imagem {image_id} do produto {product_id}: {delete_response.status_code} - {delete_response.text}")
+                        return False
+                    else:
+                        message(f"Imagem {image_id} do produto {product_id} deletada.")
+            message(f"Nenhuma nova imagem para adicionar ao produto {product_id}.")
             return True
     except Exception as e:
         message(f"Erro ao atualizar imagens do produto {product_id}: {e}")
         return False
+
 
 def update_collections(session, product_id: int, row: pd.Series) -> bool:
     """

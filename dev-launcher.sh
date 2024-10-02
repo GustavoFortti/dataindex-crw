@@ -5,6 +5,7 @@ export LOCAL="$local"
 echo $LOCAL
 
 export USE_HEADLESS="false"
+export CHECKPOINT_PRODUCTS_UPDATE="false"
 # source $LOCAL/env/display.sh
 
 page_names=(
