@@ -6,7 +6,7 @@ import src.lib.utils.data_quality as dq
 from src.lib.load.connection.shopify import process_and_ingest_products
 from src.lib.utils.dataframe import create_or_read_df
 from src.lib.utils.log import message
-
+from src.lib.utils.file_system import path_exists
 
 def load(conf):
     # Carregar os DataFrames e adicionar a coluna 'transform'
@@ -47,5 +47,8 @@ def load(conf):
     if (not df.empty):
         process_and_ingest_products(df)
         df.to_csv(conf['path_products_shopify_csl'], index=False)
+        message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
         
     df_products_transform_csl.to_csv(conf['path_products_transform_csl'], index=False)
+    message(f"path_products_transform_csl - {path_exists(conf['path_products_transform_csl'])}")
+    message("LOAD END")

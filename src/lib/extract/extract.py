@@ -38,7 +38,7 @@ def extract(conf: dict):
     if (conf['exec_flag'] == "products_update"):
         checkpoint_products_update = os.getenv('CHECKPOINT_PRODUCTS_UPDATE')
         file_path = [i for i in list_directory(page.conf['data_path']) if ".csv" in i][0]
-        file_was_modified = file_modified_within_x_hours(f"{page.conf['data_path']}/{file_path}", 24)
+        file_was_modified = file_modified_within_x_hours(f"{page.conf['data_path']}/{file_path}", 4)
         if ((checkpoint_products_update == "true") & (file_was_modified)):
             return
         

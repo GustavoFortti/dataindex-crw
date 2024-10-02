@@ -471,6 +471,14 @@
         "documentation": {}
     },
     {
+        "label": "path_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
         "label": "delete_file",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
