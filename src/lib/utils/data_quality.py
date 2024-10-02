@@ -4,8 +4,10 @@ from datetime import date
 import pandas as pd
 
 from src.lib.utils.dataframe import (calc_string_diff_in_df_col,
-                                 read_and_stack_historical_csvs_dataframes)
-from src.lib.utils.file_system import create_directory_if_not_exists, has_files
+                                     create_or_read_df,
+                                     read_and_stack_historical_csvs_dataframes)
+from src.lib.utils.file_system import (create_directory_if_not_exists,
+                                       delete_file, has_files)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import DATE_FORMAT
 from src.lib.utils.web_functions import check_url_existence
@@ -13,7 +15,7 @@ from src.lib.utils.web_functions import check_url_existence
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
-def status_tag(data, kill_job=True):
+def status_tag(page, data, kill_job=True):
     errors = []
 
     if not is_price(data["price"]):
@@ -37,6 +39,10 @@ def status_tag(data, kill_job=True):
         
     message("status_tag: All validations passed successfully.")
     if (kill_job): 
+        df_products = create_or_read_df(page.conf['path_products_extract_csl'], data.keys())
+        if (df_products.empty):
+            delete_file(page.conf['path_products_extract_csl'])
+        
         message("Kill job")
         exit(0)
     else: 
