@@ -3244,7 +3244,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,",
+        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3253,7 +3253,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3262,7 +3262,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3271,7 +3271,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3280,7 +3280,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
