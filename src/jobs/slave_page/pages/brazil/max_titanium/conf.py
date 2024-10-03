@@ -5,6 +5,7 @@ STATUS = True
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},
+    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},
 ]
 
 DYNAMIC_SCROLL = {

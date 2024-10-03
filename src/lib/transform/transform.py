@@ -2,8 +2,9 @@ import pandas as pd
 
 from src.lib.transform.transform_functions import (
     apply_generic_filters, create_price_discount_percent_col,
-    create_product_def_cols, create_quantity_column, filter_nulls,
-    image_processing, remove_blacklisted_products)
+    create_product_collection_col, create_product_def_cols,
+    create_quantity_column, filter_nulls, image_processing,
+    remove_blacklisted_products)
 from src.lib.utils.log import message
 
 
@@ -62,24 +63,4 @@ def transform(conf, df):
 
     print(df.info())
 
-    return df
-
-def create_product_collection_col(df):
-    import numpy as np
-    
-    def assign_collection(row):
-        if (row['price_discount_percent'] > 0):
-            return 'Promoção'
-        elif ('whey' in str(row['product_def']).lower() or 'whey' in str(row['product_def_pred']).lower()):
-            return 'Whey Protein'
-        elif ('barrinha' in str(row['product_def']).lower() or 'barrinha' in str(row['product_def_pred']).lower()):
-            return 'Barrinhas'
-        elif ('creatina' in str(row['product_def']).lower() or 'creatina' in str(row['product_def_pred']).lower()):
-            return 'Creatina'
-        elif ('pretreino' in str(row['product_def']).lower() or 'pretreino' in str(row['product_def_pred']).lower()):
-            return 'Pré-treino'
-        else:
-            return 'Outros'
-
-    df['collection'] = df.apply(assign_collection, axis=1)
     return df

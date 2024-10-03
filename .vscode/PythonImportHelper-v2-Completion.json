@@ -879,6 +879,14 @@
         "documentation": {}
     },
     {
+        "label": "transform",
+        "importPath": "src.lib.transform.transform",
+        "description": "src.lib.transform.transform",
+        "isExtraImport": true,
+        "detail": "src.lib.transform.transform",
+        "documentation": {}
+    },
+    {
         "label": "src.lib.extract.selenium_service",
         "kind": 6,
         "isExtraImport": true,
@@ -1293,6 +1301,14 @@
     },
     {
         "label": "create_price_discount_percent_col",
+        "importPath": "src.lib.transform.transform_functions",
+        "description": "src.lib.transform.transform_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.transform.transform_functions",
+        "documentation": {}
+    },
+    {
+        "label": "create_product_collection_col",
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
         "isExtraImport": true,
@@ -2274,7 +2290,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df['title_extract'] = df['title_extract'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
         "documentation": {}
     },
@@ -3210,7 +3226,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.page_elements",
-        "peekOfCode": "def get_image_url(conf, soup):\n    image_element = soup.find(class_='t4s-product-main-img')\n    if (image_element and 'srcset' in image_element.attrs):\n        srcset = image_element['srcset']\n        image_urls = [img.strip() for img in srcset.split(',')]\n        highest_res_image = image_urls[-1].split(' ')[0]\n        image_link = \"https:\" + highest_res_image\n        return image_link\n    elif (image_element and 'src' in image_element.attrs):\n        image_link = \"https:\" + image_element['src']",
+        "peekOfCode": "def get_image_url(conf, soup):\n    import re\n    image_element = soup.find(class_='t4s-product-main-img')\n    if image_element:\n        # Extrai a URL base da imagem do 'data-src'\n        if 'data-src' in image_element.attrs:\n            base_image_url = \"https:\" + image_element['data-src']\n            # Extrai os tamanhos do atributo 'data-widths'\n            if 'data-widths' in image_element.attrs:\n                widths = image_element['data-widths']",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.page_elements",
         "documentation": {}
     },
@@ -3228,7 +3244,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,",
+        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3237,7 +3253,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3246,7 +3262,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3255,7 +3271,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3264,7 +3280,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3599,6 +3615,132 @@
         "description": "src.jobs.slave_page.pages.brazil.nutrata.page_url",
         "peekOfCode": "def get_url(conf, url):\n    if (not conf[\"index\"]):\n        conf[\"index\"] = 1\n        return url + str(1)\n    conf[\"index\"] += 1\n    return url + str(conf[\"index\"])",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.page_url",
+        "documentation": {}
+    },
+    {
+        "label": "JOB_NAME",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficialfarma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "BRAND",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "BRAND = \"oficialfarma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "URL",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "STATUS",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "PRODUCT_DEFINITION_TAG_MAP",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "DYNAMIC_SCROLL",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "create_origin_dry",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
+        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
+        "documentation": {}
+    },
+    {
+        "label": "dry",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
+        "documentation": {}
+    },
+    {
+        "label": "get_items",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "peekOfCode": "def get_items(conf, soup):\n    items = soup.find_all('li', class_='item product product-item')\n    return items\ndef get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='product-item-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('strong', class_='product name product-item-name').find('a')\n    title = title_element.get_text().strip() if title_element else None",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_product_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "peekOfCode": "def get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='product-item-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('strong', class_='product name product-item-name').find('a')\n    title = title_element.get_text().strip() if title_element else None\n    return title\ndef get_price(conf, soup):\n    price_element = soup.find('span', class_='price-wrapper')",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_title",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "peekOfCode": "def get_title(conf, soup):\n    title_element = soup.find('strong', class_='product name product-item-name').find('a')\n    title = title_element.get_text().strip() if title_element else None\n    return title\ndef get_price(conf, soup):\n    price_element = soup.find('span', class_='price-wrapper')\n    price_text = price_element.get_text().strip() if price_element else None\n    return price_text\ndef get_image_url(conf, soup):\n    image_element = soup.find('img', class_='product-image-photo')",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_price",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "peekOfCode": "def get_price(conf, soup):\n    price_element = soup.find('span', class_='price-wrapper')\n    price_text = price_element.get_text().strip() if price_element else None\n    return price_text\ndef get_image_url(conf, soup):\n    image_element = soup.find('img', class_='product-image-photo')\n    image_url = image_element['src'] if image_element else None\n    return image_url",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_image_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "peekOfCode": "def get_image_url(conf, soup):\n    image_element = soup.find('img', class_='product-image-photo')\n    image_url = image_element['src'] if image_element else None\n    return image_url",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.page_url",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.page_url",
+        "peekOfCode": "def get_url(conf, url):\n    return url",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.page_url",
         "documentation": {}
     },
     {
@@ -4727,15 +4869,6 @@
         "documentation": {}
     },
     {
-        "label": "create_product_collection_col",
-        "kind": 2,
-        "importPath": "src.lib.transform.transform",
-        "description": "src.lib.transform.transform",
-        "peekOfCode": "def create_product_collection_col(df):\n    import numpy as np\n    def assign_collection(row):\n        if (row['price_discount_percent'] > 0):\n            return 'Promoção'\n        elif ('whey' in str(row['product_def']).lower() or 'whey' in str(row['product_def_pred']).lower()):\n            return 'Whey Protein'\n        elif ('barrinha' in str(row['product_def']).lower() or 'barrinha' in str(row['product_def_pred']).lower()):\n            return 'Barrinhas'\n        elif ('creatina' in str(row['product_def']).lower() or 'creatina' in str(row['product_def_pred']).lower()):",
-        "detail": "src.lib.transform.transform",
-        "documentation": {}
-    },
-    {
         "label": "create_product_def_cols",
         "kind": 2,
         "importPath": "src.lib.transform.transform_functions",
@@ -4840,6 +4973,15 @@
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
         "peekOfCode": "def create_price_discount_percent_col(df, data_path):\n    df_new = deepcopy(df)\n    refs = df['ref'].values\n    path = f\"{data_path}/history\"\n    df_temp = read_and_stack_historical_csvs_dataframes(path, False)\n    if (df_temp.empty):\n        df[\"price_discount_percent\"] = 0\n        df[\"compare_at_price\"] = None\n        return df\n    df_temp = df_temp[df_temp[\"ref\"].isin(refs)]",
+        "detail": "src.lib.transform.transform_functions",
+        "documentation": {}
+    },
+    {
+        "label": "create_product_collection_col",
+        "kind": 2,
+        "importPath": "src.lib.transform.transform_functions",
+        "description": "src.lib.transform.transform_functions",
+        "peekOfCode": "def create_product_collection_col(df):\n    import numpy as np\n    def assign_collection(row):\n        if (row['price_discount_percent'] > 0):\n            return 'Promoção'\n        elif ('whey' in str(row['product_def']).lower() or 'whey' in str(row['product_def_pred']).lower()):\n            return 'Whey Protein'\n        elif ('barrinha' in str(row['product_def']).lower() or 'barrinha' in str(row['product_def_pred']).lower()):\n            return 'Barrinhas'\n        elif ('creatina' in str(row['product_def']).lower() or 'creatina' in str(row['product_def_pred']).lower()):",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },

@@ -257,3 +257,23 @@ def create_price_discount_percent_col(df, data_path):
         df_new.loc[df_new['ref'] == ref, "compare_at_price"] = compare_at_price
 
     return df_new
+
+def create_product_collection_col(df):
+    import numpy as np
+    
+    def assign_collection(row):
+        if (row['price_discount_percent'] > 0):
+            return 'Promoção'
+        elif ('whey' in str(row['product_def']).lower() or 'whey' in str(row['product_def_pred']).lower()):
+            return 'Whey Protein'
+        elif ('barrinha' in str(row['product_def']).lower() or 'barrinha' in str(row['product_def_pred']).lower()):
+            return 'Barrinhas'
+        elif ('creatina' in str(row['product_def']).lower() or 'creatina' in str(row['product_def_pred']).lower()):
+            return 'Creatina'
+        elif ('pretreino' in str(row['product_def']).lower() or 'pretreino' in str(row['product_def_pred']).lower()):
+            return 'Pré-treino'
+        else:
+            return 'Outros'
+
+    df['collection'] = df.apply(assign_collection, axis=1)
+    return df
