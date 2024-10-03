@@ -49,13 +49,30 @@ def get_price(conf, soup):
     return final_price
 
 def get_image_url(conf, soup):
+    import re
     image_element = soup.find(class_='t4s-product-main-img')
-    if (image_element and 'srcset' in image_element.attrs):
-        srcset = image_element['srcset']
-        image_urls = [img.strip() for img in srcset.split(',')]
-        highest_res_image = image_urls[-1].split(' ')[0]
-        image_link = "https:" + highest_res_image
-        return image_link
-    elif (image_element and 'src' in image_element.attrs):
-        image_link = "https:" + image_element['src']
-        return image_link
+
+    if image_element:
+        # Extrai a URL base da imagem do 'data-src'
+        if 'data-src' in image_element.attrs:
+            base_image_url = "https:" + image_element['data-src']
+            # Extrai os tamanhos do atributo 'data-widths'
+            if 'data-widths' in image_element.attrs:
+                widths = image_element['data-widths']
+                
+                # Converte a string dos tamanhos em uma lista de inteiros
+                width_list = [int(width) for width in re.findall(r'\d+', widths)]
+                
+                # Seleciona o maior tamanho da lista
+                max_width = max(width_list)
+                
+                # Constrói a URL final com o maior tamanho disponível
+                final_image_url = re.sub(r'width=\d+', f'width={max_width}', base_image_url)
+                
+                return final_image_url
+        # Caso não tenha 'data-src', verifica o atributo 'src'
+        elif 'src' in image_element.attrs and not image_element['src'].startswith('data:image'):
+            image_link = "https:" + image_element['src']
+            return image_link
+
+    return None  # Retorna None se não encontrar a imagem
