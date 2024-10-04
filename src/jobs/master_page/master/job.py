@@ -24,6 +24,7 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["url"] = page_conf.URL
     conf["product_definition_tag_map"] = page_conf.PRODUCT_DEFINITION_TAG_MAP
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
+    conf["user_agent"] = page_conf.USER_AGENT
     conf["data_path"] = f"{conf['src_data_path']}/{page_conf.JOB_NAME}"
     conf["seed_path"] = f"{local}/src/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}"
     conf["product_definition"] = f"{local}/data/{conf['page_type']}/brazil/product_definition"

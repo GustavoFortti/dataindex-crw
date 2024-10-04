@@ -13,7 +13,7 @@ def crawler(page, url):
     message("exec crawler")
     if (("driver" not in page.conf.keys()) or (not page.conf["driver"])):
         message("initialize_selenium")
-        page.conf["driver"] = se.initialize_selenium()
+        page.conf["driver"] = se.initialize_selenium(page.conf)
     
     load_page(page, url)
 
@@ -24,8 +24,6 @@ def load_page(page, url):
 
     if (page.conf['products_update']):
         message("PRODUCTS_UPDATE")
-        message("3 seconds")
-        time.sleep(3)
 
         element_selector = None
         se.load_url(driver, url, element_selector)
@@ -36,6 +34,10 @@ def load_page(page, url):
         return_percentage = page.conf['dynamic_scroll']['return_percentage']
         max_return = page.conf['dynamic_scroll']['max_return']
         max_attempts = page.conf['dynamic_scroll']['max_attempts']
+        
+        start_time_sleep = page.conf['dynamic_scroll']['start_time_sleep'] + 2
+        message(str(start_time_sleep) + " seconds")
+        time.sleep(start_time_sleep)
 
         if (page.conf['scroll_page']):
             se.dynamic_scroll(
@@ -59,6 +61,8 @@ def load_page(page, url):
             )
 
         soup, page_html = se.get_page_source(driver)
+        
+        page.conf["soup"] = soup
         
         extract_data(page, soup)
 

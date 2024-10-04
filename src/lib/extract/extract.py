@@ -88,6 +88,9 @@ def products_update(page):
             message(f"index url: {index}")
             message(f"url: {url}")
             
+            if (url == None):
+                break
+            
             crawler(page, url)
 
             if ((page.conf["size_items"] == 0) | (not index)):

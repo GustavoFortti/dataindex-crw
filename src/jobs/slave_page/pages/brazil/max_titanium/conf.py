@@ -8,7 +8,10 @@ PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},
 ]
 
+USER_AGENT = None
+
 DYNAMIC_SCROLL = {
+    "start_time_sleep": 1,
     "time_sleep": 0.5,
     "scroll_step": 500,
     "percentage": 0.07,

@@ -1,7 +1,7 @@
-JOB_NAME = "oficialfarma"
-BRAND = "oficial farma"
-URL = "https://www.oficialfarma.com.br/"
-STATUS = True
+JOB_NAME = "mercadolivre"
+BRAND = "mercado livre"
+URL = "https://lista.mercadolivre.com.br/"
+STATUS = False
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},
