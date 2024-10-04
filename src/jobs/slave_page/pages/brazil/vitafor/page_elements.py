@@ -23,7 +23,6 @@ def get_price(conf, soup):
     else:
         return None
 
-
 def get_image_url(conf, soup):
     image_element = soup.find('img', class_='vtex-product-summary-2-x-imageNormal')
     image_link = image_element['src'] if image_element else None

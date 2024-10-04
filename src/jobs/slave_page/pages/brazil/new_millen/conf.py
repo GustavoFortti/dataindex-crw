@@ -2,12 +2,19 @@ JOB_NAME = "new_millen"
 BRAND = "new millen"
 URL = "https://loja.newmillen.com.br"
 STATUS = True
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#product-description'},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,

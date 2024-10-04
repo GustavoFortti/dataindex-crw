@@ -2,12 +2,19 @@ JOB_NAME = "probiotica"
 BRAND = "probiotica"
 URL = "https://www.probiotica.com.br"
 STATUS = True
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,

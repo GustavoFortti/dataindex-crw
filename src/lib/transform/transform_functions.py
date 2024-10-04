@@ -277,3 +277,6 @@ def create_product_collection_col(df):
 
     df['collection'] = df.apply(assign_collection, axis=1)
     return df
+
+def create_product_description_col(df, conf):
+    message("criada colunas de descrição do produto")

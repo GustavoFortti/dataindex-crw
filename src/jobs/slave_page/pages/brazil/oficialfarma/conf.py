@@ -2,12 +2,19 @@ JOB_NAME = "oficialfarma"
 BRAND = "oficial farma"
 URL = "https://www.oficialfarma.com.br/"
 STATUS = True
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,
