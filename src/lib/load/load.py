@@ -13,7 +13,6 @@ def load(conf):
     df_products_transform_csl = pd.read_csv(conf['path_products_transform_csl'])
     df_products_transform_csl['is_transform_data'] = 1
     
-    
     df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)
     if (not df_products_load_csl.empty):
         df_products_load_csl['is_transform_data'] = 0
@@ -50,6 +49,6 @@ def load(conf):
         df.to_csv(conf['path_products_shopify_csl'], index=False)
         message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
         
-    df_products_transform_csl.to_csv(conf['path_products_transform_csl'], index=False)
-    message(f"path_products_transform_csl - {path_exists(conf['path_products_transform_csl'])}")
+    df_products_transform_csl.to_csv(conf['path_products_load_csl'], index=False)
+    message(f"path_products_load_csl - {path_exists(conf['path_products_load_csl'])}")
     message("LOAD END")
