@@ -12,7 +12,10 @@ PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': 'div', 'id': 'sugestoes'},
 ]
 
+USER_AGENT = None
+
 DYNAMIC_SCROLL = {
+    "start_time_sleep": 1,
     "time_sleep": 0.5,
     "scroll_step": 500,
     "percentage": 0.07,

@@ -7,7 +7,10 @@ PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},
 ]
 
+USER_AGENT = None
+
 DYNAMIC_SCROLL = {
+    "start_time_sleep": 1,
     "time_sleep": 0.5,
     "scroll_step": 1000,
     "percentage": 0.07,

@@ -7,7 +7,10 @@ PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},
 ]
 
+USER_AGENT = None
+
 DYNAMIC_SCROLL = {
+    "start_time_sleep": 1,
     "time_sleep": 0.5,
     "scroll_step": 1000,
     "percentage": 0.07,

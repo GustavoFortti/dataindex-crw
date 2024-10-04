@@ -15,7 +15,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from src.lib.utils.log import message
 
 
-def initialize_selenium():
+def initialize_selenium(conf):
     options = webdriver.ChromeOptions()
 
     display = os.getenv('DISPLAY')
@@ -40,8 +40,7 @@ def initialize_selenium():
 
     options.binary_location = "/usr/bin/google-chrome"
 
-    ua = UserAgent()
-    user_agent = ua.random
+    user_agent = conf["user_agent"] if conf["user_agent"] != None else get_desktop_user_agent()
     options.add_argument(f'user-agent={user_agent}')
 
     try:
@@ -61,6 +60,16 @@ def initialize_selenium():
     message(driver.execute_script("return navigator.userAgent;"))
 
     return driver
+
+def get_desktop_user_agent():
+    ua = UserAgent()
+    user_agent = ua.random
+    
+    # Repetir até que obtenhamos um user-agent que não seja de dispositivos móveis
+    while 'Mobile' in user_agent or 'Android' in user_agent or 'iPhone' in user_agent:
+        user_agent = ua.random
+        
+    return user_agent
 
 def load_url(driver, url, element_selector=None, timeout=30):
     driver.get(url)
@@ -89,12 +98,16 @@ def get_page_source(driver, retry_delay=5):
         except WebDriverException as e:
             message(f"Erro ao recarregar a página: {e}. Abortando...")
             return None  # Retorna None se falhar novamente
-   
+
 def dynamic_scroll(driver, time_sleep=0.7, scroll_step=1000, percentage=0.06, return_percentage=0.3, max_return=4000, max_attempts=3):
     total_height = driver.execute_script("return document.body.scrollHeight")
     scroll_increment = min(total_height * percentage, scroll_step)
     last_scrolled_height = 0
     attempt_count = 0  # Contador para rastrear tentativas sem mudança na posição de rolagem
+
+    # Obtenha o primeiro elemento visível para mover o mouse até ele (usando o body como exemplo)
+    body_element = driver.find_element(By.TAG_NAME, "body")
+    action = ActionChains(driver)
 
     while True:
         driver.execute_script(f"window.scrollBy(0, {scroll_increment});")
@@ -102,6 +115,9 @@ def dynamic_scroll(driver, time_sleep=0.7, scroll_step=1000, percentage=0.06, re
 
         scrolled_height = driver.execute_script("return window.pageYOffset;")
         message(f"Current scroll position: {scrolled_height}/{total_height}")  # Mostra a posição atual e o tamanho máximo
+
+        # Move o mouse para o elemento body (ou outro elemento visível)
+        action.move_to_element(body_element).perform()
 
         if scrolled_height == last_scrolled_height:
             attempt_count += 1  # Incrementa o contador se a posição de rolagem não mudou

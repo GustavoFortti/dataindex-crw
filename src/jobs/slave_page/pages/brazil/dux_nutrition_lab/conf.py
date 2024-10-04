@@ -7,7 +7,10 @@ PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},
 ]
 
+USER_AGENT = None
+
 DYNAMIC_SCROLL = {
+    "start_time_sleep": 1,
     "time_sleep": 1,
     "scroll_step": 1000,
     "percentage": 0.07,

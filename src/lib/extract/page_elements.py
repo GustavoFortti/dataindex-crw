@@ -31,30 +31,42 @@ class Page():
             raise ValueError(f"Error obtaining {el_name}: {e}")
 
     def get_item_elements(self, soup):
-        product_url = self.get_element(
-            "product_url",
-            self.page_elements.get_product_url,
-            soup
-        )
+        try:
+            product_url = self.get_element(
+                "product_url",
+                self.page_elements.get_product_url,
+                soup
+            )
+        except Exception as e:
+            raise Exception(f"Erro ao extrair 'product_url': {str(e)}")
 
-        title = self.get_element(
-            "title",
-            self.page_elements.get_title,
-            soup
-        )
+        try:
+            title = self.get_element(
+                "title",
+                self.page_elements.get_title,
+                soup
+            )
+        except Exception as e:
+            raise Exception(f"Erro ao extrair 'title': {str(e)}")
 
-        price = self.get_element(
-            "price",
-            self.page_elements.get_price,
-            soup
-        )
+        try:
+            price = self.get_element(
+                "price",
+                self.page_elements.get_price,
+                soup
+            )
+        except Exception as e:
+            raise Exception(f"Erro ao extrair 'price': {str(e)}")
 
-        image_url = self.get_element(
-            "image_url",
-            self.page_elements.get_image_url,
-            soup
-        )
-
+        try:
+            image_url = self.get_element(
+                "image_url",
+                self.page_elements.get_image_url,
+                soup
+            )
+        except Exception as e:
+            raise Exception(f"Erro ao extrair 'image_url': {str(e)}")
+            
         return product_url, title, price, image_url
 
     def check_element(self, el, el_name) -> None:

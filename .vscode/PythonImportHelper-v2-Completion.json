@@ -887,6 +887,22 @@
         "documentation": {}
     },
     {
+        "label": "transform",
+        "importPath": "src.lib.transform.transform",
+        "description": "src.lib.transform.transform",
+        "isExtraImport": true,
+        "detail": "src.lib.transform.transform",
+        "documentation": {}
+    },
+    {
+        "label": "transform",
+        "importPath": "src.lib.transform.transform",
+        "description": "src.lib.transform.transform",
+        "isExtraImport": true,
+        "detail": "src.lib.transform.transform",
+        "documentation": {}
+    },
+    {
         "label": "src.lib.extract.selenium_service",
         "kind": 6,
         "isExtraImport": true,
@@ -1840,7 +1856,7 @@
         "kind": 2,
         "importPath": "src.jobs.master_page.master.job",
         "description": "src.jobs.master_page.master.job",
-        "peekOfCode": "def update_conf_with_page_config(conf, page_conf, local, args):\n    conf[\"name\"] = page_conf.JOB_NAME\n    conf[\"brand\"] = page_conf.BRAND\n    conf[\"url\"] = page_conf.URL\n    conf[\"product_definition_tag_map\"] = page_conf.PRODUCT_DEFINITION_TAG_MAP\n    conf[\"dynamic_scroll\"] = page_conf.DYNAMIC_SCROLL\n    conf[\"data_path\"] = f\"{conf['src_data_path']}/{page_conf.JOB_NAME}\"\n    conf[\"seed_path\"] = f\"{local}/src/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}\"\n    conf[\"product_definition\"] = f\"{local}/data/{conf['page_type']}/brazil/product_definition\"\n    conf[\"scroll_page\"] = True",
+        "peekOfCode": "def update_conf_with_page_config(conf, page_conf, local, args):\n    conf[\"name\"] = page_conf.JOB_NAME\n    conf[\"brand\"] = page_conf.BRAND\n    conf[\"url\"] = page_conf.URL\n    conf[\"product_definition_tag_map\"] = page_conf.PRODUCT_DEFINITION_TAG_MAP\n    conf[\"dynamic_scroll\"] = page_conf.DYNAMIC_SCROLL\n    conf[\"user_agent\"] = page_conf.USER_AGENT\n    conf[\"data_path\"] = f\"{conf['src_data_path']}/{page_conf.JOB_NAME}\"\n    conf[\"seed_path\"] = f\"{local}/src/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}\"\n    conf[\"product_definition\"] = f\"{local}/data/{conf['page_type']}/brazil/product_definition\"",
         "detail": "src.jobs.master_page.master.job",
         "documentation": {}
     },
@@ -1858,7 +1874,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "JOB_NAME = \"adaptogen\"\nBRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"adaptogen\"\nBRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -1867,7 +1883,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "BRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -1876,7 +1892,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "URL = \"https://adaptogen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://adaptogen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -1885,7 +1901,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -1894,7 +1910,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
+        "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -1903,7 +1928,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -1984,7 +2009,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
-        "peekOfCode": "JOB_NAME = \"atlhetica_nutrition\"\nBRAND = \"atlhetica nutrition\"\nURL = \"https://www.atlheticanutrition.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,",
+        "peekOfCode": "JOB_NAME = \"atlhetica_nutrition\"\nBRAND = \"atlhetica nutrition\"\nURL = \"https://www.atlheticanutrition.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "documentation": {}
     },
@@ -1993,7 +2018,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
-        "peekOfCode": "BRAND = \"atlhetica nutrition\"\nURL = \"https://www.atlheticanutrition.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"atlhetica nutrition\"\nURL = \"https://www.atlheticanutrition.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.8,",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "documentation": {}
     },
@@ -2002,7 +2027,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
-        "peekOfCode": "URL = \"https://www.atlheticanutrition.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.atlheticanutrition.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "documentation": {}
     },
@@ -2011,7 +2036,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "documentation": {}
     },
@@ -2020,7 +2045,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div > section > div > div > div > div'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
+        "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "documentation": {}
     },
@@ -2029,7 +2063,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.8,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.conf",
         "documentation": {}
     },
@@ -2110,7 +2144,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "JOB_NAME = \"black_skull\"\nBRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"black_skull\"\nBRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2119,7 +2153,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "BRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2128,7 +2162,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "URL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2137,7 +2171,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2146,7 +2180,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
+        "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2155,7 +2198,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2236,7 +2279,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "JOB_NAME = \"boldsnacks\"\nBRAND = \"boldsnacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"boldsnacks\"\nBRAND = \"bold snacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2245,7 +2288,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "BRAND = \"boldsnacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"bold snacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2254,7 +2297,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "URL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2263,7 +2306,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2272,7 +2315,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
+        "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2281,7 +2333,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2362,7 +2414,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "JOB_NAME = \"dark_lab\"\nBRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"dark_lab\"\nBRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2371,7 +2423,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "BRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2380,7 +2432,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "URL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2389,7 +2441,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2398,7 +2450,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
+        "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2407,7 +2468,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2515,7 +2576,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, \n    {'tag': 'div', 'class': '__bs-nutri-table-container'}, \n    {'tag': 'div', 'class': 'col-md-6'},\n    {'tag': 'div', 'class': '__bs-evora-list-text'}, \n    {'tag': 'div', 'id': 'descricao'},\n    {'tag': 'div', 'id': 'sugestoes'},\n]\nDYNAMIC_SCROLL = {",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, \n    {'tag': 'div', 'class': '__bs-nutri-table-container'}, \n    {'tag': 'div', 'class': 'col-md-6'},\n    {'tag': 'div', 'class': '__bs-evora-list-text'}, \n    {'tag': 'div', 'id': 'descricao'},\n    {'tag': 'div', 'id': 'sugestoes'},\n]\nUSER_AGENT = None",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2524,7 +2585,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, \n    {'tag': 'div', 'class': '__bs-nutri-table-container'}, \n    {'tag': 'div', 'class': 'col-md-6'},\n    {'tag': 'div', 'class': '__bs-evora-list-text'}, \n    {'tag': 'div', 'id': 'descricao'},\n    {'tag': 'div', 'id': 'sugestoes'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, \n    {'tag': 'div', 'class': '__bs-nutri-table-container'}, \n    {'tag': 'div', 'class': 'col-md-6'},\n    {'tag': 'div', 'class': '__bs-evora-list-text'}, \n    {'tag': 'div', 'id': 'descricao'},\n    {'tag': 'div', 'id': 'sugestoes'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {",
+        "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
+        "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2533,7 +2603,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2614,7 +2684,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "JOB_NAME = \"dux_nutrition_lab\"\nBRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"dux_nutrition_lab\"\nBRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -2623,7 +2693,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "BRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -2632,7 +2702,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "URL = \"https://www.duxnutrition.com\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.duxnutrition.com\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -2641,7 +2711,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -2650,7 +2720,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
+        "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -2659,7 +2738,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -2740,7 +2819,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "JOB_NAME = \"growth_supplements\"\nBRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"growth_supplements\"\nBRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -2749,7 +2828,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "BRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -2758,7 +2837,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "URL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -2767,7 +2846,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -2776,7 +2855,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
+        "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -2785,7 +2873,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -2866,7 +2954,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "JOB_NAME = \"ifood\"\nBRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"ifood\"\nBRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -2875,7 +2963,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "BRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -2884,7 +2972,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "URL = \"https://ifood.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://ifood.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -2893,7 +2981,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -2902,7 +2990,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
+        "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -2911,7 +3008,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -2992,7 +3089,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "JOB_NAME = \"integralmedica\"\nBRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"integralmedica\"\nBRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3001,7 +3098,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "BRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3010,7 +3107,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "URL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3019,7 +3116,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3028,7 +3125,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
+        "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3037,7 +3143,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3118,7 +3224,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "JOB_NAME = \"iridium_labs\"\nBRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"iridium_labs\"\nBRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3127,7 +3233,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "BRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3136,7 +3242,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "URL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3145,7 +3251,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3154,7 +3260,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
+        "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3163,7 +3278,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3244,7 +3359,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,",
+        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3253,7 +3368,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,",
+        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3262,7 +3377,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
+        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3271,7 +3386,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3280,7 +3395,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,",
+        "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
+        "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3289,7 +3413,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3368,9 +3492,279 @@
     {
         "label": "JOB_NAME",
         "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "BRAND",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "URL",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "STATUS",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,\n    \"percentage\": 0.07,",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "PRODUCT_DEFINITION_TAG_MAP",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "USER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "DYNAMIC_SCROLL",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
+        "documentation": {}
+    },
+    {
+        "label": "create_origin_dry",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
+        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
+        "documentation": {}
+    },
+    {
+        "label": "dry",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
+        "documentation": {}
+    },
+    {
+        "label": "get_items",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "peekOfCode": "def get_items(conf, soup):\n    items = soup.find_all('li', class_='ui-search-layout__item')\n    return items\ndef get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='ui-search-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_product_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "peekOfCode": "def get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='ui-search-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:\n            title = link_element.get_text().strip()",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_title",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "peekOfCode": "def get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:\n            title = link_element.get_text().strip()\n            return title\n    return None\ndef get_price(conf, soup):\n    # Encontra a parte inteira do preço",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_price",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "peekOfCode": "def get_price(conf, soup):\n    # Encontra a parte inteira do preço\n    fraction_element = soup.find('span', class_='andes-money-amount__fraction')\n    fraction_text = fraction_element.get_text().strip() if fraction_element else None\n    # Encontra os centavos do preço\n    cents_element = soup.find('span', class_='andes-money-amount__cents')\n    cents_text = cents_element.get_text().strip() if cents_element else None\n    if fraction_text and cents_text:\n        price = f\"R$ {fraction_text},{cents_text}\"\n    elif fraction_text:",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_image_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "peekOfCode": "def get_image_url(conf, soup):\n    image_element = soup.find('img', class_='ui-search-result-image__element')\n    image_url = image_element['src'] if image_element else None\n    return image_url",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_url",
+        "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_url",
+        "peekOfCode": "def get_url(conf, url):\n    if conf['index'] is None:\n        conf['index'] = 1\n        return url\n    soup = conf['soup']\n    next_page = soup.find('a', class_='andes-pagination__link', title='Seguinte')\n    next_page = next_page.get('href')\n    if \"\" == next_page:\n        conf['index'] = None     \n        return None       ",
+        "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_url",
+        "documentation": {}
+    },
+    {
+        "label": "JOB_NAME",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "BRAND",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "URL",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "STATUS",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "PRODUCT_DEFINITION_TAG_MAP",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "DYNAMIC_SCROLL",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
+        "documentation": {}
+    },
+    {
+        "label": "create_origin_dry",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.dry",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.dry",
+        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.dry",
+        "documentation": {}
+    },
+    {
+        "label": "dry",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.dry",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.dry",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.dry",
+        "documentation": {}
+    },
+    {
+        "label": "get_items",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "peekOfCode": "def get_items(conf, soup):\n    items = soup.find_all('li', class_='ui-search-layout__item')\n    return items\ndef get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='ui-search-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_product_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "peekOfCode": "def get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='ui-search-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:\n            title = link_element.get_text().strip()",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_title",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "peekOfCode": "def get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:\n            title = link_element.get_text().strip()\n            return title\n    return None\ndef get_price(conf, soup):\n    # Encontra a parte inteira do preço",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_price",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "peekOfCode": "def get_price(conf, soup):\n    # Encontra a parte inteira do preço\n    fraction_element = soup.find('span', class_='andes-money-amount__fraction')\n    fraction_text = fraction_element.get_text().strip() if fraction_element else None\n    # Encontra os centavos do preço\n    cents_element = soup.find('span', class_='andes-money-amount__cents')\n    cents_text = cents_element.get_text().strip() if cents_element else None\n    if fraction_text and cents_text:\n        price = f\"R$ {fraction_text},{cents_text}\"\n    elif fraction_text:",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_image_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "peekOfCode": "def get_image_url(conf, soup):\n    image_element = soup.find('img', class_='ui-search-result-image__element')\n    image_url = image_element['src'] if image_element else None\n    return image_url",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.page_elements",
+        "documentation": {}
+    },
+    {
+        "label": "get_url",
+        "kind": 2,
+        "importPath": "src.jobs.slave_page.pages.brazil.netshoes.page_url",
+        "description": "src.jobs.slave_page.pages.brazil.netshoes.page_url",
+        "peekOfCode": "def get_url(conf, url):\n    return url",
+        "detail": "src.jobs.slave_page.pages.brazil.netshoes.page_url",
+        "documentation": {}
+    },
+    {
+        "label": "JOB_NAME",
+        "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "JOB_NAME = \"new_millen\"\nBRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"new_millen\"\nBRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -3379,7 +3773,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "BRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -3388,7 +3782,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "URL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -3397,7 +3791,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -3406,7 +3800,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
+        "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -3415,7 +3818,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -3496,7 +3899,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "JOB_NAME = \"nutrata\"\nBRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"nutrata\"\nBRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -3505,7 +3908,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "BRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -3514,7 +3917,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "URL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -3523,7 +3926,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -3532,7 +3935,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
+        "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -3541,7 +3953,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -3622,7 +4034,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficialfarma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,",
+        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -3631,7 +4043,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "BRAND = \"oficialfarma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -3640,7 +4052,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -3649,7 +4061,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -3658,7 +4070,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -3667,7 +4088,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1.3,\n    \"scroll_step\": 700,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -3748,7 +4169,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "JOB_NAME = \"probiotica\"\nBRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"probiotica\"\nBRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -3757,7 +4178,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "BRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -3766,7 +4187,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "URL = \"https://www.probiotica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.probiotica.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -3775,7 +4196,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -3784,7 +4205,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
+        "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -3793,7 +4223,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -3874,7 +4304,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "JOB_NAME = \"puravida\"\nBRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"puravida\"\nBRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -3883,7 +4313,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "BRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -3892,7 +4322,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "URL = \"https://www.puravida.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.puravida.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -3901,7 +4331,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -3910,7 +4340,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
+        "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -3919,7 +4358,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -4000,7 +4439,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "JOB_NAME = \"truesource\"\nBRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"truesource\"\nBRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -4009,7 +4448,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "BRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -4018,7 +4457,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "URL = \"https://www.truesource.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://www.truesource.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -4027,7 +4466,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -4036,7 +4475,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
+        "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -4045,7 +4493,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 1,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -4126,7 +4574,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "JOB_NAME = \"under_labz\"\nBRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
+        "peekOfCode": "JOB_NAME = \"under_labz\"\nBRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -4135,7 +4583,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "BRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -4144,7 +4592,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "URL = \"https://underlabz.com.br\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "peekOfCode": "URL = \"https://underlabz.com.br\"\nSTATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -4153,7 +4601,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,",
+        "peekOfCode": "STATUS = False\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -4162,7 +4610,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,",
+        "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
+        "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -4171,7 +4628,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1000,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.3,\n    \"max_return\": 4000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -4252,7 +4709,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "JOB_NAME = \"vitafor\"\nBRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,",
+        "peekOfCode": "JOB_NAME = \"vitafor\"\nBRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -4261,7 +4718,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "BRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,",
+        "peekOfCode": "BRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -4270,7 +4727,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "URL = \"https://www.vitafor.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,",
+        "peekOfCode": "URL = \"https://www.vitafor.com.br\"\nSTATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -4279,7 +4736,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,\n    \"max_return\": 2000,",
+        "peekOfCode": "STATUS = True\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -4288,7 +4745,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nDYNAMIC_SCROLL = {\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,\n    \"max_return\": 2000,\n    \"max_attempts\": 3",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]\nUSER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,",
+        "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
+        "documentation": {}
+    },
+    {
+        "label": "USER_AGENT",
+        "kind": 5,
+        "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
+        "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
+        "peekOfCode": "USER_AGENT = None\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -4297,7 +4763,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.1,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -4378,7 +4844,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.crawler",
         "description": "src.lib.extract.crawler",
-        "peekOfCode": "def crawler(page, url):\n    message(\"exec crawler\")\n    if ((\"driver\" not in page.conf.keys()) or (not page.conf[\"driver\"])):\n        message(\"initialize_selenium\")\n        page.conf[\"driver\"] = se.initialize_selenium()\n    load_page(page, url)\ndef load_page(page, url):\n    message(\"exec load_page\")\n    driver = page.conf[\"driver\"]\n    if (page.conf['products_update']):",
+        "peekOfCode": "def crawler(page, url):\n    message(\"exec crawler\")\n    if ((\"driver\" not in page.conf.keys()) or (not page.conf[\"driver\"])):\n        message(\"initialize_selenium\")\n        page.conf[\"driver\"] = se.initialize_selenium(page.conf)\n    load_page(page, url)\ndef load_page(page, url):\n    message(\"exec load_page\")\n    driver = page.conf[\"driver\"]\n    if (page.conf['products_update']):",
         "detail": "src.lib.extract.crawler",
         "documentation": {}
     },
@@ -4387,7 +4853,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.crawler",
         "description": "src.lib.extract.crawler",
-        "peekOfCode": "def load_page(page, url):\n    message(\"exec load_page\")\n    driver = page.conf[\"driver\"]\n    if (page.conf['products_update']):\n        message(\"PRODUCTS_UPDATE\")\n        message(\"3 seconds\")\n        time.sleep(3)\n        element_selector = None\n        se.load_url(driver, url, element_selector)\n        time_sleep = page.conf['dynamic_scroll']['time_sleep']",
+        "peekOfCode": "def load_page(page, url):\n    message(\"exec load_page\")\n    driver = page.conf[\"driver\"]\n    if (page.conf['products_update']):\n        message(\"PRODUCTS_UPDATE\")\n        element_selector = None\n        se.load_url(driver, url, element_selector)\n        time_sleep = page.conf['dynamic_scroll']['time_sleep']\n        scroll_step = page.conf['dynamic_scroll']['scroll_step']\n        percentage = page.conf['dynamic_scroll']['percentage']",
         "detail": "src.lib.extract.crawler",
         "documentation": {}
     },
@@ -4468,7 +4934,16 @@
         "kind": 2,
         "importPath": "src.lib.extract.selenium_service",
         "description": "src.lib.extract.selenium_service",
-        "peekOfCode": "def initialize_selenium():\n    options = webdriver.ChromeOptions()\n    display = os.getenv('DISPLAY')\n    message(f\"DISPLAY - {display}\")\n    options.add_argument(\"--no-sandbox\")\n    options.add_argument(\"--disable-dev-shm-usage\")\n    options.add_argument(\"--disable-software-rasterizer\")\n    options.add_argument(\"--disable-gpu\")\n    options.add_argument(\"--remote-debugging-port=9222\")\n    options.add_argument(\"--window-size=1920,1080\")",
+        "peekOfCode": "def initialize_selenium(conf):\n    options = webdriver.ChromeOptions()\n    display = os.getenv('DISPLAY')\n    message(f\"DISPLAY - {display}\")\n    options.add_argument(\"--no-sandbox\")\n    options.add_argument(\"--disable-dev-shm-usage\")\n    options.add_argument(\"--disable-software-rasterizer\")\n    options.add_argument(\"--disable-gpu\")\n    options.add_argument(\"--remote-debugging-port=9222\")\n    options.add_argument(\"--window-size=1920,1080\")",
+        "detail": "src.lib.extract.selenium_service",
+        "documentation": {}
+    },
+    {
+        "label": "get_desktop_user_agent",
+        "kind": 2,
+        "importPath": "src.lib.extract.selenium_service",
+        "description": "src.lib.extract.selenium_service",
+        "peekOfCode": "def get_desktop_user_agent():\n    ua = UserAgent()\n    user_agent = ua.random\n    # Repetir até que obtenhamos um user-agent que não seja de dispositivos móveis\n    while 'Mobile' in user_agent or 'Android' in user_agent or 'iPhone' in user_agent:\n        user_agent = ua.random\n    return user_agent\ndef load_url(driver, url, element_selector=None, timeout=30):\n    driver.get(url)\n    driver.implicitly_wait(100)",
         "detail": "src.lib.extract.selenium_service",
         "documentation": {}
     },
@@ -4495,7 +4970,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.selenium_service",
         "description": "src.lib.extract.selenium_service",
-        "peekOfCode": "def dynamic_scroll(driver, time_sleep=0.7, scroll_step=1000, percentage=0.06, return_percentage=0.3, max_return=4000, max_attempts=3):\n    total_height = driver.execute_script(\"return document.body.scrollHeight\")\n    scroll_increment = min(total_height * percentage, scroll_step)\n    last_scrolled_height = 0\n    attempt_count = 0  # Contador para rastrear tentativas sem mudança na posição de rolagem\n    while True:\n        driver.execute_script(f\"window.scrollBy(0, {scroll_increment});\")\n        time.sleep(time_sleep)  # Espera para o carregamento do conteúdo\n        scrolled_height = driver.execute_script(\"return window.pageYOffset;\")\n        message(f\"Current scroll position: {scrolled_height}/{total_height}\")  # Mostra a posição atual e o tamanho máximo",
+        "peekOfCode": "def dynamic_scroll(driver, time_sleep=0.7, scroll_step=1000, percentage=0.06, return_percentage=0.3, max_return=4000, max_attempts=3):\n    total_height = driver.execute_script(\"return document.body.scrollHeight\")\n    scroll_increment = min(total_height * percentage, scroll_step)\n    last_scrolled_height = 0\n    attempt_count = 0  # Contador para rastrear tentativas sem mudança na posição de rolagem\n    # Obtenha o primeiro elemento visível para mover o mouse até ele (usando o body como exemplo)\n    body_element = driver.find_element(By.TAG_NAME, \"body\")\n    action = ActionChains(driver)\n    while True:\n        driver.execute_script(f\"window.scrollBy(0, {scroll_increment});\")",
         "detail": "src.lib.extract.selenium_service",
         "documentation": {}
     },
