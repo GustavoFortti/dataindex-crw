@@ -14,21 +14,21 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    # "darkness"
-    # "dux_nutrition_lab"
-    # "growth_supplements"
+    "darkness"
+    # "dux_nutrition_lab" 
+    # "growth_supplements"  # banner
     # "integralmedica"
     # "iridium_labs"
-    # "max_titanium"
-    # "mercadolivre"
+    # "max_titanium"  # texto
+    # "mercadolivre"  # texto
     # "new_millen"
-    # "nutrata"
-    # "oficialfarma"
-    "probiotica"
-    # "puravida"
-    # "truesource"
+    # "nutrata" 
+    # "oficialfarma" 
+    # "probiotica" # texto
+    # "puravida" # banner
+    # "truesource" # banner
     # "under_labz"
-    # "vitafor"
+    # "vitafor" # texto
 )
 
 job_type="master_page"
@@ -36,8 +36,8 @@ job_name="master"
 
 exec_type="extract"
 # exec_flag="status_job"
-exec_flag="new_page"
-# exec_flag="products_update"
+# exec_flag="new_page"
+exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 

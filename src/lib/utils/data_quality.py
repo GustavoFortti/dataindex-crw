@@ -59,7 +59,7 @@ def data_history_analysis(conf, df):
 
     message("CARREGANDO DATAFRAME HISTORICO...")
     message(history_path)
-    df_history = read_and_stack_historical_csvs_dataframes(history_path, True)
+    df_history = read_and_stack_historical_csvs_dataframes(history_path, True, dtype={'ref': str})
 
     message("ANALISE volume")
     volume_erro, volume_alert = volume_analysis(df_history, df)

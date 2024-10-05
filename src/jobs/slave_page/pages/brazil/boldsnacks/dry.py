@@ -1,10 +1,9 @@
 import pandas as pd
 from src.lib.transform.transform import transform
+from src.lib.utils.dataframe import read_df
 
-def create_origin_dry():
-    file_path = CONF['data_path']
-
-    df = pd.read_csv(file_path + "/products_extract_csl.csv")
+def create_products_transform_csl():
+    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})
 
     def_string = "barrinha "
     df['title'] = def_string + df['title']
@@ -14,7 +13,7 @@ def create_origin_dry():
     df['name'] = df['name'].str.slice(len(def_string))
     df['title_extract'] = df['title_extract'].str.slice(len(def_string))
 
-    df.to_csv(file_path + "/products_transform_csl.csv", index=False)
+    df.to_csv(CONF['path_products_transform_csl'], index=False)
     print("Success in saving products_transform_csl")
 
 def dry(conf):
@@ -22,4 +21,4 @@ def dry(conf):
     CONF = conf
 
     print("Data Dry")
-    create_origin_dry()
+    create_products_transform_csl()

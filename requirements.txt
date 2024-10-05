@@ -11,3 +11,4 @@ scikit-learn
 pyppeteer
 numpy
 fake_useragent
+html2text

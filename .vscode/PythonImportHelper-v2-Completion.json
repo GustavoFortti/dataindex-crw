@@ -303,7 +303,175 @@
         "documentation": {}
     },
     {
-        "label": "create_or_read_df",
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
         "isExtraImport": true,
@@ -320,6 +488,38 @@
     },
     {
         "label": "create_or_read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "create_or_read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
         "isExtraImport": true,
@@ -328,6 +528,14 @@
     },
     {
         "label": "read_and_stack_historical_csvs_dataframes",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
         "isExtraImport": true,
@@ -1960,11 +2168,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.dry",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.dry",
         "documentation": {}
     },
@@ -1973,7 +2181,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.dry",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.dry",
         "documentation": {}
     },
@@ -2113,11 +2321,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.dry",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.dry",
         "documentation": {}
     },
@@ -2126,7 +2334,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.dry",
         "description": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.atlhetica_nutrition.dry",
         "documentation": {}
     },
@@ -2266,11 +2474,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.dry",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.dry",
         "documentation": {}
     },
@@ -2279,7 +2487,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.dry",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.dry",
         "documentation": {}
     },
@@ -2419,11 +2627,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df['title_extract'] = df['title_extract'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df['title_extract'] = df['title_extract'].str.slice(len(def_string))\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
         "documentation": {}
     },
@@ -2432,7 +2640,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.dry",
         "documentation": {}
     },
@@ -2572,11 +2780,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.dry",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.dry",
         "documentation": {}
     },
@@ -2585,7 +2793,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.dry",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.dry",
         "documentation": {}
     },
@@ -2725,11 +2933,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.dry",
         "description": "src.jobs.slave_page.pages.brazil.darkness.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving transform\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving transform\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.dry",
         "documentation": {}
     },
@@ -2738,7 +2946,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.dry",
         "description": "src.jobs.slave_page.pages.brazil.darkness.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.dry",
         "documentation": {}
     },
@@ -2756,7 +2964,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
-        "peekOfCode": "def get_product_url(conf, item):\n    product_link_element = item.find('a', class_='vtex-product-summary-2-x-clearLink')\n    return conf[\"url\"] + product_link_element['href'] if product_link_element else None\ndef get_title(conf, item):\n    title_element = item.find('span', class_='vtex-product-summary-2-x-brandName')\n    return title_element.get_text().strip() if title_element else None\ndef get_price(conf, item):\n    price_element = item.find(\"span\", class_=\"vtex-product-price-1-x-sellingPriceValue\")\n    if price_element:\n        currency_code = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyCode\").get_text(strip=True)",
+        "peekOfCode": "def get_product_url(conf, item):\n    product_link_element = item.find('a', class_='vtex-product-summary-2-x-clearLink')\n    return conf[\"url\"] + product_link_element['href'] if product_link_element else None\ndef get_title(conf, item):\n    title_element = item.find('span', class_='vtex-product-summary-2-x-brandName')\n    return title_element.get_text().strip() if title_element else None\ndef get_price(conf, item):\n    price_element = item.find(\"span\", class_=\"vtex-product-price-1-x-sellingPriceValue\")\n    if price_element:\n        # Extrai as diferentes partes do preço",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
         "documentation": {}
     },
@@ -2765,7 +2973,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
-        "peekOfCode": "def get_title(conf, item):\n    title_element = item.find('span', class_='vtex-product-summary-2-x-brandName')\n    return title_element.get_text().strip() if title_element else None\ndef get_price(conf, item):\n    price_element = item.find(\"span\", class_=\"vtex-product-price-1-x-sellingPriceValue\")\n    if price_element:\n        currency_code = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyCode\").get_text(strip=True)\n        currency_integer = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyInteger\").get_text(strip=True)\n        currency_decimal = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyDecimal\").get_text(strip=True)\n        currency_fraction = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyFraction\").get_text(strip=True)",
+        "peekOfCode": "def get_title(conf, item):\n    title_element = item.find('span', class_='vtex-product-summary-2-x-brandName')\n    return title_element.get_text().strip() if title_element else None\ndef get_price(conf, item):\n    price_element = item.find(\"span\", class_=\"vtex-product-price-1-x-sellingPriceValue\")\n    if price_element:\n        # Extrai as diferentes partes do preço\n        currency_code = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyCode\").get_text(strip=True)\n        currency_integer = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyInteger\").get_text(strip=True)\n        currency_decimal = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyDecimal\").get_text(strip=True)",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
         "documentation": {}
     },
@@ -2774,7 +2982,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
-        "peekOfCode": "def get_price(conf, item):\n    price_element = item.find(\"span\", class_=\"vtex-product-price-1-x-sellingPriceValue\")\n    if price_element:\n        currency_code = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyCode\").get_text(strip=True)\n        currency_integer = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyInteger\").get_text(strip=True)\n        currency_decimal = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyDecimal\").get_text(strip=True)\n        currency_fraction = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyFraction\").get_text(strip=True)\n        price = f\"{currency_code} {currency_integer}{currency_decimal}{currency_fraction}\"\n        return price\n    return None",
+        "peekOfCode": "def get_price(conf, item):\n    price_element = item.find(\"span\", class_=\"vtex-product-price-1-x-sellingPriceValue\")\n    if price_element:\n        # Extrai as diferentes partes do preço\n        currency_code = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyCode\").get_text(strip=True)\n        currency_integer = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyInteger\").get_text(strip=True)\n        currency_decimal = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyDecimal\").get_text(strip=True)\n        currency_fraction = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyFraction\").get_text(strip=True)\n        # Verifica se há espaço entre o código da moeda e o valor inteiro\n        currency_literal = price_element.find(\"span\", class_=\"vtex-product-price-1-x-currencyLiteral\")",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.page_elements",
         "documentation": {}
     },
@@ -2878,11 +3086,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.dry",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.dry",
         "documentation": {}
     },
@@ -2891,7 +3099,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.dry",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.dry",
         "documentation": {}
     },
@@ -3031,11 +3239,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.dry",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.replace('- growth supplements', '')\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.replace('- growth supplements', '')\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.dry",
         "documentation": {}
     },
@@ -3044,7 +3252,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.dry",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.dry",
         "documentation": {}
     },
@@ -3184,11 +3392,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.dry",
         "description": "src.jobs.slave_page.pages.brazil.ifood.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.dry",
         "documentation": {}
     },
@@ -3197,7 +3405,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.dry",
         "description": "src.jobs.slave_page.pages.brazil.ifood.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.dry",
         "documentation": {}
     },
@@ -3337,11 +3545,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.dry",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.dry",
         "documentation": {}
     },
@@ -3350,7 +3558,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.dry",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.dry",
         "documentation": {}
     },
@@ -3490,11 +3698,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.dry",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.dry",
         "documentation": {}
     },
@@ -3503,7 +3711,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.dry",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.dry",
         "documentation": {}
     },
@@ -3643,11 +3851,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.dry",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.dry",
         "documentation": {}
     },
@@ -3656,7 +3864,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.dry",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.dry",
         "documentation": {}
     },
@@ -3719,7 +3927,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3728,7 +3936,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3737,7 +3945,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3746,7 +3954,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3755,7 +3963,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "USER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]",
+        "peekOfCode": "USER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n    {'tag': None, 'path': '#description'},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3764,7 +3972,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "PRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nDYNAMIC_SCROLL = {",
+        "peekOfCode": "PRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n    {'tag': None, 'path': '#description'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3773,7 +3981,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,",
+        "peekOfCode": "PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n    {'tag': None, 'path': '#description'},\n]\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3782,7 +3990,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#description'},\n]\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,\n    \"max_return\": 2000,",
+        "peekOfCode": "PRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n    {'tag': None, 'path': '#description'},\n]\nDYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -3791,16 +3999,16 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.7,\n    \"scroll_step\": 1200,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
+        "peekOfCode": "DYNAMIC_SCROLL = {\n    \"start_time_sleep\": 1,\n    \"time_sleep\": 0.5,\n    \"scroll_step\": 1500,\n    \"percentage\": 0.07,\n    \"return_percentage\": 0.2,\n    \"max_return\": 2000,\n    \"max_attempts\": 3\n}",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
         "documentation": {}
     },
@@ -3809,7 +4017,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.dry",
         "documentation": {}
     },
@@ -3818,7 +4026,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
-        "peekOfCode": "def get_items(conf, soup):\n    items = soup.find_all('li', class_='ui-search-layout__item')\n    return items\ndef get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='ui-search-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:",
+        "peekOfCode": "def get_items(conf, soup):\n    items = soup.find_all('li', class_='ui-search-layout__item')\n    return items\ndef get_product_url(conf, soup):\n    import re\n    print(soup)\n    # Atualiza para buscar o link de todas as estruturas\n    product_link_element = soup.find('a', href=re.compile(r'^https://www\\.mercadolivre\\.com\\.br/'))\n    if not product_link_element:\n        product_link_element = soup.find('a', href=re.compile(r'^https://produto\\.mercadolivre\\.com\\.br/'))",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "documentation": {}
     },
@@ -3827,7 +4035,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
-        "peekOfCode": "def get_product_url(conf, soup):\n    product_link_element = soup.find('a', class_='ui-search-link')\n    product_link = product_link_element['href'] if product_link_element else None\n    return product_link\ndef get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:\n            title = link_element.get_text().strip()",
+        "peekOfCode": "def get_product_url(conf, soup):\n    import re\n    print(soup)\n    # Atualiza para buscar o link de todas as estruturas\n    product_link_element = soup.find('a', href=re.compile(r'^https://www\\.mercadolivre\\.com\\.br/'))\n    if not product_link_element:\n        product_link_element = soup.find('a', href=re.compile(r'^https://produto\\.mercadolivre\\.com\\.br/'))\n    if product_link_element and product_link_element.get('href'):\n        return product_link_element['href'].strip()\n    return None",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "documentation": {}
     },
@@ -3836,7 +4044,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
-        "peekOfCode": "def get_title(conf, soup):\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:\n            title = link_element.get_text().strip()\n            return title\n    return None\ndef get_price(conf, soup):\n    # Encontra a parte inteira do preço",
+        "peekOfCode": "def get_title(conf, soup):\n    # Atualiza para buscar o título em todas as estruturas\n    title_element = soup.find('h2', class_='ui-search-item__title')\n    if not title_element:\n        title_element = soup.find('h2', class_='poly-component__title')\n    if not title_element:\n        title_element = soup.find('h2', class_='ui-search-item__group__element')\n    if title_element:\n        link_element = title_element.find('a')\n        if link_element:",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "documentation": {}
     },
@@ -3845,7 +4053,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
-        "peekOfCode": "def get_price(conf, soup):\n    # Encontra a parte inteira do preço\n    fraction_element = soup.find('span', class_='andes-money-amount__fraction')\n    fraction_text = fraction_element.get_text().strip() if fraction_element else None\n    # Encontra os centavos do preço\n    cents_element = soup.find('span', class_='andes-money-amount__cents')\n    cents_text = cents_element.get_text().strip() if cents_element else None\n    if fraction_text and cents_text:\n        price = f\"R$ {fraction_text},{cents_text}\"\n    elif fraction_text:",
+        "peekOfCode": "def get_price(conf, soup):\n    # Atualiza para buscar o preço em todas as estruturas\n    # Encontra a parte inteira do preço\n    fraction_element = soup.find('span', class_='andes-money-amount__fraction')\n    if not fraction_element:\n        fraction_element = soup.find('span', class_='poly-price__current').find('span', class_='andes-money-amount__fraction')\n    if not fraction_element:\n        fraction_element = soup.find('div', class_='ui-search-price__second-line').find('span', class_='andes-money-amount__fraction')\n    fraction_text = fraction_element.get_text().strip() if fraction_element else None\n    # Encontra os centavos do preço",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "documentation": {}
     },
@@ -3854,7 +4062,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
-        "peekOfCode": "def get_image_url(conf, soup):\n    image_element = soup.find('img', class_='ui-search-result-image__element')\n    image_url = image_element['src'] if image_element else None\n    return image_url",
+        "peekOfCode": "def get_image_url(conf, soup):\n    # Atualiza para buscar a imagem em todas as estruturas\n    image_element = soup.find('img', class_='ui-search-result-image__element')\n    if not image_element:\n        image_element = soup.find('img', class_='poly-component__picture')\n    if not image_element:\n        image_element = soup.find('img', class_='ui-search-result__image')\n    image_url = image_element['src'] if image_element else None\n    return image_url",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_elements",
         "documentation": {}
     },
@@ -3863,7 +4071,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.page_url",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.page_url",
-        "peekOfCode": "def get_url(conf, url):\n    if conf['index'] is None:\n        conf['index'] = 1\n        return url\n    soup = conf['soup']\n    next_page = soup.find('a', class_='andes-pagination__link', title='Seguinte')\n    next_page = next_page.get('href')\n    if \"\" == next_page:\n        conf['index'] = None     \n        return None       ",
+        "peekOfCode": "def get_url(conf, url):\n    if conf['index'] is None:\n        conf['index'] = 1\n        return url\n    soup = conf['soup']\n    next_page = soup.find('a', class_='andes-pagination__link', title='Seguinte')\n    if next_page is None:\n        conf['index'] = None\n        return None\n    next_page_url = next_page.get('href') if next_page else None",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.page_url",
         "documentation": {}
     },
@@ -3949,11 +4157,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.dry",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.dry",
         "documentation": {}
     },
@@ -3962,7 +4170,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.dry",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.dry",
         "documentation": {}
     },
@@ -4102,11 +4310,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.dry",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.dry",
         "documentation": {}
     },
@@ -4115,7 +4323,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.dry",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.dry",
         "documentation": {}
     },
@@ -4255,11 +4463,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.dry",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.dry",
         "documentation": {}
     },
@@ -4268,7 +4476,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.dry",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.dry",
         "documentation": {}
     },
@@ -4408,11 +4616,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    def_string = \"barrinha \"\n    df['title'] = def_string + df['title']\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.slice(len(def_string))\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
         "documentation": {}
     },
@@ -4421,7 +4629,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.dry",
         "documentation": {}
     },
@@ -4561,11 +4769,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.dry",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.dry",
         "documentation": {}
     },
@@ -4574,7 +4782,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.dry",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.dry",
         "documentation": {}
     },
@@ -4714,11 +4922,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.dry",
         "description": "src.jobs.slave_page.pages.brazil.puravida.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.dry",
         "documentation": {}
     },
@@ -4727,7 +4935,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.dry",
         "description": "src.jobs.slave_page.pages.brazil.puravida.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.dry",
         "documentation": {}
     },
@@ -4867,11 +5075,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.dry",
         "description": "src.jobs.slave_page.pages.brazil.truesource.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.replace(' - True Source', '')\n    df['name'] = df['name'].str.replace('True Source', '')\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.replace(' - True Source', '')\n    df['name'] = df['name'].str.replace('True Source', '')\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.dry",
         "documentation": {}
     },
@@ -4880,7 +5088,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.dry",
         "description": "src.jobs.slave_page.pages.brazil.truesource.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.dry",
         "documentation": {}
     },
@@ -5020,11 +5228,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.dry",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.dry",
         "documentation": {}
     },
@@ -5033,7 +5241,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.dry",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.dry",
         "documentation": {}
     },
@@ -5173,11 +5381,11 @@
         "documentation": {}
     },
     {
-        "label": "create_origin_dry",
+        "label": "create_products_transform_csl",
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.dry",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.dry",
-        "peekOfCode": "def create_origin_dry():\n    file_path = CONF['data_path']\n    df = pd.read_csv(file_path + \"/products_extract_csl.csv\")\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.replace(' - vitafor', '')\n    df.to_csv(file_path + \"/products_transform_csl.csv\", index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf",
+        "peekOfCode": "def create_products_transform_csl():\n    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})\n    df = transform(CONF, df)\n    df['name'] = df['name'].str.replace(' - vitafor', '')\n    df.to_csv(CONF['path_products_transform_csl'], index=False)\n    print(\"Success in saving products_transform_csl\")\ndef dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.dry",
         "documentation": {}
     },
@@ -5186,7 +5394,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.dry",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.dry",
-        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_origin_dry()",
+        "peekOfCode": "def dry(conf):\n    global CONF\n    CONF = conf\n    print(\"Data Dry\")\n    create_products_transform_csl()",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.dry",
         "documentation": {}
     },
@@ -5294,7 +5502,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_metadata_update(page):\n    message(\"products_metadata_update\")\n    page.conf['path_products_extract_csl'] = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    df_products_extract_csl = pd.read_csv(page.conf['path_products_extract_csl'])\n    urls = df_products_extract_csl['product_url'].values\n    for value, url in enumerate(urls):\n        size_urls = len(urls) - 1\n        message(f\"seed: {url}\")\n        message(f\"index: {value} / {size_urls}\")\n        crawler(page, url)",
+        "peekOfCode": "def products_metadata_update(page):\n    message(\"products_metadata_update\")\n    page.conf['path_products_extract_csl'] = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    df_products_extract_csl = read_df(page.conf['path_products_extract_csl'], dtype={'ref': str})\n    urls = df_products_extract_csl['product_url'].values\n    for value, url in enumerate(urls):\n        size_urls = len(urls) - 1\n        message(f\"seed: {url}\")\n        message(f\"index: {value} / {size_urls}\")\n        crawler(page, url)",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -5303,7 +5511,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_metadata_update_old_pages(page):\n    message(\"PRODUCTS_METADATA_UPDATE_OLD_PAGES\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = pd.read_csv(products_extract_csl)\n    pagas_path = page.conf['data_path'] + \"/products\"\n    old_files = get_old_files_by_percent(pagas_path, True, 5)\n    refs = [i.replace(\".txt\", \"\") for i in old_files]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]\n    refs_to_delete = list(set(refs) - set(df_products_extract_csl['ref']))",
+        "peekOfCode": "def products_metadata_update_old_pages(page):\n    message(\"PRODUCTS_METADATA_UPDATE_OLD_PAGES\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = read_df(products_extract_csl, dtype={'ref': str})\n    pagas_path = page.conf['data_path'] + \"/products\"\n    old_files = get_old_files_by_percent(pagas_path, True, 5)\n    refs = [i.replace(\".txt\", \"\") for i in old_files]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]\n    refs_to_delete = list(set(refs) - set(df_products_extract_csl['ref']))",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -5321,7 +5529,7 @@
         "kind": 2,
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
-        "peekOfCode": "def products_metadata_create_pages_if_not_exist(page):\n    message(\"PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = pd.read_csv(products_extract_csl)\n    pagas_path = page.conf['data_path'] + \"/products\"\n    all_pages = [i for i in list_directory(pagas_path)]\n    refs = [f\"{i}.txt\" for i in df_products_extract_csl['ref'].values]\n    pages_to_create = [i.replace(\".txt\", \"\") for i in refs if i not in all_pages]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl[\"ref\"].isin(pages_to_create)]",
+        "peekOfCode": "def products_metadata_create_pages_if_not_exist(page):\n    message(\"PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = read_df(products_extract_csl, dtype={'ref': str})\n    pagas_path = page.conf['data_path'] + \"/products\"\n    all_pages = [i for i in list_directory(pagas_path)]\n    refs = [f\"{i}.txt\" for i in df_products_extract_csl['ref'].values]\n    pages_to_create = [i.replace(\".txt\", \"\") for i in refs if i not in all_pages]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl[\"ref\"].isin(pages_to_create)]",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },
@@ -5609,7 +5817,7 @@
         "kind": 2,
         "importPath": "src.lib.load.load",
         "description": "src.lib.load.load",
-        "peekOfCode": "def load(conf):\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = pd.read_csv(conf['path_products_transform_csl'])\n    df_products_transform_csl['is_transform_data'] = 1\n    df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)\n    if (not df_products_load_csl.empty):\n        df_products_load_csl['is_transform_data'] = 0\n        # Unir os DataFrames\n        df_union = pd.concat([df_products_transform_csl, df_products_load_csl])\n        # Remover a coluna 'is_transform_data' apenas para identificar duplicatas",
+        "peekOfCode": "def load(conf):\n    # Carregar os DataFrames e adicionar a coluna 'transform'\n    df_products_transform_csl = read_df(conf['path_products_transform_csl'], dtype={'ref': str})\n    df_products_transform_csl['is_transform_data'] = 1\n    df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)\n    if (not df_products_load_csl.empty):\n        df_products_load_csl['is_transform_data'] = 0\n        # Unir os DataFrames\n        df_union = pd.concat([df_products_transform_csl, df_products_load_csl])\n        # Remover a coluna 'is_transform_data' apenas para identificar duplicatas",
         "detail": "src.lib.load.load",
         "documentation": {}
     },
@@ -5663,7 +5871,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.product_definition",
         "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def extract_keywords_from_products(df, conf):\n    keywords_data = {}\n    document_from_tag_count = 3\n    for idx, row in df.iterrows():\n        ref = row['ref']\n        title = row['title']\n        message(f\"extract data from {ref} - {title}\")\n        products_path = f\"{DATA_PATH}/products\"\n        description_path = f\"{DATA_PATH}/products/{ref}_description.txt\"\n        page_path = f\"{products_path}/{ref}.txt\"",
+        "peekOfCode": "def extract_keywords_from_products(df, conf):\n    keywords_data = {}\n    document_from_tag_count = 3\n    for idx, row in df.iterrows():\n        ref = str(row['ref'])\n        title = row['title']\n        print(df)\n        message(f\"extract data from {ref} - {title}\")\n        print(ref)\n        print(ref)",
         "detail": "src.lib.transform.product_definition",
         "documentation": {}
     },
@@ -5726,7 +5934,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.product_definition",
         "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def extract_subject_from_html_text(html_text, tag_map=None):\n    soup = BeautifulSoup(html_text, 'html.parser')\n    text = \"\"\n    if (not tag_map):\n        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']\n        for remove_tag in remove_tags:\n            for tag_map in soup.find_all(remove_tag):\n                tag_map.decompose()\n        tags_com_hidden = soup.find_all(lambda element: element.get('class') and 'hidden' in ' '.join(element.get('class')))\n        for tag_map in tags_com_hidden:",
+        "peekOfCode": "def extract_subject_from_html_text(html_text, tag_map=None):\n    print(html_text)\n    exit()\n    soup = BeautifulSoup(html_text, 'html.parser')\n    text = \"\"\n    if (not tag_map):\n        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']\n        for remove_tag in remove_tags:\n            for tag_map in soup.find_all(remove_tag):\n                tag_map.decompose()",
         "detail": "src.lib.transform.product_definition",
         "documentation": {}
     },
@@ -5735,7 +5943,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.product_definition",
         "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def append_new_df_and_save(path, new_df):\n    if path_exists(path):\n        existing_df = pd.read_csv(path)\n        combined_df = pd.concat([existing_df, new_df], ignore_index=True)\n    else:\n        combined_df = new_df\n    combined_df.to_csv(path, index=False)\ndef get_product_description(html_text, tag_map):\n    try:\n        soup = BeautifulSoup(html_text, 'html.parser')",
+        "peekOfCode": "def append_new_df_and_save(path, new_df):\n    if path_exists(path):\n        existing_df = read_df(path, dtype={'ref': str})\n        combined_df = pd.concat([existing_df, new_df], ignore_index=True)\n    else:\n        combined_df = new_df\n    combined_df.to_csv(path, index=False)\ndef get_product_description(html_text, tag_map):\n    try:\n        soup = BeautifulSoup(html_text, 'html.parser')",
         "detail": "src.lib.transform.product_definition",
         "documentation": {}
     },
@@ -5762,7 +5970,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
-        "peekOfCode": "def create_product_def_cols(df, conf):\n    message(\"criada colunas de definição do produto\")\n    product_definition = conf['product_definition']\n    message(\"Load_models_prep\")\n    load_product_definition(df, conf)\n    message(\"carregando colunas de definição\")\n    product_definition_by_titile = f\"{product_definition}/product_definition_by_titile.csv\"\n    product_definition_by_ml = f\"{product_definition}/product_definition_by_ml.csv\"\n    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):\n        df_product_def = pd.read_csv(product_definition_by_titile)",
+        "peekOfCode": "def create_product_def_cols(df, conf):\n    message(\"criada colunas de definição do produto\")\n    product_definition = conf['product_definition']\n    message(\"Load_models_prep\")\n    load_product_definition(df, conf)\n    message(\"carregando colunas de definição\")\n    product_definition_by_titile = f\"{product_definition}/product_definition_by_titile.csv\"\n    product_definition_by_ml = f\"{product_definition}/product_definition_by_ml.csv\"\n    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):\n        df_product_def = read_df(product_definition_by_titile, dtype={'ref': str})",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },
@@ -5861,7 +6069,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
-        "peekOfCode": "def create_price_discount_percent_col(df, data_path):\n    df_new = deepcopy(df)\n    refs = df['ref'].values\n    path = f\"{data_path}/history\"\n    df_temp = read_and_stack_historical_csvs_dataframes(path, False)\n    if (df_temp.empty):\n        df[\"price_discount_percent\"] = 0\n        df[\"compare_at_price\"] = None\n        return df\n    df_temp = df_temp[df_temp[\"ref\"].isin(refs)]",
+        "peekOfCode": "def create_price_discount_percent_col(df, data_path):\n    df_new = deepcopy(df)\n    refs = df['ref'].values\n    path = f\"{data_path}/history\"\n    df_temp = read_and_stack_historical_csvs_dataframes(path, False, dtype={'ref': str})\n    if (df_temp.empty):\n        df[\"price_discount_percent\"] = 0\n        df[\"compare_at_price\"] = None\n        return df\n    df_temp = df_temp[df_temp[\"ref\"].isin(refs)]",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },
@@ -5897,7 +6105,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.data_quality",
         "description": "src.lib.utils.data_quality",
-        "peekOfCode": "def data_history_analysis(conf, df):\n    history_path = conf['data_path'] + \"/history\"\n    create_directory_if_not_exists(history_path)\n    if (not has_files(history_path)):\n        save_history_data(conf, df)\n        return True\n    message(\"CARREGANDO DATAFRAME HISTORICO...\")\n    message(history_path)\n    df_history = read_and_stack_historical_csvs_dataframes(history_path, True)\n    message(\"ANALISE volume\")",
+        "peekOfCode": "def data_history_analysis(conf, df):\n    history_path = conf['data_path'] + \"/history\"\n    create_directory_if_not_exists(history_path)\n    if (not has_files(history_path)):\n        save_history_data(conf, df)\n        return True\n    message(\"CARREGANDO DATAFRAME HISTORICO...\")\n    message(history_path)\n    df_history = read_and_stack_historical_csvs_dataframes(history_path, True, dtype={'ref': str})\n    message(\"ANALISE volume\")",
         "detail": "src.lib.utils.data_quality",
         "documentation": {}
     },
@@ -5951,7 +6159,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def format_column_date(df, column):\n    df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)\n    df[column] = df[column].dt.strftime(DATE_FORMAT)\n    return df\ndef create_or_read_df(path, columns):\n    message(f\"create_or_read_df\")\n    if (path_exists(path)):\n        message(f\"read file: {path}\")\n        df = pd.read_csv(path)\n    else:",
+        "peekOfCode": "def format_column_date(df, column):\n    df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)\n    df[column] = df[column].dt.strftime(DATE_FORMAT)\n    return df\ndef create_or_read_df(path, columns=None, dtype=None):\n    message(f\"create_or_read_df\")\n    if path_exists(path):\n        message(f\"read file: {path}\")\n        if dtype:\n            df = pd.read_csv(path, dtype=dtype)",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -5960,7 +6168,16 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def create_or_read_df(path, columns):\n    message(f\"create_or_read_df\")\n    if (path_exists(path)):\n        message(f\"read file: {path}\")\n        df = pd.read_csv(path)\n    else:\n        df = pd.DataFrame(columns=columns)\n        message(f\"create file: {path}\")\n        df.to_csv(path, index=False)\n    return df",
+        "peekOfCode": "def create_or_read_df(path, columns=None, dtype=None):\n    message(f\"create_or_read_df\")\n    if path_exists(path):\n        message(f\"read file: {path}\")\n        if dtype:\n            df = pd.read_csv(path, dtype=dtype)\n        else:\n            df = pd.read_csv(path)\n    else:\n        if columns is not None:",
+        "detail": "src.lib.utils.dataframe",
+        "documentation": {}
+    },
+    {
+        "label": "read_df",
+        "kind": 2,
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
+        "peekOfCode": "def read_df(path, dtype=None):\n    \"\"\"\n    Reads a DataFrame from a CSV file.\n    Parameters:\n    path (str): The path to the CSV file.\n    dtype (dict, optional): A dictionary specifying column data types.\n    Returns:\n    DataFrame: The DataFrame read from the CSV file.\n    \"\"\"\n    if path_exists(path):",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -5978,7 +6195,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def drop_duplicates_for_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:\n    \"\"\"Drop duplicates based on specific columns\"\"\"\n    return df.drop_duplicates(subset=columns)\ndef calc_string_diff_in_df_col(title_x, title_y):\n    distance = levenshtein(title_x, title_y)\n    max_len = max(len(title_x), len(title_y))\n    percent_diff = (distance / max_len) if max_len != 0 else 0\n    return percent_diff\ndef read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):\n    # Usa glob para encontrar todos os arquivos CSV no diretório",
+        "peekOfCode": "def drop_duplicates_for_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:\n    \"\"\"Drop duplicates based on specific columns\"\"\"\n    return df.drop_duplicates(subset=columns)\ndef calc_string_diff_in_df_col(title_x, title_y):\n    distance = levenshtein(title_x, title_y)\n    max_len = max(len(title_x), len(title_y))\n    percent_diff = (distance / max_len) if max_len != 0 else 0\n    return percent_diff\ndef read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last, dtype=None):\n    # Usa glob para encontrar todos os arquivos CSV no diretório",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -5987,7 +6204,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def calc_string_diff_in_df_col(title_x, title_y):\n    distance = levenshtein(title_x, title_y)\n    max_len = max(len(title_x), len(title_y))\n    percent_diff = (distance / max_len) if max_len != 0 else 0\n    return percent_diff\ndef read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):\n    # Usa glob para encontrar todos os arquivos CSV no diretório\n    csv_files = glob(os.path.join(history_data_path, '*.csv'))\n    csv_files = sorted(csv_files, reverse=True)\n    if get_only_last and csv_files:",
+        "peekOfCode": "def calc_string_diff_in_df_col(title_x, title_y):\n    distance = levenshtein(title_x, title_y)\n    max_len = max(len(title_x), len(title_y))\n    percent_diff = (distance / max_len) if max_len != 0 else 0\n    return percent_diff\ndef read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last, dtype=None):\n    # Usa glob para encontrar todos os arquivos CSV no diretório\n    csv_files = glob(os.path.join(history_data_path, '*.csv'))\n    csv_files = sorted(csv_files, reverse=True)\n    if get_only_last and csv_files:",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -5996,7 +6213,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):\n    # Usa glob para encontrar todos os arquivos CSV no diretório\n    csv_files = glob(os.path.join(history_data_path, '*.csv'))\n    csv_files = sorted(csv_files, reverse=True)\n    if get_only_last and csv_files:\n        # Encontra o arquivo CSV mais recentemente modificado\n        latest_file = csv_files[0]\n        message(latest_file)\n        return pd.read_csv(latest_file)\n    elif csv_files:",
+        "peekOfCode": "def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last, dtype=None):\n    # Usa glob para encontrar todos os arquivos CSV no diretório\n    csv_files = glob(os.path.join(history_data_path, '*.csv'))\n    csv_files = sorted(csv_files, reverse=True)\n    if get_only_last and csv_files:\n        # Encontra o arquivo CSV mais recentemente modificado\n        latest_file = csv_files[0]\n        message(latest_file)\n        return read_df(latest_file, dtype)\n    elif csv_files:",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -6005,7 +6222,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str) -> pd.DataFrame:\n    pages_path = [f\"{data_path}/{page}\" for page in pages]\n    df_temp = []\n    for path in pages_path:\n        file_path = f\"{path}/{file_name}\"\n        if os.path.exists(file_path):\n            df_temp.append(pd.read_csv(file_path))\n        else:\n            print(f\"Arquivo {file_path} não encontrado, pulando para o próximo.\")\n    if df_temp:",
+        "peekOfCode": "def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str, dtype=None) -> pd.DataFrame:\n    pages_path = [f\"{data_path}/{page}\" for page in pages]\n    df_temp = []\n    for path in pages_path:\n        file_path = f\"{path}/{file_name}\"\n        if os.path.exists(file_path):\n            df_temp.append(read_df(file_path, dtype))\n        else:\n            print(f\"Arquivo {file_path} não encontrado, pulando para o próximo.\")\n    if df_temp:",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },

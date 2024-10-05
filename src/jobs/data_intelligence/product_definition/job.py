@@ -49,7 +49,7 @@ def run(args):
     message("READ all products_metadata_transform.csv")
     
     pages_with_status_true = get_pages_with_status_true(conf)
-    df = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "products_metadata_transform.csv")
+    df = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "products_metadata_transform.csv", dtype={'ref': str})
 
     message("exec data_prep")
     df_train, df_ref_train, df_predict, df_ref_predict, df_product_def = data_prep(df, conf)
