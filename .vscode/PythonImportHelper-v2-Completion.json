@@ -5934,7 +5934,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.product_definition",
         "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def extract_subject_from_html_text(html_text, tag_map=None):\n    print(html_text)\n    exit()\n    soup = BeautifulSoup(html_text, 'html.parser')\n    text = \"\"\n    if (not tag_map):\n        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']\n        for remove_tag in remove_tags:\n            for tag_map in soup.find_all(remove_tag):\n                tag_map.decompose()",
+        "peekOfCode": "def extract_subject_from_html_text(html_text, tag_map=None):\n    soup = BeautifulSoup(html_text, 'html.parser')\n    text = \"\"\n    if (not tag_map):\n        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']\n        for remove_tag in remove_tags:\n            for tag_map in soup.find_all(remove_tag):\n                tag_map.decompose()\n        tags_com_hidden = soup.find_all(lambda element: element.get('class') and 'hidden' in ' '.join(element.get('class')))\n        for tag_map in tags_com_hidden:",
         "detail": "src.lib.transform.product_definition",
         "documentation": {}
     },
