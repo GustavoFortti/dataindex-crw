@@ -301,8 +301,6 @@ def normalize_rows(df, exclude_columns):
     return df_normalized
 
 def extract_subject_from_html_text(html_text, tag_map=None):
-    print(html_text)
-    exit()
     soup = BeautifulSoup(html_text, 'html.parser')
     text = ""
 
