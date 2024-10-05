@@ -9,6 +9,7 @@ from src.lib.utils.file_system import (delete_file, path_exists, read_file,
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
 from src.lib.wordlist.wordlist import get_back_words, get_word_index_in_text
+from src.lib.utils.dataframe import read_df
 
 
 def load_product_definition(df, conf):
@@ -354,7 +355,7 @@ def extract_subject_from_html_text(html_text, tag_map=None):
 
 def append_new_df_and_save(path, new_df):
     if path_exists(path):
-        existing_df = pd.read_csv(path)
+        existing_df = read_df(path, dtype={'ref': str})
         combined_df = pd.concat([existing_df, new_df], ignore_index=True)
     else:
         combined_df = new_df

@@ -14,13 +14,13 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    # "darkness"
+    "darkness"
     # "dux_nutrition_lab" 
     # "growth_supplements"  # banner
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"  # texto
-    "mercadolivre"  # texto
+    # "mercadolivre"  # texto
     # "new_millen"
     # "nutrata" 
     # "oficialfarma" 
@@ -36,13 +36,13 @@ job_name="master"
 
 exec_type="extract"
 # exec_flag="status_job"
-exec_flag="new_page"
-# exec_flag="products_update"
+# exec_flag="new_page"
+exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-exec_type="transform"
-exec_flag="false"
+# exec_type="transform"
+# exec_flag="false"
 
 # exec_type="load"
 # exec_flag="data_quality"

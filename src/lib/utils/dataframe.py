@@ -14,12 +14,12 @@ def format_column_date(df, column):
 
     return df
 
-def create_or_read_df(path, columns=None, dtypes=None):
+def create_or_read_df(path, columns=None, dtype=None):
     message(f"create_or_read_df")
     if path_exists(path):
         message(f"read file: {path}")
-        if dtypes:
-            df = pd.read_csv(path, dtype=dtypes)
+        if dtype:
+            df = pd.read_csv(path, dtype=dtype)
         else:
             df = pd.read_csv(path)
     else:
@@ -31,6 +31,26 @@ def create_or_read_df(path, columns=None, dtypes=None):
         df.to_csv(path, index=False)
     
     return df
+
+def read_df(path, dtype=None):
+    """
+    Reads a DataFrame from a CSV file.
+
+    Parameters:
+    path (str): The path to the CSV file.
+    dtype (dict, optional): A dictionary specifying column data types.
+
+    Returns:
+    DataFrame: The DataFrame read from the CSV file.
+    """
+    if path_exists(path):
+        message(f"read file: {path}")
+        if dtype:
+            return pd.read_csv(path, dtype=dtype)
+        else:
+            return pd.read_csv(path)
+    else:
+        raise FileNotFoundError(f"The file '{path}' does not exist.")
 
 def filter_dataframe_for_columns(df: pd.DataFrame, columns: List[str], keywords: List[str], blacklist: Optional[List[str]] = None) -> pd.DataFrame:
     """Filters a DataFrame for specified columns based on keywords and an optional blacklist to exclude certain terms"""
@@ -51,7 +71,6 @@ def filter_dataframe_for_columns(df: pd.DataFrame, columns: List[str], keywords:
     
     return filtered_df
 
-
 def drop_duplicates_for_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
     """Drop duplicates based on specific columns"""
     return df.drop_duplicates(subset=columns)
@@ -62,8 +81,7 @@ def calc_string_diff_in_df_col(title_x, title_y):
     percent_diff = (distance / max_len) if max_len != 0 else 0
     return percent_diff
 
-
-def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):
+def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last, dtype=None):
     # Usa glob para encontrar todos os arquivos CSV no diretório
     csv_files = glob(os.path.join(history_data_path, '*.csv'))
     csv_files = sorted(csv_files, reverse=True)
@@ -72,16 +90,15 @@ def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last):
         # Encontra o arquivo CSV mais recentemente modificado
         latest_file = csv_files[0]
         message(latest_file)
-        return pd.read_csv(latest_file)
+        return read_df(latest_file, dtype)
     elif csv_files:
         # Lê todos os arquivos CSV e os concatena em um único DataFrame
-        dfs = [pd.read_csv(file) for file in csv_files]
+        dfs = [read_df(file, dtype) for file in csv_files]
         return pd.concat(dfs, ignore_index=True)
     else:
         return pd.DataFrame()
 
-
-def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str) -> pd.DataFrame:
+def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str, dtype=None) -> pd.DataFrame:
     pages_path = [f"{data_path}/{page}" for page in pages]
     df_temp = []
     
@@ -89,7 +106,7 @@ def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str) 
         file_path = f"{path}/{file_name}"
         
         if os.path.exists(file_path):
-            df_temp.append(pd.read_csv(file_path))
+            df_temp.append(read_df(file_path, dtype))
         else:
             print(f"Arquivo {file_path} não encontrado, pulando para o próximo.")
 

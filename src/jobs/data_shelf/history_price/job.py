@@ -37,7 +37,7 @@ def run(args):
     
     message("read data")
     pages_with_status_true = get_pages_with_status_true(conf)
-    df_products_load_csl = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "products_load_csl.csv")
+    df_products_load_csl = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "products_load_csl.csv", dtype={'ref': str})
     df_products_load_csl = df_products_load_csl.drop_duplicates(subset='ref').reset_index(drop=True)
     
     refs = df_products_load_csl['ref'].values
@@ -48,7 +48,7 @@ def run(args):
     for page_data_path in pages_with_status_true:
         
         path = f"{src_data_path}/{page_data_path}/history"
-        df_temp = read_and_stack_historical_csvs_dataframes(path, False)
+        df_temp = read_and_stack_historical_csvs_dataframes(path, False, dtype={'ref': str})
         if (df_temp.empty):
             continue
         

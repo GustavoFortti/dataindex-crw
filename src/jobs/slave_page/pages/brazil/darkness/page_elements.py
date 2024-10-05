@@ -13,11 +13,18 @@ def get_title(conf, item):
 def get_price(conf, item):
     price_element = item.find("span", class_="vtex-product-price-1-x-sellingPriceValue")
     if price_element:
+        # Extrai as diferentes partes do preço
         currency_code = price_element.find("span", class_="vtex-product-price-1-x-currencyCode").get_text(strip=True)
         currency_integer = price_element.find("span", class_="vtex-product-price-1-x-currencyInteger").get_text(strip=True)
         currency_decimal = price_element.find("span", class_="vtex-product-price-1-x-currencyDecimal").get_text(strip=True)
         currency_fraction = price_element.find("span", class_="vtex-product-price-1-x-currencyFraction").get_text(strip=True)
-        price = f"{currency_code} {currency_integer}{currency_decimal}{currency_fraction}"
+
+        # Verifica se há espaço entre o código da moeda e o valor inteiro
+        currency_literal = price_element.find("span", class_="vtex-product-price-1-x-currencyLiteral")
+        space = currency_literal.get_text(strip=True) if currency_literal else ""
+
+        # Formata o preço corretamente
+        price = f"{currency_code}{space}{currency_integer}{currency_decimal}{currency_fraction}"
         return price
     return None
 

@@ -6,7 +6,7 @@ import pandas as pd
 from src.lib.extract.crawler import crawler
 from src.lib.extract.page_elements import Page
 from src.lib.utils.data_quality import is_price
-from src.lib.utils.dataframe import create_or_read_df
+from src.lib.utils.dataframe import create_or_read_df, read_df
 from src.lib.utils.file_system import (DATE_FORMAT,
                                        create_directory_if_not_exists,
                                        delete_directory_and_contents,
@@ -101,7 +101,7 @@ def products_update(page):
         page.reset_index()
     
     message(f"read file: {page.conf['path_products_extract_temp']}")
-    df_products_extract_temp = pd.read_csv(page.conf['path_products_extract_temp'])
+    df_products_extract_temp = read_df(page.conf['path_products_extract_temp'], dtype={'ref': str})
     df_products_extract_temp = df_products_extract_temp.drop_duplicates(subset='ref').reset_index(drop=True)
     df_products_extract_temp = df_products_extract_temp.dropna(subset=['price'])
 
@@ -117,7 +117,7 @@ def products_update(page):
 def products_metadata_update(page):
     message("products_metadata_update")
     page.conf['path_products_extract_csl'] = f"{page.conf['data_path']}/products_extract_csl.csv"
-    df_products_extract_csl = pd.read_csv(page.conf['path_products_extract_csl'])
+    df_products_extract_csl = read_df(page.conf['path_products_extract_csl'], dtype={'ref': str})
 
     urls = df_products_extract_csl['product_url'].values
     for value, url in enumerate(urls):
@@ -131,7 +131,7 @@ def products_metadata_update_old_pages(page):
     message("PRODUCTS_METADATA_UPDATE_OLD_PAGES")
     products_extract_csl = f"{page.conf['data_path']}/products_extract_csl.csv"
     page.conf['path_products_extract_csl'] = products_extract_csl
-    df_products_extract_csl = pd.read_csv(products_extract_csl)
+    df_products_extract_csl = read_df(products_extract_csl, dtype={'ref': str})
 
     pagas_path = page.conf['data_path'] + "/products"
     old_files = get_old_files_by_percent(pagas_path, True, 5)
@@ -170,7 +170,7 @@ def products_metadata_create_pages_if_not_exist(page):
     message("PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST")
     products_extract_csl = f"{page.conf['data_path']}/products_extract_csl.csv"
     page.conf['path_products_extract_csl'] = products_extract_csl
-    df_products_extract_csl = pd.read_csv(products_extract_csl)
+    df_products_extract_csl = read_df(products_extract_csl, dtype={'ref': str})
 
     pagas_path = page.conf['data_path'] + "/products"
     all_pages = [i for i in list_directory(pagas_path)]

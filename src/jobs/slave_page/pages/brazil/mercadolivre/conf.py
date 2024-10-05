@@ -19,8 +19,8 @@ PRODUCT_DEFINITION_TAG_MAP = [
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,
-    "time_sleep": 0.7,
-    "scroll_step": 1200,
+    "time_sleep": 0.5,
+    "scroll_step": 1500,
     "percentage": 0.07,
     "return_percentage": 0.2,
     "max_return": 2000,

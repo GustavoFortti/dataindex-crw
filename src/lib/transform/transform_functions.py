@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 from src.lib.transform.product_definition import load_product_definition
-from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes
+from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes, read_df
 from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
@@ -33,8 +33,8 @@ def create_product_def_cols(df, conf):
 
     if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):
 
-        df_product_def = pd.read_csv(product_definition_by_titile)
-        df_product_def_predicted = pd.read_csv(product_definition_by_ml)
+        df_product_def = read_df(product_definition_by_titile, dtype={'ref': str})
+        df_product_def_predicted = read_df(product_definition_by_ml, dtype={'ref': str})
         
         df = pd.merge(df, df_product_def, on='ref', how='left')
         df = pd.merge(df, df_product_def_predicted, on='ref', how='left')
@@ -218,7 +218,7 @@ def create_price_discount_percent_col(df, data_path):
     refs = df['ref'].values
 
     path = f"{data_path}/history"
-    df_temp = read_and_stack_historical_csvs_dataframes(path, False)
+    df_temp = read_and_stack_historical_csvs_dataframes(path, False, dtype={'ref': str})
 
     if (df_temp.empty):
         df["price_discount_percent"] = 0

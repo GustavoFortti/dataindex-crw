@@ -1,9 +1,9 @@
 import pandas as pd
 from src.lib.transform.transform import transform
-from src.lib.utils.dataframe import create_or_read_df
+from src.lib.utils.dataframe import read_df
 
 def create_products_transform_csl():
-    df = create_or_read_df(CONF['path_products_extract_csl'], dtype={'ref': str})
+    df = read_df(CONF['path_products_extract_csl'], dtype={'ref': str})
     df = transform(CONF, df)
     df['name'] = df['name'].str.replace('- growth supplements', '')
     
