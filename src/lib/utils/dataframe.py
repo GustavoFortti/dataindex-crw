@@ -14,19 +14,23 @@ def format_column_date(df, column):
 
     return df
 
-
-def create_or_read_df(path, columns):
+def create_or_read_df(path, columns=None, dtypes=None):
     message(f"create_or_read_df")
-    if (path_exists(path)):
+    if path_exists(path):
         message(f"read file: {path}")
-        df = pd.read_csv(path)
+        if dtypes:
+            df = pd.read_csv(path, dtype=dtypes)
+        else:
+            df = pd.read_csv(path)
     else:
-        df = pd.DataFrame(columns=columns)
+        if columns is not None:
+            df = pd.DataFrame(columns=columns)
+        else:
+            df = pd.DataFrame()
         message(f"create file: {path}")
         df.to_csv(path, index=False)
     
     return df
-
 
 def filter_dataframe_for_columns(df: pd.DataFrame, columns: List[str], keywords: List[str], blacklist: Optional[List[str]] = None) -> pd.DataFrame:
     """Filters a DataFrame for specified columns based on keywords and an optional blacklist to exclude certain terms"""

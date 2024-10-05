@@ -123,10 +123,17 @@ def extract_keywords_from_products(df, conf):
     keywords_data = {}
     document_from_tag_count = 3
     for idx, row in df.iterrows():
-        ref = row['ref']
+        ref = str(row['ref'])
         title = row['title']
         
+        print(df)
         message(f"extract data from {ref} - {title}")
+        print(ref)
+        print(ref)
+        print(ref)
+        print(ref)
+        print(ref)
+        exit()
 
         products_path = f"{DATA_PATH}/products"
         description_path = f"{DATA_PATH}/products/{ref}_description.txt"
@@ -157,8 +164,8 @@ def extract_keywords_from_products(df, conf):
             document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
         
         description_document_from_tag = [desc for desc in [get_product_description(html_text, tag_map) for tag_map in CONF["product_description_tag_map"]] if desc is not None]
-        if (description_document_from_tag):
-            save_file(description_document_from_tag, description_path)
+        if (len(description_document_from_tag) >= 1):
+            save_file(description_document_from_tag[0], description_path)
         
         if (document_from_tag == []):
             message(f"A tag especificada está pode estar desatualizada. - CONTAGEM PARA ERRO {document_from_tag_count}")
@@ -302,6 +309,8 @@ def normalize_rows(df, exclude_columns):
     return df_normalized
 
 def extract_subject_from_html_text(html_text, tag_map=None):
+    print(html_text)
+    exit()
     soup = BeautifulSoup(html_text, 'html.parser')
     text = ""
 
