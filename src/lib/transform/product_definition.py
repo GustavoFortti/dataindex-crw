@@ -126,15 +126,6 @@ def extract_keywords_from_products(df, conf):
     for idx, row in df.iterrows():
         ref = str(row['ref'])
         title = row['title']
-        
-        print(df)
-        message(f"extract data from {ref} - {title}")
-        print(ref)
-        print(ref)
-        print(ref)
-        print(ref)
-        print(ref)
-        exit()
 
         products_path = f"{DATA_PATH}/products"
         description_path = f"{DATA_PATH}/products/{ref}_description.txt"

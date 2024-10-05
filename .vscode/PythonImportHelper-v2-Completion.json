@@ -5871,7 +5871,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.product_definition",
         "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def extract_keywords_from_products(df, conf):\n    keywords_data = {}\n    document_from_tag_count = 3\n    for idx, row in df.iterrows():\n        ref = str(row['ref'])\n        title = row['title']\n        print(df)\n        message(f\"extract data from {ref} - {title}\")\n        print(ref)\n        print(ref)",
+        "peekOfCode": "def extract_keywords_from_products(df, conf):\n    keywords_data = {}\n    document_from_tag_count = 3\n    for idx, row in df.iterrows():\n        ref = str(row['ref'])\n        title = row['title']\n        products_path = f\"{DATA_PATH}/products\"\n        description_path = f\"{DATA_PATH}/products/{ref}_description.txt\"\n        page_path = f\"{products_path}/{ref}.txt\"\n        html_text = read_file(page_path)",
         "detail": "src.lib.transform.product_definition",
         "documentation": {}
     },
