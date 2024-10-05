@@ -2,12 +2,19 @@ JOB_NAME = "nutrata"
 BRAND = "nutrata"
 URL = "https://loja.nutrata.com.br/"
 STATUS = True
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#descricao > div.board'},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,

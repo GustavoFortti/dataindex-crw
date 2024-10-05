@@ -3,8 +3,7 @@ import pandas as pd
 from src.lib.transform.transform_functions import (
     apply_generic_filters, create_price_discount_percent_col,
     create_product_collection_col, create_product_def_cols,
-    create_quantity_column, filter_nulls, image_processing,
-    remove_blacklisted_products)
+    create_quantity_column, filter_nulls, remove_blacklisted_products)
 from src.lib.utils.log import message
 
 

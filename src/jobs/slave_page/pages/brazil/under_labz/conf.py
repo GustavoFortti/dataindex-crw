@@ -2,12 +2,19 @@ JOB_NAME = "under_labz"
 BRAND = "under labz"
 URL = "https://underlabz.com.br"
 STATUS = False
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,

@@ -2,12 +2,19 @@ JOB_NAME = "dark_lab"
 BRAND = "dark lab"
 URL = "https://darklabsuplementos.com.br"
 STATUS = True
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,

@@ -1,9 +1,11 @@
+import html2text
 import pandas as pd
 from bs4 import BeautifulSoup
 
 from src.lib.extract.extract import products_metadata_update_old_pages_by_ref
 from src.lib.extract.page_elements import Page
-from src.lib.utils.file_system import delete_file, path_exists, read_file
+from src.lib.utils.file_system import (delete_file, path_exists, read_file,
+                                       save_file)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
 from src.lib.wordlist.wordlist import get_back_words, get_word_index_in_text
@@ -126,7 +128,9 @@ def extract_keywords_from_products(df, conf):
         
         message(f"extract data from {ref} - {title}")
 
-        page_path = f"{DATA_PATH}/products/{ref}.txt"
+        products_path = f"{DATA_PATH}/products"
+        description_path = f"{DATA_PATH}/products/{ref}_description.txt"
+        page_path = f"{products_path}/{ref}.txt"
 
         html_text = read_file(page_path)
         document_from_tag_flag = True
@@ -151,6 +155,10 @@ def extract_keywords_from_products(df, conf):
             html_text = read_file(page_path)
             document_from_tag = [extract_subject_from_html_text(html_text, tag_map) for tag_map in CONF["product_definition_tag_map"]]
             document_from_tag = list(filter(lambda elemento: elemento is not None, document_from_tag))
+        
+        description_document_from_tag = [desc for desc in [get_product_description(html_text, tag_map) for tag_map in CONF["product_description_tag_map"]] if desc is not None]
+        if (description_document_from_tag):
+            save_file(description_document_from_tag, description_path)
         
         if (document_from_tag == []):
             message(f"A tag especificada está pode estar desatualizada. - CONTAGEM PARA ERRO {document_from_tag_count}")
@@ -343,3 +351,27 @@ def append_new_df_and_save(path, new_df):
         combined_df = new_df
     
     combined_df.to_csv(path, index=False)
+    
+def get_product_description(html_text, tag_map):
+    try:
+        soup = BeautifulSoup(html_text, 'html.parser')
+        
+        html_content = soup.select_one(tag_map['path'])
+        if not html_content:
+            return None
+        
+        # Criar o conversor
+        h = html2text.HTML2Text()
+        
+        # Configurações para remover formatação Markdown
+        h.ignore_links = True   # Ignorar links
+        h.ignore_images = True  # Ignorar imagens
+        h.ignore_emphasis = True  # Ignorar negrito/itálico (sem asteriscos ou underlines)
+        h.body_width = 0  # Não adicionar quebras de linha automáticas
+        
+        # Converter HTML para texto simples
+        plain_text = h.handle(str(html_content))
+        
+        return plain_text
+    except Exception:
+        return None

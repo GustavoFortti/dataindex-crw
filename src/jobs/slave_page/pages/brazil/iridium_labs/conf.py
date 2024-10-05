@@ -2,12 +2,19 @@ JOB_NAME = "iridium_labs"
 BRAND = "iridium labs"
 URL = "https://www.iridiumlabs.com.br"
 STATUS = True
+USER_AGENT = None
+
+PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
+
+PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+    {'tag': None, 'path': ''},
+]
 
 PRODUCT_DEFINITION_TAG_MAP = [
     {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},
 ]
-
-USER_AGENT = None
 
 DYNAMIC_SCROLL = {
     "start_time_sleep": 1,
