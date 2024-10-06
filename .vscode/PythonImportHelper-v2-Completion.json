@@ -2067,7 +2067,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "JOB_NAME = \"adaptogen\"\nBRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "JOB_NAME = \"adaptogen\"\nBRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2076,7 +2076,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "BRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "BRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2085,7 +2085,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "URL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "URL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2094,7 +2094,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2103,7 +2103,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "USER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]",
+        "peekOfCode": "USER_AGENT = None\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2112,7 +2112,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "PRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]\nDYNAMIC_SCROLL = {",
+        "peekOfCode": "PRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-description'}\n]",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
