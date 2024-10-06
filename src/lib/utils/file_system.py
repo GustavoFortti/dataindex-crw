@@ -103,7 +103,6 @@ def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> Non
             with open(file_path, mode='a', encoding='utf-8') as file:
                 if text:
                     file.write(text + "\n")
-                    message(f"write '{text}' successfully.")
                 message(f"File '{file_path}' created successfully.")
         except FileExistsError:
             message(f"The file '{file_path}' already exists.")

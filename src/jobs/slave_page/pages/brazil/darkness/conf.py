@@ -5,7 +5,7 @@ STATUS = True
 USER_AGENT = None
 
 PRODUCT_DESCRIPTION_TAG_MAP = [
-    {'tag': None, 'path': ''},
+    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},
 ]
 
 PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [

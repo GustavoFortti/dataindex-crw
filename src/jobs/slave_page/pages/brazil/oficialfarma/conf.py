@@ -5,7 +5,7 @@ STATUS = True
 USER_AGENT = None
 
 PRODUCT_DESCRIPTION_TAG_MAP = [
-    {'tag': None, 'path': ''},
+    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},
 ]
 
 PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [

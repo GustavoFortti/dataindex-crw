@@ -7,6 +7,7 @@ USER_AGENT = None
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#tab-beneficios'},
     {'tag': None, 'path': '#tab-tabela_nutricional'},
+    {'tag': None, 'path': '#tab-description'},
 ]
 
 PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [

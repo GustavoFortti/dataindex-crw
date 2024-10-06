@@ -5,7 +5,7 @@ STATUS = True
 USER_AGENT = None
 
 PRODUCT_DESCRIPTION_TAG_MAP = [
-    {'tag': None, 'path': ''},
+    {'tag': None, 'path': '#\\32 642033340-0 > div > div:nth-child(2)'},
 ]
 
 PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
