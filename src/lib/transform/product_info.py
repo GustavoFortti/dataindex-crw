@@ -54,8 +54,9 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
         # Se a descrição foi extraída, formata e salva o arquivo
         if description:
             formatted_description: str = format_product_description(row, description)
+            message(f"save {ref} description")
             save_file(formatted_description, description_path)
-
+    
 def fetch_product_page_html(page_path: str, product_url: str, force: bool = None) -> Optional[str]:
     """
     Tenta ler o HTML da página do produto, atualiza a página se não encontrar o arquivo.

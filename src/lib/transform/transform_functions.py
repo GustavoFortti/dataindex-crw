@@ -21,7 +21,7 @@ from src.lib.transform.product_info import load_product_info
 
 def create_product_definition_col(df, conf):
     message("criada colunas de descrição do produto")
-    # load_product_info(df, conf)
+    load_product_info(df, conf)
     
     df["product_definition"] = None
     for idx, row in df.iterrows():
@@ -46,7 +46,6 @@ def create_product_definition_col(df, conf):
         df.at[idx, "product_definition"] = ", ".join(product_definition)
     
     return df
-            
             
 def ensure_columns_exist(df, columns):
     for column in columns:

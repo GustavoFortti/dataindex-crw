@@ -9,26 +9,26 @@ export CHECKPOINT_PRODUCTS_UPDATE="false"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    "adaptogen" # texto
-    # "atlhetica_nutrition"
+    # "adaptogen"
+    # "atlhetica_nutrition" # images
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
     # "darkness"
-    # "dux_nutrition_lab" 
-    # "growth_supplements"  # banner
+    # "dux_nutrition_lab"
+    # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
-    # "max_titanium"  # texto
-    # "mercadolivre"  # texto
+    # "max_titanium"
+    # "mercadolivre"
     # "new_millen"
     # "nutrata" 
     # "oficialfarma" 
-    # "probiotica" # texto
-    # "puravida" # banner
-    # "truesource" # banner
+    # "probiotica"
+    # "puravida"
+    "truesource"
     # "under_labz"
-    # "vitafor" # texto
+    # "vitafor"
 )
 
 job_type="master_page"

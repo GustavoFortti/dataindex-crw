@@ -5,7 +5,7 @@ STATUS = True
 USER_AGENT = None
 
 PRODUCT_DESCRIPTION_TAG_MAP = [
-    {'tag': None, 'path': ''},
+    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},
 ]
 
 PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
