@@ -268,7 +268,7 @@ def create_product_collection_col(df):
     
     for idx, row in df.iterrows():
         if (row['price_discount_percent'] > 0):
-            return 'promocao'
+            df.at[idx, "collections"] = 'promocao'
         
         if (not row['product_definition']):
             continue

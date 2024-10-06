@@ -9,7 +9,7 @@ export CHECKPOINT_PRODUCTS_UPDATE="false"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    # "adaptogen"
+    "adaptogen" # texto
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
@@ -24,7 +24,7 @@ page_names=(
     # "new_millen"
     # "nutrata" 
     # "oficialfarma" 
-    "probiotica" # texto
+    # "probiotica" # texto
     # "puravida" # banner
     # "truesource" # banner
     # "under_labz"
@@ -41,8 +41,8 @@ exec_flag="status_job"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-# exec_type="transform"
-# exec_flag="false"
+exec_type="transform"
+exec_flag="false"
 
 # exec_type="load"
 # exec_flag="data_quality"
