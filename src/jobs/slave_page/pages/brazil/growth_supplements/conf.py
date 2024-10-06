@@ -4,6 +4,8 @@ URL = "https://www.gsuplementos.com.br"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},
 ]

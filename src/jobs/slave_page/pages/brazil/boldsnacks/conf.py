@@ -4,6 +4,8 @@ URL = "https://www.boldsnacks.com.br/"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},
 ]

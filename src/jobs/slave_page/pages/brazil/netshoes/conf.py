@@ -4,6 +4,8 @@ URL = "https://lista.mercadolivre.com.br/"
 STATUS = False
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]

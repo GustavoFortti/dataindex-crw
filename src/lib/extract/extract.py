@@ -13,7 +13,7 @@ from src.lib.utils.file_system import (DATE_FORMAT,
                                        delete_file,
                                        file_modified_within_x_hours,
                                        get_old_files_by_percent,
-                                       list_directory, read_json, save_images)
+                                       list_directory, read_json)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST
@@ -106,9 +106,6 @@ def products_update(page):
     df_products_extract_temp = df_products_extract_temp[~df_products_extract_temp['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
     df_products_extract_temp = df_products_extract_temp[df_products_extract_temp['price'].apply(lambda x: is_price(x))]
 
-    create_directory_if_not_exists(page.conf['data_path'] + "/img_tmp")
-    save_images(df_products_extract_temp["image_url"].values, page.conf['data_path'] + "/img_tmp/", df_products_extract_temp["ref"].values)
-    
     message(f"write origin: {page.conf['path_products_extract_csl']}")
     df_products_extract_temp.to_csv(page.conf['path_products_extract_csl'], index=False)
 

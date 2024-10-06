@@ -4,6 +4,8 @@ URL = "https://loja.newmillen.com.br"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#product-description'},
 ]

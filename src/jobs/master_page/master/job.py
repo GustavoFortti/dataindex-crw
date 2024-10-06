@@ -25,6 +25,7 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["product_definition_tag_map"] = page_conf.PRODUCT_DEFINITION_TAG_MAP
     conf["product_description_tag_map"] = page_conf.PRODUCT_DESCRIPTION_TAG_MAP
     conf["product_nutricional_table_tag_map"] = page_conf.PRODUCT_NUTRICIONAL_TABLE_TAG_MAP
+    conf["tag_map_preference"] = page_conf.TAG_MAP_PREFERENCE
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     conf["user_agent"] = page_conf.USER_AGENT
     conf["data_path"] = f"{conf['src_data_path']}/{page_conf.JOB_NAME}"
