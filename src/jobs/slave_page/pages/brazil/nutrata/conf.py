@@ -4,6 +4,8 @@ URL = "https://loja.nutrata.com.br/"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#descricao > div.board > div'},
 ]

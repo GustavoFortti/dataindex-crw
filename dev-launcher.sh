@@ -10,7 +10,7 @@ export CHECKPOINT_PRODUCTS_UPDATE="false"
 
 page_names=(
     # "adaptogen"
-    # "atlhetica_nutrition" # images
+    "atlhetica_nutrition" # images
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
@@ -26,7 +26,7 @@ page_names=(
     # "oficialfarma" 
     # "probiotica"
     # "puravida"
-    "truesource"
+    # "truesource"
     # "under_labz"
     # "vitafor"
 )

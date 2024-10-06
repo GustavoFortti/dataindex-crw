@@ -4,6 +4,8 @@ URL = "https://www.iridiumlabs.com.br"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},
 ]

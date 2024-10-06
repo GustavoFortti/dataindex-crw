@@ -4,6 +4,8 @@ URL = "https://www.duxnutrition.com"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},
 ]

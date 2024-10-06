@@ -4,6 +4,8 @@ URL = "https://www.atlheticanutrition.com.br"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["image"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]

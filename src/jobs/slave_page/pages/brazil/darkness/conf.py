@@ -4,6 +4,8 @@ URL = "https://www.darkness.com.br"
 STATUS = True
 USER_AGENT = None
 
+TAG_MAP_PREFERENCE = ["text"]
+
 PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},
 ]

@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 import html2text
 import pandas as pd
@@ -6,8 +6,9 @@ from bs4 import BeautifulSoup
 
 from src.lib.extract.extract import products_metadata_update_old_pages_by_ref
 from src.lib.extract.page_elements import Page
-from src.lib.utils.file_system import read_file, save_file
+from src.lib.utils.file_system import read_file, save_file, save_json
 from src.lib.utils.log import message
+from src.lib.utils.py_functions import flatten_list
 
 
 def load_product_info(df: pd.DataFrame, conf: Dict) -> None:
@@ -39,23 +40,34 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
         # Definir caminhos de arquivos
         products_path: str = f"{DATA_PATH}/products"
         description_path: str = f"{products_path}/{ref}_description.txt"
+        images_path: str = f"{products_path}/{ref}_images.json"
         page_path: str = f"{products_path}/{ref}.txt"
 
         # Tentar carregar o HTML da página, atualizar se não existir
         html_text: Optional[str] = fetch_product_page_html(page_path, product_url)
 
-        # Extrair descrição com base nas tags configuradas
-        description: Optional[str] = extract_description_from_html(html_text)
+        if ("text" in CONF["tag_map_preference"]):
+            # Extrair descrição com base nas tags configuradas
+            description: Optional[str] = extract_element_from_html(html_text, CONF["product_description_tag_map"], get_product_description)
+            
+            if not description:
+                html_text: Optional[str] = fetch_product_page_html(page_path, product_url, True)
+                description: Optional[str] = extract_element_from_html(html_text, CONF["product_description_tag_map"], get_product_description)
         
-        if not description:
-            html_text: Optional[str] = fetch_product_page_html(page_path, product_url, True)
-            description: Optional[str] = extract_description_from_html(html_text)
-        
-        # Se a descrição foi extraída, formata e salva o arquivo
-        if description:
-            formatted_description: str = format_product_description(row, description)
-            message(f"save {ref} description")
-            save_file(formatted_description, description_path)
+            # Se a descrição foi extraída, formata e salva o arquivo
+            if description:
+                description = " ".join(description)
+                formatted_description: str = format_product_description(row, description)
+                message(f"save {ref} description")
+                save_file(formatted_description, description_path)
+                
+        if ("image" in CONF["tag_map_preference"]):
+            url_images: Optional[str] = extract_element_from_html(html_text, CONF["product_nutricional_table_tag_map"], get_product_url_images)
+            url_images = flatten_list(url_images)
+            
+            save_json(images_path, {
+                "url_images": url_images
+            })
     
 def fetch_product_page_html(page_path: str, product_url: str, force: bool = None) -> Optional[str]:
     """
@@ -77,7 +89,7 @@ def fetch_product_page_html(page_path: str, product_url: str, force: bool = None
 
     return html_text
 
-def extract_description_from_html(html_text: Optional[str]) -> Optional[str]:
+def extract_element_from_html(html_text: Optional[str], tags_map: str, get_function) -> Optional[str]:
     """
     Extrai a descrição do produto do HTML utilizando as tags configuradas.
 
@@ -87,16 +99,16 @@ def extract_description_from_html(html_text: Optional[str]) -> Optional[str]:
     Returns:
         Optional[str]: Descrição extraída do HTML, ou None se não encontrada.
     """
-    description = ""
+    elements = []
     
     if html_text:
-        for tag_map in CONF["product_description_tag_map"]:
-            description_aux: Optional[str] = get_product_description(html_text, tag_map)
-            if description_aux:
-                description += description_aux
+        for tag_map in tags_map:
+            element: Optional[str] = get_function(html_text, tag_map)
+            if element:
+                elements.append(element)
             
-    if description != "":
-        return description
+    if elements:
+        return elements
     
     return None
 
@@ -149,4 +161,28 @@ def get_product_description(html_text: str, tag_map: Dict[str, str]) -> Optional
 
     except Exception as e:
         print(f"Erro na função get_product_description: {e}")
+        return None
+    
+def get_product_url_images(html_text: str, tag_map: Dict[str, str]) -> Optional[List[str]]:
+    try:
+        # Criar o objeto BeautifulSoup
+        soup = BeautifulSoup(html_text, 'html.parser')
+
+        # Selecionar o conteúdo HTML baseado no caminho especificado no tag_map
+        html_content = soup.select_one(tag_map['path'])
+        
+        if not html_content:
+            return None
+        
+        # Capturar todos os links de imagens
+        image_urls = []
+        for tag in html_content:
+            # Procurar o atributo 'src' da tag de imagem
+            img_src = tag.get('src')
+            if img_src:
+                image_urls.append(img_src)
+
+        return image_urls if image_urls else None
+    except Exception as e:
+        print(f"Erro na função get_product_url_images: {e}")
         return None
