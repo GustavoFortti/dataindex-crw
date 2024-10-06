@@ -263,6 +263,9 @@ def create_product_collection_col(df):
         'pretreino': True
     }
     
+    df["collections"] = None
+    df["collections_homepage"] = None
+    
     for idx, row in df.iterrows():
         if (row['price_discount_percent'] > 0):
             return 'promocao'
