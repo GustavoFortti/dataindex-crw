@@ -2,10 +2,14 @@ def get_items(conf, soup):
     items = soup.find_all('div', class_='vtex-search-result-3-x-galleryItem')
     return items
 
+
+
 def get_product_url(conf, soup):
     product_link_element = soup.find('a', class_='vtex-product-summary-2-x-clearLink')
     product_link = conf["url"] + product_link_element['href'] if product_link_element else None
     return product_link
+
+
 
 def get_title(conf, soup):
     title_element = soup.find('h2', class_='vtex-product-summary-2-x-productNameContainer')
@@ -15,6 +19,8 @@ def get_title(conf, soup):
     else:
         title = None
     return title
+
+
 
 def get_price(conf, soup):
     price = None

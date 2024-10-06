@@ -2107,7 +2107,15 @@ SUPPLEMENT_COMPONENT_LIST = {
     }
 }
 
-COLLECTION = {}
+COLLECTION = {
+    'brazil': [
+        "promocao",
+        "whey",
+        "creatina",
+        "barrinha",
+        "pretreino",
+    ]
+}
 
 personal_pronouns = ["Eu", "Tu", "Ele", "Ela", "Nós", "Vós", "Eles", "Elas", "Mim", "Ti", "Si", "Consigo"]
 oblique_pronouns = ["Me", "Te", "Se", "Nos", "Vos", "O", "A", "Lhe", "Os", "As", "Nos", "Vos", "Se", "Convosco", "Lhes", "Contigo"]

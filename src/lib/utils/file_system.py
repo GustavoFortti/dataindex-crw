@@ -13,10 +13,21 @@ DATE_FORMAT = "%Y-%m-%d"
 
 
 def save_file(text, path):
+    create_file_if_not_exists(path, text)
     with open(path, "w") as file:
         message("file path: " + path)
         file.write(str(text))
 
+def save_file_with_line_breaks(file_path, text):
+    # Quebra a string em linhas onde houver \n
+    create_file_if_not_exists(file_path, text)
+    lines = text.split("\n")
+    
+    # Abre o arquivo para escrita
+    with open(file_path, "w") as file:
+        # Grava cada linha no arquivo
+        for line in lines:
+            file.write(line + "\n") 
 
 def read_file(file_path):
     """Reads a file and returns its contents as a string."""
@@ -24,7 +35,6 @@ def read_file(file_path):
         with open(file_path, 'r') as file:
             return file.read()
     except FileNotFoundError:
-        print("The file was not found.")
         return None
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -45,6 +55,7 @@ def read_json(file_path: str) -> Optional[Any]:
 
 def save_json(file_name: str, data: Any) -> None:
     """Saves data to a JSON file."""
+    
     with open(file_name, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False)
 
@@ -158,7 +169,18 @@ def file_exists(directory, filename):
     file_path = os.path.join(directory, filename)
     message(file_path)
     return os.path.exists(file_path)
-                
+
+def file_exists_with_modification_time(directory, filename):
+    file_path = os.path.join(directory, filename)
+    if os.path.exists(file_path):
+        # Obtém o timestamp da última modificação do arquivo
+        modification_time = os.path.getmtime(file_path)
+        # Converte o timestamp para um formato de data legível
+        readable_time = datetime.fromtimestamp(modification_time)
+        return True, readable_time  # Retorna True e a data de modificação
+    else:
+        return False, None  # Retorna False e None se o arquivo não existir
+
 def delete_directory_and_contents(directory_path):
     if not os.path.exists(directory_path):
         message("Directory does not exist.")

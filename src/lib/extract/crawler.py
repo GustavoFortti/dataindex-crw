@@ -8,7 +8,6 @@ from src.lib.utils.data_quality import status_tag
 from src.lib.utils.dataframe import create_or_read_df
 from src.lib.utils.text_functions import clean_string_break_line, generate_hash
 
-
 def crawler(page, url):
     message("exec crawler")
     if (("driver" not in page.conf.keys()) or (not page.conf["driver"])):

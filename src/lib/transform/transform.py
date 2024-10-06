@@ -2,7 +2,7 @@ import pandas as pd
 
 from src.lib.transform.transform_functions import (
     apply_generic_filters, create_price_discount_percent_col,
-    create_product_collection_col, create_product_def_cols,
+    create_product_collection_col, create_product_definition_col,
     create_quantity_column, filter_nulls, remove_blacklisted_products)
 from src.lib.utils.log import message
 
@@ -26,13 +26,10 @@ def transform(conf, df):
     df = create_price_discount_percent_col(df, conf['data_path'])
     
     message("Criando colunas de definição para produtos")
-    df = create_product_def_cols(df, conf)
+    df = create_product_definition_col(df, conf)
     
     message("Criando colunas coleção de produtos")
     df = create_product_collection_col(df)
-    
-    # message("Processamento de novas imagens dos produtos")
-    # image_processing(df, conf['data_path'])
 
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
     
@@ -52,11 +49,9 @@ def transform(conf, df):
             'compare_at_price',
             'quantity',
             'price_qnt',
-            'product_def',
-            'product_def_tag',
-            'product_def_pred',
-            'product_def_pred_tag',
-            'collection'
+            'product_definition',
+            'collections',
+            'collections_homepage',
         ]
     ]
 

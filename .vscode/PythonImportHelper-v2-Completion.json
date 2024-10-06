@@ -188,21 +188,164 @@
         "documentation": {}
     },
     {
-        "label": "importlib",
-        "kind": 6,
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
         "isExtraImport": true,
-        "importPath": "importlib",
-        "description": "importlib",
-        "detail": "importlib",
+        "detail": "datetime",
         "documentation": {}
     },
     {
-        "label": "numpy",
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "openai",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
+        "importPath": "openai",
+        "description": "openai",
+        "detail": "openai",
         "documentation": {}
     },
     {
@@ -215,59 +358,11 @@
         "documentation": {}
     },
     {
-        "label": "accuracy_score",
-        "importPath": "sklearn.metrics",
-        "description": "sklearn.metrics",
+        "label": "create_or_read_df",
+        "importPath": "src.lib.utils.dataframe",
+        "description": "src.lib.utils.dataframe",
         "isExtraImport": true,
-        "detail": "sklearn.metrics",
-        "documentation": {}
-    },
-    {
-        "label": "f1_score",
-        "importPath": "sklearn.metrics",
-        "description": "sklearn.metrics",
-        "isExtraImport": true,
-        "detail": "sklearn.metrics",
-        "documentation": {}
-    },
-    {
-        "label": "precision_score",
-        "importPath": "sklearn.metrics",
-        "description": "sklearn.metrics",
-        "isExtraImport": true,
-        "detail": "sklearn.metrics",
-        "documentation": {}
-    },
-    {
-        "label": "recall_score",
-        "importPath": "sklearn.metrics",
-        "description": "sklearn.metrics",
-        "isExtraImport": true,
-        "detail": "sklearn.metrics",
-        "documentation": {}
-    },
-    {
-        "label": "roc_auc_score",
-        "importPath": "sklearn.metrics",
-        "description": "sklearn.metrics",
-        "isExtraImport": true,
-        "detail": "sklearn.metrics",
-        "documentation": {}
-    },
-    {
-        "label": "KFold",
-        "importPath": "sklearn.model_selection",
-        "description": "sklearn.model_selection",
-        "isExtraImport": true,
-        "detail": "sklearn.model_selection",
-        "documentation": {}
-    },
-    {
-        "label": "XGBClassifier",
-        "importPath": "xgboost",
-        "description": "xgboost",
-        "isExtraImport": true,
-        "detail": "xgboost",
+        "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
     {
@@ -519,14 +614,6 @@
         "documentation": {}
     },
     {
-        "label": "read_df",
-        "importPath": "src.lib.utils.dataframe",
-        "description": "src.lib.utils.dataframe",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.dataframe",
-        "documentation": {}
-    },
-    {
         "label": "read_and_stack_historical_csvs_dataframes",
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
@@ -568,6 +655,78 @@
     },
     {
         "label": "create_directory_if_not_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "create_file_if_not_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "DATE_FORMAT",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "file_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "file_exists_with_modification_time",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "path_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "read_file",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "read_json",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "save_file_with_line_breaks",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "save_json",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -695,7 +854,7 @@
         "documentation": {}
     },
     {
-        "label": "delete_file",
+        "label": "read_file",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -744,6 +903,14 @@
     },
     {
         "label": "path_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "read_file",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -815,11 +982,91 @@
         "documentation": {}
     },
     {
-        "label": "flatten_list",
-        "importPath": "src.lib.utils.py_functions",
-        "description": "src.lib.utils.py_functions",
+        "label": "generate_hash",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
         "isExtraImport": true,
-        "detail": "src.lib.utils.py_functions",
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "clean_string_break_line",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "generate_hash",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "find_in_text_with_wordlist",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "clean_text",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "find_in_text_with_wordlist",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "remove_spaces",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "DATE_FORMAT",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "DATE_FORMAT",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "levenshtein",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
+        "documentation": {}
+    },
+    {
+        "label": "clean_text",
+        "importPath": "src.lib.utils.text_functions",
+        "description": "src.lib.utils.text_functions",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.text_functions",
         "documentation": {}
     },
     {
@@ -855,22 +1102,6 @@
         "documentation": {}
     },
     {
-        "label": "get_back_words",
-        "importPath": "src.lib.wordlist.wordlist",
-        "description": "src.lib.wordlist.wordlist",
-        "isExtraImport": true,
-        "detail": "src.lib.wordlist.wordlist",
-        "documentation": {}
-    },
-    {
-        "label": "get_word_index_in_text",
-        "importPath": "src.lib.wordlist.wordlist",
-        "description": "src.lib.wordlist.wordlist",
-        "isExtraImport": true,
-        "detail": "src.lib.wordlist.wordlist",
-        "documentation": {}
-    },
-    {
         "label": "BLACK_LIST",
         "importPath": "src.lib.wordlist.wordlist",
         "description": "src.lib.wordlist.wordlist",
@@ -879,43 +1110,12 @@
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "importlib",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
+        "importPath": "importlib",
+        "description": "importlib",
+        "detail": "importlib",
         "documentation": {}
     },
     {
@@ -1153,94 +1353,6 @@
         "documentation": {}
     },
     {
-        "label": "clean_string_break_line",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "generate_hash",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "find_in_text_with_wordlist",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "clean_text",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "clean_text",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "find_in_text_with_wordlist",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "remove_spaces",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "DATE_FORMAT",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "DATE_FORMAT",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "levenshtein",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
-        "label": "clean_text",
-        "importPath": "src.lib.utils.text_functions",
-        "description": "src.lib.utils.text_functions",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.text_functions",
-        "documentation": {}
-    },
-    {
         "label": "crawler",
         "importPath": "src.lib.extract.crawler",
         "description": "src.lib.extract.crawler",
@@ -1378,70 +1490,6 @@
         "documentation": {}
     },
     {
-        "label": "Tuple",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "parse_qs",
         "importPath": "urllib.parse",
         "description": "urllib.parse",
@@ -1557,7 +1605,7 @@
         "documentation": {}
     },
     {
-        "label": "create_product_def_cols",
+        "label": "create_product_definition_col",
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
         "isExtraImport": true,
@@ -1598,11 +1646,12 @@
         "documentation": {}
     },
     {
-        "label": "Image",
-        "importPath": "PIL",
-        "description": "PIL",
+        "label": "numpy",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "PIL",
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
         "documentation": {}
     },
     {
@@ -1622,11 +1671,11 @@
         "documentation": {}
     },
     {
-        "label": "load_product_definition",
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
         "isExtraImport": true,
-        "detail": "src.lib.transform.product_definition",
+        "detail": "PIL",
         "documentation": {}
     },
     {
@@ -1643,6 +1692,14 @@
         "description": "src.lib.utils.image_functions",
         "isExtraImport": true,
         "detail": "src.lib.utils.image_functions",
+        "documentation": {}
+    },
+    {
+        "label": "load_product_info",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "isExtraImport": true,
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
@@ -1934,111 +1991,30 @@
         "documentation": {}
     },
     {
-        "label": "set_conf",
+        "label": "set_config",
         "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def set_conf(args, local):\n    conf = {}\n    conf[\"local\"] = local\n    conf[\"job_name\"] = args.job_name\n    conf[\"page_name\"] = args.page_name\n    conf[\"page_type\"] = args.page_type\n    conf[\"country\"] = args.country\n    conf[\"src_data_path\"] = f\"{local}/data/{conf['page_type']}/{conf['country']}\"\n    conf[\"data_path\"] = f\"{conf['src_data_path']}/product_definition\"\n    conf[\"wordlist\"] = WORDLIST[conf['page_type']]",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
+        "importPath": "src.jobs.data_intelligence.product_info.job",
+        "description": "src.jobs.data_intelligence.product_info.job",
+        "peekOfCode": "def set_config(args: Any, local: str) -> Dict[str, Any]:\n    \"\"\"\n    Sets up the configuration dictionary based on the job arguments and local environment.\n    Args:\n        args (Any): Job arguments.\n        local (str): Local environment path.\n    Returns:\n        Dict[str, Any]: Configuration dictionary for the job.\n    \"\"\"\n    config = {",
+        "detail": "src.jobs.data_intelligence.product_info.job",
         "documentation": {}
     },
     {
         "label": "run",
         "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def run(args):\n    global DATA_PATH\n    global WORDLIST_CONF\n    global LOCAL\n    LOCAL = os.getenv('LOCAL')\n    conf = set_conf(args, LOCAL)\n    print(\"JOB_NAME: \" + conf[\"job_name\"])\n    conf.update(vars(args))\n    src_data_path = conf[\"src_data_path\"]\n    WORDLIST_CONF = conf['wordlist']",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
+        "importPath": "src.jobs.data_intelligence.product_info.job",
+        "description": "src.jobs.data_intelligence.product_info.job",
+        "peekOfCode": "def run(args: Any) -> None:\n    \"\"\"\n    Executa o trabalho de extração e processamento de dados.\n    Args:\n        args (Any): Argumentos do trabalho.\n    \"\"\"\n    message(\"STARTING THE JOB\")\n    global CONF\n    local = os.getenv('LOCAL')\n    CONF = set_config(args, local)",
+        "detail": "src.jobs.data_intelligence.product_info.job",
         "documentation": {}
     },
     {
-        "label": "add_synonyms_to_cols_with_wordlist",
+        "label": "refine_description",
         "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def add_synonyms_to_cols_with_wordlist(df, col, conf):\n    for idx, row in df.iterrows():\n        ref = row['ref']\n        synonyms = []\n        synonym = []\n        for key, value in WORDLIST_CONF.items():\n            words = value['subject']\n            tag = value[conf[\"country\"]]\n            aux_subject = [words for subject in row['subject'].split(\", \") if subject in words]\n            if (aux_subject != []):",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "calc_def_product",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def calc_def_product(df):\n    df_filtered = df[(df['product_predicted'] != 0) & \n                    (df['probability_class_1'] >= 0.7)]\n    def filter_document_index(df):\n        if ((len(df) == 1) or (df['document_index'].max() == df['document_index'].min())):\n            return df\n        return df[df['document_index'] != df['document_index'].max()]\n    df_filtered = df_filtered.groupby('ref', as_index=False).apply(filter_document_index).reset_index(drop=True)\n    df_grouped = df_filtered.groupby(['ref', 'subject_encoded']).agg({\n        'location': 'sum',",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "unique_subject",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def unique_subject(subjects):\n    unique_subjects = set()\n    for subject in subjects:\n        cleaned_subject = subject.strip()\n        unique_subjects.add(cleaned_subject)\n    return ' '.join(unique_subjects)\ndef run_score_train(df):\n    X = df.drop(['target', 'ref'], axis=1)\n    y = df['target']\n    model = train_and_evaluate_models(X, y)",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "run_score_train",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def run_score_train(df):\n    X = df.drop(['target', 'ref'], axis=1)\n    y = df['target']\n    model = train_and_evaluate_models(X, y)\n    return model\ndef run_score_predict(df, model):\n    df_temp = df.copy()\n    X_predict = df_temp.drop(['target', 'ref'], axis=1)\n    y_pred = model.predict(X_predict)\n    y_probability = model.predict_proba(X_predict)",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "run_score_predict",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def run_score_predict(df, model):\n    df_temp = df.copy()\n    X_predict = df_temp.drop(['target', 'ref'], axis=1)\n    y_pred = model.predict(X_predict)\n    y_probability = model.predict_proba(X_predict)\n    df['product_predicted'] = y_pred\n    df['probability_class_0'] = y_probability[:, 0]\n    df['probability_class_1'] = y_probability[:, 1]\n    return df[['ref', 'location', 'document_index', 'subject_encoded', 'product_predicted', 'probability_class_0', 'probability_class_1']]\ndef train_and_evaluate_models(X, y, n_splits=5):",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "train_and_evaluate_models",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def train_and_evaluate_models(X, y, n_splits=5):\n    model = XGBClassifier(use_label_encoder=False, eval_metric='logloss', n_estimators=200, random_state=42)\n    kf = KFold(n_splits=n_splits, shuffle=True, random_state=42)\n    accuracies = []\n    precisions = []\n    recalls = []\n    f1_scores = []\n    aucs = []\n    for train_index, test_index in kf.split(X):\n        X_train, X_test = X.iloc[train_index], X.iloc[test_index]",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "data_prep",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def data_prep(df, conf):\n    df = df.drop_duplicates()\n    subjects = []\n    for items in WORDLIST_CONF.values():\n        subjects.append(items['subject'])\n    subjects = np.array(flatten_list(subjects))\n    message(\"read dictionaries\")\n    dictionaries = importlib.import_module(f\"src.lib.wordlist.{conf[\"country\"]}.dictionary\").get_dictionary(LOCAL)\n    brands = np.array(list(set(df['brand'].values)))\n    dictionaries = np.unique(np.concatenate([dictionaries, subjects, brands]))",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "create_new_features",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def create_new_features(df):\n    # Grouping by columns 'ref', 'subject', and 'document_index'\n    cols = ['ref', 'subject', 'document_index']\n    # Aggregating 'subject_encoded' by count and 'location' by taking the mean of the smallest 20% or 1 observation\n    grouped_df = df.groupby(cols).agg({\n        'subject_encoded': 'count',  # Counting occurrences of 'subject_encoded'\n        'location': (lambda x: x.nsmallest(max(int(len(x) * 0.20), 1)).mean()),  # Calculating the mean of the smallest 20% or 1 observation of 'location'\n    }).reset_index()\n    # Renaming columns for clarity\n    grouped_df = grouped_df[['ref', 'subject', 'document_index', 'subject_encoded', 'location']]",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "convert_type_columns",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def convert_type_columns(df, cols, cols_types):\n    for col in cols:\n        if cols_types == int:\n            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(float).astype(int)\n        else:\n            df[col] = df[col].astype(cols_types)\n    return df\ndef normalize_words(df, columns, dictionaries, words):\n    mask = np.isin(dictionaries, words)\n    filtered_data_set = dictionaries[mask]",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
-        "documentation": {}
-    },
-    {
-        "label": "normalize_words",
-        "kind": 2,
-        "importPath": "src.jobs.data_intelligence.product_definition.job",
-        "description": "src.jobs.data_intelligence.product_definition.job",
-        "peekOfCode": "def normalize_words(df, columns, dictionaries, words):\n    mask = np.isin(dictionaries, words)\n    filtered_data_set = dictionaries[mask]\n    filtered_data_set = np.insert(filtered_data_set, 0, \"0\")\n    for col in columns:\n        df[f\"{col}_encoded\"] = df[col].apply(lambda x: np.where(filtered_data_set == x)[0][0] if x in filtered_data_set else x)\n        df[f\"{col}_encoded\"] = df[f\"{col}_encoded\"].where(~df[col].isnull(), other=\"0\")\n        df[f\"{col}_encoded\"] = df[f\"{col}_encoded\"].replace(regex=r'.*\\D+.*', value='-1', inplace=False)\n    df = df.astype(str)\n    return df",
-        "detail": "src.jobs.data_intelligence.product_definition.job",
+        "importPath": "src.jobs.data_intelligence.product_info.job",
+        "description": "src.jobs.data_intelligence.product_info.job",
+        "peekOfCode": "def refine_description(description: str) -> Optional[str]:\n    \"\"\"\n    Uses the OpenAI API to generate a refined version of the product description.\n    Args:\n        description (str): The product description to be refined.\n    Returns:\n        Optional[str]: Refined text or None in case of an error.\n    \"\"\"\n    try:\n        # Set up the OpenAI client",
+        "detail": "src.jobs.data_intelligence.product_info.job",
         "documentation": {}
     },
     {
@@ -2082,7 +2058,7 @@
         "kind": 2,
         "importPath": "src.jobs.master_page.master.job",
         "description": "src.jobs.master_page.master.job",
-        "peekOfCode": "def run(args):\n    message(\"INICIANDO O JOB\")\n    local = os.getenv('LOCAL')\n    conf = set_conf(args, local)\n    message(\"Configuração inicial:\")\n    # message(conf)\n    module_name = f\"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.conf\"\n    page_conf = importlib.import_module(module_name)\n    conf = update_conf_with_page_config(conf, page_conf, local, args)\n    message(\"Configuração atualizada:\")",
+        "peekOfCode": "def run(args):\n    message(\"INICIANDO O JOB\")\n    local = os.getenv('LOCAL')\n    conf = set_conf(args, local)\n    module_name = f\"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.conf\"\n    page_conf = importlib.import_module(module_name)\n    conf = update_conf_with_page_config(conf, page_conf, local, args)\n    module_name = f\"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.dry\"\n    dry = importlib.import_module(module_name)\n    options = {",
         "detail": "src.jobs.master_page.master.job",
         "documentation": {}
     },
@@ -5610,7 +5586,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:\n    \"\"\"\n    Formata os dados de um produto para o formato esperado pela API da Shopify.\n    Returns:\n    - product_data: dict com dados do produto\n    - variant_data: dict com dados da variante\n    \"\"\"\n    try:\n        product_type = row['product_def_pred_tag'] if pd.notna(row['product_def_pred_tag']) else row['product_def_tag']\n        button_html = f'''",
+        "peekOfCode": "def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:\n    \"\"\"\n    Formata os dados de um produto para o formato esperado pela API da Shopify.\n    Returns:\n    - product_data: dict com dados do produto\n    - variant_data: dict com dados da variante\n    \"\"\"\n    try:\n        description_ai = None\n        path_description_ai = f\"{CONF[\"data_path\"]}/products/{row['ref']}_description_ai.txt\"",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -5727,7 +5703,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def update_collections(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Adiciona o produto a uma coleção manual na Shopify.\n    \"\"\"\n    try:\n        collection_title = row['collection'] if pd.notna(row['collection']) else \"Sem coleção\"\n        # Obtém todas as coleções manuais (Custom Collections)\n        response = session.get(f\"{BASE_URL}custom_collections.json\", params={\"title\": collection_title})\n        if response.status_code != 200:\n            message(f\"Erro ao obter coleções: {response.status_code} - {response.text}\")",
+        "peekOfCode": "def update_collections(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Adiciona o produto a uma coleção manual na Shopify.\n    \"\"\"\n    try:\n        collection_title = row['collections_homepage'] if pd.notna(row['collections_homepage']) else \"Sem coleção\"\n        # Obtém todas as coleções manuais (Custom Collections)\n        response = session.get(f\"{BASE_URL}custom_collections.json\", params={\"title\": collection_title})\n        if response.status_code != 200:\n            message(f\"Erro ao obter coleções: {response.status_code} - {response.text}\")",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -5763,7 +5739,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def process_and_ingest_products(df: pd.DataFrame, refs: list, brand: str) -> None:\n    is_connected = test_connection()\n    if not is_connected:\n        raise ValueError(\"Sem conexão com a Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    # Encontra SKUs duplicadas e deleta\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)\n    # Atualiza sku_data após deletar duplicatas\n    sku_data = get_all_skus_with_product_ids()",
+        "peekOfCode": "def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand: str) -> None:\n    global CONF\n    CONF = conf\n    is_connected = test_connection()\n    if not is_connected:\n        raise ValueError(\"Sem conexão com a Shopify\") \n    sku_data = get_all_skus_with_product_ids()\n    # Encontra SKUs duplicadas e deleta\n    duplicate_skus = find_duplicate_skus(sku_data)\n    delete_duplicates_products(duplicate_skus)",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
@@ -5822,138 +5798,57 @@
         "documentation": {}
     },
     {
-        "label": "load_product_definition",
+        "label": "load_product_info",
         "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def load_product_definition(df, conf):\n    message(\"RUNNING MODEL PREP...\")\n    global CONF\n    global WORDLIST\n    global DATA_PATH\n    global FILE_PATH_PRODUCT_METADATA\n    CONF = conf\n    WORDLIST = conf[\"wordlist\"]\n    DATA_PATH = CONF[\"data_path\"]\n    FILE_PATH_PRODUCT_METADATA = CONF[\"path_products_metadata_transform\"]",
-        "detail": "src.lib.transform.product_definition",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "peekOfCode": "def load_product_info(df: pd.DataFrame, conf: Dict) -> None:\n    \"\"\"\n    Inicializa o processo de extração de metadados de produtos a partir de um DataFrame.\n    Args:\n        df (pd.DataFrame): DataFrame contendo as informações dos produtos.\n    \"\"\"\n    message(\"RUNNING MODEL PREP...\")\n    global CONF, DATA_PATH\n    CONF = conf\n    DATA_PATH = conf[\"data_path\"]",
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
-        "label": "generates_and_stacks_product_metadata_by_ref",
+        "label": "extract_metadata_from_page",
         "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def generates_and_stacks_product_metadata_by_ref(ref, keywords_data):\n    title_keywords = keywords_data[ref][0]\n    valid_keywords, others_keywords = treat_relationship_between_keywords(title_keywords)\n    excluded_title_keywords = keywords_data[ref][1:]\n    if valid_keywords:\n        for contained in (True, False):\n            dfs_temp = [create_product_metadata_dataframe(keywords, valid_keywords, ref, contained, index) for index, keywords in enumerate(excluded_title_keywords)]\n            df_product_ref_info = pd.concat(dfs_temp, ignore_index=True)\n            df_product_ref_info['target'] = int(contained)\n            append_new_df_and_save(FILE_PATH_PRODUCT_METADATA, df_product_ref_info)",
-        "detail": "src.lib.transform.product_definition",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "peekOfCode": "def extract_metadata_from_page(df: pd.DataFrame) -> None:\n    \"\"\"\n    Percorre cada linha do DataFrame e extrai as informações do produto.\n    Args:\n        df (pd.DataFrame): DataFrame contendo as informações dos produtos.\n    \"\"\"\n    for idx, row in df.iterrows():\n        ref: str = str(row['ref'])\n        product_url: str = row['product_url']\n        # Definir caminhos de arquivos",
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
-        "label": "create_product_metadata_dataframe",
+        "label": "fetch_product_page_html",
         "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def create_product_metadata_dataframe(keywords, subjects, ref, contained, index):\n    product_ref_info = [\n        {\n            \"ref\": ref, \n            \"back_word\": keyword['back_words'], \n            \"subject\": keyword['subject'],\n            \"location\": int(keyword['location']), \n            \"word_number\": int(keyword['word_number']),\n            \"document_size\": int(keyword['document_size']),\n            \"document_index\": int(index),",
-        "detail": "src.lib.transform.product_definition",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "peekOfCode": "def fetch_product_page_html(page_path: str, product_url: str, force: bool = None) -> Optional[str]:\n    \"\"\"\n    Tenta ler o HTML da página do produto, atualiza a página se não encontrar o arquivo.\n    Args:\n        page_path (str): Caminho do arquivo HTML do produto.\n        product_url (str): URL do produto.\n    Returns:\n        Optional[str]: Texto HTML da página do produto, ou None se não encontrado.\n    \"\"\"\n    html_text: Optional[str] = read_file(page_path)",
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
-        "label": "shift_words",
+        "label": "extract_description_from_html",
         "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def shift_words(df, columns):\n    for col in columns:\n        if df[col].dtype != 'object':\n            df[col] = df[col].astype('object')\n    def shift_words_to_right(row):\n        words = [row[col] for col in columns]\n        filtered_words = [w for w in words if pd.notna(w)]\n        none_filled = [None] * (len(columns) - len(filtered_words))\n        return none_filled + filtered_words\n    for index, row in df.iterrows():",
-        "detail": "src.lib.transform.product_definition",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "peekOfCode": "def extract_description_from_html(html_text: Optional[str]) -> Optional[str]:\n    \"\"\"\n    Extrai a descrição do produto do HTML utilizando as tags configuradas.\n    Args:\n        html_text (Optional[str]): Texto HTML da página do produto.\n    Returns:\n        Optional[str]: Descrição extraída do HTML, ou None se não encontrada.\n    \"\"\"\n    description = \"\"\n    if html_text:",
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
-        "label": "treat_relationship_between_keywords",
+        "label": "format_product_description",
         "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def treat_relationship_between_keywords(keywrods):\n    if (keywrods == {}):\n        return False, False\n    subjects_keywords = list(set([keyword['subject'] for keyword in keywrods.values()]))\n    valid_keywords = []\n    others_keywords = []\n    for subject_keywords in subjects_keywords:\n        subject = WORDLIST[subject_keywords]\n        if ((subject['product']) &\n            (not bool(set(subject['conflict']).intersection(subjects_keywords)))):",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "extract_keywords_from_products",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def extract_keywords_from_products(df, conf):\n    keywords_data = {}\n    document_from_tag_count = 3\n    for idx, row in df.iterrows():\n        ref = str(row['ref'])\n        title = row['title']\n        products_path = f\"{DATA_PATH}/products\"\n        description_path = f\"{DATA_PATH}/products/{ref}_description.txt\"\n        page_path = f\"{products_path}/{ref}.txt\"\n        html_text = read_file(page_path)",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "get_keywords_info",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def get_keywords_info(document, index):\n    documents_accents = clean_text(document, False, False, False, False, True)\n    documents_cleaned = clean_text(document, False, False, False, True, True)\n    first_doc = False\n    if (index == 0):\n        first_doc = True\n    keywords_info = {}\n    for key, value in WORDLIST.items():\n        subject = value['subject']\n        for word in subject:",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "filter_unique_locations",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def filter_unique_locations(data):\n    sorted_items = sorted(data.items(), key=lambda x: (x[1]['location'], -x[1]['size_word']))\n    filtered_data = {}\n    last_location = -1\n    for key, value in sorted_items:\n        if value['location'] != last_location:\n            filtered_data[key] = value\n            last_location = value['location']\n    return filtered_data\ndef normalize_data(data, columns):",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "normalize_data",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def normalize_data(data, columns):\n    if isinstance(data, dict):\n        return normalize_dict_of_dicts(data, columns)\n    elif isinstance(data, list):\n        return normalize_list_of_dicts(data, columns)\n    else:\n        return None\ndef normalize_dict_of_dicts(data, columns):\n    records = list(data.values())\n    min_max_values = {}",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "normalize_dict_of_dicts",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def normalize_dict_of_dicts(data, columns):\n    records = list(data.values())\n    min_max_values = {}\n    for col in columns:\n        col_values = [record[col] for record in records if col in record]\n        if col_values:\n            min_max_values[col] = {\n                'min': min(col_values),\n                'max': max(col_values)\n            }",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "normalize_list_of_dicts",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def normalize_list_of_dicts(data, columns):\n    max_values = {col: max(entry[col] for entry in data) for col in columns}\n    min_values = {col: min(entry[col] for entry in data) for col in columns}\n    normalized_data = []\n    for entry in data:\n        normalized_entry = entry.copy()\n        for col in columns:\n            array = entry[col]\n            max_val = max_values[col]\n            min_val = min_values[col]",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "normalize_rows",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def normalize_rows(df, exclude_columns):\n    # Cria uma cópia do DataFrame para não modificar o original.\n    df_normalized = df.copy()\n    # Itera sobre as linhas do DataFrame.\n    for index, row in df.iterrows():\n        # Seleciona os valores das colunas que não estão na lista de exclusão.\n        values_to_normalize = row.drop(exclude_columns)\n        # Calcula o mínimo e o máximo dos valores selecionados.\n        min_val = values_to_normalize.min()\n        max_val = values_to_normalize.max()",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "extract_subject_from_html_text",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def extract_subject_from_html_text(html_text, tag_map=None):\n    soup = BeautifulSoup(html_text, 'html.parser')\n    text = \"\"\n    if (not tag_map):\n        remove_tags = ['header', 'footer', 'fieldset', 'select', 'script', 'style', 'iframe', 'svg', 'img', 'link', 'button', 'noscript']\n        for remove_tag in remove_tags:\n            for tag_map in soup.find_all(remove_tag):\n                tag_map.decompose()\n        tags_com_hidden = soup.find_all(lambda element: element.get('class') and 'hidden' in ' '.join(element.get('class')))\n        for tag_map in tags_com_hidden:",
-        "detail": "src.lib.transform.product_definition",
-        "documentation": {}
-    },
-    {
-        "label": "append_new_df_and_save",
-        "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def append_new_df_and_save(path, new_df):\n    if path_exists(path):\n        existing_df = read_df(path, dtype={'ref': str})\n        combined_df = pd.concat([existing_df, new_df], ignore_index=True)\n    else:\n        combined_df = new_df\n    combined_df.to_csv(path, index=False)\ndef get_product_description(html_text, tag_map):\n    try:\n        soup = BeautifulSoup(html_text, 'html.parser')",
-        "detail": "src.lib.transform.product_definition",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "peekOfCode": "def format_product_description(row: pd.Series, description: str) -> str:\n    \"\"\"\n    Formata a descrição do produto incluindo o título e a marca.\n    Args:\n        row (pd.Series): Linha do DataFrame contendo as informações do produto.\n        description (str): Descrição extraída do HTML.\n    Returns:\n        str: Descrição formatada do produto.\n    \"\"\"\n    return f\"Produto: {row['title']}\\nMarca: {row['brand']}\\nDescrição:\\n{description}\"",
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
         "label": "get_product_description",
         "kind": 2,
-        "importPath": "src.lib.transform.product_definition",
-        "description": "src.lib.transform.product_definition",
-        "peekOfCode": "def get_product_description(html_text, tag_map):\n    try:\n        soup = BeautifulSoup(html_text, 'html.parser')\n        html_content = soup.select_one(tag_map['path'])\n        if not html_content:\n            return None\n        # Criar o conversor\n        h = html2text.HTML2Text()\n        # Configurações para remover formatação Markdown\n        h.ignore_links = True   # Ignorar links",
-        "detail": "src.lib.transform.product_definition",
+        "importPath": "src.lib.transform.product_info",
+        "description": "src.lib.transform.product_info",
+        "peekOfCode": "def get_product_description(html_text: str, tag_map: Dict[str, str]) -> Optional[str]:\n    \"\"\"\n    Extrai a descrição do produto de um HTML usando um seletor de tag.\n    Args:\n        html_text (str): Texto HTML da página do produto.\n        tag_map (Dict[str, str]): Mapeamento da tag contendo o seletor de caminho ('path').\n    Returns:\n        Optional[str]: Descrição do produto em texto simples ou None se não encontrado ou inválido.\n    \"\"\"\n    try:",
+        "detail": "src.lib.transform.product_info",
         "documentation": {}
     },
     {
@@ -5966,11 +5861,11 @@
         "documentation": {}
     },
     {
-        "label": "create_product_def_cols",
+        "label": "create_product_definition_col",
         "kind": 2,
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
-        "peekOfCode": "def create_product_def_cols(df, conf):\n    message(\"criada colunas de definição do produto\")\n    product_definition = conf['product_definition']\n    message(\"Load_models_prep\")\n    load_product_definition(df, conf)\n    message(\"carregando colunas de definição\")\n    product_definition_by_titile = f\"{product_definition}/product_definition_by_titile.csv\"\n    product_definition_by_ml = f\"{product_definition}/product_definition_by_ml.csv\"\n    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):\n        df_product_def = read_df(product_definition_by_titile, dtype={'ref': str})",
+        "peekOfCode": "def create_product_definition_col(df, conf):\n    message(\"criada colunas de descrição do produto\")\n    # load_product_info(df, conf)\n    df[\"product_definition\"] = None\n    for idx, row in df.iterrows():\n        ref: str = str(row['ref'])\n        description_ai_path = F\"{conf['data_path']}/products/{ref}_description_ai.txt\"\n        if path_exists(description_ai_path):\n            description_ai = read_file(description_ai_path)\n        else:",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },
@@ -6078,16 +5973,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
-        "peekOfCode": "def create_product_collection_col(df):\n    import numpy as np\n    def assign_collection(row):\n        if (row['price_discount_percent'] > 0):\n            return 'Promoção'\n        elif ('whey' in str(row['product_def']).lower() or 'whey' in str(row['product_def_pred']).lower()):\n            return 'Whey Protein'\n        elif ('barrinha' in str(row['product_def']).lower() or 'barrinha' in str(row['product_def_pred']).lower()):\n            return 'Barrinhas'\n        elif ('creatina' in str(row['product_def']).lower() or 'creatina' in str(row['product_def_pred']).lower()):",
-        "detail": "src.lib.transform.transform_functions",
-        "documentation": {}
-    },
-    {
-        "label": "create_product_description_col",
-        "kind": 2,
-        "importPath": "src.lib.transform.transform_functions",
-        "description": "src.lib.transform.transform_functions",
-        "peekOfCode": "def create_product_description_col(df, conf):\n    message(\"criada colunas de descrição do produto\")",
+        "peekOfCode": "def create_product_collection_col(df):\n    collections_homepage_flag = {\n        'whey': True, \n        'barrinha': True, \n        'creatina': True, \n        'pretreino': True\n    }\n    for idx, row in df.iterrows():\n        if (row['price_discount_percent'] > 0):\n            return 'promocao'",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },
@@ -6159,7 +6045,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def format_column_date(df, column):\n    df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)\n    df[column] = df[column].dt.strftime(DATE_FORMAT)\n    return df\ndef create_or_read_df(path, columns=None, dtype=None):\n    message(f\"create_or_read_df\")\n    if path_exists(path):\n        message(f\"read file: {path}\")\n        if dtype:\n            df = pd.read_csv(path, dtype=dtype)",
+        "peekOfCode": "def format_column_date(df, column):\n    df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)\n    df[column] = df[column].dt.strftime(DATE_FORMAT)\n    return df\ndef create_or_read_df(path, columns=None, dtype=None):\n    message(f\"create_or_read_df\")\n    # Verifica se o arquivo existe\n    if os.path.exists(path):\n        # Verifica se o arquivo está vazio\n        if os.path.getsize(path) > 0:",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -6168,7 +6054,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.dataframe",
         "description": "src.lib.utils.dataframe",
-        "peekOfCode": "def create_or_read_df(path, columns=None, dtype=None):\n    message(f\"create_or_read_df\")\n    if path_exists(path):\n        message(f\"read file: {path}\")\n        if dtype:\n            df = pd.read_csv(path, dtype=dtype)\n        else:\n            df = pd.read_csv(path)\n    else:\n        if columns is not None:",
+        "peekOfCode": "def create_or_read_df(path, columns=None, dtype=None):\n    message(f\"create_or_read_df\")\n    # Verifica se o arquivo existe\n    if os.path.exists(path):\n        # Verifica se o arquivo está vazio\n        if os.path.getsize(path) > 0:\n            message(f\"read file: {path}\")\n            try:\n                # Lê o arquivo CSV\n                if dtype:",
         "detail": "src.lib.utils.dataframe",
         "documentation": {}
     },
@@ -6231,7 +6117,16 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def save_file(text, path):\n    with open(path, \"w\") as file:\n        message(\"file path: \" + path)\n        file.write(str(text))\ndef read_file(file_path):\n    \"\"\"Reads a file and returns its contents as a string.\"\"\"\n    try:\n        with open(file_path, 'r') as file:\n            return file.read()\n    except FileNotFoundError:",
+        "peekOfCode": "def save_file(text, path):\n    create_file_if_not_exists(path, text)\n    with open(path, \"w\") as file:\n        message(\"file path: \" + path)\n        file.write(str(text))\ndef save_file_with_line_breaks(file_path, text):\n    # Quebra a string em linhas onde houver \\n\n    create_file_if_not_exists(file_path, text)\n    lines = text.split(\"\\n\")\n    # Abre o arquivo para escrita",
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "save_file_with_line_breaks",
+        "kind": 2,
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "peekOfCode": "def save_file_with_line_breaks(file_path, text):\n    # Quebra a string em linhas onde houver \\n\n    create_file_if_not_exists(file_path, text)\n    lines = text.split(\"\\n\")\n    # Abre o arquivo para escrita\n    with open(file_path, \"w\") as file:\n        # Grava cada linha no arquivo\n        for line in lines:\n            file.write(line + \"\\n\") \ndef read_file(file_path):",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
@@ -6240,7 +6135,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def read_file(file_path):\n    \"\"\"Reads a file and returns its contents as a string.\"\"\"\n    try:\n        with open(file_path, 'r') as file:\n            return file.read()\n    except FileNotFoundError:\n        print(\"The file was not found.\")\n        return None\n    except Exception as e:\n        print(f\"An error occurred: {e}\")",
+        "peekOfCode": "def read_file(file_path):\n    \"\"\"Reads a file and returns its contents as a string.\"\"\"\n    try:\n        with open(file_path, 'r') as file:\n            return file.read()\n    except FileNotFoundError:\n        return None\n    except Exception as e:\n        print(f\"An error occurred: {e}\")\n        return None",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
@@ -6330,7 +6225,16 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def file_exists(directory, filename):\n    file_path = os.path.join(directory, filename)\n    message(file_path)\n    return os.path.exists(file_path)\ndef delete_directory_and_contents(directory_path):\n    if not os.path.exists(directory_path):\n        message(\"Directory does not exist.\")\n        return\n    shutil.rmtree(directory_path)\n    message(f\"Directory and all contents deleted: {directory_path}\")",
+        "peekOfCode": "def file_exists(directory, filename):\n    file_path = os.path.join(directory, filename)\n    message(file_path)\n    return os.path.exists(file_path)\ndef file_exists_with_modification_time(directory, filename):\n    file_path = os.path.join(directory, filename)\n    if os.path.exists(file_path):\n        # Obtém o timestamp da última modificação do arquivo\n        modification_time = os.path.getmtime(file_path)\n        # Converte o timestamp para um formato de data legível",
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "file_exists_with_modification_time",
+        "kind": 2,
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "peekOfCode": "def file_exists_with_modification_time(directory, filename):\n    file_path = os.path.join(directory, filename)\n    if os.path.exists(file_path):\n        # Obtém o timestamp da última modificação do arquivo\n        modification_time = os.path.getmtime(file_path)\n        # Converte o timestamp para um formato de data legível\n        readable_time = datetime.fromtimestamp(modification_time)\n        return True, readable_time  # Retorna True e a data de modificação\n    else:\n        return False, None  # Retorna False e None se o arquivo não existir",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
@@ -6375,7 +6279,7 @@
         "kind": 5,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "DATE_FORMAT = \"%Y-%m-%d\"\ndef save_file(text, path):\n    with open(path, \"w\") as file:\n        message(\"file path: \" + path)\n        file.write(str(text))\ndef read_file(file_path):\n    \"\"\"Reads a file and returns its contents as a string.\"\"\"\n    try:\n        with open(file_path, 'r') as file:\n            return file.read()",
+        "peekOfCode": "DATE_FORMAT = \"%Y-%m-%d\"\ndef save_file(text, path):\n    create_file_if_not_exists(path, text)\n    with open(path, \"w\") as file:\n        message(\"file path: \" + path)\n        file.write(str(text))\ndef save_file_with_line_breaks(file_path, text):\n    # Quebra a string em linhas onde houver \\n\n    create_file_if_not_exists(file_path, text)\n    lines = text.split(\"\\n\")",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
@@ -6609,7 +6513,7 @@
         "kind": 5,
         "importPath": "src.lib.wordlist.wordlist",
         "description": "src.lib.wordlist.wordlist",
-        "peekOfCode": "COLLECTION = {}\npersonal_pronouns = [\"Eu\", \"Tu\", \"Ele\", \"Ela\", \"Nós\", \"Vós\", \"Eles\", \"Elas\", \"Mim\", \"Ti\", \"Si\", \"Consigo\"]\noblique_pronouns = [\"Me\", \"Te\", \"Se\", \"Nos\", \"Vos\", \"O\", \"A\", \"Lhe\", \"Os\", \"As\", \"Nos\", \"Vos\", \"Se\", \"Convosco\", \"Lhes\", \"Contigo\"]\ndemonstrative_pronouns = [\"Este\", \"Esse\", \"Aquele\", \"Esta\", \"Essa\", \"Aquela\", \"Isto\", \"Isso\", \"Aquilo\", \"Estes\", \"Esses\", \"Aqueles\", \"Estas\", \"Essas\", \"Aquelas\", \"Iste\"]\npossessive_pronouns = [\"Meu\", \"Teu\", \"Seu\", \"Nosso\", \"Vosso\", \"Seu\", \"Minha\", \"Tua\", \"Sua\", \"Nossa\", \"Vossa\", \"Sua\", \"Meus\", \"Teus\", \"Seus\", \"Nossos\", \"Vossos\", \"Minhas\", \"Tuas\", \"Suas\", \"Nossas\", \"Vossas\"]\nindefinite_pronouns = [\"Alguém\", \"Ninguém\", \"Todo\", \"Algum\", \"Nenhum\", \"Outro\", \"Muito\", \"Pouco\", \"Tanto\", \"Cada\", \"Algo\", \"Tudo\", \"Nada\", \"Cada um\", \"Qualquer\", \"Poucos\", \"Muitos\", \"Vários\", \"Outrem\"]\nrelative_pronouns = [\"Que\", \"Qual\", \"Quem\", \"Onde\", \"Cujo\", \"O qual\", \"Cuja\", \"Quanto\"]\ninterrogative_pronouns = [\"Quem\", \"O que\", \"Qual\", \"Quanto\", \"Onde\", \"Quando\", \"Como\", \"Por que\", \"Qualquer coisa\", \"Quanto a\"]\nprepositions = [\"A\", \"Ante\", \"Até\", \"Após\", \"Com\", \"Contra\", \"De\", \"Desde\", \"Em\", \"Entre\", \"Para\", \"Por\", \"Perante\", \"Sem\", \"Sob\", \"Sobre\", \"Trás\", \"Conforme\", \"Contudo\", \"Durante\", \"Exceto\", \"Mediant\", \"Menos\", \"Salvo\", \"Segundo\", \"Visto\"]\nBRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns + possessive_pronouns + indefinite_pronouns + relative_pronouns + interrogative_pronouns + prepositions",
+        "peekOfCode": "COLLECTION = {\n    'brazil': [\n        \"promocao\",\n        \"whey\",\n        \"creatina\",\n        \"barrinha\",\n        \"pretreino\",\n    ]\n}\npersonal_pronouns = [\"Eu\", \"Tu\", \"Ele\", \"Ela\", \"Nós\", \"Vós\", \"Eles\", \"Elas\", \"Mim\", \"Ti\", \"Si\", \"Consigo\"]",
         "detail": "src.lib.wordlist.wordlist",
         "documentation": {}
     },

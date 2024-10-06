@@ -56,17 +56,11 @@ def run(args):
     local = os.getenv('LOCAL')
     conf = set_conf(args, local)
     
-    message("Configuração inicial:")
-    # message(conf)
-    
     module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.conf"
     page_conf = importlib.import_module(module_name)
     
     conf = update_conf_with_page_config(conf, page_conf, local, args)
 
-    message("Configuração atualizada:")
-    # message(conf)
-    
     module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.dry"
     dry = importlib.import_module(module_name)
     

@@ -1,5 +1,7 @@
 import numpy as np
 
+
+
 def get_dictionary(local):
     conjugacoes = np.genfromtxt(f'{local}/src/lib/wordlist/brazil/conjugacoes.txt', dtype=str)
     dicionario = np.genfromtxt(f'{local}/src/lib/wordlist/brazil/palavras.txt', dtype=str)
