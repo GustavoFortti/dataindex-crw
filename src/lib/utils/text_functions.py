@@ -22,7 +22,6 @@ def find_in_text_with_wordlist(text, wordlist):
         return True
     return False
 
-
 def levenshtein(s1, s2):
     if len(s1) < len(s2):
         return levenshtein(s2, s1)
@@ -42,22 +41,17 @@ def levenshtein(s1, s2):
     
     return previous_row[-1]
 
-
 def encode_to_base64(value: str) -> str:
     """Encodes a string to Base64."""
     return base64.b64encode(value.encode('utf-8')).decode('utf-8')
-
 
 def generate_numeric_hash(data: str) -> int:
     """Generates a numeric hash value for the given data."""
     hash_value = hash(data)
     return abs(hash_value)
 
-
 def generate_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()[:8]
-
-
 
 def remove_spaces(text):
     return re.sub(r'\s+', ' ', text).strip()

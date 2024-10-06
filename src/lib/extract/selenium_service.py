@@ -14,7 +14,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from src.lib.utils.log import message
 
-
 def initialize_selenium(conf):
     options = webdriver.ChromeOptions()
 

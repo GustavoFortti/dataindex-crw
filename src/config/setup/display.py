@@ -5,6 +5,8 @@ import re
 
 from src.lib.utils.log import message
 
+
+
 def get_used_displays():
     """
     Retorna um conjunto de números de display atualmente em uso.
@@ -32,6 +34,8 @@ def get_used_displays():
         message(f"Erro ao obter displays em uso: {e}")
         return set()
 
+
+
 def find_available_display(start=99, end=200):
     """
     Encontra um número de display disponível entre start e end.
@@ -42,6 +46,8 @@ def find_available_display(start=99, end=200):
         if display_num not in used_displays:
             return f":{display_num}"
     return None
+
+
 
 def start_xvfb(display):
     """
@@ -64,6 +70,8 @@ def start_xvfb(display):
         message(f"Erro ao iniciar o Xvfb em {display}: {e}")
         return None
 
+
+
 def terminate_process(process):
     """
     Termina o processo fornecido de forma graciosa, forçando se necessário.
@@ -79,6 +87,8 @@ def terminate_process(process):
                 process.kill()
     except Exception as e:
         message(f"Erro ao encerrar o processo {process.pid}: {e}")
+
+
 
 def configure_display_and_test_chrome():
     """
@@ -153,6 +163,8 @@ def configure_display_and_test_chrome():
         # Limpa o Xvfb
         terminate_process(xvfb_process)
         return False
+
+
 
 def configure_display():
     message("FUNCTION CONFIGURE DISPLAY")

@@ -6,10 +6,9 @@ import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
-from src.lib.transform.product_definition import load_product_definition
 from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes, read_df
-from src.lib.utils.file_system import (create_directory_if_not_exists,
-                                       list_directory, path_exists, save_file)
+from src.lib.utils.file_system import (create_directory_if_not_exists, list_directory,
+    path_exists, read_file, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
                                            convert_image)
 from src.lib.utils.log import message
@@ -17,49 +16,47 @@ from src.lib.utils.text_functions import (clean_text,
                                           find_in_text_with_wordlist,
                                           remove_spaces)
 from src.lib.wordlist.wordlist import BLACK_LIST
+from src.lib.transform.product_info import load_product_info
 
 
-def create_product_def_cols(df, conf):
-    message("criada colunas de definição do produto")
-
-    product_definition = conf['product_definition']
-
-    message("Load_models_prep")
-    load_product_definition(df, conf)
-
-    message("carregando colunas de definição")
-    product_definition_by_titile = f"{product_definition}/product_definition_by_titile.csv"
-    product_definition_by_ml = f"{product_definition}/product_definition_by_ml.csv"
-
-    if ((path_exists(product_definition_by_titile)) & (path_exists(product_definition_by_ml))):
-
-        df_product_def = read_df(product_definition_by_titile, dtype={'ref': str})
-        df_product_def_predicted = read_df(product_definition_by_ml, dtype={'ref': str})
+def create_product_definition_col(df, conf):
+    message("criada colunas de descrição do produto")
+    # load_product_info(df, conf)
+    
+    df["product_definition"] = None
+    for idx, row in df.iterrows():
+        ref: str = str(row['ref'])
         
-        df = pd.merge(df, df_product_def, on='ref', how='left')
-        df = pd.merge(df, df_product_def_predicted, on='ref', how='left')
-    else:
-        message("execute product_definition para criar os arquivos de definição do produto")
-        df['product_def'] = None
-        df['product_def_pred'] = None
+        description_ai_path = F"{conf['data_path']}/products/{ref}_description_ai.txt"
+        if path_exists(description_ai_path):
+            description_ai = read_file(description_ai_path)
+        else:
+            continue
+        
+        tags = re.findall(r'#\w+', description_ai)
+        tags_modificadas = [re.sub(r'([a-z])([A-Z])', r'\1 \2', tag[1:]) for tag in tags]
+        clean_tags = [clean_text(tag) for tag in tags_modificadas]
 
-    required_columns = ['product_def_tag', 'product_def_pred_tag']
-    df = ensure_columns_exist(df, required_columns)
+        product_definition = []
+        for key in conf["wordlist"].keys():
+            for tag in clean_tags:
+                if (tag in conf["wordlist"][key]['subject']):
+                    product_definition.append(key)
+        
+        df.at[idx, "product_definition"] = ", ".join(product_definition)
     
     return df
-
-
+            
+            
 def ensure_columns_exist(df, columns):
     for column in columns:
         if column not in df.columns:
             df[column] = np.nan  # Adiciona a coluna com valores NaN (nulos)
     return df
 
-
 def filter_nulls(df):
     """Filter rows with null values in specific columns and save them to a CSV file."""
     return df.dropna(subset=['title', 'price', 'image_url']).reset_index(drop=True)
-
 
 def apply_generic_filters(df, conf):
     """Apply various data cleaning and transformation filters."""
@@ -259,24 +256,28 @@ def create_price_discount_percent_col(df, data_path):
     return df_new
 
 def create_product_collection_col(df):
-    import numpy as np
+    collections_homepage_flag = {
+        'whey': True, 
+        'barrinha': True, 
+        'creatina': True, 
+        'pretreino': True
+    }
     
-    def assign_collection(row):
+    for idx, row in df.iterrows():
         if (row['price_discount_percent'] > 0):
-            return 'Promoção'
-        elif ('whey' in str(row['product_def']).lower() or 'whey' in str(row['product_def_pred']).lower()):
-            return 'Whey Protein'
-        elif ('barrinha' in str(row['product_def']).lower() or 'barrinha' in str(row['product_def_pred']).lower()):
-            return 'Barrinhas'
-        elif ('creatina' in str(row['product_def']).lower() or 'creatina' in str(row['product_def_pred']).lower()):
-            return 'Creatina'
-        elif ('pretreino' in str(row['product_def']).lower() or 'pretreino' in str(row['product_def_pred']).lower()):
-            return 'Pré-treino'
-        else:
-            return 'Outros'
-
-    df['collection'] = df.apply(assign_collection, axis=1)
+            return 'promocao'
+        
+        if (not row['product_definition']):
+            continue
+        
+        collections = ['whey', 'barrinha', 'creatina', 'pretreino']
+        
+        for index, collection in enumerate(collections):
+            if collection in row['product_definition']:
+                df.at[idx, "collections"] = collection
+                if (collections_homepage_flag[collection]):
+                    df.at[idx, "collections_homepage"] = collection
+                    collections_homepage_flag[collection] = False
+                    
+                break
     return df
-
-def create_product_description_col(df, conf):
-    message("criada colunas de descrição do produto")

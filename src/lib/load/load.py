@@ -42,10 +42,10 @@ def load(conf):
     
     dq.save_history_data(conf, df_products_transform_csl)
     message("Data ready for ingestion")
-    
+
     if (not df.empty):
         refs = df_products_transform_csl["ref"].values
-        process_and_ingest_products(df, refs, conf['brand'])
+        process_and_ingest_products(conf, df, refs, conf['brand'])
         df.to_csv(conf['path_products_shopify_csl'], index=False)
         message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
         

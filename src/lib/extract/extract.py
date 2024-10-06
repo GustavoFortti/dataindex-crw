@@ -18,7 +18,6 @@ from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST
 
-
 def extract(conf: dict):
     message("EXTRACT")
     page = Page(conf)
@@ -63,7 +62,6 @@ def extract(conf: dict):
         conf['status_job'] = True
         page = Page(conf)
         products_update(page)
-
 
 def products_update(page):
     seed_path = page.conf['seed_path'] + "/seed.json"
@@ -126,7 +124,6 @@ def products_metadata_update(page):
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
 
-
 def products_metadata_update_old_pages(page):
     message("PRODUCTS_METADATA_UPDATE_OLD_PAGES")
     products_extract_csl = f"{page.conf['data_path']}/products_extract_csl.csv"
@@ -153,7 +150,6 @@ def products_metadata_update_old_pages(page):
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
 
-
 def products_metadata_update_old_pages_by_ref(conf: dict, Page: object, url: str):
     message("update_old_page by ref if page is with error in tags")
     conf["scroll_page"] = True
@@ -164,7 +160,6 @@ def products_metadata_update_old_pages_by_ref(conf: dict, Page: object, url: str
     page = Page(conf)
     message(f"seed: {url}")
     crawler(page, url)
-
 
 def products_metadata_create_pages_if_not_exist(page):
     message("PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST")

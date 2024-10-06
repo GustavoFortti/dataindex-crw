@@ -42,6 +42,8 @@ def clone_repository(remote_url):
     finally:
         os.chdir(original_dir)
 
+
+
 def setup_git_config(project_dir, username, email, remote_name, remote_url):
     try:
         if not os.path.exists(project_dir):

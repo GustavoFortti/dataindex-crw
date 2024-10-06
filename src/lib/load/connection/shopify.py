@@ -8,6 +8,7 @@ import requests
 
 from src.config.setup.shopify import BASE_URL, HEADERS
 from src.lib.utils.log import message
+from src.lib.utils.file_system import path_exists, read_file
 
 
 def retry_on_failure(max_retries, wait_seconds):
@@ -55,15 +56,29 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
     - product_data: dict com dados do produto
     - variant_data: dict com dados da variante
     """
+    
     try:
-        product_type = row['product_def_pred_tag'] if pd.notna(row['product_def_pred_tag']) else row['product_def_tag']
-        
+        description_ai = None
+        path_description_ai = f"{CONF["data_path"]}/products/{row['ref']}_description_ai.txt"
+        if (path_exists(path_description_ai)):
+            description_ai = read_file(path_description_ai)
+            
         button_html = f'''
             <a href="{row['product_url']}" target="_blank" id="product_url-link">
                 <button id="product_url" role="button">Ir para loja do suplemento</button>
             </a>
         '''
         
+        if description_ai:
+            # Converte quebras de linha para <br> ou envolve o texto em <pre> para preservar a formatação
+            formatted_description = f"<br><br><br>{description_ai.replace('\n', '<br>')}"
+            button_html += f'''
+                <div id="product-description">
+                    {formatted_description}
+                </div>
+            '''
+            
+        product_type = row['product_definition']
         product_data = {
             "title": row['title_extract'],
             "body_html": button_html,
@@ -434,7 +449,7 @@ def update_collections(session, product_id: int, row: pd.Series) -> bool:
     Adiciona o produto a uma coleção manual na Shopify.
     """
     try:
-        collection_title = row['collection'] if pd.notna(row['collection']) else "Sem coleção"
+        collection_title = row['collections_homepage'] if pd.notna(row['collections_homepage']) else "Sem coleção"
 
         # Obtém todas as coleções manuais (Custom Collections)
         response = session.get(f"{BASE_URL}custom_collections.json", params={"title": collection_title})
@@ -564,9 +579,12 @@ def get_product_by_sku(sku: str):
     return None
 
 # Atualiza a função process_and_ingest_products para incluir ambas as funcionalidades
-def process_and_ingest_products(df: pd.DataFrame, refs: list, brand: str) -> None:
+def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand: str) -> None:
+    global CONF
+    CONF = conf
+    
     is_connected = test_connection()
-
+    
     if not is_connected:
         raise ValueError("Sem conexão com a Shopify") 
 
@@ -604,6 +622,7 @@ def process_and_ingest_products(df: pd.DataFrame, refs: list, brand: str) -> Non
             if pd.notna(row['image_url']):
                 full_product_data['images'] = [{"src": row['image_url']}]
             create_product(full_product_data)
+            
             # Após criar o produto, adiciona-o à coleção
             # Precisamos obter o product_id do produto recém-criado
             created_product = get_product_by_sku(sku)

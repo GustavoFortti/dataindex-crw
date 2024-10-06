@@ -20,11 +20,11 @@ page_names=(
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"  # texto
-    "mercadolivre"  # texto
+    # "mercadolivre"  # texto
     # "new_millen"
     # "nutrata" 
     # "oficialfarma" 
-    # "probiotica" # texto
+    "probiotica" # texto
     # "puravida" # banner
     # "truesource" # banner
     # "under_labz"
@@ -44,12 +44,12 @@ exec_flag="products_update"
 exec_type="transform"
 exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false"
+exec_flag="false" 
 
 # job_type="data_intelligence"
-# job_name="product_definition"
+# job_name="product_info"
 
 # job_type="data_shelf"
 # job_name="history_price"

@@ -16,18 +16,30 @@ def format_column_date(df, column):
 
 def create_or_read_df(path, columns=None, dtype=None):
     message(f"create_or_read_df")
-    if path_exists(path):
-        message(f"read file: {path}")
-        if dtype:
-            df = pd.read_csv(path, dtype=dtype)
+    
+    # Verifica se o arquivo existe
+    if os.path.exists(path):
+        # Verifica se o arquivo está vazio
+        if os.path.getsize(path) > 0:
+            message(f"read file: {path}")
+            try:
+                # Lê o arquivo CSV
+                if dtype:
+                    df = pd.read_csv(path, dtype=dtype)
+                else:
+                    df = pd.read_csv(path)
+            except pd.errors.EmptyDataError:
+                message(f"EmptyDataError: {path} is empty or corrupted.")
+                df = pd.DataFrame(columns=columns)  # Cria um DataFrame vazio com as colunas fornecidas
+                message(f"Creating new DataFrame with columns: {columns}")
+                df.to_csv(path, index=False)
         else:
-            df = pd.read_csv(path)
+            message(f"{path} is empty. Creating new DataFrame.")
+            df = pd.DataFrame(columns=columns)  # Cria um DataFrame vazio com as colunas fornecidas
+            df.to_csv(path, index=False)
     else:
-        if columns is not None:
-            df = pd.DataFrame(columns=columns)
-        else:
-            df = pd.DataFrame()
         message(f"create file: {path}")
+        df = pd.DataFrame(columns=columns)  # Cria um DataFrame vazio com as colunas fornecidas
         df.to_csv(path, index=False)
     
     return df
