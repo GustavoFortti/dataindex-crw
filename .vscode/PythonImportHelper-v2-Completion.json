@@ -5973,7 +5973,7 @@
         "kind": 2,
         "importPath": "src.lib.transform.transform_functions",
         "description": "src.lib.transform.transform_functions",
-        "peekOfCode": "def create_product_collection_col(df):\n    collections_homepage_flag = {\n        'whey': True, \n        'barrinha': True, \n        'creatina': True, \n        'pretreino': True\n    }\n    for idx, row in df.iterrows():\n        if (row['price_discount_percent'] > 0):\n            return 'promocao'",
+        "peekOfCode": "def create_product_collection_col(df):\n    collections_homepage_flag = {\n        'whey': True, \n        'barrinha': True, \n        'creatina': True, \n        'pretreino': True\n    }\n    df[\"collections\"] = None\n    df[\"collections_homepage\"] = None\n    for idx, row in df.iterrows():",
         "detail": "src.lib.transform.transform_functions",
         "documentation": {}
     },
