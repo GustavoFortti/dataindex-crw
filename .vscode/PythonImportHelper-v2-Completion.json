@@ -766,14 +766,6 @@
         "documentation": {}
     },
     {
-        "label": "file_exists",
-        "importPath": "src.lib.utils.file_system",
-        "description": "src.lib.utils.file_system",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.file_system",
-        "documentation": {}
-    },
-    {
         "label": "path_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
@@ -879,6 +871,14 @@
     },
     {
         "label": "read_file",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "read_json",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -5941,7 +5941,7 @@
         "kind": 2,
         "importPath": "src.lib.load.connection.shopify",
         "description": "src.lib.load.connection.shopify",
-        "peekOfCode": "def update_images(session, product_id: int, row: pd.Series) -> bool:\n    \"\"\"\n    Atualiza as imagens de um produto na Shopify, garantindo que apenas a nova imagem esteja associada ao produto.\n    \"\"\"\n    try:\n        # Obtém as imagens atuais do produto\n        response = session.get(f\"{BASE_URL}products/{product_id}/images.json\")\n        if response.status_code != 200:\n            message(f\"Erro ao obter imagens do produto {product_id}: {response.status_code} - {response.text}\")\n            return False",
+        "peekOfCode": "def update_images(session, product_id: int, image_urls: list) -> bool:\n    \"\"\"\n    Atualiza as imagens de um produto na Shopify, garantindo que apenas as imagens de 'image_urls' estejam associadas ao produto.\n    \"\"\"\n    try:\n        # Remove todas as imagens atuais\n        response = session.get(f\"{BASE_URL}products/{product_id}/images.json\")\n        if response.status_code != 200:\n            message(f\"Erro ao obter imagens do produto {product_id}: {response.status_code} - {response.text}\")\n            return False",
         "detail": "src.lib.load.connection.shopify",
         "documentation": {}
     },
