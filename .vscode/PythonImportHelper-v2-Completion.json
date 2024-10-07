@@ -2083,7 +2083,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "JOB_NAME = \"adaptogen\"\nBRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},",
+        "peekOfCode": "JOB_NAME = \"adaptogen\"\nBRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2092,7 +2092,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "BRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]",
+        "peekOfCode": "BRAND = \"adaptogen\"\nURL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2101,7 +2101,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "URL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "URL = \"https://adaptogen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2110,7 +2110,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2119,7 +2119,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2128,7 +2128,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "description": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#tab-beneficios'},\n    {'tag': None, 'path': '#tab-tabela_nutricional'},\n    {'tag': None, 'path': '#tab-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.adaptogen.conf",
         "documentation": {}
     },
@@ -2407,7 +2407,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "JOB_NAME = \"black_skull\"\nBRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"black_skull\"\nBRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2416,7 +2416,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "BRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"black skull\"\nURL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2425,7 +2425,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "URL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.blackskullusa.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2434,7 +2434,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2443,7 +2443,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    ",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    ",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2452,7 +2452,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "description": "src.jobs.slave_page.pages.brazil.black_skull.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.vtex-tab-layout-0-x-container > div.vtex-tab-layout-0-x-contentContainer.w-100'}    \n]",
         "detail": "src.jobs.slave_page.pages.brazil.black_skull.conf",
         "documentation": {}
     },
@@ -2569,7 +2569,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "JOB_NAME = \"boldsnacks\"\nBRAND = \"bold snacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"boldsnacks\"\nBRAND = \"bold snacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2578,7 +2578,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "BRAND = \"bold snacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"bold snacks\"\nURL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2587,7 +2587,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "URL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.boldsnacks.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2596,7 +2596,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2605,7 +2605,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2614,7 +2614,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.conf",
         "documentation": {}
     },
@@ -2731,7 +2731,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "JOB_NAME = \"dark_lab\"\nBRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"dark_lab\"\nBRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2740,7 +2740,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "BRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"dark lab\"\nURL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2749,7 +2749,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "URL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://darklabsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2758,7 +2758,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2767,7 +2767,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2776,7 +2776,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#single-product > div > div:nth-child(2) > div > div.px-3'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.dark_lab.conf",
         "documentation": {}
     },
@@ -2893,7 +2893,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "JOB_NAME = \"darkness\"\nBRAND = \"darkness\"\nURL = \"https://www.darkness.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"darkness\"\nBRAND = \"darkness\"\nURL = \"https://www.darkness.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2902,7 +2902,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "BRAND = \"darkness\"\nURL = \"https://www.darkness.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"darkness\"\nURL = \"https://www.darkness.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2911,7 +2911,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "URL = \"https://www.darkness.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.darkness.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2920,7 +2920,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2929,7 +2929,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, ",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, ",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -2938,7 +2938,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "description": "src.jobs.slave_page.pages.brazil.darkness.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, \n    {'tag': 'div', 'class': '__bs-nutri-table-container'}, ",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(6)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': 'section', 'class': 'product-information'}, \n    {'tag': 'div', 'class': '__bs-nutri-table-container'}, ",
         "detail": "src.jobs.slave_page.pages.brazil.darkness.conf",
         "documentation": {}
     },
@@ -3055,7 +3055,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "JOB_NAME = \"dux_nutrition_lab\"\nBRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"dux_nutrition_lab\"\nBRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -3064,7 +3064,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "BRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"dux nutrition lab\"\nURL = \"https://www.duxnutrition.com\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -3073,7 +3073,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "URL = \"https://www.duxnutrition.com\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.duxnutrition.com\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -3082,7 +3082,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -3091,7 +3091,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -3100,7 +3100,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "description": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div > div > section'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductDescriptionAccordion > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--productDescriptionAccordion.vtex-flex-layout-0-x-flexRow--container.vtex-flex-layout-0-x-flexRow--block > section > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.dux_nutrition_lab.conf",
         "documentation": {}
     },
@@ -3217,7 +3217,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "JOB_NAME = \"growth_supplements\"\nBRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"growth_supplements\"\nBRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -3226,7 +3226,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "BRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"growth supplements\"\nURL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -3235,7 +3235,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "URL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.gsuplementos.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -3244,7 +3244,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -3253,7 +3253,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -3262,7 +3262,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "description": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#breadcrumb'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.growth_supplements.conf",
         "documentation": {}
     },
@@ -3379,7 +3379,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "JOB_NAME = \"ifood\"\nBRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"ifood\"\nBRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -3388,7 +3388,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "BRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"ifood\"\nURL = \"https://ifood.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -3397,7 +3397,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "URL = \"https://ifood.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://ifood.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -3406,7 +3406,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -3415,7 +3415,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -3424,7 +3424,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "description": "src.jobs.slave_page.pages.brazil.ifood.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.ifood.conf",
         "documentation": {}
     },
@@ -3541,7 +3541,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "JOB_NAME = \"integralmedica\"\nBRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"integralmedica\"\nBRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3550,7 +3550,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "BRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"integralmedica\"\nURL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3559,7 +3559,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "URL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.integralmedica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3568,7 +3568,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3577,7 +3577,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3586,7 +3586,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "description": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div > div > div > div:nth-child(3) > div > div > div:nth-child(3) > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.integralmedica.conf",
         "documentation": {}
     },
@@ -3703,7 +3703,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "JOB_NAME = \"iridium_labs\"\nBRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"iridium_labs\"\nBRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3712,7 +3712,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "BRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"iridium labs\"\nURL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3721,7 +3721,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "URL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.iridiumlabs.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3730,7 +3730,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3739,7 +3739,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3748,7 +3748,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "description": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ProductInfo-template--template--14719947636839__main__main > div.t4s-product__description.t4s-rte'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#shopify-section-template--14719947636839__main > div > div > div > div > div.t4s-col-md-6.t4s-col-12.t4s-col-item.t4s-product__info-wrapper.t4s-pr'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.iridium_labs.conf",
         "documentation": {}
     },
@@ -3865,7 +3865,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"max_titanium\"\nBRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3874,7 +3874,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"max titanium\"\nURL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3883,7 +3883,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.maxtitanium.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3892,7 +3892,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3901,7 +3901,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -3910,7 +3910,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "description": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--specification'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(2) > div:nth-child(6) > section > div > div > div > div:nth-child(1) > div > div > div > div > div:nth-child(2) > div > div > div > div > table > tbody'},\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(1) > div.vtex-flex-layout-0-x-flexRow.vtex-flex-layout-0-x-flexRow--breadcrumb'},",
         "detail": "src.jobs.slave_page.pages.brazil.max_titanium.conf",
         "documentation": {}
     },
@@ -4027,7 +4027,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4036,7 +4036,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4045,7 +4045,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4054,7 +4054,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4063,7 +4063,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "USER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},",
+        "peekOfCode": "USER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4072,7 +4072,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n    {'tag': None, 'path': '#description'},",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n    {'tag': None, 'path': '#description'},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4189,7 +4189,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
-        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "documentation": {}
     },
@@ -4198,7 +4198,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
-        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "documentation": {}
     },
@@ -4207,7 +4207,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
-        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "documentation": {}
     },
@@ -4216,7 +4216,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
-        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "documentation": {}
     },
@@ -4225,7 +4225,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "documentation": {}
     },
@@ -4234,7 +4234,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "description": "src.jobs.slave_page.pages.brazil.netshoes.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.netshoes.conf",
         "documentation": {}
     },
@@ -4351,7 +4351,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "JOB_NAME = \"new_millen\"\nBRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"new_millen\"\nBRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -4360,7 +4360,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "BRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"new millen\"\nURL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -4369,7 +4369,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "URL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://loja.newmillen.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -4378,7 +4378,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -4387,7 +4387,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -4396,7 +4396,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "description": "src.jobs.slave_page.pages.brazil.new_millen.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-description'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.new_millen.conf",
         "documentation": {}
     },
@@ -4513,7 +4513,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "JOB_NAME = \"nutrata\"\nBRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"nutrata\"\nBRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -4522,7 +4522,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "BRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"nutrata\"\nURL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -4531,7 +4531,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "URL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://loja.nutrata.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -4540,7 +4540,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -4549,7 +4549,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -4558,7 +4558,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "description": "src.jobs.slave_page.pages.brazil.nutrata.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#descricao > div.board'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.nutrata.conf",
         "documentation": {}
     },
@@ -4675,7 +4675,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4684,7 +4684,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "BRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4693,7 +4693,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4702,7 +4702,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4711,7 +4711,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4720,7 +4720,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description > div > div > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4837,7 +4837,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "JOB_NAME = \"probiotica\"\nBRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"probiotica\"\nBRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -4846,7 +4846,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "BRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"probiotica\"\nURL = \"https://www.probiotica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -4855,7 +4855,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "URL = \"https://www.probiotica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.probiotica.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -4864,7 +4864,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -4873,7 +4873,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -4882,7 +4882,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "description": "src.jobs.slave_page.pages.brazil.probiotica.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(13) > div > div > div.pr10.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(4) > div > div:nth-child(2) > div:nth-child(2) > section > div > div > div > div:nth-child(1) > div > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.probiotica.conf",
         "documentation": {}
     },
@@ -4999,7 +4999,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "JOB_NAME = \"puravida\"\nBRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"puravida\"\nBRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -5008,7 +5008,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "BRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"puravida\"\nURL = \"https://www.puravida.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -5017,7 +5017,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "URL = \"https://www.puravida.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.puravida.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -5026,7 +5026,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -5035,7 +5035,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -5044,7 +5044,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "description": "src.jobs.slave_page.pages.brazil.puravida.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#product-content > div:nth-child(2) > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.puravida.conf",
         "documentation": {}
     },
@@ -5161,7 +5161,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "JOB_NAME = \"truesource\"\nBRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"truesource\"\nBRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -5170,7 +5170,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "BRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"truesource\"\nURL = \"https://www.truesource.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -5179,7 +5179,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "URL = \"https://www.truesource.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.truesource.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -5188,7 +5188,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -5197,7 +5197,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -5206,7 +5206,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "description": "src.jobs.slave_page.pages.brazil.truesource.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\32 642033340-0 > div > div:nth-child(2)'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': '#\\\\39 21277609-0 > div > div:nth-child(2)'}\n]",
         "detail": "src.jobs.slave_page.pages.brazil.truesource.conf",
         "documentation": {}
     },
@@ -5323,7 +5323,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "JOB_NAME = \"under_labz\"\nBRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"under_labz\"\nBRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -5332,7 +5332,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "BRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"under labz\"\nURL = \"https://underlabz.com.br\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -5341,7 +5341,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "URL = \"https://underlabz.com.br\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://underlabz.com.br\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -5350,7 +5350,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -5359,7 +5359,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -5368,7 +5368,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "description": "src.jobs.slave_page.pages.brazil.under_labz.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.under_labz.conf",
         "documentation": {}
     },
@@ -5485,7 +5485,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "JOB_NAME = \"vitafor\"\nBRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"vitafor\"\nBRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -5494,7 +5494,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "BRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"vitafor\"\nURL = \"https://www.vitafor.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -5503,7 +5503,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "URL = \"https://www.vitafor.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.vitafor.com.br\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -5512,7 +5512,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -5521,7 +5521,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},",
+        "peekOfCode": "USER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
@@ -5530,7 +5530,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "description": "src.jobs.slave_page.pages.brazil.vitafor.conf",
-        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\", \"image\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]",
+        "peekOfCode": "TAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div > section > div > div > div > div.vitafor-store-theme-9-x-description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [\n    {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(5) > div > div:nth-child(4) > div'},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.vitafor.conf",
         "documentation": {}
     },
