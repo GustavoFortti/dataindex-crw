@@ -55,7 +55,7 @@ def read_json(file_path: str) -> Optional[Any]:
 
 def save_json(file_name: str, data: Any) -> None:
     """Saves data to a JSON file."""
-    
+    message(f"save json {file_name}")
     with open(file_name, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False)
 

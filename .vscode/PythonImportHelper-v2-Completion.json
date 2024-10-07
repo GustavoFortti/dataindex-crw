@@ -6409,7 +6409,7 @@
         "kind": 2,
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
-        "peekOfCode": "def save_json(file_name: str, data: Any) -> None:\n    \"\"\"Saves data to a JSON file.\"\"\"\n    with open(file_name, 'w', encoding='utf-8') as file:\n        json.dump(data, file, ensure_ascii=False)\ndef delete_file(file_path: str) -> None:\n    \"\"\"Deletes a file if it exists, logging the outcome.\"\"\"\n    try:\n        os.remove(file_path)\n        message(f\"File {file_path} has been deleted successfully\")\n    except FileNotFoundError:",
+        "peekOfCode": "def save_json(file_name: str, data: Any) -> None:\n    \"\"\"Saves data to a JSON file.\"\"\"\n    message(f\"save json {file_name}\")\n    with open(file_name, 'w', encoding='utf-8') as file:\n        json.dump(data, file, ensure_ascii=False)\ndef delete_file(file_path: str) -> None:\n    \"\"\"Deletes a file if it exists, logging the outcome.\"\"\"\n    try:\n        os.remove(file_path)\n        message(f\"File {file_path} has been deleted successfully\")",
         "detail": "src.lib.utils.file_system",
         "documentation": {}
     },
