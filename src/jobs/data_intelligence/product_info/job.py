@@ -138,7 +138,11 @@ def run(args: Any) -> None:
 
     df = df[df['has_origin'] == True]
     df = df.loc[(df['origin_is_updated'] == 0) | (df['description_exists'] == 0)]
-
+    
+    if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
+        message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
+        return
+    
     # Iterate over DataFrame rows
     for idx, row in df.iterrows():
         ref: str = str(row['ref'])
