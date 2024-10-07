@@ -1,15 +1,17 @@
 import os
+import time
 from datetime import datetime
 from typing import Any, Dict, Optional
-import time
+
 import openai
 import pandas as pd
-import re
+
 from src.lib.utils.dataframe import (create_or_read_df,
                                      read_and_stack_csvs_dataframes)
-from src.lib.utils.file_system import (create_directory_if_not_exists, create_file_if_not_exists,
-    DATE_FORMAT, file_exists, file_exists_with_modification_time, path_exists, read_file,
-    read_json, save_file_with_line_breaks, save_json)
+from src.lib.utils.file_system import (create_file_if_not_exists,
+                                       file_exists_with_modification_time,
+                                       read_file, read_json,
+                                       save_file_with_line_breaks, save_json)
 from src.lib.utils.general_functions import get_pages_with_status_true
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import generate_hash
@@ -65,13 +67,11 @@ def run(args: Any) -> None:
     # Inicializa a entrada para a data atual se não existir
     if today_str not in control_data:
         control_data[today_str] = {
-            "limit": 100,
+            "limit": 10,
             "requests": 0,
             "tokens_in": 0,
             "tokens_out": 0
         }
-
-    
 
     # Carrega as páginas com status 'True'
     pages_with_status_true = get_pages_with_status_true(CONF)
@@ -116,10 +116,13 @@ def run(args: Any) -> None:
             df.at[idx, "hash"] = None
             df.at[idx, "has_origin"] = False
         
-        old_hash = df_product_info[df_product_info["ref"] == ref]["hash"].values[0]
+        if not df_product_info[df_product_info["ref"] == ref].empty:
+            old_hash = df_product_info[df_product_info["ref"] == ref]["hash"].values[0]
+        else:
+            old_hash = None
 
-        if ((not pd.isna(old_hash)) and (hash)):
-            if (old_hash == hash):
+        if old_hash and hash:
+            if old_hash == hash:
                 df.at[idx, "origin_is_updated"] = 1
             else:
                 df.at[idx, "origin_is_updated"] = 0
@@ -132,7 +135,7 @@ def run(args: Any) -> None:
     
     df = df.sort_values(["description_exists", "origin_is_updated", "latest_description_update", "has_origin"])
     df.to_csv(f"{CONF["data_path"]}/product_info.csv", index=False)
-    
+
     df = df[df['has_origin'] == True]
     df = df.loc[(df['origin_is_updated'] == 0) | (df['description_exists'] == 0)]
 

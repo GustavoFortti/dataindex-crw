@@ -662,14 +662,6 @@
         "documentation": {}
     },
     {
-        "label": "create_directory_if_not_exists",
-        "importPath": "src.lib.utils.file_system",
-        "description": "src.lib.utils.file_system",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.file_system",
-        "documentation": {}
-    },
-    {
         "label": "create_file_if_not_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
@@ -678,31 +670,7 @@
         "documentation": {}
     },
     {
-        "label": "DATE_FORMAT",
-        "importPath": "src.lib.utils.file_system",
-        "description": "src.lib.utils.file_system",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.file_system",
-        "documentation": {}
-    },
-    {
-        "label": "file_exists",
-        "importPath": "src.lib.utils.file_system",
-        "description": "src.lib.utils.file_system",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.file_system",
-        "documentation": {}
-    },
-    {
         "label": "file_exists_with_modification_time",
-        "importPath": "src.lib.utils.file_system",
-        "description": "src.lib.utils.file_system",
-        "isExtraImport": true,
-        "detail": "src.lib.utils.file_system",
-        "documentation": {}
-    },
-    {
-        "label": "path_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
