@@ -15,6 +15,7 @@ export CHECKPOINT_EXTRACT="true"
 if [[ "$exec_type" == "extract" || "$exec_type" == "transform" ]]; then
     source $local/env/display.sh
 fi
+source $local/keys.sh
 
 usage() {
     echo "Usage: $0"
