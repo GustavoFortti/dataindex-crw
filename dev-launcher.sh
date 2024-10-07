@@ -9,8 +9,8 @@ export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    "adaptogen"
-    # "atlhetica_nutrition" # images
+    # "adaptogen"
+    "atlhetica_nutrition" # images
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
@@ -44,9 +44,9 @@ exec_flag="products_update"
 # exec_type="transform"
 # exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false" 
+exec_flag="false" 
 
 # job_type="data_intelligence"
 # job_name="product_info"

@@ -1,7 +1,7 @@
 import importlib
 import os
 
-from src.lib.utils.file_system import create_directory_if_not_exists, file_exists, path_exists
+from src.lib.utils.file_system import create_directory_if_not_exists, path_exists
 from src.lib.utils.log import message
 from src.lib.extract.extract import extract
 from src.lib.load.load import load
