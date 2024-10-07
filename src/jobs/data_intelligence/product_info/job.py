@@ -72,6 +72,10 @@ def run(args: Any) -> None:
             "tokens_in": 0,
             "tokens_out": 0
         }
+        
+    if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
+        message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
+        return
 
     # Carrega as páginas com status 'True'
     pages_with_status_true = get_pages_with_status_true(CONF)
@@ -138,10 +142,6 @@ def run(args: Any) -> None:
 
     df = df[df['has_origin'] == True]
     df = df.loc[(df['origin_is_updated'] == 0) | (df['description_exists'] == 0)]
-    
-    if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
-        message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
-        return
     
     # Iterate over DataFrame rows
     for idx, row in df.iterrows():
