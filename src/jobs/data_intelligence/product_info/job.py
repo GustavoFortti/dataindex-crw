@@ -71,10 +71,7 @@ def run(args: Any) -> None:
             "tokens_out": 0
         }
 
-    # Verifica se o limite diário foi atingido
-    if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
-        message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
-        return
+    
 
     # Carrega as páginas com status 'True'
     pages_with_status_true = get_pages_with_status_true(CONF)
@@ -164,10 +161,14 @@ def run(args: Any) -> None:
             message(f"{ref} - product_description_ai - OK")
             save_file_with_line_breaks(path_product_description_ai, product_description_ai)
         
-            control_data[today_str]["requests"] += 1
             save_json(path_file_control, control_data)
             
+        control_data[today_str]["requests"] += 1
         time.sleep(2)
+        
+        if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
+            message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
+            return
     
 def refine_description(description: str) -> Optional[str]:
     """
