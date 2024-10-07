@@ -72,11 +72,16 @@ def run(args: Any) -> None:
             "tokens_in": 0,
             "tokens_out": 0
         }
-        
+    
+    message(f"requests: {control_data[today_str]["requests"]}")
+    message(f"limit: {control_data[today_str]["limit"]}")
+    
     if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
         message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
         return
-
+    
+    message("ok")
+    exit()
     # Carrega as páginas com status 'True'
     pages_with_status_true = get_pages_with_status_true(CONF)
 
