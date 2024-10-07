@@ -4051,7 +4051,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"mercadolivre\"\nBRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4060,7 +4060,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"mercado livre\"\nURL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4069,7 +4069,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://lista.mercadolivre.com.br/\"\nSTATUS = False\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4078,7 +4078,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "description": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = False\nUSER_AGENT = \"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0\"\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.mercadolivre.conf",
         "documentation": {}
     },
@@ -4699,7 +4699,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
+        "peekOfCode": "JOB_NAME = \"oficialfarma\"\nBRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4708,7 +4708,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "BRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
+        "peekOfCode": "BRAND = \"oficial farma\"\nURL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4717,7 +4717,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
+        "peekOfCode": "URL = \"https://www.oficialfarma.com.br/\"\nSTATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
@@ -4726,7 +4726,7 @@
         "kind": 5,
         "importPath": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "description": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
-        "peekOfCode": "STATUS = True\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
+        "peekOfCode": "STATUS = False\nUSER_AGENT = None\nTAG_MAP_PREFERENCE = [\"text\"]\nPRODUCT_DESCRIPTION_TAG_MAP = [\n    {'tag': None, 'path': '#maincontent > div.columns > div > div.product.attribute.description'},\n]\nPRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [\n    {'tag': None, 'path': ''},\n]\nPRODUCT_DEFINITION_TAG_MAP = [",
         "detail": "src.jobs.slave_page.pages.brazil.oficialfarma.conf",
         "documentation": {}
     },
