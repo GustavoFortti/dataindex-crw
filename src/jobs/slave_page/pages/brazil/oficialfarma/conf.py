@@ -1,7 +1,7 @@
 JOB_NAME = "oficialfarma"
 BRAND = "oficial farma"
 URL = "https://www.oficialfarma.com.br/"
-STATUS = True
+STATUS = False
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]
