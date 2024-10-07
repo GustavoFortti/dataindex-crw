@@ -31,11 +31,11 @@ page_names=(
     # "vitafor"
 )
 
-job_type="master_page"
-job_name="master"
+# job_type="master_page"
+# job_name="master"
 
-exec_type="extract"
-exec_flag="status_job"
+# exec_type="extract"
+# exec_flag="status_job"
 # exec_flag="new_page"
 # exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
@@ -48,15 +48,15 @@ exec_flag="status_job"
 # exec_flag="data_quality"
 # exec_flag="false" 
 
-# job_type="data_intelligence"
-# job_name="product_info"
+job_type="data_intelligence"
+job_name="product_info"
 
 # job_type="data_shelf"
 # job_name="history_price"
 
-# exec_type="false"
-# exec_flag="false"
-# page_names="false"
+exec_type="false"
+exec_flag="false"
+page_names="false"
 
 page_type="supplement"
 country="brazil"
