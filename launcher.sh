@@ -11,7 +11,10 @@ local="/home/crw-system/shape-data-shelf-crw"
 
 export USE_HEADLESS="false"
 export CHECKPOINT_EXTRACT="true"
-source $local/env/display.sh
+
+if [[ "$exec_type" == "extract" || "$exec_type" == "transform" ]]; then
+    source $local/env/display.sh
+fi
 
 usage() {
     echo "Usage: $0"
@@ -65,9 +68,13 @@ while [ "$1" != "" ]; do
     shift
 done
 
-log_name="$page_name"
-if [ -z "$log_name" ]; then
-    log_name=$job_name
+if [ "$page_name" != "false" ] && [ ! -z "$page_name" ]; then
+    log_name="$page_name"
+elif [ "$job_name" != "false" ] && [ ! -z "$job_name" ]; then
+    log_name="$job_name"
+else
+    echo "Error: both page_name and job_name are empty or false."
+    exit 1
 fi
 
 export LOCAL=$local
@@ -75,7 +82,6 @@ export LOCAL=$local
 log_path="$LOCAL/data/$page_type/$country/$log_name/logs"
 mkdir -p "$log_path"
 log_file="$log_path/$(date +%Y-%m-%d).log"
-
 echo "Log file path: $log_file"
 
 echo "Running with the following parameters:" >> "$log_file"
