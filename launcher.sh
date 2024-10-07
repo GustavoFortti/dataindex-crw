@@ -46,9 +46,6 @@ while [ "$1" != "" ]; do
         --exec_flag )   shift
                         exec_flag=$1
                         ;;
-        --page_name )   shift
-                        page_name=$1
-                        ;;
         --page_type )   shift
                         page_type=$1
                         ;;
@@ -68,13 +65,18 @@ while [ "$1" != "" ]; do
     shift
 done
 
+log_name="$page_name"
+if [ -z "$log_name" ]; then
+    log_name=$job_name
+fi
+
 export LOCAL=$local
 
-log_path="$LOCAL/data/$page_type/$country/$page_name/logs"
+log_path="$LOCAL/data/$page_type/$country/$log_name/logs"
 mkdir -p "$log_path"
 log_file="$log_path/$(date +%Y-%m-%d).log"
 
-echo "$log_file"
+echo "Log file path: $log_file"
 
 echo "Running with the following parameters:" >> "$log_file"
 echo "job_type: $job_type" >> "$log_file"
