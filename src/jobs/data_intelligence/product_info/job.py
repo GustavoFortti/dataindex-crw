@@ -67,7 +67,7 @@ def run(args: Any) -> None:
     # Inicializa a entrada para a data atual se não existir
     if today_str not in control_data:
         control_data[today_str] = {
-            "limit": 10,
+            "limit": 100,
             "requests": 0,
             "tokens_in": 0,
             "tokens_out": 0
