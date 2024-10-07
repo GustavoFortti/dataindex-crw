@@ -9,3 +9,5 @@ packages/chrome-linux64.zip
 /venv
 
 /.key
+
+/.vscode

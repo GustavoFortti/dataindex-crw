@@ -782,7 +782,7 @@
         "documentation": {}
     },
     {
-        "label": "DATE_FORMAT",
+        "label": "create_directory_if_not_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -790,7 +790,15 @@
         "documentation": {}
     },
     {
-        "label": "create_directory_if_not_exists",
+        "label": "create_file_if_not_exists",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "DATE_FORMAT",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -807,6 +815,14 @@
     },
     {
         "label": "delete_file",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "file_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -831,6 +847,14 @@
     },
     {
         "label": "list_directory",
+        "importPath": "src.lib.utils.file_system",
+        "description": "src.lib.utils.file_system",
+        "isExtraImport": true,
+        "detail": "src.lib.utils.file_system",
+        "documentation": {}
+    },
+    {
+        "label": "path_exists",
         "importPath": "src.lib.utils.file_system",
         "description": "src.lib.utils.file_system",
         "isExtraImport": true,
@@ -5720,6 +5744,15 @@
         "importPath": "src.lib.extract.extract",
         "description": "src.lib.extract.extract",
         "peekOfCode": "def products_metadata_create_pages_if_not_exist(page):\n    message(\"PRODUCTS_METADATA_CREATE_PAGES_IF_NOT_EXIST\")\n    products_extract_csl = f\"{page.conf['data_path']}/products_extract_csl.csv\"\n    page.conf['path_products_extract_csl'] = products_extract_csl\n    df_products_extract_csl = read_df(products_extract_csl, dtype={'ref': str})\n    pagas_path = page.conf['data_path'] + \"/products\"\n    all_pages = [i for i in list_directory(pagas_path)]\n    refs = [f\"{i}.txt\" for i in df_products_extract_csl['ref'].values]\n    pages_to_create = [i.replace(\".txt\", \"\") for i in refs if i not in all_pages]\n    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl[\"ref\"].isin(pages_to_create)]",
+        "detail": "src.lib.extract.extract",
+        "documentation": {}
+    },
+    {
+        "label": "checkpoint_extract",
+        "kind": 2,
+        "importPath": "src.lib.extract.extract",
+        "description": "src.lib.extract.extract",
+        "peekOfCode": "def checkpoint_extract(control_file):\n    file_modified = file_modified_within_x_hours(control_file, 8)\n    if ((file_modified) & (os.getenv('CHECKPOINT_EXTRACT') == \"true\")):\n        message(f\"CHECKPOINT_EXTRACT ATIVO - {control_file}\")\n        return False\n    return True",
         "detail": "src.lib.extract.extract",
         "documentation": {}
     },

@@ -7,13 +7,9 @@ from src.lib.extract.crawler import crawler
 from src.lib.extract.page_elements import Page
 from src.lib.utils.data_quality import is_price
 from src.lib.utils.dataframe import create_or_read_df, read_df
-from src.lib.utils.file_system import (DATE_FORMAT,
-                                       create_directory_if_not_exists,
-                                       delete_directory_and_contents,
-                                       delete_file,
-                                       file_modified_within_x_hours,
-                                       get_old_files_by_percent,
-                                       list_directory, read_json)
+from src.lib.utils.file_system import (create_directory_if_not_exists, create_file_if_not_exists,
+    DATE_FORMAT, delete_directory_and_contents, delete_file, file_exists,
+    file_modified_within_x_hours, get_old_files_by_percent, list_directory, path_exists, read_json)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST
@@ -33,22 +29,16 @@ def extract(conf: dict):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-        
-    if (conf['exec_flag'] == "products_update"):
-        checkpoint_products_update = os.getenv('CHECKPOINT_PRODUCTS_UPDATE')
-        file_path = [i for i in list_directory(page.conf['data_path']) if ".csv" in i][0]
-        file_was_modified = file_modified_within_x_hours(f"{page.conf['data_path']}/{file_path}", 4)
-        if ((checkpoint_products_update == "true") & (file_was_modified)):
-            return
-        
+
+    if ((conf['exec_flag'] == "products_update") & (checkpoint_extract(page.conf["control_products_update"]))):
         conf["products_update"] = True
         page = Page(conf)
         products_update(page)
-    elif (conf['exec_flag'] == "products_metadata_update"):
+    elif ((conf['exec_flag'] == "products_metadata_update") & (checkpoint_extract(page.conf["control_products_metadata_update"]))):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-    elif (conf['exec_flag'] == "products_metadata_update_old_pages"):
+    elif ((conf['exec_flag'] == "products_metadata_update_old_pages") & (checkpoint_extract(page.conf["control_products_metadata_update_old_pages"]))):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update_old_pages(page)
@@ -62,7 +52,7 @@ def extract(conf: dict):
         conf['status_job'] = True
         page = Page(conf)
         products_update(page)
-
+    
 def products_update(page):
     seed_path = page.conf['seed_path'] + "/seed.json"
     seeds = read_json(seed_path)
@@ -108,6 +98,8 @@ def products_update(page):
 
     message(f"write origin: {page.conf['path_products_extract_csl']}")
     df_products_extract_temp.to_csv(page.conf['path_products_extract_csl'], index=False)
+    delete_file(page.conf["control_products_update"])
+    create_file_if_not_exists(page.conf["control_products_update"], "")
 
 def products_metadata_update(page):
     message("products_metadata_update")
@@ -120,6 +112,9 @@ def products_metadata_update(page):
         message(f"seed: {url}")
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
+    
+    delete_file(page.conf["control_products_metadata_update"])
+    create_file_if_not_exists(page.conf["control_products_metadata_update"], "")
 
 def products_metadata_update_old_pages(page):
     message("PRODUCTS_METADATA_UPDATE_OLD_PAGES")
@@ -146,6 +141,9 @@ def products_metadata_update_old_pages(page):
         message(f"seed: {url}")
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
+        
+    delete_file(page.conf["control_products_metadata_update_old_pages"])
+    create_file_if_not_exists(page.conf["control_products_metadata_update_old_pages"], "")
 
 def products_metadata_update_old_pages_by_ref(conf: dict, Page: object, url: str):
     message("update_old_page by ref if page is with error in tags")
@@ -180,3 +178,10 @@ def products_metadata_create_pages_if_not_exist(page):
         message(f"seed: {url}")
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
+        
+def checkpoint_extract(control_file):
+    file_modified = file_modified_within_x_hours(control_file, 8)
+    if ((file_modified) & (os.getenv('CHECKPOINT_EXTRACT') == "true")):
+        message(f"CHECKPOINT_EXTRACT ATIVO - {control_file}")
+        return False
+    return True
