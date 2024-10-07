@@ -10,9 +10,9 @@ export CHECKPOINT_EXTRACT="true"
 
 page_names=(
     # "adaptogen"
-    "atlhetica_nutrition" # images
+    # "atlhetica_nutrition" # images
     # "black_skull"
-    # "boldsnacks"
+    "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
@@ -35,18 +35,18 @@ job_type="master_page"
 job_name="master"
 
 exec_type="extract"
-# exec_flag="status_job"
+exec_flag="status_job"
 # exec_flag="new_page"
-exec_flag="products_update"
+# exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
 # exec_type="transform"
 # exec_flag="false"
 
-exec_type="load"
+# exec_type="load"
 # exec_flag="data_quality"
-exec_flag="false" 
+# exec_flag="false" 
 
 # job_type="data_intelligence"
 # job_name="product_info"

@@ -2719,7 +2719,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.page_elements",
-        "peekOfCode": "def get_title(conf, soup):\n    title_element = soup.find('a', class_='card-title center link-underline card-title-ellipsis')\n    title = title_element.get_text().strip() if title_element else None\n    return title\ndef get_price(conf, soup):\n    def format_price(price_text):\n        cleaned_price = price_text.strip()\n        if \",\" in cleaned_price:\n            return None\n        else:",
+        "peekOfCode": "def get_title(conf, soup):\n    title_element = soup.find('a', class_='card-title center link-underline card-title-ellipsis')\n    title = title_element.get_text().strip() if title_element else None\n    return title\ndef get_price(conf, soup):\n    def format_price(price_text):\n        # Remove espaços em branco, símbolos de moeda e pontos de separador de milhar\n        cleaned_price = price_text.strip().replace(\"R$\", \"\").replace(\".\", \"\").replace(\",\", \".\")\n        try:\n            # Converte o texto do preço em um número float",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.page_elements",
         "documentation": {}
     },
@@ -2728,7 +2728,7 @@
         "kind": 2,
         "importPath": "src.jobs.slave_page.pages.brazil.boldsnacks.page_elements",
         "description": "src.jobs.slave_page.pages.brazil.boldsnacks.page_elements",
-        "peekOfCode": "def get_price(conf, soup):\n    def format_price(price_text):\n        cleaned_price = price_text.strip()\n        if \",\" in cleaned_price:\n            return None\n        else:\n            return cleaned_price + \",00\"\n    price_sale_span = soup.find('span', class_='price-item--sale')\n    if price_sale_span:\n        price_text = price_sale_span.get_text()",
+        "peekOfCode": "def get_price(conf, soup):\n    def format_price(price_text):\n        # Remove espaços em branco, símbolos de moeda e pontos de separador de milhar\n        cleaned_price = price_text.strip().replace(\"R$\", \"\").replace(\".\", \"\").replace(\",\", \".\")\n        try:\n            # Converte o texto do preço em um número float\n            price_float = float(cleaned_price)\n            # Formata o número de volta para o padrão brasileiro (R$ X.XXX,XX)\n            formatted_price = f\"R$ {price_float:,.2f}\".replace(\".\", \",\")\n            return formatted_price",
         "detail": "src.jobs.slave_page.pages.brazil.boldsnacks.page_elements",
         "documentation": {}
     },
