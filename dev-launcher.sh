@@ -5,12 +5,12 @@ export LOCAL="$local"
 echo $LOCAL
 
 export USE_HEADLESS="false"
-export CHECKPOINT_PRODUCTS_UPDATE="false"
+export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    # "adaptogen"
-    "atlhetica_nutrition" # images
+    "adaptogen"
+    # "atlhetica_nutrition" # images
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
@@ -35,14 +35,14 @@ job_type="master_page"
 job_name="master"
 
 exec_type="extract"
-exec_flag="status_job"
+# exec_flag="status_job"
 # exec_flag="new_page"
-# exec_flag="products_update"
+exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-exec_type="transform"
-exec_flag="false"
+# exec_type="transform"
+# exec_flag="false"
 
 # exec_type="load"
 # exec_flag="data_quality"

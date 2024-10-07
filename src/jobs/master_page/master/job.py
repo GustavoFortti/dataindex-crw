@@ -29,6 +29,9 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     conf["user_agent"] = page_conf.USER_AGENT
     conf["data_path"] = f"{conf['src_data_path']}/{page_conf.JOB_NAME}"
+    conf["control_products_update"] = f"{conf["data_path"]}/_products_update_success_"
+    conf["control_products_metadata_update"] = f"{conf["data_path"]}/_products_metadata_update_success_"
+    conf["control_products_metadata_update_old_pages"] = f"{conf["data_path"]}/_products_metadata_update_old_pages_success_"
     conf["seed_path"] = f"{local}/src/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}"
     conf["product_definition"] = f"{local}/data/{conf['page_type']}/brazil/product_definition"
     conf["scroll_page"] = True
