@@ -28,9 +28,9 @@ test_chrome() {
 
 # Função para testar displays do :0 até :3
 find_working_display() {
-    active_displays=("0" "1" "1024" "1025")
+    active_displays=("0:0" "0:00" ":0" ":1" ":1024" ":1025")
     for display_num in "${active_displays[@]}"; do
-        display=":$display_num"
+        display="$display_num"
         echo "Testando o display $display..."
         if test_chrome $display; then
             echo "Usando o display $display"
