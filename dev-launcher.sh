@@ -25,7 +25,7 @@ page_names=(
     # "probiotica"
     # "puravida"
     # "truesource"
-    # "vitafor"
+    "vitafor"
 )
 
 job_type="master_page"
@@ -41,19 +41,19 @@ job_name="master"
 exec_type="transform"
 exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false" 
+exec_flag="false" 
 
-job_type="data_intelligence"
-job_name="product_info"
+# job_type="data_intelligence"
+# job_name="product_info"
 
 # job_type="data_shelf"
 # job_name="history_price"
 
-exec_type="false"
-exec_flag="false"
-page_names="false"
+# exec_type="false"
+# exec_flag="false"
+# page_names="false"
 
 page_type="supplement"
 country="brazil"

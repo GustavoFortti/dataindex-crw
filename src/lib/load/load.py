@@ -11,6 +11,8 @@ from src.lib.utils.file_system import path_exists
 def load(conf):
     # Carregar os DataFrames e adicionar a coluna 'transform'
     df_products_transform_csl = read_df(conf['path_products_transform_csl'], dtype={'ref': str})
+    df_products_transform_csl = df_products_transform_csl.drop(columns=["page_name"])
+    
     df_products_transform_csl['is_transform_data'] = 1
     
     df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)
