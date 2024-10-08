@@ -12,7 +12,7 @@ local="/home/crw-system/shape-data-shelf-crw"
 export USE_HEADLESS="false"
 export CHECKPOINT_EXTRACT="true"
 
-export DISPLAY="0:0"
+export DISPLAY=":0"
 
 # if [[ "$exec_type" == "extract" || "$exec_type" == "transform" ]]; then
 #     source $local/env/display.sh
