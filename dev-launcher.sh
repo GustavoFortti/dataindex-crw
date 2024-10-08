@@ -10,9 +10,9 @@ export CHECKPOINT_EXTRACT="true"
 
 page_names=(
     # "adaptogen"
-    # "atlhetica_nutrition" # images
+    # "atlhetica_nutrition"
     # "black_skull"
-    "boldsnacks"
+    # "boldsnacks"
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
@@ -20,19 +20,16 @@ page_names=(
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
-    # "mercadolivre"
     # "new_millen"
     # "nutrata" 
-    # "oficialfarma" 
     # "probiotica"
     # "puravida"
     # "truesource"
-    # "under_labz"
     # "vitafor"
 )
 
-# job_type="master_page"
-# job_name="master"
+job_type="master_page"
+job_name="master"
 
 # exec_type="extract"
 # exec_flag="status_job"
@@ -41,8 +38,8 @@ page_names=(
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-# exec_type="transform"
-# exec_flag="false"
+exec_type="transform"
+exec_flag="false"
 
 # exec_type="load"
 # exec_flag="data_quality"

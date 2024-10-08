@@ -44,6 +44,7 @@ def transform(conf, df):
             'product_url',
             'ing_date',
             'brand',
+            'page_name',
             'price_numeric',
             'price_discount_percent',
             'compare_at_price',

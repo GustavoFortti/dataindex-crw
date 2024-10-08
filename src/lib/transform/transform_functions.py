@@ -21,7 +21,7 @@ from src.lib.transform.product_info import load_product_info
 
 def create_product_definition_col(df, conf):
     message("criada colunas de descrição do produto")
-    load_product_info(df, conf)
+    # load_product_info(df, conf)
     
     df["product_definition"] = None
     for idx, row in df.iterrows():
@@ -63,6 +63,7 @@ def apply_generic_filters(df, conf):
     df['name'] = df['title'].str.lower()
     df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
     df['brand'] = conf['brand']
+    df['page_name'] = conf['page_name']
     df['price_numeric'] = df['price'].str.replace(',', '.').astype(float)
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df

@@ -91,12 +91,13 @@ def run(args: Any) -> None:
         dtype={'ref': str}
     )
     
-    df = df[['ref', 'brand']]
+    df = df[['ref', 'brand', 'page_name']]
     df_product_info = create_or_read_df(
         path=f"{CONF["data_path"]}/product_info.csv", 
         columns=[
             "ref",
             "brand",
+            "page_name",
             "hash",
             "has_origin",
             "origin_is_updated"
@@ -106,22 +107,21 @@ def run(args: Any) -> None:
         dtype={'ref': str}
     )
     
+    df["hash"] = None
+    df["has_origin"] = False
     for idx, row in df.iterrows():
         ref: str = str(row['ref'])
-        brand: str = str(row['brand'])
+        page_name: str = str(row['page_name'])
         
-        path_products = f"{CONF['src_data_path']}/{brand}/products"
+        path_products = f"{CONF['src_data_path']}/{page_name}/products"
         path_product_description = f"{path_products}/{ref}_description.txt"
-        
         product_description = read_file(path_product_description)
+        
         hash = None
         if product_description:
             hash = generate_hash(product_description)
             df.at[idx, "hash"] = hash
             df.at[idx, "has_origin"] = True
-        else:
-            df.at[idx, "hash"] = None
-            df.at[idx, "has_origin"] = False
         
         if not df_product_info[df_product_info["ref"] == ref].empty:
             old_hash = df_product_info[df_product_info["ref"] == ref]["hash"].values[0]
@@ -145,7 +145,7 @@ def run(args: Any) -> None:
 
     df = df[df['has_origin'] == True]
     df = df.loc[(df['origin_is_updated'] == 0) | (df['description_exists'] == 0)]
-    
+
     # Iterate over DataFrame rows
     for idx, row in df.iterrows():
         ref: str = str(row['ref'])
