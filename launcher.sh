@@ -11,15 +11,9 @@ local="/home/crw-system/shape-data-shelf-crw"
 
 export USE_HEADLESS="false"
 export CHECKPOINT_EXTRACT="true"
-
 export DISPLAY=":0"
 
-# if [[ "$exec_type" == "extract" || "$exec_type" == "transform" ]]; then
-#     source $local/env/display.sh
-# fi
 source $local/keys.sh
-
-echo "DISPLAY configurado para: $DISPLAY"
 
 usage() {
     echo "Usage: $0"
