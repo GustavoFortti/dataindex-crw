@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Função para testar o Chrome em um display específico
 test_chrome() {
     local display=$1
     export DISPLAY=$display
@@ -27,24 +26,11 @@ test_chrome() {
     fi
 }
 
-# Função para encontrar displays ativos
-find_active_displays() {
-    # Usa o comando 'ps' para encontrar displays ativos
-    active_displays=$(ps aux | grep X | grep -o ":[0-9]\+" | sort | uniq)
-
-    if [ -z "$active_displays" ]; then
-        echo "Nenhum display ativo encontrado."
-        exit 1
-    fi
-
-    echo "Displays ativos encontrados: $active_displays"
-}
-
-# Função para testar cada display ativo
+# Função para testar displays do :0 até :3
 find_working_display() {
-    find_active_displays
-
-    for display in $active_displays; do
+    active_displays=("0" "1" "1024" "1025")
+    for display_num in "${active_displays[@]}"; do
+        display=":$display_num"
         echo "Testando o display $display..."
         if test_chrome $display; then
             echo "Usando o display $display"
