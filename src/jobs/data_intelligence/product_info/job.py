@@ -5,13 +5,11 @@ from typing import Any, Dict, Optional
 
 import openai
 import pandas as pd
-
 from src.lib.utils.dataframe import (create_or_read_df,
                                      read_and_stack_csvs_dataframes)
-from src.lib.utils.file_system import (create_file_if_not_exists,
-                                       file_exists_with_modification_time,
-                                       read_file, read_json,
-                                       save_file_with_line_breaks, save_json)
+from src.lib.utils.file_system import (create_file_if_not_exists, DATE_FORMAT, delete_file,
+    file_exists_with_modification_time, read_file, read_json, save_file_with_line_breaks,
+    save_json)
 from src.lib.utils.general_functions import get_pages_with_status_true
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import generate_hash
@@ -62,7 +60,7 @@ def run(args: Any) -> None:
     control_data = read_json(path_file_control)
 
     # Data atual no formato YYYY-MM-DD
-    today_str = datetime.now().strftime("%Y-%m-%d")
+    today_str = datetime.now().strftime(DATE_FORMAT)
 
     # Inicializa a entrada para a data atual se não existir
     if today_str not in control_data:
@@ -142,19 +140,21 @@ def run(args: Any) -> None:
     
     df = df.sort_values(["description_exists", "origin_is_updated", "latest_description_update", "has_origin"])
     df.to_csv(f"{CONF["data_path"]}/product_info.csv", index=False)
-
+    
+    
     df = df[df['has_origin'] == True]
     df = df.loc[(df['origin_is_updated'] == 0) | (df['description_exists'] == 0)]
 
+    
     # Iterate over DataFrame rows
     for idx, row in df.iterrows():
         ref: str = str(row['ref'])
-        brand: str = str(row['brand'])
-
+        page_name: str = str(row['page_name'])
+        
         # Check if 'ref' matches the expected value and continue if it doesn't
         
         # Construct the product description file path
-        path_products = f"{CONF['src_data_path']}/{brand}/products"
+        path_products = f"{CONF['src_data_path']}/{page_name}/products"
         path_product_description = f"{path_products}/{ref}_description.txt"
         product_description = read_file(path_product_description)
         
@@ -163,7 +163,7 @@ def run(args: Any) -> None:
         
         message(f"REQUEST - {control_data[today_str]["requests"]}")
         message(f"ref - {ref}")
-        message(f"brand - {brand}")
+        message(f"path - {path_product_description}")
         path_product_description_ai = f"{path_products}/{ref}_description_ai.txt"
         product_description_ai = refine_description(product_description)
         

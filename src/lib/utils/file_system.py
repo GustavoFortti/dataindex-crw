@@ -1,8 +1,8 @@
-from datetime import datetime, timedelta
 import json
 import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timedelta
 from typing import Any, Optional
 
 import requests
@@ -29,11 +29,19 @@ def save_file_with_line_breaks(file_path, text):
         for line in lines:
             file.write(line + "\n") 
 
-def read_file(file_path):
-    """Reads a file and returns its contents as a string."""
+def read_file(file_path, return_date=False):
+    """Reads a file and returns its contents as a string.
+    
+    If return_date is True, returns the last modification or creation date of the file.
+    """
     try:
-        with open(file_path, 'r') as file:
-            return file.read()
+        if return_date:
+            file_stats = os.stat(file_path)
+            # Retorna a data da última modificação em formato legível
+            return datetime.fromtimestamp(file_stats.st_mtime).strftime(DATE_FORMAT)
+        else:
+            with open(file_path, 'r') as file:
+                return file.read()
     except FileNotFoundError:
         return None
     except Exception as e:
