@@ -21,33 +21,32 @@ from src.lib.utils.py_functions import flatten_list
 
 def create_product_definition_col(df, conf):
     message("criada colunas de descrição do produto")
-    # load_product_info(df, conf)
+    load_product_info(df, conf)
     
     df["product_definition_key"] = None
     df["product_definition"] = None
     for idx, row in df.iterrows():
         ref: str = str(row['ref'])
         
+        product_definition_key = []
+        for key in conf["wordlist"].keys():
+            if (get_all_words_with_wordlist(row['title'], conf["wordlist"][key]["subject"]) != []):
+                product_definition_key.append(key)
+        product_definition_key = flatten_list(product_definition_key)
+
         description_ai_path = F"{conf['data_path']}/products/{ref}_description_ai.txt"
-        if path_exists(description_ai_path):
+        if ((product_definition_key == []) & (path_exists(description_ai_path))):
             description_ai = read_file(description_ai_path)
-        else:
-            continue
-        
-        tags = re.findall(r'#\w+', description_ai)
-        tags_modificadas = [re.sub(r'([a-z])([A-Z])', r'\1 \2', tag[1:]) for tag in tags]
-        clean_tags = [clean_text(tag) for tag in tags_modificadas]
-        
-        wordlist = conf["wordlist"].keys()
-        product_definition_key_description = list(filter(lambda word: word != None, 
-                                             flatten_list([get_all_words_with_wordlist(i, wordlist) 
-                                                           for i in clean_tags])))
-        
-        product_definition_key_title = get_all_words_with_wordlist(row['title'], wordlist)
-        
-        product_definition_key = product_definition_key_description
-        if (product_definition_key_title != []):
-            product_definition_key = product_definition_key_title
+
+            tags = re.findall(r'#\w+', description_ai)
+            tags_modificadas = [re.sub(r'([a-z])([A-Z])', r'\1 \2', tag[1:]) for tag in tags]
+            clean_tags = ", ".join([clean_text(tag) for tag in tags_modificadas])
+            
+            for key in conf["wordlist"].keys():
+                if (get_all_words_with_wordlist(clean_tags, conf["wordlist"][key]["subject"]) != []):
+                    product_definition_key.append(key)
+                    
+            product_definition_key = flatten_list(product_definition_key)
         
         if (product_definition_key == []):
             df.at[idx, "product_definition_key"] = None
@@ -61,7 +60,7 @@ def create_product_definition_col(df, conf):
 
         df.at[idx, "product_definition_key"] = ", ".join(product_definition_key)
         df.at[idx, "product_definition"] = ", ".join(product_definition)
-
+    
     return df
             
 def ensure_columns_exist(df, columns):
