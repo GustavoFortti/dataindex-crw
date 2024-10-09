@@ -92,6 +92,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "nac",
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido",
@@ -107,6 +108,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "albumi",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "egg",
@@ -119,6 +121,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "alfajor"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -129,6 +132,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "alho"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -139,6 +143,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "aminoacido"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -150,6 +155,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "antiox"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -162,6 +168,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "arginina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -174,6 +181,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "astaxantina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -186,6 +194,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "bar",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -196,6 +205,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "batata doce"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -207,6 +217,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "bca"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "aminoacido",
@@ -223,6 +234,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "beleza"
         ],
         "product": False,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -235,6 +247,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "carne"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "protein"
@@ -250,6 +263,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "alanine"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -260,6 +274,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "betacaroteno"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -270,6 +285,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "biotina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -281,6 +297,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "mistura"
         ],
         "product": False,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -291,6 +308,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "borragem"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -306,6 +324,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "coffee"
         ],
         "product": True,
+        "collection": True,
         "may_feature": True,
         "from": [
             "termogenico",
@@ -325,6 +344,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "termogênicos",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "cafein",
@@ -337,6 +357,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tcm",
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "cafein",
@@ -349,6 +370,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "calcio"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -369,6 +391,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "carb",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -382,6 +405,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "l carnitina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -394,6 +418,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cartamo"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -404,6 +429,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "caseinato"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -414,6 +440,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cha"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -425,6 +452,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cha verde"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -435,6 +463,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "chia"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -445,6 +474,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "chocolate"
         ],
         "product": False,
+        "collection": False,
         "may_feature": True,
         "from": [],
         "conflict": [],
@@ -456,6 +486,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lcisteina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -466,6 +497,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "coco",
         ],
         "product": False,
+        "collection": False,
         "may_feature": True,
         "from": [],
         "conflict": [],
@@ -477,6 +509,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "colagen"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -488,16 +521,18 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
-        "brazil": "complexo B",
+        "brazil": "vitamina B",
     },
     "concentrad": {
         "subject": [
             "concentrad"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -511,6 +546,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "creapure"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "monohidratada",
@@ -524,6 +560,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "crisp"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -535,6 +572,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cromo"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -546,6 +584,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "acafrao"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -557,6 +596,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "maltodextrose"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -570,6 +610,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "dribose"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -581,6 +622,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ovo"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "protein"
@@ -594,6 +636,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pea"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "protein"
@@ -606,6 +649,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "espirulina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -616,6 +660,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "fibra"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -626,6 +671,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "fosfatidilserina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -636,6 +682,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "frutose"
         ],
         "product": False,
+        "collection": False,
         "may_feature": False,
         "from": [
             "carboidrato"
@@ -648,6 +695,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "gengibre"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -658,6 +706,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "gergelim"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -671,6 +720,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lglutamina"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "aminoacido",
@@ -684,6 +734,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cabelo"
         ],
         "product": False,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -694,6 +745,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hialuronico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -704,6 +756,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hidrolisad"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -715,6 +768,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hydroxymethylbutyrate"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -728,6 +782,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "imunidade"
         ],
         "product": False,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -741,6 +796,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "isolada"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -752,6 +808,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "combo",
         ],
         "product": False,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -762,6 +819,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "krill"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -772,6 +830,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lecitina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -784,6 +843,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lleucine"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -796,6 +856,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "levagen"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -806,6 +867,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "linhaca"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -816,6 +878,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "maca peruana"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -827,6 +890,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "magnesi"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -839,6 +903,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "maltodextrina"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "carboidrato"
@@ -852,6 +917,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hipercalorico"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "carboidrato",
@@ -864,9 +930,10 @@ SUPPLEMENT_COMPONENT_LIST = {
     "melatonina": {
         "subject": [
             "melatonina",
-            "melatonina"
+            "melatonina",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -877,6 +944,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "monohidratada"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "creatina"
@@ -890,6 +958,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "polivitaminico"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -901,6 +970,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "mineral",
         ],
         "product": False,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -912,6 +982,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "unha"
         ],
         "product": False,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -922,6 +993,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "oleo"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -932,6 +1004,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "oleo de coco"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -942,6 +1015,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ketchup"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -952,6 +1026,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "barbecue"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -962,6 +1037,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "mostarda"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -972,6 +1048,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "maionese"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -982,6 +1059,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "optimsm"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -993,6 +1071,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "isomaltulose"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "carboidrato"
@@ -1008,6 +1087,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "enzymes"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1020,6 +1100,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "protease"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "enzima"
@@ -1032,6 +1113,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "propolis",
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "enzima"
@@ -1046,6 +1128,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lactase"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "enzima"
@@ -1060,6 +1143,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lipase"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "enzima"
@@ -1074,6 +1158,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "bromelina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "enzima"
@@ -1088,6 +1173,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "amilasa"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "enzima"
@@ -1102,6 +1188,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "amendoim"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1116,6 +1203,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "omega",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1127,6 +1215,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "linoléico",
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1138,6 +1227,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "picolinato"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1156,6 +1246,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pre workout"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [
             "taurina",
@@ -1173,6 +1264,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "primula"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1183,6 +1275,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "propoli"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1195,6 +1288,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "proteica"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "concentrad", 
@@ -1202,13 +1296,14 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hidrolisad",
         ],
         "conflict": [],
-        "brazil": "proteína",
+        "brazil": "proteina",
     },
     "psyllium": {
         "subject": [
             "psyllium"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1219,6 +1314,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "quitosana"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1229,6 +1325,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "resveratrol"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1240,6 +1337,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "arroz"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "protein"
@@ -1252,6 +1350,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "semente"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1263,6 +1362,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pele"
         ],
         "product": False,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1274,6 +1374,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "soja"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "protein"
@@ -1286,6 +1387,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "spirulina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1298,6 +1400,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "taurin"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1310,6 +1413,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tempero"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1320,6 +1424,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "testofen"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1340,6 +1445,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ltirosine",
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1351,6 +1457,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "trans resveratrol"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1361,6 +1468,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "triptofano"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1373,6 +1481,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "leucina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1385,6 +1494,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "valina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1397,6 +1507,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "isoleucina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1409,6 +1520,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lisina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1421,6 +1533,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "fenilalanina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1433,6 +1546,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "treonina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1445,6 +1559,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "metionina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido",
@@ -1457,6 +1572,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "silimarina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1471,6 +1587,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "l histidina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "aminoacido"
@@ -1487,6 +1604,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vegana"
         ],
         "product": False,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1501,6 +1619,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vegetarianismo"
         ],
         "product": False,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1511,6 +1630,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "verisol"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1523,6 +1643,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamin"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1534,6 +1655,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitaminas a"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1546,6 +1668,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tiamina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1558,6 +1681,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "paraaminobenzoico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1570,6 +1694,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "salicilico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1582,6 +1707,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cobalamina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1594,6 +1720,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "orotico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1606,6 +1733,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pangamico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1618,6 +1746,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "amigdalina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1630,6 +1759,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "riboflavina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1642,6 +1772,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ratanhia"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1654,6 +1785,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "niacina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1666,6 +1798,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "adenina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1678,6 +1811,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pantotenico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1690,6 +1824,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "piridoxina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1702,6 +1837,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "biotina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1714,6 +1850,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "inositol"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1726,6 +1863,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "folico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1740,6 +1878,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ascorbila",
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1752,6 +1891,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "calciferol"
         ],
         "product": True,
+        "collection": True,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1764,6 +1904,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "tocoferol"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1776,6 +1917,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "graxos essenciais"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1788,6 +1930,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "monofosfato de nicotinamida"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1800,6 +1943,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "biotina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1812,6 +1956,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lipoico"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1824,6 +1969,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "filoquinona"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1836,6 +1982,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "fitoquinona"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1848,6 +1995,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "menaquinona"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -1860,90 +2008,11 @@ SUPPLEMENT_COMPONENT_LIST = {
             "mk7"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
         "brazil": "vitamina K7",
-    },
-    "vitamina l": {
-        "subject": [
-            "vitamina l",
-            "vitaminas l",
-            "adipico"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina L",
-    },
-    "vitamina l1": {
-        "subject": [
-            "vitamina l1",
-            "vitaminas l1"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina L1",
-    },
-    "vitamina l2": {
-        "subject": [
-            "vitamina l2",
-            "vitaminas l2",
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina L2",
-    },
-    "vitamina m": {
-        "subject": [
-            "vitamina m",
-            "vitaminas m"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina M",
-    },
-    "vitamina n": {
-        "subject": [
-            "vitamina n",
-            "vitaminas n",
-            "pantotenico"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina N",
-    },
-    "vitamina o": {
-        "subject": [
-            "vitamina o",
-            "vitaminas o",
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina O",
-    },
-    "vitamina p": {
-        "subject": [
-            "vitamina p",
-            "vitaminas p",
-            "bioflavonoides"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina P",
     },
     "vitamina q": {
         "subject": [
@@ -1952,57 +2021,11 @@ SUPPLEMENT_COMPONENT_LIST = {
             "coenzima q10"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
         "brazil": "vitamina Q",
-    },
-    "vitamina r": {
-        "subject": [
-            "vitamina r",
-            "vitaminas r",
-            "flavina"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina R",
-    },
-    "vitamina s": {
-        "subject": [
-            "vitamina s",
-            "vitaminas s",
-            "aminobenzoico"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina S",
-    },
-    "vitamina t": {
-        "subject": [
-            "vitamina t",
-            "vitaminas t",
-            "bioflavonoides"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina T",
-    },
-    "vitamina w": {
-        "subject": [
-            "vitamina w",
-            "vitaminas w"
-        ],
-        "product": True,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
-        "brazil": "vitamina W",
     },
     "wafer": {
         "subject": [
@@ -2012,6 +2035,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "cookie"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2024,6 +2048,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "amido de milho"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2035,6 +2060,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "soro do leite"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [
             "protein",
@@ -2057,6 +2083,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "adocante"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2067,6 +2094,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zeaxantina"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2079,6 +2107,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zinco"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2090,6 +2119,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "seleni",
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2100,6 +2130,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "zma"
         ],
         "product": True,
+        "collection": False,
         "may_feature": False,
         "from": [],
         "conflict": [],
@@ -2107,15 +2138,6 @@ SUPPLEMENT_COMPONENT_LIST = {
     }
 }
 
-COLLECTION = {
-    'brazil': [
-        "promocao",
-        "whey",
-        "creatina",
-        "barrinha",
-        "pretreino",
-    ]
-}
 
 personal_pronouns = ["Eu", "Tu", "Ele", "Ela", "Nós", "Vós", "Eles", "Elas", "Mim", "Ti", "Si", "Consigo"]
 oblique_pronouns = ["Me", "Te", "Se", "Nos", "Vos", "O", "A", "Lhe", "Os", "As", "Nos", "Vos", "Se", "Convosco", "Lhes", "Contigo"]

@@ -1,3 +1,4 @@
+import ast
 import functools
 import time
 from typing import Tuple
@@ -7,8 +8,8 @@ import pandas as pd
 import requests
 
 from src.config.setup.shopify import BASE_URL, HEADERS
-from src.lib.utils.log import message
 from src.lib.utils.file_system import path_exists, read_file, read_json
+from src.lib.utils.log import message
 
 
 def retry_on_failure(max_retries, wait_seconds):
@@ -441,64 +442,83 @@ def update_images(session, product_id: int, image_urls: list) -> bool:
 @retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def update_collections(session, product_id: int, row: pd.Series) -> bool:
     """
-    Adiciona o produto a uma coleção manual na Shopify.
+    Adds the product to all collections specified in the 'collections' field.
     """
     try:
-        collection_title = row['collections_homepage'] if pd.notna(row['collections_homepage']) else "Sem coleção"
-
-        # Obtém todas as coleções manuais (Custom Collections)
-        response = session.get(f"{BASE_URL}custom_collections.json", params={"title": collection_title})
-        if response.status_code != 200:
-            message(f"Erro ao obter coleções: {response.status_code} - {response.text}")
-            return False
-
-        collections = response.json().get('custom_collections', [])
-        if not collections:
-            # Cria a coleção se não existir
-            collection_payload = {
-                "custom_collection": {
-                    "title": collection_title,
-                    "published": True
-                }
-            }
-            response = session.post(f"{BASE_URL}custom_collections.json", json=collection_payload)
-            if response.status_code != 201:
-                error_message = response.json().get('errors', response.text)
-                message(f"Erro ao criar a coleção '{collection_title}': {response.status_code} - {error_message}")
-                return False
-            collection_id = response.json()['custom_collection']['id']
-            message(f"Coleção '{collection_title}' criada com ID {collection_id}.")
+        collections_field = row['collections']
+        if pd.isna(collections_field):
+            collections_list = ["Sem coleção"]
+        elif isinstance(collections_field, list):
+            collections_list = collections_field
+        elif isinstance(collections_field, str):
+            # Try to parse the string as a list
+            try:
+                collections_list = ast.literal_eval(collections_field)
+            except (ValueError, SyntaxError):
+                # Not a list, treat as single collection
+                collections_list = [collections_field]
         else:
-            collection_id = collections[0]['id']
+            collections_list = [collections_field]
 
-        # Verifica se o produto já está na coleção
-        response = session.get(f"{BASE_URL}collects.json", params={"collection_id": collection_id, "product_id": product_id})
-        if response.status_code != 200:
-            message(f"Erro ao verificar se o produto {product_id} está na coleção {collection_id}: {response.status_code} - {response.text}")
-            return False
+        success = True
+        for collection_title in collections_list:
+            collection_title = str(collection_title).strip()
+            # Fetch the collection, create if it doesn't exist
+            response = session.get(f"{BASE_URL}custom_collections.json", params={"title": collection_title})
+            if response.status_code != 200:
+                message(f"Error fetching collections: {response.status_code} - {response.text}")
+                success = False
+                continue
 
-        collects = response.json().get('collects', [])
-        if not collects:
-            # Adiciona o produto à coleção
-            collect_payload = {
-                "collect": {
-                    "product_id": product_id,
-                    "collection_id": collection_id
+            collections = response.json().get('custom_collections', [])
+            if not collections:
+                # Create the collection
+                collection_payload = {
+                    "custom_collection": {
+                        "title": collection_title,
+                        "published": True
+                    }
                 }
-            }
-            response = session.post(f"{BASE_URL}collects.json", json=collect_payload)
-            if response.status_code == 201:
-                message(f"Produto {product_id} adicionado à coleção '{collection_title}'.")
-                return True
+                response = session.post(f"{BASE_URL}custom_collections.json", json=collection_payload)
+                if response.status_code != 201:
+                    error_message = response.json().get('errors', response.text)
+                    message(f"Error creating collection '{collection_title}': {response.status_code} - {error_message}")
+                    success = False
+                    continue
+                collection_id = response.json()['custom_collection']['id']
+                message(f"Collection '{collection_title}' created with ID {collection_id}.")
             else:
-                error_message = response.json().get('errors', response.text)
-                message(f"Erro ao adicionar o produto {product_id} à coleção '{collection_title}': {response.status_code} - {error_message}")
-                return False
-        else:
-            message(f"Produto {product_id} já está na coleção '{collection_title}'.")
-            return True
+                collection_id = collections[0]['id']
+
+            # Check if the product is already in the collection
+            response = session.get(f"{BASE_URL}collects.json", params={"collection_id": collection_id, "product_id": product_id})
+            if response.status_code != 200:
+                message(f"Error checking if product {product_id} is in collection {collection_id}: {response.status_code} - {response.text}")
+                success = False
+                continue
+
+            collects = response.json().get('collects', [])
+            if not collects:
+                # Add the product to the collection
+                collect_payload = {
+                    "collect": {
+                        "product_id": product_id,
+                        "collection_id": collection_id
+                    }
+                }
+                response = session.post(f"{BASE_URL}collects.json", json=collect_payload)
+                if response.status_code == 201:
+                    message(f"Product {product_id} added to collection '{collection_title}'.")
+                else:
+                    error_message = response.json().get('errors', response.text)
+                    message(f"Error adding product {product_id} to collection '{collection_title}': {response.status_code} - {error_message}")
+                    success = False
+            else:
+                message(f"Product {product_id} is already in collection '{collection_title}'.")
+
+        return success
     except Exception as e:
-        message(f"Erro ao atualizar coleções do produto {product_id}: {e}")
+        message(f"Error updating collections for product {product_id}: {e}")
         return False
 
 @retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
@@ -624,5 +644,5 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
             if created_product:
                 product_id = created_product['id']
                 update_collections(requests.Session(), product_id, row)
-
+        exit()
     message("INGESTION END")

@@ -12,6 +12,7 @@ def load(conf):
     # Carregar os DataFrames e adicionar a coluna 'transform'
     df_products_transform_csl = read_df(conf['path_products_transform_csl'], dtype={'ref': str})
     df_products_transform_csl = df_products_transform_csl.drop(columns=["page_name"])
+    columns = df_products_transform_csl.columns
     
     df_products_transform_csl['is_transform_data'] = 1
     
@@ -34,7 +35,7 @@ def load(conf):
         df = deepcopy(df_products_transform_csl)
 
     df = df.drop(columns=['is_transform_data'])
-
+    df = df[columns]
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
     
     if (conf['exec_flag'] == "data_quality"):

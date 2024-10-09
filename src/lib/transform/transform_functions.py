@@ -12,16 +12,16 @@ from src.lib.utils.file_system import (create_directory_if_not_exists, list_dire
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
                                            convert_image)
 from src.lib.utils.log import message
-from src.lib.utils.text_functions import (clean_text,
-                                          find_in_text_with_wordlist,
-                                          remove_spaces)
+from src.lib.utils.text_functions import (clean_text, find_in_text_with_wordlist,
+    get_all_words_with_wordlist, remove_spaces)
 from src.lib.wordlist.wordlist import BLACK_LIST
 from src.lib.transform.product_info import load_product_info
+from src.lib.utils.py_functions import flatten_list
 
 
 def create_product_definition_col(df, conf):
     message("criada colunas de descrição do produto")
-    load_product_info(df, conf)
+    # load_product_info(df, conf)
     
     df["product_definition"] = None
     for idx, row in df.iterrows():
@@ -36,15 +36,25 @@ def create_product_definition_col(df, conf):
         tags = re.findall(r'#\w+', description_ai)
         tags_modificadas = [re.sub(r'([a-z])([A-Z])', r'\1 \2', tag[1:]) for tag in tags]
         clean_tags = [clean_text(tag) for tag in tags_modificadas]
-
-        product_definition = []
-        for key in conf["wordlist"].keys():
-            for tag in clean_tags:
-                if (tag in conf["wordlist"][key]['subject']):
-                    product_definition.append(key)
         
+        wordlist = conf["wordlist"].keys()
+        product_definition_key = list(filter(lambda word: word != None, 
+                                             flatten_list([get_all_words_with_wordlist(i, wordlist) 
+                                                           for i in clean_tags])))
+        
+        if (product_definition_key == []):
+            df.at[idx, "product_definition_key"] = None
+            df.at[idx, "product_definition"] = None
+            continue
+        
+        product_definition_key = list(set(product_definition_key))
+        
+        product_definition = [conf["wordlist"][i][conf["country"]] for i in product_definition_key]
+        product_definition = list(map(lambda word: ' '.join([w[0].upper() + w[1:] for w in word.split()]), product_definition))
+
+        df.at[idx, "product_definition_key"] = ", ".join(product_definition_key)
         df.at[idx, "product_definition"] = ", ".join(product_definition)
-    
+
     return df
             
 def ensure_columns_exist(df, columns):
@@ -255,32 +265,32 @@ def create_price_discount_percent_col(df, data_path):
 
     return df_new
 
-def create_product_collection_col(df):
-    collections_homepage_flag = {
-        'whey': True, 
-        'barrinha': True, 
-        'creatina': True, 
-        'pretreino': True
-    }
+def create_product_collection_col(df, conf):
     
     df["collections"] = None
-    df["collections_homepage"] = None
-    
+    wordlist = [i for i in conf["wordlist"] if conf["wordlist"][i]['collection']]
+
     for idx, row in df.iterrows():
-        if (row['price_discount_percent'] > 0):
-            df.at[idx, "collections"] = 'promocao'
+        collections = []
         
-        if (not row['product_definition']):
+        if (row['price_discount_percent'] > 0):
+            collections.append('promocao')
+        
+        if (not pd.notna(row['product_definition_key'])):
+            df.at[idx, "collections"] = collections
+            if (collections == []):
+                df.at[idx, "collections"] = None
             continue
         
-        collections = ['whey', 'barrinha', 'creatina', 'pretreino']
+        words_product_definition_key = get_all_words_with_wordlist(row['product_definition_key'], wordlist)
+        words_title = get_all_words_with_wordlist(row['title'], wordlist)
+        words = words_product_definition_key + words_title
         
-        for index, collection in enumerate(collections):
-            if collection in row['product_definition']:
-                df.at[idx, "collections"] = collection
-                if (collections_homepage_flag[collection]):
-                    df.at[idx, "collections_homepage"] = collection
-                    collections_homepage_flag[collection] = False
-                    
-                break
+        if (words == []):
+            df.at[idx, "collections"] = None
+            continue
+        
+        collections = collections + words
+        df.at[idx, "collections"] = collections
+    
     return df

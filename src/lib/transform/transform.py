@@ -29,7 +29,7 @@ def transform(conf, df):
     df = create_product_definition_col(df, conf)
     
     message("Criando colunas coleção de produtos")
-    df = create_product_collection_col(df)
+    df = create_product_collection_col(df, conf)
     
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
     
@@ -52,7 +52,6 @@ def transform(conf, df):
             'price_qnt',
             'product_definition',
             'collections',
-            'collections_homepage',
         ]
     ]
 

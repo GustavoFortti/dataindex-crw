@@ -22,6 +22,19 @@ def find_in_text_with_wordlist(text, wordlist):
         return True
     return False
 
+def get_all_words_with_wordlist(text, wordlist):
+    found_words = []  # Lista para armazenar as palavras encontradas
+    text = clean_text(text)  # Limpar o texto uma vez antes do loop
+    
+    for word in wordlist:
+        clean_word = clean_text(word)
+        
+        # Verifica se a palavra limpa está no texto
+        if re.search(clean_word, text):
+            found_words.append(word)  # Adiciona a palavra encontrada à lista
+            
+    return found_words if found_words else []
+
 def levenshtein(s1, s2):
     if len(s1) < len(s2):
         return levenshtein(s2, s1)
@@ -88,18 +101,3 @@ def clean_text(text: str, clean_spaces: bool = False, remove_final_s: bool = Fal
     text = text.lower()
 
     return text
-
-def find_in_text_with_wordlist(text, wordlist):
-    match = None
-    for word in wordlist:
-        clean_word = clean_text(word)
-        text = clean_text(text)
-        
-        match = re.search(clean_word, clean_text(text))  # Expressão regular para encontrar dígitos
-        if match:
-            break
-            
-    if match:
-        return True
-    return False
-
