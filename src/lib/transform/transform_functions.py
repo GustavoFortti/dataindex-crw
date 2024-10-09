@@ -21,7 +21,7 @@ from src.lib.utils.py_functions import flatten_list
 
 def create_product_definition_col(df, conf):
     message("criada colunas de descrição do produto")
-    load_product_info(df, conf)
+    # load_product_info(df, conf)
     
     df["product_definition"] = None
     for idx, row in df.iterrows():
