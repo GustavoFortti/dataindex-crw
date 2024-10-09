@@ -88,7 +88,7 @@ def file_modified_within_x_hours(file_path, hours):
     
     # Get the last modification time of the file
     last_modification = datetime.fromtimestamp(os.path.getmtime(file_path))
-    print(last_modification)
+    message(f"{file_path} last_modification {last_modification}")
     
     # Calculate the difference between now and the last modification
     difference = now - last_modification

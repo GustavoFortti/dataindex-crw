@@ -180,7 +180,8 @@ def products_metadata_create_pages_if_not_exist(page):
         crawler(page, url)
         
 def checkpoint_extract(control_file):
-    file_modified = file_modified_within_x_hours(control_file, 8)
+    file_modified = file_modified_within_x_hours(control_file, 12)
+    message(f"CHECKPOINT_EXTRACT FLAG - {control_file}")
     if ((file_modified) & (os.getenv('CHECKPOINT_EXTRACT') == "true")):
         message(f"CHECKPOINT_EXTRACT ATIVO - {control_file}")
         return False
