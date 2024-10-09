@@ -644,5 +644,4 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
             if created_product:
                 product_id = created_product['id']
                 update_collections(requests.Session(), product_id, row)
-        exit()
     message("INGESTION END")
