@@ -39,9 +39,15 @@ def create_product_definition_col(df, conf):
         clean_tags = [clean_text(tag) for tag in tags_modificadas]
         
         wordlist = conf["wordlist"].keys()
-        product_definition_key = list(filter(lambda word: word != None, 
+        product_definition_key_description = list(filter(lambda word: word != None, 
                                              flatten_list([get_all_words_with_wordlist(i, wordlist) 
                                                            for i in clean_tags])))
+        
+        product_definition_key_title = get_all_words_with_wordlist(row['title'], wordlist)
+        
+        product_definition_key = product_definition_key_description
+        if (product_definition_key_title != []):
+            product_definition_key = product_definition_key_title
         
         if (product_definition_key == []):
             df.at[idx, "product_definition_key"] = None
@@ -285,7 +291,7 @@ def create_product_collection_col(df, conf):
         
         words_product_definition_key = get_all_words_with_wordlist(row['product_definition_key'], wordlist)
         words_title = get_all_words_with_wordlist(row['title'], wordlist)
-        words = words_product_definition_key + words_title
+        words = list(set(words_product_definition_key + words_title))
         
         if (words == []):
             df.at[idx, "collections"] = None

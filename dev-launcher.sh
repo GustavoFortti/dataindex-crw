@@ -10,8 +10,8 @@ export CHECKPOINT_EXTRACT="true"
 
 page_names=(
     # "adaptogen"
-    "atlhetica_nutrition"
-    # "black_skull"
+    # "atlhetica_nutrition"
+    "black_skull"
     # "boldsnacks"
     # "dark_lab"
     # "darkness"
@@ -41,9 +41,9 @@ exec_flag="products_update"
 exec_type="transform"
 exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false" 
+exec_flag="false" 
 
 # job_type="data_intelligence"
 # job_name="product_info"

@@ -925,7 +925,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "waxymaize"
         ],
         "conflict": [],
-        "brazil": "massa",
+        "brazil": "Hipercalórico",
     },
     "melatonina": {
         "subject": [
@@ -1288,7 +1288,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "proteica"
         ],
         "product": True,
-        "collection": False,
+        "collection": True,
         "may_feature": False,
         "from": [
             "concentrad", 
@@ -2060,7 +2060,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "soro do leite"
         ],
         "product": True,
-        "collection": False,
+        "collection": True,
         "may_feature": False,
         "from": [
             "protein",
