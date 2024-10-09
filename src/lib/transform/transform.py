@@ -30,8 +30,6 @@ def transform(conf, df):
     
     message("Criando colunas coleção de produtos")
     df = create_product_collection_col(df, conf)
-    print(df.head())
-    exit()
     
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
     
