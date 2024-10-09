@@ -23,6 +23,7 @@ def create_product_definition_col(df, conf):
     message("criada colunas de descrição do produto")
     # load_product_info(df, conf)
     
+    df["product_definition_key"] = None
     df["product_definition"] = None
     for idx, row in df.iterrows():
         ref: str = str(row['ref'])
