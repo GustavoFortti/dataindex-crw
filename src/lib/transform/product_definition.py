@@ -45,7 +45,7 @@ def format_product_definitions(keys: List[str], wordlist: Dict[str, Any], countr
 
 def create_product_definition_col(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     message("Criando colunas de descrição do produto")
-    load_product_info(df, conf)
+    # load_product_info(df, conf)
     
     # Inicializa as colunas no DataFrame
     df["product_definition_key"] = None
@@ -55,15 +55,17 @@ def create_product_definition_col(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.
     country = conf["country"]
 
     for idx, row in df.iterrows():
-        ref = str(row.get('ref', ''))
-        title = str(row.get('title', ''))
-
+        ref = row['ref']
+        title = row['title']
+        page_name = row['page_name']
+        blacklist_description = ['growth_supplements']
+        
         # Processa o título do produto
         product_keys_title = find_product_keys(title, wordlist)
 
         # Processa a descrição AI, se existir
         description_ai_path = f"{conf.get('data_path', '')}/products/{ref}_description_ai.txt"
-        if path_exists(description_ai_path):
+        if (path_exists(description_ai_path) & (page_name not in blacklist_description)):
             description_ai = read_file(description_ai_path)
             clean_tags = extract_tags(description_ai)
             product_keys_tags = find_product_keys(clean_tags, wordlist)
@@ -71,7 +73,7 @@ def create_product_definition_col(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.
         
         # Remove duplicatas
         product_keys_unique = list(set(product_keys_title))
-        
+
         if not product_keys_unique:
             df.at[idx, "product_definition_key"] = None
             df.at[idx, "product_definition"] = None
