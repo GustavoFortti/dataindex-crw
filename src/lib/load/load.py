@@ -10,7 +10,7 @@ from src.lib.utils.file_system import path_exists
 
 def load(conf):
     # Carregar os DataFrames e adicionar a coluna 'transform'
-    df_products_transform_csl = read_df(conf['path_products_transform_csl'], dtype={'ref': str})
+    df_products_transform_csl = read_df(conf['path_products_transform_csl'], dtype={'ref': str, 'compare_at_price': float})
     df_products_transform_csl = df_products_transform_csl.drop(columns=["page_name"])
     columns = df_products_transform_csl.columns
     

@@ -216,7 +216,7 @@ def create_price_discount_percent_col(df, data_path):
         
         print(df_price_temp_sorted)
         price_discount_percent = 0.0
-        compare_at_price = False
+        compare_at_price = None
         if (len(prices) > 1):
             price_discount_percent = round((prices[0] / prices[1]), 2)
             if (price_discount_percent < 1.0):
@@ -229,14 +229,13 @@ def create_price_discount_percent_col(df, data_path):
     return df_new
 
 def create_product_collection_col(df, conf):
-    
     df["collections"] = None
     wordlist = [i for i in conf["wordlist"] if conf["wordlist"][i]['collection']]
 
     for idx, row in df.iterrows():
         collections = []
         
-        if (row['price_discount_percent'] > 0):
+        if (row['compare_at_price']):
             collections.append('promocao')
         
         if (not pd.notna(row['product_definition_key'])):

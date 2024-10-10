@@ -442,27 +442,70 @@ def update_images(session, product_id: int, image_urls: list) -> bool:
 @retry_on_failure(MAX_RETRIES, WAIT_SECONDS)
 def update_collections(session, product_id: int, row: pd.Series) -> bool:
     """
-    Adds the product to all collections specified in the 'collections' field.
+    Updates the collections of a product to match the specified list.
+    This function adds the product to collections it should belong to and
+    removes it from collections it should no longer be part of.
     """
     try:
         collections_field = row['collections']
         if pd.isna(collections_field):
-            collections_list = ["Sem coleção"]
+            desired_collections = ["Sem coleção"]
         elif isinstance(collections_field, list):
-            collections_list = collections_field
+            desired_collections = collections_field
         elif isinstance(collections_field, str):
             # Try to parse the string as a list
             try:
-                collections_list = ast.literal_eval(collections_field)
+                desired_collections = ast.literal_eval(collections_field)
             except (ValueError, SyntaxError):
                 # Not a list, treat as single collection
-                collections_list = [collections_field]
+                desired_collections = [collections_field]
         else:
-            collections_list = [collections_field]
+            desired_collections = [collections_field]
+        desired_collections = [str(c).strip() for c in desired_collections]
 
         success = True
-        for collection_title in collections_list:
-            collection_title = str(collection_title).strip()
+
+        # Step 1: Get all custom collections the product is currently in
+        current_collections = []
+        page_info = None
+        while True:
+            params = {
+                "product_id": product_id,
+                "fields": "collection_id",
+                "limit": 250
+            }
+            if page_info:
+                params["page_info"] = page_info
+
+            response = session.get(f"{BASE_URL}collects.json", params=params)
+            if response.status_code != 200:
+                message(f"Error fetching current collections for product {product_id}: {response.status_code} - {response.text}")
+                success = False
+                break
+
+            collects = response.json().get('collects', [])
+            for collect in collects:
+                current_collections.append(collect['collection_id'])
+
+            # Check for pagination
+            link_header = response.headers.get('Link')
+            if link_header and 'rel="next"' in link_header:
+                links = link_header.split(',')
+                for link in links:
+                    if 'rel="next"' in link:
+                        start = link.find('<') + 1
+                        end = link.find('>')
+                        url = link[start:end]
+                        parsed_url = urlparse(url)
+                        query_params = parse_qs(parsed_url.query)
+                        page_info = query_params.get('page_info', [None])[0]
+                        break
+            else:
+                break
+
+        # Step 2: Map desired collection titles to IDs
+        desired_collection_ids = []
+        for collection_title in desired_collections:
             # Fetch the collection, create if it doesn't exist
             response = session.get(f"{BASE_URL}custom_collections.json", params={"title": collection_title})
             if response.status_code != 200:
@@ -489,32 +532,47 @@ def update_collections(session, product_id: int, row: pd.Series) -> bool:
                 message(f"Collection '{collection_title}' created with ID {collection_id}.")
             else:
                 collection_id = collections[0]['id']
+            desired_collection_ids.append(collection_id)
 
-            # Check if the product is already in the collection
+        # Step 3: Determine collections to add and remove
+        collections_to_add = set(desired_collection_ids) - set(current_collections)
+        collections_to_remove = set(current_collections) - set(desired_collection_ids)
+
+        # Step 4: Add product to new collections
+        for collection_id in collections_to_add:
+            collect_payload = {
+                "collect": {
+                    "product_id": product_id,
+                    "collection_id": collection_id
+                }
+            }
+            response = session.post(f"{BASE_URL}collects.json", json=collect_payload)
+            if response.status_code == 201:
+                message(f"Product {product_id} added to collection ID {collection_id}.")
+            else:
+                error_message = response.json().get('errors', response.text)
+                message(f"Error adding product {product_id} to collection ID {collection_id}: {response.status_code} - {error_message}")
+                success = False
+
+        # Step 5: Remove product from collections it should no longer be in
+        for collection_id in collections_to_remove:
+            # Find the collect ID
             response = session.get(f"{BASE_URL}collects.json", params={"collection_id": collection_id, "product_id": product_id})
             if response.status_code != 200:
-                message(f"Error checking if product {product_id} is in collection {collection_id}: {response.status_code} - {response.text}")
+                message(f"Error fetching collect for product {product_id} and collection {collection_id}: {response.status_code} - {response.text}")
                 success = False
                 continue
-
             collects = response.json().get('collects', [])
-            if not collects:
-                # Add the product to the collection
-                collect_payload = {
-                    "collect": {
-                        "product_id": product_id,
-                        "collection_id": collection_id
-                    }
-                }
-                response = session.post(f"{BASE_URL}collects.json", json=collect_payload)
-                if response.status_code == 201:
-                    message(f"Product {product_id} added to collection '{collection_title}'.")
+            if collects:
+                collect_id = collects[0]['id']
+                # Delete the collect
+                response = session.delete(f"{BASE_URL}collects/{collect_id}.json")
+                if response.status_code in [200, 204]:
+                    message(f"Product {product_id} removed from collection ID {collection_id}.")
                 else:
                     error_message = response.json().get('errors', response.text)
-                    message(f"Error adding product {product_id} to collection '{collection_title}': {response.status_code} - {error_message}")
+                    message(f"Error removing product {product_id} from collection ID {collection_id}: {response.status_code} - {error_message}")
                     success = False
-            else:
-                message(f"Product {product_id} is already in collection '{collection_title}'.")
 
         return success
     except Exception as e:
