@@ -1,9 +1,10 @@
 import pandas as pd
 
+from src.lib.transform.product_definition import create_product_definition_col
 from src.lib.transform.transform_functions import (
     apply_generic_filters, create_price_discount_percent_col,
-    create_product_collection_col, create_product_definition_col,
-    create_quantity_column, filter_nulls, remove_blacklisted_products)
+    create_product_collection_col, create_quantity_column, filter_nulls,
+    remove_blacklisted_products)
 from src.lib.utils.log import message
 
 

@@ -6,63 +6,20 @@ import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
-from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes, read_df
-from src.lib.utils.file_system import (create_directory_if_not_exists, list_directory,
-    path_exists, read_file, save_file)
+
+from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes
+from src.lib.utils.file_system import (create_directory_if_not_exists,
+                                       list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
                                            convert_image)
 from src.lib.utils.log import message
-from src.lib.utils.text_functions import (clean_text, find_in_text_with_wordlist,
-    get_all_words_with_wordlist, remove_spaces)
+from src.lib.utils.text_functions import (clean_text,
+                                          find_in_text_with_wordlist,
+                                          get_all_words_with_wordlist,
+                                          remove_spaces)
 from src.lib.wordlist.wordlist import BLACK_LIST
-from src.lib.transform.product_info import load_product_info
-from src.lib.utils.py_functions import flatten_list
 
 
-def create_product_definition_col(df, conf):
-    message("criada colunas de descrição do produto")
-    load_product_info(df, conf)
-    
-    df["product_definition_key"] = None
-    df["product_definition"] = None
-    for idx, row in df.iterrows():
-        ref: str = str(row['ref'])
-        
-        product_definition_key = []
-        for key in conf["wordlist"].keys():
-            if (get_all_words_with_wordlist(row['title'], conf["wordlist"][key]["subject"]) != []):
-                product_definition_key.append(key)
-        product_definition_key = flatten_list(product_definition_key)
-
-        description_ai_path = F"{conf['data_path']}/products/{ref}_description_ai.txt"
-        if ((product_definition_key == []) & (path_exists(description_ai_path))):
-            description_ai = read_file(description_ai_path)
-
-            tags = re.findall(r'#\w+', description_ai)
-            tags_modificadas = [re.sub(r'([a-z])([A-Z])', r'\1 \2', tag[1:]) for tag in tags]
-            clean_tags = ", ".join([clean_text(tag) for tag in tags_modificadas])
-            
-            for key in conf["wordlist"].keys():
-                if (get_all_words_with_wordlist(clean_tags, conf["wordlist"][key]["subject"]) != []):
-                    product_definition_key.append(key)
-                    
-            product_definition_key = flatten_list(product_definition_key)
-        
-        if (product_definition_key == []):
-            df.at[idx, "product_definition_key"] = None
-            df.at[idx, "product_definition"] = None
-            continue
-        
-        product_definition_key = list(set(product_definition_key))
-        
-        product_definition = [conf["wordlist"][i][conf["country"]] for i in product_definition_key]
-        product_definition = list(map(lambda word: ' '.join([w[0].upper() + w[1:] for w in word.split()]), product_definition))
-
-        df.at[idx, "product_definition_key"] = ", ".join(product_definition_key)
-        df.at[idx, "product_definition"] = ", ".join(product_definition)
-    
-    return df
-            
 def ensure_columns_exist(df, columns):
     for column in columns:
         if column not in df.columns:

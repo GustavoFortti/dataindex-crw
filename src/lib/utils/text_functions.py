@@ -22,16 +22,19 @@ def find_in_text_with_wordlist(text, wordlist):
         return True
     return False
 
-def get_all_words_with_wordlist(text, wordlist):
+def get_all_words_with_wordlist(text, wordlist, exact_term=False):
     found_words = []  # Lista para armazenar as palavras encontradas
     text = clean_text(text)  # Limpar o texto uma vez antes do loop
-    
     for word in wordlist:
         clean_word = clean_text(word)
         
         # Verifica se a palavra limpa está no texto
-        if re.search(clean_word, text):
-            found_words.append(word)  # Adiciona a palavra encontrada à lista
+        if (exact_term):
+            if (re.search(f" {clean_word} ", text)):
+                found_words.append(word)
+        else:
+            if (re.search(clean_word, text)):
+                found_words.append(word)
             
     return found_words if found_words else []
 
