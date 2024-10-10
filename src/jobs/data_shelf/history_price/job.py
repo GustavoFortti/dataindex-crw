@@ -74,19 +74,21 @@ def run(args):
 
         prices_dates = df_price[["price_numeric", "ing_date"]].values.tolist()
         prices = sum(df_price[["price_numeric"]].values.tolist(), [])
-
+        
+        compare_at_price = False
         price_discount_percent = False
         if (len(prices) > 1):
             price_variation = prices[0] / prices[1]
             if (price_variation < 0.95):
                 price_discount_percent =  int((1 - price_variation) * 100)
-
+                compare_at_price = prices[1]
+        
         brand = df_price["brand"].values[0]
 
         for price, date in prices_dates:
             all_prices_dates.append({"price": price, "date": date})
             
-        data.append({"ref": ref, "prices": all_prices_dates, "brand": brand, "price_discount_percent": price_discount_percent})
+        data.append({"ref": ref, "prices": all_prices_dates, "compare_at_price": compare_at_price, "brand": brand, "price_discount_percent": price_discount_percent})
         
         all_prices_dates = []
     

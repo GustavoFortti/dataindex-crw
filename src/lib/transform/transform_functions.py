@@ -214,15 +214,15 @@ def create_price_discount_percent_col(df, data_path):
         df_price_temp_sorted = df_price_temp[df_price_temp["ref"] == ref].sort_values('ing_date', ascending=False)
         prices = df_price_temp_sorted["price_numeric"].values
         
+        print(df_price_temp_sorted)
         price_discount_percent = 0.0
+        compare_at_price = False
         if (len(prices) > 1):
-            price_discount_percent = round((prices[0] - prices[1]) / prices[1], 2)
-            compare_at_price = prices[1]
+            price_discount_percent = round((prices[0] / prices[1]), 2)
+            if (price_discount_percent < 1.0):
+                compare_at_price = prices[1]
+                price_discount_percent = 0.0
             
-        if (price_discount_percent <= 0.01):
-            price_discount_percent = 0
-            compare_at_price = None
-        
         df_new.loc[df_new['ref'] == ref, "price_discount_percent"] = price_discount_percent
         df_new.loc[df_new['ref'] == ref, "compare_at_price"] = compare_at_price
 

@@ -182,9 +182,9 @@ def file_exists_with_modification_time(directory, filename):
     if os.path.exists(file_path):
         # Obtém o timestamp da última modificação do arquivo
         modification_time = os.path.getmtime(file_path)
-        # Converte o timestamp para um formato de data legível
-        readable_time = datetime.fromtimestamp(modification_time)
-        return True, readable_time  # Retorna True e a data de modificação
+        # Converte o timestamp para um formato de data ano-mês-dia (YYYY-MM-DD)
+        readable_time = datetime.fromtimestamp(modification_time).strftime(DATE_FORMAT)
+        return True, readable_time  # Retorna True e a data de modificação no formato desejado
     else:
         return False, None  # Retorna False e None se o arquivo não existir
 
