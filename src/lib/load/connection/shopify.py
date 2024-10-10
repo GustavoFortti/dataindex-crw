@@ -1,5 +1,6 @@
 import ast
 import functools
+import json
 import time
 from typing import Tuple
 from urllib.parse import parse_qs, urlparse
@@ -49,6 +50,77 @@ def test_connection() -> None:
         message(f"Erro ao conectar: {response.status_code} - {response.text}")
         return False
 
+def generate_price_chart(prices: list) -> str:
+    """
+    Gera o código HTML e JavaScript para exibir um gráfico de preços usando Chart.js.
+    
+    Args:
+    - prices: Lista de dicionários com os dados de preço e data.
+    
+    Returns:
+    - Código HTML + JS do gráfico para ser incorporado ao body_html.
+    """
+    # Extraindo datas e preços dos dados
+    dates = [entry['date'] for entry in prices]
+    prices_data = [entry['price'] for entry in prices]
+    
+    # Definir a escala mínima e máxima com base nos valores de preço
+    min_price = int(min(prices_data) - 1)  # Escala mínima 5 unidades abaixo do menor preço
+    max_price = int(max(prices_data) + 1)  # Escala máxima 5 unidades acima do maior preço
+
+    # Geração do código HTML e JS para o gráfico
+    chart_html = f'''
+    <div class="chart-container" style="position: relative; height:300px; width:100%;">
+        <canvas id="priceChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('priceChart').getContext('2d');
+        var priceChart = new Chart(ctx, {{
+            type: 'line',
+            data: {{
+                labels: {json.dumps(dates)},  // Datas do gráfico
+                datasets: [{{
+                    label: 'Preço (R$)',
+                    data: {json.dumps(prices_data)},  // Preços do gráfico
+                    fill: false,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }}]
+            }},
+            options: {{
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {{
+                    y: {{
+                        beginAtZero: false,
+                        min: {min_price},  // Escala mínima do eixo Y
+                        max: {max_price},  // Escala máxima do eixo Y
+                        grid: {{
+                            display: true
+                        }}
+                    }},
+                    x: {{
+                        grid: {{
+                            display: true
+                        }}
+                    }}
+                }},
+                plugins: {{
+                    legend: {{
+                        display: true,
+                        position: 'top',
+                    }}
+                }}
+            }}
+        }});
+    </script>
+    '''
+    
+    return chart_html
+
 def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
     """
     Formata os dados de um produto para o formato esperado pela API da Shopify.
@@ -64,7 +136,7 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
         if (path_exists(path_description_ai)):
             description_ai = read_file(path_description_ai)
                    
-        button_html = f'''
+        body_html = f'''
             <a href="{row['product_url']}" target="_blank" id="product_url-link">
                 <button id="product_url" role="button">Ir para loja do suplemento</button>
             </a>
@@ -73,16 +145,26 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
         if description_ai:
             # Converte quebras de linha para <br> ou envolve o texto em <pre> para preservar a formatação
             formatted_description = f"<br><br><br>{description_ai.replace('\n', '<br>')}"
-            button_html += f'''
+            body_html += f'''
                 <div id="product-description">
                     {formatted_description}
                 </div>
+                <br>
+                <br>
             '''
-            
+        
+        check_prices = pd.notna(row['prices'])
+        if ((check_prices) and (isinstance(row['prices'], str))):
+            row['prices'] = json.loads(row['prices'].replace("'", '"')) 
+        
+            if ((check_prices) and (isinstance(row['prices'], list)) and (len(row['prices']) > 1)):
+                price_chart_html = generate_price_chart(row['prices'])
+                body_html += price_chart_html
+        
         product_type = row['product_definition']
         product_data = {
             "title": row['title_extract'],
-            "body_html": button_html,
+            "body_html": body_html,
             "vendor": row['brand'].title(),
             "tags": product_type if pd.notna(product_type) else "Outros",
             "product_type": "",

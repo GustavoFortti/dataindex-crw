@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes
+from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes, read_df
 from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
@@ -214,7 +214,6 @@ def create_price_discount_percent_col(df, data_path):
         df_price_temp_sorted = df_price_temp[df_price_temp["ref"] == ref].sort_values('ing_date', ascending=False)
         prices = df_price_temp_sorted["price_numeric"].values
         
-        print(df_price_temp_sorted)
         price_discount_percent = 0.0
         compare_at_price = None
         if (len(prices) > 1):
@@ -255,4 +254,13 @@ def create_product_collection_col(df, conf):
         collections = collections + words
         df.at[idx, "collections"] = collections
     
+    return df
+
+def create_history_price_col(df, conf):
+    df_history = read_df(f"{conf['src_data_path']}/history_price/history_price_csl.csv")
+    df_history = df_history[df_history['brand'] == conf['brand']]
+    df_history = df_history[['ref', 'prices']]
+    
+    df = pd.merge(df, df_history, on='ref', how='inner')
+
     return df
