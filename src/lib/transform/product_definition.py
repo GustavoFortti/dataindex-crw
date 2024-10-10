@@ -45,7 +45,7 @@ def format_product_definitions(keys: List[str], wordlist: Dict[str, Any], countr
 
 def create_product_definition_col(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     message("Criando colunas de descrição do produto")
-    # load_product_info(df, conf)
+    load_product_info(df, conf)
     
     # Inicializa as colunas no DataFrame
     df["product_definition_key"] = None
