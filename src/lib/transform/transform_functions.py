@@ -234,10 +234,10 @@ def create_product_collection_col(df, conf):
     for idx, row in df.iterrows():
         collections = []
         
-        if (row['compare_at_price']):
+        if (pd.notna(row['compare_at_price'])):
             collections.append('promocao')
         
-        if (not pd.notna(row['product_definition_key'])):
+        if (pd.isna(row['product_definition_key'])):
             df.at[idx, "collections"] = collections
             if (collections == []):
                 df.at[idx, "collections"] = None
@@ -253,7 +253,6 @@ def create_product_collection_col(df, conf):
         
         collections = collections + words
         df.at[idx, "collections"] = collections
-    
     return df
 
 def create_history_price_col(df, conf):
