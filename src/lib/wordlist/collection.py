@@ -116,6 +116,18 @@ COLLECTIONS = {
             "bebida",
         ],
         "maybe_not": [],
+        "rule_fields": [
+            {
+                "field": "quantity",
+                "name": "1kg",
+                "range": [999, 10000],
+            },
+            {
+                "field": "quantity",
+                "name": "500g",
+                "range": [499, 999],
+            },
+        ],
         "indices_flavor": [],
         "indices": {
             "creatina_ver_todos": {

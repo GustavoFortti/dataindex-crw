@@ -68,7 +68,7 @@ def process_collection_terms(text, wordlist, wordlist_flavor, collection):
         terms[field] = extract_collection_terms_in_text(current_wordlist, text, collection, field)
     return terms
 
-def get_collections(title, description, clean_tags, wordlist, wordlist_flavor):
+def get_collections(row, title, description, clean_tags, wordlist, wordlist_flavor):
     """
     Processa os termos de coleções de um título e descrição, criando um conjunto de textos para exibição.
     """
@@ -76,7 +76,6 @@ def get_collections(title, description, clean_tags, wordlist, wordlist_flavor):
         description = ""
 
     collections_found = []
-
     for key, collection in COLLECTIONS.items():
         # Processa os termos do título
         title_terms = process_collection_terms(title, wordlist, wordlist_flavor, collection)
@@ -125,6 +124,13 @@ def get_collections(title, description, clean_tags, wordlist, wordlist_flavor):
             if matched_terms == required_terms:
                 collections_found.append(key_index)
 
+        rule_fields = collection.get("rule_fields")
+        if collections_found and rule_fields:
+            for rule_field in rule_fields:
+                greater_than_equal, less_than_equal = rule_field["range"]
+                if (int(row["quantity"]) >= greater_than_equal and int(row["quantity"]) <= less_than_equal):
+                    collections_found.append(f"{key}_{rule_field['name']}")
+
     return collections_found if collections_found else None
 
 def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
@@ -160,8 +166,8 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
             product_keys_tags = find_product_keys(clean_tags, wordlist)
             product_keys_title.extend(product_keys_tags)
         
-        collections = get_collections(title, description_ai, clean_tags, wordlist, wordlist_flavor)
-        df.at[idx, "collections"] = collections
+        collections = get_collections(row, title, description_ai, clean_tags, wordlist, wordlist_flavor)
+        df.at[idx, "collections"] = str(collections)
         # Remove duplicatas
         product_keys_unique = list(set(product_keys_title))
 
@@ -176,5 +182,5 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         # Atualiza o DataFrame
         df.at[idx, "product_definition_key"] = ", ".join(product_keys_unique)
         df.at[idx, "product_definition"] = ", ".join(product_definitions)
-        
+    
     return df

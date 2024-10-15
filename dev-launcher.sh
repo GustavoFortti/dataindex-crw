@@ -9,11 +9,11 @@ export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    "adaptogen"
+    # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
-    # "dark_lab"
+    "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
