@@ -49,11 +49,12 @@ def extract_collection_terms_in_text(wordlist, text, collection, collection_key)
     terms = []
     for wordlist_key in wordlist_keys:
         words_synonyms = get_all_words_with_wordlist(text, wordlist[wordlist_key]["synonyms"], wordlist[wordlist_key]['exact_term'])
-        words_conflict = get_all_words_with_wordlist(text, wordlist[wordlist_key]['conflict'], True)
-        
+        # words_conflict = get_all_words_with_wordlist(text, wordlist[wordlist_key]['conflict'], True)
         if (words_synonyms != []):
             terms.append(wordlist_key)
     
+    if collection_key == "product" and len(terms) != len(collection[collection_key]):
+        return { "terms": [] }
     return { "terms": terms }
 
 def process_collection_terms(text, wordlist, wordlist_flavor, collection):
@@ -75,24 +76,29 @@ def get_collections(row, title, description, clean_tags, wordlist, wordlist_flav
     if not description:
         description = ""
 
-    collections_found = []
+    all_collections = []
     for key, collection in COLLECTIONS.items():
+        score = 0
+        collections_found = []
+
         # Processa os termos do título
         title_terms = process_collection_terms(title, wordlist, wordlist_flavor, collection)
-
+        
         # Remove a coleção se houver termos em "is_not" no título
         if title_terms["is_not"]["terms"]:
             continue
         
         # Processa os termos das tags e descrição
-        clean_tags_terms = process_collection_terms(clean_tags, wordlist, wordlist_flavor, collection)
+        tags_terms = process_collection_terms(clean_tags, wordlist, wordlist_flavor, collection)
         description_terms = process_collection_terms(description, wordlist, wordlist_flavor, collection)
+        if len(description_terms["is_not"]["terms"]) > 2 or len(tags_terms["is_not"]["terms"]) > 2:
+            continue
         
         # Combina todos os sabores encontrados
         flavors = set(
             title_terms["flavor"]["terms"] +
             description_terms["flavor"]["terms"] +
-            clean_tags_terms["flavor"]["terms"]
+            tags_terms["flavor"]["terms"]
         )
 
         # Clona os índices da coleção
@@ -113,25 +119,49 @@ def get_collections(row, title, description, clean_tags, wordlist, wordlist_flav
         for key_index, index in collection_indices.items():
             required_terms = len(index)
             matched_terms = 0
+            score_aux = 0
             for key_term, term in index.items():
+                title_terms_aux = title_terms[key_term]["terms"]
+                description_terms_aux = description_terms[key_term]["terms"]
+                tags_terms_aux = tags_terms[key_term]["terms"]
+                
                 all_terms = set(
-                    title_terms[key_term]["terms"] +
-                    description_terms[key_term]["terms"] +
-                    clean_tags_terms[key_term]["terms"]
+                    title_terms_aux + description_terms_aux + tags_terms_aux
                 )
+                
+                score_aux = (len(title_terms_aux) * 1 + 
+                         len(description_terms_aux) * 0.4 + 
+                         len(tags_terms_aux) * 0.5)
+                
                 if term in all_terms:
                     matched_terms += 1
             if matched_terms == required_terms:
                 collections_found.append(key_index)
+                score = score_aux
 
         rule_fields = collection.get("rule_fields")
-        if collections_found and rule_fields:
+        if collections_found and rule_fields and pd.notna(row["quantity"]):
             for rule_field in rule_fields:
                 greater_than_equal, less_than_equal = rule_field["range"]
                 if (int(row["quantity"]) >= greater_than_equal and int(row["quantity"]) <= less_than_equal):
                     collections_found.append(f"{key}_{rule_field['name']}")
-
-    return collections_found if collections_found else None
+        
+        default_collection = collection.get("default_collection")
+        if collections_found and default_collection:
+            collections_found = collections_found + default_collection
+        
+        all_collections.append(
+            {
+                "score": score,
+                "collections": collections_found
+            }
+        )
+    
+    collections_chosed = []
+    if (all_collections):
+        collections_chosed = max(all_collections, key=lambda x: x["score"])["collections"]
+    
+    return collections_chosed
 
 def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     message("Criando colunas de descrição do produto")
@@ -151,7 +181,7 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         message(f'ref - {ref} | {title} | create_product_cols ')
         
         page_name = row['page_name']
-        blacklist_description = ['growth_supplements']
+        blacklist_description = ["growth_supplements"]
         
         # Processa o título do produto
         product_keys_title = find_product_keys(title, wordlist)
@@ -160,13 +190,26 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         description_ai = None
         clean_tags = ""
         description_ai_path = f"{conf.get('data_path', '')}/products/{ref}_description_ai.txt"
-        if (path_exists(description_ai_path) & (page_name not in blacklist_description)):
+        description_ai = read_file(description_ai_path)
+        if (path_exists(description_ai_path)):
             description_ai = read_file(description_ai_path)
-            clean_tags = extract_tags(description_ai)
-            product_keys_tags = find_product_keys(clean_tags, wordlist)
-            product_keys_title.extend(product_keys_tags)
+            if (page_name not in blacklist_description):
+                clean_tags = extract_tags(description_ai)
+                product_keys_tags = find_product_keys(clean_tags, wordlist)
+                product_keys_title.extend(product_keys_tags)
         
+        title_ai = ""
+        clean_tags = ""
+        title_ai_path = f"{conf.get('data_path', '')}/products/{ref}_title_ai.txt"
+        if (path_exists(title_ai_path)):
+            title_ai = read_file(title_ai_path)
+            if (page_name not in blacklist_description):
+                product_keys_tags = find_product_keys(clean_tags, wordlist)
+                product_keys_title.extend(product_keys_tags)
+                
+        title += f" {title_ai}"
         collections = get_collections(row, title, description_ai, clean_tags, wordlist, wordlist_flavor)
+        
         df.at[idx, "collections"] = str(collections)
         # Remove duplicatas
         product_keys_unique = list(set(product_keys_title))

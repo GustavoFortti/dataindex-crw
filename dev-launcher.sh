@@ -13,7 +13,7 @@ page_names=(
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
-    "dark_lab"
+    # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
@@ -25,7 +25,7 @@ page_names=(
     # "probiotica"
     # "puravida"
     # "truesource"
-    # "vitafor"
+    "vitafor"
 )
 
 job_type="master_page"

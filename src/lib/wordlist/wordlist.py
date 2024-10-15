@@ -196,7 +196,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "synonyms": [
             "beef",
             "carn",
-            "carne"
+            "carne",
+            "bovina",
         ],
         "conflict": ["carnitin"],
         "exact_term": True,
@@ -325,13 +326,15 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "cártamo",
     },
-    "caseinato": {
+    "casein": {
         "synonyms": [
-            "caseinato"
+            "caseinato",
+            "caseina",
+            "casein",
         ],
         "conflict": [],
         "exact_term": False,
-        "brazil": "caseinato",
+        "brazil": "caseina",
     },
     "cha": {
         "synonyms": [
@@ -450,7 +453,10 @@ SUPPLEMENT_COMPONENT_LIST = {
     "dextrose": {
         "synonyms": [
             "dextrose",
+            "dextros",
             "maltodextrose"
+            "maltodextros"
+            "malto dextrose"
         ],
         "conflict": [],
         "exact_term": False,
@@ -670,11 +676,11 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "magnésio",
     },
-    "malto": {
+    "maltodextrina": {
         "synonyms": [
-            "malto",
             "dextrina",
             "maltodextrina",
+            "malto dextrina",
             "maltodextrin"
         ],
         "conflict": [],
@@ -687,7 +693,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "hipercalorico"
         ],
         "conflict": [],
-        "exact_term": False,
+        "exact_term": True,
         "brazil": "Hipercalórico",
     },
     "melatonina": {
@@ -756,11 +762,18 @@ SUPPLEMENT_COMPONENT_LIST = {
         "synonyms": [
             "oleo de coco"
         ],
-        "conflict": [
-            "coco"
-        ],
+        "conflict": [],
         "exact_term": False,
         "brazil": "óleo de coco",
+    },
+    "coco": {
+        "synonyms": [
+            "coco",
+            "coconut"
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "coco",
     },
     "ketchup": {
         "synonyms": [
@@ -969,6 +982,12 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "sache"
+    },
+    "dose": {
+        "synonyms": ["dose", "dosage"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "dose"
     },
     "protein": {
         "synonyms": [
@@ -1191,7 +1210,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vegana"
         ],
         "conflict": [],
-        "exact_term": False,
+        "exact_term": True,
         "brazil": "vegano",
     },
     "vegetarian": {
