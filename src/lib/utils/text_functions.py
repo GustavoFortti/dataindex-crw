@@ -30,10 +30,10 @@ def get_all_words_with_wordlist(text, wordlist, exact_term=False):
         
         # Verifica se a palavra limpa está no texto
         if (exact_term):
-            if (re.search(f" {clean_word} ", text)):
+            if (re.search(f" {clean_word} ", f" {text} ")):
                 found_words.append(word)
         else:
-            if (re.search(clean_word, text)):
+            if (re.search(clean_word, f" {text} ")):
                 found_words.append(word)
             
     return found_words if found_words else []

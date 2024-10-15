@@ -6,6 +6,8 @@ from src.lib.utils.log import message
 from src.lib.extract.extract import extract
 from src.lib.load.load import load
 from src.lib.wordlist.wordlist import WORDLIST
+from src.lib.wordlist.wordlist_flavor import WORDLIST_FLAVOR
+from src.lib.wordlist.wordlist_format import WORDLIST_FORMAT
 
 def set_conf(args, local):
     conf = {}
@@ -16,6 +18,8 @@ def set_conf(args, local):
     conf["country"] = args.country
     conf["src_data_path"] = f"{local}/data/{conf['page_type']}/{conf['country']}"
     conf["wordlist"] = WORDLIST[conf['page_type']]
+    conf["wordlist_flavor"] = WORDLIST_FLAVOR
+    conf["wordlist_format"] = WORDLIST_FORMAT
     return conf
 
 def update_conf_with_page_config(conf, page_conf, local, args):

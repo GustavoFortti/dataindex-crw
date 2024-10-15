@@ -101,7 +101,6 @@ def file_modified_within_x_hours(file_path, hours):
 
 def path_exists(path: str) -> bool:
     """Checks if a path exists."""
-    message(f"check - {path}")
     return os.path.exists(path)
 
 def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> None:

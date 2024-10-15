@@ -5,11 +5,13 @@ from typing import Any, Dict, Optional
 
 import openai
 import pandas as pd
+
 from src.lib.utils.dataframe import (create_or_read_df,
                                      read_and_stack_csvs_dataframes)
-from src.lib.utils.file_system import (create_file_if_not_exists, DATE_FORMAT, delete_file,
-    file_exists_with_modification_time, read_file, read_json, save_file_with_line_breaks,
-    save_json)
+from src.lib.utils.file_system import (DATE_FORMAT, create_file_if_not_exists,
+                                       file_exists_with_modification_time,
+                                       read_file, read_json,
+                                       save_file_with_line_breaks, save_json)
 from src.lib.utils.general_functions import get_pages_with_status_true
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import generate_hash
@@ -165,7 +167,7 @@ def run(args: Any) -> None:
         message(f"ref - {ref}")
         message(f"path - {path_product_description}")
         path_product_description_ai = f"{path_products}/{ref}_description_ai.txt"
-        product_description_ai = refine_description(product_description)
+        product_description_ai = refine_description(product_description, "asst_Gg9EqaQUrMv0o2tUap14sgEX")
         
         if (product_description_ai):
             message(f"{ref} - product_description_ai - OK")
@@ -181,7 +183,7 @@ def run(args: Any) -> None:
             message(f"Daily limit of {control_data[today_str]['limit']} descriptions reached for {today_str}.")
             return
     
-def refine_description(description: str) -> Optional[str]:
+def refine_description(description: str, assistant_id: str) -> Optional[str]:
     """
     Uses the OpenAI API to generate a refined version of the product description.
 
@@ -194,9 +196,6 @@ def refine_description(description: str) -> Optional[str]:
     try:
         # Set up the OpenAI client
         client = openai.OpenAI()
-
-        # Set the assistant ID
-        assistant_id = "asst_Gg9EqaQUrMv0o2tUap14sgEX"
 
         # Create a new thread
         thread = client.beta.threads.create()

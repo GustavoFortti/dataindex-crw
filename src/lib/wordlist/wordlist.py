@@ -7,7 +7,7 @@ from src.lib.utils.text_functions import clean_text
 def get_synonyms(component_list):
     keywords_list = []
     for component, attributes in component_list.items():
-        keywords_list.append(attributes.get("subject"))
+        keywords_list.append(attributes.get("synonyms"))
     return keywords_list
 
 def get_word_index_in_text(word, text, add_space_firts):
@@ -36,11 +36,11 @@ def get_back_words(text_accents, locations):
 
     return back_words
 
-def find_subject_in_wordlist(word, wordlist):
+def find_synonym_in_wordlist(word, wordlist):
     for values in wordlist.values():
-        subject = values['subject']
-        if (word in subject):
-            return subject
+        synonym = values['synonym']
+        if (word in synonym):
+            return synonym
 
 def remove_prepositions_pronouns(text, pronouns):
     pronouns = set(pronouns)
@@ -82,7 +82,7 @@ BLACK_LIST = [
 
 SUPPLEMENT_COMPONENT_LIST = {
     "nac": {
-        "subject": [
+        "synonyms": [
             "acetil",
             "nacetil",
             "n acetil",
@@ -91,231 +91,163 @@ SUPPLEMENT_COMPONENT_LIST = {
             "lcisteina",
             "nac",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido",
-            "antioxidante",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "NAC",
     },
     "albumina": {
-        "subject": [
+        "synonyms": [
             "albumina",
             "albumin",
             "albumi",
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "egg",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "albumina",
     },
     "alfajor": {
-        "subject": [
+        "synonyms": [
             "alfajor"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "alfajor",
     },
     "alho": {
-        "subject": [
+        "synonyms": [
             "alho"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "alho",
     },
     "aminoacido": {
-        "subject": [
+        "synonyms": [
             "aminoacido"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "aminoácido",
     },
     "antioxidante": {
-        "subject": [
+        "synonyms": [
             "antioxidante",
             "antiox"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "antioxidante",
     },
     "arginin": {
-        "subject": [
+        "synonyms": [
             "arginin",
             "arginine",
             "arginina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "arginina",
     },
     "astaxantina": {
-        "subject": [
+        "synonyms": [
             "astaxantina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "astaxantina",
     },
     "barrinha": {
-        "subject": [
+        "synonyms": [
             "barrinha",
             "barra",
             "bar",
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "barrinha",
     },
     "batata doce": {
-        "subject": [
+        "synonyms": [
             "batata doce"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "batata doce",
     },
     "bcaa": {
-        "subject": [
+        "synonyms": [
             "bcaa",
             "bca"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "aminoacido",
-            "leucina",
-            "valina",
-            "isoleucina",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "BCAA",
     },
     "beauty": {
-        "subject": [
+        "synonyms": [
             "beauty",
             "beleza"
         ],
-        "product": False,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "beleza",
     },
     "beef": {
-        "subject": [
+        "synonyms": [
             "beef",
             "carn",
             "carne"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "protein"
-        ],
         "conflict": ["carnitin"],
+        "exact_term": True,
         "brazil": "carne",
     },
     "betaalanina": {
-        "subject": [
+        "synonyms": [
             "beta alanina",
             "betaalanina",
             "alanina",
             "alanine"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "beta-alanina",
     },
     "betacaroteno": {
-        "subject": [
+        "synonyms": [
             "betacaroteno"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "betacaroteno",
     },
     "biotina": {
-        "subject": [
+        "synonyms": [
             "biotina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "biotina",
     },
     "blend": {
-        "subject": [
+        "synonyms": [
             "blend",
             "mistura"
         ],
-        "product": False,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "mistura",
     },
     "borragem": {
-        "subject": [
+        "synonyms": [
             "borragem"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "borragem",
     },
     "cafein": {
-        "subject": [
+        "synonyms": [
             "cafein",
             "cafe",
             "cafeina",
@@ -323,61 +255,40 @@ SUPPLEMENT_COMPONENT_LIST = {
             "caffe",
             "coffee"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": True,
-        "from": [
-            "termogenico",
-            "pretreino"
-        ],
         "conflict": [
-            "barrinha",
-            "whey"
         ],
+        "exact_term": False,
         "brazil": "cafeína",
     },
     "termogenico": {
-        "subject": [
+        "synonyms": [
             "termogenico",
             "termogênico",
             "termogenicos",
             "termogênicos",
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "cafein",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "termogênico",
     },
     "tcm": {
-        "subject": [
+        "synonyms": [
             "tcm",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "cafein",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "TCM",
     },
     "calcio": {
-        "subject": [
+        "synonyms": [
             "calcio"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "cálcio",
     },
     "carboidrato": {
-        "subject": [
+        "synonyms": [
             "carboidrato",
             "carbohidrato",
             "carbohydrate",
@@ -390,866 +301,639 @@ SUPPLEMENT_COMPONENT_LIST = {
             "carbs",
             "carb",
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "carboidrato",
     },
     "carnitin": {
-        "subject": [
+        "synonyms": [
             "carnitin",
             "carnitina",
             "lcarnitina",
             "l carnitina",
             "l carn",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": ["beef"],
+        "exact_term": False,
         "brazil": "carnitina",
     },
     "cartamo": {
-        "subject": [
+        "synonyms": [
             "cartamo"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "cártamo",
     },
     "caseinato": {
-        "subject": [
+        "synonyms": [
             "caseinato"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "caseinato",
     },
     "cha": {
-        "subject": [
+        "synonyms": [
             "cha"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "chá",
     },
     "chaverde": {
-        "subject": [
+        "synonyms": [
             "chaverde",
             "cha verde"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "chá verde",
     },
     "chia": {
-        "subject": [
+        "synonyms": [
             "chia"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "chia",
     },
-    "chocolate": {
-        "subject": [
-            "chocolate"
-        ],
-        "product": False,
-        "collection": False,
-        "may_feature": True,
-        "from": [],
-        "conflict": [],
-        "brazil": "chocolate",
-    },
     "cistein": {
-        "subject": [
+        "synonyms": [
             "cistein",
             "lcisteina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "cisteína",
     },
-    "coco": {
-        "subject": [
-            "coco",
-        ],
-        "product": False,
-        "collection": False,
-        "may_feature": True,
-        "from": [],
-        "conflict": [],
-        "brazil": "coco",
-    },
     "colageno": {
-        "subject": [
+        "synonyms": [
             "colageno",
             "colagen"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "colágeno",
     },
     "vitamina b": {
-        "subject": [
+        "synonyms": [
             "complexo b",
             "vitamina b"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "vitamina B",
     },
     "concentrad": {
-        "subject": [
-            "concentrad"
+        "synonyms": [
+            "wpc",
+            "concentrad",
+            "concentrado"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": True,
         "brazil": "concentrado",
     },
+    "po": {
+        "synonyms": [
+            "po",
+            "em po"
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "pó",
+    },
+    "crunch": {
+        "synonyms": ["crunch", "crunchy", "crunch flavor", "crunch powder"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "crunch"
+    },
     "creatina": {
-        "subject": [
+        "synonyms": [
             "creatina",
             "creatine",
             "creatin",
             "creapure"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "monohidratada",
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "creatina",
     },
     "crisp": {
-        "subject": [
+        "synonyms": [
             "crisp"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "crisp",
     },
     "cromo": {
-        "subject": [
+        "synonyms": [
             "cromo",
             "cromo"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "cromo",
     },
     "curcuma": {
-        "subject": [
+        "synonyms": [
             "curcuma",
             "acafrao"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "cúrcuma",
     },
     "dextrose": {
-        "subject": [
+        "synonyms": [
             "dextrose",
             "maltodextrose"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "dextrose",
     },
     "dribose": {
-        "subject": [
+        "synonyms": [
             "dribose",
             "d ribose",
             "ribose",
             "dribose"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "ribose",
     },
-    "egg": {
-        "subject": [
-            "egg",
-            "ovo"
-        ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "protein"
-        ],
-        "conflict": [],
-        "brazil": "ovo",
-    },
-    "chantilly": {
-        "subject": [
-            "chantilly",
-        ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "protein"
-        ],
-        "conflict": [],
-        "brazil": "chantilly",
-    },
+
     "ervilha": {
-        "subject": [
+        "synonyms": [
             "ervilha",
             "pea"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "protein"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "ervilha",
     },
     "espirulina": {
-        "subject": [
+        "synonyms": [
             "espirulina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "espirulina",
     },
     "fibra": {
-        "subject": [
+        "synonyms": [
             "fibra"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "fibra",
     },
     "fosfatidilserina": {
-        "subject": [
+        "synonyms": [
             "fosfatidilserina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "fosfatidilserina",
     },
     "frutose": {
-        "subject": [
+        "synonyms": [
             "frutose"
         ],
-        "product": False,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "carboidrato"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "frutose",
     },
     "gengibre": {
-        "subject": [
+        "synonyms": [
             "gengibre"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "gengibre",
     },
     "gergelim": {
-        "subject": [
+        "synonyms": [
             "gergelim"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "gergelim",
     },
     "glutamin": {
-        "subject": [
+        "synonyms": [
             "glutamin",
             "glutamine",
             "glutamina",
             "lglutamina"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "aminoacido",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "glutamina",
     },
     "hair": {
-        "subject": [
+        "synonyms": [
             "hair",
             "cabelo"
         ],
-        "product": False,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "cabelo",
     },
     "hialuronico": {
-        "subject": [
+        "synonyms": [
             "hialuronico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "hialurônico",
     },
     "hidrolisad": {
-        "subject": [
-            "hidrolisad"
+        "synonyms": [
+            "hidrolisad",
+            "hidrolisado",
+            "hydro",
+            "wph"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": True,
         "brazil": "hidrolisado",
     },
+    "churros": {
+        "synonyms": [
+            "churros",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "churros",
+    },
     "hmb": {
-        "subject": [
+        "synonyms": [
             "hmb",
             "hydroxymethylbutyrate"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "HMB",
     },
     "imune": {
-        "subject": [
+        "synonyms": [
             "imune",
             "imunidade"
         ],
-        "product": False,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "imunidade",
     },
     "iso": {
-        "subject": [
+        "synonyms": [
             "iso",
+            "wpi",
             "isolado",
             "isolate",
             "isolada"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": True,
         "brazil": "isolado",
     },
     "kit": {
-        "subject": [
+        "synonyms": [
             "kit",
             "combo",
         ],
-        "product": False,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "kit",
     },
     "krill": {
-        "subject": [
+        "synonyms": [
             "krill"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "krill",
     },
     "lecitina": {
-        "subject": [
+        "synonyms": [
             "lecitina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "lecitina",
     },
     "leucin": {
-        "subject": [
+        "synonyms": [
             "leucin",
             "leucine",
             "lleucine"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "leucina",
     },
     "levagen": {
-        "subject": [
+        "synonyms": [
             "levagen"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "levagen",
     },
     "linhaca": {
-        "subject": [
+        "synonyms": [
             "linhaca"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "linhaça",
     },
     "maca peruana": {
-        "subject": [
+        "synonyms": [
             "maca peruana"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "maca peruana",
     },
     "magnesio": {
-        "subject": [
+        "synonyms": [
             "magnesio",
             "magnesi"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "magnésio",
     },
     "malto": {
-        "subject": [
+        "synonyms": [
             "malto",
             "dextrina",
             "maltodextrina",
             "maltodextrin"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "carboidrato"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "maltodextrina",
     },
     "mass": {
-        "subject": [
+        "synonyms": [
             "mass",
             "hipercalorico"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "carboidrato",
-            "malto",
-            "waxymaize"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "Hipercalórico",
     },
     "melatonina": {
-        "subject": [
+        "synonyms": [
             "melatonina",
             "melatonina",
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "melatonina",
     },
     "monohidratada": {
-        "subject": [
+        "synonyms": [
             "monohidratada"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "creatina"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "monohidratada",
     },
+    "creapure": {
+        "synonyms": [
+            "creapure"
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "creapure",
+    },
     "multivitaminico": {
-        "subject": [
+        "synonyms": [
             "multivitaminico",
             "polivitaminico"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "multivitamínico",
     },
     "mineral": {
-        "subject": [
+        "synonyms": [
             "minerai",
             "mineral",
         ],
-        "product": False,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "mineral",
     },
     "nail": {
-        "subject": [
+        "synonyms": [
             "nail",
             "unha"
         ],
-        "product": False,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "unha",
     },
     "oleo": {
-        "subject": [
+        "synonyms": [
             "oleo"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
+        "conflict": [
+            "oleo de coco"
+        ],
+        "exact_term": False,
         "brazil": "óleo",
     },
     "oleo de coco": {
-        "subject": [
+        "synonyms": [
             "oleo de coco"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
-        "conflict": [],
+        "conflict": [
+            "coco"
+        ],
+        "exact_term": False,
         "brazil": "óleo de coco",
     },
     "ketchup": {
-        "subject": [
+        "synonyms": [
             "ketchup"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "ketchup",
     },
     "barbecue": {
-        "subject": [
+        "synonyms": [
             "barbecue"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "barbecue",
     },
     "mostarda": {
-        "subject": [
+        "synonyms": [
             "mostarda"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "mostarda",
     },
     "maionese": {
-        "subject": [
+        "synonyms": [
             "maionese"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "maionese",
     },
     "optimsm": {
-        "subject": [
+        "synonyms": [
             "optimsm"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "optimsm",
     },
     "palatinose": {
-        "subject": [
+        "synonyms": [
             "palatinose",
             "isomaltulose"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "carboidrato"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "palatinose",
     },
     "enzima": {
-        "subject": [
+        "synonyms": [
             "enzima",
             "enzimas",
             "enzyme",
             "enzymes"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "enzima",
     },
     "protease": {
-        "subject": [
+        "synonyms": [
             "protease",
             "proteasa",
             "protease"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "enzima"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "protease",
     },
     "propolis": {
-        "subject": [
+        "synonyms": [
             "propolis",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "enzima"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "própolis",
     },
     "lactase": {
-        "subject": [
+        "synonyms": [
             "lactase",
             "lactasa",
             "lactase"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "enzima"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "lactase",
     },
     "lipase": {
-        "subject": [
+        "synonyms": [
             "lipase",
             "lipasa",
             "lipase"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "enzima"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "lipase",
     },
     "bromelina": {
-        "subject": [
+        "synonyms": [
             "bromelina",
             "bromelain",
             "bromelina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "enzima"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "bromelina",
     },
     "amilase": {
-        "subject": [
+        "synonyms": [
             "amilase",
             "amylase",
             "amilasa"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "enzima"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "amilase",
     },
-    "peanut": {
-        "subject": [
+    "manteiga de amendoim": {
+        "synonyms": [
             "pasta de amendoim",
-            "peanut",
-            "amendoim"
+            "manteiga de amendoim",
+            "peanut butter",
+            "peanutbutter",
+            "peanut butter flavor"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
-        "brazil": "amendoim",
+        "exact_term": False,
+        "brazil": "pasta de amendoim"
+    },
+    "amendoim": {
+        "synonyms": [
+            "amendoim",
+            "peanut",
+            "almonds",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "amendoim"
     },
     "omega 3": {
-        "subject": [
+        "synonyms": [
             "peixe",
             "dha",
             "epa",
             "omega 3",
             "omega",
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "ômega 3",
     },
     "omega 6": {
-        "subject": [
+        "synonyms": [
             "omega 6",
             "linoléico",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "ômega 6",
     },
     "picolinato": {
-        "subject": [
+        "synonyms": [
             "picolinato",
             "picolinato"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "picolinato",
     },
     "pretreino": {
-        "subject": [
+        "synonyms": [
             "pretreino",
             "pre treino",
             "pre-treino",
@@ -1260,193 +944,137 @@ SUPPLEMENT_COMPONENT_LIST = {
             "preworkout",
             "pre workout"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "taurina",
-            "betaalanina",
-            "cafein",
-            "arginin",
-            "tyrosin",
-            "termogenico"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "pré-treino",
     },
     "primula": {
-        "subject": [
+        "synonyms": [
             "primula"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "prímula",
     },
     "propoli": {
-        "subject": [
+        "synonyms": [
             "propoli"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "própolis",
     },
+    "sache": {
+        "synonyms": ["sache", "saco", "sachet"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "sache"
+    },
     "protein": {
-        "subject": [
+        "synonyms": [
             "protein",
             "proteina",
             "proteica"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "concentrad", 
-            "iso", 
-            "hidrolisad",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "proteina",
     },
     "psyllium": {
-        "subject": [
+        "synonyms": [
             "psyllium"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "psílio",
     },
     "quitosana": {
-        "subject": [
+        "synonyms": [
             "quitosana"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "quitosana",
     },
     "resveratrol": {
-        "subject": [
+        "synonyms": [
             "resveratrol"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "resveratrol",
     },
     "rice": {
-        "subject": [
+        "synonyms": [
             "rice",
             "arroz"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "protein"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "arroz",
     },
     "semente": {
-        "subject": [
+        "synonyms": [
             "semente"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "semente",
     },
     "skin": {
-        "subject": [
+        "synonyms": [
             "skin",
             "pele"
         ],
-        "product": False,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "pele",
     },
     "soy": {
-        "subject": [
+        "synonyms": [
             "soy",
             "soja"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "protein"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "soja",
     },
     "spirulina": {
-        "subject": [
+        "synonyms": [
             "spirulina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "spirulina",
     },
     "taurina": {
-        "subject": [
+        "synonyms": [
             "taurina",
             "taurine",
             "taurin"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "taurina",
     },
     "tempero": {
-        "subject": [
+        "synonyms": [
             "tempero"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "tempero",
     },
     "testofen": {
-        "subject": [
+        "synonyms": [
             "testofen"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "testofen",
     },
     "tyrosin": {
-        "subject": [
+        "synonyms": [
             "tyrosin",
             "tirosin",
             "tyrosine",
@@ -1459,208 +1087,139 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ltirosina",
             "ltirosine",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "tirosina",
     },
     "transresveratrol": {
-        "subject": [
+        "synonyms": [
             "transresveratrol",
             "trans resveratrol"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "trans-resveratrol",
     },
     "triptofano": {
-        "subject": [
+        "synonyms": [
             "triptofano"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "triptofano",
     },
     "leucina": {
-        "subject": [
+        "synonyms": [
             "leucina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "leucina",
     },
     "valina": {
-        "subject": [
+        "synonyms": [
             "valina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "valina",
     },
     "isoleucina": {
-        "subject": [
+        "synonyms": [
             "isoleucina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "isoleucina",
     },
     "lisina": {
-        "subject": [
+        "synonyms": [
             "lisina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "lisina",
     },
     "fenilalanina": {
-        "subject": [
+        "synonyms": [
             "fenilalanina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "fenilalanina",
     },
     "treonina": {
-        "subject": [
+        "synonyms": [
             "treonina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "treonina",
     },
     "metionina": {
-        "subject": [
+        "synonyms": [
             "metionina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido",
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "metionina",
     },
     "silimarina": {
-        "subject": [
+        "synonyms": [
             "silimarina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "silimarina",
     },
     "histidina": {
-        "subject": [
+        "synonyms": [
             "histidina",
             "lhistidina",
             "l histidina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [
-            "aminoacido"
-        ],
         "conflict": [],
+        "exact_term": False,
         "brazil": "histidina",
     },
     "veg": {
-        "subject": [
+        "synonyms": [
             "veg",
             "vegan",
             "vegano",
             "vegie",
             "vegana"
         ],
-        "product": False,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "vegano",
     },
     "vegetarian": {
-        "subject": [
+        "synonyms": [
             "vegetarian",
             "vegetariano",
             "vegetariana",
             "veggie",
             "vegetarianismo"
         ],
-        "product": False,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "vegetariano",
     },
     "verisol": {
-        "subject": [
+        "synonyms": [
             "verisol"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "verisol",
     },
     "vitamina": {
-        "subject": [
+        "synonyms": [
             "vitamina",
             "vitaminas",
             "vitamin"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina a",
             "vitamina b1",
@@ -1692,33 +1251,27 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina k7",
             "vitamina q"
         ],
+        "exact_term": False,
         "brazil": "vitamina",
     },
     "vitamina a": {
-        "subject": [
+        "synonyms": [
             "vitamina a",
             "vitaminas a",
             "retinol",
             "retinal",
             "ácido retinoico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina A",
     },
     "vitamina b1": {
-        "subject": [
+        "synonyms": [
             "vitamina b1",
             "vitaminas b1",
             "tiamina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b10",
@@ -1737,18 +1290,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B1",
     },
     "vitamina b10": {
-        "subject": [
+        "synonyms": [
             "vitamina b10",
             "vitaminas b10",
             "paraaminobenzoico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1767,18 +1317,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B10",
     },
     "vitamina b11": {
-        "subject": [
+        "synonyms": [
             "vitamina b11",
             "vitaminas b11",
             "salicilico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1797,18 +1344,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B11",
     },
     "vitamina b12": {
-        "subject": [
+        "synonyms": [
             "vitamina b12",
             "vitaminas b12",
             "cobalamina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1827,18 +1371,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B12",
     },
     "vitamina b13": {
-        "subject": [
+        "synonyms": [
             "vitamina b13",
             "vitaminas b13",
             "orotico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1857,18 +1398,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B13",
     },
     "vitamina b15": {
-        "subject": [
+        "synonyms": [
             "vitamina b15",
             "vitaminas b15",
             "pangamico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1887,18 +1425,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B15",
     },
     "vitamina b17": {
-        "subject": [
+        "synonyms": [
             "vitamina b17",
             "vitaminas b17",
             "amigdalina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1917,18 +1452,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B17",
     },
     "vitamina b2": {
-        "subject": [
+        "synonyms": [
             "vitamina b2",
             "vitaminas b2",
             "riboflavina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1947,18 +1479,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B2",
     },
     "vitamina b22": {
-        "subject": [
+        "synonyms": [
             "vitamina b22",
             "vitaminas b22",
             "ratanhia"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -1977,18 +1506,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B22",
     },
     "vitamina b3": {
-        "subject": [
+        "synonyms": [
             "vitamina b3",
             "vitaminas b3",
             "niacina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2007,18 +1533,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B3",
     },
     "vitamina b4": {
-        "subject": [
+        "synonyms": [
             "vitamina b4",
             "vitaminas b4",
             "adenina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2037,18 +1560,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B4",
     },
     "vitamina b5": {
-        "subject": [
+        "synonyms": [
             "vitamina b5",
             "vitaminas b5",
             "pantotenico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2067,18 +1587,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B5",
     },
     "vitamina b6": {
-        "subject": [
+        "synonyms": [
             "vitamina b6",
             "vitaminas b6",
             "piridoxina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2097,18 +1614,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B6",
     },
     "vitamina b7": {
-        "subject": [
+        "synonyms": [
             "vitamina b7",
             "vitaminas b7",
             "biotina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2127,18 +1641,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b8",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B7",
     },
     "vitamina b8": {
-        "subject": [
+        "synonyms": [
             "vitamina b8",
             "vitaminas b8",
             "inositol"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2157,18 +1668,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b7",
             "vitamina b9"
         ],
+        "exact_term": False,
         "brazil": "vitamina B8",
     },
     "vitamina b9": {
-        "subject": [
+        "synonyms": [
             "vitamina b9",
             "vitaminas b9",
             "folico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina",
             "vitamina b1",
@@ -2187,10 +1695,11 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina b7",
             "vitamina b8"
         ],
+        "exact_term": False,
         "brazil": "vitamina B9",
     },
     "vitamina c": {
-        "subject": [
+        "synonyms": [
             "vitamina c",
             "vitaminas c",
             "ascorbico",
@@ -2203,15 +1712,12 @@ SUPPLEMENT_COMPONENT_LIST = {
             "L-ascorbato",
             "L-ascorbila"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina C",
     },
     "vitamina d": {
-        "subject": [
+        "synonyms": [
             "vitamina d",
             "vitaminas d",
             "calciferol",
@@ -2222,15 +1728,12 @@ SUPPLEMENT_COMPONENT_LIST = {
             "D3",
             "D2"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina D",
     },
     "vitamina e": {
-        "subject": [
+        "synonyms": [
             "vitamina e",
             "vitaminas e",
             "tocoferol",
@@ -2239,272 +1742,217 @@ SUPPLEMENT_COMPONENT_LIST = {
             "d-alfa-tocoferol",
             "dl-tocoferol"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina E",
     },
     "vitamina f": {
-        "subject": [
+        "synonyms": [
             "vitamina f",
             "vitaminas f",
             "graxos essenciais",
             "ácidos graxos essenciais"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina F",
     },
     "vitamina g": {
-        "subject": [
+        "synonyms": [
             "vitamina g",
             "vitaminas g",
             "monofosfato de nicotinamida",
             "nicotinamida monofosfato"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina G",
     },
     "vitamina h": {
-        "subject": [
+        "synonyms": [
             "vitamina h",
             "vitaminas h",
             "biotina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina H",
     },
     "vitamina j": {
-        "subject": [
+        "synonyms": [
             "vitamina j",
             "vitaminas j",
             "lipoico",
             "ácido lipoico"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina J",
     },
     "vitamina k": {
-        "subject": [
+        "synonyms": [
             "vitamina k",
             "vitaminas k",
             "filoquinona",
             "vitamina K",
             "fitoquinona"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina k1",
             "vitamina k2",
             "vitamina k7",
             "vitamina"
         ],
+        "exact_term": False,
         "brazil": "vitamina K",
     },
     "vitamina k1": {
-        "subject": [
+        "synonyms": [
             "vitamina k1",
             "vitaminas k1",
             "fitoquinona",
             "phylloquinona"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina k",
             "vitamina k2",
             "vitamina k7",
             "vitamina"
         ],
+        "exact_term": False,
         "brazil": "vitamina K1",
     },
     "vitamina k2": {
-        "subject": [
+        "synonyms": [
             "vitamina k2",
             "vitaminas k2",
             "menaquinona",
             "MK-7",
             "MK-4"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina k",
             "vitamina k1",
             "vitamina k7",
             "vitamina"
         ],
+        "exact_term": False,
         "brazil": "vitamina K2",
     },
     "vitamina k7": {
-        "subject": [
+        "synonyms": [
             "vitamina k7",
             "vitaminas k7",
             "mk7",
             "menaquinona-7"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [
             "vitamina k",
             "vitamina k1",
             "vitamina k2",
             "vitamina"
         ],
+        "exact_term": False,
         "brazil": "vitamina K7",
     },
     "vitamina q": {
-        "subject": [
+        "synonyms": [
             "vitamina q",
             "vitaminas q",
             "coenzima q10",
             "ubiquinona",
             "ubiquinol"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": ["vitamina"],
+        "exact_term": False,
         "brazil": "vitamina Q",
     },
     "wafer": {
-        "subject": [
+        "synonyms": [
             "wafer",
-            "bolacha",
-            "biscoito",
-            "cookie"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "wafer",
     },
+    "bebida": {
+        "synonyms": ["bebida", "drink", "liquid"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "bebida"
+    },
+    "biscuit": {
+        "synonyms": ["biscuit", "biscoito", "bolacha", "cookie"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "cookie"
+    },
     "waxymaize": {
-        "subject": [
+        "synonyms": [
             "waxymaize",
             "waxy maize",
             "amido de milho"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "waxymaize",
     },
     "whey": {
-        "subject": [
+        "synonyms": [
             "whey",
             "soro do leite"
         ],
-        "product": True,
-        "collection": True,
-        "may_feature": False,
-        "from": [
-            "protein",
-            "concentrad",
-            "iso",
-            "hidrolisad",
-        ],
-        "conflict": [
-            "barrinha",
-            "alfajor",
-            "wafer",
-        ],
+        "conflict": [],
+        "exact_term": False,
         "brazil": "whey",
     },
     "xylitol": {
-        "subject": [
+        "synonyms": [
             "xylitol",
             "xilitol",
             "adocante",
             "adocante"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "xilitol",
     },
     "zeaxantina": {
-        "subject": [
+        "synonyms": [
             "zeaxantina"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "zeaxantina",
     },
     "zinco": {
-        "subject": [
+        "synonyms": [
             "zinco",
             "zinco",
             "zinco"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "zinco",
     },
     "selenio": {
-        "subject": [
+        "synonyms": [
             "selenio",
             "seleni",
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "selênio",
     },
     "zma": {
-        "subject": [
+        "synonyms": [
             "zma"
         ],
-        "product": True,
-        "collection": False,
-        "may_feature": False,
-        "from": [],
         "conflict": [],
+        "exact_term": False,
         "brazil": "ZMA",
     }
 }
-
 
 personal_pronouns = ["Eu", "Tu", "Ele", "Ela", "Nós", "Vós", "Eles", "Elas", "Mim", "Ti", "Si", "Consigo"]
 oblique_pronouns = ["Me", "Te", "Se", "Nos", "Vos", "O", "A", "Lhe", "Os", "As", "Nos", "Vos", "Se", "Convosco", "Lhes", "Contigo"]
@@ -2519,6 +1967,7 @@ BRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns 
 BRAZIL_CONECTORES = ['a', 'o', 'e', 'ou', 'nem', 'mas', 'porque', 'como', 'apesar', 'além', 'entretanto', 'porém', 'todavia', 'logo', 'portanto', 'assim', 'contudo', 'embora', 'ainda', 'também', 'quer', 'seja', 'isto', 'aquilo']
 
 PRONOUNS = {
+    "exact_term": False,
     "brazil": BRAZIL_PRONOUNS,
 }
 

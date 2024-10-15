@@ -70,6 +70,8 @@ def generate_price_chart(prices: list) -> str:
 
     # Geração do código HTML e JS para o gráfico
     chart_html = f'''
+    <br>
+    <br>
     <div class="chart-container" style="position: relative; height:300px; width:100%;">
         <canvas id="priceChart"></canvas>
     </div>
@@ -149,8 +151,6 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
                 <div id="product-description">
                     {formatted_description}
                 </div>
-                <br>
-                <br>
             '''
         
         check_prices = pd.notna(row['prices'])
