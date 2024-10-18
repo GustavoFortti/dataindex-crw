@@ -46,6 +46,10 @@ def load(conf):
     dq.save_history_data(conf, df_products_transform_csl)
     message("Data ready for ingestion")
     
+    print(df[['ref', 'title']])
+    df = df[df["ref"] == '8529ba25']
+    # print(df)
+    # exit()
     if (not df.empty):
         refs = df_products_transform_csl["ref"].values
         process_and_ingest_products(conf, df, refs, conf['brand'])

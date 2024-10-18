@@ -9,11 +9,11 @@ export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    "adaptogen"
+    # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
-    # "dark_lab"
+    "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
@@ -32,9 +32,9 @@ job_type="master_page"
 job_name="master"
 
 exec_type="extract"
-# exec_flag="status_job"
+exec_flag="status_job"
 # exec_flag="new_page"
-exec_flag="products_update"
+# exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
