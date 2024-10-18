@@ -13,7 +13,7 @@ def load(conf):
     df_products_transform_csl = read_df(conf['path_products_transform_csl'], dtype={'ref': str, 'compare_at_price': float})
     df_products_transform_csl = df_products_transform_csl.drop(columns=["page_name"])
     columns = df_products_transform_csl.columns
-    
+
     df_products_transform_csl['is_transform_data'] = 1
     
     df_products_load_csl = create_or_read_df(conf['path_products_load_csl'], df_products_transform_csl.columns)
@@ -33,7 +33,7 @@ def load(conf):
         df = df[df['is_transform_data'] == 1]
     else:
         df = deepcopy(df_products_transform_csl)
-
+    
     df = df.drop(columns=['is_transform_data'])
     df = df[columns]
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
@@ -46,10 +46,6 @@ def load(conf):
     dq.save_history_data(conf, df_products_transform_csl)
     message("Data ready for ingestion")
     
-    print(df[['ref', 'title']])
-    df = df[df["ref"] == '8529ba25']
-    # print(df)
-    # exit()
     if (not df.empty):
         refs = df_products_transform_csl["ref"].values
         process_and_ingest_products(conf, df, refs, conf['brand'])
