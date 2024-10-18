@@ -2,7 +2,7 @@ WORDLIST_FORMAT = {
     "po": {
         "synonyms": ["powder", "pó", "po"],
         "conflict": [],
-        "exact_term": False,
+        "exact_term": True,
         "brazil": "pó"
     },
     "gel": {
@@ -42,7 +42,7 @@ WORDLIST_FORMAT = {
         "brazil": "pouch"
     },
     "sache": {
-        "synonyms": ["sache", "saco", "sachet"],
+        "synonyms": ["sache", "saches", "saco", "sachet"],
         "conflict": [],
         "exact_term": False,
         "brazil": "sache"
@@ -60,12 +60,12 @@ WORDLIST_FORMAT = {
         "brazil": "chantilly"
     },
     "shake": {
-        "synonyms": ["shake", "batido", "vitamina", "shake de proteína"],
+        "synonyms": ["shake", "batido", "shake de proteína"],
         "conflict": [],
         "exact_term": False,
         "brazil": "shake"
     },
-    "biscuit": {
+    "cookie": {
         "synonyms": ["biscuit", "biscoito", "bolacha", "cookie"],
         "conflict": [],
         "exact_term": False,
@@ -131,12 +131,6 @@ WORDLIST_FORMAT = {
         "exact_term": False,
         "brazil": "pote"
     },
-    "mix": {
-        "synonyms": ["mix", "mistura", "blend"],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "mix"
-    },
     "spray": {
         "synonyms": ["spray", "aerossol", "spray de suplemento"],
         "conflict": [],
@@ -149,7 +143,15 @@ WORDLIST_FORMAT = {
         "exact_term": False,
         "brazil": "goma"
     },
-    "barras": {
+    "blend": {
+        "synonyms": [
+            "blend",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "mistura",
+    },
+    "barrinha": {
         "synonyms": ["barras", "barra", "barrinha", "bar"],
         "conflict": [],
         "exact_term": False,

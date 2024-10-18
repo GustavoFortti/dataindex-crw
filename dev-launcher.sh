@@ -9,7 +9,7 @@ export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    # "adaptogen"
+    "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
@@ -25,7 +25,7 @@ page_names=(
     # "probiotica"
     # "puravida"
     # "truesource"
-    "vitafor"
+    # "vitafor"
 )
 
 job_type="master_page"
@@ -41,12 +41,13 @@ exec_flag="products_update"
 exec_type="transform"
 exec_flag="false"
 
-# exec_type="load"
+exec_type="load"
 # exec_flag="data_quality"
-# exec_flag="false" 
+exec_flag="false" 
 
 # job_type="data_intelligence"
-# job_name="product_info"
+# job_name="product_description"
+# job_name="product_title"
 
 # job_type="data_shelf"
 # job_name="history_price"

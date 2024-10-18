@@ -18,32 +18,45 @@ WORDLIST_FLAVOR = {
         "brazil": "hortelã"
     },
     "chocolate": {
-        "synonyms": ["chocolate", "choc", "choco"],
+        "synonyms": ["chocolate", "cioccolato", "choc", "choco"],
         "conflict": [],
         "exact_term": False,
         "brazil": "chocolate"
     },
+    "creme_brulee": {
+        "synonyms": [
+            "creme brulle", 
+            "creme brulee", 
+        ],
+        "conflict": [
+            "baunilha",
+            "caramelo"
+        ],
+        "exact_term": False,
+        "brazil": "crème brûlée"
+    },
+
     "baunilha": {
         "synonyms": ["baunilha", "vanilla", "vanilha"],
-        "conflict": ["baunilha com sorvete", "baunilha chai"],
+        "conflict": [],
         "exact_term": False,
         "brazil": "baunilha"
     },
     "limao": {
         "synonyms": ["limão", "lemon", "limao", "limon"],
-        "conflict": ["framboesa com limao"],
+        "conflict": [],
         "exact_term": False,
         "brazil": "limão"
     },
     "morango": {
         "synonyms": ["morango", "strawberry", "straw"],
-        "conflict": ["morango com banana"],
+        "conflict": [],
         "exact_term": False,
         "brazil": "morango"
     },
     "banana": {
         "synonyms": ["banana", "bananna"],
-        "conflict": ["morango com banana"],
+        "conflict": [],
         "exact_term": False,
         "brazil": "banana"
     },
@@ -67,7 +80,7 @@ WORDLIST_FLAVOR = {
     },
     "coco": {
         "synonyms": ["coco", "coconut"],
-        "conflict": ["chocolate com coco"],
+        "conflict": ["cacau"],
         "exact_term": False,
         "brazil": "coco"
     },
@@ -155,13 +168,13 @@ WORDLIST_FLAVOR = {
     },
     "cookies_e_cream": {
         "synonyms": ["cookies e cream", "cookies cream", "cookies and cream", "cookies & cream", "cookies cream"],
-        "conflict": ["cookies"],
+        "conflict": [],
         "exact_term": False,
         "brazil": "cookies e cream"
     },
-    "cookies": {
-        "synonyms": ["cookies", "cookie"],
-        "conflict": [],
+    "cookie": {
+        "synonyms": ["cookies", "cookie", "bolacha", "biscoito"],
+        "conflict": ["cookies_e_cream"],
         "exact_term": False,
         "brazil": "cookies"
     },
@@ -189,11 +202,19 @@ WORDLIST_FLAVOR = {
         "exact_term": False,
         "brazil": "tangerina"
     },
-    "cafe": {
-        "synonyms": ["cafe", "coffee", "coffee flavor", "cafe flavor", "cafe powder"],
-        "conflict": ["cappuccino", "mocha", "chai latte"],
+    "cafein": {
+        "synonyms": [
+            "cafein",
+            "cafe",
+            "cafeina",
+            "coffe",
+            "caffe",
+            "coffee"
+        ],
+        "conflict": [
+        ],
         "exact_term": False,
-        "brazil": "café"
+        "brazil": "cafeína",
     },
     "mocha": {
         "synonyms": ["mocha"],
@@ -277,11 +298,7 @@ WORDLIST_FLAVOR = {
     },
     "ice_cream": {
         "synonyms": ["ice cream", "sorvete", "sabor sorvete", "sabor ice cream"],
-        "conflict": [
-            "chocolate",
-            "baunilha",
-            "morango"
-        ],
+        "conflict": [],
         "exact_term": False,
         "brazil": "sorvete"
     },
@@ -343,9 +360,16 @@ WORDLIST_FLAVOR = {
         "brazil": "churros"
     },
     "acai": {
-        "synonyms": ["açai", "acai berry", "acai flavor", "polpa de açai"],
+        "synonyms": ["açai", "polpa de açai"],
+        "conflict": [],
+        "exact_term": True,
+        "brazil": "açai"
+    },
+    "brigadeiro": {
+        "synonyms": ["brigadeiro", "brigadeiro flavor", "sabor brigadeiro", "chocolate fudge"],
         "conflict": [],
         "exact_term": False,
-        "brazil": "açai"
+        "brazil": "brigadeiro"
     }
+
 }

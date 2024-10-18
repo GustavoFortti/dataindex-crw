@@ -22,23 +22,6 @@ def find_in_text_with_wordlist(text, wordlist):
         return True
     return False
 
-def get_all_words_with_wordlist(text, wordlist, exact_term=False):
-    found_words = []  # Lista para armazenar as palavras encontradas
-    text = clean_text(text)  # Limpar o texto uma vez antes do loop
-    text_clened = clean_text(text)
-    for word in wordlist:
-        word_clened = clean_text(word)
-        
-        # Verifica se a palavra limpa está no texto
-        if (exact_term):
-            if (re.search(f" {word_clened} ", f" {text_clened} ")):
-                found_words.append(word)
-        else:
-            if (re.search(word_clened, f" {text_clened} ")):
-                found_words.append(word)
-
-    return found_words if found_words else []
-
 def levenshtein(s1, s2):
     if len(s1) < len(s2):
         return levenshtein(s2, s1)

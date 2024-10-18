@@ -161,7 +161,7 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
                 price_chart_html = generate_price_chart(row['prices'])
                 body_html += price_chart_html
         
-        product_type = row['product_definition']
+        product_type = row['product_tags']
         product_data = {
             "title": row['title_extract'],
             "body_html": body_html,

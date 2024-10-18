@@ -1,55 +1,5 @@
-import re
-from copy import deepcopy
-
-from src.lib.utils.text_functions import clean_text
-
-
-def get_synonyms(component_list):
-    keywords_list = []
-    for component, attributes in component_list.items():
-        keywords_list.append(attributes.get("synonyms"))
-    return keywords_list
-
-def get_word_index_in_text(word, text, add_space_firts):
-    text_temp = deepcopy(text)
-    word_clean = clean_text(word, False, False, False, True, False)
-    space = " " if not add_space_firts else ""
-    matches = re.finditer(space + word_clean, text_temp)
-
-    locations = []
-    for match in matches:
-        start_index = match.start()
-        locations.append(start_index)
-
-    return locations
-
-def get_back_words(text_accents, locations):
-    size_max = 30
-    slice_min = lambda value: value if value >= 0 else 0
-    back_words = []
-    for location in locations:
-        start = slice_min(location - size_max)
-
-        back_words_aux = (text_accents[start:location].replace("\n", ""))
-        back_words_aux = [i for i in back_words_aux.split(" ") if i != '']
-        back_words.append(back_words_aux)
-
-    return back_words
-
-def find_synonym_in_wordlist(word, wordlist):
-    for values in wordlist.values():
-        synonym = values['synonym']
-        if (word in synonym):
-            return synonym
-
-def remove_prepositions_pronouns(text, pronouns):
-    pronouns = set(pronouns)
-
-    for pronoun in pronouns:
-        space_pronoun = " " * len(pronoun)
-        text = text.replace(pronoun, space_pronoun)
-    
-    return text
+from src.lib.wordlist.wordlist_flavor import WORDLIST_FLAVOR
+from src.lib.wordlist.wordlist_format import WORDLIST_FORMAT
 
 BLACK_LIST = [
     "regata",
@@ -140,9 +90,14 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "arginin": {
         "synonyms": [
+            "argin",
             "arginin",
             "arginine",
-            "arginina"
+            "l arginine",
+            "larginine",
+            "arginina",
+            "larginina",
+            "l arginina",
         ],
         "conflict": [],
         "exact_term": False,
@@ -155,16 +110,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "astaxantina",
-    },
-    "barrinha": {
-        "synonyms": [
-            "barrinha",
-            "barra",
-            "bar",
-        ],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "barrinha",
     },
     "batata doce": {
         "synonyms": [
@@ -222,23 +167,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "betacaroteno",
     },
-    "biotina": {
-        "synonyms": [
-            "biotina"
-        ],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "biotina",
-    },
-    "blend": {
-        "synonyms": [
-            "blend",
-            "mistura"
-        ],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "mistura",
-    },
     "borragem": {
         "synonyms": [
             "borragem"
@@ -247,22 +175,9 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "borragem",
     },
-    "cafein": {
-        "synonyms": [
-            "cafein",
-            "cafe",
-            "cafeina",
-            "coffe",
-            "caffe",
-            "coffee"
-        ],
-        "conflict": [
-        ],
-        "exact_term": False,
-        "brazil": "cafeína",
-    },
     "termogenico": {
         "synonyms": [
+            "termo",
             "termogenico",
             "termogênico",
             "termogenicos",
@@ -326,6 +241,14 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "cártamo",
     },
+    "oleo de cartamo": {
+        "synonyms": [
+            "oleo de cartamo"
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "óleo de cartamo",
+    },
     "casein": {
         "synonyms": [
             "caseinato",
@@ -343,6 +266,14 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "chá",
+    },
+    "guarana": {
+        "synonyms": [
+            "guarana",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "guaraná"
     },
     "chaverde": {
         "synonyms": [
@@ -373,7 +304,8 @@ SUPPLEMENT_COMPONENT_LIST = {
     "colageno": {
         "synonyms": [
             "colageno",
-            "colagen"
+            "colagen",
+            "collagen",
         ],
         "conflict": [],
         "exact_term": False,
@@ -397,21 +329,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": True,
         "brazil": "concentrado",
-    },
-    "po": {
-        "synonyms": [
-            "po",
-            "em po"
-        ],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "pó",
-    },
-    "crunch": {
-        "synonyms": ["crunch", "crunchy", "crunch flavor", "crunch powder"],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "crunch"
     },
     "creatina": {
         "synonyms": [
@@ -454,8 +371,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "synonyms": [
             "dextrose",
             "dextros",
-            "maltodextrose"
-            "maltodextros"
+            "maltodextrose",
+            "maltodextros",
             "malto dextrose"
         ],
         "conflict": [],
@@ -619,11 +536,12 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "krill": {
         "synonyms": [
-            "krill"
+            "krill",
+            "oleo de krill"
         ],
         "conflict": [],
         "exact_term": False,
-        "brazil": "krill",
+        "brazil": "óleo de krill",
     },
     "lecitina": {
         "synonyms": [
@@ -675,6 +593,12 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "magnésio",
+    },
+    "ferro": {
+        "synonyms": ["ferro", "iron", "iron supplement", "suplemento de ferro"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "ferro"
     },
     "maltodextrina": {
         "synonyms": [
@@ -765,15 +689,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "óleo de coco",
-    },
-    "coco": {
-        "synonyms": [
-            "coco",
-            "coconut"
-        ],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "coco",
     },
     "ketchup": {
         "synonyms": [
@@ -917,7 +832,7 @@ SUPPLEMENT_COMPONENT_LIST = {
     },
     "omega 3": {
         "synonyms": [
-            "peixe",
+            "oleo de peixe",
             "dha",
             "epa",
             "omega 3",
@@ -950,16 +865,41 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pretreino",
             "pre treino",
             "pre-treino",
-            "workout",
-            "work out",
             "pretrein",
             "pre trein",
             "preworkout",
-            "pre workout"
+            "pre workout",
+            "pre-workout"
         ],
         "conflict": [],
         "exact_term": False,
         "brazil": "pré-treino",
+    },
+    "postreino": {
+        "synonyms": [
+            "postreino",
+            "pos treino",
+            "pos-treino",
+            "post workout",
+            "post-workout",
+            "postworkout",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "pós-treino"
+    },
+    "intratreino": {
+        "synonyms": [
+            "intra-treino",
+            "intratreino",
+            "intra treino",
+            "intra workout",
+            "intra-workout",
+            "intraworkout",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "intra-treino"
     },
     "primula": {
         "synonyms": [
@@ -976,12 +916,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "própolis",
-    },
-    "sache": {
-        "synonyms": ["sache", "saco", "sachet"],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "sache"
     },
     "dose": {
         "synonyms": ["dose", "dosage"],
@@ -1276,14 +1210,13 @@ SUPPLEMENT_COMPONENT_LIST = {
     "vitamina a": {
         "synonyms": [
             "vitamina a",
-            "vitaminas a",
             "retinol",
             "retinal",
-            "ácido retinoico"
+            "retinoico"
         ],
         "conflict": ["vitamina"],
         "exact_term": False,
-        "brazil": "vitamina A",
+        "brazil": "vitamina a",
     },
     "vitamina b1": {
         "synonyms": [
@@ -1636,11 +1569,12 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "vitamina B6",
     },
-    "vitamina b7": {
+    "biotina": {
         "synonyms": [
             "vitamina b7",
             "vitaminas b7",
-            "biotina"
+            "biotina",
+            "vitamina h"
         ],
         "conflict": [
             "vitamina",
@@ -1721,6 +1655,8 @@ SUPPLEMENT_COMPONENT_LIST = {
         "synonyms": [
             "vitamina c",
             "vitaminas c",
+            "c3",
+            "C3",
             "ascorbico",
             "ascorbato",
             "ascorbila",
@@ -1742,13 +1678,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "calciferol",
             "colecalciferol",
             "ergocalciferol",
-            "vitamina D",
+            "vitamina d",
             "ácido calciferólico",
             "D3",
-            "D2"
+            "d3",
+            "D2",
+            "d2",
         ],
         "conflict": ["vitamina"],
-        "exact_term": False,
+        "exact_term": True,
         "brazil": "vitamina D",
     },
     "vitamina e": {
@@ -1786,16 +1724,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina G",
-    },
-    "vitamina h": {
-        "synonyms": [
-            "vitamina h",
-            "vitaminas h",
-            "biotina"
-        ],
-        "conflict": ["vitamina"],
-        "exact_term": False,
-        "brazil": "vitamina H",
     },
     "vitamina j": {
         "synonyms": [
@@ -1884,7 +1812,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         ],
         "conflict": ["vitamina"],
         "exact_term": False,
-        "brazil": "vitamina Q",
+        "brazil": "coenzima q10",
     },
     "wafer": {
         "synonyms": [
@@ -1900,12 +1828,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "bebida"
     },
-    "biscuit": {
-        "synonyms": ["biscuit", "biscoito", "bolacha", "cookie"],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "cookie"
-    },
     "waxymaize": {
         "synonyms": [
             "waxymaize",
@@ -1919,7 +1841,8 @@ SUPPLEMENT_COMPONENT_LIST = {
     "whey": {
         "synonyms": [
             "whey",
-            "soro do leite"
+            "soro do leite",
+            "soro de leite"
         ],
         "conflict": [],
         "exact_term": False,
@@ -1947,8 +1870,6 @@ SUPPLEMENT_COMPONENT_LIST = {
     "zinco": {
         "synonyms": [
             "zinco",
-            "zinco",
-            "zinco"
         ],
         "conflict": [],
         "exact_term": False,
@@ -1972,6 +1893,12 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "ZMA",
     }
 }
+
+SUPPLEMENT_COMPONENT_LIST = {k: v for k, v in SUPPLEMENT_COMPONENT_LIST.items() if k not in WORDLIST_FLAVOR}
+SUPPLEMENT_COMPONENT_LIST.update(WORDLIST_FLAVOR)
+
+SUPPLEMENT_COMPONENT_LIST = {k: v for k, v in SUPPLEMENT_COMPONENT_LIST.items() if k not in WORDLIST_FORMAT}
+SUPPLEMENT_COMPONENT_LIST.update(WORDLIST_FORMAT)
 
 personal_pronouns = ["Eu", "Tu", "Ele", "Ela", "Nós", "Vós", "Eles", "Elas", "Mim", "Ti", "Si", "Consigo"]
 oblique_pronouns = ["Me", "Te", "Se", "Nos", "Vos", "O", "A", "Lhe", "Os", "As", "Nos", "Vos", "Se", "Convosco", "Lhes", "Contigo"]

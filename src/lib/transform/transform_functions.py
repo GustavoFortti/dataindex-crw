@@ -15,7 +15,6 @@ from src.lib.utils.image_functions import (calculate_precise_image_hash,
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import (clean_text,
                                           find_in_text_with_wordlist,
-                                          get_all_words_with_wordlist,
                                           remove_spaces)
 from src.lib.wordlist.wordlist import BLACK_LIST
 
@@ -226,34 +225,6 @@ def create_price_discount_percent_col(df, data_path):
         df_new.loc[df_new['ref'] == ref, "compare_at_price"] = compare_at_price
 
     return df_new
-
-def create_product_collection_col(df, conf):
-    df["collections"] = None
-    wordlist = [i for i in conf["wordlist"] if conf["wordlist"][i]['collection']]
-
-    for idx, row in df.iterrows():
-        collections = []
-        
-        if (pd.notna(row['compare_at_price'])):
-            collections.append('promocao')
-        
-        if (pd.isna(row['product_definition_key'])):
-            df.at[idx, "collections"] = collections
-            if (collections == []):
-                df.at[idx, "collections"] = None
-            continue
-        
-        words_product_definition_key = get_all_words_with_wordlist(row['product_definition_key'], wordlist)
-        words_title = get_all_words_with_wordlist(row['title'], wordlist)
-        words = list(set(words_product_definition_key + words_title))
-        
-        if (words == []):
-            df.at[idx, "collections"] = None
-            continue
-        
-        collections = collections + words
-        df.at[idx, "collections"] = collections
-    return df
 
 def create_history_price_col(df, conf):
     df_history = read_df(f"{conf['src_data_path']}/history_price/history_price_csl.csv")

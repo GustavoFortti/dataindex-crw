@@ -11,7 +11,7 @@ from src.lib.utils.log import message
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
-pd.set_option('display.max_colwidth', None)
+# pd.set_option('display.max_colwidth', None)
 
 def transform(conf, df):
     message("START TRANSFORM")
@@ -36,8 +36,6 @@ def transform(conf, df):
     
     message("CRIAÇÃO das colunas [product_definition, collections]")
     df = create_product_info_cols(df, conf)
-    print(df[["title", "collections"]])
-    exit()
     
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
     
@@ -58,7 +56,7 @@ def transform(conf, df):
             'compare_at_price',
             'quantity',
             'price_qnt',
-            'product_definition',
+            'product_tags',
             'collections',
             'prices',
         ]
