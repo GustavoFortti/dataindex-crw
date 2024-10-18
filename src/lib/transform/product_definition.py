@@ -295,6 +295,7 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
                     index_key = f"{key_index_flavor}_{flavor}"
                     collection_indices[index_key] = flavored_index
 
+    
         # Verifica se os termos correspondem aos índices
         for key_index, index in collection_indices.items():
             required_terms = len(index)
@@ -310,7 +311,7 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
                     matched_terms += 1
             if matched_terms == required_terms:
                 collections_found.append(key_index)
-
+                
         # Aplica regras baseadas na quantidade
         rule_fields = collection.get("rule_fields")
         if collections_found and rule_fields and pd.notna(row.quantity):
@@ -325,6 +326,10 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
         if collections_found and default_collection:
             collections_found += default_collection
 
+        promotion_collection = collection.get("promotion_collection")     
+        if promotion_collection and collections_found:
+            collections_found.append(promotion_collection)
+        
         # Calcula o score e adiciona à lista de todas as coleções
         if collections_found:
             all_collections.append({
@@ -372,7 +377,7 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         collections, product_tags = get_collections(row, title, description_ai, trie_root, trie_root_flavor, wordlist, wordlist_flavor)
         collections_list.append(collections)
         product_tags_list.append(", ".join(product_tags))
-        
+    
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     return df
