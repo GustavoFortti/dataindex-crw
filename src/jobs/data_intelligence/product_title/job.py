@@ -186,7 +186,7 @@ def run(args: Any) -> None:
         if control_data[today_str]["requests"] >= control_data[today_str]["limit"]:
             save_json(path_file_control, control_data)
             message(f"Daily limit of {control_data[today_str]['limit']} description_ais reached for {today_str}.")
-            exit(1)
+            return
     
 def refine_description_ai(description_ai: str, assistant_id: str) -> Optional[Tuple[str, str]]:
     """
