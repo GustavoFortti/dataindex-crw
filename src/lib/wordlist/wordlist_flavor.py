@@ -206,9 +206,9 @@ WORDLIST_FLAVOR = {
         "synonyms": [
             "cafein",
             "cafe",
-            "cafeina",
             "coffe",
             "caffe",
+            "cafeina",
             "coffee"
         ],
         "conflict": [

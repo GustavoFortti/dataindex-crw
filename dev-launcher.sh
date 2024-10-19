@@ -41,7 +41,7 @@ exec_flag="status_job"
 exec_type="transform"
 exec_flag="false"
 
-exec_type="load"
+# exec_type="load"
 # exec_flag="data_quality"
 exec_flag="false" 
 

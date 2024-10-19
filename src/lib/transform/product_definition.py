@@ -199,10 +199,20 @@ def process_collection_terms(text: str, trie_root, trie_root_flavor, collection:
     return terms
 
 # Função principal para obter as coleções
-def get_collections(row, title: str, description: str, trie_root, trie_root_flavor,
-                    wordlist: Dict[str, Any], wordlist_flavor: Dict[str, Any]) -> List[str]:
-    if not description:
-        description = ""
+def get_collections(
+    row, 
+    title: str, 
+    title_ai: str, 
+    flavor_ai: str, 
+    description_ai: str, 
+    trie_root, 
+    trie_root_flavor,
+    wordlist: Dict[str, Any], 
+    wordlist_flavor: Dict[str, Any]
+) -> List[str]:
+    
+    if not description_ai:
+        description_ai = ""
 
     all_collections = []
     product_tags = []
@@ -210,64 +220,44 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
         score = 0
         collections_found = []
 
-        # Process the terms of the title, description, and tags
+        # Process the terms of the title, description_ai, and tags
         title_terms = process_collection_terms(title, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
-        if title_terms["is_not"]["terms"]:
+        title_ai_terms = process_collection_terms(title_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
+        if title_terms["is_not"]["terms"] or title_ai_terms["is_not"]["terms"]:
             continue
 
-        product_tags.extend(
-            title_terms["product"]["terms"] +
-            title_terms["features"]["terms"] +
-            title_terms["ingredients"]["terms"] +
-            title_terms["format"]["terms"] +
-            title_terms["flavor"]["terms"]
-        )
+        description_ai_terms = process_collection_terms(description_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
+        flavor_terms = process_collection_terms(flavor_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
 
-        description_terms = process_collection_terms(description, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
-
-        product_tags.extend(
-            description_terms["product"]["terms"] +
-            description_terms["features"]["terms"] +
-            description_terms["ingredients"]["terms"] +
-            description_terms["format"]["terms"] +
-            description_terms["flavor"]["terms"]
-        )
-
-        tags = extract_tags(description)
+        tags = extract_tags(description_ai)
         tags_terms = process_collection_terms(tags, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
 
-        product_tags.extend(
-            tags_terms["product"]["terms"] +
-            tags_terms["features"]["terms"] +
-            tags_terms["ingredients"]["terms"] +
-            tags_terms["format"]["terms"] +
-            tags_terms["flavor"]["terms"]
-        )
-
-        tags = extract_tags(description)
+        tags = extract_tags(description_ai)
         tags_terms = process_collection_terms(tags, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
         
+        categories = ["product", "features", "ingredients", "format", "flavor"]
+
+        sources = [title_terms, title_ai_terms, description_ai_terms, flavor_terms, tags_terms]
+
         product_tags.extend(
-            tags_terms["product"]["terms"] +
-            tags_terms["features"]["terms"] +
-            tags_terms["ingredients"]["terms"] +
-            tags_terms["format"]["terms"] +
-            tags_terms["flavor"]["terms"]
+            [term for source in sources for category in categories for term in source[category]["terms"]]
         )
         
         # Verifica se há muitos termos "is_not"
-        if (len(description_terms["is_not"]["terms"]) > 2) or (len(tags_terms["is_not"]["terms"]) > 2):
+        if (len(description_ai_terms["is_not"]["terms"]) > 2) or (len(tags_terms["is_not"]["terms"]) > 2):
             continue
         
         score = (
+            len(title_ai_terms["product"]["terms"]) * 2 +
             len(title_terms["product"]["terms"]) * 2 +
-            len(description_terms["product"]["terms"]) * 0.4 +
+            len(description_ai_terms["product"]["terms"]) * 0.4 +
             len(tags_terms["product"]["terms"]) * 0.5
         )
 
         # Combina todos os sabores encontrados
         flavors = set(title_terms["flavor"]["terms"])
-        flavors.update(description_terms["flavor"]["terms"])
+        flavors.update(description_ai_terms["flavor"]["terms"])
+        flavors.update(flavor_terms["flavor"]["terms"])
         flavors.update(tags_terms["flavor"]["terms"])
 
         # Clona os índices da coleção
@@ -276,7 +266,7 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
         if collection.get("score_per_ingredients"):
             score_ingredients = (
                 len(title_terms["ingredients"]["terms"]) * 0.1 +
-                len(description_terms["ingredients"]["terms"]) * 0.3 +
+                len(description_ai_terms["ingredients"]["terms"]) * 0.3 +
                 len(tags_terms["ingredients"]["terms"]) * 0.3
             )
             
@@ -302,10 +292,17 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
             matched_terms = 0
             for key_term, term in index.items():
                 title_terms_aux = title_terms.get(key_term, {}).get("terms", [])
-                description_terms_aux = description_terms.get(key_term, {}).get("terms", [])
+                title_ai_terms_aux = title_ai_terms.get(key_term, {}).get("terms", [])
+                description_ai_terms_aux = description_ai_terms.get(key_term, {}).get("terms", [])
+                flavor_terms_aux = flavor_terms.get(key_term, {}).get("terms", [])
                 tags_terms_aux = tags_terms.get(key_term, {}).get("terms", [])
 
-                all_terms = set(title_terms_aux).union(description_terms_aux, tags_terms_aux)
+                all_terms = set(title_terms_aux).union(
+                    title_ai_terms_aux, 
+                    description_ai_terms_aux, 
+                    flavor_terms_aux, 
+                    tags_terms_aux
+                )
 
                 if term in all_terms:
                     matched_terms += 1
@@ -326,8 +323,9 @@ def get_collections(row, title: str, description: str, trie_root, trie_root_flav
         if collections_found and default_collection:
             collections_found += default_collection
 
-        promotion_collection = collection.get("promotion_collection")     
-        if promotion_collection and collections_found:
+        promotion_collection = collection.get("promotion_collection")
+        
+        if promotion_collection and collections_found and pd.notna(row.compare_at_price):
             collections_found.append(promotion_collection)
         
         # Calcula o score e adiciona à lista de todas as coleções
@@ -372,9 +370,22 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
 
         title_ai_path = f"{conf['data_path']}/products/{ref}_title_ai.txt"
         title_ai = read_file(title_ai_path) if path_exists(title_ai_path) else ""
+        
+        flavor_ai_path = f"{conf['data_path']}/products/{ref}_flavor_ai.txt"
+        flavor_ai = read_file(flavor_ai_path) if path_exists(flavor_ai_path) else ""
 
-        title += f" {title_ai}"
-        collections, product_tags = get_collections(row, title, description_ai, trie_root, trie_root_flavor, wordlist, wordlist_flavor)
+        collections, product_tags = get_collections(
+            row, 
+            title,
+            title_ai,
+            flavor_ai,
+            description_ai, 
+            trie_root, 
+            trie_root_flavor, 
+            wordlist, 
+            wordlist_flavor
+        )
+        
         collections_list.append(collections)
         product_tags_list.append(", ".join(product_tags))
     

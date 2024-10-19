@@ -1,7 +1,7 @@
 import os
 import time
 from datetime import datetime
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Tuple
 
 import openai
 import pandas as pd
@@ -155,7 +155,6 @@ def run(args: Any) -> None:
         ref: str = str(row['ref'])
         page_name: str = str(row['page_name'])
         
-        
         # Check if 'ref' matches the expected value and continue if it doesn't
         
         # Construct the product description_ai file path
@@ -172,11 +171,13 @@ def run(args: Any) -> None:
         message(f"ref - {ref}")
         message(f"path - {path_product_description_ai}")
         path_product_title_ai = f"{path_products}/{ref}_title_ai.txt"
-        product_title_ai = refine_description_ai(product_description_ai, "asst_B04KA1YIRe8pTnfJP05u76hf")
+        path_product_flavor_ai = f"{path_products}/{ref}_flavor_ai.txt"
+        product_title_ai, product_flavor_ai = refine_description_ai(product_description_ai, "asst_B04KA1YIRe8pTnfJP05u76hf")
         
         if (product_title_ai):
             message(f"{ref} - product_title_ai - OK")
             save_file_with_line_breaks(path_product_title_ai, product_title_ai)
+            save_file_with_line_breaks(path_product_flavor_ai, product_flavor_ai)
             save_json(path_file_control, control_data)
             
         control_data[today_str]["requests"] += 1
@@ -186,38 +187,41 @@ def run(args: Any) -> None:
             save_json(path_file_control, control_data)
             message(f"Daily limit of {control_data[today_str]['limit']} description_ais reached for {today_str}.")
             return
+        exit()
     
-def refine_description_ai(description_ai: str, assistant_id: str) -> Optional[str]:
+def refine_description_ai(description_ai: str, assistant_id: str) -> Optional[Tuple[str, str]]:
     """
-    Uses the OpenAI API to generate a refined version of the product description_ai.
+    Utiliza a API da OpenAI para gerar uma versão refinada da descrição do produto
+    e faz uma segunda pergunta no mesmo chat.
 
     Args:
-        description_ai (str): The product description_ai to be refined.
+        description_ai (str): A descrição do produto a ser refinada.
+        assistant_id (str): O ID do assistente a ser utilizado.
 
     Returns:
-        Optional[str]: Refined text or None in case of an error.
+        Optional[Tuple[str, str]]: Um tuplo contendo as respostas do assistente.
     """
     try:
-        # Set up the OpenAI client
-        client = openai.OpenAI()
+        # Configura o cliente da OpenAI
+        client = openai.Client()
 
-        # Create a new thread
+        # Cria um novo thread (apenas na primeira vez)
         thread = client.beta.threads.create()
 
-        # Add a message to the thread
+        # Adiciona a descrição do produto como a primeira mensagem
         client.beta.threads.messages.create(
             thread_id=thread.id,
             role="user",
             content=description_ai
         )
 
-        # Execute the assistant to generate a response
+        # Executa o assistente para gerar a primeira resposta (título refinado)
         run = client.beta.threads.runs.create(
             thread_id=thread.id,
             assistant_id=assistant_id
         )
 
-        # Periodically check the run status
+        # Aguarda a conclusão da execução
         while True:
             run_status = client.beta.threads.runs.retrieve(
                 thread_id=thread.id,
@@ -226,18 +230,61 @@ def refine_description_ai(description_ai: str, assistant_id: str) -> Optional[st
             if run_status.status == 'completed':
                 break
             elif run_status.status == 'failed':
-                raise Exception("The execution failed.")
+                raise Exception("A execução falhou.")
+            time.sleep(1)  # Espera um pouco antes de verificar novamente
 
-        # List all the messages in the thread
+        # Obtém a primeira resposta do assistente
         messages = client.beta.threads.messages.list(thread_id=thread.id)
+        assistant_response = None
+        for message_obj in messages.data[::-1]:
+            if message_obj.role == "assistant":
+                assistant_response = message_obj.content[0].text.value
+                break
 
-        # Get the last message from the assistant
-        for message in messages.data:
-            if message.role == "assistant" and hasattr(message.content[0], 'text'):
-                return message.content[0].text.value
+        if not assistant_response:
+            raise Exception("Não foi possível obter a resposta do assistente.")
 
-        return None
+        # Agora, envia a segunda pergunta no mesmo thread
+        second_question = "Quais sabores estão disponíveis?"
+
+        client.beta.threads.messages.create(
+            thread_id=thread.id,
+            role="user",
+            content=second_question
+        )
+
+        # Executa o assistente novamente para responder à segunda pergunta
+        run = client.beta.threads.runs.create(
+            thread_id=thread.id,
+            assistant_id=assistant_id
+        )
+
+        # Aguarda a conclusão da execução
+        while True:
+            run_status = client.beta.threads.runs.retrieve(
+                thread_id=thread.id,
+                run_id=run.id
+            )
+            if run_status.status == 'completed':
+                break
+            elif run_status.status == 'failed':
+                raise Exception("A execução falhou na segunda pergunta.")
+            time.sleep(1)
+
+        # Obtém a segunda resposta do assistente
+        messages = client.beta.threads.messages.list(thread_id=thread.id)
+        second_response = None
+        for message_obj in messages.data[::-1]:
+            if message_obj.role == "assistant" and message_obj.content[0].text.value != assistant_response:
+                second_response = message_obj.content[0].text.value
+                break
+
+        if not second_response:
+            raise Exception("Não foi possível obter a resposta do assistente para a segunda pergunta.")
+
+        # Retorna as respostas
+        return assistant_response, second_response
 
     except Exception as e:
-        print(f"Error calling the OpenAI API: {e}")
+        print(f"Erro ao chamar a API da OpenAI: {e}")
         return None
