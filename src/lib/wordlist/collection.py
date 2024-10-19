@@ -25,6 +25,7 @@ COLLECTIONS = {
             "alfajor",
             "mass",
             "dose",
+            "granola",
             "wafer",
             "bebida",
         ],

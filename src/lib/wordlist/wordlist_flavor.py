@@ -114,12 +114,6 @@ WORDLIST_FLAVOR = {
         "exact_term": False,
         "brazil": "framboesa"
     },
-    "banoffee": {
-        "synonyms": ["banoffee"],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "banoffee"
-    },
     "crunch": {
         "synonyms": ["crunch", "crunchy", "crunch flavor", "crunch powder"],
         "conflict": [],

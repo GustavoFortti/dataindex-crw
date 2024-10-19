@@ -45,16 +45,16 @@ exec_flag="false"
 # exec_flag="data_quality"
 exec_flag="false" 
 
-# job_type="data_intelligence"
-# job_name="product_description"
+job_type="data_intelligence"
+job_name="product_description"
 # job_name="product_title"
 
 # job_type="data_shelf"
 # job_name="history_price"
 
-# exec_type="false"
-# exec_flag="false"
-# page_names="false"
+exec_type="false"
+exec_flag="false"
+page_names="false"
 
 page_type="supplement"
 country="brazil"
