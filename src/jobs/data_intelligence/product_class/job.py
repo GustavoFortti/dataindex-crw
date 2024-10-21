@@ -74,10 +74,10 @@ def run(args: Any) -> None:
     
     df["is_drink"] = np.where(df["unit_of_measure"] == "ml", "drink", None)
     df['title_terms'] = df['title_terms'].apply(safe_literal_eval)
-    df['product'] = df['title_terms'].apply(lambda x: x.get('product'))
-    df['features'] = df['title_terms'].apply(lambda x: x.get('features'))
-    df['ingredients'] = df['title_terms'].apply(lambda x: x.get('ingredients'))
-    df['flavor'] = df['title_terms'].apply(lambda x: x.get('flavor'))
+    df['product'] = df['title_terms'].apply(lambda x: x.get('product') if x else None)
+    df['features'] = df['title_terms'].apply(lambda x: x.get('features') if x else None)
+    df['ingredients'] = df['title_terms'].apply(lambda x: x.get('ingredients') if x else None)
+    df['flavor'] = df['title_terms'].apply(lambda x: x.get('flavor') if x else None)
 
     df = df[[
         'ref',
