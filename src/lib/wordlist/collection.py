@@ -40,7 +40,7 @@ COLLECTIONS = {
             "manteiga de amendoim",
         ],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["whey_promotion", "promotion_see_all"],
+        "promotion_collection": "whey_promotion",
         "indices_flavor": {
             "whey_flavor": {
                 "product": "whey",
@@ -100,7 +100,7 @@ COLLECTIONS = {
             "manteiga de amendoim",
         ],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["whey_promotion", "promotion_see_all"],
+        "promotion_collection": "whey_promotion",
         "indices_flavor": {
             "whey_flavor": {
                 "product": "whey",
@@ -150,7 +150,7 @@ COLLECTIONS = {
             "manteiga de amendoim",
         ],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": {
             "whey_flavor": {
                 "product": "whey",
@@ -197,7 +197,7 @@ COLLECTIONS = {
             "manteiga de amendoim",
         ],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["whey_promotion", "promotion_see_all"],
+        "promotion_collection": "whey_promotion",
         "indices_flavor": {
             "whey_flavor": {
                 "product": "whey",
@@ -235,7 +235,7 @@ COLLECTIONS = {
             "drink",
         ],
         "maybe_not": [],
-        "promotion_collection": ["barrinha_promotion", "promotion_see_all"],
+        "promotion_collection": "barrinha_promotion",
         "indices_flavor": {
             "barrinha_flavor": {
                 "product": "barrinha",
@@ -275,7 +275,7 @@ COLLECTIONS = {
             "drink",
         ],
         "maybe_not": [],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": {
             "candy_flavor": {
                 "product": "crunch",
@@ -339,7 +339,7 @@ COLLECTIONS = {
                 "range": [499, 999],
             },
         ],
-        "promotion_collection": ["creatina_promotion", "promotion_see_all"],
+        "promotion_collection": "creatina_promotion",
         "indices_flavor": [],
         "indices": {
             "creatina_see_all": {
@@ -383,7 +383,7 @@ COLLECTIONS = {
             "drink",
         ],
         "maybe_not": [],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": [],
         "indices": {
             "kit_creatina": {
@@ -418,7 +418,7 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "promotion_collection": ["pretreino_promotion", "promotion_see_all"],
+        "promotion_collection": "pretreino_promotion",
         "indices_flavor": [],
         "indices": {
             "pretreino_see_all": {
@@ -456,7 +456,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "soy_see_all": {
@@ -489,7 +489,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "ervilha_see_all": {
@@ -521,7 +521,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "rice_see_all": {
@@ -555,7 +555,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": [],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "protein_see_all": {
@@ -585,7 +585,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "colageno_see_all": {
@@ -613,7 +613,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "casein_see_all": {
@@ -641,7 +641,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "albumina_see_all": {
@@ -672,7 +672,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "beef_see_all": {
@@ -706,7 +706,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["protein_see_all"],
-        "promotion_collection": ["protein_promotion", "promotion_see_all"],
+        "promotion_collection": "protein_promotion",
         "indices_flavor": [],
         "indices": {
             "blend_see_all": {
@@ -734,7 +734,7 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": [],
         "indices": {
             "mass_see_all": {
@@ -760,7 +760,7 @@ COLLECTIONS = {
             "pretreino",
         ],
         "maybe_not": [],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": [],
         "indices": {
             "manteiga_de_amendoim_see_all": {
@@ -786,7 +786,7 @@ COLLECTIONS = {
             "pretreino",
         ],
         "maybe_not": [],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": [],
         "indices": {
             "postreino_see_all": {
@@ -812,7 +812,7 @@ COLLECTIONS = {
             "pretreino",
         ],
         "maybe_not": [],
-        "promotion_collection": [None, "promotion_see_all"],
+        "promotion_collection": None,
         "indices_flavor": [],
         "indices": {
             "intratreino_see_all": {
@@ -841,7 +841,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["carboidrato_see_all"],
-        "promotion_collection": ["carboidrato_promotion", "promotion_see_all"],
+        "promotion_collection": "carboidrato_promotion",
         "indices_flavor": [],
         "indices": {
             "waxymaize_see_all": {
@@ -869,7 +869,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["carboidrato_see_all"],
-        "promotion_collection": ["carboidrato_promotion", "promotion_see_all"],
+        "promotion_collection": "carboidrato_promotion",
         "indices_flavor": [],
         "indices": {
             "maltodextrina_see_all": {
@@ -897,7 +897,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["carboidrato_see_all"],
-        "promotion_collection": ["carboidrato_promotion", "promotion_see_all"],
+        "promotion_collection": "carboidrato_promotion",
         "indices_flavor": [],
         "indices": {
             "dextrose_see_all": {
@@ -925,7 +925,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["carboidrato_see_all"],
-        "promotion_collection": ["carboidrato_promotion", "promotion_see_all"],
+        "promotion_collection": "carboidrato_promotion",
         "indices_flavor": [],
         "indices": {
             "palatinose_see_all": {
@@ -963,7 +963,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["aminoacidos_see_all"],
-        "promotion_collection": ["aminoacidos_promotion", "promotion_see_all"],
+        "promotion_collection": "aminoacidos_promotion",
         "indices_flavor": [],
         "indices": {
             "bcaa_see_all": {
@@ -1001,7 +1001,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["aminoacidos_see_all"],
-        "promotion_collection": ["aminoacidos_promotion", "promotion_see_all"],
+        "promotion_collection": "aminoacidos_promotion",
         "indices_flavor": [],
         "indices": {
             "arginin_see_all": {
@@ -1039,7 +1039,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["aminoacidos_see_all"],
-        "promotion_collection": ["aminoacidos_promotion", "promotion_see_all"],
+        "promotion_collection": "aminoacidos_promotion",
         "indices_flavor": [],
         "indices": {
             "glutamin_see_all": {
@@ -1076,7 +1076,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["aminoacidos_see_all"],
-        "promotion_collection": ["aminoacidos_promotion", "promotion_see_all"],
+        "promotion_collection": "aminoacidos_promotion",
         "indices_flavor": [],
         "indices": {
             "betaalanina_see_all": {
@@ -1115,7 +1115,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["aminoacidos_see_all"],
-        "promotion_collection": ["aminoacidos_promotion", "promotion_see_all"],
+        "promotion_collection": "aminoacidos_promotion",
         "indices_flavor": [],
         "indices": {
             "taurina_see_all": {
@@ -1153,7 +1153,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "multivitaminico_see_all": {
@@ -1193,7 +1193,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_a_see_all": {
@@ -1247,7 +1247,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_b_see_all": {
@@ -1285,7 +1285,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "biotina_see_all": {
@@ -1323,7 +1323,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_c_see_all": {
@@ -1361,7 +1361,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_d_see_all": {
@@ -1399,7 +1399,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_e_see_all": {
@@ -1442,7 +1442,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_k_see_all": {
@@ -1481,7 +1481,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_q_see_all": {
@@ -1520,7 +1520,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "zinco_see_all": {
@@ -1559,7 +1559,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "calcio_see_all": {
@@ -1598,7 +1598,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "magnesio_see_all": {
@@ -1637,7 +1637,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["vitaminas_minerais_see_all"],
-        "promotion_collection": ["vitaminas_minerais_promotion", "promotion_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "ferro_see_all": {
@@ -1676,7 +1676,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["termogenico_see_all"],
-        "promotion_collection": ["termogenico_promotion", "promotion_see_all"],
+        "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
             "termogenico_see_all": {
@@ -1713,7 +1713,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["termogenico_see_all"],
-        "promotion_collection": ["termogenico_promotion", "promotion_see_all"],
+        "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
             "cafein_see_all": {
@@ -1751,7 +1751,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["termogenico_see_all"],
-        "promotion_collection": ["termogenico_promotion", "promotion_see_all"],
+        "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
             "chaverde_see_all": {
@@ -1789,7 +1789,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["termogenico_see_all"],
-        "promotion_collection": ["termogenico_promotion", "promotion_see_all"],
+        "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
             "guarana_see_all": {
@@ -1827,7 +1827,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["termogenico_see_all"],
-        "promotion_collection": ["termogenico_promotion", "promotion_see_all"],
+        "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
             "gengibre_see_all": {
@@ -1865,7 +1865,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["termogenico_see_all"],
-        "promotion_collection": ["termogenico_promotion", "promotion_see_all"],
+        "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
             "carnitin_see_all": {
@@ -1904,7 +1904,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["oleos_see_all"],
-        "promotion_collection": ["oleos_promotion", "promotion_see_all"],
+        "promotion_collection": "oleos_promotion",
         "indices_flavor": [],
         "indices": {
             "omega_3_see_all": {
@@ -1942,7 +1942,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["oleos_see_all"],
-        "promotion_collection": ["oleos_promotion", "promotion_see_all"],
+        "promotion_collection": "oleos_promotion",
         "indices_flavor": [],
         "indices": {
             "oleo_de_coco_see_all": {
@@ -1980,7 +1980,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["oleos_see_all"],
-        "promotion_collection": ["oleos_promotion", "promotion_see_all"],
+        "promotion_collection": "oleos_promotion",
         "indices_flavor": [],
         "indices": {
             "oleo_de_cartamo_see_all": {
@@ -2019,7 +2019,7 @@ COLLECTIONS = {
         ],
         "maybe_not": [],
         "default_collection": ["oleos_see_all"],
-        "promotion_collection": ["oleos_promotion", "promotion_see_all"],
+        "promotion_collection": "oleos_promotion",
         "indices_flavor": [],
         "indices": {
             "krill_see_all": {

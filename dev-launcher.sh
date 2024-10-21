@@ -9,7 +9,7 @@ export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    # "adaptogen"
+    "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
@@ -45,17 +45,18 @@ exec_flag="false"
 # exec_flag="data_quality"
 # exec_flag="false" 
 
-job_type="data_intelligence"
+# job_type="data_intelligence"
 # job_name="product_description"
-job_name="product_class"
+# job_name="product_class"
 # job_name="product_flavor"
 
-# job_type="data_shelf"
 # job_name="history_price"
+# job_type="data_shelf"
+# job_name="load_master"
 
-exec_type="false"
-exec_flag="false"
-page_names="false"
+# exec_type="false"
+# exec_flag="false"
+# page_names="false"
 
 page_type="supplement"
 country="brazil"
