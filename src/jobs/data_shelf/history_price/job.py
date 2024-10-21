@@ -85,9 +85,9 @@ def run(args):
         
         brand = df_price["brand"].values[0]
 
-        for price, date in prices_dates:
+        for price, date in sorted(prices_dates, key=lambda x: x[1]):  # Ordenando por data de forma crescente
             all_prices_dates.append({"price": price, "date": date})
-            
+
         data.append({"ref": ref, "prices": all_prices_dates, "compare_at_price": compare_at_price, "brand": brand, "price_discount_percent": price_discount_percent})
         
         all_prices_dates = []
