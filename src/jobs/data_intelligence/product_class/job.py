@@ -1,18 +1,14 @@
 import ast
 import os
-import time
-from datetime import datetime
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict
 
 import numpy as np
-import openai
 import pandas as pd
 
 from src.lib.utils.dataframe import read_and_stack_csvs_dataframes
 from src.lib.utils.file_system import create_directory_if_not_exists, save_file
 from src.lib.utils.general_functions import get_pages_with_status_true
 from src.lib.utils.log import message
-from src.lib.utils.text_functions import generate_hash
 from src.lib.wordlist.wordlist import WORDLIST
 
 pd.set_option('display.max_rows', None)

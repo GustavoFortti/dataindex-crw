@@ -1,14 +1,9 @@
 import os
-from datetime import datetime
 
-import pandas as pd
-from src.lib.utils.dataframe import (drop_duplicates_for_columns,
-                                     read_and_stack_csvs_dataframes,
-                                     read_and_stack_historical_csvs_dataframes)
+from src.lib.utils.dataframe import read_and_stack_csvs_dataframes
 from src.lib.utils.general_functions import get_pages_with_status_true
-from src.lib.utils.file_system import DATE_FORMAT, create_directory_if_not_exists
+from src.lib.utils.file_system import create_directory_if_not_exists
 from src.lib.utils.log import message
-from src.lib.wordlist.wordlist import WORDLIST
 
 def set_conf(args, local):
     conf = {}
