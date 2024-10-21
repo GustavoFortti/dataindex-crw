@@ -65,15 +65,11 @@ def data_history_analysis(conf, df):
     volume_erro, volume_alert = volume_analysis(df_history, df)
     message("ANALISE price")
     price_erro, price_alert, df_price = price_analysis(df_history, df)
-    message("ANALISE title")
-    title_erro, title_alert, df_title = title_analysis(df_history, df)
 
     is_success = (price_erro & 
-                  title_erro & 
                   volume_erro)
 
     message(f"price_erro: {price_erro}")
-    message(f"title_erro: {title_erro}")
     message(f"volume_erro: {volume_erro}")
 
     if (not is_success):

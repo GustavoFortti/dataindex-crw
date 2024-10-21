@@ -40,8 +40,8 @@ def load(conf):
     
     if (conf['exec_flag'] == "data_quality"):
         exit(0)
-    #     message("Running Data Quality...")
-    #     dq.data_history_analysis(conf, df)
+        message("Running Data Quality...")
+        dq.data_history_analysis(conf, df)
     
     dq.save_history_data(conf, df_products_transform_csl)
     message("Data ready for ingestion")
