@@ -44,12 +44,12 @@ def create_quantity_column(df):
     """Extract and convert quantity information into a uniform format."""
     # Garantir que sempre retornamos dois elementos para evitar o erro de tamanho de coluna
     df['quantity_unit'] = df['name'].apply(lambda text: find_pattern_for_quantity(text))
-    
+
     # Separar a coluna 'quantity_unit' em 'quantity' e 'unit'
-    df[['quantity', 'unit']] = pd.DataFrame(df['quantity_unit'].tolist(), index=df.index)
+    df[['quantity', 'unit_of_measure']] = pd.DataFrame(df['quantity_unit'].tolist(), index=df.index)
 
     # Aplicar conversão para gramas
-    df['quantity'] = df[['quantity', 'unit']].apply(convert_to_grams, axis=1)
+    df['quantity'] = df[['quantity', 'unit_of_measure']].apply(convert_to_grams, axis=1)
     
     # Calcular o preço por quantidade
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
@@ -64,7 +64,8 @@ def remove_blacklisted_products(df):
     return df[~df['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
 
 def find_pattern_for_quantity(text):
-    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas)'
+    # Adicionar unidades de medida líquidas (ml e l) ao padrão de regex
+    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas|ml|l|litro|litros)'
     matches = re.findall(pattern, text, re.IGNORECASE)
     
     quantity, unit = None, None
@@ -72,7 +73,11 @@ def find_pattern_for_quantity(text):
         quantity, unit = matches[0]
         quantity = str(quantity).replace(',', '.')
         
+        # Ajustar unidades de gramas e mililitros para números inteiros quando necessário
         if unit in ['g', 'gr', 'gramas'] and "." in quantity:
+            quantity = quantity.replace(".", "")
+        
+        if unit in ['ml'] and "." in quantity:
             quantity = quantity.replace(".", "")
         
         quantity = float(quantity)
@@ -87,7 +92,7 @@ def find_pattern_for_quantity(text):
 
 def convert_to_grams(row):
     value = row['quantity']
-    unit = row['unit']
+    unit = row['unit_of_measure']
     
     if pd.notna(value):
         if unit in ['kg']:

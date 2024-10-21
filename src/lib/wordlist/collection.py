@@ -18,16 +18,23 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "sache",
             "barrinha",
+            "crisp",
             "crunch",
             "alfajor",
+            "display",
+            "carboidrato",
             "mass",
             "dose",
-            "granola",
+            "manteiga de amendoim",
             "wafer",
-            "bebida",
+            "drink",
+            "shake",
+            "cranberry",
         ],
         "maybe_not": [
             "manteiga de amendoim",
@@ -75,13 +82,19 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
+            "carboidrato",
             "crunch",
+            "manteiga de amendoim",
+            "crisp",
             "alfajor",
             "mass",
+            "cranberry",
             "wafer",
-            "bebida",
+            "drink",
         ],
         "maybe_not": [
             "manteiga de amendoim",
@@ -118,14 +131,20 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "sache",
+            "crisp",
             "barrinha",
             "crunch",
+            "cranberry",
+            "carboidrato",
             "alfajor",
+            "manteiga de amendoim",
             "mass",
             "dose",
             "wafer",
-            "bebida",
+            "drink",
         ],
         "maybe_not": [
             "manteiga de amendoim",
@@ -148,10 +167,10 @@ COLLECTIONS = {
     'whey_drink': {
         "product": [
             "whey",
-            "bebida",
+            "drink",
         ],
         "features": [
-            "bebida",
+            "drink",
             "hidrolisad",
             "concentrad",
             "iso",
@@ -161,11 +180,17 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
+            "crisp",
             "kit",
             "sache",
             "barrinha",
+            "carboidrato",
+            "manteiga de amendoim",
             "crunch",
             "alfajor",
+            "cranberry",
             "wafer",
         ],
         "maybe_not": [
@@ -181,7 +206,7 @@ COLLECTIONS = {
         },
         "indices": {
             "whey_drink": {
-                "product": "bebida",
+                "product": "drink",
                 "features": "whey"
             },
         }
@@ -199,12 +224,15 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "alfajor",
             "sache",
+            "manteiga de amendoim",
             "wafer",
             "barbecue",
-            "bebida",
+            "drink",
         ],
         "maybe_not": [],
         "promotion_collection": "barrinha_promotion",
@@ -238,11 +266,13 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "alfajor",
             "sache",
             "barbecue",
-            "bebida",
+            "drink",
         ],
         "maybe_not": [],
         "promotion_collection": None,
@@ -277,6 +307,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
@@ -284,13 +316,15 @@ COLLECTIONS = {
             "concentrad",
             "iso",
             "pretreino",
+            "glutamina",
+            "carnitin",
             "beef",
             "soy",
             "ervilha",
             "mass",
             "alfajor",
             "wafer",
-            "bebida",
+            "drink",
         ],
         "maybe_not": [],
         "rule_fields": [
@@ -335,6 +369,8 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "whey",
             "barrinha",
             "pretreino",
@@ -344,7 +380,7 @@ COLLECTIONS = {
             "mass",
             "alfajor",
             "wafer",
-            "bebida",
+            "drink",
         ],
         "maybe_not": [],
         "promotion_collection": None,
@@ -372,12 +408,13 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
             "mass",
             "alfajor",
-            "granola",
             "wafer",
         ],
         "maybe_not": [],
@@ -405,11 +442,14 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
             "mass",
             "sache",
+            'snack',
             "alfajor",
             "pretreino",
             "wafer",
@@ -436,10 +476,13 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
             "sache",
+            'snack',
             "mass",
             "alfajor",
             "wafer",
@@ -466,6 +509,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
@@ -495,6 +540,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "soy",
@@ -526,6 +573,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
@@ -553,6 +602,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
@@ -579,6 +630,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
@@ -608,6 +661,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "whey",
             "barrinha",
@@ -638,6 +693,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "mass",
@@ -669,6 +726,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "alfajor",
@@ -692,6 +751,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "alfajor",
@@ -716,6 +777,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "alfajor",
@@ -740,6 +803,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "alfajor",
@@ -764,6 +829,9 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
+            "nac",
             "kit",
             "barrinha",
             "creatina",
@@ -790,6 +858,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -816,6 +886,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -842,6 +914,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -868,6 +942,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -904,6 +980,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -940,6 +1018,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -976,6 +1056,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1011,6 +1093,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "cafein",
@@ -1048,6 +1132,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1066,8 +1152,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "multivitaminico_see_all": {
@@ -1084,6 +1170,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1104,8 +1192,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_a_see_all": {
@@ -1138,6 +1226,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1156,8 +1246,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_b_see_all": {
@@ -1174,6 +1264,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1192,8 +1284,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "biotina_see_all": {
@@ -1210,6 +1302,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1228,8 +1322,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_c_see_all": {
@@ -1246,6 +1340,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1264,8 +1360,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_d_see_all": {
@@ -1282,12 +1378,13 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
             "glutamin",
             "bcaa",
-            "granola",
             "blend",
             "ervilha",
             "beef",
@@ -1301,8 +1398,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_e_see_all": {
@@ -1324,6 +1421,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1342,8 +1441,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_k_see_all": {
@@ -1361,6 +1460,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1379,8 +1480,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "vitamina_q_see_all": {
@@ -1398,6 +1499,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1416,8 +1519,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "zinco_see_all": {
@@ -1435,6 +1538,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1453,8 +1558,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "calcio_see_all": {
@@ -1472,6 +1577,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1490,8 +1597,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "magnesio_see_all": {
@@ -1509,6 +1616,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1527,8 +1636,8 @@ COLLECTIONS = {
             "wafer",
         ],
         "maybe_not": [],
-        "default_collection": ["vitaminas_minerias_see_all"],
-        "promotion_collection": "vitaminas_minerias_promotion",
+        "default_collection": ["vitaminas_minerais_see_all"],
+        "promotion_collection": "vitaminas_minerais_promotion",
         "indices_flavor": [],
         "indices": {
             "ferro_see_all": {
@@ -1546,6 +1655,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1582,6 +1693,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1617,6 +1730,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1653,6 +1768,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1689,6 +1806,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1725,6 +1844,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1761,6 +1882,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1798,6 +1921,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1834,6 +1959,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",
@@ -1870,6 +1997,8 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "granola",
+            "melatonina",
             "kit",
             "barrinha",
             "creatina",

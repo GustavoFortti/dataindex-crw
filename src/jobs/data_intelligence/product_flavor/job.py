@@ -138,7 +138,7 @@ def run(args: Any) -> None:
         else:
             df.at[idx, "origin_is_updated"] = 0
         
-        file_status = file_exists_with_modification_time(path_products, f"{ref}_title_ai.txt")
+        file_status = file_exists_with_modification_time(path_products, f"{ref}_class_ai.txt")
         df.at[idx, "description_ai_exists"] = 1 if file_status[0] else 0
         df.at[idx, "latest_description_ai_update"] = file_status[1]
     
@@ -155,8 +155,7 @@ def run(args: Any) -> None:
         ref: str = str(row['ref'])
         page_name: str = str(row['page_name'])
         
-        # Check if 'ref' matches the expected value and continue if it doesn't
-        
+        # Check if 'ref' matches the expected value and continue if it doesn't      
         # Construct the product description_ai file path
         path_products = f"{CONF['src_data_path']}/{page_name}/products"
         path_product_description_ai = f"{path_products}/{ref}_description_ai.txt"
@@ -165,19 +164,18 @@ def run(args: Any) -> None:
         if (not product_description_ai):
             continue
         
-        product_description_ai = "TITULO ANTIGO: " + row["title"] + "\n" + product_description_ai
+        product_description_ai = "TITULO ANTIGO: " + row["title"] #+ "\n" + product_description_ai
         
         message(f"REQUEST - {control_data[today_str]["requests"]}")
         message(f"ref - {ref}")
         message(f"path - {path_product_description_ai}")
-        path_product_title_ai = f"{path_products}/{ref}_title_ai.txt"
-        path_product_flavor_ai = f"{path_products}/{ref}_flavor_ai.txt"
-        product_title_ai, product_flavor_ai = refine_description_ai(product_description_ai, "asst_B04KA1YIRe8pTnfJP05u76hf")
+        path_product_class_ai = f"{path_products}/{ref}_class_ai.txt"
+        product_class_ai = classify_product(product_description_ai, "asst_B04KA1YIRe8pTnfJP05u76hf")
         
-        if (product_title_ai):
-            message(f"{ref} - product_title_ai - OK")
-            save_file_with_line_breaks(path_product_title_ai, product_title_ai)
-            save_file_with_line_breaks(path_product_flavor_ai, product_flavor_ai)
+        if (product_class_ai):
+            message(f"{ref} - product_class_ai - OK")
+            save_file_with_line_breaks(path_product_class_ai, product_class_ai)
+            exit()
             save_json(path_file_control, control_data)
             
         control_data[today_str]["requests"] += 1
@@ -187,40 +185,38 @@ def run(args: Any) -> None:
             save_json(path_file_control, control_data)
             message(f"Daily limit of {control_data[today_str]['limit']} description_ais reached for {today_str}.")
             return
-    
-def refine_description_ai(description_ai: str, assistant_id: str) -> Optional[Tuple[str, str]]:
+        
+def classify_product(description: str, assistant_id: str) -> Optional[str]:
     """
-    Utiliza a API da OpenAI para gerar uma versão refinada da descrição do produto
-    e faz uma segunda pergunta no mesmo chat.
+    Uses the OpenAI API to generate a refined version of the product description.
 
     Args:
-        description_ai (str): A descrição do produto a ser refinada.
-        assistant_id (str): O ID do assistente a ser utilizado.
+        description (str): The product description to be refined.
 
     Returns:
-        Optional[Tuple[str, str]]: Um tuplo contendo as respostas do assistente.
+        Optional[str]: Refined text or None in case of an error.
     """
     try:
-        # Configura o cliente da OpenAI
-        client = openai.Client()
+        # Set up the OpenAI client
+        client = openai.OpenAI()
 
-        # Cria um novo thread (apenas na primeira vez)
+        # Create a new thread
         thread = client.beta.threads.create()
 
-        # Adiciona a descrição do produto como a primeira mensagem
+        # Add a message to the thread
         client.beta.threads.messages.create(
             thread_id=thread.id,
             role="user",
-            content=description_ai
+            content=description
         )
 
-        # Executa o assistente para gerar a primeira resposta (título refinado)
+        # Execute the assistant to generate a response
         run = client.beta.threads.runs.create(
             thread_id=thread.id,
             assistant_id=assistant_id
         )
 
-        # Aguarda a conclusão da execução
+        # Periodically check the run status
         while True:
             run_status = client.beta.threads.runs.retrieve(
                 thread_id=thread.id,
@@ -229,61 +225,18 @@ def refine_description_ai(description_ai: str, assistant_id: str) -> Optional[Tu
             if run_status.status == 'completed':
                 break
             elif run_status.status == 'failed':
-                raise Exception("A execução falhou.")
-            time.sleep(1)  # Espera um pouco antes de verificar novamente
+                raise Exception("The execution failed.")
 
-        # Obtém a primeira resposta do assistente
+        # List all the messages in the thread
         messages = client.beta.threads.messages.list(thread_id=thread.id)
-        assistant_response = None
-        for message_obj in messages.data[::-1]:
-            if message_obj.role == "assistant":
-                assistant_response = message_obj.content[0].text.value
-                break
 
-        if not assistant_response:
-            raise Exception("Não foi possível obter a resposta do assistente.")
+        # Get the last message from the assistant
+        for message in messages.data:
+            if message.role == "assistant" and hasattr(message.content[0], 'text'):
+                return message.content[0].text.value
 
-        # Agora, envia a segunda pergunta no mesmo thread
-        second_question = "Quais sabores estão disponíveis?"
-
-        client.beta.threads.messages.create(
-            thread_id=thread.id,
-            role="user",
-            content=second_question
-        )
-
-        # Executa o assistente novamente para responder à segunda pergunta
-        run = client.beta.threads.runs.create(
-            thread_id=thread.id,
-            assistant_id=assistant_id
-        )
-
-        # Aguarda a conclusão da execução
-        while True:
-            run_status = client.beta.threads.runs.retrieve(
-                thread_id=thread.id,
-                run_id=run.id
-            )
-            if run_status.status == 'completed':
-                break
-            elif run_status.status == 'failed':
-                raise Exception("A execução falhou na segunda pergunta.")
-            time.sleep(1)
-
-        # Obtém a segunda resposta do assistente
-        messages = client.beta.threads.messages.list(thread_id=thread.id)
-        second_response = None
-        for message_obj in messages.data[::-1]:
-            if message_obj.role == "assistant" and message_obj.content[0].text.value != assistant_response:
-                second_response = message_obj.content[0].text.value
-                break
-
-        if not second_response:
-            raise Exception("Não foi possível obter a resposta do assistente para a segunda pergunta.")
-
-        # Retorna as respostas
-        return assistant_response, second_response
+        return None
 
     except Exception as e:
-        print(f"Erro ao chamar a API da OpenAI: {e}")
+        print(f"Error calling the OpenAI API: {e}")
         return None

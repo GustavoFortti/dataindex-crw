@@ -42,7 +42,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "nac",
         ],
         "conflict": [],
-        "exact_term": False,
+        "exact_term": True,
         "brazil": "NAC",
     },
     "albumina": {
@@ -357,6 +357,15 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "cromo",
+    },
+    "cafeina": {
+        "synonyms": ["cafeína", "caffeine", "cafeina", "suplemento de cafeína"],
+        "conflict": [
+            "café",
+            "guaraná"
+        ],
+        "exact_term": False,
+        "brazil": "cafeína"
     },
     "curcuma": {
         "synonyms": [
@@ -798,6 +807,15 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "bromelina",
     },
+    "crisp": {
+        "synonyms": ["crisp", "crocante", "sabor crisp", "crisp flavor"],
+        "conflict": [
+            "barrinha",
+            "snack"
+        ],
+        "exact_term": False,
+        "brazil": "crisp"
+    },
     "amilase": {
         "synonyms": [
             "amilase",
@@ -819,6 +837,15 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "pasta de amendoim"
+    },
+    "snack": {
+        "synonyms": ["snack", "lanche", "snack flavor", "sabor snack"],
+        "conflict": [
+            "barrinha",
+            "crocante"
+        ],
+        "exact_term": False,
+        "brazil": "snack"
     },
     "amendoim": {
         "synonyms": [
@@ -1821,12 +1848,6 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "wafer",
-    },
-    "bebida": {
-        "synonyms": ["bebida", "drink", "liquid"],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "bebida"
     },
     "waxymaize": {
         "synonyms": [

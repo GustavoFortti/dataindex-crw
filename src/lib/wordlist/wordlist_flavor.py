@@ -114,6 +114,12 @@ WORDLIST_FLAVOR = {
         "exact_term": False,
         "brazil": "framboesa"
     },
+    "cranberry": {
+        "synonyms": ["cranberry"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "cranberry"
+    },
     "crunch": {
         "synonyms": ["crunch", "crunchy", "crunch flavor", "crunch powder"],
         "conflict": [],
@@ -196,19 +202,14 @@ WORDLIST_FLAVOR = {
         "exact_term": False,
         "brazil": "tangerina"
     },
-    "cafein": {
-        "synonyms": [
-            "cafein",
-            "cafe",
-            "coffe",
-            "caffe",
-            "cafeina",
-            "coffee"
-        ],
+    "cafe": {
+        "synonyms": ["café", "cafe", "coffee", "coffe", "flavor de café", "sabor café"],
         "conflict": [
+            "cafeína",
+            "mochaccino"
         ],
         "exact_term": False,
-        "brazil": "cafeína",
+        "brazil": "café"
     },
     "mocha": {
         "synonyms": ["mocha"],

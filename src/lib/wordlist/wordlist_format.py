@@ -11,6 +11,12 @@ WORDLIST_FORMAT = {
         "exact_term": False,
         "brazil": "gel"
     },
+    "display": {
+        "synonyms": ["display"],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "display"
+    },
     "capsula": {
         "synonyms": ["cápsula", "capsula", "capsule", "cap"],
         "conflict": [],
@@ -47,8 +53,8 @@ WORDLIST_FORMAT = {
         "exact_term": False,
         "brazil": "sache"
     },
-    "bebida": {
-        "synonyms": ["bebida", "drink", "liquid supplement"],
+    "drink": {
+        "synonyms": ["bebida", "liquido", "drink", "liquid supplement"],
         "conflict": [],
         "exact_term": False,
         "brazil": "bebida"

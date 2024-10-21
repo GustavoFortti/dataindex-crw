@@ -55,10 +55,12 @@ def transform(conf, df):
             'price_discount_percent',
             'compare_at_price',
             'quantity',
+            'unit_of_measure',
             'price_qnt',
             'product_tags',
             'collections',
             'prices',
+            'title_terms',
         ]
     ]
 

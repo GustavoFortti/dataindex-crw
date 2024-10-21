@@ -7,7 +7,11 @@ from src.lib.utils.file_system import path_exists, read_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
 from src.lib.wordlist.collection import COLLECTIONS
-from src.lib.utils.py_functions import flatten_list
+
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+# pd.set_option('display.max_colwidth', None)
 
 def extract_tags(description_ai: str) -> str:
     """Extrai e limpa tags do texto de descrição."""
@@ -202,7 +206,7 @@ def process_collection_terms(text: str, trie_root, trie_root_flavor, collection:
 def get_collections(
     row, 
     title: str, 
-    title_ai: str, 
+    product_class: str, 
     flavor_ai: str, 
     description_ai: str, 
     trie_root, 
@@ -216,14 +220,15 @@ def get_collections(
 
     all_collections = []
     product_tags = []
+    title_field = {'product': [], 'features': [], 'ingredients': [], 'flavor': []}
     for key, collection in COLLECTIONS.items():
         score = 0
         collections_found = []
 
         # Process the terms of the title, description_ai, and tags
         title_terms = process_collection_terms(title, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
-        title_ai_terms = process_collection_terms(title_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
-        if title_terms["is_not"]["terms"] or title_ai_terms["is_not"]["terms"]:
+        product_class_terms = process_collection_terms(product_class, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
+        if title_terms["is_not"]["terms"] or product_class_terms["is_not"]["terms"]:
             continue
 
         description_ai_terms = process_collection_terms(description_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
@@ -237,7 +242,7 @@ def get_collections(
         
         categories = ["product", "features", "ingredients", "format", "flavor"]
 
-        sources = [title_terms, title_ai_terms, description_ai_terms, flavor_terms, tags_terms]
+        sources = [title_terms, product_class_terms, flavor_terms, tags_terms]
 
         product_tags.extend(
             [term for source in sources for category in categories for term in source[category]["terms"]]
@@ -248,7 +253,7 @@ def get_collections(
             continue
         
         score = (
-            len(title_ai_terms["product"]["terms"]) * 2 +
+            len(product_class_terms["product"]["terms"]) * 2 +
             len(title_terms["product"]["terms"]) * 2 +
             len(description_ai_terms["product"]["terms"]) * 0.4 +
             len(tags_terms["product"]["terms"]) * 0.5
@@ -256,9 +261,10 @@ def get_collections(
 
         # Combina todos os sabores encontrados
         flavors = set(title_terms["flavor"]["terms"])
-        flavors.update(description_ai_terms["flavor"]["terms"])
-        flavors.update(flavor_terms["flavor"]["terms"])
-        flavors.update(tags_terms["flavor"]["terms"])
+        if (not flavors):
+            flavors.update(description_ai_terms["flavor"]["terms"])
+            flavors.update(flavor_terms["flavor"]["terms"])
+            flavors.update(tags_terms["flavor"]["terms"])
 
         # Clona os índices da coleção
         collection_indices = copy.copy(collection["indices"])
@@ -292,13 +298,13 @@ def get_collections(
             matched_terms = 0
             for key_term, term in index.items():
                 title_terms_aux = title_terms.get(key_term, {}).get("terms", [])
-                title_ai_terms_aux = title_ai_terms.get(key_term, {}).get("terms", [])
+                product_class_terms_aux = product_class_terms.get(key_term, {}).get("terms", [])
                 description_ai_terms_aux = description_ai_terms.get(key_term, {}).get("terms", [])
                 flavor_terms_aux = flavor_terms.get(key_term, {}).get("terms", [])
                 tags_terms_aux = tags_terms.get(key_term, {}).get("terms", [])
 
                 all_terms = set(title_terms_aux).union(
-                    title_ai_terms_aux, 
+                    product_class_terms_aux, 
                     description_ai_terms_aux, 
                     flavor_terms_aux, 
                     tags_terms_aux
@@ -328,20 +334,30 @@ def get_collections(
         if promotion_collection and collections_found and pd.notna(row.compare_at_price):
             collections_found.append(promotion_collection)
         
+        title_field = {
+            "product": title_terms["product"]["terms"],
+            "features": title_terms["features"]["terms"],
+            "ingredients": title_terms["ingredients"]["terms"],
+            "flavor": title_terms["flavor"]["terms"]
+        }
+        
         # Calcula o score e adiciona à lista de todas as coleções
         if collections_found:
             all_collections.append({
                 "score": score,
-                "collections": collections_found
+                "collections": collections_found,
+                "title_field": title_field
             })
 
     # Seleciona a coleção com maior score
     collections_chosed = []
     if all_collections:
-        collections_chosed = max(all_collections, key=lambda x: x["score"])["collections"]
+        collections_chosed = max(all_collections, key=lambda x: x["score"])
+        title_field = collections_chosed["title_field"]
+        collections_chosed = collections_chosed["collections"]
 
     product_tags = list(set(product_tags))
-    return collections_chosed, product_tags
+    return collections_chosed, product_tags, title_field
 
 # Função principal para criar as colunas de produto
 def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
@@ -356,6 +372,7 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     trie_root_flavor = build_trie(wordlist_flavor)
 
     collections_list = []
+    title_terms_list = []
     product_tags_list = []
 
     # Optimize iteration using itertuples
@@ -364,20 +381,20 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         title = row.title
 
         message(f'ref - {ref} | {title} | create_product_cols ')
-
+        
         description_ai_path = f"{conf['data_path']}/products/{ref}_description_ai.txt"
         description_ai = read_file(description_ai_path) if path_exists(description_ai_path) else ""
 
-        title_ai_path = f"{conf['data_path']}/products/{ref}_title_ai.txt"
-        title_ai = read_file(title_ai_path) if path_exists(title_ai_path) else ""
+        product_class_path = f"{conf['data_path']}/products/{ref}_class.txt"
+        product_class = read_file(product_class_path) if path_exists(product_class_path) else ""
         
         flavor_ai_path = f"{conf['data_path']}/products/{ref}_flavor_ai.txt"
         flavor_ai = read_file(flavor_ai_path) if path_exists(flavor_ai_path) else ""
 
-        collections, product_tags = get_collections(
+        collections, product_tags, title_terms = get_collections(
             row, 
             title,
-            title_ai,
+            product_class,
             flavor_ai,
             description_ai, 
             trie_root, 
@@ -387,8 +404,10 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         )
         
         collections_list.append(collections)
-        product_tags_list.append(", ".join(product_tags))
-    
+        product_tags_list.append(", ".join([wordlist[tags][country].title() for tags in product_tags]))
+        title_terms_list.append(title_terms)
+        
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
+    df['title_terms'] = title_terms_list
     return df
