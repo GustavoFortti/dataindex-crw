@@ -19,6 +19,7 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 
+
 def set_config(args: Any, local: str) -> Dict[str, Any]:
     """
     Sets up the configuration dictionary based on the job arguments and local environment.
@@ -43,6 +44,14 @@ def set_config(args: Any, local: str) -> Dict[str, Any]:
     }
     return config
 
+def safe_literal_eval(val):
+    try:
+        # Verifica se o valor é NaN
+        if pd.isna(val):
+            return None  # Ou qualquer outro valor que faça sentido
+        return ast.literal_eval(val)
+    except (ValueError, SyntaxError):
+        return None  # Ou qualquer outra forma de tratamento de erro
 
 def run(args: Any) -> None:
     """
@@ -64,7 +73,7 @@ def run(args: Any) -> None:
     df = read_and_stack_csvs_dataframes(CONF["src_data_path"], pages, "products_transform_csl.csv", {"ref": str})
     
     df["is_drink"] = np.where(df["unit_of_measure"] == "ml", "drink", None)
-    df['title_terms'] = df['title_terms'].apply(ast.literal_eval)
+    df['title_terms'] = df['title_terms'].apply(safe_literal_eval)
     df['product'] = df['title_terms'].apply(lambda x: x.get('product'))
     df['features'] = df['title_terms'].apply(lambda x: x.get('features'))
     df['ingredients'] = df['title_terms'].apply(lambda x: x.get('ingredients'))
