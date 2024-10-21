@@ -228,6 +228,8 @@ COLLECTIONS = {
             "melatonina",
             "kit",
             "alfajor",
+            "capsula",
+            "comprimido",
             "sache",
             "manteiga de amendoim",
             "wafer",

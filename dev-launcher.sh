@@ -9,7 +9,7 @@ export CHECKPOINT_EXTRACT="true"
 # source $LOCAL/env/display.sh
 
 page_names=(
-    "adaptogen"
+    # "adaptogen"
     # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
@@ -18,7 +18,7 @@ page_names=(
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
-    # "iridium_labs"
+    "iridium_labs"
     # "max_titanium"
     # "new_millen"
     # "nutrata" 

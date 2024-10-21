@@ -402,11 +402,12 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
             wordlist, 
             wordlist_flavor
         )
-        
+
         collections_list.append(collections)
         product_tags_list.append(", ".join([wordlist[tags][country].title() for tags in product_tags]))
         title_terms_list.append(title_terms)
         
+    exit()
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     df['title_terms'] = title_terms_list

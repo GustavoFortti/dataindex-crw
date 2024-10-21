@@ -64,8 +64,8 @@ def remove_blacklisted_products(df):
     return df[~df['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))]
 
 def find_pattern_for_quantity(text):
-    # Adicionar unidades de medida líquidas (ml e l) ao padrão de regex
-    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas|ml|l|litro|litros)'
+    # Adicionar unidades de medida líquidas (ml e l) e também caps/comps
+    pattern = r'(\d+[.,]?\d*)\s*(kg|g|gr|gramas|ml|l|litro|litros|cápsula|capsula|capsule|cap|caps|comprimido|comp|comps)'
     matches = re.findall(pattern, text, re.IGNORECASE)
     
     quantity, unit = None, None
@@ -74,19 +74,16 @@ def find_pattern_for_quantity(text):
         quantity = str(quantity).replace(',', '.')
         
         # Ajustar unidades de gramas e mililitros para números inteiros quando necessário
-        if unit in ['g', 'gr', 'gramas'] and "." in quantity:
-            quantity = quantity.replace(".", "")
-        
-        if unit in ['ml'] and "." in quantity:
+        if unit in ['g', 'gr', 'gramas', 'ml'] and "." in quantity:
             quantity = quantity.replace(".", "")
         
         quantity = float(quantity)
         
         # Verificar se há múltiplos de unidades, como "3x"
-        padrao = r'\d+x'
+        padrao = r'(\d+)x'
         matches_multiply = re.findall(padrao, text)
         if len(matches_multiply) == 1 and quantity is not None:
-            quantity *= float(matches_multiply[0].replace('x', ''))
+            quantity *= float(matches_multiply[0])
 
     return quantity, unit
 

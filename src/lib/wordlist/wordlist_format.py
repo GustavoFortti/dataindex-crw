@@ -18,13 +18,13 @@ WORDLIST_FORMAT = {
         "brazil": "display"
     },
     "capsula": {
-        "synonyms": ["cápsula", "capsula", "capsule", "cap"],
+        "synonyms": ["cápsula", "capsula", "capsule", "cap", "caps"],
         "conflict": [],
         "exact_term": True,
         "brazil": "cápsula"
     },
     "comprimido": {
-        "synonyms": ["comprimido", "comp"],
+        "synonyms": ["comprimido", "comp", "comps"],
         "conflict": [],
         "exact_term": True,
         "brazil": "comprimido"
