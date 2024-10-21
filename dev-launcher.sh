@@ -18,14 +18,14 @@ page_names=(
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
-    "iridium_labs"
+    # "iridium_labs"
     # "max_titanium"
     # "new_millen"
     # "nutrata" 
     # "probiotica"
     # "puravida"
     # "truesource"
-    # "vitafor"
+    "vitafor"
 )
 
 job_type="master_page"
