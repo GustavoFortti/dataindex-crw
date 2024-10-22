@@ -1834,6 +1834,7 @@ SUPPLEMENT_COMPONENT_LIST = {
             "vitamina q",
             "vitaminas q",
             "coenzima q10",
+            "q10",
             "ubiquinona",
             "ubiquinol"
         ],

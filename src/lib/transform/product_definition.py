@@ -382,6 +382,9 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
 
         message(f'ref - {ref} | {title} | create_product_cols ')
         
+        if ("Mega Whey Protein - 900g" in title):
+            continue
+        
         description_ai_path = f"{conf['data_path']}/products/{ref}_description_ai.txt"
         description_ai = read_file(description_ai_path) if path_exists(description_ai_path) else ""
 
@@ -402,6 +405,8 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
             wordlist, 
             wordlist_flavor
         )
+        print(collections)
+        exit()
         
         collections_list.append(collections)
         product_tags_list.append(", ".join([wordlist[tags][country].title() for tags in product_tags]))
@@ -410,4 +415,5 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     df['title_terms'] = title_terms_list
+    exit()
     return df
