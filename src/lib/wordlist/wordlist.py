@@ -538,6 +538,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "synonyms": [
             "kit",
             "combo",
+            "elite box",
         ],
         "conflict": [],
         "exact_term": False,

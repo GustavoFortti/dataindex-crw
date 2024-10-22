@@ -228,9 +228,10 @@ def get_collections(
         # Process the terms of the title, description_ai, and tags
         title_terms = process_collection_terms(title, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
         product_class_terms = process_collection_terms(product_class, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
+        
         if title_terms["is_not"]["terms"] or product_class_terms["is_not"]["terms"]:
             continue
-
+        
         description_ai_terms = process_collection_terms(description_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
         flavor_terms = process_collection_terms(flavor_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
 
@@ -247,9 +248,10 @@ def get_collections(
         product_tags.extend(
             [term for source in sources for category in categories for term in source[category]["terms"]]
         )
-        
+
         # Verifica se há muitos termos "is_not"
-        if (len(description_ai_terms["is_not"]["terms"]) > 2) or (len(tags_terms["is_not"]["terms"]) > 2):
+        flag_in_title = title_terms["product"]["terms"] or product_class_terms["product"]["terms"]
+        if ((not flag_in_title) and (len(description_ai_terms["is_not"]["terms"]) > 2) or (len(tags_terms["is_not"]["terms"]) > 2)):
             continue
         
         score = (
@@ -258,7 +260,7 @@ def get_collections(
             len(description_ai_terms["product"]["terms"]) * 0.4 +
             len(tags_terms["product"]["terms"]) * 0.5
         )
-
+        
         # Combina todos os sabores encontrados
         flavors = set(title_terms["flavor"]["terms"])
         if (not flavors):
@@ -381,9 +383,6 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         title = row.title
 
         message(f'ref - {ref} | {title} | create_product_cols ')
-        
-        if ("Mega Whey Protein - 900g" in title):
-            continue
         
         description_ai_path = f"{conf['data_path']}/products/{ref}_description_ai.txt"
         description_ai = read_file(description_ai_path) if path_exists(description_ai_path) else ""
