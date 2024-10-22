@@ -40,5 +40,6 @@ def run(args):
     df_products_transform_csl = read_and_stack_csvs_dataframes(src_data_path, pages_with_status_true, "products_transform_csl.csv", dtype={'ref': str})
     df_products_transform_csl = df_products_transform_csl.drop_duplicates(subset='ref').reset_index(drop=True)
     df_products_transform_csl = df_products_transform_csl.sample(frac=1).reset_index(drop=True)
-
+    
+    conf["brand"] = list(set(df_products_transform_csl['brand'].values))
     load(conf, df_products_transform_csl)

@@ -687,7 +687,7 @@ def get_product_by_sku(sku: str):
         message(f"Erro ao buscar produto pelo SKU '{sku}': {response.status_code} - {response.text}")
     return None
 
-def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand: str) -> None:
+def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand) -> None:
     global CONF
     CONF = conf
     
@@ -709,7 +709,12 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
     sku_data = get_all_skus_with_product_ids()
 
     # Encontra SKUs extras e deleta
-    skus_to_delete = find_extra_skus_to_delete(sku_data, refs, brand)
+    if (type(brand) == list):
+        for i in brand:
+            skus_to_delete = find_extra_skus_to_delete(sku_data, refs, i)
+    else:
+        skus_to_delete = find_extra_skus_to_delete(sku_data, refs, brand)
+        
     delete_extra_skus(skus_to_delete)
 
     # Atualiza sku_data após deletar SKUs extras
