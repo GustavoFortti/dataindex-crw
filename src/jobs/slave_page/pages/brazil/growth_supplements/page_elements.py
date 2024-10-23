@@ -1,5 +1,5 @@
 def get_items(conf, soup):
-    return soup.find_all('a', class_='cardprod text-decoration-none')
+    return soup.find_all('a', class_='vitrine-prod text-decoration-none')
 
 def get_product_url(conf, soup):
     import re
@@ -7,13 +7,14 @@ def get_product_url(conf, soup):
         html_content = str(soup)
     else:
         html_content = soup
-    
-    pattern = r'<a[^>]*class="[^"]*cardprod[^"]*text-decoration-none[^"]*"[^>]*href="([^"]+)"'
+
+    # Atualiza o padrão para encontrar o link correto do produto
+    pattern = r'<a[^>]*class="[^"]*vitrine-prod[^"]*text-decoration-none[^"]*"[^>]*href="([^"]+)"'
     
     match = re.search(pattern, html_content)
     
     if match:
-        product_link_element = conf['url'] + match.group(1).strip() 
+        product_link_element = conf['url'] + match.group(1).strip()
         return product_link_element
     return None
 
@@ -26,11 +27,11 @@ def get_price(conf, soup):
     if price_element:
         # Obtém apenas o texto direto dentro do span, ignorando elementos filhos
         price_text = ''.join(price_element.find_all(string=True, recursive=False)).strip()
-        # Remove o símbolo "R$" e quaisquer espaços
+        # Remove o símbolo "R$" e espaços extras
         price_without_symbol = price_text.strip()
         return price_without_symbol
     return None
 
 def get_image_url(conf, soup):
-    image_element = soup.find('img')
+    image_element = soup.find('img', alt=True)  # Procura imagens que tenham o atributo 'alt'
     return image_element['src'] if image_element and image_element.has_attr('src') else None

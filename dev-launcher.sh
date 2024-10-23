@@ -16,7 +16,7 @@ page_names=(
     # "dark_lab"
     # "darkness"
     # "dux_nutrition_lab"
-    # "growth_supplements"
+    "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
     # "max_titanium"
@@ -24,22 +24,22 @@ page_names=(
     # "nutrata" 
     # "probiotica"
     # "puravida"
-    "truesource"
+    # "truesource"
     # "vitafor"
 )
 
 job_type="master_page"
 job_name="master"
 
-# exec_type="extract"
-# exec_flag="status_job"
+exec_type="extract"
+exec_flag="status_job"
 # exec_flag="new_page"
 # exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
-exec_type="transform"
-exec_flag="false"
+# exec_type="transform"
+# exec_flag="false"
 
 # exec_type="load"
 # exec_flag="data_quality"
