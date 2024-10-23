@@ -52,6 +52,6 @@ def load(conf):
         df.to_csv(conf['path_products_shopify_csl'], index=False)
         message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
         
-    # df_products_transform_csl.to_csv(conf['path_products_load_csl'], index=False)
+    df_products_transform_csl.to_csv(conf['path_products_load_csl'], index=False)
     message(f"path_products_load_csl - {path_exists(conf['path_products_load_csl'])}")
     message("LOAD END")

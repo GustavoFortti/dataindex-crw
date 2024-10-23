@@ -251,7 +251,7 @@ COLLECTIONS = {
         },
         "indices": {
             "Barrinha": {
-                "Barrinhas": "barrinha"
+                "product": "barrinha"
             },
             "Barrinhas Veganas": {
                 "product": "barrinha",

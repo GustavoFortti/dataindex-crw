@@ -412,5 +412,5 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     df['title_terms'] = title_terms_list
-    
+    print(df[['title', 'collections']])
     return df
