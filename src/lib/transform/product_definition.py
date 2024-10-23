@@ -290,7 +290,7 @@ def get_collections(
                     # Atualiza o sabor nos índices
                     flavored_index = copy.copy(value_index_flavor)
                     flavored_index["flavor"] = flavor
-                    index_key = f"{key_index_flavor}_{flavor}"
+                    index_key = f"{key_index_flavor} {flavor.replace("_", " ").title()}"
                     collection_indices[index_key] = flavored_index
 
     
@@ -408,8 +408,9 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         collections_list.append(collections)
         product_tags_list.append(", ".join([wordlist[tags][country].title() for tags in product_tags]))
         title_terms_list.append(title_terms)
-        
+    
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     df['title_terms'] = title_terms_list
+    
     return df

@@ -84,7 +84,7 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
 
         body_html += redirecionamento_button(row["product_url"])
         
-        if row["cupom_code"] and row["discount_percent_cupom"]:
+        if pd.notna(row["cupom_code"]) and pd.notna(row["discount_percent_cupom"]):
             body_html += cupom_code_button(row["cupom_code"], row["discount_percent_cupom"])
         
         description_ai = None

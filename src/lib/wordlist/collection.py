@@ -43,7 +43,7 @@ COLLECTIONS = {
         "default_collection": ["Proteínas"],
         "promotion_collection": "Whey Promoção",
         "indices_flavor": {
-            "Whey_fla Sabor": {
+            "Whey Sabor": {
                 "product": "whey",
                 "flavor": None
             },
@@ -354,7 +354,7 @@ COLLECTIONS = {
             "Creatina": {
                 "product": "creatina"
             },
-            "creatina Vegana": {
+            "Creatina Vegana": {
                 "product": "creatina",
                 "features": "veg",
             },
