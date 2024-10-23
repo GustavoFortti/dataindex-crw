@@ -2,6 +2,8 @@ JOB_NAME = "black_skull"
 BRAND = "black skull"
 URL = "https://www.blackskullusa.com.br"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

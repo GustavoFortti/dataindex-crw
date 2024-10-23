@@ -2,6 +2,8 @@ JOB_NAME = "boldsnacks"
 BRAND = "bold snacks"
 URL = "https://www.boldsnacks.com.br/"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

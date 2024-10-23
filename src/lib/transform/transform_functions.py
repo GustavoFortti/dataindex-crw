@@ -40,6 +40,11 @@ def apply_generic_filters(df, conf):
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df
 
+def apply_cupom_code(df, conf):
+    df['cupom_code'] = conf['cupom_code']
+    df['discount_percent_cupom'] = conf['discount_percent_cupom']
+    return df
+
 def create_quantity_column(df):
     """Extract and convert quantity information into a uniform format."""
     # Garantir que sempre retornamos dois elementos para evitar o erro de tamanho de coluna

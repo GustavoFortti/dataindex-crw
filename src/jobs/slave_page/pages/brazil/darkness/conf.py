@@ -2,6 +2,8 @@ JOB_NAME = "darkness"
 BRAND = "darkness"
 URL = "https://www.darkness.com.br"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

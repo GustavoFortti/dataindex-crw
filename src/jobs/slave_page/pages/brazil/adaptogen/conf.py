@@ -2,6 +2,8 @@ JOB_NAME = "adaptogen"
 BRAND = "adaptogen"
 URL = "https://adaptogen.com.br"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = "10%"
+CUPOM_CODE = "ADAPNUTRIFIND10"
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

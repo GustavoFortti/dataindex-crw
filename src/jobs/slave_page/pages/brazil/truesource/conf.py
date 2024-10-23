@@ -2,6 +2,8 @@ JOB_NAME = "truesource"
 BRAND = "truesource"
 URL = "https://www.truesource.com.br"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

@@ -2,6 +2,8 @@ JOB_NAME = "dark_lab"
 BRAND = "dark lab"
 URL = "https://darklabsuplementos.com.br"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

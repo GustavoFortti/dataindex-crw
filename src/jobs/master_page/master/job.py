@@ -32,6 +32,8 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["tag_map_preference"] = page_conf.TAG_MAP_PREFERENCE
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     conf["user_agent"] = page_conf.USER_AGENT
+    conf["cupom_code"] = page_conf.CUPOM_CODE
+    conf["discount_percent_cupom"] = page_conf.DISCOUNT_PERCENT_CUPOM
     conf["data_path"] = f"{conf['src_data_path']}/{page_conf.JOB_NAME}"
     conf["control_products_update"] = f"{conf["data_path"]}/_products_update_success_"
     conf["control_products_metadata_update"] = f"{conf["data_path"]}/_products_metadata_update_success_"

@@ -14,6 +14,9 @@ import requests
 from src.config.setup.shopify import BASE_URL, HEADERS
 from src.lib.utils.file_system import path_exists, read_file, read_json
 from src.lib.utils.log import message
+from src.lib.load.connection.components.cupom_code_button import cupom_code_button
+from src.lib.load.connection.components.redirecionamento_button import redirecionamento_button
+from src.lib.load.connection.components.generate_price_chart import generate_price_chart
 
 # Definição de constantes
 MAX_RETRIES = 3  # Número máximo de tentativas
@@ -66,78 +69,7 @@ def test_connection() -> bool:
         message(f"Erro ao conectar: {response.status_code} - {response.text}")
         return False
 
-def generate_price_chart(prices: list) -> str:
-    """
-    Gera o código HTML e JavaScript para exibir um gráfico de preços usando Chart.js.
-    
-    Args:
-    - prices: Lista de dicionários com os dados de preço e data.
-    
-    Returns:
-    - Código HTML + JS do gráfico para ser incorporado ao body_html.
-    """
-    # Extraindo datas e preços dos dados
-    dates = [entry['date'] for entry in prices]
-    prices_data = [entry['price'] for entry in prices]
-    
-    # Definir a escala mínima e máxima com base nos valores de preço
-    min_price = int(min(prices_data) - 1)
-    max_price = int(max(prices_data) + 1)
 
-    # Geração do código HTML e JS para o gráfico
-    chart_html = f'''
-    <br>
-    <br>
-    <div class="chart-container" style="position: relative; height:300px; width:100%;">
-        <canvas id="priceChart"></canvas>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var ctx = document.getElementById('priceChart').getContext('2d');
-        var priceChart = new Chart(ctx, {{
-            type: 'line',
-            data: {{
-                labels: {json.dumps(dates)},  // Datas do gráfico
-                datasets: [{{
-                    label: 'Preço (R$)',
-                    data: {json.dumps(prices_data)},  // Preços do gráfico
-                    fill: false,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 2
-                }}]
-            }},
-            options: {{
-                responsive: true,
-                maintainAspectRatio: true,
-                scales: {{
-                    y: {{
-                        beginAtZero: false,
-                        min: {min_price},  // Escala mínima do eixo Y
-                        max: {max_price},  // Escala máxima do eixo Y
-                        grid: {{
-                            display: true
-                        }}
-                    }},
-                    x: {{
-                        grid: {{
-                            display: true
-                        }}
-                    }}
-                }},
-                plugins: {{
-                    legend: {{
-                        display: true,
-                        position: 'top',
-                    }}
-                }}
-            }}
-        }});
-    </script>
-    '''
-    
-    return chart_html
 
 def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
     """
@@ -148,21 +80,24 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
     - variant_data: dict com dados da variante
     """
     try:
+        body_html = ""           
+
+        body_html += redirecionamento_button(row["product_url"])
+        
+        if row["cupom_code"] and row["discount_percent_cupom"]:
+            body_html += cupom_code_button(row["cupom_code"], row["discount_percent_cupom"])
+        
         description_ai = None
         path_description_ai = f"{CONF['src_data_path']}/{row["page_name"]}/products/{row['ref']}_description_ai.txt"
         if path_exists(path_description_ai):
             description_ai = read_file(path_description_ai)
-                   
-        body_html = f'''
-            <a href="{row['product_url']}" target="_blank" id="product_url-link">
-                <button id="product_url" role="button">Ir para loja do suplemento</button>
-            </a>
-        '''
         
         if description_ai:
-            formatted_description = f"<br><br><br>{description_ai.replace('\n', '<br>')}"
+            formatted_description = f"<br>{description_ai.replace('\n', '<br>')}"
             body_html += f'''
                 <div id="product-description">
+                    <br>
+                    <strong>Descrição de produto</strong>
                     {formatted_description}
                 </div>
             '''

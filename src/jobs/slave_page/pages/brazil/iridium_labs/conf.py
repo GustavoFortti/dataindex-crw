@@ -2,6 +2,8 @@ JOB_NAME = "iridium_labs"
 BRAND = "iridium labs"
 URL = "https://www.iridiumlabs.com.br"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

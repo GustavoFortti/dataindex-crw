@@ -2,6 +2,8 @@ JOB_NAME = "nutrata"
 BRAND = "nutrata"
 URL = "https://loja.nutrata.com.br/"
 STATUS = True
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]
