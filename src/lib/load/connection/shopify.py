@@ -69,8 +69,6 @@ def test_connection() -> bool:
         message(f"Erro ao conectar: {response.status_code} - {response.text}")
         return False
 
-
-
 def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
     """
     Formata os dados de um produto para o formato esperado pela API da Shopify.
@@ -89,7 +87,7 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
             body_html += cupom_code_button(row["cupom_code"], row["discount_percent_cupom"])
         
         description_ai = None
-        path_description_ai = f"{CONF['src_data_path']}/{row["page_name"]}/products/{row['ref']}_description_ai.txt"
+        path_description_ai = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_description_ai.txt"
         if path_exists(path_description_ai):
             description_ai = read_file(path_description_ai)
         
@@ -127,6 +125,8 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
             "weight": float(row['quantity']) if pd.notna(row['quantity']) else None,
             "weight_unit": "g" if pd.notna(row['quantity']) else None,
             "compare_at_price": str(row['compare_at_price']) if pd.notna(row['compare_at_price']) else None,
+            "fulfillment_service": 'manual',
+            "inventory_management": 'shopify',
         }
         
         return product_data, variant_data
@@ -212,7 +212,6 @@ def get_all_skus_with_product_ids() -> dict:
     except Exception as e:
         message(f"Erro ao buscar SKUs: {e}")
         return {}
-
 
 def find_duplicate_skus(sku_data: dict) -> dict:
     """
@@ -388,7 +387,6 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
         message(f"SKU '{sku}' não encontrado nos dados da Shopify.")
         return False
 
-
 def update_product(session, product_id: int, product_data: dict) -> bool:
     url = f"{BASE_URL}products/{product_id}.json"
     product_data['id'] = product_id
@@ -404,11 +402,12 @@ def update_product(session, product_id: int, product_data: dict) -> bool:
 
 def update_variant(session, product_id: int, variant_id: int, variant_data: dict, quantity_sold: int) -> bool:
     url = f"{BASE_URL}variants/{variant_id}.json"
-    
     variant_data['id'] = variant_id
-    
+    variant_data['fulfillment_service'] = 'manual'
+    variant_data['inventory_management'] = 'shopify'
+
     response = session.put(url, json={"variant": variant_data})
-    
+
     if response.status_code == 200:
         message(f"Variante {variant_id} do produto {product_id} atualizada com sucesso.")
         
@@ -448,10 +447,7 @@ def enable_inventory_tracking(session, inventory_item_id: int) -> bool:
         message(f"Rastreamento de inventário habilitado para o item {inventory_item_id}.")
         return True
     else:
-        try:
-            error_message = response.json().get('errors', response.text)
-        except ValueError:
-            error_message = response.text
+        error_message = response.text
         message(f"Erro ao habilitar rastreamento de inventário para o item {inventory_item_id}: {response.status_code} - {error_message}")
         return False
 
@@ -481,10 +477,7 @@ def update_inventory_level(session, inventory_item_id: int, quantity_sold: int) 
         message(f"Nível de inventário atualizado para o inventory_item_id {inventory_item_id} no location {location_id}. Nova quantidade: {new_quantity}")
         return True
     else:
-        try:
-            error_message = response.json().get('errors', response.text)
-        except ValueError:
-            error_message = response.text
+        error_message = response.text
         message(f"Erro ao atualizar o nível de inventário para o inventory_item_id {inventory_item_id} no location {location_id}: {response.status_code} - {error_message}")
         return False
 
@@ -764,7 +757,7 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand)
     else:
         skus_to_delete = find_extra_skus_to_delete(sku_data, refs, brand)
         delete_extra_skus(skus_to_delete)
-        
+
     # Atualiza sku_data após deletar SKUs extras
     sku_data = get_all_skus_with_product_ids()
 
