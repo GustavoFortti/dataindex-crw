@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 from src.lib.extract.extract import products_metadata_update_old_pages_by_ref
 from src.lib.extract.page_elements import Page
-from src.lib.utils.file_system import read_file, save_file, save_json
+from src.lib.utils.file_system import file_modified_within_x_hours, read_file, save_file, save_json
 from src.lib.utils.log import message
 from src.lib.utils.py_functions import flatten_list
 from src.lib.transform.product_definition import create_product_cols
@@ -89,7 +89,8 @@ def fetch_product_page_html(page_path: str, product_url: str, force: bool = None
     """
     html_text: Optional[str] = read_file(page_path)
 
-    if ((not html_text) or (force)):
+    is_page_updated = file_modified_within_x_hours(page_path, 6)
+    if (((not html_text) or (force)) and (not is_page_updated)):
         # Atualizar o metadata e tentar novamente
         products_metadata_update_old_pages_by_ref(CONF, Page, product_url)
         html_text = read_file(page_path)

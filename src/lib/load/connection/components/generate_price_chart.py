@@ -1,3 +1,5 @@
+import json
+
 def generate_price_chart(prices: list) -> str:
     """
     Gera o código HTML e JavaScript para exibir um gráfico de preços usando Chart.js.
