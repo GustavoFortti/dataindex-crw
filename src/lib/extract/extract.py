@@ -46,7 +46,7 @@ def extract(conf: dict):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_create_pages_if_not_exist(page)
-    elif (conf['exec_flag'] == "status_job"):
+    elif ((conf['exec_flag'] == "status_job") & (checkpoint_extract(page.conf["control_products_update"]))):
         conf["scroll_page"] = False
         conf["products_update"] = True
         conf['status_job'] = True
