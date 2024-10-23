@@ -43,7 +43,9 @@ def apply_generic_filters(df, conf):
 def apply_platform_data(df, conf):
     df['cupom_code'] = conf['cupom_code']
     df['discount_percent_cupom'] = conf['discount_percent_cupom']
-    df['tail_platform_link'] = df["product_url"] + conf['tail_platform_link']
+    df['tail_platform_link'] = None
+    if (conf['tail_platform_link']):
+        df['tail_platform_link'] = df["product_url"] + conf['tail_platform_link']
     
     return df
 
