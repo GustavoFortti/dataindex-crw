@@ -18,6 +18,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -82,6 +83,7 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -131,6 +133,7 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "sache",
@@ -180,6 +183,7 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "crisp",
@@ -224,6 +228,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -268,6 +273,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -309,6 +315,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -371,6 +378,7 @@ COLLECTIONS = {
         "flavor": {},
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "whey",
@@ -402,7 +410,7 @@ COLLECTIONS = {
             "veg",
         ],
         "ingredients": [
-            "cafein",
+            "cafeina",
             "betaalanina",
             "arginin",
         ],
@@ -444,6 +452,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -478,6 +487,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -511,6 +521,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -542,6 +553,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -575,6 +587,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -604,6 +617,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -632,6 +646,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -663,6 +678,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -695,6 +711,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -728,6 +745,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -753,6 +771,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -779,6 +798,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -805,6 +825,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -831,6 +852,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "nac",
@@ -860,6 +882,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -888,6 +911,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -916,6 +940,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -944,6 +969,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -982,6 +1008,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1020,6 +1047,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1058,6 +1086,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1095,11 +1124,12 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
             "barrinha",
-            "cafein",
+            "cafeina",
             "creatina",
             "vitamina b",
             "glutamin",
@@ -1134,6 +1164,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1172,6 +1203,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1228,6 +1260,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1266,6 +1299,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1304,6 +1338,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1342,6 +1377,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1380,6 +1416,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1423,6 +1460,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1462,6 +1500,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1501,6 +1540,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1540,6 +1580,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1579,6 +1620,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1618,6 +1660,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1657,6 +1700,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1686,9 +1730,9 @@ COLLECTIONS = {
             },
         }
     },
-    'cafein': {
+    'cafeinaa': {
         "product": [
-            "cafein",
+            "cafeina",
         ],
         "features": [],
         "ingredients": [],
@@ -1718,8 +1762,8 @@ COLLECTIONS = {
         "promotion_collection": "termogenico_promotion",
         "indices_flavor": [],
         "indices": {
-            "cafein_see_all": {
-                "product": "cafein",
+            "cafeina_see_all": {
+                "product": "cafeina",
             },
         }
     },
@@ -1732,6 +1776,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1770,6 +1815,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1808,6 +1854,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1846,6 +1893,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1884,6 +1932,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1923,6 +1972,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1961,6 +2011,7 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",
@@ -1999,6 +2050,47 @@ COLLECTIONS = {
         "flavor": KEYS_WORDLIST_FLAVOR,
         "format": [],
         "is_not": [
+            "endurance",
+            "granola",
+            "melatonina",
+            "kit",
+            "barrinha",
+            "creatina",
+            "glutamin",
+            "bcaa",
+            "pretreino",
+            "blend",
+            "ervilha",
+            "beef",
+            "omega 3",
+            "iso",
+            "barbecue",
+            "soy",
+            "mass",
+            "whey",
+            "alfajor",
+            "wafer",
+        ],
+        "maybe_not": [],
+        "default_collection": ["oleos_see_all"],
+        "promotion_collection": "oleos_promotion",
+        "indices_flavor": [],
+        "indices": {
+            "krill_see_all": {
+                "product": "krill",
+            },
+        }
+    },
+    'curcuma': {
+        "product": [
+            "curcuma",
+        ],
+        "features": [],
+        "ingredients": [],
+        "flavor": KEYS_WORDLIST_FLAVOR,
+        "format": [],
+        "is_not": [
+            "endurance",
             "granola",
             "melatonina",
             "kit",

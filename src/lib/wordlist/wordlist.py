@@ -335,7 +335,6 @@ SUPPLEMENT_COMPONENT_LIST = {
             "creatina",
             "creatine",
             "creatin",
-            "creapure"
         ],
         "conflict": [],
         "exact_term": False,
@@ -902,6 +901,14 @@ SUPPLEMENT_COMPONENT_LIST = {
         "conflict": [],
         "exact_term": False,
         "brazil": "pré-treino",
+    },
+    "endurance": {
+        "synonyms": [
+            "endurance",
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "endurance",
     },
     "postreino": {
         "synonyms": [

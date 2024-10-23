@@ -1,5 +1,6 @@
 import ast
 import functools
+import random
 import json
 import time
 import threading
@@ -148,7 +149,7 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
     """
     try:
         description_ai = None
-        path_description_ai = f"{CONF['data_path']}/products/{row['ref']}_description_ai.txt"
+        path_description_ai = f"{CONF['src_data_path']}/{row["page_name"]}/products/{row['ref']}_description_ai.txt"
         if path_exists(path_description_ai):
             description_ai = read_file(path_description_ai)
                    
@@ -199,11 +200,11 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
 
 def get_all_skus_with_product_ids() -> dict:
     """
-    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id e o vendor.
+    Obtém todas as SKUs de todos os produtos da Shopify, incluindo o product_id, vendor e inventory_item_id.
 
     Returns:
     - dict: Um dicionário onde as chaves são SKUs e os valores são listas de dicionários
-            contendo 'variant_id', 'product_id' e 'vendor'.
+            contendo 'variant_id', 'product_id', 'vendor', 'inventory_item_id'.
     """
     try:
         session = RateLimitedSession(max_calls_per_second=2, max_retries=MAX_RETRIES, wait_seconds=WAIT_SECONDS)
@@ -237,13 +238,15 @@ def get_all_skus_with_product_ids() -> dict:
                 for variant in product.get('variants', []):
                     variant_id = variant.get('id')
                     sku = variant.get('sku', '').strip()
+                    inventory_item_id = variant.get('inventory_item_id')
                     if sku:
                         if sku not in sku_variants:
                             sku_variants[sku] = []
                         sku_variants[sku].append({
                             'variant_id': variant_id,
                             'product_id': product_id,
-                            'vendor': vendor
+                            'vendor': vendor,
+                            'inventory_item_id': inventory_item_id
                         })
 
             # Verifica se há mais páginas utilizando os headers de Link
@@ -273,6 +276,7 @@ def get_all_skus_with_product_ids() -> dict:
     except Exception as e:
         message(f"Erro ao buscar SKUs: {e}")
         return {}
+
 
 def find_duplicate_skus(sku_data: dict) -> dict:
     """
@@ -424,23 +428,30 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
         variant_id = variants[0]['variant_id']
         # Atualiza o produto
         product_success = update_product(session, product_id, product_data)
+        # Extrai quantity_sold do row
+        quantity_sold = row['quantity_sold'] if 'quantity_sold' in row and pd.notna(row['quantity_sold']) else random.randint(1, 1000)
         # Atualiza a variante
-        variant_success = update_variant(session, product_id, variant_id, variant_data)
+        variant_success = update_variant(session, product_id, variant_id, variant_data, quantity_sold)
         
         product_images = []
-        path_product_images = f"{CONF['data_path']}/products/{row['ref']}_images.json"
+        path_product_images = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_images.json"
         if path_exists(path_product_images):
             product_images = read_json(path_product_images)['url_images']
         product_images.insert(0, row['image_url'])
         
         # Atualiza imagens
         images_success = update_images(session, product_id, product_images)
-        # Atualiza coleções
-        collections_success = update_collections(session, product_id, row)
+        # Atualiza coleções apenas se 'collections' existir
+        if 'collections' in row and pd.notna(row['collections']):
+            collections_success = update_collections(session, product_id, row)
+        else:
+            collections_success = True  # Não há coleções para atualizar
+
         return product_success and variant_success and images_success and collections_success
     else:
         message(f"SKU '{sku}' não encontrado nos dados da Shopify.")
         return False
+
 
 def update_product(session, product_id: int, product_data: dict) -> bool:
     url = f"{BASE_URL}products/{product_id}.json"
@@ -455,16 +466,27 @@ def update_product(session, product_id: int, product_data: dict) -> bool:
         message(f"Erro ao atualizar o produto {product_id}: {response.status_code} - {error_message}")
         return False
 
-def update_variant(session, product_id: int, variant_id: int, variant_data: dict) -> bool:
+def update_variant(session, product_id: int, variant_id: int, variant_data: dict, quantity_sold: int) -> bool:
     url = f"{BASE_URL}variants/{variant_id}.json"
-
+    
     variant_data['id'] = variant_id
-
+    
     response = session.put(url, json={"variant": variant_data})
-
+    
     if response.status_code == 200:
         message(f"Variante {variant_id} do produto {product_id} atualizada com sucesso.")
-        return True
+        
+        # Obter o inventory_item_id da variante
+        variant_info = response.json().get('variant', {})
+        inventory_item_id = variant_info.get('inventory_item_id')
+        
+        if inventory_item_id:
+            # Atualizar o nível de inventário
+            success = update_inventory_level(session, inventory_item_id, quantity_sold)
+            return success
+        else:
+            message(f"Não foi possível obter o inventory_item_id para a variante {variant_id}.")
+            return False
     else:
         try:
             error_message = response.json().get('errors', response.text)
@@ -472,6 +494,96 @@ def update_variant(session, product_id: int, variant_id: int, variant_data: dict
             error_message = response.text
         message(f"Erro ao atualizar a variante {variant_id} do produto {product_id}: {response.status_code} - {error_message}")
         return False
+
+def enable_inventory_tracking(session, inventory_item_id: int) -> bool:
+    """
+    Habilita o rastreamento de inventário para o item fornecido.
+    """
+    url = f"{BASE_URL}inventory_items/{inventory_item_id}.json"
+    payload = {
+        "inventory_item": {
+            "id": inventory_item_id,
+            "tracked": True  # Habilita o rastreamento de inventário
+        }
+    }
+
+    response = session.put(url, json=payload)
+    if response.status_code == 200:
+        message(f"Rastreamento de inventário habilitado para o item {inventory_item_id}.")
+        return True
+    else:
+        try:
+            error_message = response.json().get('errors', response.text)
+        except ValueError:
+            error_message = response.text
+        message(f"Erro ao habilitar rastreamento de inventário para o item {inventory_item_id}: {response.status_code} - {error_message}")
+        return False
+
+def update_inventory_level(session, inventory_item_id: int, quantity_sold: int) -> bool:
+    # Obter o location_id
+    location_id = get_location_id(session)
+    if not location_id:
+        message("Não foi possível obter o location_id.")
+        return False
+
+    # Habilitar o rastreamento de inventário, se não estiver habilitado
+    if not enable_inventory_tracking(session, inventory_item_id):
+        message(f"Não foi possível habilitar o rastreamento de inventário para o item {inventory_item_id}.")
+        return False
+
+    # Definir o novo nível de inventário como 1
+    new_quantity = 1
+
+    # Atualizar o nível de inventário para sempre ser 1
+    payload = {
+        "location_id": location_id,
+        "inventory_item_id": inventory_item_id,
+        "available": new_quantity
+    }
+    response = session.post(f"{BASE_URL}inventory_levels/set.json", json=payload)
+    if response.status_code == 200:
+        message(f"Nível de inventário atualizado para o inventory_item_id {inventory_item_id} no location {location_id}. Nova quantidade: {new_quantity}")
+        return True
+    else:
+        try:
+            error_message = response.json().get('errors', response.text)
+        except ValueError:
+            error_message = response.text
+        message(f"Erro ao atualizar o nível de inventário para o inventory_item_id {inventory_item_id} no location {location_id}: {response.status_code} - {error_message}")
+        return False
+
+def get_location_id(session):
+    # Obter a lista de locations
+    response = session.get(f"{BASE_URL}locations.json")
+    if response.status_code == 200:
+        locations = response.json().get('locations', [])
+        if locations:
+            # Para simplicidade, usamos o primeiro location
+            return locations[0]['id']
+        else:
+            message("Nenhuma location encontrada.")
+            return None
+    else:
+        message(f"Erro ao obter locations: {response.status_code} - {response.text}")
+        return None
+
+def get_current_inventory_level(session, inventory_item_id: int, location_id: int):
+    params = {
+        "inventory_item_ids": inventory_item_id,
+        "location_ids": location_id
+    }
+    response = session.get(f"{BASE_URL}inventory_levels.json", params=params)
+    if response.status_code == 200:
+        inventory_levels = response.json().get('inventory_levels', [])
+        if inventory_levels:
+            available = inventory_levels[0].get('available')
+            return available
+        else:
+            message(f"Nível de inventário não encontrado para inventory_item_id {inventory_item_id} no location {location_id}.")
+            return None
+    else:
+        message(f"Erro ao obter o nível de inventário: {response.status_code} - {response.text}")
+        return None
 
 def update_images(session, product_id: int, image_urls: list) -> bool:
     """
@@ -709,14 +821,14 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand)
     sku_data = get_all_skus_with_product_ids()
 
     # Encontra SKUs extras e deleta
-    if (type(brand) == list):
+    if isinstance(brand, list):
         for i in brand:
             skus_to_delete = find_extra_skus_to_delete(sku_data, refs, i)
+            delete_extra_skus(skus_to_delete)
     else:
         skus_to_delete = find_extra_skus_to_delete(sku_data, refs, brand)
+        delete_extra_skus(skus_to_delete)
         
-    delete_extra_skus(skus_to_delete)
-
     # Atualiza sku_data após deletar SKUs extras
     sku_data = get_all_skus_with_product_ids()
 
@@ -730,24 +842,41 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand)
         sku = row['ref']
         message(f"REF - {sku} - {row['title']}")
 
+        # Atualiza o produto se já existir
         product_exist = update_product_by_sku(sku, product_data, variant_data, row, sku_data)
 
         if not product_exist:
-            # Prepara os dados completos para criar o produto
+            # Prepara os dados completos para criar o produto se ele não existir
             full_product_data = product_data.copy()
             full_product_data['variants'] = [variant_data]
             product_images = []
-            path_product_images = f"{CONF['data_path']}/products/{row['ref']}_images.json"
+            path_product_images = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_images.json"
             if path_exists(path_product_images):
                 product_images = read_json(path_product_images)['url_images']
             product_images.insert(0, row['image_url'])
             full_product_data['images'] = [{"src": url} for url in product_images]
-            create_product(full_product_data)
             
-            # Após criar o produto, adiciona-o à coleção
-            # Precisamos obter o product_id do produto recém-criado
-            created_product = get_product_by_sku(sku)
+            # Cria o novo produto
+            created_product = create_product(full_product_data)
+            
+            # Após criar o produto, adiciona-o à coleção e atualiza o inventário
             if created_product:
-                product_id = created_product['id']
+                product_id = created_product['product']['id']
                 update_collections(session, product_id, row)
+                
+                # Atualiza o nível de inventário para o novo produto
+                variant_info = created_product['product']['variants'][0]
+                inventory_item_id = variant_info.get('inventory_item_id')
+                variant_id = variant_info.get('id')
+                quantity_sold = row['quantity_sold'] if 'quantity_sold' in row and pd.notna(row['quantity_sold']) else 1000
+                update_inventory_level(session, inventory_item_id, quantity_sold)
+                
+                # Adiciona o novo SKU ao sku_data
+                sku_data[sku] = [{
+                    'variant_id': variant_id,
+                    'product_id': product_id,
+                    'vendor': product_data['vendor'],
+                    'inventory_item_id': inventory_item_id
+                }]
+
     message("INGESTION END")
