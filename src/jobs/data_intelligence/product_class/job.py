@@ -74,6 +74,8 @@ def run(args: Any) -> None:
     df['features'] = df['title_terms'].apply(lambda x: x.get('features') if x else None)
     df['ingredients'] = df['title_terms'].apply(lambda x: x.get('ingredients') if x else None)
     df['flavor'] = df['title_terms'].apply(lambda x: x.get('flavor') if x else None)
+    df["is_small_10_to_50"] = np.where((df["quantity"] > 10) & (df["quantity"] < 50), True, None)
+    df['whey_sache'] = df.apply(lambda x: 'sache' if 'whey' in str(x['product']) and x["is_small_10_to_50"] else None, axis=1)
 
     df = df[[
         'ref',
@@ -84,12 +86,13 @@ def run(args: Any) -> None:
         'ingredients',
         'flavor',
         'is_drink',
+        'whey_sache',
     ]]
     
     df['class_product'] = None
     df = specific_rules_for_whey(df)
     
-    columns = ["is_crunch", "is_drink"]
+    columns = ["is_crunch", "is_drink", "whey_sache"]
     for row in df.itertuples(index=False):
         ref = row.ref
         page_name = row.page_name

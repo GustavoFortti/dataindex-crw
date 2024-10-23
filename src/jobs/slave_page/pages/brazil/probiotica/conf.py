@@ -2,6 +2,7 @@ JOB_NAME = "probiotica"
 BRAND = "probiotica"
 URL = "https://www.probiotica.com.br"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = "10%"
 CUPOM_CODE = "PRO10NUTRIFIND10"
 USER_AGENT = None

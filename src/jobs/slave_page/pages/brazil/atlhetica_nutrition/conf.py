@@ -2,6 +2,7 @@ JOB_NAME = "atlhetica_nutrition"
 BRAND = "atlhetica nutrition"
 URL = "https://www.atlheticanutrition.com.br"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None

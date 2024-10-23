@@ -40,6 +40,15 @@ COLLECTIONS = {
         "maybe_not": [
             "manteiga de amendoim",
         ],
+        "rule_fields": [
+            {
+                "field": "quantity",
+                "name": None,
+                "required": True,
+                "unit_of_measure": "g",
+                "range": [300, 100000],
+            },
+        ],
         "default_collection": ["Proteínas"],
         "promotion_collection": "Whey Promoção",
         "indices_flavor": {
@@ -340,11 +349,13 @@ COLLECTIONS = {
             {
                 "field": "quantity",
                 "name": "1kg",
+                "unit_of_measure": "g",
                 "range": [999, 10000],
             },
             {
                 "field": "quantity",
                 "name": "500g",
+                "unit_of_measure": "g",
                 "range": [499, 999],
             },
         ],

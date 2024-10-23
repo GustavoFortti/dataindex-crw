@@ -2,6 +2,7 @@ JOB_NAME = "growth_supplements"
 BRAND = "growth supplements"
 URL = "https://www.gsuplementos.com.br"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None

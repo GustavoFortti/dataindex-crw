@@ -1,7 +1,7 @@
 import pandas as pd
 
 from src.lib.transform.product_info import create_product_info_cols
-from src.lib.transform.transform_functions import (apply_cupom_code, apply_generic_filters,
+from src.lib.transform.transform_functions import (apply_platform_data, apply_generic_filters,
     create_history_price_col, create_price_discount_percent_col, create_quantity_column,
     filter_nulls, remove_blacklisted_products)
 from src.lib.utils.log import message
@@ -21,8 +21,8 @@ def transform(conf, df):
     message("Aplicando filtros de nome|preço|marca")
     df = apply_generic_filters(df, conf)
     
-    message("Aplicando campo de cupom")
-    df = apply_cupom_code(df, conf)
+    message("Aplicando campo de cupom | links")
+    df = apply_platform_data(df, conf)
 
     message("Criando coluna quantidade")
     df = create_quantity_column(df)

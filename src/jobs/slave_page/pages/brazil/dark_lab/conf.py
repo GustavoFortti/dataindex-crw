@@ -2,6 +2,7 @@ JOB_NAME = "dark_lab"
 BRAND = "dark lab"
 URL = "https://darklabsuplementos.com.br"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None

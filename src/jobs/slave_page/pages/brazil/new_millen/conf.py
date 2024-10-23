@@ -2,6 +2,7 @@ JOB_NAME = "new_millen"
 BRAND = "new millen"
 URL = "https://loja.newmillen.com.br"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None

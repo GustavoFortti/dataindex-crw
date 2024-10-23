@@ -316,16 +316,29 @@ def get_collections(
                     matched_terms += 1
             if matched_terms == required_terms:
                 collections_found.append(key_index)
-                
+        
         # Aplica regras baseadas na quantidade
         rule_fields = collection.get("rule_fields")
+        flag_incorrect_quantity = False
         if collections_found and rule_fields and pd.notna(row.quantity):
             quantity = int(row.quantity)
+            unit_of_measure = row.unit_of_measure
             for rule_field in rule_fields:
                 greater_than_equal, less_than_equal = rule_field["range"]
-                if (greater_than_equal <= quantity <= less_than_equal):
-                    collections_found.append(f"{key}_{rule_field['name']}")
-
+                if ((greater_than_equal <= quantity <= less_than_equal) and 
+                    (unit_of_measure == rule_field.get("unit_of_measure"))):
+                    
+                    if (rule_field['name']):
+                        collections_found.append(f"{key}_{rule_field['name']}")
+                    else:
+                        collections_found.append(key)
+                        
+                elif rule_field.get('required'):
+                    flag_incorrect_quantity = True
+        
+        if flag_incorrect_quantity:
+            continue
+        
         # Adiciona coleções padrão
         default_collection = collection.get("default_collection")
         if collections_found and default_collection:
@@ -350,7 +363,7 @@ def get_collections(
                 "collections": collections_found,
                 "title_field": title_field
             })
-
+            
     # Seleciona a coleção com maior score
     collections_chosed = []
     if all_collections:
@@ -412,5 +425,4 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     df['title_terms'] = title_terms_list
-    print(df[['title', 'collections']])
     return df

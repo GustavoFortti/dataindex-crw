@@ -10,7 +10,7 @@ export CHECKPOINT_EXTRACT="true"
 
 page_names=(
     # "adaptogen"
-    "atlhetica_nutrition"
+    # "atlhetica_nutrition"
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
@@ -19,7 +19,7 @@ page_names=(
     # "growth_supplements"
     # "integralmedica"
     # "iridium_labs"
-    # "max_titanium"
+    "max_titanium"
     # "new_millen"
     # "nutrata" 
     # "probiotica"

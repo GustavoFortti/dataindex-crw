@@ -2,6 +2,7 @@ JOB_NAME = "dux_nutrition_lab"
 BRAND = "dux nutrition lab"
 URL = "https://www.duxnutrition.com"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None

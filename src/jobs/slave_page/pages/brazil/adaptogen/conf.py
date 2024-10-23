@@ -2,6 +2,7 @@ JOB_NAME = "adaptogen"
 BRAND = "adaptogen"
 URL = "https://adaptogen.com.br"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = "10%"
 CUPOM_CODE = "ADAPNUTRIFIND10"
 USER_AGENT = None

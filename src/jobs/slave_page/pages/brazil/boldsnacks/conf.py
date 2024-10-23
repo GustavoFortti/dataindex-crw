@@ -2,6 +2,7 @@ JOB_NAME = "boldsnacks"
 BRAND = "bold snacks"
 URL = "https://www.boldsnacks.com.br/"
 STATUS = True
+TAIL_PLATFORM_LINK = None
 DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None

@@ -40,9 +40,11 @@ def apply_generic_filters(df, conf):
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df
 
-def apply_cupom_code(df, conf):
+def apply_platform_data(df, conf):
     df['cupom_code'] = conf['cupom_code']
     df['discount_percent_cupom'] = conf['discount_percent_cupom']
+    df['tail_platform_link'] = df["product_url"] + conf['tail_platform_link']
+    
     return df
 
 def create_quantity_column(df):
@@ -238,6 +240,6 @@ def create_history_price_col(df, conf):
     df_history = df_history[df_history['brand'] == conf['brand']]
     df_history = df_history[['ref', 'prices']]
     
-    df = pd.merge(df, df_history, on='ref', how='inner')
+    df = pd.merge(df, df_history, on='ref', how='left')
 
     return df

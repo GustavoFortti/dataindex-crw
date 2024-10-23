@@ -6,7 +6,7 @@ def get_items(conf, soup):
 def get_product_url(conf, item):
     # Buscando o link do produto dentro da tag 'a'
     product_link_element = item.find('a', class_='product-card__link')
-    return conf["url"] + product_link_element['href'] + "?utm_source=mais&utm_medium=maisplataforma&utm_campaign=nutrifind" if product_link_element else None
+    return conf["url"] + product_link_element['href'] if product_link_element else None
 
 def get_title(conf, item):
     # Extraindo o título do produto
