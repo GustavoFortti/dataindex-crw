@@ -35,8 +35,6 @@ def load(conf, df_products_transform_csl):
     df = df[columns]
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
     
-    df = df[df['ref'] == "22f01bfe"]
-    
     if (not df.empty):
         refs = df_products_transform_csl["ref"].values
         process_and_ingest_products(conf, df, refs, conf['brand'])

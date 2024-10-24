@@ -71,7 +71,7 @@ def products_update(page):
         message(f"seed: {seed}")
         message(f"index seed: {value} / {len(seeds)}")
         while True:
-            url = page.get_url(seed['url'])
+            url = page.get_url(seed)
             index = page.conf["index"]
             message(f"index url: {index}")
             message(f"url: {url}")
