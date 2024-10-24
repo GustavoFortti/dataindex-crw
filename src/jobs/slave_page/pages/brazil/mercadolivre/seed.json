@@ -1,12 +1,13 @@
 [
-    {"id": "puravida", "url": "https://www.mercadolivre.com.br/loja/atlhetica-nutrition?item_id=MLB2779067756&category_id=MLB264201&seller_id=547505000&client=recoview-selleritems&recos_listing=true", "tipo": "produtos", "last_extractions": ""},
-    {"id": "puravida", "url": "https://loja.mercadolivre.com.br/puravida?item_id=MLB3791289415&category_id=MLB264201&official_store_id=5504&client=recoview-selleritems&recos_listing=true#origin=vip&component=sellerData&typeSeller=official_store", "tipo": "produtos", "last_extractions": ""},
-    {"id": "dark lab", "url": "https://lista.mercadolivre.com.br/loja/dark-lab/lista/saude/#applied_filter_id%3Dcategory%26applied_filter_name%3DCategorias%26applied_filter_order%3D4%26applied_value_id%3DMLB264586%26applied_value_name%3DSa%C3%BAde%26applied_value_order%3D3%26applied_value_results%3D147%26is_custom%3Dfalse", "tipo": "produtos", "last_extractions": ""},
-    {"id": "black skull", "url": "https://loja.mercadolivre.com.br/black-skull-usa?item_id=MLB4904356874&category_id=MLB122102&official_store_id=2597&client=recoview-selleritems&recos_listing=true#origin=pdp&component=sellerData&typeSeller=official_store", "tipo": "produtos", "last_extractions": ""},
-    {"id": "bold snacks", "url": "https://lista.mercadolivre.com.br/loja/bold-snacks/", "tipo": "produtos", "last_extractions": ""},
-    {"id": "max titanium", "url": "https://lista.mercadolivre.com.br/loja/max-titanium/", "tipo": "produtos", "last_extractions": ""},
-    {"id": "iridium labs", "url": "https://lista.mercadolivre.com.br/loja/iridium-labs/lista/saude/suplementos-alimentares/#client=SEARCH&component_id=menu_corridors", "tipo": "produtos", "last_extractions": ""},
-    {"id": "probiotica", "url": "https://lista.mercadolivre.com.br/loja/probiotica/lista/esportes-fitness/suplementos-shakers/suplementos/#client=SEARCH&component_id=menu_corridors", "tipo": "produtos", "last_extractions": ""},
-    {"id": "under Labz", "url": "https://lista.mercadolivre.com.br/loja/under-labz/lista/saude/suplementos-alimentares/#client=HOME&component_id=menu_corridors", "tipo": "produtos", "last_extractions": ""},
-    {"id": "dux nutrition lab", "url": "https://loja.mercadolivre.com.br/dux-nutrition#origin=search&component=quick_access_intervention", "tipo": "produtos", "last_extractions": ""}
+    { "brand": "soldiers", "url": "https://lista.mercadolivre.com.br/loja/soldiers-nutrition/" },
+    { "brand": "atlhetica nutrition", "url": "https://lista.mercadolivre.com.br/loja/atlhetica-nutrition/" },
+    { "brand": "puravida", "url": "https://loja.mercadolivre.com.br/puravida?item_id=MLB3791289415&category_id=MLB264201&official_store_id=5504&client=recoview-selleritems&recos_listing=true#origin=vip&component=sellerData&typeSeller=official_store" },
+    { "brand": "dark lab", "url": "https://lista.mercadolivre.com.br/loja/dark-lab/lista/saude/#applied_filter_id%3Dcategory%26applied_filter_name%3DCategorias%26applied_filter_order%3D4%26applied_value_id%3DMLB264586%26applied_value_name%3DSa%C3%BAde%26applied_value_order%3D3%26applied_value_results%3D147%26is_custom%3Dfalse" },
+    { "brand": "black skull", "url": "https://loja.mercadolivre.com.br/black-skull-usa?item_id=MLB4904356874&category_id=MLB122102&official_store_id=2597&client=recoview-selleritems&recos_listing=true#origin=pdp&component=sellerData&typeSeller=official_store" },
+    { "brand": "bold snacks", "url": "https://lista.mercadolivre.com.br/loja/bold-snacks/" },
+    { "brand": "max titanium", "url": "https://lista.mercadolivre.com.br/loja/max-titanium/" },
+    { "brand": "iridium labs", "url": "https://lista.mercadolivre.com.br/loja/iridium-labs/lista/saude/suplementos-alimentares/#client=SEARCH&component_id=menu_corridors" },
+    { "brand": "probiotica", "url": "https://lista.mercadolivre.com.br/loja/probiotica/lista/esportes-fitness/suplementos-shakers/suplementos/#client=SEARCH&component_id=menu_corridors" },
+    { "brand": "under Labz", "url": "https://lista.mercadolivre.com.br/loja/under-labz/lista/saude/suplementos-alimentares/#client=HOME&component_id=menu_corridors" },
+    { "brand": "dux nutrition lab", "url": "https://loja.mercadolivre.com.br/dux-nutrition#origin=search&component=quick_access_intervention" }
 ]

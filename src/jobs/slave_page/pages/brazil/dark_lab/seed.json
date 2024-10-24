@@ -1,7 +1,7 @@
 [
-    {"id": "produtos", "url": "https://darklabsuplementos.com.br/proteinas/?mpage=", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://darklabsuplementos.com.br/aminoacidos/?mpage=", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://darklabsuplementos.com.br/carboidratos/?mpage=", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://darklabsuplementos.com.br/pre-treino1/?mpage=", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://darklabsuplementos.com.br/vitaminas/?mpage=", "tipo": "produtos", "last_extractions": ""}
+    {"sub-class": "proteinas", "url": "https://darklabsuplementos.com.br/proteinas/?mpage=" },
+    {"sub-class": "aminoacidos", "url": "https://darklabsuplementos.com.br/aminoacidos/?mpage=" },
+    {"sub-class": "carboidratos", "url": "https://darklabsuplementos.com.br/carboidratos/?mpage=" },
+    {"sub-class": "pre-treino", "url": "https://darklabsuplementos.com.br/pre-treino1/?mpage=" },
+    {"sub-class": "vitaminas", "url": "https://darklabsuplementos.com.br/vitaminas/?mpage=" }
 ]

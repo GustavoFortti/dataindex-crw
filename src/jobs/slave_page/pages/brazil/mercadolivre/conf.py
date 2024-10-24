@@ -2,6 +2,9 @@ JOB_NAME = "mercadolivre"
 BRAND = "mercado livre"
 URL = "https://lista.mercadolivre.com.br/"
 STATUS = False
+TAIL_PLATFORM_LINK = None
+DISCOUNT_PERCENT_CUPOM = None
+CUPOM_CODE = None
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:115.0) Gecko/20100101 Firefox/115.0"
 
 TAG_MAP_PREFERENCE = ["text"]

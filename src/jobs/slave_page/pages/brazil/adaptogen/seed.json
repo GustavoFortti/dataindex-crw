@@ -1,8 +1,8 @@
 [
-    { "id": "", "url": "https://adaptogen.com.br/proteinas/", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://adaptogen.com.br/aminoacidos/", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://adaptogen.com.br/vitaminas-e-nutrientes/", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://adaptogen.com.br/emagrecedores/", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://adaptogen.com.br/formulas-especiais/", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://adaptogen.com.br/combos-promocionais/", "tipo": "", "last_extractions": "02/11/2023" }
+    { "sub-class": "proteinas", "url": "https://adaptogen.com.br/proteinas/" },
+    { "sub-class": "aminoacidos", "url": "https://adaptogen.com.br/aminoacidos/" },
+    { "sub-class": "vitaminas nutrientes", "url": "https://adaptogen.com.br/vitaminas-e-nutrientes/" },
+    { "sub-class": "emagrecedores", "url": "https://adaptogen.com.br/emagrecedores/" },
+    { "sub-class": "", "url": "https://adaptogen.com.br/formulas-especiais/" },
+    { "sub-class": "combos", "url": "https://adaptogen.com.br/combos-promocionais/"  }
 ]

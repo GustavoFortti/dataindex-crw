@@ -1,10 +1,10 @@
 [
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/aminoacidos/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/energeticos/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/hipercaloricos/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/pre-treinos/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/clinical-series/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/proteinas/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/funcionais/?mpage=", "tipo": "", "last_extractions": "02/11/2023" },
-    { "id": "", "url": "https://loja.newmillen.com.br/categoria-de-produtos/termogenicos-emagrecedores/?mpage=", "tipo": "", "last_extractions": "02/11/2023" }
+    { "sub-class": "aminoacidos", "url": "https://loja.newmillen.com.br/categoria-de-produtos/aminoacidos/?mpage=" },
+    { "sub-class": "energeticos", "url": "https://loja.newmillen.com.br/categoria-de-produtos/energeticos/?mpage=" },
+    { "sub-class": "hipercaloricos", "url": "https://loja.newmillen.com.br/categoria-de-produtos/hipercaloricos/?mpage=" },
+    { "sub-class": "pre-treino", "url": "https://loja.newmillen.com.br/categoria-de-produtos/pre-treinos/?mpage=" },
+    { "sub-class": "clinical-series", "url": "https://loja.newmillen.com.br/categoria-de-produtos/clinical-series/?mpage=" },
+    { "sub-class": "proteinas", "url": "https://loja.newmillen.com.br/categoria-de-produtos/proteinas/?mpage=" },
+    { "sub-class": "funcionais", "url": "https://loja.newmillen.com.br/categoria-de-produtos/funcionais/?mpage=" },
+    { "sub-class": "termogenicos-emagrecedores", "url": "https://loja.newmillen.com.br/categoria-de-produtos/termogenicos-emagrecedores/?mpage="  }
 ]

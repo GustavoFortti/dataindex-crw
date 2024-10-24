@@ -3,8 +3,8 @@ BRAND = "black skull"
 URL = "https://www.blackskullusa.com.br"
 STATUS = True
 TAIL_PLATFORM_LINK = None
-DISCOUNT_PERCENT_CUPOM = None
-CUPOM_CODE = None
+DISCOUNT_PERCENT_CUPOM = "10%"
+CUPOM_CODE = "nutrifind10"
 USER_AGENT = None
 
 TAG_MAP_PREFERENCE = ["text"]

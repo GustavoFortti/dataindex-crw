@@ -1,10 +1,10 @@
 [
-    { "id": "", "url": "https://www.gsuplementos.com.br/proteina/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/vegano/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/vegetariano/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/termogenico/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/vitaminas/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/clinical/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/aminoacidos/?pg=", "last_extractions": "21/03/2024" },
-    { "id": "", "url": "https://www.gsuplementos.com.br/carboidratos/?pg=", "last_extractions": "21/03/2024" }
+    { "sub-class": "proteina", "url": "https://www.gsuplementos.com.br/proteina/?pg=" },
+    { "sub-class": "vegano", "url": "https://www.gsuplementos.com.br/vegano/?pg=" },
+    { "sub-class": "vegetariano", "url": "https://www.gsuplementos.com.br/vegetariano/?pg=" },
+    { "sub-class": "termogenico", "url": "https://www.gsuplementos.com.br/termogenico/?pg=" },
+    { "sub-class": "vitaminas", "url": "https://www.gsuplementos.com.br/vitaminas/?pg=" },
+    { "sub-class": "clinical", "url": "https://www.gsuplementos.com.br/clinical/?pg=" },
+    { "sub-class": "aminoacidos", "url": "https://www.gsuplementos.com.br/aminoacidos/?pg=" },
+    { "sub-class": "carboidratos", "url": "https://www.gsuplementos.com.br/carboidratos/?pg" }
 ]

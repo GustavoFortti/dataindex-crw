@@ -5,7 +5,6 @@ def get_items(conf, soup):
 def get_product_url(conf, soup):
     import re
     
-    print(soup)
     # Atualiza para buscar o link de todas as estruturas
     product_link_element = soup.find('a', href=re.compile(r'^https://www\.mercadolivre\.com\.br/'))
     if not product_link_element:

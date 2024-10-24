@@ -1,13 +1,13 @@
 [
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/linha-crush", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/proteinas-ganho-massa-muscular", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/creatina", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/pre-treinos-energia", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/pre-treinos-energia", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/precursores", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/hipercaloricos", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/snacks-lanche-doce-fitness", "tipo": "produtos", "last_extractions": ""},
-    {"id": "produtos", "url": "https://underlabz.com.br/collections/vitaminas-essenciais-para-saude", "tipo": "produtos", "last_extractions": ""}
+    { "url": "https://underlabz.com.br/collections/linha-crush" },
+    { "url": "https://underlabz.com.br/collections/proteinas-ganho-massa-muscular" },
+    { "url": "https://underlabz.com.br/collections/creatina" },
+    { "url": "https://underlabz.com.br/collections/pre-treinos-energia" },
+    { "url": "https://underlabz.com.br/collections/pre-treinos-energia" },
+    { "url": "https://underlabz.com.br/collections/precursores" },
+    { "url": "https://underlabz.com.br/collections/hipercaloricos" },
+    { "url": "https://underlabz.com.br/collections/snacks-lanche-doce-fitness" },
+    { "url": "https://underlabz.com.br/collections/vitaminas-essenciais-para-saude" }
 ]
 
 
