@@ -4,7 +4,6 @@ import os
 from src.lib.utils.file_system import create_directory_if_not_exists, path_exists
 from src.lib.utils.log import message
 from src.lib.extract.extract import extract
-from src.lib.load.load import load
 from src.lib.wordlist.wordlist import WORDLIST
 from src.lib.wordlist.wordlist_flavor import WORDLIST_FLAVOR
 from src.lib.wordlist.wordlist_format import WORDLIST_FORMAT
@@ -76,7 +75,6 @@ def run(args):
     options = {
         "extract": extract,
         "transform": dry.dry,
-        "load": load
     }
     
     exec_function = options.get(conf["exec_type"])
