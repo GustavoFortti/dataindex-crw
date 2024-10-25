@@ -814,6 +814,6 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
 
         # Salvar o resultado no caminho especificado
         df_products_memory_shopify.to_csv(conf['path_products_memory_shopify'], index=False)
-        message(f"path_products_memory_shopify - {path_exists(conf['path_products_memory_shopify'])}")
+        message(f"path_products_memory_shopify salvo com sucesso")
     
     message("INGESTION END")

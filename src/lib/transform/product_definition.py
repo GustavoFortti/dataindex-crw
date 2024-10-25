@@ -231,7 +231,7 @@ def get_collections(
         
         if title_terms["is_not"]["terms"] or product_class_terms["is_not"]["terms"]:
             continue
-        
+
         description_ai_terms = process_collection_terms(description_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
         flavor_terms = process_collection_terms(flavor_ai, trie_root, trie_root_flavor, collection, wordlist, wordlist_flavor)
 
@@ -317,6 +317,7 @@ def get_collections(
             if matched_terms == required_terms:
                 collections_found.append(key_index)
         
+        
         # Aplica regras baseadas na quantidade
         rule_fields = collection.get("rule_fields")
         flag_incorrect_quantity = False
@@ -325,8 +326,7 @@ def get_collections(
             unit_of_measure = row.unit_of_measure
             for rule_field in rule_fields:
                 greater_than_equal, less_than_equal = rule_field["range"]
-                if ((greater_than_equal <= quantity <= less_than_equal) and 
-                    (unit_of_measure == rule_field.get("unit_of_measure"))):
+                if ((greater_than_equal <= quantity <= less_than_equal)):
                     
                     if (rule_field['name']):
                         collections_found.append(f"{key}_{rule_field['name']}")
