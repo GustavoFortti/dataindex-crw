@@ -53,8 +53,6 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["path_products_extract_temp"] = os.path.join(conf['data_path'], "products_extract_temp.csv")
     conf["path_products_transform_csl"] = os.path.join(conf['data_path'], "products_transform_csl.csv")
     conf["path_products_metadata_transform"] = os.path.join(conf['data_path'], "products_metadata_transform.csv")
-    conf["path_products_load_csl"] = os.path.join(conf['data_path'], "products_load_csl.csv")
-    conf["path_products_shopify_csl"] = os.path.join(conf['data_path'], "products_shopify_csl.csv")
     
     if ((not path_exists(conf["path_products_extract_csl"])) & (conf["exec_flag"] != "status_job")):
         conf["exec_flag"] = "new_page"

@@ -18,6 +18,7 @@ def set_conf(args, local):
     conf["pages_path"] = f"{local}/src/jobs/slave_page/pages/{conf['country']}"
     
     conf["path_products_load_csl"] = os.path.join(conf['data_path'], "products_load_csl.csv")
+    conf["path_products_memory_shopify"] = os.path.join(conf['data_path'], "products_memory_shopify.csv")
     conf["path_products_shopify_csl"] = os.path.join(conf['data_path'], "products_shopify_csl.csv")
     
     return conf

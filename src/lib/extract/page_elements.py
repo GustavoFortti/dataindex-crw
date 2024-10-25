@@ -5,7 +5,6 @@ class Page():
         self.conf = conf
         
         self.conf["index"] = None
-        page_type = self.conf["page_type"]
         country = self.conf["country"]
         page_name = self.conf["page_name"]
         

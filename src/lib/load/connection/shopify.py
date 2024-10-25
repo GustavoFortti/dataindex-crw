@@ -396,7 +396,10 @@ def update_product(session, product_id: int, product_data: dict) -> bool:
         message(f"Produto {product_id} atualizado com sucesso.")
         return True
     else:
-        error_message = response.json().get('errors', response.text)
+        try:
+            error_message = response.json().get('errors', response.text)
+        except json.decoder.JSONDecodeError:
+            error_message = response.text
         message(f"Erro ao atualizar o produto {product_id}: {response.status_code} - {error_message}")
         return False
 
@@ -728,7 +731,7 @@ def get_product_by_sku(sku: str):
         message(f"Erro ao buscar produto pelo SKU '{sku}': {response.status_code} - {response.text}")
     return None
 
-def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand) -> None:
+def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand: list) -> None:
     global CONF
     CONF = conf
     
@@ -750,12 +753,8 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand)
     sku_data = get_all_skus_with_product_ids()
 
     # Encontra SKUs extras e deleta
-    if isinstance(brand, list):
-        for i in brand:
-            skus_to_delete = find_extra_skus_to_delete(sku_data, refs, i)
-            delete_extra_skus(skus_to_delete)
-    else:
-        skus_to_delete = find_extra_skus_to_delete(sku_data, refs, brand)
+    for i in brand:
+        skus_to_delete = find_extra_skus_to_delete(sku_data, refs, i)
         delete_extra_skus(skus_to_delete)
 
     # Atualiza sku_data após deletar SKUs extras
@@ -763,13 +762,15 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand)
 
     message("INGESTION START")
     
+    df_products_memory_shopify = pd.DataFrame(columns=df.columns)
+    len_df = len(df)
     for index, row in df.iterrows():
         product_data, variant_data = format_product_for_shopify(row)
         if product_data is None or variant_data is None:
             continue
 
         sku = row['ref']
-        message(f"REF - {sku} - {row['title']}")
+        message(f"{index}/{len_df} REF - {sku} - {row['title']}")
 
         # Atualiza o produto se já existir
         product_exist = update_product_by_sku(sku, product_data, variant_data, row, sku_data)
@@ -807,5 +808,12 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand)
                     'vendor': product_data['vendor'],
                     'inventory_item_id': inventory_item_id
                 }]
+        
+        if not pd.DataFrame([row]).isna().all().all():
+            df_products_memory_shopify = pd.concat([df_products_memory_shopify, pd.DataFrame([row])], ignore_index=True)
 
+        # Salvar o resultado no caminho especificado
+        df_products_memory_shopify.to_csv(conf['path_products_memory_shopify'], index=False)
+        message(f"path_products_memory_shopify - {path_exists(conf['path_products_memory_shopify'])}")
+    
     message("INGESTION END")

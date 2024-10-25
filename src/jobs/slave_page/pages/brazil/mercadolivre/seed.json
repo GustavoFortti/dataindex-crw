@@ -1,13 +1,13 @@
 [
-    { "brand": "soldiers", "url": "https://lista.mercadolivre.com.br/loja/soldiers-nutrition/", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "atlhetica nutrition", "url": "https://lista.mercadolivre.com.br/loja/atlhetica-nutrition/", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "puravida", "url": "https://loja.mercadolivre.com.br/puravida?item_id=MLB3791289415&category_id=MLB264201&official_store_id=5504&client=recoview-selleritems&recos_listing=true#origin=vip&component=sellerData&typeSeller=official_store", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "dark lab", "url": "https://lista.mercadolivre.com.br/loja/dark-lab/lista/saude/#applied_filter_id%3Dcategory%26applied_filter_name%3DCategorias%26applied_filter_order%3D4%26applied_value_id%3DMLB264586%26applied_value_name%3DSa%C3%BAde%26applied_value_order%3D3%26applied_value_results%3D147%26is_custom%3Dfalse", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "black skull", "url": "https://loja.mercadolivre.com.br/black-skull-usa?item_id=MLB4904356874&category_id=MLB122102&official_store_id=2597&client=recoview-selleritems&recos_listing=true#origin=pdp&component=sellerData&typeSeller=official_store", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "bold snacks", "url": "https://lista.mercadolivre.com.br/loja/bold-snacks/", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "max titanium", "url": "https://lista.mercadolivre.com.br/loja/max-titanium/", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "iridium labs", "url": "https://lista.mercadolivre.com.br/loja/iridium-labs/lista/saude/suplementos-alimentares/#client=SEARCH&component_id=menu_corridors", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "probiotica", "url": "https://lista.mercadolivre.com.br/loja/probiotica/lista/esportes-fitness/suplementos-shakers/suplementos/#client=SEARCH&component_id=menu_corridors", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "under Labz", "url": "https://lista.mercadolivre.com.br/loja/under-labz/lista/saude/suplementos-alimentares/#client=HOME&component_id=menu_corridors", "next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "dux nutrition lab", "url": "https://loja.mercadolivre.com.br/dux-nutrition#origin=search&component=quick_access_intervention", "next_url_tail": "_Desde_49_Loja_dux-nutrition_NoIndex_True" }
+    { "brand": "Atlhetica Nutrition", "url": "https://lista.mercadolivre.com.br/loja/atlhetica-nutrition/", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Black Skull", "url": "https://loja.mercadolivre.com.br/black-skull-usa?item_id=MLB4904356874&category_id=MLB122102&official_store_id=2597&client=recoview-selleritems&recos_listing=true#origin=pdp&component=sellerData&typeSeller=official_store", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Bold Snacks", "url": "https://lista.mercadolivre.com.br/loja/bold-snacks/", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Soldiers", "url": "https://lista.mercadolivre.com.br/loja/soldiers-nutrition/", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Puravida", "url": "https://loja.mercadolivre.com.br/puravida?item_id=MLB3791289415&category_id=MLB264201&official_store_id=5504&client=recoview-selleritems&recos_listing=true#origin=vip&component=sellerData&typeSeller=official_store", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Dark Lab", "url": "https://lista.mercadolivre.com.br/loja/dark-lab/lista/saude/#applied_filter_id%3Dcategory%26applied_filter_name%3DCategorias%26applied_filter_order%3D4%26applied_value_id%3DMLB264586%26applied_value_name%3DSa%C3%BAde%26applied_value_order%3D3%26applied_value_results%3D147%26is_custom%3Dfalse", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Max Titanium", "url": "https://lista.mercadolivre.com.br/loja/max-titanium/", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Iridium Labs", "url": "https://lista.mercadolivre.com.br/loja/iridium-labs/lista/saude/suplementos-alimentares/#client=SEARCH&component_id=menu_corridors", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Probiotica", "url": "https://lista.mercadolivre.com.br/loja/probiotica/lista/esportes-fitness/suplementos-shakers/suplementos/#client=SEARCH&component_id=menu_corridors", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Under Labz", "url": "https://lista.mercadolivre.com.br/loja/under-labz/lista/saude/suplementos-alimentares/#client=HOME&component_id=menu_corridors", "next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Dux Nutrition Lab", "url": "https://loja.mercadolivre.com.br/dux-nutrition#origin=search&component=quick_access_intervention", "next_url_tail": "_Desde_49_Loja_dux-nutrition_NoIndex_True" }
 ]
