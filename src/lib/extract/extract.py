@@ -73,6 +73,7 @@ def products_update(page):
         while True:
             url = page.get_url(seed)
             index = page.conf["index"]
+            
             message(f"index url: {index}")
             message(f"url: {url}")
             
