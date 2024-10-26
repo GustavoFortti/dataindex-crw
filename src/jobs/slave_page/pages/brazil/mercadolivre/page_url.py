@@ -1,11 +1,12 @@
 def get_url(conf, seed):
     url = seed["url"]
     
-    conf["index"] = 2
     if (not conf["index"]):
         conf["index"] = 1
         return url
     
+    if (seed["remove_to_next_index"]):
+        url = url.replace(seed["remove_to_next_index"], "")
     url = f"{url}{seed["next_url_tail"]}"
     
     if (conf["index"] == 1):

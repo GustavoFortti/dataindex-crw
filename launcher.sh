@@ -11,8 +11,8 @@ local="/home/crw-system/shape-data-shelf-crw"
 
 export USE_HEADLESS="false"
 export CHECKPOINT_EXTRACT="true"
-export DISPLAY=":1"
 
+source $local/env/display.sh
 source $local/keys.sh
 
 usage() {
