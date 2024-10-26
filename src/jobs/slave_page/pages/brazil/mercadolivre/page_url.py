@@ -10,6 +10,9 @@ def get_url(conf, seed):
     
     mercado_livre_indices = [None, "49", "97", "145", "193", "241", "289", "337", "385", "443", "481", "529", "577", "625", "0"]
     
+    if conf["index"] >= len(mercado_livre_indices):
+        return None
+
     last_index = mercado_livre_indices[conf["index"] - 1]
     index = mercado_livre_indices[conf["index"]]
 
