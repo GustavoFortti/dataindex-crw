@@ -8,11 +8,8 @@ def get_url(conf, seed):
     if conf["index"] == 1 and seed.get("next_url_tail") not in url:
         url = f"{url}{seed['next_url_tail']}"
     
-    mercado_livre_indices = [None, "49", "97", "145", "193", "241", "289", "337", "385", "443", "481", "529", "577", "625"]
+    mercado_livre_indices = [None, "49", "97", "145", "193", "241", "289", "337", "385", "443", "481", "529", "577", "625", "0"]
     
-    if conf["index"] >= len(mercado_livre_indices):
-        return url
-
     last_index = mercado_livre_indices[conf["index"] - 1]
     index = mercado_livre_indices[conf["index"]]
 
