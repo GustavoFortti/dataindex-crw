@@ -36,9 +36,13 @@ def apply_generic_filters(df, conf):
     df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
     df['brand'] = conf['brand']
     df['page_name'] = conf['page_name']
-    df['price_numeric'] = df['price'].str.replace(',', '.').astype(float)
+    
+    # Remove pontos de separação de milhares e substitui a vírgula por ponto
+    df['price_numeric'] = df['price'].str.replace('.', '', regex=False).str.replace(',', '.').astype(float)
+    
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df
+
 
 def apply_platform_data(df, conf):
     df['cupom_code'] = conf['cupom_code']

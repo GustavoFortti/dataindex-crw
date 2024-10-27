@@ -2,12 +2,12 @@
     { "brand": "Atlhetica Nutrition", "url": "https://lista.mercadolivre.com.br/loja/atlhetica-nutrition/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
     { "brand": "Black Skull", "url": "https://lista.mercadolivre.com.br/loja/black-skull/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
     { "brand": "Bold Snacks", "url": "https://lista.mercadolivre.com.br/loja/bold-snacks/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "Soldiers", "url": "https://lista.mercadolivre.com.br/loja/soldiers-nutrition/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "Puravida", "url": "https://lista.mercadolivre.com.br/loja/puravida/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
     { "brand": "Dark Lab", "url": "https://lista.mercadolivre.com.br/loja/dark-lab/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "Max Titanium", "url": "https://lista.mercadolivre.com.br/loja/max-titanium/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Dux Nutrition Lab", "url": "https://lista.mercadolivre.com.br/_Loja_dux-nutrition_NoIndex_True", "remove_to_next_index": "_Loja_dux-nutrition_NoIndex_True" ,"next_url_tail": "_Desde_49_Loja_dux-nutrition_NoIndex_True" },
     { "brand": "Iridium Labs", "url": "https://lista.mercadolivre.com.br/loja/iridium-labs/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Max Titanium", "url": "https://lista.mercadolivre.com.br/loja/max-titanium/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
     { "brand": "Probiotica", "url": "https://lista.mercadolivre.com.br/loja/probiotica/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "Under Labz", "url": "https://lista.mercadolivre.com.br/loja/under-labz/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
-    { "brand": "Dux Nutrition Lab", "url": "https://lista.mercadolivre.com.br/_Loja_dux-nutrition_NoIndex_True", "remove_to_next_index": "_Loja_dux-nutrition_NoIndex_True" ,"next_url_tail": "_Desde_49_Loja_dux-nutrition_NoIndex_True" }
+    { "brand": "Puravida", "url": "https://lista.mercadolivre.com.br/loja/puravida/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Soldiers", "url": "https://lista.mercadolivre.com.br/loja/soldiers-nutrition/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" },
+    { "brand": "Under Labz", "url": "https://lista.mercadolivre.com.br/loja/under-labz/", "remove_to_next_index": "" ,"next_url_tail": "_Desde_49_NoIndex_True" }
 ]

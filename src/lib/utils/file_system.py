@@ -211,6 +211,9 @@ def get_old_files_by_percent(directory_path, sort_ascending=True, percentage=5):
     slice_count = max(1, int((percentage / 100.0) * files_count))
 
     selected_files = [file_info[0] for file_info in files_info[:slice_count]]
+    
+    if len(selected_files) > 30:
+        selected_files = selected_files[:30]
 
     return selected_files
 
