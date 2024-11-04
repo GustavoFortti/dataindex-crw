@@ -1,11 +1,10 @@
 import pandas as pd
 
 from src.lib.transform.product_info import create_product_info_cols
-from src.lib.transform.transform_functions import (apply_platform_data, apply_generic_filters,
+from src.lib.transform.transform_functions import (apply_generic_filters, apply_platform_data,
     create_history_price_col, create_price_discount_percent_col, create_quantity_column,
     filter_nulls, remove_blacklisted_products)
 from src.lib.utils.log import message
-
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -33,8 +32,8 @@ def transform(conf, df):
     message("Criando coluna de desconto")
     df = create_price_discount_percent_col(df, conf['data_path'])
     
-    message("Criando coluna de desconto")
-    df = create_history_price_col(df, conf)
+    message("Criando coluna prices")
+    df = create_history_price_col(df, conf['data_path'])
     
     message("CRIAÇÃO das colunas [product_definition, collections]")
     df = create_product_info_cols(df, conf)

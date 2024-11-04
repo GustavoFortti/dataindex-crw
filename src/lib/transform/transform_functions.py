@@ -1,13 +1,15 @@
 import os
 import re
 from copy import deepcopy
+import json
 
 import imagehash
 import numpy as np
 import pandas as pd
 from PIL import Image
 
-from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes, read_df
+from src.lib.utils.dataframe import (read_and_stack_csvs_dataframes,
+    read_and_stack_historical_csvs_dataframes, read_df)
 from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
@@ -42,7 +44,6 @@ def apply_generic_filters(df, conf):
     
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df
-
 
 def apply_platform_data(df, conf):
     df['cupom_code'] = conf['cupom_code']
@@ -241,11 +242,31 @@ def create_price_discount_percent_col(df, data_path):
 
     return df_new
 
-def create_history_price_col(df, conf):
-    df_history = read_df(f"{conf['src_data_path']}/history_price/history_price_csl.csv")
-    df_history = df_history[df_history['brand'] == conf['brand']]
-    df_history = df_history[['ref', 'prices']]
-    
-    df = pd.merge(df, df_history, on='ref', how='left')
+def create_history_price_col(df, data_path):
+    df_new = deepcopy(df)
+    df_new["prices"] = None
 
-    return df
+    path = f"{data_path}/history"
+    df_products_load_csl = read_and_stack_historical_csvs_dataframes(path, False, dtype={'ref': str})
+    
+    message("process prices")
+    for idx, row in df_new.iterrows():
+        ref = row['ref']
+        
+        df_price = df_products_load_csl[df_products_load_csl["ref"] == ref].sort_values(by='ing_date', ascending=False)
+        
+        if (df_price.empty):
+            continue
+            
+        prices_dates = df_price[["price_numeric", "ing_date"]].values.tolist()
+        filtered_prices_dates = []
+        
+        for i in range(len(prices_dates)):
+            price, date = prices_dates[i]
+            if i == len(prices_dates) - 1 or price != prices_dates[i + 1][0]:
+                filtered_prices_dates.append({price, date})
+        
+        if (len(filtered_prices_dates) >= 2):
+            df_new.loc[idx, "prices"] = str(filtered_prices_dates)
+    
+    return df_new
