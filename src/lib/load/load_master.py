@@ -9,6 +9,7 @@ from src.lib.utils.log import message
 from src.lib.utils.file_system import delete_file, path_exists
 
 def load(conf, df_products_transform_csl):
+    print('Ok')
     # Carregar os DataFrames e adicionar a coluna 'is_transform_data'
     columns = df_products_transform_csl.columns
     df_products_transform_csl['is_transform_data'] = 1

@@ -116,8 +116,6 @@ def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str, 
     
     for path in pages_path:
         file_path = f"{path}/{file_name}"
-        print(file_path)
-        exit()
         
         if os.path.exists(file_path):
             df_temp.append(read_df(file_path, dtype))
