@@ -9,7 +9,6 @@ from src.lib.utils.log import message
 from src.lib.utils.file_system import delete_file, path_exists
 
 def load(conf, df_products_transform_csl):
-    print('Ok')
     # Carregar os DataFrames e adicionar a coluna 'is_transform_data'
     columns = df_products_transform_csl.columns
     df_products_transform_csl['is_transform_data'] = 1
@@ -37,13 +36,13 @@ def load(conf, df_products_transform_csl):
     df = df.drop(columns=['is_transform_data'])
     df = df[columns]
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
-    
+
     if (not df.empty):
         refs = df_products_transform_csl["ref"].values
         process_and_ingest_products(conf, df, refs, conf['brand'])
         df.to_csv(conf['path_products_shopify_csl'], index=False)
         message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
-        
+    
     df_products_transform_csl.to_csv(conf['path_products_load_csl'], index=False)
     delete_file(conf['path_products_memory_shopify'])
     message(f"path_products_load_csl - {path_exists(conf['path_products_load_csl'])}")

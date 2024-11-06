@@ -36,9 +36,9 @@ def generate_price_chart(prices: list) -> str:
                     label: 'Preço (R$)',
                     data: {json.dumps(prices_data)},  // Preços do gráfico
                     fill: false,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    borderColor: '#F34B4B',
+                    backgroundColor: 'rgba(243, 75, 75, 0.2)',
+                    pointBackgroundColor: '#F34B4B',
                     borderWidth: 2
                 }}]
             }},
@@ -56,7 +56,7 @@ def generate_price_chart(prices: list) -> str:
                     }},
                     x: {{
                         grid: {{
-                            display: true
+                            display: false  // Desativar as linhas de fundo na vertical
                         }}
                     }}
                 }},
