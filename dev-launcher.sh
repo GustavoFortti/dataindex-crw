@@ -53,12 +53,12 @@ exec_flag="false"
 # job_name="product_flavor"
 
 # job_name="history_price"
-job_type="data_shelf"
-job_name="load_master"
+# job_type="data_shelf"
+# job_name="load_master"
 
-exec_type="false"
-exec_flag="false"
-page_names="false"
+# exec_type="false"
+# exec_flag="false"
+# page_names="false"
 
 page_type="supplement"
 country="brazil"
