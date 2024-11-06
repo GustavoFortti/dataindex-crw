@@ -13,7 +13,8 @@ from src.lib.transform.product_definition import create_product_cols
 
 def create_product_info_cols(df: pd.DataFrame, conf: Dict) -> None:
     message("CARREGANDO dados dos produtos")
-    load_product_info(df, conf)
+    if (conf["mode"] == "prd"):
+        load_product_info(df, conf)
     
     message("CRIANDO colunas [produtc_definition, product_collection]")
     return create_product_cols(df, conf)

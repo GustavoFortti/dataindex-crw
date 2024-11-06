@@ -49,6 +49,7 @@ def transform(conf, df):
             'price',
             'image_url',
             'product_url',
+            'product_url_affiliated',
             'ing_date',
             'brand',
             'page_name',
