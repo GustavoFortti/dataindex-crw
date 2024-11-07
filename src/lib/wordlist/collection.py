@@ -161,7 +161,7 @@ COLLECTIONS = {
         "maybe_not": [
             "manteiga de amendoim",
         ],
-        "default_collection": ["Proteínas"],
+        "default_collection": [],
         "promotion_collection": None,
         "indices_flavor": {
             "Whey Sabor": {
@@ -570,6 +570,10 @@ COLLECTIONS = {
             "kit",
             "whey",
             "soy",
+            "glutamina",
+            "cookie",
+            "zma",
+            "mct",
             "ervilha",
             "rice",
             "barrinha",

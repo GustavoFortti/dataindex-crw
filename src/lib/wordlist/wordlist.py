@@ -461,7 +461,8 @@ SUPPLEMENT_COMPONENT_LIST = {
             "glutamin",
             "glutamine",
             "glutamina",
-            "lglutamina"
+            "lglutamina",
+            "gluta",
         ],
         "conflict": [],
         "exact_term": False,
