@@ -887,6 +887,20 @@ SUPPLEMENT_COMPONENT_LIST = {
         "exact_term": False,
         "brazil": "picolinato",
     },
+    "mct": {
+        "synonyms": [
+            "MCT",
+            "óleo MCT",
+            "oleo MCT",
+            "MCT oil",
+            "medium chain triglycerides",
+            "triglicerídeos de cadeia média",
+            "triglicerideos de cadeia media"
+        ],
+        "conflict": [],
+        "exact_term": False,
+        "brazil": "MCT"
+    },
     "pretreino": {
         "synonyms": [
             "pretreino",

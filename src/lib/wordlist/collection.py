@@ -2131,4 +2131,44 @@ COLLECTIONS = {
             },
         }
     },
+    'mct': {
+        "product": [
+            "mct",
+        ],
+        "features": [],
+        "ingredients": [],
+        "flavor": KEYS_WORDLIST_FLAVOR,
+        "format": [],
+        "is_not": [
+            "endurance",
+            "hipercalorico",
+            "granola",
+            "melatonina",
+            "kit",
+            "barrinha",
+            "creatina",
+            "glutamin",
+            "bcaa",
+            "pretreino",
+            "blend",
+            "ervilha",
+            "beef",
+            "omega 3",
+            "iso",
+            "barbecue",
+            "soy",
+            "mass",
+            "whey",
+            "alfajor",
+            "wafer",
+        ],
+        "maybe_not": [],
+        "promotion_collection": None,
+        "indices_flavor": [],
+        "indices": {
+            "MCT": {
+                "product": "mct",
+            },
+        }
+    },
 }
