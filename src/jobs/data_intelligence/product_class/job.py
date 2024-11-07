@@ -90,9 +90,9 @@ def run(args: Any) -> None:
     ]]
     
     df['class_product'] = None
-    df = specific_rules_for_whey(df)
+    df = specific_rules(df)
     
-    columns = ["is_crunch", "is_drink", "whey_sache"]
+    columns = ["is_crunch", "is_drink", "whey_sache", "is_what"]
     for row in df.itertuples(index=False):
         ref = row.ref
         page_name = row.page_name
@@ -103,7 +103,7 @@ def run(args: Any) -> None:
         if (values_string):
             save_file(values_string, f"{CONF['src_data_path']}/{page_name}/products/{ref}_class.txt")
         
-def specific_rules_for_whey(df):
+def specific_rules(df):
     df['is_crunch'] = None
     
     # situalçoes especificas
@@ -113,5 +113,17 @@ def specific_rules_for_whey(df):
         else None, 
         axis=1
     )
+    
+    df['is_what'] = None
+    
+    # Isofort Ultra Imuno - 900g baunilha - Vitafor
+    df.loc[df["ref"] == "ef7970b3", 'is_what'] = "whey protein, isolado, hidrolisado"
+    
+    # N.O Xplosion Frutas Vermelhas 240G
+    df.loc[df["ref"] == "9da89a4f", 'is_what'] = "pre-treino"
+    
+    # WHEY PROTEIN ISOLADO
+    df.loc[df["ref"] == "292a3fcd", 'is_what'] = "whey protein, sache"
+    df.loc[df["ref"] == "b265d7c0", 'is_what'] = "whey protein, sache"
     
     return df

@@ -175,7 +175,6 @@ def run(args: Any) -> None:
         if (product_class_ai):
             message(f"{ref} - product_class_ai - OK")
             save_file_with_line_breaks(path_product_class_ai, product_class_ai)
-            exit()
             save_json(path_file_control, control_data)
             
         control_data[today_str]["requests"] += 1
