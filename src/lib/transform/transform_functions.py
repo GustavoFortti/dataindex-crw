@@ -242,12 +242,11 @@ def create_price_discount_percent_col(df, data_path):
 
     return df_new
 
-def create_history_price_col(df, data_path):
+def create_history_price_col(df, conf):
     df_new = deepcopy(df)
     df_new["prices"] = None
 
-    path = f"{data_path}/history"
-    df_products_load_csl = read_and_stack_historical_csvs_dataframes(path, False, dtype={'ref': str})
+    df_products_load_csl = read_and_stack_historical_csvs_dataframes(conf["path_products_history_price_dir"], False, dtype={'ref': str})
     
     message("process prices")
     for idx, row in df_new.iterrows():
@@ -268,5 +267,5 @@ def create_history_price_col(df, data_path):
         
         if (len(filtered_prices_dates) >= 2):
             df_new.loc[idx, "prices"] = str(filtered_prices_dates)
-    
+
     return df_new

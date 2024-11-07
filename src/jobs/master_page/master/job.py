@@ -1,12 +1,14 @@
 import importlib
 import os
+from datetime import datetime
 
-from src.lib.utils.file_system import create_directory_if_not_exists, path_exists
-from src.lib.utils.log import message
 from src.lib.extract.extract import extract
+from src.lib.utils.file_system import create_directory_if_not_exists, DATE_FORMAT, path_exists
+from src.lib.utils.log import message
 from src.lib.wordlist.wordlist import WORDLIST
 from src.lib.wordlist.wordlist_flavor import WORDLIST_FLAVOR
 from src.lib.wordlist.wordlist_format import WORDLIST_FORMAT
+
 
 def set_conf(args, local):
     conf = {}
@@ -52,6 +54,11 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["path_products_extract_temp"] = os.path.join(conf['data_path'], "products_extract_temp.csv")
     conf["path_products_transform_csl"] = os.path.join(conf['data_path'], "products_transform_csl.csv")
     conf["path_products_metadata_transform"] = os.path.join(conf['data_path'], "products_metadata_transform.csv")
+    
+    create_directory_if_not_exists(f"{conf['data_path']}/history_price")
+    date_today = datetime.today().strftime(DATE_FORMAT)
+    conf["path_products_history_price"] = os.path.join(f"{conf['data_path']}/history_price", f"products_history_price_{date_today}.csv")
+    conf["path_products_history_price_dir"] = f"{conf['data_path']}/history_price"
     
     if ((not path_exists(conf["path_products_extract_csl"])) & (conf["exec_flag"] != "status_job")):
         conf["exec_flag"] = "new_page"

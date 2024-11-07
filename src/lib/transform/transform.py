@@ -33,7 +33,7 @@ def transform(conf, df):
     df = create_price_discount_percent_col(df, conf['data_path'])
     
     message("Criando coluna prices")
-    df = create_history_price_col(df, conf['data_path'])
+    df = create_history_price_col(df, conf)
     
     message("CRIAÇÃO das colunas [product_definition, collections]")
     df = create_product_info_cols(df, conf)
@@ -69,5 +69,7 @@ def transform(conf, df):
     ]
 
     print(df.info())
+    
+    df.to_csv(conf['path_products_history_price'], index=False)
 
     return df
