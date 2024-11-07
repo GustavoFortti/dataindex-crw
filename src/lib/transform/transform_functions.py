@@ -248,6 +248,9 @@ def create_history_price_col(df, conf):
 
     df_products_load_csl = read_and_stack_historical_csvs_dataframes(conf["path_products_history_price_dir"], False, dtype={'ref': str})
     
+    if (df_products_load_csl.empty):
+        return df_new
+    
     message("process prices")
     for idx, row in df_new.iterrows():
         ref = row['ref']

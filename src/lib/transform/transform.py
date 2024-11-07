@@ -70,6 +70,6 @@ def transform(conf, df):
 
     print(df.info())
     
-    df.to_csv(conf['path_products_history_price'], index=False)
+    df[["ref", "price_numeric", "ing_date"]].to_csv(conf['path_products_history_price'], index=False)
 
     return df
