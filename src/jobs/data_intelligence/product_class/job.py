@@ -126,4 +126,7 @@ def specific_rules(df):
     df.loc[df["ref"] == "292a3fcd", 'is_what'] = "whey protein, sache"
     df.loc[df["ref"] == "b265d7c0", 'is_what'] = "whey protein, sache"
     
+    # Super Gainers Refil 3Kg
+    df.loc[df["ref"] == "2a090f2d", 'is_what'] = "hipercalorico"
+    
     return df
