@@ -255,7 +255,7 @@ def get_collections(
             continue
         
         score = (
-            len(product_class_terms["product"]["terms"]) * 2 +
+            len(product_class_terms["product"]["terms"]) * 3 +
             len(title_terms["product"]["terms"]) * 2 +
             len(description_ai_terms["product"]["terms"]) * 0.4 +
             len(tags_terms["product"]["terms"]) * 0.5
@@ -367,13 +367,7 @@ def get_collections(
     if all_collections:
         collections_chosed = max(all_collections, key=lambda x: x["score"])
         
-        # Obtendo os valores mínimos e máximos
-        scores = [x["score"] for x in all_collections]
-        min_score = min(scores)
-        max_score = max(scores)
-        # Normalizando cada score
-        normalized_scores = [(score - min_score) / (max_score - min_score) for score in scores]
-        product_score = max(normalized_scores)
+        product_score = int(collections_chosed['score'] * 100)
 
         title_field = collections_chosed["title_field"]
         collections_chosed = collections_chosed["collections"]

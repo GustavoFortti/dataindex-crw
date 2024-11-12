@@ -2,7 +2,7 @@ JOB_NAME = "max_titanium"
 BRAND = "max titanium"
 URL = "https://www.maxtitanium.com.br"
 STATUS = True
-product_url_affiliated = "?utm_source=mais&utm_medium=maisplataforma&utm_campaign=nutrifind"
+PRODUCT_URL_AFFILIATED = None
 DISCOUNT_PERCENT_CUPOM = "10%"
 CUPOM_CODE = "MAX10NUTRIFIND10"
 USER_AGENT = None

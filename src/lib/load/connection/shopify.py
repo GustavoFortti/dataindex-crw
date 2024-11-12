@@ -364,7 +364,7 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
         # Atualiza o produto
         product_success = update_product(session, product_id, product_data)
         # Extrai quantity_sold do row
-        quantity_sold = row['quantity_sold'] if 'quantity_sold' in row and pd.notna(row['quantity_sold']) else random.randint(1, 1000)
+        quantity_sold =  random.randint(row['product_score'], row['product_score'] * 2) if 'product_score' in row and pd.notna(row['product_score']) else 1
         # Atualiza a variante
         variant_success = update_variant(session, product_id, variant_id, variant_data, quantity_sold)
         

@@ -62,6 +62,7 @@ def transform(conf, df):
             'price_qnt',
             'product_tags',
             'collections',
+            'product_score',
             'prices',
             'title_terms',
             'cupom_code',
