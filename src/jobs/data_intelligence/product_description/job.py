@@ -37,8 +37,11 @@ def set_config(args: Any, local: str) -> Dict[str, Any]:
         "src_data_path": f"{local}/data/{args.page_type}/{args.country}",
         "wordlist": WORDLIST[args.page_type],
         "data_path": f"{local}/data/{args.page_type}/{args.country}/{args.job_name}",
-        "pages_path": f"{local}/src/jobs/slave_page/pages/{args.country}"
+        "pages_path": f"{local}/src/jobs/slave_page/pages/{args.country}",
+        "united_states": "asst_tZ4OZ7HNXhpH556FOrqVLTmE",
+        "brazil": "asst_Gg9EqaQUrMv0o2tUap14sgEX",
     }
+    
     return config
 
 
@@ -169,7 +172,7 @@ def run(args: Any) -> None:
         message(f"ref - {ref}")
         message(f"path - {path_product_description}")
         path_product_description_ai = f"{path_products}/{ref}_description_ai.txt"
-        product_description_ai = refine_description(product_description, "asst_Gg9EqaQUrMv0o2tUap14sgEX")
+        product_description_ai = refine_description(product_description, CONF[CONF["country"]])
         
         if (product_description_ai):
             message(f"{ref} - product_description_ai - OK")

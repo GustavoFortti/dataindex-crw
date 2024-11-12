@@ -328,10 +328,7 @@ def get_collections(
                 greater_than_equal, less_than_equal = rule_field["range"]
                 if ((greater_than_equal <= quantity <= less_than_equal)):
                     
-                    if (rule_field['name']):
-                        collections_found.append(f"{key}_{rule_field['name']}")
-                    else:
-                        collections_found.append(key)
+                    collections_found.append(rule_field['name'])
                         
                 elif rule_field.get('required'):
                     flag_incorrect_quantity = True
@@ -363,16 +360,27 @@ def get_collections(
                 "collections": collections_found,
                 "title_field": title_field
             })
-            
+    
     # Seleciona a coleção com maior score
+    product_score = 0
     collections_chosed = []
     if all_collections:
         collections_chosed = max(all_collections, key=lambda x: x["score"])
+        
+        # Obtendo os valores mínimos e máximos
+        scores = [x["score"] for x in all_collections]
+        min_score = min(scores)
+        max_score = max(scores)
+        # Normalizando cada score
+        normalized_scores = [(score - min_score) / (max_score - min_score) for score in scores]
+        product_score = max(normalized_scores)
+
         title_field = collections_chosed["title_field"]
         collections_chosed = collections_chosed["collections"]
 
     product_tags = list(set(product_tags))
-    return collections_chosed, product_tags, title_field
+    collections_chosed = list(set(collections_chosed))
+    return collections_chosed, product_tags, title_field, product_score
 
 # Função principal para criar as colunas de produto
 def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
@@ -389,6 +397,7 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
     collections_list = []
     title_terms_list = []
     product_tags_list = []
+    product_score_list = []
 
     # Optimize iteration using itertuples
     for row in df.itertuples(index=False):
@@ -406,7 +415,7 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         flavor_ai_path = f"{conf['data_path']}/products/{ref}_flavor_ai.txt"
         flavor_ai = read_file(flavor_ai_path) if path_exists(flavor_ai_path) else ""
 
-        collections, product_tags, title_terms = get_collections(
+        collections, product_tags, title_terms, product_score = get_collections(
             row, 
             title,
             product_class,
@@ -421,8 +430,10 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
         collections_list.append(collections)
         product_tags_list.append(", ".join([wordlist[tags][country].title() for tags in product_tags]))
         title_terms_list.append(title_terms)
+        product_score_list.append(product_score)
     
     df['collections'] = collections_list
     df['product_tags'] = product_tags_list
     df['title_terms'] = title_terms_list
+    df['product_score'] = product_score_list
     return df

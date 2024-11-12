@@ -43,7 +43,7 @@ COLLECTIONS = {
         "rule_fields": [
             {
                 "field": "quantity",
-                "name": None,
+                "name": "Whey",
                 "required": True,
                 "unit_of_measure": "g",
                 "range": [300, 100000],
@@ -348,13 +348,13 @@ COLLECTIONS = {
         "rule_fields": [
             {
                 "field": "quantity",
-                "name": "1kg",
+                "name": "Creatina 1kg",
                 "unit_of_measure": "g",
                 "range": [999, 10000],
             },
             {
                 "field": "quantity",
-                "name": "500g",
+                "name": "Creatina 500g",
                 "unit_of_measure": "g",
                 "range": [499, 999],
             },

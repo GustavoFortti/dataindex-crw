@@ -1,9 +1,10 @@
 import pandas as pd
 
 from src.lib.transform.product_info import create_product_info_cols
-from src.lib.transform.transform_functions import (apply_generic_filters, apply_platform_data,
-    create_history_price_col, create_price_discount_percent_col, create_quantity_column,
-    filter_nulls, remove_blacklisted_products)
+from src.lib.transform.transform_functions import (
+    apply_generic_filters, apply_platform_data, create_history_price_col,
+    create_price_discount_percent_col, create_quantity_column, filter_nulls,
+    remove_blacklisted_products)
 from src.lib.utils.log import message
 
 pd.set_option('display.max_rows', None)

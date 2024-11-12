@@ -1,7 +1,7 @@
+import json
 import os
 import re
 from copy import deepcopy
-import json
 
 import imagehash
 import numpy as np
@@ -9,7 +9,8 @@ import pandas as pd
 from PIL import Image
 
 from src.lib.utils.dataframe import (read_and_stack_csvs_dataframes,
-    read_and_stack_historical_csvs_dataframes, read_df)
+                                     read_and_stack_historical_csvs_dataframes,
+                                     read_df)
 from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        list_directory, path_exists, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
@@ -35,12 +36,12 @@ def apply_generic_filters(df, conf):
     """Apply various data cleaning and transformation filters."""
     df['title_extract'] = df['title']
     df['name'] = df['title'].str.lower()
-    df['price'] = df['price'].str.replace('R$', '').str.replace(' ', '')
+    df['price'] = df['price'].str.replace(r'[R$]', '', regex=True).str.replace(' ', '')
     df['brand'] = conf['brand']
     df['page_name'] = conf['page_name']
     
     # Remove pontos de separação de milhares e substitui a vírgula por ponto
-    df['price_numeric'] = df['price'].str.replace('.', '', regex=False).str.replace(',', '.').astype(float)
+    df['price_numeric'] = df['price'].str.replace(',', '.').astype(float)
     
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df

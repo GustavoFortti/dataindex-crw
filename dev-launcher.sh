@@ -14,7 +14,7 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    "darkness"
+    # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -27,15 +27,17 @@ page_names=(
     # "puravida"
     # "truesource"
     # "vitafor"
+
+    # "a1supplements"
 )
 
 job_type="master_page"
 job_name="master"
 
-# exec_type="extract"
+exec_type="extract"
 # exec_flag="status_job"
 # exec_flag="new_page"
-# exec_flag="products_update"
+exec_flag="products_update"
 # exec_flag="products_metadata_create_pages_if_not_exist"
 # exec_flag="products_metadata_update_old_pages"
 
@@ -53,16 +55,17 @@ exec_flag="false"
 # job_name="product_flavor"
 
 # job_name="history_price"
-# job_type="data_shelf"
-# job_name="load_master"
+job_type="data_shelf"
+job_name="load_master"
 
-# exec_type="false"
-# exec_flag="false"
-# page_names="false"
+exec_type="false"
+exec_flag="false"
+page_names="false"
 
 page_type="supplement"
 country="brazil"
-mode="dev"
+# country="united_states"
+mode="prd"
 
 if [ -z "$page_names" ]; then
     python3 "$LOCAL/main.py" \
