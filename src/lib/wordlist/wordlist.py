@@ -27,69 +27,92 @@ BLACK_LIST = [
     "bermuda",
     "necessaire",
     "bolsa",
-    "moletom"
+    "moletom",
+    "tank top",
+    "t-shirt",
+    "shaker",
+    "backpack",
+    "bottle",
+    "cap",
+    "lunchbox",
+    "cooler bag",
+    "jug",
+    "baby tee",
+    "mask",
+    "pill organizer",
+    "shoulder bag",
+    "frisbee",
+    "bottle",
+    "shorts",
+    "jacket",
+    "pants",
+    "leggings",
+    "sweater",
+    "dux top",
+    "visor",
+    "bermuda shorts",
+    "pouch",
+    "bag",
+    "sweatshirt",
 ]
 
 SUPPLEMENT_COMPONENT_LIST = {
     "nac": {
         "synonyms": [
+            "nac",
             "acetil",
             "nacetil",
             "n acetil",
             "cisteina",
             "l cisteina",
             "lcisteina",
-            "nac",
         ],
-        "conflict": [],
         "exact_term": True,
         "brazil": "NAC",
+        "united_states": "NAC",
     },
     "albumina": {
         "synonyms": [
+            "albumin",
             "albumina",
             "albumin",
             "albumi",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "albumina",
-    },
-    "alfajor": {
-        "synonyms": [
-            "alfajor"
-        ],
-        "conflict": [],
-        "exact_term": False,
-        "brazil": "alfajor",
+        "united_states": "albumin",
     },
     "alho": {
         "synonyms": [
-            "alho"
+            "garlic",
+            "alho",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "alho",
+        "united_states": "garlic",
     },
     "aminoacido": {
         "synonyms": [
-            "aminoacido"
+            "amino acid",
+            "aminoacido",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "aminoácido",
+        "united_states": "amino acid",
     },
     "antioxidante": {
         "synonyms": [
+            "antioxidant",
             "antioxidante",
-            "antiox"
+            "antiox",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "antioxidante",
+        "united_states": "antioxidant",
     },
     "arginin": {
         "synonyms": [
+            "arginine",
             "argin",
             "arginin",
             "arginine",
@@ -99,43 +122,46 @@ SUPPLEMENT_COMPONENT_LIST = {
             "larginina",
             "l arginina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "arginina",
+        "united_states": "arginine",
     },
     "astaxantina": {
         "synonyms": [
-            "astaxantina"
+            "astaxanthin",
+            "astaxantina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "astaxantina",
+        "united_states": "astaxanthin",
     },
     "batata doce": {
         "synonyms": [
-            "batata doce"
+            "sweet potato",
+            "batata doce",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "batata doce",
+        "united_states": "sweet potato",
     },
     "bcaa": {
         "synonyms": [
             "bcaa",
-            "bca"
+            "bca",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "BCAA",
+        "united_states": "BCAA",
     },
     "beauty": {
         "synonyms": [
             "beauty",
-            "beleza"
+            "beauty",
+            "beleza",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "beleza",
+        "united_states": "beauty",
     },
     "beef": {
         "synonyms": [
@@ -144,67 +170,74 @@ SUPPLEMENT_COMPONENT_LIST = {
             "carne",
             "bovina",
         ],
-        "conflict": ["carnitin"],
         "exact_term": True,
         "brazil": "carne",
+        "united_states": "beef",
     },
     "betaalanina": {
         "synonyms": [
+            "beta-alanine",
             "beta alanina",
             "betaalanina",
             "alanina",
-            "alanine"
+            "alanine",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "beta-alanina",
+        "united_states": "beta-alanine",
     },
     "betacaroteno": {
         "synonyms": [
-            "betacaroteno"
+            "beta-carotene",
+            "betacaroteno",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "betacaroteno",
+        "brazil": "beta-carotene",
+        "united_states": "beta-carotene",
     },
     "borragem": {
         "synonyms": [
-            "borragem"
+            "borage",
+            "borragem",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "borragem",
+        "united_states": "borage",
     },
     "termogenico": {
         "synonyms": [
+            "thermogenic",
             "termo",
             "termogenico",
             "termogênico",
             "termogenicos",
             "termogênicos",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "termogênico",
+        "united_states": "thermogenic",
     },
     "tcm": {
         "synonyms": [
+            "mct",
             "tcm",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "TCM",
+        "united_states": "MCT",
     },
     "calcio": {
         "synonyms": [
-            "calcio"
+            "calcium",
+            "calcio",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "cálcio",
+        "united_states": "calcium",
     },
     "carboidrato": {
         "synonyms": [
+            "carbohydrate",
             "carboidrato",
             "carbohidrato",
             "carbohydrate",
@@ -217,693 +250,777 @@ SUPPLEMENT_COMPONENT_LIST = {
             "carbs",
             "carb",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "carboidrato",
+        "united_states": "carbohydrate",
     },
     "carnitin": {
         "synonyms": [
+            "carnitine",
             "carnitin",
             "carnitina",
             "lcarnitina",
             "l carnitina",
             "l carn",
         ],
-        "conflict": ["beef"],
         "exact_term": False,
         "brazil": "carnitina",
+        "united_states": "carnitine",
     },
     "cartamo": {
         "synonyms": [
-            "cartamo"
+            "safflower",
+            "cartamo",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "cártamo",
+        "united_states": "safflower",
     },
     "oleo de cartamo": {
         "synonyms": [
-            "oleo de cartamo"
+            "safflower oil",
+            "oleo de cartamo",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "óleo de cartamo",
+        "united_states": "safflower oil",
     },
     "casein": {
         "synonyms": [
+            "casein",
             "caseinato",
             "caseina",
             "casein",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "caseina",
+        "united_states": "casein",
     },
     "cha": {
         "synonyms": [
-            "cha"
+            "tea",
+            "cha",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "chá",
+        "united_states": "tea",
     },
     "guarana": {
         "synonyms": [
             "guarana",
+            "guarana",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "guaraná"
+        "brazil": "guaraná",
+        "united_states": "guarana",
     },
     "chaverde": {
         "synonyms": [
+            "green tea",
             "chaverde",
-            "cha verde"
+            "cha verde",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "chá verde",
+        "united_states": "green tea",
     },
     "chia": {
         "synonyms": [
-            "chia"
+            "chia",
+            "chia",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "chia",
+        "united_states": "chia",
     },
     "cistein": {
         "synonyms": [
+            "cysteine",
             "cistein",
-            "lcisteina"
+            "lcisteina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "cisteína",
+        "united_states": "cysteine",
     },
     "colageno": {
         "synonyms": [
+            "collagen",
             "colageno",
             "colagen",
             "collagen",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "colágeno",
+        "united_states": "collagen",
     },
     "vitamina b": {
         "synonyms": [
+            "vitamin b complex",
             "complexo b",
-            "vitamina b"
+            "vitamina b",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "vitamina B",
+        "united_states": "vitamin B complex",
     },
     "concentrad": {
         "synonyms": [
+            "concentrate",
             "wpc",
             "concentrad",
-            "concentrado"
+            "concentrado",
         ],
-        "conflict": [],
         "exact_term": True,
         "brazil": "concentrado",
+        "united_states": "concentrate",
     },
     "creatina": {
         "synonyms": [
+            "creatine",
             "creatina",
             "creatine",
             "creatin",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "creatina",
+        "united_states": "creatine",
     },
     "crisp": {
         "synonyms": [
-            "crisp"
+            "crisp",
+            "crisp",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "crisp",
+        "united_states": "crisp",
     },
     "cromo": {
         "synonyms": [
+            "chromium",
             "cromo",
-            "cromo"
+            "cromo",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "cromo",
+        "united_states": "chromium",
     },
     "cafeina": {
-        "synonyms": ["cafeína", "caffeine", "cafeina", "suplemento de cafeína"],
-        "conflict": [
-            "café",
-            "guaraná"
+        "synonyms": [
+            "caffeine",
+            "cafeína",
+            "caffeine",
+            "cafeina",
+            "suplemento de cafeína",
         ],
         "exact_term": False,
-        "brazil": "cafeína"
+        "brazil": "cafeína",
+        "united_states": "caffeine",
     },
     "curcuma": {
         "synonyms": [
+            "turmeric",
             "curcuma",
-            "acafrao"
+            "acafrao",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "cúrcuma",
+        "united_states": "turmeric",
     },
     "dextrose": {
         "synonyms": [
             "dextrose",
+            "dextrose",
             "dextros",
             "maltodextrose",
             "maltodextros",
-            "malto dextrose"
+            "malto dextrose",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "dextrose",
+        "united_states": "dextrose",
     },
     "dribose": {
         "synonyms": [
+            "d-ribose",
             "dribose",
             "d ribose",
             "ribose",
-            "dribose"
+            "dribose",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "ribose",
+        "united_states": "D-ribose",
     },
 
     "ervilha": {
         "synonyms": [
+            "pea",
             "ervilha",
-            "pea"
+            "pea",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "ervilha",
+        "united_states": "pea",
     },
     "espirulina": {
         "synonyms": [
-            "espirulina"
+            "spirulina",
+            "espirulina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "espirulina",
+        "united_states": "spirulina",
     },
     "fibra": {
         "synonyms": [
-            "fibra"
+            "fiber",
+            "fibra",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "fibra",
+        "united_states": "fiber",
     },
     "fosfatidilserina": {
         "synonyms": [
-            "fosfatidilserina"
+            "phosphatidylserine",
+            "fosfatidilserina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "fosfatidilserina",
+        "united_states": "phosphatidylserine",
     },
     "frutose": {
         "synonyms": [
-            "frutose"
+            "fructose",
+            "frutose",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "frutose",
+        "united_states": "fructose",
     },
     "gengibre": {
         "synonyms": [
-            "gengibre"
+            "ginger",
+            "gengibre",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "gengibre",
+        "united_states": "ginger",
     },
     "gergelim": {
         "synonyms": [
-            "gergelim"
+            "sesame",
+            "gergelim",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "gergelim",
+        "united_states": "sesame",
     },
     "glutamin": {
         "synonyms": [
+            "glutamine",
             "glutamin",
             "glutamine",
             "glutamina",
             "lglutamina",
             "gluta",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "glutamina",
+        "united_states": "glutamine",
     },
     "hair": {
         "synonyms": [
             "hair",
-            "cabelo"
+            "hair",
+            "cabelo",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "cabelo",
+        "united_states": "hair",
     },
     "hialuronico": {
         "synonyms": [
-            "hialuronico"
+            "hyaluronic acid",
+            "hialuronico",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "hialurônico",
+        "united_states": "hyaluronic acid",
     },
     "hidrolisad": {
         "synonyms": [
+            "hydrolyzed",
             "hidrolisad",
             "hidrolisado",
             "hydro",
-            "wph"
+            "wph",
         ],
-        "conflict": [],
         "exact_term": True,
         "brazil": "hidrolisado",
+        "united_states": "hydrolyzed",
     },
     "churros": {
         "synonyms": [
             "churros",
+            "churros",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "churros",
+        "united_states": "churros",
     },
     "hmb": {
         "synonyms": [
             "hmb",
-            "hydroxymethylbutyrate"
+            "hmb",
+            "hydroxymethylbutyrate",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "HMB",
+        "united_states": "HMB",
     },
     "imune": {
         "synonyms": [
+            "immune",
             "imune",
-            "imunidade"
+            "imunidade",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "imunidade",
+        "united_states": "immune",
     },
     "iso": {
         "synonyms": [
+            "isolate",
             "iso",
             "wpi",
             "isolado",
             "isolate",
-            "isolada"
+            "isolada",
         ],
-        "conflict": [],
         "exact_term": True,
         "brazil": "isolado",
+        "united_states": "isolate",
     },
     "kit": {
         "synonyms": [
             "kit",
+            "kit",
             "combo",
             "elite box",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "kit",
+        "united_states": "kit",
     },
     "krill": {
         "synonyms": [
+            "krill oil",
             "krill",
-            "oleo de krill"
+            "oleo de krill",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "óleo de krill",
+        "united_states": "krill oil",
     },
     "lecitina": {
         "synonyms": [
-            "lecitina"
+            "lecithin",
+            "lecitina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "lecitina",
+        "united_states": "lecithin",
     },
     "leucin": {
         "synonyms": [
+            "leucine",
             "leucin",
             "leucine",
-            "lleucine"
+            "lleucine",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "leucina",
+        "united_states": "leucine",
     },
     "levagen": {
         "synonyms": [
-            "levagen"
+            "levagen",
+            "levagen",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "levagen",
+        "united_states": "Levagen",
     },
     "linhaca": {
         "synonyms": [
-            "linhaca"
+            "flaxseed",
+            "linhaca",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "linhaça",
+        "united_states": "flaxseed",
     },
     "maca peruana": {
         "synonyms": [
-            "maca peruana"
+            "peruvian maca",
+            "maca peruana",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "maca peruana",
+        "united_states": "Peruvian maca",
     },
     "magnesio": {
         "synonyms": [
+            "magnesium",
             "magnesio",
-            "magnesi"
+            "magnesi",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "magnésio",
+        "united_states": "magnesium",
     },
     "ferro": {
-        "synonyms": ["ferro", "iron", "iron supplement", "suplemento de ferro"],
-        "conflict": [],
+        "synonyms": [
+            "iron",
+            "ferro",
+            "iron",
+            "iron supplement",
+            "suplemento de ferro",
+        ],
         "exact_term": False,
-        "brazil": "ferro"
+        "brazil": "ferro",
+        "united_states": "iron",
     },
     "maltodextrina": {
         "synonyms": [
+            "maltodextrin",
             "dextrina",
             "maltodextrina",
             "malto dextrina",
-            "maltodextrin"
+            "maltodextrin",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "maltodextrina",
+        "united_states": "maltodextrin",
     },
     "mass": {
         "synonyms": [
+            "mass gainer",
             "mass",
-            "hipercalorico"
+            "hipercalorico",
         ],
-        "conflict": [],
         "exact_term": True,
         "brazil": "Hipercalórico",
+        "united_states": "mass gainer",
     },
     "melatonina": {
         "synonyms": [
+            "melatonin",
             "melatonina",
             "melatonina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "melatonina",
+        "united_states": "melatonin",
     },
     "monohidratada": {
         "synonyms": [
-            "monohidratada"
+            "monohydrate",
+            "monohidratada",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "monohidratada",
+        "united_states": "monohydrate",
     },
     "creapure": {
         "synonyms": [
-            "creapure"
+            "creapure",
+            "creapure",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "creapure",
+        "united_states": "Creapure",
     },
     "multivitaminico": {
         "synonyms": [
+            "multivitamin",
             "multivitaminico",
-            "polivitaminico"
+            "polivitaminico",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "multivitamínico",
+        "united_states": "multivitamin",
     },
     "mineral": {
         "synonyms": [
+            "mineral",
             "minerai",
             "mineral",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "mineral",
+        "united_states": "mineral",
     },
     "nail": {
         "synonyms": [
             "nail",
-            "unha"
+            "nail",
+            "unha",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "unha",
+        "united_states": "nail",
     },
     "oleo": {
         "synonyms": [
-            "oleo"
-        ],
-        "conflict": [
-            "oleo de coco"
+            "oil",
+            "oleo",
         ],
         "exact_term": False,
         "brazil": "óleo",
+        "united_states": "oil",
     },
     "oleo de coco": {
         "synonyms": [
-            "oleo de coco"
+            "coconut oil",
+            "oleo de coco",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "óleo de coco",
+        "united_states": "coconut oil",
     },
     "ketchup": {
         "synonyms": [
-            "ketchup"
+            "ketchup",
+            "ketchup",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "ketchup",
+        "united_states": "ketchup",
     },
     "barbecue": {
         "synonyms": [
-            "barbecue"
+            "barbecue",
+            "barbecue",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "barbecue",
+        "united_states": "barbecue",
     },
     "mostarda": {
         "synonyms": [
-            "mostarda"
+            "mustard",
+            "mostarda",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "mostarda",
+        "united_states": "mustard",
     },
     "maionese": {
         "synonyms": [
-            "maionese"
+            "mayonnaise",
+            "maionese",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "maionese",
+        "united_states": "mayonnaise",
     },
     "optimsm": {
         "synonyms": [
-            "optimsm"
+            "optimsm",
+            "optimsm",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "optimsm",
+        "united_states": "OptiMSM",
     },
     "palatinose": {
         "synonyms": [
             "palatinose",
-            "isomaltulose"
+            "palatinose",
+            "isomaltulose",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "palatinose",
+        "united_states": "palatinose",
     },
     "enzima": {
         "synonyms": [
+            "enzyme",
             "enzima",
             "enzimas",
             "enzyme",
-            "enzymes"
+            "enzymes",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "enzima",
+        "united_states": "enzyme",
     },
     "protease": {
         "synonyms": [
             "protease",
+            "protease",
             "proteasa",
-            "protease"
+            "protease",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "protease",
+        "united_states": "protease",
     },
     "propolis": {
         "synonyms": [
             "propolis",
+            "propolis",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "própolis",
+        "united_states": "propolis",
     },
     "lactase": {
         "synonyms": [
             "lactase",
+            "lactase",
             "lactasa",
-            "lactase"
+            "lactase",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "lactase",
+        "united_states": "lactase",
     },
     "lipase": {
         "synonyms": [
             "lipase",
+            "lipase",
             "lipasa",
-            "lipase"
+            "lipase",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "lipase",
+        "united_states": "lipase",
     },
     "bromelina": {
         "synonyms": [
+            "bromelain",
             "bromelina",
             "bromelain",
-            "bromelina"
+            "bromelina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "bromelina",
+        "united_states": "bromelain",
     },
     "crisp": {
-        "synonyms": ["crisp", "crocante", "sabor crisp", "crisp flavor"],
-        "conflict": [
-            "barrinha",
-            "snack"
+        "synonyms": [
+            "crisp",
+            "crisp",
+            "crocante",
+            "sabor crisp",
+            "crisp flavor",
         ],
         "exact_term": False,
-        "brazil": "crisp"
+        "brazil": "crisp",
+        "united_states": "crisp",
     },
     "amilase": {
         "synonyms": [
+            "amylase",
             "amilase",
             "amylase",
-            "amilasa"
+            "amilasa",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "amilase",
+        "united_states": "amylase",
     },
     "manteiga de amendoim": {
         "synonyms": [
+            "peanut butter",
             "pasta de amendoim",
             "manteiga de amendoim",
             "peanut butter",
             "peanutbutter",
-            "peanut butter flavor"
+            "peanut butter flavor",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "pasta de amendoim"
+        "brazil": "pasta de ,amendoim",
+        "united_states": "peanut butter",
     },
     "snack": {
-        "synonyms": ["snack", "lanche", "snack flavor", "sabor snack"],
-        "conflict": [
-            "barrinha",
-            "crocante"
+        "synonyms": [
+            "snack",
+            "snack",
+            "lanche",
+            "snack flavor",
+            "sabor snack",
         ],
         "exact_term": False,
-        "brazil": "snack"
+        "brazil": "snack",
+        "united_states": "snack",
     },
     "amendoim": {
         "synonyms": [
+            "peanut",
             "amendoim",
             "peanut",
             "almonds",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "amendoim"
+        "brazil": "amendoim",
+        "united_states": "peanut",
     },
     "omega 3": {
         "synonyms": [
+            "omega 3",
             "oleo de peixe",
             "dha",
             "epa",
             "omega 3",
             "omega",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "ômega 3",
+        "united_states": "omega 3",
     },
     "omega 6": {
         "synonyms": [
             "omega 6",
+            "omega 6",
             "linoléico",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "ômega 6",
+        "united_states": "omega 6",
     },
     "picolinato": {
         "synonyms": [
+            "picolinate",
             "picolinato",
-            "picolinato"
+            "picolinato",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "picolinato",
+        "united_states": "picolinate",
     },
     "mct": {
         "synonyms": [
+            "mct",
             "MCT",
             "óleo MCT",
             "oleo MCT",
             "MCT oil",
             "medium chain triglycerides",
             "triglicerídeos de cadeia média",
-            "triglicerideos de cadeia media"
+            "triglicerideos de cadeia media",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "MCT"
+        "brazil": "MCT",
+        "united_states": "MCT",
     },
     "pretreino": {
         "synonyms": [
+            "pre-workout",
             "pretreino",
             "pre treino",
             "pre-treino",
@@ -911,22 +1028,24 @@ SUPPLEMENT_COMPONENT_LIST = {
             "pre trein",
             "preworkout",
             "pre workout",
-            "pre-workout"
+            "pre-workout",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "pré-treino",
+        "united_states": "pre-workout",
     },
     "endurance": {
         "synonyms": [
             "endurance",
+            "endurance",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "endurance",
+        "united_states": "endurance",
     },
     "postreino": {
         "synonyms": [
+            "post-workout",
             "postreino",
             "pos treino",
             "pos-treino",
@@ -934,12 +1053,13 @@ SUPPLEMENT_COMPONENT_LIST = {
             "post-workout",
             "postworkout",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "pós-treino"
+        "brazil": "pós-trein,o",
+        "united_states": "post-workout",
     },
     "intratreino": {
         "synonyms": [
+            "intra-workout",
             "intra-treino",
             "intratreino",
             "intra treino",
@@ -947,137 +1067,156 @@ SUPPLEMENT_COMPONENT_LIST = {
             "intra-workout",
             "intraworkout",
         ],
-        "conflict": [],
         "exact_term": False,
-        "brazil": "intra-treino"
+        "brazil": "intra-tre,ino",
+        "united_states": "intra-workout",
     },
     "primula": {
         "synonyms": [
-            "primula"
+            "evening primrose",
+            "primula",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "prímula",
+        "united_states": "evening primrose",
     },
     "propoli": {
         "synonyms": [
-            "propoli"
+            "propolis",
+            "propoli",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "própolis",
+        "united_states": "propolis",
     },
     "dose": {
-        "synonyms": ["dose", "dosage"],
-        "conflict": [],
+        "synonyms": [
+            "dose",
+            "dose",
+            "dosage",
+        ],
         "exact_term": False,
-        "brazil": "dose"
+        "brazil": "dose",
+        "united_states": "dose",
     },
     "protein": {
         "synonyms": [
             "protein",
+            "protein",
             "proteina",
-            "proteica"
+            "proteica",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "proteina",
+        "united_states": "protein",
     },
     "psyllium": {
         "synonyms": [
-            "psyllium"
+            "psyllium",
+            "psyllium",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "psílio",
+        "united_states": "psyllium",
     },
     "quitosana": {
         "synonyms": [
-            "quitosana"
+            "chitosan",
+            "quitosana",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "quitosana",
+        "united_states": "chitosan",
     },
     "resveratrol": {
         "synonyms": [
-            "resveratrol"
+            "resveratrol",
+            "resveratrol",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "resveratrol",
+        "united_states": "resveratrol",
     },
     "rice": {
         "synonyms": [
             "rice",
-            "arroz"
+            "rice",
+            "arroz",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "arroz",
+        "united_states": "rice",
     },
     "semente": {
         "synonyms": [
-            "semente"
+            "seed",
+            "semente",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "semente",
+        "united_states": "seed",
     },
     "skin": {
         "synonyms": [
             "skin",
-            "pele"
+            "skin",
+            "pele",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "pele",
+        "united_states": "skin",
     },
     "soy": {
         "synonyms": [
             "soy",
-            "soja"
+            "soy",
+            "soja",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "soja",
+        "united_states": "soy",
     },
     "spirulina": {
         "synonyms": [
-            "spirulina"
+            "spirulina",
+            "spirulina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "spirulina",
+        "united_states": "spirulina",
     },
     "taurina": {
         "synonyms": [
+            "taurine",
             "taurina",
             "taurine",
-            "taurin"
+            "taurin",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "taurina",
+        "united_states": "taurine",
     },
     "tempero": {
         "synonyms": [
-            "tempero"
+            "seasoning",
+            "tempero",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "tempero",
+        "united_states": "seasoning",
     },
     "testofen": {
         "synonyms": [
-            "testofen"
+            "testofen",
+            "testofen",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "testofen",
+        "united_states": "Testofen",
     },
     "tyrosin": {
         "synonyms": [
+            "tyrosine",
             "tyrosin",
             "tirosin",
             "tyrosine",
@@ -1090,619 +1229,350 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ltirosina",
             "ltirosine",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "tirosina",
+        "united_states": "tyrosine",
     },
     "transresveratrol": {
         "synonyms": [
+            "trans-resveratrol",
             "transresveratrol",
-            "trans resveratrol"
+            "trans resveratrol",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "trans-resveratrol",
+        "united_states": "trans-resveratrol",
     },
     "triptofano": {
         "synonyms": [
-            "triptofano"
+            "tryptophan",
+            "triptofano",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "triptofano",
+        "united_states": "tryptophan",
     },
     "leucina": {
         "synonyms": [
-            "leucina"
+            "leucine",
+            "leucina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "leucina",
+        "united_states": "leucine",
     },
     "valina": {
         "synonyms": [
-            "valina"
+            "valine",
+            "valina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "valina",
+        "united_states": "valine",
     },
     "isoleucina": {
         "synonyms": [
-            "isoleucina"
+            "isoleucine",
+            "isoleucina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "isoleucina",
+        "united_states": "isoleucine",
     },
     "lisina": {
         "synonyms": [
-            "lisina"
+            "lysine",
+            "lisina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "lisina",
+        "united_states": "lysine",
     },
     "fenilalanina": {
         "synonyms": [
-            "fenilalanina"
+            "phenylalanine",
+            "fenilalanina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "fenilalanina",
+        "united_states": "phenylalanine",
     },
     "treonina": {
         "synonyms": [
-            "treonina"
+            "threonine",
+            "treonina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "treonina",
+        "united_states": "threonine",
     },
     "metionina": {
         "synonyms": [
-            "metionina"
+            "methionine",
+            "metionina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "metionina",
+        "united_states": "methionine",
     },
     "silimarina": {
         "synonyms": [
-            "silimarina"
+            "silymarin",
+            "silimarina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "silimarina",
+        "united_states": "silymarin",
     },
     "histidina": {
         "synonyms": [
+            "histidine",
             "histidina",
             "lhistidina",
-            "l histidina"
+            "l histidina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "histidina",
+        "united_states": "histidine",
     },
     "veg": {
         "synonyms": [
+            "vegan",
             "veg",
             "vegan",
             "vegano",
             "vegie",
-            "vegana"
+            "vegana",
         ],
-        "conflict": [],
         "exact_term": True,
         "brazil": "vegano",
+        "united_states": "vegan",
     },
     "vegetarian": {
         "synonyms": [
             "vegetarian",
+            "vegetarian",
             "vegetariano",
             "vegetariana",
             "veggie",
-            "vegetarianismo"
+            "vegetarianismo",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "vegetariano",
+        "united_states": "vegetarian",
     },
     "verisol": {
         "synonyms": [
-            "verisol"
+            "verisol",
+            "verisol",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "verisol",
+        "united_states": "Verisol",
     },
     "vitamina": {
         "synonyms": [
+            "vitamin",
             "vitamina",
             "vitaminas",
-            "vitamin"
-        ],
-        "conflict": [
-            "vitamina a",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9",
-            "vitamina c",
-            "vitamina d",
-            "vitamina e",
-            "vitamina f",
-            "vitamina g",
-            "vitamina h",
-            "vitamina j",
-            "vitamina k",
-            "vitamina k1",
-            "vitamina k2",
-            "vitamina k7",
-            "vitamina q"
+            "vitamin",
         ],
         "exact_term": False,
         "brazil": "vitamina",
+        "united_states": "vitamin",
     },
     "vitamina a": {
         "synonyms": [
+            "vitamin a",
             "vitamina a",
             "retinol",
             "retinal",
-            "retinoico"
+            "retinoico",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina a",
+        "united_states": "vitamin A",
     },
     "vitamina b1": {
         "synonyms": [
+            "vitamin b1",
             "vitamina b1",
             "vitaminas b1",
-            "tiamina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "tiamina",
         ],
         "exact_term": False,
         "brazil": "vitamina B1",
+        "united_states": "vitamin B1",
     },
     "vitamina b10": {
         "synonyms": [
+            "vitamin b10",
             "vitamina b10",
             "vitaminas b10",
-            "paraaminobenzoico"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "paraaminobenzoico",
         ],
         "exact_term": False,
         "brazil": "vitamina B10",
+        "united_states": "vitamin B10",
     },
     "vitamina b11": {
         "synonyms": [
+            "vitamin b11",
             "vitamina b11",
             "vitaminas b11",
-            "salicilico"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "salicilico",
         ],
         "exact_term": False,
         "brazil": "vitamina B11",
+        "united_states": "vitamin B11",
     },
     "vitamina b12": {
         "synonyms": [
+            "vitamin b12",
             "vitamina b12",
             "vitaminas b12",
-            "cobalamina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "cobalamina",
         ],
         "exact_term": False,
         "brazil": "vitamina B12",
+        "united_states": "vitamin B12",
     },
     "vitamina b13": {
         "synonyms": [
+            "vitamin b13",
             "vitamina b13",
             "vitaminas b13",
-            "orotico"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "orotico",
         ],
         "exact_term": False,
         "brazil": "vitamina B13",
+        "united_states": "vitamin B13",
     },
     "vitamina b15": {
         "synonyms": [
+            "vitamin b15",
             "vitamina b15",
             "vitaminas b15",
-            "pangamico"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "pangamico",
         ],
         "exact_term": False,
         "brazil": "vitamina B15",
+        "united_states": "vitamin B15",
     },
     "vitamina b17": {
         "synonyms": [
+            "vitamin b17",
             "vitamina b17",
             "vitaminas b17",
-            "amigdalina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "amigdalina",
         ],
         "exact_term": False,
         "brazil": "vitamina B17",
+        "united_states": "vitamin B17",
     },
     "vitamina b2": {
         "synonyms": [
+            "vitamin b2",
             "vitamina b2",
             "vitaminas b2",
-            "riboflavina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "riboflavina",
         ],
         "exact_term": False,
         "brazil": "vitamina B2",
+        "united_states": "vitamin B2",
     },
     "vitamina b22": {
         "synonyms": [
+            "vitamin b22",
             "vitamina b22",
             "vitaminas b22",
-            "ratanhia"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "ratanhia",
         ],
         "exact_term": False,
         "brazil": "vitamina B22",
+        "united_states": "vitamin B22",
     },
     "vitamina b3": {
         "synonyms": [
+            "vitamin b3",
             "vitamina b3",
             "vitaminas b3",
-            "niacina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "niacina",
         ],
         "exact_term": False,
         "brazil": "vitamina B3",
+        "united_states": "vitamin B3",
     },
     "vitamina b4": {
         "synonyms": [
+            "vitamin b4",
             "vitamina b4",
             "vitaminas b4",
-            "adenina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "adenina",
         ],
         "exact_term": False,
         "brazil": "vitamina B4",
+        "united_states": "vitamin B4",
     },
     "vitamina b5": {
         "synonyms": [
+            "vitamin b5",
             "vitamina b5",
             "vitaminas b5",
-            "pantotenico"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "pantotenico",
         ],
         "exact_term": False,
         "brazil": "vitamina B5",
+        "united_states": "vitamin B5",
     },
     "vitamina b6": {
         "synonyms": [
+            "vitamin b6",
             "vitamina b6",
             "vitaminas b6",
-            "piridoxina"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b7",
-            "vitamina b8",
-            "vitamina b9"
+            "piridoxina",
         ],
         "exact_term": False,
         "brazil": "vitamina B6",
+        "united_states": "vitamin B6",
     },
     "biotina": {
         "synonyms": [
+            "biotin",
             "vitamina b7",
             "vitaminas b7",
             "biotina",
-            "vitamina h"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b8",
-            "vitamina b9"
+            "vitamina h",
         ],
         "exact_term": False,
         "brazil": "vitamina B7",
+        "united_states": "biotin",
     },
     "vitamina b8": {
         "synonyms": [
+            "vitamin b8",
             "vitamina b8",
             "vitaminas b8",
-            "inositol"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b9"
+            "inositol",
         ],
         "exact_term": False,
         "brazil": "vitamina B8",
+        "united_states": "vitamin B8",
     },
     "vitamina b9": {
         "synonyms": [
+            "vitamin b9",
             "vitamina b9",
             "vitaminas b9",
-            "folico"
-        ],
-        "conflict": [
-            "vitamina",
-            "vitamina b1",
-            "vitamina b10",
-            "vitamina b11",
-            "vitamina b12",
-            "vitamina b13",
-            "vitamina b15",
-            "vitamina b17",
-            "vitamina b2",
-            "vitamina b22",
-            "vitamina b3",
-            "vitamina b4",
-            "vitamina b5",
-            "vitamina b6",
-            "vitamina b7",
-            "vitamina b8"
+            "folico",
         ],
         "exact_term": False,
         "brazil": "vitamina B9",
+        "united_states": "vitamin B9",
     },
     "vitamina c": {
         "synonyms": [
+            "vitamin c",
             "vitamina c",
             "vitaminas c",
             "c3",
@@ -1715,14 +1585,15 @@ SUPPLEMENT_COMPONENT_LIST = {
             "ácido L-ascórbico",
             "L-ascorbico",
             "L-ascorbato",
-            "L-ascorbila"
+            "L-ascorbila",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina C",
+        "united_states": "vitamin C",
     },
     "vitamina d": {
         "synonyms": [
+            "vitamin d",
             "vitamina d",
             "vitaminas d",
             "calciferol",
@@ -1735,207 +1606,204 @@ SUPPLEMENT_COMPONENT_LIST = {
             "D2",
             "d2",
         ],
-        "conflict": ["vitamina"],
         "exact_term": True,
         "brazil": "vitamina D",
+        "united_states": "vitamin D",
     },
     "vitamina e": {
         "synonyms": [
+            "vitamin e",
             "vitamina e",
             "vitaminas e",
             "tocoferol",
             "tocoquinona",
             "vitamina E",
             "d-alfa-tocoferol",
-            "dl-tocoferol"
+            "dl-tocoferol",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina E",
+        "united_states": "vitamin E",
     },
     "vitamina f": {
         "synonyms": [
+            "vitamin f",
             "vitamina f",
             "vitaminas f",
             "graxos essenciais",
-            "ácidos graxos essenciais"
+            "ácidos graxos essenciais",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina F",
+        "united_states": "vitamin F",
     },
     "vitamina g": {
         "synonyms": [
+            "vitamin g",
             "vitamina g",
             "vitaminas g",
             "monofosfato de nicotinamida",
-            "nicotinamida monofosfato"
+            "nicotinamida monofosfato",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina G",
+        "united_states": "vitamin G",
     },
     "vitamina j": {
         "synonyms": [
+            "vitamin j",
             "vitamina j",
             "vitaminas j",
             "lipoico",
-            "ácido lipoico"
+            "ácido lipoico",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "vitamina J",
+        "united_states": "vitamin J",
     },
     "vitamina k": {
         "synonyms": [
+            "vitamin k",
             "vitamina k",
             "vitaminas k",
             "filoquinona",
             "vitamina K",
-            "fitoquinona"
-        ],
-        "conflict": [
-            "vitamina k1",
-            "vitamina k2",
-            "vitamina k7",
-            "vitamina"
+            "fitoquinona",
         ],
         "exact_term": False,
         "brazil": "vitamina K",
+        "united_states": "vitamin K",
     },
     "vitamina k1": {
         "synonyms": [
+            "vitamin k1",
             "vitamina k1",
             "vitaminas k1",
             "fitoquinona",
-            "phylloquinona"
-        ],
-        "conflict": [
-            "vitamina k",
-            "vitamina k2",
-            "vitamina k7",
-            "vitamina"
+            "phylloquinona",
         ],
         "exact_term": False,
         "brazil": "vitamina K1",
+        "united_states": "vitamin K1",
     },
     "vitamina k2": {
         "synonyms": [
+            "vitamin k2",
             "vitamina k2",
             "vitaminas k2",
             "menaquinona",
             "MK-7",
-            "MK-4"
-        ],
-        "conflict": [
-            "vitamina k",
-            "vitamina k1",
-            "vitamina k7",
-            "vitamina"
+            "MK-4",
         ],
         "exact_term": False,
         "brazil": "vitamina K2",
+        "united_states": "vitamin K2",
     },
     "vitamina k7": {
         "synonyms": [
+            "vitamin k7",
             "vitamina k7",
             "vitaminas k7",
             "mk7",
-            "menaquinona-7"
-        ],
-        "conflict": [
-            "vitamina k",
-            "vitamina k1",
-            "vitamina k2",
-            "vitamina"
+            "menaquinona-7",
         ],
         "exact_term": False,
         "brazil": "vitamina K7",
+        "united_states": "vitamin K7",
     },
     "vitamina q": {
         "synonyms": [
+            "coenzyme q10",
             "vitamina q",
             "vitaminas q",
             "coenzima q10",
             "q10",
             "ubiquinona",
-            "ubiquinol"
+            "ubiquinol",
         ],
-        "conflict": ["vitamina"],
         "exact_term": False,
         "brazil": "coenzima q10",
+        "united_states": "coenzyme Q10",
     },
     "wafer": {
         "synonyms": [
             "wafer",
+            "wafer",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "wafer",
+        "united_states": "wafer",
     },
     "waxymaize": {
         "synonyms": [
+            "waxy maize",
             "waxymaize",
             "waxy maize",
-            "amido de milho"
+            "amido de milho",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "waxymaize",
+        "united_states": "waxy maize",
     },
     "whey": {
         "synonyms": [
             "whey",
+            "whey",
             "soro do leite",
-            "soro de leite"
+            "soro de leite",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "whey",
+        "united_states": "whey",
     },
     "xylitol": {
         "synonyms": [
             "xylitol",
+            "xylitol",
             "xilitol",
             "adocante",
-            "adocante"
+            "adocante",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "xilitol",
+        "united_states": "xylitol",
     },
     "zeaxantina": {
         "synonyms": [
-            "zeaxantina"
+            "zeaxanthin",
+            "zeaxantina",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "zeaxantina",
+        "united_states": "zeaxanthin",
     },
     "zinco": {
         "synonyms": [
+            "zinc",
             "zinco",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "zinco",
+        "united_states": "zinc",
     },
     "selenio": {
         "synonyms": [
+            "selenium",
             "selenio",
             "seleni",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "selênio",
+        "united_states": "selenium",
     },
     "zma": {
         "synonyms": [
-            "zma"
+            "zma",
+            "zma",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "ZMA",
+        "united_states": "ZMA",
     }
 }
 
@@ -1944,23 +1812,6 @@ SUPPLEMENT_COMPONENT_LIST.update(WORDLIST_FLAVOR)
 
 SUPPLEMENT_COMPONENT_LIST = {k: v for k, v in SUPPLEMENT_COMPONENT_LIST.items() if k not in WORDLIST_FORMAT}
 SUPPLEMENT_COMPONENT_LIST.update(WORDLIST_FORMAT)
-
-personal_pronouns = ["Eu", "Tu", "Ele", "Ela", "Nós", "Vós", "Eles", "Elas", "Mim", "Ti", "Si", "Consigo"]
-oblique_pronouns = ["Me", "Te", "Se", "Nos", "Vos", "O", "A", "Lhe", "Os", "As", "Nos", "Vos", "Se", "Convosco", "Lhes", "Contigo"]
-demonstrative_pronouns = ["Este", "Esse", "Aquele", "Esta", "Essa", "Aquela", "Isto", "Isso", "Aquilo", "Estes", "Esses", "Aqueles", "Estas", "Essas", "Aquelas", "Iste"]
-possessive_pronouns = ["Meu", "Teu", "Seu", "Nosso", "Vosso", "Seu", "Minha", "Tua", "Sua", "Nossa", "Vossa", "Sua", "Meus", "Teus", "Seus", "Nossos", "Vossos", "Minhas", "Tuas", "Suas", "Nossas", "Vossas"]
-indefinite_pronouns = ["Alguém", "Ninguém", "Todo", "Algum", "Nenhum", "Outro", "Muito", "Pouco", "Tanto", "Cada", "Algo", "Tudo", "Nada", "Cada um", "Qualquer", "Poucos", "Muitos", "Vários", "Outrem"]
-relative_pronouns = ["Que", "Qual", "Quem", "Onde", "Cujo", "O qual", "Cuja", "Quanto"]
-interrogative_pronouns = ["Quem", "O que", "Qual", "Quanto", "Onde", "Quando", "Como", "Por que", "Qualquer coisa", "Quanto a"]
-prepositions = ["A", "Ante", "Até", "Após", "Com", "Contra", "De", "Desde", "Em", "Entre", "Para", "Por", "Perante", "Sem", "Sob", "Sobre", "Trás", "Conforme", "Contudo", "Durante", "Exceto", "Mediant", "Menos", "Salvo", "Segundo", "Visto"]
-
-BRAZIL_PRONOUNS = personal_pronouns + oblique_pronouns + demonstrative_pronouns + possessive_pronouns + indefinite_pronouns + relative_pronouns + interrogative_pronouns + prepositions
-BRAZIL_CONECTORES = ['a', 'o', 'e', 'ou', 'nem', 'mas', 'porque', 'como', 'apesar', 'além', 'entretanto', 'porém', 'todavia', 'logo', 'portanto', 'assim', 'contudo', 'embora', 'ainda', 'também', 'quer', 'seja', 'isto', 'aquilo']
-
-PRONOUNS = {
-    "exact_term": False,
-    "brazil": BRAZIL_PRONOUNS,
-}
 
 WORDLIST = {
     "supplement": SUPPLEMENT_COMPONENT_LIST,

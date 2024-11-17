@@ -1,166 +1,290 @@
 WORDLIST_FORMAT = {  
     "po": {
-        "synonyms": ["powder", "pó", "po"],
-        "conflict": [],
+        "synonyms": [
+            "powder",
+            "pó",
+            "po",
+        ],
         "exact_term": True,
-        "brazil": "pó"
+        "brazil": "pó",
+        "united_states": "powder"
     },
     "gel": {
-        "synonyms": ["gel", "gelatina", "substância gelatinosa"],
-        "conflict": [],
+        "synonyms": [
+            "gel",
+            "gelatina",
+            "substância gelatinosa",
+        ],
         "exact_term": False,
-        "brazil": "gel"
+        "brazil": "gel",
+        "united_states": "gel"
     },
     "display": {
-        "synonyms": ["display"],
-        "conflict": [],
+        "synonyms": [
+            "display",
+        ],
         "exact_term": False,
-        "brazil": "display"
+        "brazil": "display",
+        "united_states": "display"
     },
     "capsula": {
-        "synonyms": ["cápsula", "capsula", "capsule", "cap", "caps"],
-        "conflict": [],
+        "synonyms": [
+            "capsule",
+            "cápsula",
+            "capsula",
+            "capsule",
+            "cap",
+            "caps",
+        ],
         "exact_term": True,
-        "brazil": "cápsula"
+        "brazil": "cápsula",
+        "united_states": "capsule"
     },
     "comprimido": {
-        "synonyms": ["comprimido", "comp", "comps"],
-        "conflict": [],
+        "synonyms": [
+            "comprimido",
+            "comprimido",
+            "comp",
+            "comps",
+        ],
         "exact_term": True,
-        "brazil": "comprimido"
+        "brazil": "comprimido",
+        "united_states": "comprimido"
     },
     "tablete": {
-        "synonyms": ["tablete", "tablet", "comprimido"],
-        "conflict": [],
+        "synonyms": [
+            "tablet",
+            "tablete",
+            "tablet",
+            "comprimido",
+        ],
         "exact_term": False,
-        "brazil": "tablete"
+        "brazil": "tablete",
+        "united_states": "tablet"
     },
     "softgel": {
-        "synonyms": ["softgel", "softgelatina", "gelatina mole"],
-        "conflict": [],
+        "synonyms": [
+            "softgel",
+            "softgel",
+            "softgelatina",
+            "gelatina mole",
+        ],
         "exact_term": False,
-        "brazil": "softgel"
+        "brazil": "softgel",
+        "united_states": "softgel"
     },
     "pouch": {
-        "synonyms": ["pouch", "embalagem flexível"],
-        "conflict": [],
+        "synonyms": [
+            "pouch",
+            "pouch",
+            "embalagem flexível",
+        ],
         "exact_term": False,
-        "brazil": "pouch"
+        "brazil": "pouch",
+        "united_states": "pouch"
     },
     "sache": {
-        "synonyms": ["sache", "saches", "saco", "sachet"],
-        "conflict": [],
+        "synonyms": [
+            "sachet",
+            "sache",
+            "saches",
+            "saco",
+            "sachet",
+        ],
         "exact_term": False,
-        "brazil": "sache"
+        "brazil": "sache",
+        "united_states": "sachet"
     },
     "drink": {
-        "synonyms": ["bebida", "liquido", "drink", "liquid supplement"],
-        "conflict": [],
+        "synonyms": [
+            "drink",
+            "bebida",
+            "liquido",
+            "drink",
+            "liquid supplement",
+        ],
         "exact_term": False,
-        "brazil": "bebida"
+        "brazil": "bebida",
+        "united_states": "drink"
     },
     "chantilly": {
-        "synonyms": ["chantilly", "creme batido", "whipped cream"],
-        "conflict": [],
+        "synonyms": [
+            "whipped cream",
+            "chantilly",
+            "creme batido",
+            "whipped cream",
+        ],
         "exact_term": False,
-        "brazil": "chantilly"
+        "brazil": "chantilly",
+        "united_states": "whipped cream"
     },
     "shake": {
-        "synonyms": ["shake", "batido", "shake de proteína"],
-        "conflict": [],
+        "synonyms": [
+            "shake",
+            "shake",
+            "batido",
+            "shake de proteína",
+        ],
         "exact_term": False,
-        "brazil": "shake"
+        "brazil": "shake",
+        "united_states": "shake"
     },
     "cookie": {
-        "synonyms": ["biscuit", "biscoito", "bolacha", "cookie"],
-        "conflict": [],
+        "synonyms": [
+            "cookie",
+            "biscuit",
+            "biscoito",
+            "bolacha",
+            "cookie",
+        ],
         "exact_term": False,
-        "brazil": "cookie"
+        "brazil": "cookie",
+        "united_states": "cookie"
     },
     "crunch": {
-        "synonyms": ["crunch", "crocante"],
-        "conflict": [],
+        "synonyms": [
+            "crunch",
+            "crunch",
+            "crocante",
+        ],
         "exact_term": False,
-        "brazil": "crunch"
+        "brazil": "crunch",
+        "united_states": "crunch"
     },
     "alfajor": {
-        "synonyms": ["alfajor"],
-        "conflict": [],
+        "synonyms": [
+            "alfajor",
+            "alfajor",
+        ],
         "exact_term": False,
-        "brazil": "alfajor"
+        "brazil": "alfajor",
+        "united_states": "alfajor"
     },
     "gummy": {
-        "synonyms": ["gummy", "guloseima", "goma de mascar"],
-        "conflict": [],
+        "synonyms": [
+            "gummy",
+            "gummy",
+            "guloseima",
+            "goma de mascar",
+        ],
         "exact_term": False,
-        "brazil": "gummy"
+        "brazil": "gummy",
+        "united_states": "gummy"
     },
     "creme": {
-        "synonyms": ["creme", "cream"],
-        "conflict": [],
+        "synonyms": [
+            "cream",
+            "creme",
+            "cream",
+        ],
         "exact_term": False,
-        "brazil": "creme"
+        "brazil": "creme",
+        "united_states": "cream"
     },
     "gelatina": {
-        "synonyms": ["gelatina", "gel", "substância gelatinosa"],
-        "conflict": [],
+        "synonyms": [
+            "gel",
+            "gelatina",
+            "gel",
+            "substância gelatinosa",
+        ],
         "exact_term": False,
-        "brazil": "gelatina"
+        "brazil": "gelatina",
+        "united_states": "gel"
     },
     "milkshake": {
-        "synonyms": ["milkshake", "batido de leite", "milkshake de proteína"],
-        "conflict": [],
+        "synonyms": [
+            "milkshake",
+            "milkshake",
+            "batido de leite",
+            "milkshake de proteína",
+        ],
         "exact_term": False,
-        "brazil": "milkshake"
+        "brazil": "milkshake",
+        "united_states": "milkshake"
     },
     "granola": {
-        "synonyms": ["granola", "cereal", "mix de grãos"],
-        "conflict": [],
+        "synonyms": [
+            "granola",
+            "granola",
+            "cereal",
+            "mix de grãos",
+        ],
         "exact_term": False,
-        "brazil": "granola"
+        "brazil": "granola",
+        "united_states": "granola"
     },
     "wafer": {
-        "synonyms": ["wafer"],
-        "conflict": [],
+        "synonyms": [
+            "wafer",
+            "wafer",
+        ],
         "exact_term": False,
-        "brazil": "wafer"
+        "brazil": "wafer",
+        "united_states": "wafer"
     },
     "tube": {
-        "synonyms": ["tube", "tubo"],
-        "conflict": [],
+        "synonyms": [
+            "tube",
+            "tube",
+            "tubo",
+        ],
         "exact_term": False,
-        "brazil": "tube"
+        "brazil": "tube",
+        "united_states": "tube"
     },
     "pote": {
-        "synonyms": ["pote", "jarro", "recipiente"],
-        "conflict": [],
+        "synonyms": [
+            "jar",
+            "pote",
+            "jarro",
+            "recipiente",
+        ],
         "exact_term": False,
-        "brazil": "pote"
+        "brazil": "pote",
+        "united_states": "jar"
     },
     "spray": {
-        "synonyms": ["spray", "aerossol", "spray de suplemento"],
-        "conflict": [],
+        "synonyms": [
+            "spray",
+            "spray",
+            "aerossol",
+            "spray de suplemento",
+        ],
         "exact_term": False,
-        "brazil": "spray"
+        "brazil": "spray",
+        "united_states": "spray"
     },
     "goma": {
-        "synonyms": ["goma", "mascavo", "goma de mascar"],
-        "conflict": [],
+        "synonyms": [
+            "chewing gum",
+            "goma",
+            "mascavo",
+            "goma de mascar",
+        ],
         "exact_term": False,
-        "brazil": "goma"
+        "brazil": "goma",
+        "united_states": "chewing gum"
     },
     "blend": {
         "synonyms": [
             "blend",
+            "blend",
         ],
-        "conflict": [],
         "exact_term": False,
         "brazil": "mistura",
+        "united_states": "blend"
     },
     "barrinha": {
-        "synonyms": ["barras", "barra", "barrinha", "bar"],
-        "conflict": [],
+        "synonyms": [
+            "bar",
+            "barras",
+            "barra",
+            "barrinha",
+            "bar",
+        ],
         "exact_term": False,
-        "brazil": "barrinha"
+        "brazil": "barrinha",
+        "united_states": "bar"
     },
 }

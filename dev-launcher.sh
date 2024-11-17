@@ -14,7 +14,7 @@ page_names=(
     # "black_skull"
     # "boldsnacks"
     # "dark_lab"
-    "darkness"
+    # "darkness"
     # "dux_nutrition_lab"
     # "growth_supplements"
     # "integralmedica"
@@ -28,7 +28,7 @@ page_names=(
     # "truesource"
     # "vitafor"
 
-    # "a1supplements"
+    "a1supplements"
 )
 
 job_type="master_page"
@@ -63,8 +63,8 @@ exec_flag="false"
 # page_names="false"
 
 page_type="supplement"
-country="brazil"
-# country="united_states"
+# country="brazil"
+country="united_states"
 mode="prd"
 
 if [ -z "$page_names" ]; then
