@@ -28,7 +28,8 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["brand"] = page_conf.BRAND
     conf["url"] = page_conf.URL
     conf["product_description_tag_map"] = page_conf.PRODUCT_DESCRIPTION_TAG_MAP
-    conf["PRODUCT_IMAGES_TAG_MAP"] = page_conf.PRODUCT_IMAGES_TAG_MAP
+    conf["first_image_is_duplicate"] = page_conf.FIRST_IMAGE_IS_DUPLICATE
+    conf["product_images_tag_map"] = page_conf.PRODUCT_IMAGES_TAG_MAP
     conf["tag_map_preference"] = page_conf.TAG_MAP_PREFERENCE
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     conf["user_agent"] = page_conf.USER_AGENT

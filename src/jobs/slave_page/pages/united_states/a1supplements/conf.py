@@ -15,8 +15,9 @@ PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#MainProduct-template--22993487429938__main > div.product.product--large.product--left.product--thumbnail_slider.product--mobile-show.grid.grid--1-col.grid--2-col-tablet > div.grid__item.product__media-wrapper > div.MainAccordionSection.workOnlyDesktop'},
 ]
 
+FIRST_IMAGE_IS_DUPLICATE = True
 PRODUCT_IMAGES_TAG_MAP = [
-    {'tag': None, 'remove_first': True, 'path': '#MainProduct-template--22993487429938__main > div.product.product--large.product--left.product--thumbnail_slider.product--mobile-show.grid.grid--1-col.grid--2-col-tablet > div.grid__item.product__media-wrapper > div.MainMEdiaWrapper > div.CustomThumbnailWrapper > div > div > div'},
+    {'tag': None, 'path': '#MainProduct-template--22993487429938__main > div.product.product--large.product--left.product--thumbnail_slider.product--mobile-show.grid.grid--1-col.grid--2-col-tablet > div.grid__item.product__media-wrapper > div.MainMEdiaWrapper > div.CustomThumbnailWrapper > div > div > div'},
 ]
 
 DYNAMIC_SCROLL = {

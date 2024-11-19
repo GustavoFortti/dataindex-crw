@@ -70,9 +70,9 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
                 save_file(formatted_description, description_path)
                 
         if ("image" in CONF["tag_map_preference"]):
-            url_images: Optional[str] = extract_element_from_html(html_text, CONF["PRODUCT_IMAGES_TAG_MAP"], get_product_url_images)
+            url_images: Optional[str] = extract_element_from_html(html_text, CONF["product_images_tag_map"], get_product_url_images)
             url_images = flatten_list(url_images)
-            if (CONF["PRODUCT_IMAGES_TAG_MAP"]['remove_first']):
+            if (CONF["first_image_is_duplicate"]):
                 url_images = url_images[1:]
             
             save_json(images_path, {
