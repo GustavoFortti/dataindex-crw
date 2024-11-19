@@ -13,7 +13,7 @@ PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]
 
-PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+PRODUCT_IMAGES_TAG_MAP = [
     {'tag': None, 'path': 'body > div.render-container.render-route-store-product > div > div.vtex-store__template.bg-base > div > div > div > div:nth-child(3) > div > div:nth-child(3) > div > div > div > div > div > div > div > div > div > div > div.pr6.items-stretch.vtex-flex-layout-0-x-stretchChildrenWidth.flex > div > div:nth-child(1) > div'},
 ]
 

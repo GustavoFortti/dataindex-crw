@@ -13,7 +13,7 @@ PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#ui-pdp-main-container > div.ui-pdp-container__col.col-3.ui-pdp-container--column-center.pb-16 > div > div:nth-child(7) > div > div'},
 ]
 
-PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+PRODUCT_IMAGES_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]
 

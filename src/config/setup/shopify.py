@@ -1,6 +1,6 @@
-ACCESS_TOKEN = "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"
-SHOP_NAME = "2ef5d6-14"
-API_VERSION = "2024-07"
+ACCESS_TOKEN = "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"
+SHOP_NAME = "f568fe-05"
+API_VERSION = "2024-10"
 
 BASE_URL = f"https://{SHOP_NAME}.myshopify.com/admin/api/{API_VERSION}/"
 

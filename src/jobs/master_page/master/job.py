@@ -27,9 +27,8 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     conf["name"] = page_conf.JOB_NAME
     conf["brand"] = page_conf.BRAND
     conf["url"] = page_conf.URL
-    conf["product_definition_tag_map"] = page_conf.PRODUCT_DEFINITION_TAG_MAP
     conf["product_description_tag_map"] = page_conf.PRODUCT_DESCRIPTION_TAG_MAP
-    conf["product_nutricional_table_tag_map"] = page_conf.PRODUCT_NUTRICIONAL_TABLE_TAG_MAP
+    conf["PRODUCT_IMAGES_TAG_MAP"] = page_conf.PRODUCT_IMAGES_TAG_MAP
     conf["tag_map_preference"] = page_conf.TAG_MAP_PREFERENCE
     conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
     conf["user_agent"] = page_conf.USER_AGENT
@@ -66,7 +65,7 @@ def update_conf_with_page_config(conf, page_conf, local, args):
     return conf
 
 def run(args):
-    message("INICIANDO O JOB")
+    message("START JOB")
     
     local = os.getenv('LOCAL')
     conf = set_conf(args, local)

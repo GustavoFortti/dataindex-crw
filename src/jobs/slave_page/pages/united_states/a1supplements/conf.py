@@ -7,19 +7,16 @@ DISCOUNT_PERCENT_CUPOM = None
 CUPOM_CODE = None
 USER_AGENT = None
 
-TAG_MAP_PREFERENCE = ["text"]
+TAG_MAP_PREFERENCE = ["text", "image"]
 
 PRODUCT_DESCRIPTION_TAG_MAP = [
+    {'tag': None, 'path': '#tab-description'},
     {'tag': None, 'path': '#ProductInfo-template--22993487429938__main > div.product__description.rte.quick-add-hidden'},
     {'tag': None, 'path': '#MainProduct-template--22993487429938__main > div.product.product--large.product--left.product--thumbnail_slider.product--mobile-show.grid.grid--1-col.grid--2-col-tablet > div.grid__item.product__media-wrapper > div.MainAccordionSection.workOnlyDesktop'},
 ]
 
-PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
-    {'tag': None, 'path': ''},
-]
-
-PRODUCT_DEFINITION_TAG_MAP = [
-    {'tag': None, 'path': '#tab-description'}
+PRODUCT_IMAGES_TAG_MAP = [
+    {'tag': None, 'remove_first': True, 'path': '#MainProduct-template--22993487429938__main > div.product.product--large.product--left.product--thumbnail_slider.product--mobile-show.grid.grid--1-col.grid--2-col-tablet > div.grid__item.product__media-wrapper > div.MainMEdiaWrapper > div.CustomThumbnailWrapper > div > div > div'},
 ]
 
 DYNAMIC_SCROLL = {

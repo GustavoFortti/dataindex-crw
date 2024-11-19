@@ -13,7 +13,7 @@ PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#ProductSection-template--17547208458430__main > div.productView-container.container > div > div.productView-top > div.halo-productView-right.productView-details.clearfix > div > div:nth-child(4)'},
 ]
 
-PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+PRODUCT_IMAGES_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]
 

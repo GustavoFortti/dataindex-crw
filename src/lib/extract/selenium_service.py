@@ -45,7 +45,7 @@ def initialize_selenium(conf):
     try:
         # Use a versão correta do ChromeDriver
         driver = webdriver.Chrome(
-            service=Service(ChromeDriverManager(driver_version="129.0.6668.70").install()),  # Verifique a versão exata do seu Chrome
+            service=Service(ChromeDriverManager(driver_version="131.0.6778.69").install()),  # Verifique a versão exata do seu Chrome
             options=options
         )
     except Exception as e:

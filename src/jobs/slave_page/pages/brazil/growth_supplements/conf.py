@@ -13,7 +13,7 @@ PRODUCT_DESCRIPTION_TAG_MAP = [
     {'tag': None, 'path': '#layoutPersonalizado2Produto > section.topoDetalhe'},
 ]
 
-PRODUCT_NUTRICIONAL_TABLE_TAG_MAP = [
+PRODUCT_IMAGES_TAG_MAP = [
     {'tag': None, 'path': ''},
 ]
 

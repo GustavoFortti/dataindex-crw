@@ -70,8 +70,10 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
                 save_file(formatted_description, description_path)
                 
         if ("image" in CONF["tag_map_preference"]):
-            url_images: Optional[str] = extract_element_from_html(html_text, CONF["product_nutricional_table_tag_map"], get_product_url_images)
+            url_images: Optional[str] = extract_element_from_html(html_text, CONF["PRODUCT_IMAGES_TAG_MAP"], get_product_url_images)
             url_images = flatten_list(url_images)
+            if (CONF["PRODUCT_IMAGES_TAG_MAP"]['remove_first']):
+                url_images = url_images[1:]
             
             save_json(images_path, {
                 "url_images": url_images
@@ -177,19 +179,23 @@ def get_product_url_images(html_text: str, tag_map: Dict[str, str]) -> Optional[
         # Criar o objeto BeautifulSoup
         soup = BeautifulSoup(html_text, 'html.parser')
 
-        # Selecionar o conteúdo HTML baseado no caminho especificado no tag_map
-        html_content = soup.select_one(tag_map['path'])
+        # Selecionar todos os elementos que correspondem ao caminho no tag_map
+        html_content = soup.select(tag_map['path'])
         
         if not html_content:
             return None
         
         # Capturar todos os links de imagens
         image_urls = []
-        for tag in html_content:
-            # Procurar o atributo 'src' da tag de imagem
-            img_src = tag.get('src')
-            if img_src:
-                image_urls.append(img_src)
+        for element in html_content:
+            # Procurar por tags <img> dentro do elemento
+            imgs_tag = element.find_all('img')
+            for img_tag in imgs_tag:
+                if img_tag and 'src' in img_tag.attrs:
+                    img_src = img_tag['src']
+                    if img_src:
+                        img_src = img_src.replace("//www.", "https://www.")
+                        image_urls.append(img_src)
 
         return image_urls if image_urls else None
     except Exception as e:

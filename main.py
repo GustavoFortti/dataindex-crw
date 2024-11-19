@@ -4,7 +4,6 @@ import sys
 import traceback
 
 from src.config.setup.display import configure_display
-from src.config.setup.image_server import configure_image_server
 from src.lib.utils.log import message
 
 
@@ -38,9 +37,6 @@ def configure_system(args):
     # Configurações específicas para tipos de trabalho
     if args.exec_type in ["extract", "transform"]:
         configure_display()
-
-    # Configura o servidor de imagens
-    configure_image_server()
 
 def run_job(args):
     """

@@ -370,6 +370,7 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
         
         product_images = []
         path_product_images = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_images.json"
+        message(f"read {path_product_images}")
         if path_exists(path_product_images):
             product_images = read_json(path_product_images)['url_images']
         product_images.insert(0, row['image_url'])
@@ -522,24 +523,41 @@ def update_images(session, product_id: int, image_urls: list) -> bool:
     Atualiza as imagens de um produto na Shopify, substituindo as imagens atuais pelas novas.
     """
     try:
-        # Prepara a lista de novas imagens
-        new_images = [{"src": url} for url in image_urls]
-
-        # Atualiza as imagens do produto em uma única chamada
-        product_data = {
-            "product": {
-                "id": product_id,
-                "images": new_images
-            }
-        }
-        response = session.put(f"{BASE_URL}products/{product_id}.json", json=product_data)
-        if response.status_code in [200, 201]:
-            message(f"Imagens do produto {product_id} atualizadas com sucesso.")
-            return True
-        else:
-            error_message = response.json().get('errors', response.text)
-            message(f"Erro ao atualizar imagens do produto {product_id}: {response.status_code} - {error_message}")
+        # Passo 1: Obter imagens existentes
+        response = session.get(f"{BASE_URL}products/{product_id}/images.json")
+        if response.status_code != 200:
+            message(f"Erro ao obter imagens atuais do produto {product_id}: {response.status_code} - {response.text}")
             return False
+        existing_images = response.json().get('images', [])
+
+        # Passo 2: Deletar imagens existentes
+        for image in existing_images:
+            image_id = image.get('id')
+            del_response = session.delete(f"{BASE_URL}products/{product_id}/images/{image_id}.json")
+            if del_response.status_code not in [200, 204]:
+                error_message = del_response.json().get('errors', del_response.text)
+                message(f"Erro ao deletar imagem {image_id} do produto {product_id}: {del_response.status_code} - {error_message}")
+                # Continua tentando deletar as outras imagens
+            else:
+                message(f"Imagem {image_id} do produto {product_id} deletada com sucesso.")
+
+        # Passo 3: Preparar e adicionar novas imagens
+        for url in image_urls:
+            # Verifica se o URL começa com 'http://' ou 'https://'
+            if not url.startswith('http://') and not url.startswith('https://'):
+                url = 'https://' + url  # Adiciona 'https://' ao início do URL
+            image_payload = {"image": {"src": url}}
+            add_response = session.post(f"{BASE_URL}products/{product_id}/images.json", json=image_payload)
+            if add_response.status_code not in [200, 201]:
+                error_message = add_response.json().get('errors', add_response.text)
+                message(f"Erro ao adicionar imagem ao produto {product_id}: {add_response.status_code} - {error_message}")
+                # Continua tentando adicionar as outras imagens
+            else:
+                added_image = add_response.json().get('image', {})
+                message(f"Imagem {added_image.get('id')} adicionada ao produto {product_id} com sucesso.")
+
+        message(f"Imagens do produto {product_id} atualizadas com sucesso.")
+        return True
 
     except Exception as e:
         message(f"Erro ao atualizar imagens do produto {product_id}: {e}")
