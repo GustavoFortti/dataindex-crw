@@ -1,3 +1,10 @@
 [
-    { "sub-class": "proteinas", "url": "https://www.a1supplements.com/collections/all?page=" }
+    { "url": "https://www.a1supplements.com/collections/protein-whey-protein-powder?page=", "category": "whey protein" },
+    { "url": "https://www.a1supplements.com/collections/health-wellness-vitamins?page=", "category": "vitamins" },
+    { "url": "https://www.a1supplements.com/collections/vitamins-multi-vitamins?page=", "category": "multi-vitamins" },
+    { "url": "https://www.a1supplements.com/collections/sports-nutrition-creatine-supplements?page=", "category": "creatine" },
+    { "url": "https://www.a1supplements.com/collections/sports-nutrition-muscle-builders-zma?page=", "category": "zma" },
+    { "url": "https://www.a1supplements.com/collections/diet-lifestyle-fish-oil-flax-oil-omegas?page=", "category": "omega 3" },
+    { "url": "https://www.a1supplements.com/collections/sports-nutrition-pre-workout-supplements-energy-endurance-supplements?page=", "category": "pretrein" },
+    { "url": "https://www.a1supplements.com/collections/all?page=" }
 ]

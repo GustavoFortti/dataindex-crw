@@ -24,7 +24,6 @@ def set_conf(args, local):
     return conf
 
 def update_conf_with_page_config(conf, page_conf, local, args):
-    conf["name"] = page_conf.JOB_NAME
     conf["brand"] = page_conf.BRAND
     conf["url"] = page_conf.URL
     conf["product_description_tag_map"] = page_conf.PRODUCT_DESCRIPTION_TAG_MAP

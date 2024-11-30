@@ -7,6 +7,7 @@ import src.lib.extract.selenium_service as se
 from src.lib.utils.data_quality import status_tag
 from src.lib.utils.dataframe import create_or_read_df
 from src.lib.utils.text_functions import clean_string_break_line, generate_hash
+from src.lib.utils.file_system import read_file, save_file
 
 def crawler(page, url):
     message("exec crawler")
@@ -50,7 +51,8 @@ def load_page(page, url):
             )
             
         if (page.conf["status_job"]):
-            se.dynamic_scroll(driver,
+            se.dynamic_scroll(
+                driver=driver,
                 time_sleep=0.4,
                 scroll_step=1000,
                 percentage=0.5,
@@ -74,7 +76,16 @@ def load_page(page, url):
         time.sleep(1)
 
         se.load_url(driver, url)
-        se.dynamic_scroll(driver, time_sleep=0.5, scroll_step=500, percentage=0.5, return_percentage=0.1, max_return=100, max_attempts=2)
+        se.dynamic_scroll(
+            driver=driver,
+            time_sleep=0.5,
+            scroll_step=500,
+            percentage=0.5,
+            return_percentage=0.1,
+            max_return=100,
+            max_attempts=2
+        )
+        
         soup, page_text = se.get_page_source(driver)
 
         with open(file_name, 'w') as file:
@@ -121,6 +132,18 @@ def extract_data(page, soup):
             'ing_date': page.conf['formatted_date']
         }
 
+        category = page.conf['seed'].get("category", False)
+        if (category):
+            file_path = f"{page.conf['src_data_path']}/{page.conf['page_name']}/products/{ref}_class.txt"
+            file_content = read_file(file_path)
+            
+            if (file_content):
+                categorys = list(set(file_content.split(",")))
+                categorys.append(category)
+                categorys = str(list(set(categorys)))[1:-1]
+            
+            save_file(categorys, file_path)
+        
         message(data)
         if (page.conf["status_job"]):
             status_tag(page, data)

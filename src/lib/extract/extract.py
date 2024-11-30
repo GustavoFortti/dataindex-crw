@@ -70,6 +70,8 @@ def products_update(page):
     for value, seed in enumerate(seeds):
         message(f"seed: {seed}")
         message(f"index seed: {value} / {len(seeds)}")
+        page.conf["seed"] = seed
+        
         while True:
             url = page.get_url(seed)
             index = page.conf["index"]

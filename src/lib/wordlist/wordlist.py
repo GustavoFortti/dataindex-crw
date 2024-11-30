@@ -71,7 +71,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "NAC",
         "united_states": "NAC",
     },
-    "albumina": {
+    "albumin": {
         "synonyms": [
             "albumin",
             "albumina",
@@ -82,7 +82,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "albumina",
         "united_states": "albumin",
     },
-    "alho": {
+    "garlic": {
         "synonyms": [
             "garlic",
             "alho",
@@ -91,7 +91,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "alho",
         "united_states": "garlic",
     },
-    "aminoacido": {
+    "amino acid": {
         "synonyms": [
             "amino acid",
             "aminoacido",
@@ -100,7 +100,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "aminoácido",
         "united_states": "amino acid",
     },
-    "antioxidante": {
+    "antioxidant": {
         "synonyms": [
             "antioxidant",
             "antioxidante",
@@ -110,7 +110,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "antioxidante",
         "united_states": "antioxidant",
     },
-    "arginin": {
+    "arginine": {
         "synonyms": [
             "arginine",
             "argin",
@@ -126,7 +126,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "arginina",
         "united_states": "arginine",
     },
-    "astaxantina": {
+    "astaxanthin": {
         "synonyms": [
             "astaxanthin",
             "astaxantina",
@@ -135,7 +135,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "astaxantina",
         "united_states": "astaxanthin",
     },
-    "batata doce": {
+    "sweet potato": {
         "synonyms": [
             "sweet potato",
             "batata doce",
@@ -174,7 +174,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "carne",
         "united_states": "beef",
     },
-    "betaalanina": {
+    "beta-alanine": {
         "synonyms": [
             "beta-alanine",
             "beta alanina",
@@ -186,7 +186,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "beta-alanina",
         "united_states": "beta-alanine",
     },
-    "betacaroteno": {
+    "beta-carotene": {
         "synonyms": [
             "beta-carotene",
             "betacaroteno",
@@ -195,7 +195,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "beta-carotene",
         "united_states": "beta-carotene",
     },
-    "borragem": {
+    "borage": {
         "synonyms": [
             "borage",
             "borragem",
@@ -204,7 +204,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "borragem",
         "united_states": "borage",
     },
-    "termogenico": {
+    "thermogenic": {
         "synonyms": [
             "thermogenic",
             "termo",
@@ -217,7 +217,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "termogênico",
         "united_states": "thermogenic",
     },
-    "tcm": {
+    "mct": {
         "synonyms": [
             "mct",
             "tcm",
@@ -226,7 +226,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "TCM",
         "united_states": "MCT",
     },
-    "calcio": {
+    "calcium": {
         "synonyms": [
             "calcium",
             "calcio",
@@ -235,7 +235,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "cálcio",
         "united_states": "calcium",
     },
-    "carboidrato": {
+    "carbohydrate": {
         "synonyms": [
             "carbohydrate",
             "carboidrato",
@@ -254,7 +254,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "carboidrato",
         "united_states": "carbohydrate",
     },
-    "carnitin": {
+    "carnitine": {
         "synonyms": [
             "carnitine",
             "carnitin",
@@ -267,7 +267,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "carnitina",
         "united_states": "carnitine",
     },
-    "cartamo": {
+    "safflower": {
         "synonyms": [
             "safflower",
             "cartamo",
@@ -276,7 +276,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "cártamo",
         "united_states": "safflower",
     },
-    "oleo de cartamo": {
+    "safflower oil": {
         "synonyms": [
             "safflower oil",
             "oleo de cartamo",
@@ -296,7 +296,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "caseina",
         "united_states": "casein",
     },
-    "cha": {
+    "tea": {
         "synonyms": [
             "tea",
             "cha",
@@ -314,7 +314,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "guaraná",
         "united_states": "guarana",
     },
-    "chaverde": {
+    "green tea": {
         "synonyms": [
             "green tea",
             "chaverde",
@@ -333,7 +333,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "chia",
         "united_states": "chia",
     },
-    "cistein": {
+    "cysteine": {
         "synonyms": [
             "cysteine",
             "cistein",
@@ -343,7 +343,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "cisteína",
         "united_states": "cysteine",
     },
-    "colageno": {
+    "collagen": {
         "synonyms": [
             "collagen",
             "colageno",
@@ -354,7 +354,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "colágeno",
         "united_states": "collagen",
     },
-    "vitamina b": {
+    "vitamin b": {
         "synonyms": [
             "vitamin b complex",
             "complexo b",
@@ -364,7 +364,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B",
         "united_states": "vitamin B complex",
     },
-    "concentrad": {
+    "concentrated": {
         "synonyms": [
             "concentrate",
             "wpc",
@@ -375,7 +375,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "concentrado",
         "united_states": "concentrate",
     },
-    "creatina": {
+    "creatine": {
         "synonyms": [
             "creatine",
             "creatina",
@@ -395,7 +395,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "crisp",
         "united_states": "crisp",
     },
-    "cromo": {
+    "chromium": {
         "synonyms": [
             "chromium",
             "cromo",
@@ -405,7 +405,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "cromo",
         "united_states": "chromium",
     },
-    "cafeina": {
+    "caffeine": {
         "synonyms": [
             "caffeine",
             "cafeína",
@@ -417,7 +417,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "cafeína",
         "united_states": "caffeine",
     },
-    "curcuma": {
+    "turmeric": {
         "synonyms": [
             "turmeric",
             "curcuma",
@@ -440,7 +440,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "dextrose",
         "united_states": "dextrose",
     },
-    "dribose": {
+    "d-ribose": {
         "synonyms": [
             "d-ribose",
             "dribose",
@@ -453,7 +453,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "united_states": "D-ribose",
     },
 
-    "ervilha": {
+    "pea": {
         "synonyms": [
             "pea",
             "ervilha",
@@ -463,7 +463,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "ervilha",
         "united_states": "pea",
     },
-    "espirulina": {
+    "spirulina": {
         "synonyms": [
             "spirulina",
             "espirulina",
@@ -472,7 +472,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "espirulina",
         "united_states": "spirulina",
     },
-    "fibra": {
+    "fiber": {
         "synonyms": [
             "fiber",
             "fibra",
@@ -481,7 +481,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "fibra",
         "united_states": "fiber",
     },
-    "fosfatidilserina": {
+    "phosphatidylserine": {
         "synonyms": [
             "phosphatidylserine",
             "fosfatidilserina",
@@ -490,7 +490,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "fosfatidilserina",
         "united_states": "phosphatidylserine",
     },
-    "frutose": {
+    "fructose": {
         "synonyms": [
             "fructose",
             "frutose",
@@ -499,7 +499,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "frutose",
         "united_states": "fructose",
     },
-    "gengibre": {
+    "ginger": {
         "synonyms": [
             "ginger",
             "gengibre",
@@ -508,7 +508,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "gengibre",
         "united_states": "ginger",
     },
-    "gergelim": {
+    "sesame": {
         "synonyms": [
             "sesame",
             "gergelim",
@@ -517,7 +517,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "gergelim",
         "united_states": "sesame",
     },
-    "glutamin": {
+    "glutamine": {
         "synonyms": [
             "glutamine",
             "glutamin",
@@ -540,7 +540,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "cabelo",
         "united_states": "hair",
     },
-    "hialuronico": {
+    "hyaluronic": {
         "synonyms": [
             "hyaluronic acid",
             "hialuronico",
@@ -549,7 +549,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "hialurônico",
         "united_states": "hyaluronic acid",
     },
-    "hidrolisad": {
+    "hydrolyzed": {
         "synonyms": [
             "hydrolyzed",
             "hidrolisad",
@@ -580,7 +580,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "HMB",
         "united_states": "HMB",
     },
-    "imune": {
+    "immune": {
         "synonyms": [
             "immune",
             "imune",
@@ -624,7 +624,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "óleo de krill",
         "united_states": "krill oil",
     },
-    "lecitina": {
+    "lecithin": {
         "synonyms": [
             "lecithin",
             "lecitina",
@@ -633,7 +633,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "lecitina",
         "united_states": "lecithin",
     },
-    "leucin": {
+    "leucine": {
         "synonyms": [
             "leucine",
             "leucin",
@@ -653,7 +653,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "levagen",
         "united_states": "Levagen",
     },
-    "linhaca": {
+    "flaxseed": {
         "synonyms": [
             "flaxseed",
             "linhaca",
@@ -662,7 +662,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "linhaça",
         "united_states": "flaxseed",
     },
-    "maca peruana": {
+    "maca": {
         "synonyms": [
             "peruvian maca",
             "maca peruana",
@@ -671,7 +671,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "maca peruana",
         "united_states": "Peruvian maca",
     },
-    "magnesio": {
+    "magnesium": {
         "synonyms": [
             "magnesium",
             "magnesio",
@@ -681,7 +681,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "magnésio",
         "united_states": "magnesium",
     },
-    "ferro": {
+    "iron": {
         "synonyms": [
             "iron",
             "ferro",
@@ -693,7 +693,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "ferro",
         "united_states": "iron",
     },
-    "maltodextrina": {
+    "maltodextrin": {
         "synonyms": [
             "maltodextrin",
             "dextrina",
@@ -715,7 +715,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "Hipercalórico",
         "united_states": "mass gainer",
     },
-    "melatonina": {
+    "melatonin": {
         "synonyms": [
             "melatonin",
             "melatonina",
@@ -725,7 +725,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "melatonina",
         "united_states": "melatonin",
     },
-    "monohidratada": {
+    "monohydrate": {
         "synonyms": [
             "monohydrate",
             "monohidratada",
@@ -743,7 +743,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "creapure",
         "united_states": "Creapure",
     },
-    "multivitaminico": {
+    "multivitamin": {
         "synonyms": [
             "multivitamin",
             "multivitaminico",
@@ -773,7 +773,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "unha",
         "united_states": "nail",
     },
-    "oleo": {
+    "oil": {
         "synonyms": [
             "oil",
             "oleo",
@@ -782,7 +782,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "óleo",
         "united_states": "oil",
     },
-    "oleo de coco": {
+    "coconut oil": {
         "synonyms": [
             "coconut oil",
             "oleo de coco",
@@ -809,7 +809,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "barbecue",
         "united_states": "barbecue",
     },
-    "mostarda": {
+    "mustard": {
         "synonyms": [
             "mustard",
             "mostarda",
@@ -818,7 +818,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "mostarda",
         "united_states": "mustard",
     },
-    "maionese": {
+    "mayonnaise": {
         "synonyms": [
             "mayonnaise",
             "maionese",
@@ -846,7 +846,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "palatinose",
         "united_states": "palatinose",
     },
-    "enzima": {
+    "enzyme": {
         "synonyms": [
             "enzyme",
             "enzima",
@@ -900,7 +900,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "lipase",
         "united_states": "lipase",
     },
-    "bromelina": {
+    "bromelain": {
         "synonyms": [
             "bromelain",
             "bromelina",
@@ -923,7 +923,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "crisp",
         "united_states": "crisp",
     },
-    "amilase": {
+    "amylase": {
         "synonyms": [
             "amylase",
             "amilase",
@@ -934,7 +934,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "amilase",
         "united_states": "amylase",
     },
-    "manteiga de amendoim": {
+    "peanut butter": {
         "synonyms": [
             "peanut butter",
             "pasta de amendoim",
@@ -959,7 +959,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "snack",
         "united_states": "snack",
     },
-    "amendoim": {
+    "peanut": {
         "synonyms": [
             "peanut",
             "amendoim",
@@ -993,7 +993,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "ômega 6",
         "united_states": "omega 6",
     },
-    "picolinato": {
+    "picolinate": {
         "synonyms": [
             "picolinate",
             "picolinato",
@@ -1018,7 +1018,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "MCT",
         "united_states": "MCT",
     },
-    "pretreino": {
+    "pre-workout": {
         "synonyms": [
             "pre-workout",
             "pretreino",
@@ -1043,7 +1043,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "endurance",
         "united_states": "endurance",
     },
-    "postreino": {
+    "post-workout": {
         "synonyms": [
             "post-workout",
             "postreino",
@@ -1057,7 +1057,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "pós-trein,o",
         "united_states": "post-workout",
     },
-    "intratreino": {
+    "intra-workout": {
         "synonyms": [
             "intra-workout",
             "intra-treino",
@@ -1071,7 +1071,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "intra-tre,ino",
         "united_states": "intra-workout",
     },
-    "primula": {
+    "primrose": {
         "synonyms": [
             "evening primrose",
             "primula",
@@ -1080,7 +1080,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "prímula",
         "united_states": "evening primrose",
     },
-    "propoli": {
+    "propolis": {
         "synonyms": [
             "propolis",
             "propoli",
@@ -1119,7 +1119,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "psílio",
         "united_states": "psyllium",
     },
-    "quitosana": {
+    "chitosan": {
         "synonyms": [
             "chitosan",
             "quitosana",
@@ -1147,7 +1147,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "arroz",
         "united_states": "rice",
     },
-    "semente": {
+    "seed": {
         "synonyms": [
             "seed",
             "semente",
@@ -1185,7 +1185,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "spirulina",
         "united_states": "spirulina",
     },
-    "taurina": {
+    "taurine": {
         "synonyms": [
             "taurine",
             "taurina",
@@ -1196,7 +1196,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "taurina",
         "united_states": "taurine",
     },
-    "tempero": {
+    "seasoning": {
         "synonyms": [
             "seasoning",
             "tempero",
@@ -1214,7 +1214,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "testofen",
         "united_states": "Testofen",
     },
-    "tyrosin": {
+    "tyrosine": {
         "synonyms": [
             "tyrosine",
             "tyrosin",
@@ -1233,7 +1233,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "tirosina",
         "united_states": "tyrosine",
     },
-    "transresveratrol": {
+    "trans-resveratrol": {
         "synonyms": [
             "trans-resveratrol",
             "transresveratrol",
@@ -1243,7 +1243,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "trans-resveratrol",
         "united_states": "trans-resveratrol",
     },
-    "triptofano": {
+    "tryptophan": {
         "synonyms": [
             "tryptophan",
             "triptofano",
@@ -1252,7 +1252,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "triptofano",
         "united_states": "tryptophan",
     },
-    "leucina": {
+    "leucine": {
         "synonyms": [
             "leucine",
             "leucina",
@@ -1261,7 +1261,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "leucina",
         "united_states": "leucine",
     },
-    "valina": {
+    "valine": {
         "synonyms": [
             "valine",
             "valina",
@@ -1270,7 +1270,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "valina",
         "united_states": "valine",
     },
-    "isoleucina": {
+    "isoleucine": {
         "synonyms": [
             "isoleucine",
             "isoleucina",
@@ -1279,7 +1279,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "isoleucina",
         "united_states": "isoleucine",
     },
-    "lisina": {
+    "lysine": {
         "synonyms": [
             "lysine",
             "lisina",
@@ -1288,7 +1288,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "lisina",
         "united_states": "lysine",
     },
-    "fenilalanina": {
+    "phenylalanine": {
         "synonyms": [
             "phenylalanine",
             "fenilalanina",
@@ -1297,7 +1297,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "fenilalanina",
         "united_states": "phenylalanine",
     },
-    "treonina": {
+    "threonine": {
         "synonyms": [
             "threonine",
             "treonina",
@@ -1306,7 +1306,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "treonina",
         "united_states": "threonine",
     },
-    "metionina": {
+    "methionine": {
         "synonyms": [
             "methionine",
             "metionina",
@@ -1315,7 +1315,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "metionina",
         "united_states": "methionine",
     },
-    "silimarina": {
+    "silymarin": {
         "synonyms": [
             "silymarin",
             "silimarina",
@@ -1324,7 +1324,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "silimarina",
         "united_states": "silymarin",
     },
-    "histidina": {
+    "histidine": {
         "synonyms": [
             "histidine",
             "histidina",
@@ -1370,7 +1370,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "verisol",
         "united_states": "Verisol",
     },
-    "vitamina": {
+    "vitamin": {
         "synonyms": [
             "vitamin",
             "vitamina",
@@ -1381,7 +1381,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina",
         "united_states": "vitamin",
     },
-    "vitamina a": {
+    "vitamin a": {
         "synonyms": [
             "vitamin a",
             "vitamina a",
@@ -1393,7 +1393,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina a",
         "united_states": "vitamin A",
     },
-    "vitamina b1": {
+    "vitamin b1": {
         "synonyms": [
             "vitamin b1",
             "vitamina b1",
@@ -1404,7 +1404,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B1",
         "united_states": "vitamin B1",
     },
-    "vitamina b10": {
+    "vitamin b10": {
         "synonyms": [
             "vitamin b10",
             "vitamina b10",
@@ -1415,7 +1415,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B10",
         "united_states": "vitamin B10",
     },
-    "vitamina b11": {
+    "vitamin b11": {
         "synonyms": [
             "vitamin b11",
             "vitamina b11",
@@ -1426,7 +1426,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B11",
         "united_states": "vitamin B11",
     },
-    "vitamina b12": {
+    "vitamin b12": {
         "synonyms": [
             "vitamin b12",
             "vitamina b12",
@@ -1437,7 +1437,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B12",
         "united_states": "vitamin B12",
     },
-    "vitamina b13": {
+    "vitamin b13": {
         "synonyms": [
             "vitamin b13",
             "vitamina b13",
@@ -1448,7 +1448,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B13",
         "united_states": "vitamin B13",
     },
-    "vitamina b15": {
+    "vitamin b15": {
         "synonyms": [
             "vitamin b15",
             "vitamina b15",
@@ -1459,7 +1459,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B15",
         "united_states": "vitamin B15",
     },
-    "vitamina b17": {
+    "vitamin b17": {
         "synonyms": [
             "vitamin b17",
             "vitamina b17",
@@ -1470,7 +1470,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B17",
         "united_states": "vitamin B17",
     },
-    "vitamina b2": {
+    "vitamin b2": {
         "synonyms": [
             "vitamin b2",
             "vitamina b2",
@@ -1481,7 +1481,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B2",
         "united_states": "vitamin B2",
     },
-    "vitamina b22": {
+    "vitamin b22": {
         "synonyms": [
             "vitamin b22",
             "vitamina b22",
@@ -1492,7 +1492,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B22",
         "united_states": "vitamin B22",
     },
-    "vitamina b3": {
+    "vitamin b3": {
         "synonyms": [
             "vitamin b3",
             "vitamina b3",
@@ -1503,7 +1503,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B3",
         "united_states": "vitamin B3",
     },
-    "vitamina b4": {
+    "vitamin b4": {
         "synonyms": [
             "vitamin b4",
             "vitamina b4",
@@ -1514,7 +1514,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B4",
         "united_states": "vitamin B4",
     },
-    "vitamina b5": {
+    "vitamin b5": {
         "synonyms": [
             "vitamin b5",
             "vitamina b5",
@@ -1525,7 +1525,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B5",
         "united_states": "vitamin B5",
     },
-    "vitamina b6": {
+    "vitamin b6": {
         "synonyms": [
             "vitamin b6",
             "vitamina b6",
@@ -1536,7 +1536,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B6",
         "united_states": "vitamin B6",
     },
-    "biotina": {
+    "biotin": {
         "synonyms": [
             "biotin",
             "vitamina b7",
@@ -1548,7 +1548,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B7",
         "united_states": "biotin",
     },
-    "vitamina b8": {
+    "vitamin b8": {
         "synonyms": [
             "vitamin b8",
             "vitamina b8",
@@ -1559,7 +1559,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B8",
         "united_states": "vitamin B8",
     },
-    "vitamina b9": {
+    "vitamin b9": {
         "synonyms": [
             "vitamin b9",
             "vitamina b9",
@@ -1570,7 +1570,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina B9",
         "united_states": "vitamin B9",
     },
-    "vitamina c": {
+    "vitamin c": {
         "synonyms": [
             "vitamin c",
             "vitamina c",
@@ -1591,7 +1591,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina C",
         "united_states": "vitamin C",
     },
-    "vitamina d": {
+    "vitamin d": {
         "synonyms": [
             "vitamin d",
             "vitamina d",
@@ -1610,7 +1610,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina D",
         "united_states": "vitamin D",
     },
-    "vitamina e": {
+    "vitamin e": {
         "synonyms": [
             "vitamin e",
             "vitamina e",
@@ -1625,7 +1625,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina E",
         "united_states": "vitamin E",
     },
-    "vitamina f": {
+    "vitamin f": {
         "synonyms": [
             "vitamin f",
             "vitamina f",
@@ -1637,7 +1637,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina F",
         "united_states": "vitamin F",
     },
-    "vitamina g": {
+    "vitamin g": {
         "synonyms": [
             "vitamin g",
             "vitamina g",
@@ -1649,7 +1649,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina G",
         "united_states": "vitamin G",
     },
-    "vitamina j": {
+    "vitamin j": {
         "synonyms": [
             "vitamin j",
             "vitamina j",
@@ -1661,7 +1661,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina J",
         "united_states": "vitamin J",
     },
-    "vitamina k": {
+    "vitamin k": {
         "synonyms": [
             "vitamin k",
             "vitamina k",
@@ -1674,7 +1674,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina K",
         "united_states": "vitamin K",
     },
-    "vitamina k1": {
+    "vitamin k1": {
         "synonyms": [
             "vitamin k1",
             "vitamina k1",
@@ -1686,7 +1686,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina K1",
         "united_states": "vitamin K1",
     },
-    "vitamina k2": {
+    "vitamin k2": {
         "synonyms": [
             "vitamin k2",
             "vitamina k2",
@@ -1699,7 +1699,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina K2",
         "united_states": "vitamin K2",
     },
-    "vitamina k7": {
+    "vitamin k7": {
         "synonyms": [
             "vitamin k7",
             "vitamina k7",
@@ -1711,7 +1711,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "vitamina K7",
         "united_states": "vitamin K7",
     },
-    "vitamina q": {
+    "vitamin q": {
         "synonyms": [
             "coenzyme q10",
             "vitamina q",
@@ -1734,7 +1734,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "wafer",
         "united_states": "wafer",
     },
-    "waxymaize": {
+    "waxy maize": {
         "synonyms": [
             "waxy maize",
             "waxymaize",
@@ -1768,7 +1768,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "xilitol",
         "united_states": "xylitol",
     },
-    "zeaxantina": {
+    "zeaxanthin": {
         "synonyms": [
             "zeaxanthin",
             "zeaxantina",
@@ -1777,7 +1777,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "zeaxantina",
         "united_states": "zeaxanthin",
     },
-    "zinco": {
+    "zinc": {
         "synonyms": [
             "zinc",
             "zinco",
@@ -1786,7 +1786,7 @@ SUPPLEMENT_COMPONENT_LIST = {
         "brazil": "zinco",
         "united_states": "zinc",
     },
-    "selenio": {
+    "selenium": {
         "synonyms": [
             "selenium",
             "selenio",
