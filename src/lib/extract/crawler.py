@@ -10,12 +10,12 @@ from src.lib.utils.text_functions import clean_string_break_line, generate_hash
 from src.lib.utils.file_system import read_file, save_file
 
 
-def crawler(page: Any, url: str) -> None:
+def crawler(page: Dict, url: str) -> None:
     """
     Initiates the crawling process for a given page and URL.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         url (str): The URL to crawl.
 
     Returns:
@@ -27,12 +27,12 @@ def crawler(page: Any, url: str) -> None:
     load_page(page, url)
 
 
-def is_driver_initialized(page: Any) -> bool:
+def is_driver_initialized(page: Dict) -> bool:
     """
     Checks if the Selenium driver is initialized in the page configuration.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
 
     Returns:
         bool: True if driver is initialized, False otherwise.
@@ -43,12 +43,12 @@ def is_driver_initialized(page: Any) -> bool:
     return driver_initialized
 
 
-def initialize_driver(page: Any) -> None:
+def initialize_driver(page: Dict) -> None:
     """
     Initializes the Selenium driver and updates the page configuration.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
 
     Returns:
         None
@@ -57,12 +57,12 @@ def initialize_driver(page: Any) -> None:
     page.conf["driver"] = se.initialize_selenium(page.conf)
 
 
-def load_page(page: Any, url: str) -> None:
+def load_page(page: Dict, url: str) -> None:
     """
     Loads the specified URL using the configured Selenium driver and performs necessary updates.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         url (str): The URL to load.
 
     Returns:
@@ -78,13 +78,13 @@ def load_page(page: Any, url: str) -> None:
         handle_products_metadata_update(page, driver, url)
 
 
-def handle_products_update(page: Any, driver: Any, url: str) -> None:
+def handle_products_update(page: Dict, driver: Any, url: str) -> None:
     """
     Handles the products update process, including loading the URL, dynamic scrolling,
     and data extraction.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
         url (str): The URL to load.
 
@@ -106,12 +106,12 @@ def handle_products_update(page: Any, driver: Any, url: str) -> None:
     extract_data(page, soup)
 
 
-def apply_dynamic_scroll(page: Any, driver: Any, config: Dict[str, Any]) -> None:
+def apply_dynamic_scroll(page: Dict, driver: Any, config: Dict[str, Any]) -> None:
     """
     Applies dynamic scrolling based on the provided configuration.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
         config (Dict[str, Any]): Configuration parameters for dynamic scrolling.
 
@@ -141,12 +141,12 @@ def apply_dynamic_scroll(page: Any, driver: Any, config: Dict[str, Any]) -> None
         )
 
 
-def perform_additional_scroll(page: Any, driver: Any) -> None:
+def perform_additional_scroll(page: Dict, driver: Any) -> None:
     """
     Performs an additional dynamic scroll with predefined parameters.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
 
     Returns:
@@ -163,13 +163,13 @@ def perform_additional_scroll(page: Any, driver: Any) -> None:
     )
 
 
-def handle_products_metadata_update(page: Any, driver: Any, url: str) -> None:
+def handle_products_metadata_update(page: Dict, driver: Any, url: str) -> None:
     """
     Handles the products metadata update process, including loading the URL,
     dynamic scrolling, and saving the page source.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
         url (str): The URL to load.
 
@@ -216,12 +216,12 @@ def save_page_text(file_name: str, content: str) -> None:
         message(f"Failed to write to file '{file_name}': {e}")
 
 
-def extract_data(page: Any, soup: Any) -> None:
+def extract_data(page: Dict, soup: Any) -> None:
     """
     Extracts product data from the provided soup object and updates the DataFrame.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         soup (Any): The BeautifulSoup object containing the page's HTML content.
 
     Returns:
@@ -247,12 +247,12 @@ def extract_data(page: Any, soup: Any) -> None:
     finalize_extraction(page, df_products_temp, size_products_temp)
 
 
-def handle_no_items_found(page: Any) -> None:
+def handle_no_items_found(page: Dict) -> None:
     """
     Handles the scenario when no items are found on the page.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
 
     Returns:
         None
@@ -270,12 +270,12 @@ def handle_no_items_found(page: Any) -> None:
         exit(1)
 
 
-def process_items(page: Any, items: Any, df_products_temp: pd.DataFrame) -> None:
+def process_items(page: Dict, items: Any, df_products_temp: pd.DataFrame) -> None:
     """
     Processes each item, extracts relevant data, and updates the temporary DataFrame.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         items (Any): The list of items to process.
         df_products_temp (pd.DataFrame): The temporary DataFrame to update.
 
@@ -299,12 +299,12 @@ def process_items(page: Any, items: Any, df_products_temp: pd.DataFrame) -> None
         count_size_items -= 1
 
 
-def extract_item_data(page: Any, item: Any) -> Dict[str, Any]:
+def extract_item_data(page: Dict, item: Any) -> Dict[str, Any]:
     """
     Extracts data from a single item.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         item (Any): The item to extract data from.
 
     Returns:
@@ -334,12 +334,12 @@ def extract_item_data(page: Any, item: Any) -> Dict[str, Any]:
     return data
 
 
-def handle_category(page: Any, data: Dict[str, Any]) -> None:
+def handle_category(page: Dict, data: Dict[str, Any]) -> None:
     """
     Handles category assignment for a product based on existing data.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         data (Dict[str, Any]): The data dictionary of the current product.
 
     Returns:
@@ -359,12 +359,12 @@ def handle_category(page: Any, data: Dict[str, Any]) -> None:
         save_file(categories_str, file_path)
 
 
-def finalize_extraction(page: Any, df_products_temp: pd.DataFrame, size_products_temp: int) -> None:
+def finalize_extraction(page: Dict, df_products_temp: pd.DataFrame, size_products_temp: int) -> None:
     """
     Finalizes the data extraction by removing duplicates and saving the DataFrame.
 
     Args:
-        page (Any): The page object containing configuration and state.
+        page (Dict): The page object containing configuration and state.
         df_products_temp (pd.DataFrame): The temporary DataFrame to finalize.
         size_products_temp (int): The initial size of the temporary DataFrame.
 
