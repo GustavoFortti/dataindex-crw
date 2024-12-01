@@ -1,0 +1,6 @@
+job_type: "master_page"
+job_name: "master"
+exec_type: "extract"
+exec_flag: "status_job"
+page_names:
+  - "a1supplements"

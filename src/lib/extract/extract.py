@@ -30,15 +30,15 @@ def extract(conf: dict):
         page = Page(conf)
         products_metadata_update(page)
 
-    if ((conf['exec_flag'] == "products_update") & (checkpoint_extract(page.conf["control_products_update"]))):
+    if ((conf['exec_flag'] == "products_update") & (CHECKPOINT_EXTRACT_DATA(page.conf["control_products_update"]))):
         conf["products_update"] = True
         page = Page(conf)
         products_update(page)
-    elif ((conf['exec_flag'] == "products_metadata_update") & (checkpoint_extract(page.conf["control_products_metadata_update"]))):
+    elif ((conf['exec_flag'] == "products_metadata_update") & (CHECKPOINT_EXTRACT_DATA(page.conf["control_products_metadata_update"]))):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update(page)
-    elif ((conf['exec_flag'] == "products_metadata_update_old_pages") & (checkpoint_extract(page.conf["control_products_metadata_update_old_pages"]))):
+    elif ((conf['exec_flag'] == "products_metadata_update_old_pages") & (CHECKPOINT_EXTRACT_DATA(page.conf["control_products_metadata_update_old_pages"]))):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_update_old_pages(page)
@@ -46,7 +46,7 @@ def extract(conf: dict):
         conf["products_metadata_update"] = True
         page = Page(conf)
         products_metadata_create_pages_if_not_exist(page)
-    elif ((conf['exec_flag'] == "status_job") & (checkpoint_extract(page.conf["control_products_update"]))):
+    elif ((conf['exec_flag'] == "status_job") & (CHECKPOINT_EXTRACT_DATA(page.conf["control_products_update"]))):
         conf["scroll_page"] = False
         conf["products_update"] = True
         conf['status_job'] = True
@@ -182,10 +182,10 @@ def products_metadata_create_pages_if_not_exist(page):
         message(f"index: {value} / {size_urls}")
         crawler(page, url)
         
-def checkpoint_extract(control_file):
+def CHECKPOINT_EXTRACT_DATA(control_file):
     file_modified = file_modified_within_x_hours(control_file, 12)
-    message(f"CHECKPOINT_EXTRACT FLAG - {control_file}")
-    if ((file_modified) & (os.getenv('CHECKPOINT_EXTRACT') == "true")):
-        message(f"CHECKPOINT_EXTRACT ATIVO - {control_file}")
+    message(f"CHECKPOINT_EXTRACT_DATA FLAG - {control_file}")
+    if ((file_modified) & (os.getenv('CHECKPOINT_EXTRACT_DATA') == "true")):
+        message(f"CHECKPOINT_EXTRACT_DATA ATIVO - {control_file}")
         return False
     return True
