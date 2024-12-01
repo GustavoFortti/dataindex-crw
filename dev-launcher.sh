@@ -283,9 +283,8 @@ execute_python_script() {
             --exec_flag "$EXEC_FLAG" \
             --page_type "$page_type" \
             --country "$country" \
-            --mode "$mode" >> "$log_file" 2>&1
+            --mode "$mode"
 
-        echo "Job executed and logged to $log_file"
     else
         # If page_names are provided
         for page_name in "${PAGE_NAMES[@]}"
@@ -303,7 +302,7 @@ execute_python_script() {
                 --exec_flag "$EXEC_FLAG" \
                 --page_type "$page_type" \
                 --country "$country" \
-                --mode "$mode" >> "$log_file" 2>&1
+                --mode "$mode"
         done
 
         echo "All jobs executed and logged."
