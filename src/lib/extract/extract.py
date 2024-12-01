@@ -7,15 +7,23 @@ import pandas as pd
 from src.lib.extract.crawler import crawler
 from src.lib.extract.page_elements import Page
 from src.lib.utils.data_quality import is_price
-from src.lib.utils.dataframe import create_or_read_df, read_df
-from src.lib.utils.file_system import (DATE_FORMAT,
-                                       create_directory_if_not_exists,
-                                       create_file_if_not_exists,
-                                       delete_directory_and_contents,
-                                       delete_file,
-                                       file_modified_within_x_hours,
-                                       get_old_files_by_percent,
-                                       list_directory, read_json)
+from src.lib.utils.dataframe import (
+    create_or_read_df,
+    read_df
+)
+from src.lib.utils.file_system import (
+    create_directory_if_not_exists,
+    create_file_if_not_exists,
+    DATE_FORMAT,
+    delete_directory_and_contents,
+    delete_file,
+    file_exists,
+    file_modified_within_x_hours,
+    get_old_files_by_percent,
+    list_directory,
+    path_exists,
+    read_json
+)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST

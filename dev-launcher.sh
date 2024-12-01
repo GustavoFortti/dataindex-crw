@@ -129,10 +129,10 @@ select_exec_flag() {
             options=("status_job" "new_page" "products_update" "products_metadata_create_pages_if_not_exist" "products_metadata_update_old_pages" "Exit")
             ;;
         "transform")
-            options=("data_quality" "Exit")
+            options=("data_quality" "false" "Exit")
             ;;
         "load")
-            options=("data_load_flag1" "data_load_flag2" "Exit") # Replace with actual flags for 'load' if available
+            options=("false" "Exit")
             ;;
         *)
             echo "Invalid exec_type."
@@ -163,7 +163,9 @@ configure_page_names() {
     case $JOB_TYPE in
         "master_page")
             if [ "$JOB_NAME" == "master" ]; then
-                AVAILABLE_PAGES=("a1supplements" "b2vitamins" "c3minerals" "d4probiotics")
+                AVAILABLE_PAGES=(
+                    "a1supplements"
+                )
             fi
             ;;
         "data_intelligence")
@@ -424,10 +426,7 @@ display_configuration() {
 
 # Main function to orchestrate the selections and execution
 main() {
-    while true; do
-        main_menu
-        echo ""
-    done
+    main_menu
 }
 
 # Execute the main function
