@@ -2,78 +2,55 @@ import argparse
 import importlib
 import sys
 import traceback
+from datetime import datetime
 
-from src.config.setup.display import configure_display
 from src.lib.utils.log import message
+from src.jobs.pipeline import pipeline
 
 
 def parse_arguments():
     """
-    Configura e retorna os argumentos da linha de comando.
+    Configures and returns command-line arguments.
     """
-    parser = argparse.ArgumentParser(description="Processa os argumentos do trabalho.")
-    parser.add_argument("--job_type", type=str, help="")
-    parser.add_argument("--job_name", type=str, help="Nome do trabalho a ser executado.")
-    parser.add_argument("--page_name", type=str, help="Nome da página.")
-    parser.add_argument("--exec_type", type=str, required=True, choices=["extract", "transform", "load", "false"], help="Tipo de trabalho.")
-    parser.add_argument("--exec_flag", type=str, default="", help="Opções adicionais.")
-    parser.add_argument("--page_type", type=str, help="Tipo de página.")
-    parser.add_argument("--country", type=str, help="País de operação.")
-    parser.add_argument("--mode", type=str, default="", help="Modo de execução.")
+    parser = argparse.ArgumentParser(description="Processes job arguments.")
+    parser.add_argument("--job_name", type=str, required=True, help="Name of the job to execute.")
+    parser.add_argument("--options", type=str, required=True, help="Job execution options.")
+    parser.add_argument("--page_name", type=str, required=True, help="Page that will be executed.")
+    parser.add_argument("--country", type=str, required=True, help="Country of operation.")
+    parser.add_argument("--mode", type=str, default=True, help="Execution mode.")
+    parser.add_argument("--local", type=str, required=True, help="Execution path.")
     
     args = parser.parse_args()
     
-    message("PARSE ARGUMENTS")
+    message("parse arguments")
     message(vars(args))
     
     return args
 
-def configure_system(args):
-    """
-    Configura o sistema com base nos argumentos fornecidos.
-    """
-    message("CONFIGURE SYSTEM")
-
-    # Configurações específicas para tipos de trabalho
-    if args.exec_type in ["extract", "transform"]:
-        configure_display()
-
-def run_job(args):
-    """
-    Importa dinamicamente e executa o módulo de trabalho especificado.
-    Mostra o caminho completo e a stack trace em caso de erro.
-    """
-
-    try:
-        # Define o caminho do módulo do job
-        module_path = f"src.jobs.{args.job_type}.{args.job_name}.job"
-        # Importa o módulo dinamicamente
-        job_module = importlib.import_module(module_path)
-        # Executa a função 'run' do módulo do job
-        job_module.run(args)
-    except ModuleNotFoundError as e:
-        message(f"Erro: Módulo para o job '{args.job_name}' não encontrado.")
-        message(f"Caminho: {traceback.format_exc()}")
-        sys.exit(1)
-    except AttributeError as e:
-        message(f"Erro: O módulo '{module_path}' não possui a função 'run'.")
-        message(f"Caminho: {traceback.format_exc()}")
-        sys.exit(1)
-    except Exception as e:
-        message(f"Erro ao executar o job '{args.job_name}': {e}")
-        message(f"Caminho: {traceback.format_exc()}")
-        sys.exit(1)
 
 def main():
-    message("START SYSTEM")
-    # Analisa os argumentos da linha de comando
+    start = datetime.now()
+    message(f"start - {start}")
+
     args = parse_arguments()
     
-    print(args)
-
-    # Executa o job
-    run_job(args)
+    try:
+        pipeline(args)
+    except ModuleNotFoundError:
+        message(f"Error: Module for job '{args.job_name}' not found.")
+        message(f"Traceback: {traceback.format_exc()}")
+        sys.exit(1)
+    except AttributeError:
+        message(f"Error: The module does not contain the required 'run' function.")
+        message(f"Traceback: {traceback.format_exc()}")
+        sys.exit(1)
+    except Exception as e:
+        message(f"Error executing job '{args.job_name}': {e}")
+        message(f"Traceback: {traceback.format_exc()}")
+        sys.exit(1)
     
+    message(f"execution time: {datetime.now() - start} | end: {datetime.now()}")
+
 
 if __name__ == "__main__":
     main()

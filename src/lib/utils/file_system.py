@@ -99,13 +99,13 @@ def file_modified_within_x_hours(file_path, hours):
     else:
         return False
 
-def path_exists(path: str) -> bool:
+def file_or_path_exists(path: str) -> bool:
     """Checks if a path exists."""
     return os.path.exists(path)
 
 def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> None:
     """Creates a file if it doesn't exist. Optionally writes text to it."""
-    if not path_exists(file_path):
+    if not file_or_path_exists(file_path):
         try:
             with open(file_path, mode='a', encoding='utf-8') as file:
                 if text:
@@ -117,7 +117,7 @@ def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> Non
             message(f"An error occurred: {e}")
 
 def create_directory_if_not_exists(directory_path):
-    if not path_exists(directory_path):
+    if not file_or_path_exists(directory_path):
         try:
             os.makedirs(directory_path)
             message(f"Directory '{directory_path}' created successfully.")

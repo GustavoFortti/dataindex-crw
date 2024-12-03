@@ -3,9 +3,9 @@ from glob import glob
 from typing import List, Optional
 
 import pandas as pd
-from src.lib.utils.file_system import path_exists
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import DATE_FORMAT, levenshtein
+from src.lib.utils.file_system import file_or_path_exists
 
 
 def format_column_date(df, column):
@@ -55,7 +55,7 @@ def read_df(path, dtype=None):
     Returns:
     DataFrame: The DataFrame read from the CSV file.
     """
-    if path_exists(path):
+    if file_or_path_exists(path):
         message(f"read file: {path}")
         if dtype:
             return pd.read_csv(path, dtype=dtype)

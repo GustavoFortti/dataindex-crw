@@ -3,7 +3,7 @@ from copy import deepcopy
 import pandas as pd
 
 import src.lib.utils.data_quality as dq
-from src.lib.load.connection.shopify import process_and_ingest_products
+from src.lib.load.shopify.shopify import process_and_ingest_products
 from src.lib.utils.dataframe import create_or_read_df, read_df
 from src.lib.utils.log import message
 from src.lib.utils.file_system import delete_file, path_exists

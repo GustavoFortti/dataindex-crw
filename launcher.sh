@@ -9,9 +9,6 @@ page_name=false
 exec_flag=false
 local="/home/crw-system/shape-data-shelf-crw"
 
-export USE_HEADLESS="false"
-export CHECKPOINT_EXTRACT_DATA="true"
-
 source $local/env/display.sh
 source $local/keys.sh
 

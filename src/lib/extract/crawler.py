@@ -92,8 +92,7 @@ def handle_products_update(page: Dict, driver: Any, url: str) -> None:
         None
     """
     message("PRODUCTS_UPDATE")
-    element_selector: Optional[str] = None
-    se.load_url(driver, url, element_selector)
+    se.load_url(driver, url)
 
     dynamic_scroll_config: Dict[str, Any] = page.conf.get('dynamic_scroll', {})
     apply_dynamic_scroll(page, driver, dynamic_scroll_config)

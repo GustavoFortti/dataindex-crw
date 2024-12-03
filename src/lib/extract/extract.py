@@ -17,11 +17,9 @@ from src.lib.utils.file_system import (
     DATE_FORMAT,
     delete_directory_and_contents,
     delete_file,
-    file_exists,
     file_modified_within_x_hours,
     get_old_files_by_percent,
     list_directory,
-    path_exists,
     read_json
 )
 from src.lib.utils.log import message
@@ -45,7 +43,7 @@ def extract(config: Dict[str, Any]) -> None:
     exec_flag: str = config.get('exec_flag', '').lower()
 
     if exec_flag == "new_page":
-        initialize_new_page(config, page)
+        create_new_page(config, page)
     elif exec_flag == "products_update" and checkpoint_extract_data(page.conf["control_products_update"]):
         perform_products_update(page, config)
     elif exec_flag == "products_metadata_update" and checkpoint_extract_data(page.conf["control_products_metadata_update"]):
@@ -60,7 +58,7 @@ def extract(config: Dict[str, Any]) -> None:
         message(f"Unknown exec_flag: {exec_flag}. No action taken.")
 
 
-def initialize_new_page(config: Dict[str, Any], page: Page) -> None:
+def create_new_page(config: Dict[str, Any], page: Page) -> None:
     """
     Initializes a new page by resetting relevant configurations and performing updates.
 
@@ -84,7 +82,7 @@ def initialize_new_page(config: Dict[str, Any], page: Page) -> None:
     perform_products_metadata_update(page, config)
 
 
-def perform_products_update(page: Page, config: Dict[str, Any]) -> None:
+def update_all_products(page: Page, config: Dict[str, Any]) -> None:
     """
     Updates the products by crawling through seeds and extracting relevant data.
 
@@ -163,7 +161,7 @@ def perform_products_update(page: Page, config: Dict[str, Any]) -> None:
     create_file_if_not_exists(page.conf["control_products_update"], "")
 
 
-def perform_products_metadata_update(page: Page, config: Dict[str, Any]) -> None:
+def update_all_products_metadata(page: Page, config: Dict[str, Any]) -> None:
     """
     Updates the products' metadata by crawling through product URLs and saving page sources.
 
@@ -190,7 +188,7 @@ def perform_products_metadata_update(page: Page, config: Dict[str, Any]) -> None
     create_file_if_not_exists(page.conf["control_products_metadata_update"], "")
 
 
-def products_metadata_update_old_pages_by_ref(page: Page, config: Dict[str, Any]) -> None:
+def update_old_product_metadata(page: Page, config: Dict[str, Any]) -> None:
     """
     Updates metadata for old product pages based on a percentage criterion.
 
@@ -231,7 +229,7 @@ def products_metadata_update_old_pages_by_ref(page: Page, config: Dict[str, Any]
     create_file_if_not_exists(page.conf["control_products_metadata_update_old_pages"], "")
 
 
-def perform_products_metadata_create_pages_if_not_exist(page: Page, config: Dict[str, Any]) -> None:
+def create_products_metadata_if_not_exist(page: Page, config: Dict[str, Any]) -> None:
     """
     Creates metadata pages for products if they do not already exist.
 
@@ -266,7 +264,7 @@ def perform_products_metadata_create_pages_if_not_exist(page: Page, config: Dict
         crawler(page, url)
 
 
-def perform_status_job_update(page: Page, config: Dict[str, Any]) -> None:
+def check_if_job_is_ready(page: Page, config: Dict[str, Any]) -> None:
     """
     Performs a status job update by crawling product URLs with specific configurations.
 
@@ -282,7 +280,7 @@ def perform_status_job_update(page: Page, config: Dict[str, Any]) -> None:
     config["products_update"] = True
     config['status_job'] = True
     page = Page(config)
-    perform_products_update(page, config)
+    update_all_products(page, config)
 
 
 def checkpoint_extract_data(control_file: str) -> bool:
