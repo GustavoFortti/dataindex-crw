@@ -10,54 +10,26 @@ from src.lib.utils.text_functions import clean_string_break_line, generate_hash
 from src.lib.utils.file_system import read_file, save_file
 
 
-def crawler(page: Dict, url: str) -> None:
+def crawler(job_base: classmethod, url: str) -> None:
     """
     Initiates the crawling process for a given page and URL.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        page (classmethod): The page object containing configuration and state.
         url (str): The URL to crawl.
 
     Returns:
         None
     """
-    message("Executing crawler")
-    if not is_driver_initialized(page):
-        initialize_driver(page)
+    
+    message("executing crawler")
+    if not bool(job_base.driver):
+        job_base.driver = se.initialize_selenium(job_base)
+    exit()
     load_page(page, url)
 
 
-def is_driver_initialized(page: Dict) -> bool:
-    """
-    Checks if the Selenium driver is initialized in the page configuration.
-
-    Args:
-        page (Dict): The page object containing configuration and state.
-
-    Returns:
-        bool: True if driver is initialized, False otherwise.
-    """
-    driver_initialized: bool = "driver" in page.conf and bool(page.conf["driver"])
-    if not driver_initialized:
-        message("Driver not initialized.")
-    return driver_initialized
-
-
-def initialize_driver(page: Dict) -> None:
-    """
-    Initializes the Selenium driver and updates the page configuration.
-
-    Args:
-        page (Dict): The page object containing configuration and state.
-
-    Returns:
-        None
-    """
-    message("Initializing Selenium")
-    page.conf["driver"] = se.initialize_selenium(page.conf)
-
-
-def load_page(page: Dict, url: str) -> None:
+def load_page(page: classmethod, url: str) -> None:
     """
     Loads the specified URL using the configured Selenium driver and performs necessary updates.
 
@@ -78,7 +50,7 @@ def load_page(page: Dict, url: str) -> None:
         handle_products_metadata_update(page, driver, url)
 
 
-def handle_products_update(page: Dict, driver: Any, url: str) -> None:
+def handle_products_update(page: classmethod, driver: Any, url: str) -> None:
     """
     Handles the products update process, including loading the URL, dynamic scrolling,
     and data extraction.
@@ -105,7 +77,7 @@ def handle_products_update(page: Dict, driver: Any, url: str) -> None:
     extract_data(page, soup)
 
 
-def apply_dynamic_scroll(page: Dict, driver: Any, config: Dict[str, Any]) -> None:
+def apply_dynamic_scroll(page: classmethod, driver: Any, config: Dict[str, Any]) -> None:
     """
     Applies dynamic scrolling based on the provided configuration.
 
@@ -140,7 +112,7 @@ def apply_dynamic_scroll(page: Dict, driver: Any, config: Dict[str, Any]) -> Non
         )
 
 
-def perform_additional_scroll(page: Dict, driver: Any) -> None:
+def perform_additional_scroll(page: classmethod, driver: Any) -> None:
     """
     Performs an additional dynamic scroll with predefined parameters.
 
@@ -162,7 +134,7 @@ def perform_additional_scroll(page: Dict, driver: Any) -> None:
     )
 
 
-def handle_products_metadata_update(page: Dict, driver: Any, url: str) -> None:
+def handle_products_metadata_update(page: classmethod, driver: Any, url: str) -> None:
     """
     Handles the products metadata update process, including loading the URL,
     dynamic scrolling, and saving the page source.
@@ -215,7 +187,7 @@ def save_page_text(file_name: str, content: str) -> None:
         message(f"Failed to write to file '{file_name}': {e}")
 
 
-def extract_data(page: Dict, soup: Any) -> None:
+def extract_data(page: classmethod, soup: Any) -> None:
     """
     Extracts product data from the provided soup object and updates the DataFrame.
 
@@ -246,7 +218,7 @@ def extract_data(page: Dict, soup: Any) -> None:
     finalize_extraction(page, df_products_temp, size_products_temp)
 
 
-def handle_no_items_found(page: Dict) -> None:
+def handle_no_items_found(page: classmethod) -> None:
     """
     Handles the scenario when no items are found on the page.
 
@@ -269,7 +241,7 @@ def handle_no_items_found(page: Dict) -> None:
         exit(1)
 
 
-def process_items(page: Dict, items: Any, df_products_temp: pd.DataFrame) -> None:
+def process_items(page: classmethod, items: Any, df_products_temp: pd.DataFrame) -> None:
     """
     Processes each item, extracts relevant data, and updates the temporary DataFrame.
 
@@ -298,7 +270,7 @@ def process_items(page: Dict, items: Any, df_products_temp: pd.DataFrame) -> Non
         count_size_items -= 1
 
 
-def extract_item_data(page: Dict, item: Any) -> Dict[str, Any]:
+def extract_item_data(page: classmethod, item: Any) -> Dict[str, Any]:
     """
     Extracts data from a single item.
 
@@ -333,7 +305,7 @@ def extract_item_data(page: Dict, item: Any) -> Dict[str, Any]:
     return data
 
 
-def handle_category(page: Dict, data: Dict[str, Any]) -> None:
+def handle_category(page: classmethod, data: Dict[str, Any]) -> None:
     """
     Handles category assignment for a product based on existing data.
 
@@ -358,7 +330,7 @@ def handle_category(page: Dict, data: Dict[str, Any]) -> None:
         save_file(categories_str, file_path)
 
 
-def finalize_extraction(page: Dict, df_products_temp: pd.DataFrame, size_products_temp: int) -> None:
+def finalize_extraction(page: classmethod, df_products_temp: pd.DataFrame, size_products_temp: int) -> None:
     """
     Finalizes the data extraction by removing duplicates and saving the DataFrame.
 

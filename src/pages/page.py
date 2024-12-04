@@ -12,8 +12,7 @@ class Page():
         url: str,
         brand: str,
         page_production_status: bool,
-        crawler_user_agent: str,
-        crawler_index: int,
+        crawler_driver_user_agent: str,
         affiliate_url: str,
         affiliate_coupon_discount_percentage: float,
         affiliate_coupon: str,
@@ -38,7 +37,7 @@ class Page():
         self.wordlist_format: Dict[str, str] = WORDLIST_FORMAT
         
         # crawler config
-        self.crawler_user_agent: str = crawler_user_agent
+        self.crawler_driver_user_agent: str = crawler_driver_user_agent
         self.crawler_index: int = None
         self.crawler_n_products_in_index: int = 0
         
@@ -55,7 +54,8 @@ class Page():
         self.html_dynamic_scroll: Dict[str, Union[float, int]] = html_dynamic_scroll
         
     def get_url(self) -> str:
-        return self.page_url.get_url(self.url, self.crawler_index, self.seed)
+        generated_url, self.crawler_index = self.page_url.get_url(self.url, self.crawler_index, self.seed)
+        return generated_url
     
     def reset_index(self) -> None:
         self.crawler_index = None

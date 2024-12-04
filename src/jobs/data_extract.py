@@ -8,9 +8,9 @@ import pandas as pd
 from src.lib.extract.crawler import crawler
 from src.lib.utils.data_quality import is_price
 from src.lib.utils.dataframe import create_or_read_df, read_df
-from src.lib.utils.file_system import (DATE_FORMAT, create_file_if_not_exists,
+from src.lib.utils.file_system import (create_file_if_not_exists,
                                        delete_directory_and_contents,
-                                       delete_file, read_json)
+                                       delete_file)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST
@@ -99,8 +99,8 @@ def update_all_products(job_base: classmethod) -> None:
                 message("No more URLs to process for this seed.")
                 break
 
+            crawler(job_base, url)
             exit()
-            crawler(page, url)
 
             # Safeguard to prevent infinite loop
             iteration_count += 1

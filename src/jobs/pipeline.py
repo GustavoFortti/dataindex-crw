@@ -1,8 +1,9 @@
 import importlib
 import os
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
+from selenium.webdriver.remote.webdriver import WebDriver
 from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        file_or_path_exists)
 from src.lib.utils.log import message
@@ -22,7 +23,9 @@ class JobBase:
         self.date_format: str = "%Y-%m-%d"
         self.date_ref = datetime.today().strftime(self.date_format)
         
-        self.crawler_use_headless: bool = False
+        # crawler configs/methods
+        self.driver: Optional[WebDriver] = None
+        self.driver_use_headless: bool = False
         self.update_all_products: bool = False
         self.update_all_products_metadata: bool = False
 

@@ -1,20 +1,23 @@
-def get_url(url: str, index: int, seed: object) -> str:
+from typing import Optional
+
+def get_url(url: str, index: Optional[int], seed: object) -> str:
     """
-    Gera uma URL incrementada com base no índice fornecido.
+    Generates an incremented URL based on the provided index.
 
     Args:
-        url (str): A base da URL.
-        index (Optional[int]): O índice atual, ou None se ainda não inicializado.
-        seed (object): Um objeto contendo o atributo `url`.
+        url (str): The base URL.
+        index (Optional[int]): The current index, or None if not yet initialized.
+        seed (object): An object containing the `url` attribute.
 
     Returns:
-        str: A URL completa com o índice.
+        str: The complete URL with the index.
     """
+
     seed_url = seed["url"]
 
     if index is None:
         index = 1
-        return f"{seed_url}{index}"
+        return f"{seed_url}{index}", index
 
     index += 1
-    return f"{seed_url}{index}"
+    return f"{seed_url}{index}", index
