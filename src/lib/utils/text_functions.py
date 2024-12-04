@@ -51,7 +51,7 @@ def generate_numeric_hash(data: str) -> int:
     return abs(hash_value)
 
 def generate_hash(value):
-    return hashlib.sha256(value.encode()).hexdigest()[:8]
+    return hashlib.sha256(value.encode()).hexdigest()[:9]
 
 def remove_spaces(text):
     return re.sub(r'\s+', ' ', text).strip()

@@ -1,23 +1,27 @@
 import importlib
 import os
-from datetime import date
-from typing import Any, Dict, List, Optional
+from typing import List
 
 import pandas as pd
 
+from src.jobs.pipeline import JobBase
 from src.lib.extract.crawler import crawler
 from src.lib.utils.data_quality import is_price
-from src.lib.utils.dataframe import create_or_read_df, read_df
-from src.lib.utils.file_system import (create_file_if_not_exists,
+from src.lib.utils.dataframe import read_df
+from src.lib.utils.file_system import (create_directory_if_not_exists,
+                                       create_file_if_not_exists,
                                        delete_directory_and_contents,
-                                       delete_file)
+                                       delete_file,
+                                       file_modified_within_x_hours,
+                                       get_old_files_by_percent,
+                                       list_directory)
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import find_in_text_with_wordlist
 from src.lib.wordlist.wordlist import BLACK_LIST
 from src.pages.page import Page
 
 
-def run(job_base: classmethod) -> None:
+def run(job_base: JobBase) -> None:
     message("extract start")
 
     page_module = importlib.import_module(f"src.pages.{job_base.page_name}.page")
@@ -33,23 +37,32 @@ def run(job_base: classmethod) -> None:
     options = job_base.options
     extract_functions = {
         "create_new_page": create_new_page,
-        "update_all_products": update_all_products
-        # "update_all_products_metadata": update_products_metadata
-        # "update_old_product_metadata": update_old_product_metadata
-        # "create_products_metadata_if_not_exist": create_products_metadata_if_not_exist
-        # "check_if_job_is_ready": check_if_job_is_ready
+        "update_all_products": update_all_products,
+        "update_all_products_metadata": update_all_products_metadata,
+        "update_old_products_metadata": update_old_products_metadata,
+        "create_products_metadata_if_not_exist": create_products_metadata_if_not_exist,
+        "check_if_job_is_ready": check_if_job_is_ready
     }
+    
+    control_options = {
+        "update_all_products": job_base.control_update_all_products,
+        "update_all_products_metadata": job_base.control_update_all_products_metadata,
+        "update_old_products_metadata": job_base.control_update_old_products_metadata,
+    }
+    
+    control_file = control_options.get(options, False)
+    if control_file:
+        checkpoint_extract_data(control_file)
     
     extract_functions.get(options)(job_base)
     
 
-def create_new_page(job_base: classmethod) -> None:
+def create_new_page(job_base: JobBase) -> None:
     """
     Initializes a new page by resetting relevant configurations and performing updates.
 
     Args:
-        config (Dict[str, Any]): Configuration dictionary.
-        page (Page): Page object containing configuration and state.
+        job_base (JobBase): JobBase object containing configuration and state.
 
     Returns:
         None
@@ -65,21 +78,19 @@ def create_new_page(job_base: classmethod) -> None:
     job_base.update_all_products_metadata = True
     update_all_products_metadata(job_base)
 
-def update_all_products(job_base: classmethod) -> None:
+
+def update_all_products(job_base: JobBase) -> None:
     """
     Updates the products by crawling through seeds and extracting relevant data.
 
     Args:
-        page (Page): Page object containing configuration and state.
-        config (Dict[str, Any]): Configuration dictionary.
+        job_base (JobBase): JobBase object containing configuration and state.
 
     Returns:
         None
     """
     delete_file(job_base.path_extract_temp)
 
-    # df_products: pd.DataFrame = create_or_read_df(job_base.path_extract_csl, job_base.df_columns)
-    
     seeds = job_base.page.seeds
     for index, seed in enumerate(seeds):
         message(f"seed index: {index + 1} / {len(seeds)}")
@@ -100,7 +111,6 @@ def update_all_products(job_base: classmethod) -> None:
                 break
 
             crawler(job_base, url)
-
             # Safeguard to prevent infinite loop
             iteration_count += 1
             if iteration_count >= max_iterations:
@@ -118,25 +128,49 @@ def update_all_products(job_base: classmethod) -> None:
         job_base.page.reset_index()
         
     message("page map completed")
-    message(f"reading file: {job_base.path_products_extract_temp}")
-    df_products_extract_temp: pd.DataFrame = read_df(job_base.path_products_extract_temp, dtype={'ref': str})
-    df_products_extract_temp = df_products_extract_temp.drop_duplicates(subset='ref').reset_index(drop=True)
-    df_products_extract_temp = df_products_extract_temp.dropna(subset=['price'])
+    message(f"reading file: {job_base.path_extract_temp}")
+    df_extract_temp: pd.DataFrame = read_df(job_base.path_extract_temp, dtype={'ref': str})
+    df_extract_temp = df_extract_temp.drop_duplicates(subset='ref').reset_index(drop=True)
+    df_extract_temp = df_extract_temp.dropna(subset=['price'])
 
-    df_products_extract_temp = df_products_extract_temp[
-        ~df_products_extract_temp['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))
+    df_extract_temp = df_extract_temp[
+        ~df_extract_temp['title'].apply(lambda x: find_in_text_with_wordlist(x, BLACK_LIST))
     ]
-    df_products_extract_temp = df_products_extract_temp[df_products_extract_temp['price'].apply(is_price)]
+    df_extract_temp = df_extract_temp[df_extract_temp['price'].apply(is_price)]
 
-    message(f"writing to origin: {job_base.path_products_extract_csl}")
-    df_products_extract_temp.to_csv(job_base.path_products_extract_csl, index=False)
-    delete_file(job_base.control_products_update)
-    create_file_if_not_exists(job_base.control_products_update, "")
+    message(f"writing to origin: {job_base.path_extract_csl}")
+    df_extract_temp.to_csv(job_base.path_extract_csl, index=False)
+    delete_file(job_base.control_update_all_products)
+    create_file_if_not_exists(job_base.control_update_all_products, "")
 
 
-def update_all_products_metadata(job_base: classmethod) -> None:
+def update_all_products_metadata(job_base: JobBase) -> None:
     """
     Updates the products' metadata by crawling through product URLs and saving page sources.
+
+    Args:
+        job_base (JobBase): JobBase object containing configuration and state.
+
+    Returns:
+        None
+    """
+    message("update_all_products_metadata")
+    df_extract_csl: pd.DataFrame = read_df(job_base.path_extract_csl, dtype={'ref': str})
+
+    urls: List[str] = df_extract_csl['product_url'].values.tolist()
+    total_urls: int = len(urls)
+    for index, url in enumerate(urls):
+        message(f"Processing URL: {url}")
+        message(f"Index: {index + 1} / {total_urls}")
+        crawler(job_base, url)
+
+    delete_file(job_base.control_update_all_products_metadata)
+    create_file_if_not_exists(job_base.control_update_all_products_metadata, "")
+
+
+def update_old_products_metadata(job_base: JobBase) -> None:
+    """
+    Updates metadata for old product pages based on a percentage criterion.
 
     Args:
         page (Page): Page object containing configuration and state.
@@ -145,17 +179,99 @@ def update_all_products_metadata(job_base: classmethod) -> None:
     Returns:
         None
     """
-    message("Updating products metadata")
-    products_extract_csl: str = os.path.join(config['data_path'], "products_extract_csl.csv")
-    page.conf['path_products_extract_csl'] = products_extract_csl
-    df_products_extract_csl: pd.DataFrame = read_df(products_extract_csl, dtype={'ref': str})
+    message("Updating metadata for old product pages")
+    df_products_extract_csl: pd.DataFrame = read_df(job_base.path_extract_csl, dtype={'ref': str})
+
+    products_path: str = os.path.join(job_base.data_path, "products")
+    old_files: List[str] = get_old_files_by_percent(products_path, True, 5)
+    refs: List[str] = [file.replace(".txt", "") for file in old_files]
+
+    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]
+
+    refs_to_delete: List[str] = list(set(refs) - set(df_products_extract_csl['ref']))
+    if refs_to_delete:
+        for ref in refs_to_delete:
+            file_path: str = os.path.join(products_path, f"{ref}.txt")
+            delete_file(file_path)
+
+    create_directory_if_not_exists(products_path)
 
     urls: List[str] = df_products_extract_csl['product_url'].values.tolist()
     total_urls: int = len(urls)
     for index, url in enumerate(urls):
         message(f"Processing URL: {url}")
         message(f"Index: {index + 1} / {total_urls}")
-        crawler(page, url)
+        crawler(job_base, url)
 
-    delete_file(page.conf["control_products_metadata_update"])
-    create_file_if_not_exists(page.conf["control_products_metadata_update"], "")
+    delete_file(job_base.control_control_update_old_products_metadata)
+    create_file_if_not_exists(job_base.control_control_update_old_products_metadata, "")
+
+
+def check_if_job_is_ready(job_base: JobBase) -> None:
+    """
+    Performs a status job update by crawling product URLs with specific configurations.
+
+    Args:
+        job_base (JobBase): JobBase object containing configuration and state.
+
+    Returns:
+        None
+    """
+    message("performing status job update")
+    # prepare page config
+    job_base.page.html_scroll_page = False
+    
+    # prepare job config
+    job_base.update_all_products = True
+    job_base.check_if_job_is_ready = True
+    
+    update_all_products(job_base)
+
+
+def create_products_metadata_if_not_exist(job_base: JobBase) -> None:
+    """
+    Creates metadata pages for products if they do not already exist.
+
+    Args:
+        job_base (JobBase): Page object containing configuration and state.
+
+    Returns:
+        None
+    """
+    message("Creating metadata pages if they do not exist")
+    df_products_extract_csl: pd.DataFrame = read_df(job_base.extract_csl, dtype={'ref': str})
+
+    products_path: str = os.path.join(job_base.data_path, "products")
+    all_pages: List[str] = list_directory(products_path)
+    refs: List[str] = [f"{ref}.txt" for ref in df_products_extract_csl['ref'].values]
+    pages_to_create: List[str] = [ref.replace(".txt", "") for ref in refs if ref not in all_pages]
+
+    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl["ref"].isin(pages_to_create)]
+
+    message(f"Pages to create: {pages_to_create}")
+
+    create_directory_if_not_exists(products_path)
+
+    urls: List[str] = df_products_extract_csl['product_url'].values.tolist()
+    total_urls: int = len(urls)
+    for index, url in enumerate(urls):
+        message(f"Processing URL: {url}")
+        message(f"Index: {index + 1} / {total_urls}")
+        crawler(job_base, url)
+
+
+def checkpoint_extract_data(control_file: str) -> bool:
+    """
+    Checks if the control file has been modified within the last 12 hours and if the environment flag is active.
+
+    Args:
+        control_file (str): Path to the control file.
+
+    Returns:
+        bool: False if the checkpoint is active and file modified within 12 hours, True otherwise.
+    """
+    message(f"checkpoint")
+    file_modified: bool = file_modified_within_x_hours(control_file, 12)
+    if file_modified:
+        message(f"checkpoint_extract_data active - {control_file}")
+        exit(1)

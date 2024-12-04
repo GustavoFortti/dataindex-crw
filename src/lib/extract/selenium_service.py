@@ -15,15 +15,16 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
+from src.jobs.pipeline import JobBase
 from src.lib.utils.log import message
 
 
-def initialize_selenium(job_base: classmethod) -> WebDriver:
+def initialize_selenium(job_base: JobBase) -> WebDriver:
     """
     Initializes and returns a Selenium WebDriver with specified options.
 
     Args:
-        job_base (classmethod): An object containing driver and page configurations.
+        job_base (JobBase): An object containing driver and page configurations.
 
     Returns:
         WebDriver: An instance of Selenium WebDriver.

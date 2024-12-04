@@ -1,3 +1,4 @@
+import selenium
 import time
 from typing import Any, Dict, List, Optional
 
@@ -6,14 +7,15 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.remote.webdriver import WebDriver
 
 import src.lib.extract.selenium_service as se
-from src.lib.utils.data_quality import status_tag
+from src.lib.utils.data_quality import check_if_job_is_ready
 from src.lib.utils.dataframe import create_or_read_df
 from src.lib.utils.file_system import read_file, save_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_string_break_line, generate_hash
+from src.jobs.pipeline import JobBase
 
 
-def crawler(job_base: classmethod, url: str) -> None:
+def crawler(job_base: JobBase, url: str) -> None:
     """
     Initiates the crawling process for a given page and URL.
 
@@ -31,12 +33,12 @@ def crawler(job_base: classmethod, url: str) -> None:
     load_page(job_base, url)
 
 
-def load_page(job_base: classmethod, url: str) -> None:
+def load_page(job_base: JobBase, url: str) -> None:
     """
     Loads the specified URL using the configured Selenium driver and performs necessary updates.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
         url (str): The URL to load.
 
     Returns:
@@ -45,19 +47,19 @@ def load_page(job_base: classmethod, url: str) -> None:
     message("executing load_page")
 
     if job_base.update_all_products:
-        handle_products_update(job_base, url)
+        handle_update_all_products(job_base, url)
 
     if job_base.update_all_products_metadata:
-        handle_products_metadata_update(job_base, url)
+        handle_update_all_products_metadata(job_base, url)
 
 
-def handle_products_update(job_base: classmethod, url: str) -> None:
+def handle_update_all_products(job_base: JobBase, url: str) -> None:
     """
     Handles the products update process, including loading the URL, dynamic scrolling,
     and data extraction.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
         url (str): The URL to load.
 
@@ -68,7 +70,7 @@ def handle_products_update(job_base: classmethod, url: str) -> None:
     message("update_all_products")
     se.load_url(driver, url)
 
-    # apply_dynamic_scroll(job_base)
+    apply_dynamic_scroll(job_base)
 
     if job_base.check_if_job_is_ready:
         perform_additional_scroll(driver)
@@ -77,12 +79,12 @@ def handle_products_update(job_base: classmethod, url: str) -> None:
     extract_data(job_base, soup)
 
 
-def apply_dynamic_scroll(job_base: classmethod) -> None:
+def apply_dynamic_scroll(job_base: JobBase) -> None:
     """
     Applies dynamic scrolling based on the provided configuration.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
 
     Returns:
         None
@@ -131,26 +133,27 @@ def perform_additional_scroll(driver: WebDriver) -> None:
     )
 
 
-def handle_products_metadata_update(page: classmethod, driver: Any, url: str) -> None:
+def handle_update_all_products_metadata(job_base: JobBase, url: str) -> None:
     """
     Handles the products metadata update process, including loading the URL,
     dynamic scrolling, and saving the page source.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
-        driver (Any): The Selenium driver instance.
+        job_base (JobBase): The page object containing configuration and state.
+        driver (WebDriver): The Selenium driver instance.
         url (str): The URL to load.
 
     Returns:
         None
     """
-    message("PRODUCTS_METADATA_UPDATE")
+    message("update_all_products_metadata")
     ref: str = generate_hash(url)
-    data_path: str = page.conf.get('data_path', '')
-    file_name: str = f"{data_path}/products/{ref}.txt"
-
+    file_name: str = f"{job_base.products_path}/{ref}.txt"
+    driver: WebDriver = job_base.driver
+    
     time.sleep(1)
     se.load_url(driver, url)
+    
     se.dynamic_scroll(
         driver=driver,
         time_sleep=0.5,
@@ -184,12 +187,12 @@ def save_page_text(file_name: str, content: str) -> None:
         message(f"Failed to write to file '{file_name}': {e}")
 
 
-def extract_data(job_base: classmethod, soup: BeautifulSoup) -> None:
+def extract_data(job_base: JobBase, soup: BeautifulSoup) -> None:
     """
     Extracts product data from the provided soup object and updates the DataFrame.
 
     Args:
-        job_base (classmethod): The job_base object containing configuration and state.
+        job_base (JobBase): The job_base object containing configuration and state.
         soup (BeautifulSoup): The BeautifulSoup object containing the page's HTML content.
 
     Returns:
@@ -208,41 +211,40 @@ def extract_data(job_base: classmethod, soup: BeautifulSoup) -> None:
         handle_no_items_found(job_base)
         return
 
-    message("valid size_items for extraction")
+    message("valid crawler_n_products_in_index for extraction")
     process_items(job_base, items, df_products_temp)
-    exit()
-    finalize_extraction(page, df_products_temp, size_products_temp)
+    finalize_extraction(job_base, df_products_temp, size_products_temp)
 
 
-def handle_no_items_found(job_base: classmethod) -> None:
+def handle_no_items_found(job_base: JobBase) -> None:
     """
     Handles the scenario when no items are found on the page.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
 
     Returns:
         None
     """
     index: int = job_base.page.crawler_index
-    message(f"size_items: 0 - No products found on page number {index}")
+    message(f"crawler_n_products_in_index: 0 - No products found on page number {index}")
     message(job_base.page.get_items(None))
 
     if index == 1:
         message(
-            "ERROR size_items: 0 - No products found on the first page, "
+            "ERROR crawler_n_products_in_index: 0 - No products found on the first page, "
             "validation of page extraction is necessary."
         )
         message("Terminating program with error.")
         exit(1)
 
 
-def process_items(job_base: classmethod, items: List, df_products_temp: pd.DataFrame) -> None:
+def process_items(job_base: JobBase, items: List, df_products_temp: pd.DataFrame) -> None:
     """
     Processes each item, extracts relevant data, and updates the temporary DataFrame.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
         items (List): The list of items to process.
         df_products_temp (pd.DataFrame): The temporary DataFrame to update.
 
@@ -250,34 +252,33 @@ def process_items(job_base: classmethod, items: List, df_products_temp: pd.DataF
         None
     """
     for item in items:
-        data: Dict[str, Any] = extract_item_data(job_base, item)
-        handle_category(page, data)
+        data: Dict[str, Optional[str]] = extract_item_data(job_base, item)
+        handle_category(job_base, data)
         message(data)
-        exit()
 
-        if page.conf.get("status_job", False):
-            status_tag(page, data)
+        if job_base.check_if_job_is_ready:
+            check_if_job_is_ready(job_base, data)
 
         temp_df: pd.DataFrame = pd.DataFrame([data])
         df_products_temp = pd.concat([df_products_temp, temp_df], ignore_index=True)
-        df_products_temp.to_csv(page.conf.get('path_products_extract_temp', ''), index=False)
+        df_products_temp.to_csv(job_base.path_extract_temp, index=False)
 
 
-def extract_item_data(job_base: classmethod, item: BeautifulSoup) -> Dict[str, str]:
+def extract_item_data(job_base: JobBase, item: BeautifulSoup) -> Dict[str, str]:
     """
     Extracts data from a single item.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
         item (BeautifulSoup): The item to extract data from.
 
     Returns:
         Dict[str, str]: A dictionary containing the extracted data.
     """
-    product_url: str
+    product_url: Optional[str]
     title: Optional[str]
     price: Optional[str]
-    image_url: str
+    image_url: Optional[str]
     product_url, title, price, image_url = job_base.page.get_item_elements(item)
     ref: str = generate_hash(product_url)
     message(f"Generated ref - {ref}")
@@ -298,37 +299,39 @@ def extract_item_data(job_base: classmethod, item: BeautifulSoup) -> Dict[str, s
     return data
 
 
-def handle_category(page: classmethod, data: Dict[str, Any]) -> None:
+def handle_category(job_base: JobBase, data: Dict[str, Any]) -> None:
     """
     Handles category assignment for a product based on existing data.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The job_base object containing configuration and state.
         data (Dict[str, Any]): The data dictionary of the current product.
 
     Returns:
         None
     """
-    category: Optional[str] = page.conf['seed'].get("category")
+    category: Optional[str] = job_base.page.seed.get("category")
     if category:
-        file_path: str = f"{page.conf.get('src_data_path', '')}/{page.conf.get('page_name', '')}/products/{data['ref']}_class.txt"
+        file_path: str = f"{job_base.products_path}/{data['ref']}_class.txt"
         file_content: Optional[str] = read_file(file_path)
 
+        categories: list = []
         if file_content:
             categories: list = list(set(file_content.split(",")))
-            categories.append(category)
-            categories_unique: list = list(set(categories))
-            categories_str: str = ",".join(categories_unique)
+            
+        categories.append(category)
+        categories_unique: list = list(set(categories))
+        categories_str: str = ",".join(categories_unique)
 
         save_file(categories_str, file_path)
 
 
-def finalize_extraction(page: classmethod, df_products_temp: pd.DataFrame, size_products_temp: int) -> None:
+def finalize_extraction(job_base: JobBase, df_products_temp: pd.DataFrame, size_products_temp: int) -> None:
     """
     Finalizes the data extraction by removing duplicates and saving the DataFrame.
 
     Args:
-        job_base (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
         df_products_temp (pd.DataFrame): The temporary DataFrame to finalize.
         size_products_temp (int): The initial size of the temporary DataFrame.
 
@@ -339,8 +342,8 @@ def finalize_extraction(page: classmethod, df_products_temp: pd.DataFrame, size_
 
     if size_products_temp == len(df_products_temp):
         message("No change in dataframe")
-        page.conf['size_items'] = 0
+        job_base.page.crawler_n_products_in_index = 0
         return
 
-    df_products_temp.to_csv(page.conf.get('path_products_extract_temp', ''), index=False)
+    df_products_temp.to_csv(job_base.path_extract_temp, index=False)
     message("df_products_temp saved")
