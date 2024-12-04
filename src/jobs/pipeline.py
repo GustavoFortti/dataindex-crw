@@ -21,13 +21,21 @@ class JobBase:
         self.country: str = args.country
         self.local: str = args.local
         self.date_format: str = "%Y-%m-%d"
-        self.date_ref = datetime.today().strftime(self.date_format)
+        self.date_today = datetime.today().strftime(self.date_format)
         
         # crawler configs/methods
         self.driver: Optional[WebDriver] = None
         self.driver_use_headless: bool = False
-        self.update_all_products: bool = False
-        self.update_all_products_metadata: bool = False
+        
+        self.check_if_job_is_ready: bool = (
+            True if self.options == "check_if_job_is_ready" else False
+        )
+        self.update_all_products: bool = (
+            True if self.options == "update_all_products" else False
+        )
+        self.update_all_products_metadata: bool = (
+            True if self.options == "update_all_products_metadata" else False
+        )
 
         # main paths
         self.src_data_path: str = f"{self.local}/data"
@@ -41,13 +49,12 @@ class JobBase:
         # data paths
         ## history paths
         self.path_history_price: str = f"{self.data_path}/history_price"
-        self.path_history_price_file: str = os.path.join(f"{self.data_path}/history_price", f"products_history_price_{self.date_ref}.csv")
+        self.path_history_price_file: str = os.path.join(f"{self.data_path}/history_price", f"products_history_price_{self.date_today}.csv")
         
-        ## extract paths
+        ## extract config
         self.path_extract_csl: str = os.path.join(self.data_path, "extract_csl.csv")
         self.path_extract_temp: str = os.path.join(self.data_path, "extract_temp.csv")
-        self.df_columns: List[str] = ["ref", "title", "price", "image_url", "product_url", "ing_date"]
-        
+        self.extract_dataframe_columns: List[str] = ["ref", "title", "price", "image_url", "product_url", "ing_date"]
         
         ## transform paths
         self.path_transform_csl: str = os.path.join(self.data_path, "transform_csl.csv")

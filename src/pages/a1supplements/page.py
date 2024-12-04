@@ -40,7 +40,7 @@ page_arguments = {
     ],
     "html_remove_first_image_from_list": True,
     "html_dynamic_scroll": {
-        "start_time_sleep": 1,
+        "start_time_sleep": 3,
         "time_sleep": 0.5,
         "scroll_step": 1000,
         "percentage": 0.07,

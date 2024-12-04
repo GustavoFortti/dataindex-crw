@@ -78,7 +78,7 @@ def update_all_products(job_base: classmethod) -> None:
     """
     delete_file(job_base.path_extract_temp)
 
-    df_products: pd.DataFrame = create_or_read_df(job_base.path_extract_csl, job_base.df_columns)
+    # df_products: pd.DataFrame = create_or_read_df(job_base.path_extract_csl, job_base.df_columns)
     
     seeds = job_base.page.seeds
     for index, seed in enumerate(seeds):
@@ -100,7 +100,6 @@ def update_all_products(job_base: classmethod) -> None:
                 break
 
             crawler(job_base, url)
-            exit()
 
             # Safeguard to prevent infinite loop
             iteration_count += 1
@@ -108,20 +107,19 @@ def update_all_products(job_base: classmethod) -> None:
                 message(f"Reached maximum iterations ({max_iterations}) for seed index {index + 1}. Breaking the loop.")
                 break
 
-            # Check if size_items has been updated correctly
-            size_items: int = page.conf.get("size_items", -1)
-            message(f"Size items after crawling: {size_items}")
+            message(f"Size items after crawling: {job_base.page.crawler_n_products_in_index}")
 
-            if size_items == 0 or not crawler_index:
-                message(f"Size items = {size_items}")
-                message(f"Index = {crawler_index}")
-                message("Proceeding to next seed due to index or size_items")
+            if job_base.page.crawler_n_products_in_index == 0 or not crawler_index:
+                message(f"number of products in index = {job_base.page.crawler_n_products_in_index}")
+                message(f"index = {crawler_index}")
+                message("proceeding to next seed due to index or crawler_n_products_in_index")
                 break
 
-        page.reset_index()
-
-    message(f"Reading file: {page.conf['path_products_extract_temp']}")
-    df_products_extract_temp: pd.DataFrame = read_df(page.conf['path_products_extract_temp'], dtype={'ref': str})
+        job_base.page.reset_index()
+        
+    message("page map completed")
+    message(f"reading file: {job_base.path_products_extract_temp}")
+    df_products_extract_temp: pd.DataFrame = read_df(job_base.path_products_extract_temp, dtype={'ref': str})
     df_products_extract_temp = df_products_extract_temp.drop_duplicates(subset='ref').reset_index(drop=True)
     df_products_extract_temp = df_products_extract_temp.dropna(subset=['price'])
 
@@ -130,10 +128,10 @@ def update_all_products(job_base: classmethod) -> None:
     ]
     df_products_extract_temp = df_products_extract_temp[df_products_extract_temp['price'].apply(is_price)]
 
-    message(f"Writing to origin: {page.conf['path_products_extract_csl']}")
-    df_products_extract_temp.to_csv(page.conf['path_products_extract_csl'], index=False)
-    delete_file(page.conf["control_products_update"])
-    create_file_if_not_exists(page.conf["control_products_update"], "")
+    message(f"writing to origin: {job_base.path_products_extract_csl}")
+    df_products_extract_temp.to_csv(job_base.path_products_extract_csl, index=False)
+    delete_file(job_base.control_products_update)
+    create_file_if_not_exists(job_base.control_products_update, "")
 
 
 def update_all_products_metadata(job_base: classmethod) -> None:

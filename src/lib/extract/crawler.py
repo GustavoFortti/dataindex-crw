@@ -1,13 +1,16 @@
 import time
-from typing import Any, Optional, Tuple, Dict
+from typing import Any, Dict, List, Optional
 
 import pandas as pd
-from src.lib.utils.log import message
+from bs4 import BeautifulSoup
+from selenium.webdriver.remote.webdriver import WebDriver
+
 import src.lib.extract.selenium_service as se
 from src.lib.utils.data_quality import status_tag
 from src.lib.utils.dataframe import create_or_read_df
-from src.lib.utils.text_functions import clean_string_break_line, generate_hash
 from src.lib.utils.file_system import read_file, save_file
+from src.lib.utils.log import message
+from src.lib.utils.text_functions import clean_string_break_line, generate_hash
 
 
 def crawler(job_base: classmethod, url: str) -> None:
@@ -25,84 +28,79 @@ def crawler(job_base: classmethod, url: str) -> None:
     message("executing crawler")
     if not bool(job_base.driver):
         job_base.driver = se.initialize_selenium(job_base)
-    exit()
-    load_page(page, url)
+    load_page(job_base, url)
 
 
-def load_page(page: classmethod, url: str) -> None:
+def load_page(job_base: classmethod, url: str) -> None:
     """
     Loads the specified URL using the configured Selenium driver and performs necessary updates.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        job_base (classmethod): The page object containing configuration and state.
         url (str): The URL to load.
 
     Returns:
         None
     """
-    message("Executing load_page")
-    driver: Any = page.conf["driver"]
+    message("executing load_page")
 
-    if page.conf.get('products_update', False):
-        handle_products_update(page, driver, url)
+    if job_base.update_all_products:
+        handle_products_update(job_base, url)
 
-    if page.conf.get('products_metadata_update', False):
-        handle_products_metadata_update(page, driver, url)
+    if job_base.update_all_products_metadata:
+        handle_products_metadata_update(job_base, url)
 
 
-def handle_products_update(page: classmethod, driver: Any, url: str) -> None:
+def handle_products_update(job_base: classmethod, url: str) -> None:
     """
     Handles the products update process, including loading the URL, dynamic scrolling,
     and data extraction.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        job_base (classmethod): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
         url (str): The URL to load.
 
     Returns:
         None
     """
-    message("PRODUCTS_UPDATE")
+    driver: WebDriver = job_base.driver
+    message("update_all_products")
     se.load_url(driver, url)
 
-    dynamic_scroll_config: Dict[str, Any] = page.conf.get('dynamic_scroll', {})
-    apply_dynamic_scroll(page, driver, dynamic_scroll_config)
+    # apply_dynamic_scroll(job_base)
 
-    if page.conf.get("status_job", False):
-        perform_additional_scroll(page, driver)
+    if job_base.check_if_job_is_ready:
+        perform_additional_scroll(driver)
 
     soup, _ = se.get_page_source(driver)
-    page.conf["soup"] = soup
-    extract_data(page, soup)
+    extract_data(job_base, soup)
 
 
-def apply_dynamic_scroll(page: classmethod, driver: Any, config: Dict[str, Any]) -> None:
+def apply_dynamic_scroll(job_base: classmethod) -> None:
     """
     Applies dynamic scrolling based on the provided configuration.
 
     Args:
-        page (Dict): The page object containing configuration and state.
-        driver (Any): The Selenium driver instance.
-        config (Dict[str, Any]): Configuration parameters for dynamic scrolling.
+        job_base (classmethod): The page object containing configuration and state.
 
     Returns:
         None
     """
-    time_sleep: float = config.get('time_sleep', 1.0)
-    scroll_step: int = config.get('scroll_step', 500)
-    percentage: float = config.get('percentage', 0.5)
-    return_percentage: float = config.get('return_percentage', 0.1)
-    max_return: int = config.get('max_return', 100)
-    max_attempts: int = config.get('max_attempts', 2)
-
-    start_time_sleep: float = config.get('start_time_sleep', 0) + 2
+    time_sleep: float = job_base.page.html_dynamic_scroll["time_sleep"]
+    scroll_step: int = job_base.page.html_dynamic_scroll["scroll_step"]
+    percentage: float = job_base.page.html_dynamic_scroll["percentage"]
+    return_percentage: float = job_base.page.html_dynamic_scroll["return_percentage"]
+    max_return: int = job_base.page.html_dynamic_scroll["max_return"]
+    max_attempts: int = job_base.page.html_dynamic_scroll["max_attempts"]
+    start_time_sleep: float = job_base.page.html_dynamic_scroll["start_time_sleep"]
+    
     message(f"{start_time_sleep} seconds")
     time.sleep(start_time_sleep)
-
-    if page.conf.get('scroll_page', False):
+    
+    if job_base.page.html_scroll_page:
         se.dynamic_scroll(
-            driver=driver,
+            driver=job_base.driver,
             time_sleep=time_sleep,
             scroll_step=scroll_step,
             percentage=percentage,
@@ -112,13 +110,12 @@ def apply_dynamic_scroll(page: classmethod, driver: Any, config: Dict[str, Any])
         )
 
 
-def perform_additional_scroll(page: classmethod, driver: Any) -> None:
+def perform_additional_scroll(driver: WebDriver) -> None:
     """
     Performs an additional dynamic scroll with predefined parameters.
 
     Args:
-        page (Dict): The page object containing configuration and state.
-        driver (Any): The Selenium driver instance.
+        driver (WebDriver): The Selenium driver instance.
 
     Returns:
         None
@@ -140,7 +137,7 @@ def handle_products_metadata_update(page: classmethod, driver: Any, url: str) ->
     dynamic scrolling, and saving the page source.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        job_base (classmethod): The page object containing configuration and state.
         driver (Any): The Selenium driver instance.
         url (str): The URL to load.
 
@@ -187,50 +184,49 @@ def save_page_text(file_name: str, content: str) -> None:
         message(f"Failed to write to file '{file_name}': {e}")
 
 
-def extract_data(page: classmethod, soup: Any) -> None:
+def extract_data(job_base: classmethod, soup: BeautifulSoup) -> None:
     """
     Extracts product data from the provided soup object and updates the DataFrame.
 
     Args:
-        page (Dict): The page object containing configuration and state.
-        soup (Any): The BeautifulSoup object containing the page's HTML content.
+        job_base (classmethod): The job_base object containing configuration and state.
+        soup (BeautifulSoup): The BeautifulSoup object containing the page's HTML content.
 
     Returns:
         None
     """
-    message("Executing extract_data")
-    path_products_extract_temp: str = page.conf.get('path_products_extract_temp', '')
+    message("executing extract_data")
     df_products_temp: pd.DataFrame = create_or_read_df(
-        path_products_extract_temp, page.conf['df_products'].columns
+        job_base.path_extract_temp, job_base.extract_dataframe_columns
     )
     size_products_temp: int = len(df_products_temp)
-    items: Any = page.get_items(soup)
-    size_items: int = len(items)
-    message(f"size_items = {size_items}")
-    page.conf['size_items'] = size_items
+    items: List = job_base.page.get_items(soup)
+    job_base.page.crawler_n_products_in_index = len(items)
+    message(f"crawler_n_products_in_index = {job_base.page.crawler_n_products_in_index}")
 
-    if size_items == 0:
-        handle_no_items_found(page)
+    if job_base.page.crawler_n_products_in_index == 0:
+        handle_no_items_found(job_base)
         return
 
-    message("Valid size_items for extraction")
-    process_items(page, items, df_products_temp)
+    message("valid size_items for extraction")
+    process_items(job_base, items, df_products_temp)
+    exit()
     finalize_extraction(page, df_products_temp, size_products_temp)
 
 
-def handle_no_items_found(page: classmethod) -> None:
+def handle_no_items_found(job_base: classmethod) -> None:
     """
     Handles the scenario when no items are found on the page.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        job_base (classmethod): The page object containing configuration and state.
 
     Returns:
         None
     """
-    index: int = page.conf.get("index", 0)
+    index: int = job_base.page.crawler_index
     message(f"size_items: 0 - No products found on page number {index}")
-    message(page.get_items(None))  # Assuming get_items can handle None
+    message(job_base.page.get_items(None))
 
     if index == 1:
         message(
@@ -241,24 +237,23 @@ def handle_no_items_found(page: classmethod) -> None:
         exit(1)
 
 
-def process_items(page: classmethod, items: Any, df_products_temp: pd.DataFrame) -> None:
+def process_items(job_base: classmethod, items: List, df_products_temp: pd.DataFrame) -> None:
     """
     Processes each item, extracts relevant data, and updates the temporary DataFrame.
 
     Args:
-        page (Dict): The page object containing configuration and state.
-        items (Any): The list of items to process.
+        job_base (classmethod): The page object containing configuration and state.
+        items (List): The list of items to process.
         df_products_temp (pd.DataFrame): The temporary DataFrame to update.
 
     Returns:
         None
     """
-    count_size_items: int = 0
     for item in items:
-        message(f"INDEX: {abs(count_size_items)} item")
-        data: Dict[str, Any] = extract_item_data(page, item)
+        data: Dict[str, Any] = extract_item_data(job_base, item)
         handle_category(page, data)
         message(data)
+        exit()
 
         if page.conf.get("status_job", False):
             status_tag(page, data)
@@ -267,25 +262,23 @@ def process_items(page: classmethod, items: Any, df_products_temp: pd.DataFrame)
         df_products_temp = pd.concat([df_products_temp, temp_df], ignore_index=True)
         df_products_temp.to_csv(page.conf.get('path_products_extract_temp', ''), index=False)
 
-        count_size_items -= 1
 
-
-def extract_item_data(page: classmethod, item: Any) -> Dict[str, Any]:
+def extract_item_data(job_base: classmethod, item: BeautifulSoup) -> Dict[str, str]:
     """
     Extracts data from a single item.
 
     Args:
-        page (Dict): The page object containing configuration and state.
-        item (Any): The item to extract data from.
+        job_base (classmethod): The page object containing configuration and state.
+        item (BeautifulSoup): The item to extract data from.
 
     Returns:
-        Dict[str, Any]: A dictionary containing the extracted data.
+        Dict[str, str]: A dictionary containing the extracted data.
     """
     product_url: str
     title: Optional[str]
     price: Optional[str]
     image_url: str
-    product_url, title, price, image_url = page.get_item_elements(item)
+    product_url, title, price, image_url = job_base.page.get_item_elements(item)
     ref: str = generate_hash(product_url)
     message(f"Generated ref - {ref}")
 
@@ -300,7 +293,7 @@ def extract_item_data(page: classmethod, item: Any) -> Dict[str, Any]:
         'title': title,
         'price': price,
         'image_url': image_url,
-        'ing_date': page.conf.get('formatted_date', '')
+        'ing_date': job_base.date_today
     }
     return data
 
@@ -310,7 +303,7 @@ def handle_category(page: classmethod, data: Dict[str, Any]) -> None:
     Handles category assignment for a product based on existing data.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        job_base (classmethod): The page object containing configuration and state.
         data (Dict[str, Any]): The data dictionary of the current product.
 
     Returns:
@@ -335,7 +328,7 @@ def finalize_extraction(page: classmethod, df_products_temp: pd.DataFrame, size_
     Finalizes the data extraction by removing duplicates and saving the DataFrame.
 
     Args:
-        page (Dict): The page object containing configuration and state.
+        job_base (classmethod): The page object containing configuration and state.
         df_products_temp (pd.DataFrame): The temporary DataFrame to finalize.
         size_products_temp (int): The initial size of the temporary DataFrame.
 

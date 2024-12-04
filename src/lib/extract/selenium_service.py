@@ -31,7 +31,7 @@ def initialize_selenium(job_base: classmethod) -> WebDriver:
     options: Options = webdriver.ChromeOptions()
 
     display: Optional[str] = os.getenv('DISPLAY')
-    message(f"DISPLAY - {display}")
+    message(f"display - {display}")
 
     # General Chrome options
     options.add_argument("--no-sandbox")

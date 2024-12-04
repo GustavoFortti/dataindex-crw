@@ -1,16 +1,16 @@
-def get_items(conf, soup):
+def get_items(soup):
     items = soup.find_all('li', class_='grid__item')
     return items
 
-def get_product_url(conf, soup):
+def get_product_url(soup, url):
     product_link_element = soup.find('a')
-    return conf["url"] + product_link_element['href'] if product_link_element else None
+    return url + product_link_element['href'] if product_link_element else None
 
-def get_title(conf, soup):
+def get_title(soup):
     title_element = soup.find('h2')
     return title_element.get_text().strip() if title_element else None
 
-def get_price(conf, soup):
+def get_price(soup):
     price_container = soup.find(class_="price__container")
     if price_container:
         price_element = price_container.find('span', class_="price-item price-item--regular")
@@ -19,6 +19,6 @@ def get_price(conf, soup):
             price = price.replace("From", "").strip()
     return price
 
-def get_image_url(conf, soup):
+def get_image_url(soup):
     image_element = soup.find('img')
     return "https:" + image_element['src'] if image_element else None
