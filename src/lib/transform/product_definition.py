@@ -3,7 +3,7 @@ import copy
 from typing import Any, Dict, List
 import pandas as pd
 
-from src.lib.utils.file_system import path_exists, read_file
+from src.lib.utils.file_system import read_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
 from src.lib.wordlist.collection import COLLECTIONS

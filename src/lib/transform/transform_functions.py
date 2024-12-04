@@ -12,7 +12,7 @@ from src.lib.utils.dataframe import (read_and_stack_csvs_dataframes,
                                      read_and_stack_historical_csvs_dataframes,
                                      read_df)
 from src.lib.utils.file_system import (create_directory_if_not_exists,
-                                       list_directory, path_exists, save_file)
+                                       list_directory, save_file)
 from src.lib.utils.image_functions import (calculate_precise_image_hash,
                                            convert_image)
 from src.lib.utils.log import message
@@ -20,6 +20,7 @@ from src.lib.utils.text_functions import (clean_text,
                                           find_in_text_with_wordlist,
                                           remove_spaces)
 from src.lib.wordlist.wordlist import BLACK_LIST
+from src.jobs.pipeline import JobBase
 
 
 def ensure_columns_exist(df, columns):
@@ -32,13 +33,13 @@ def filter_nulls(df):
     """Filter rows with null values in specific columns and save them to a CSV file."""
     return df.dropna(subset=['title', 'price', 'image_url']).reset_index(drop=True)
 
-def apply_generic_filters(df, conf):
+def apply_generic_filters(df, job_base: JobBase):
     """Apply various data cleaning and transformation filters."""
     df['title_extract'] = df['title']
     df['name'] = df['title'].str.lower()
     df['price'] = df['price'].str.replace(r'[R$]', '', regex=True).str.replace(' ', '')
-    df['brand'] = conf['brand']
-    df['page_name'] = conf['page_name']
+    df['brand'] = job_base.page.brand
+    df['page_name'] = job_base.name
     
     # Remove pontos de separação de milhares e substitui a vírgula por ponto
     df['price_numeric'] = df['price'].str.replace(',', '.').astype(float)
@@ -46,12 +47,12 @@ def apply_generic_filters(df, conf):
     df['title'] = df['title'].apply(clean_text).apply(remove_spaces)
     return df
 
-def apply_platform_data(df, conf):
-    df['cupom_code'] = conf['cupom_code']
-    df['discount_percent_cupom'] = conf['discount_percent_cupom']
+def apply_platform_data(df, job_base: JobBase):
+    df['cupom_code'] = job_base.page.affiliate_coupon
+    df['discount_percent_cupom'] = job_base.page.affiliate_coupon_discount_percentage
     df['product_url_affiliated'] = None
-    if (conf['product_url_affiliated']):
-        df['product_url_affiliated'] = df["product_url"] + conf['product_url_affiliated']
+    if (job_base.page.affiliate_url):
+        df['product_affiliate_url'] = job_base.page.affiliate_url
     
     return df
 
@@ -70,7 +71,7 @@ def create_quantity_column(df):
     df['price_qnt'] = df.apply(relation_qnt_price, axis=1)
     
     # Substituir valores inválidos por NaN
-    df['quantity'] = df['quantity'].astype(str).replace("-1", np.nan)
+    df['quantity'] = df['quantity'].apply(lambda x: np.nan if x == "-1" else x)
     
     return df
 
@@ -243,11 +244,11 @@ def create_price_discount_percent_col(df, data_path):
 
     return df_new
 
-def create_history_price_col(df, conf):
+def create_history_price_col(df, job_base: JobBase):
     df_new = deepcopy(df)
     df_new["prices"] = None
 
-    df_products_load_csl = read_and_stack_historical_csvs_dataframes(conf["path_products_history_price_dir"], False, dtype={'ref': str})
+    df_products_load_csl = read_and_stack_historical_csvs_dataframes(job_base.path_history_price, False, dtype={'ref': str})
     
     if (df_products_load_csl.empty):
         return df_new

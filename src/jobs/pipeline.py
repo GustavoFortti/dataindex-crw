@@ -30,7 +30,7 @@ class JobBase:
 
         # main paths
         self.src_data_path: str = f"{self.local}/data"
-        self.data_path: str = f"{self.src_data_path}/{self.name}/{self.page_name}"
+        self.data_path: str = f"{self.src_data_path}/{self.page_name}"
         self.pages_path: str = f"{self.local}/src/pages"
         self.products_path: str = f"{self.data_path}/products"
         self.history_price_path: str = f"{self.data_path}/history_price"

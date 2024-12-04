@@ -1,88 +1,105 @@
 import importlib
-import os
-from datetime import datetime
-
-from src.lib.extract.extract import extract
-from src.lib.utils.file_system import create_directory_if_not_exists, DATE_FORMAT, path_exists
+from typing import Optional
+from src.jobs.pipeline import JobBase
+from src.lib.transform.product_info import create_product_info_cols
+from src.lib.transform.transform_functions import (
+    apply_generic_filters,
+    apply_platform_data,
+    create_history_price_col,
+    create_price_discount_percent_col,
+    create_quantity_column,
+    filter_nulls,
+    remove_blacklisted_products,
+)
 from src.lib.utils.log import message
-from src.lib.wordlist.wordlist import WORDLIST
-from src.lib.wordlist.wordlist_flavor import WORDLIST_FLAVOR
-from src.lib.wordlist.wordlist_format import WORDLIST_FORMAT
+from src.lib.utils.dataframe import read_df
+from src.pages.page import Page
 
 
-def set_conf(args, local):
-    conf = {}
-    conf["local"] = local
-    conf["job_name"] = args.job_name
-    conf["page_name"] = args.page_name
-    conf["page_type"] = args.page_type
-    conf["country"] = args.country
-    conf["src_data_path"] = f"{local}/data/{conf['page_type']}/{conf['country']}"
-    conf["wordlist"] = WORDLIST[conf['page_type']]
-    conf["wordlist_flavor"] = WORDLIST_FLAVOR
-    conf["wordlist_format"] = WORDLIST_FORMAT
-    return conf
+def run(job_base: JobBase) -> Optional[None]:
+    """
+    Executes the data transformation pipeline for a given job.
 
-def update_conf_with_page_config(conf, page_conf, local, args):
-    conf["brand"] = page_conf.BRAND
-    conf["url"] = page_conf.URL
-    conf["product_description_tag_map"] = page_conf.PRODUCT_DESCRIPTION_TAG_MAP
-    conf["first_image_is_duplicate"] = page_conf.FIRST_IMAGE_IS_DUPLICATE
-    conf["product_images_tag_map"] = page_conf.PRODUCT_IMAGES_TAG_MAP
-    conf["tag_map_preference"] = page_conf.TAG_MAP_PREFERENCE
-    conf["dynamic_scroll"] = page_conf.DYNAMIC_SCROLL
-    conf["user_agent"] = page_conf.USER_AGENT
-    conf["cupom_code"] = page_conf.CUPOM_CODE
-    conf["discount_percent_cupom"] = page_conf.DISCOUNT_PERCENT_CUPOM
-    conf["product_url_affiliated"] = page_conf.PRODUCT_URL_AFFILIATED
-    conf["data_path"] = f"{conf['src_data_path']}/{page_conf.JOB_NAME}"
-    conf["control_products_update"] = f"{conf["data_path"]}/_products_update_success_"
-    conf["control_products_metadata_update"] = f"{conf["data_path"]}/_products_metadata_update_success_"
-    conf["control_products_metadata_update_old_pages"] = f"{conf["data_path"]}/_products_metadata_update_old_pages_success_"
-    conf["seed_path"] = f"{local}/src/jobs/slave_page/pages/{conf['country']}/{page_conf.JOB_NAME}"
-    conf["product_definition"] = f"{local}/data/{conf['page_type']}/brazil/product_definition"
-    conf["scroll_page"] = True
-    conf["status_job"] = False
-    conf["products_update"] = False
-    conf["products_metadata_update"] = False
-    
-    create_directory_if_not_exists(conf['data_path'] + "/products")
-    conf.update(vars(args))
-    
-    conf["path_products_extract_csl"] = os.path.join(conf['data_path'], "products_extract_csl.csv")
-    conf["path_products_extract_temp"] = os.path.join(conf['data_path'], "products_extract_temp.csv")
-    conf["path_products_transform_csl"] = os.path.join(conf['data_path'], "products_transform_csl.csv")
-    conf["path_products_metadata_transform"] = os.path.join(conf['data_path'], "products_metadata_transform.csv")
-    
-    create_directory_if_not_exists(f"{conf['data_path']}/history_price")
-    date_today = datetime.today().strftime(DATE_FORMAT)
-    conf["path_products_history_price"] = os.path.join(f"{conf['data_path']}/history_price", f"products_history_price_{date_today}.csv")
-    conf["path_products_history_price_dir"] = f"{conf['data_path']}/history_price"
-    
-    if ((not path_exists(conf["path_products_extract_csl"])) & (conf["exec_flag"] != "status_job")):
-        conf["exec_flag"] = "new_page"
-        
-    return conf
+    Args:
+        job_base (JobBase): An instance of JobBase containing job-specific configurations.
 
-def run(args):
-    message("START JOB")
-    
-    local = os.getenv('LOCAL')
-    conf = set_conf(args, local)
-    
-    module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.conf"
-    page_conf = importlib.import_module(module_name)
-    
-    conf = update_conf_with_page_config(conf, page_conf, local, args)
+    Returns:
+        Optional[None]: Exits the program after transformations and saves the result.
+    """
+    # Load the appropriate page module dynamically
+    page_module = importlib.import_module(f"src.pages.{job_base.page_name}.page")
+    page = Page(**page_module.page_arguments)
+    job_base.set_page(page)
 
-    module_name = f"src.jobs.slave_page.pages.{conf['country']}.{conf['page_name']}.dry"
-    dry = importlib.import_module(module_name)
-    
-    options = {
-        "extract": extract,
-        "transform": dry.dry,
-    }
-    
-    exec_function = options.get(conf["exec_type"])
-    if (exec_function):
-        exec_function(conf)
+    message("Transformation process started.")
+    df = read_df(job_base.path_extract_csl, dtype={'ref': str})
+
+    # Apply various transformations and filters
+    message("Filtering null values.")
+    df = filter_nulls(df)
+
+    message("Applying generic filters (name, price, brand).")
+    df = apply_generic_filters(df, job_base)
+
+    message("Applying platform-specific data (coupons, links).")
+    df = apply_platform_data(df, job_base)
+
+    message("Creating quantity column.")
+    df = create_quantity_column(df)
+
+    message("Removing blacklisted products.")
+    df = remove_blacklisted_products(df)
+
+    message("Creating discount percentage column.")
+    df = create_price_discount_percent_col(df, job_base.data_path)
+
+    message("Creating historical prices column.")
+    df = create_history_price_col(df, job_base)
+
+    message("Creating product information columns (product_definition, collections).")
+    df = create_product_info_cols(df, job_base)
+    exit()
+
+    # Drop rows with critical missing values
+    df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
+
+    # Reorder and select relevant columns
+    df = df[
+        [
+            'ref',
+            'title',
+            'title_extract',
+            'name',
+            'price',
+            'image_url',
+            'product_url',
+            'product_url_affiliated',
+            'ing_date',
+            'brand',
+            'page_name',
+            'price_numeric',
+            'price_discount_percent',
+            'compare_at_price',
+            'quantity',
+            'unit_of_measure',
+            'price_qnt',
+            'product_tags',
+            'collections',
+            'product_score',
+            'prices',
+            'title_terms',
+            'cupom_code',
+            'discount_percent_cupom',
+        ]
+    ]
+
+    # Display DataFrame info for debugging
+    print(df.info())
+
+    # Save historical price data
+    df[["ref", "price_numeric", "ing_date"]].to_csv(
+        job_base.conf['path_products_history_price'], index=False
+    )
+
+    message("Transformation process completed successfully.")
+    return df

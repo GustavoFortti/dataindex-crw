@@ -1,40 +1,32 @@
+import os
 from typing import Dict, List, Optional
 
 import html2text
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from src.lib.extract.extract import products_metadata_update_old_pages_by_ref
 from src.lib.extract.page_elements import Page
-from src.lib.utils.file_system import file_modified_within_x_hours, read_file, save_file, save_json
+from src.lib.utils.file_system import (create_directory_if_not_exists, create_file_if_not_exists,
+    delete_file, file_modified_within_x_hours, get_old_files_by_percent, read_file, save_file,
+    save_json)
 from src.lib.utils.log import message
 from src.lib.utils.py_functions import flatten_list
 from src.lib.transform.product_definition import create_product_cols
+from src.lib.utils.dataframe import read_df
+from src.jobs.pipeline import JobBase
+from src.lib.extract.crawler import crawler
 
-def create_product_info_cols(df: pd.DataFrame, conf: Dict) -> None:
+def create_product_info_cols(df: pd.DataFrame, job_base: JobBase) -> None:
     message("CARREGANDO dados dos produtos")
-    if (conf["mode"] == "prd"):
-        load_product_info(df, conf)
+    if (job_base.mode == "prd"):
+        extract_metadata_from_page(df, job_base)
+    exit()
     
     message("CRIANDO colunas [produtc_definition, product_collection]")
     return create_product_cols(df, conf)
 
-def load_product_info(df: pd.DataFrame, conf: Dict) -> None:
-    """
-    Inicializa o processo de extração de metadados de produtos a partir de um DataFrame.
 
-    Args:
-        df (pd.DataFrame): DataFrame contendo as informações dos produtos.
-    """
-    message("RUNNING MODEL PREP...")
-
-    global CONF, DATA_PATH
-    CONF = conf
-    DATA_PATH = conf["data_path"]
-
-    extract_metadata_from_page(df)
-
-def extract_metadata_from_page(df: pd.DataFrame) -> None:
+def extract_metadata_from_page(df: pd.DataFrame, job_base) -> None:
     """
     Percorre cada linha do DataFrame e extrai as informações do produto.
 
@@ -46,7 +38,7 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
         product_url: str = row['product_url']
 
         # Definir caminhos de arquivos
-        products_path: str = f"{DATA_PATH}/products"
+        products_path: str = job_base.products_path
         description_path: str = f"{products_path}/{ref}_description.txt"
         images_path: str = f"{products_path}/{ref}_images.json"
         page_path: str = f"{products_path}/{ref}.txt"
@@ -54,13 +46,13 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
         # Tentar carregar o HTML da página, atualizar se não existir
         html_text: Optional[str] = fetch_product_page_html(page_path, product_url)
 
-        if ("text" in CONF["tag_map_preference"]):
+        if ("text" in job_base.html_metadata_type):
             # Extrair descrição com base nas tags configuradas
-            description: Optional[str] = extract_element_from_html(html_text, CONF["product_description_tag_map"], get_product_description)
+            description: Optional[str] = extract_element_from_html(html_text, job_base.html_description_path, get_product_description)
             
             if not description:
                 html_text: Optional[str] = fetch_product_page_html(page_path, product_url, True)
-                description: Optional[str] = extract_element_from_html(html_text, CONF["product_description_tag_map"], get_product_description)
+                description: Optional[str] = extract_element_from_html(html_text, job_base.html_description_path, get_product_description)
         
             # Se a descrição foi extraída, formata e salva o arquivo
             if description:
@@ -69,10 +61,10 @@ def extract_metadata_from_page(df: pd.DataFrame) -> None:
                 message(f"save {ref} description")
                 save_file(formatted_description, description_path)
                 
-        if ("image" in CONF["tag_map_preference"]):
-            url_images: Optional[str] = extract_element_from_html(html_text, CONF["product_images_tag_map"], get_product_url_images)
+        if ("image" in job_base.html_metadata_type):
+            url_images: Optional[str] = extract_element_from_html(html_text, job_base.html_images_list, get_product_url_images)
             url_images = flatten_list(url_images)
-            if (CONF["first_image_is_duplicate"]):
+            if (job_base.html_remove_first_image_from_list):
                 url_images = url_images[1:]
             
             save_json(images_path, {
@@ -95,7 +87,7 @@ def fetch_product_page_html(page_path: str, product_url: str, force: bool = None
     is_page_updated = file_modified_within_x_hours(page_path, 6)
     if (((not html_text) or (force)) and (not is_page_updated)):
         # Atualizar o metadata e tentar novamente
-        products_metadata_update_old_pages_by_ref(CONF, Page, product_url)
+        update_old_products_metadata(CONF, Page, product_url)
         html_text = read_file(page_path)
 
     return html_text
@@ -201,3 +193,42 @@ def get_product_url_images(html_text: str, tag_map: Dict[str, str]) -> Optional[
     except Exception as e:
         print(f"Erro na função get_product_url_images: {e}")
         return None
+    
+
+
+def update_old_products_metadata(job_base: JobBase) -> None:
+    """
+    Updates metadata for old product pages based on a percentage criterion.
+
+    Args:
+        job_base (JobBase): JobBase object containing configuration and state.
+
+    Returns:
+        None
+    """
+    message("Updating metadata for old product pages")
+    df_products_extract_csl: pd.DataFrame = read_df(job_base.path_extract_csl, dtype={'ref': str})
+
+    products_path: str = os.path.join(job_base.data_path, "products")
+    old_files: List[str] = get_old_files_by_percent(products_path, True, 5)
+    refs: List[str] = [file.replace(".txt", "") for file in old_files]
+
+    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]
+
+    refs_to_delete: List[str] = list(set(refs) - set(df_products_extract_csl['ref']))
+    if refs_to_delete:
+        for ref in refs_to_delete:
+            file_path: str = os.path.join(products_path, f"{ref}.txt")
+            delete_file(file_path)
+
+    create_directory_if_not_exists(products_path)
+
+    urls: List[str] = df_products_extract_csl['product_url'].values.tolist()
+    total_urls: int = len(urls)
+    for index, url in enumerate(urls):
+        message(f"Processing URL: {url}")
+        message(f"Index: {index + 1} / {total_urls}")
+        crawler(job_base, url)
+
+    delete_file(job_base.control_control_update_old_products_metadata)
+    create_file_if_not_exists(job_base.control_control_update_old_products_metadata, "")

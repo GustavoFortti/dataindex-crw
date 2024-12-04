@@ -39,7 +39,6 @@ def run(job_base: JobBase) -> None:
         "create_new_page": create_new_page,
         "update_all_products": update_all_products,
         "update_all_products_metadata": update_all_products_metadata,
-        "update_old_products_metadata": update_old_products_metadata,
         "create_products_metadata_if_not_exist": create_products_metadata_if_not_exist,
         "check_if_job_is_ready": check_if_job_is_ready
     }
@@ -47,7 +46,6 @@ def run(job_base: JobBase) -> None:
     control_options = {
         "update_all_products": job_base.control_update_all_products,
         "update_all_products_metadata": job_base.control_update_all_products_metadata,
-        "update_old_products_metadata": job_base.control_update_old_products_metadata,
     }
     
     control_file = control_options.get(options, False)
@@ -166,45 +164,6 @@ def update_all_products_metadata(job_base: JobBase) -> None:
 
     delete_file(job_base.control_update_all_products_metadata)
     create_file_if_not_exists(job_base.control_update_all_products_metadata, "")
-
-
-def update_old_products_metadata(job_base: JobBase) -> None:
-    """
-    Updates metadata for old product pages based on a percentage criterion.
-
-    Args:
-        page (Page): Page object containing configuration and state.
-        config (Dict[str, Any]): Configuration dictionary.
-
-    Returns:
-        None
-    """
-    message("Updating metadata for old product pages")
-    df_products_extract_csl: pd.DataFrame = read_df(job_base.path_extract_csl, dtype={'ref': str})
-
-    products_path: str = os.path.join(job_base.data_path, "products")
-    old_files: List[str] = get_old_files_by_percent(products_path, True, 5)
-    refs: List[str] = [file.replace(".txt", "") for file in old_files]
-
-    df_products_extract_csl = df_products_extract_csl[df_products_extract_csl['ref'].isin(refs)]
-
-    refs_to_delete: List[str] = list(set(refs) - set(df_products_extract_csl['ref']))
-    if refs_to_delete:
-        for ref in refs_to_delete:
-            file_path: str = os.path.join(products_path, f"{ref}.txt")
-            delete_file(file_path)
-
-    create_directory_if_not_exists(products_path)
-
-    urls: List[str] = df_products_extract_csl['product_url'].values.tolist()
-    total_urls: int = len(urls)
-    for index, url in enumerate(urls):
-        message(f"Processing URL: {url}")
-        message(f"Index: {index + 1} / {total_urls}")
-        crawler(job_base, url)
-
-    delete_file(job_base.control_control_update_old_products_metadata)
-    create_file_if_not_exists(job_base.control_control_update_old_products_metadata, "")
 
 
 def check_if_job_is_ready(job_base: JobBase) -> None:
