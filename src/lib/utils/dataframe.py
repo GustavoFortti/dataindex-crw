@@ -1,59 +1,70 @@
 import os
 from glob import glob
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 import pandas as pd
-from src.lib.utils.log import message
-from src.lib.utils.text_functions import DATE_FORMAT, levenshtein
+
 from src.lib.utils.file_system import file_or_path_exists
+from src.lib.utils.log import message
+from src.lib.utils.text_functions import levenshtein
 
 
-def format_column_date(df, column):
-    df[column] = pd.to_datetime(df[column], format=DATE_FORMAT, dayfirst=True)
-    df[column] = df[column].dt.strftime(DATE_FORMAT)
+def create_or_read_df(path: str, columns: Optional[List[str]] = None, dtype: Optional[Dict[str, Any]] = None) -> pd.DataFrame:
+    """
+    Creates a new DataFrame or reads an existing one from a CSV file.
+    If the file does not exist or is empty, a new DataFrame is created with the specified columns.
 
-    return df
+    Args:
+        path (str): The path to the CSV file.
+        columns (Optional[List[str]]): List of column names for the DataFrame.
+        dtype (Optional[Dict[str, Any]]): Dictionary specifying column data types.
 
-def create_or_read_df(path, columns=None, dtype=None):
+    Returns:
+        pd.DataFrame: The DataFrame read from the CSV file or a new DataFrame.
+    """
     message(f"create_or_read_df")
-    
-    # Verifica se o arquivo existe
+
+    # Check if the file exists
     if os.path.exists(path):
-        # Verifica se o arquivo está vazio
+        # Check if the file is not empty
         if os.path.getsize(path) > 0:
             message(f"read file: {path}")
             try:
-                # Lê o arquivo CSV
+                # Read the CSV file
                 if dtype:
                     df = pd.read_csv(path, dtype=dtype)
                 else:
                     df = pd.read_csv(path)
             except pd.errors.EmptyDataError:
                 message(f"EmptyDataError: {path} is empty or corrupted.")
-                df = pd.DataFrame(columns=columns)  # Cria um DataFrame vazio com as colunas fornecidas
+                df = pd.DataFrame(columns=columns)
                 message(f"Creating new DataFrame with columns: {columns}")
                 df.to_csv(path, index=False)
         else:
             message(f"{path} is empty. Creating new DataFrame.")
-            df = pd.DataFrame(columns=columns)  # Cria um DataFrame vazio com as colunas fornecidas
+            df = pd.DataFrame(columns=columns)
             df.to_csv(path, index=False)
     else:
         message(f"create file: {path}")
-        df = pd.DataFrame(columns=columns)  # Cria um DataFrame vazio com as colunas fornecidas
+        df = pd.DataFrame(columns=columns)
         df.to_csv(path, index=False)
-    
+
     return df
 
-def read_df(path, dtype=None):
+
+def read_df(path: str, dtype: Optional[Dict[str, Any]] = None) -> pd.DataFrame:
     """
     Reads a DataFrame from a CSV file.
 
-    Parameters:
-    path (str): The path to the CSV file.
-    dtype (dict, optional): A dictionary specifying column data types.
+    Args:
+        path (str): The path to the CSV file.
+        dtype (Optional[Dict[str, Any]]): Dictionary specifying column data types.
 
     Returns:
-    DataFrame: The DataFrame read from the CSV file.
+        pd.DataFrame: The DataFrame read from the CSV file.
+
+    Raises:
+        FileNotFoundError: If the file does not exist.
     """
     if file_or_path_exists(path):
         message(f"read file: {path}")
@@ -64,67 +75,138 @@ def read_df(path, dtype=None):
     else:
         raise FileNotFoundError(f"The file '{path}' does not exist.")
 
-def filter_dataframe_for_columns(df: pd.DataFrame, columns: List[str], keywords: List[str], blacklist: Optional[List[str]] = None) -> pd.DataFrame:
-    """Filters a DataFrame for specified columns based on keywords and an optional blacklist to exclude certain terms"""
+
+def filter_dataframe_for_columns(
+    df: pd.DataFrame,
+    columns: List[str],
+    keywords: List[str],
+    blacklist: Optional[List[str]] = None
+) -> pd.DataFrame:
+    """
+    Filters a DataFrame based on keywords in specified columns and excludes rows containing blacklisted terms.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to filter.
+        columns (List[str]): List of column names to apply the filter.
+        keywords (List[str]): List of keywords to search for in the columns.
+        blacklist (Optional[List[str]]): List of terms to exclude from the results.
+
+    Returns:
+        pd.DataFrame: The filtered DataFrame.
+    """
     global_mask = pd.Series([False] * len(df), index=df.index)
-    
+
     for col in columns:
         df[col] = df[col].astype(str).fillna('')
-        global_mask |= df[col].str.contains('|'.join(keywords), case=False)
-    
+        global_mask |= df[col].str.contains('|'.join(keywords), case=False, regex=True, na=False)
+
     filtered_df = df[global_mask]
-    
+
     if blacklist:
         for col in columns:
-            blacklist_mask = ~filtered_df[col].str.contains('|'.join(blacklist), case=False)
+            blacklist_mask = ~filtered_df[col].str.contains('|'.join(blacklist), case=False, regex=True, na=False)
             filtered_df = filtered_df[blacklist_mask]
-    
+
     filtered_df = filtered_df.drop_duplicates().reset_index(drop=True)
-    
     return filtered_df
 
-def drop_duplicates_for_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
-    """Drop duplicates based on specific columns"""
+
+def drop_duplicates_for_columns(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
+    """
+    Drops duplicate rows based on specific columns.
+
+    Args:
+        df (pd.DataFrame): The DataFrame to process.
+        columns (List[str]): List of column names to identify duplicates.
+
+    Returns:
+        pd.DataFrame: The DataFrame with duplicates removed.
+    """
     return df.drop_duplicates(subset=columns)
 
-def calc_string_diff_in_df_col(title_x, title_y):
+
+def calc_string_diff_in_df_col(title_x: str, title_y: str) -> float:
+    """
+    Calculates the percentage difference between two strings using the Levenshtein distance.
+
+    Args:
+        title_x (str): The first string to compare.
+        title_y (str): The second string to compare.
+
+    Returns:
+        float: The percentage difference between the two strings.
+    """
     distance = levenshtein(title_x, title_y)
     max_len = max(len(title_x), len(title_y))
     percent_diff = (distance / max_len) if max_len != 0 else 0
     return percent_diff
 
-def read_and_stack_historical_csvs_dataframes(history_data_path, get_only_last, dtype=None):
-    # Usa glob para encontrar todos os arquivos CSV no diretório
+
+def read_and_stack_historical_csvs_dataframes(
+    history_data_path: str,
+    get_only_last: bool,
+    dtype: Optional[Dict[str, Any]] = None
+) -> pd.DataFrame:
+    """
+    Reads and stacks historical CSV dataframes from a directory.
+
+    Args:
+        history_data_path (str): Path to the directory containing historical CSV files.
+        get_only_last (bool): If True, only the most recent file is read.
+        dtype (Optional[Dict[str, Any]]): Dictionary specifying column data types.
+
+    Returns:
+        pd.DataFrame: The concatenated DataFrame from historical CSV files.
+    """
+    # Use glob to find all CSV files in the directory
     csv_files = glob(os.path.join(history_data_path, '*.csv'))
     csv_files = sorted(csv_files, reverse=True)
-    
+
     if get_only_last and csv_files:
-        # Encontra o arquivo CSV mais recentemente modificado
+        # Find the most recently modified CSV file
         latest_file = csv_files[0]
-        message(latest_file)
+        message(f"Reading latest file: {latest_file}")
         return read_df(latest_file, dtype)
     elif csv_files:
-        # Lê todos os arquivos CSV e os concatena em um único DataFrame
+        # Read all CSV files and concatenate them into a single DataFrame
         dfs = [read_df(file, dtype) for file in csv_files]
         return pd.concat(dfs, ignore_index=True)
     else:
         return pd.DataFrame()
 
-def read_and_stack_csvs_dataframes(data_path: str, pages: list, file_name: str, dtype=None) -> pd.DataFrame:
-    pages_path = [f"{data_path}/{page}" for page in pages]
+
+def read_and_stack_csvs_dataframes(
+    data_path: str,
+    pages: List[str],
+    file_name: str,
+    dtype: Optional[Dict[str, Any]] = None
+) -> pd.DataFrame:
+    """
+    Reads and concatenates CSV files from multiple directories specified by pages.
+
+    Args:
+        data_path (str): The base data path.
+        pages (List[str]): List of page directories to read files from.
+        file_name (str): The name of the CSV file to read in each directory.
+        dtype (Optional[Dict[str, Any]]): Dictionary specifying column data types.
+
+    Returns:
+        pd.DataFrame: The concatenated DataFrame from the specified CSV files.
+    """
+    pages_path = [os.path.join(data_path, page) for page in pages]
     df_temp = []
-    
+
     for path in pages_path:
-        file_path = f"{path}/{file_name}"
-        
+        file_path = os.path.join(path, file_name)
+
         if os.path.exists(file_path):
             df_temp.append(read_df(file_path, dtype))
         else:
-            print(f"Arquivo {file_path} não encontrado, pulando para o próximo.")
+            message(f"File {file_path} not found, skipping to the next.")
 
     if df_temp:
         df = pd.concat(df_temp, ignore_index=True)
     else:
         df = pd.DataFrame()
-    
+
     return df

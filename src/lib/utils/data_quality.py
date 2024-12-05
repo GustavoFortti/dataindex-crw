@@ -12,13 +12,9 @@ from src.lib.utils.dataframe import (calc_string_diff_in_df_col,
                                      read_and_stack_historical_csvs_dataframes)
 from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        delete_file, has_files)
+from src.lib.utils.general_functions import check_url_existence
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import DATE_FORMAT
-from src.lib.utils.web_functions import check_url_existence
-
-# Configure pandas display options for better readability during debugging
-pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
 
 
 def check_if_job_is_ready(job_base: JobBase, data: Dict[str, Any], kill_job: bool = True) -> Optional[bool]:
@@ -292,37 +288,3 @@ def is_price(string: Any) -> bool:
     """
 
     return bool(re.match(pattern, string, re.VERBOSE | re.MULTILINE))
-
-
-def check_url_existence(url: str) -> bool:
-    """
-    Checks whether the provided URL exists by sending a HEAD request.
-
-    Args:
-        url (str): The URL to check.
-
-    Returns:
-        bool: True if the URL exists (status code 200), else False.
-    """
-    try:
-        response = requests.head(url, allow_redirects=True, timeout=5)
-        return response.status_code == 200
-    except requests.RequestException:
-        return False
-
-
-def create_or_read_df(path: str, columns: Any) -> pd.DataFrame:
-    """
-    Creates a new DataFrame or reads an existing one from the specified path.
-
-    Args:
-        path (str): The file path to read or create the DataFrame.
-        columns (Any): The columns for the DataFrame.
-
-    Returns:
-        pd.DataFrame: The created or read DataFrame.
-    """
-    if os.path.exists(path):
-        return pd.read_csv(path)
-    else:
-        return pd.DataFrame(columns=columns)
