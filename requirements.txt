@@ -13,3 +13,4 @@ numpy
 fake_useragent
 html2text
 python-dotenv
+shopifyapi

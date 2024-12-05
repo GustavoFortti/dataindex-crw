@@ -1,5 +1,6 @@
 import ast
 import json
+import os
 import random
 import threading
 import time
@@ -8,14 +9,28 @@ from urllib.parse import parse_qs, urlparse
 
 import pandas as pd
 import requests
+from dotenv import load_dotenv
 
-from src.config.setup.shopify import BASE_URL, HEADERS
+from src.jobs.pipeline import JobBase
 from src.lib.load.components.cupom_code_button import cupom_code_button
-from src.lib.load.components.redirecionamento_button import redirecionamento_button
 from src.lib.load.components.generate_price_chart import generate_price_chart
+from src.lib.load.components.redirecionamento_button import \
+    redirecionamento_button
 from src.lib.utils.file_system import file_or_path_exists, read_file, read_json
 from src.lib.utils.log import message
-from src.jobs.pipeline import JobBase
+
+# Load variables from the .env file
+load_dotenv()
+
+ACCESS_TOKEN = os.getenv("SHOPIFY_ACCESS_TOKEN")
+SHOP_NAME = os.getenv("SHOPIFY_SHOP_NAME")
+API_VERSION = os.getenv("SHOPIFY_API_VERSION")
+
+BASE_URL = f"https://{SHOP_NAME}.myshopify.com/admin/api/{API_VERSION}/"
+HEADERS = {
+    "Content-Type": "application/json",
+    "X-Shopify-Access-Token": ACCESS_TOKEN
+}
 
 # Constants
 MAX_RETRIES: int = 3  # Maximum number of retries
@@ -125,8 +140,8 @@ def format_product_for_shopify(job_base: JobBase, row: pd.Series) -> Tuple[dict,
         body_html += redirecionamento_button(product_url)
         
         # Add coupon code button if available
-        if pd.notna(row["cupom_code"]) and pd.notna(row["discount_percent_cupom"]):
-            body_html += cupom_code_button(row["cupom_code"], row["discount_percent_cupom"])
+        if pd.notna(row["affiliate_coupon"]) and pd.notna(row["affiliate_coupon_discount_percentage"]):
+            body_html += cupom_code_button(row["affiliate_coupon"], row["affiliate_coupon_discount_percentage"])
         
         # Add AI-generated product description if available
         description_ai: str | None = None
@@ -1012,18 +1027,18 @@ def process_and_ingest_products(
     )
     session.headers.update(HEADERS)
     
-    sku_data: dict = get_all_skus_with_product_ids()
+    # sku_data: dict = get_all_skus_with_product_ids()
 
-    # Find and delete duplicated SKUs
-    duplicate_skus: dict = find_duplicate_skus(sku_data)
-    delete_duplicates_products(duplicate_skus)
-    # Update sku_data after deleting duplicates
-    sku_data = get_all_skus_with_product_ids()
+    # # Find and delete duplicated SKUs
+    # duplicate_skus: dict = find_duplicate_skus(sku_data)
+    # delete_duplicates_products(duplicate_skus)
+    # # Update sku_data after deleting duplicates
+    # sku_data = get_all_skus_with_product_ids()
 
-    # Find and delete extra SKUs
-    for brand in brands:
-        skus_to_delete: list = find_extra_skus_to_delete(sku_data, refs, brand)
-        delete_extra_skus(skus_to_delete)
+    # # Find and delete extra SKUs
+    # for brand in brands:
+    #     skus_to_delete: list = find_extra_skus_to_delete(sku_data, refs, brand)
+    #     delete_extra_skus(skus_to_delete)
 
     # Update sku_data after deleting extra SKUs
     sku_data = get_all_skus_with_product_ids()

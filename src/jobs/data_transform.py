@@ -1,6 +1,8 @@
 import importlib
 from typing import Optional
 
+import pandas as pd
+
 from src.jobs.pipeline import JobBase
 from src.lib.transform.product_info import create_product_info_columns
 from src.lib.transform.transform_functions import (
@@ -22,16 +24,17 @@ def run(job_base: JobBase) -> Optional[None]:
     Returns:
         Optional[None]: Exits the program after transformations and saves the result.
     """
-    # Load the appropriate page module dynamically
+    # Step 1: Initialize and load the page
     message("Transformation process started.")
-    
+
     page_module = importlib.import_module(f"src.pages.{job_base.page_name}.page")
-    page = Page(**page_module.page_arguments)
+    page: Page = Page(**page_module.page_arguments)
     job_base.set_page(page)
 
-    df = read_df(job_base.path_extract_csl, dtype={'ref': str})
+    # Step 2: Read the extracted data
+    df: pd.DataFrame = read_df(job_base.path_extract_csl, dtype={'ref': str})
 
-    # Apply various transformations and filters
+    # Step 3: Apply transformations and filters
     message("Filtering null values.")
     df = filter_nulls(df)
 
@@ -56,46 +59,48 @@ def run(job_base: JobBase) -> Optional[None]:
     message("Creating product information columns (product_definition, collections).")
     df = create_product_info_columns(df, job_base)
 
-    # Drop rows with critical missing values
+    # Step 4: Drop rows with critical missing values
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
 
-    # Reorder and select relevant columns
-    df = df[
-        [
-            'ref',
-            'title',
-            'title_extract',
-            'title_terms',
-            'name',
-            'brand',
-            'page_name',
-            'image_url',
-            'product_url',
-            'price_numeric',
-            'price',
-            'prices',
-            'compare_at_price',
-            'price_discount_percent',
-            'quantity',
-            'unit_of_measure',
-            'price_per_quantity',
-            'product_tags',
-            'collections',
-            'product_score',
-            'affiliate_url',
-            'affiliate_coupon',
-            'affiliate_coupon_discount_percentage',
-            'ing_date',
-        ]
+    # Step 5: Reorder and select relevant columns
+    selected_columns: list[str] = [
+        'ref',
+        'title',
+        'title_extract',
+        'title_terms',
+        'name',
+        'brand',
+        'page_name',
+        'image_url',
+        'product_url',
+        'price_numeric',
+        'price',
+        'prices',
+        'compare_at_price',
+        'price_discount_percent',
+        'quantity',
+        'unit_of_measure',
+        'price_per_quantity',
+        'product_tags',
+        'collections',
+        'product_score',
+        'affiliate_url',
+        'affiliate_coupon',
+        'affiliate_coupon_discount_percentage',
+        'ing_date',
     ]
+    df = df[selected_columns]
 
-    # Display DataFrame info for debugging
+    # Step 6: Display DataFrame info for debugging
+    message("Displaying DataFrame info:")
     print(df.info())
 
-    # Save historical price data
-    df[["ref", "price_numeric", "ing_date"]].to_csv(
+    # Step 7: Save historical price data
+    historical_price_columns: list[str] = ["ref", "price_numeric", "ing_date"]
+    df[historical_price_columns].to_csv(
         job_base.path_history_price_file, index=False
     )
 
+    # Step 8: Save the transformed data
     message("Transformation process completed successfully.")
     df.to_csv(job_base.path_transform_csl, index=False)
