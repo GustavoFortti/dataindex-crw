@@ -5,12 +5,13 @@ from typing import Optional
 from src.jobs.pipeline import JobBase
 from src.lib.utils.dataframe import (create_or_read_df,
                                      read_and_stack_csvs_dataframes)
-from src.lib.utils.file_system import (create_directory_if_not_exists,
-                                       list_directory)
+from src.lib.utils.file_system import (create_directory_if_not_exists, delete_file,
+    file_or_path_exists, list_directory)
 from src.lib.utils.log import message
 from src.lib.utils.page_functions import get_pages_with_status_true
 from src.pages.page import Page
-from src.lib.load.shopify.shopify import process_and_ingest_products
+from src.lib.load.shopify import process_and_ingest_products
+import pandas as pd
 
 
 def run(job_base: JobBase) -> Optional[None]:
@@ -74,16 +75,13 @@ def run(job_base: JobBase) -> Optional[None]:
 
     brands = [page.brand for page in job_base.pages]
     
-    
     if (not df.empty):
         refs = df_products_transform_csl["ref"].values
         process_and_ingest_products(job_base, df, refs, brands)
-        print(brands)
-        exit()
-        df.to_csv(conf['path_products_shopify_csl'], index=False)
-        message(f"path_products_shopify_csl - {path_exists(conf['path_products_shopify_csl'])}")
+        df.to_csv(job_base.path_shopify_csl, index=False)
+        message(f"path_shopify_csl - {file_or_path_exists(job_base.path_shopify_csl)}")
     
-    df_products_transform_csl.to_csv(conf['path_products_load_csl'], index=False)
-    delete_file(conf['path_products_memory_shopify'])
-    message(f"path_products_load_csl - {path_exists(conf['path_products_load_csl'])}")
+    df_products_transform_csl.to_csv(job_base.path_load_csl, index=False)
+    delete_file(job_base.path_memory_shopify)
+    message(f"path_load_csl - {file_or_path_exists(job_base.path_load_csl)}")
     message("LOAD END")
