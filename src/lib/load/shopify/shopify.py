@@ -353,7 +353,7 @@ def delete_product(session, product_id):
     if response.status_code != 200:
         message(f"Erro ao deletar produto {product_id}: {response.status_code} - {response.text}")
 
-def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row: pd.Series, sku_data: dict) -> bool:
+def update_product_by_sku(job_base, sku: str, product_data: dict, variant_data: dict, row: pd.Series, sku_data: dict) -> bool:
     session = RateLimitedSession(max_calls_per_second=2, max_retries=MAX_RETRIES, wait_seconds=WAIT_SECONDS)
     session.headers.update(HEADERS)
 
@@ -369,7 +369,7 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
         variant_success = update_variant(session, product_id, variant_id, variant_data, quantity_sold)
         
         product_images = []
-        path_product_images = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_images.json"
+        path_product_images = f"{job_base.src_data_path}/{row['page_name']}/products/{row['ref']}_images.json"
         message(f"read {path_product_images}")
         if file_or_path_exists(path_product_images):
             product_images = read_json(path_product_images)['url_images']
@@ -789,7 +789,7 @@ def process_and_ingest_products(job_base: JobBase, df: pd.DataFrame, refs: list,
         message(f"{index}/{len_df} REF - {sku} - {row['title']}")
 
         # Atualiza o produto se já existir
-        product_exist = update_product_by_sku(sku, product_data, variant_data, row, sku_data)
+        product_exist = update_product_by_sku(job_base, sku, product_data, variant_data, row, sku_data)
 
         if not product_exist:
             # Prepara os dados completos para criar o produto se ele não existir

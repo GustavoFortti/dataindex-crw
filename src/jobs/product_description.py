@@ -41,8 +41,7 @@ def set_config(args: Any, local: str) -> Dict[str, Any]:
         "wordlist": WORDLIST[args.page_type],
         "data_path": f"{local}/data/{args.page_type}/{args.country}/{args.job_name}",
         "pages_path": f"{local}/src/jobs/slave_page/pages/{args.country}",
-        "united_states": "asst_tZ4OZ7HNXhpH556FOrqVLTmE",
-        "brazil": "asst_Gg9EqaQUrMv0o2tUap14sgEX",
+        "united_states": os.getenv("OPEN_AI_API_KEY_EN_DESCRIPTION"),
     }
     
     return config
