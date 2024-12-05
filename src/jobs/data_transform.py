@@ -1,18 +1,14 @@
 import importlib
 from typing import Optional
+
 from src.jobs.pipeline import JobBase
 from src.lib.transform.product_info import create_product_info_columns
 from src.lib.transform.transform_functions import (
-    apply_generic_filters,
-    apply_platform_data,
-    create_history_price_column,
-    create_price_discount_percent_col,
-    create_quantity_column,
-    filter_nulls,
-    remove_blacklisted_products,
-)
-from src.lib.utils.log import message
+    apply_generic_filters, apply_platform_data, create_history_price_column,
+    create_price_discount_percent_col, create_quantity_column, filter_nulls,
+    remove_blacklisted_products)
 from src.lib.utils.dataframe import read_df
+from src.lib.utils.log import message
 from src.pages.page import Page
 
 
@@ -27,11 +23,12 @@ def run(job_base: JobBase) -> Optional[None]:
         Optional[None]: Exits the program after transformations and saves the result.
     """
     # Load the appropriate page module dynamically
+    message("Transformation process started.")
+    
     page_module = importlib.import_module(f"src.pages.{job_base.page_name}.page")
     page = Page(**page_module.page_arguments)
     job_base.set_page(page)
 
-    message("Transformation process started.")
     df = read_df(job_base.path_extract_csl, dtype={'ref': str})
 
     # Apply various transformations and filters
@@ -101,4 +98,4 @@ def run(job_base: JobBase) -> Optional[None]:
     )
 
     message("Transformation process completed successfully.")
-    return df
+    df.to_csv(job_base.path_transform_csl, index=False)

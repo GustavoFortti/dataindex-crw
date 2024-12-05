@@ -39,6 +39,7 @@ class Page:
 
     def __init__(
         self,
+        name: str,
         url: str,
         brand: str,
         page_production_status: bool,
@@ -70,6 +71,7 @@ class Page:
             html_dynamic_scroll (Dict[str, Union[float, int]]): Configuration for dynamic scrolling.
         """
         # Page configuration
+        self.name: str = name
         self.url: str = url
         self.brand: str = brand
         self.page_production_status: bool = page_production_status

@@ -2,7 +2,7 @@
 
 LOCAL="$(pwd)"
 
-job_name="data_transform"
+job_name="data_load"
 options="false"
 page_name="a1supplements"
 country="united_states"

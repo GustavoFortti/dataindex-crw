@@ -1,5 +1,4 @@
 import ast
-import functools
 import random
 import json
 import time
@@ -12,11 +11,12 @@ import requests
 
 # Importações de configurações e utilitários (ajuste conforme necessário)
 from src.config.setup.shopify import BASE_URL, HEADERS
-from src.lib.utils.file_system import path_exists, read_file, read_json
+from src.lib.utils.file_system import file_or_path_exists, read_file, read_json
 from src.lib.utils.log import message
-from src.lib.load.connection.components.cupom_code_button import cupom_code_button
-from src.lib.load.connection.components.redirecionamento_button import redirecionamento_button
-from src.lib.load.connection.components.generate_price_chart import generate_price_chart
+from src.lib.load.shopify.components.cupom_code_button import cupom_code_button
+from src.lib.load.shopify.components.redirecionamento_button import redirecionamento_button
+from src.lib.load.shopify.components.generate_price_chart import generate_price_chart
+from src.jobs.pipeline import JobBase
 
 # Definição de constantes
 MAX_RETRIES = 3  # Número máximo de tentativas
@@ -69,7 +69,7 @@ def test_connection() -> bool:
         message(f"Erro ao conectar: {response.status_code} - {response.text}")
         return False
 
-def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
+def format_product_for_shopify(job_base, row: pd.Series) -> Tuple[dict, dict]:
     """
     Formata os dados de um produto para o formato esperado pela API da Shopify.
     
@@ -87,8 +87,8 @@ def format_product_for_shopify(row: pd.Series) -> Tuple[dict, dict]:
             body_html += cupom_code_button(row["cupom_code"], row["discount_percent_cupom"])
         
         description_ai = None
-        path_description_ai = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_description_ai.txt"
-        if path_exists(path_description_ai):
+        path_description_ai = f"{job_base.src_data_path}/{row['page_name']}/products/{row['ref']}_description_ai.txt"
+        if file_or_path_exists(path_description_ai):
             description_ai = read_file(path_description_ai)
         
         if description_ai:
@@ -371,7 +371,7 @@ def update_product_by_sku(sku: str, product_data: dict, variant_data: dict, row:
         product_images = []
         path_product_images = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_images.json"
         message(f"read {path_product_images}")
-        if path_exists(path_product_images):
+        if file_or_path_exists(path_product_images):
             product_images = read_json(path_product_images)['url_images']
         product_images.insert(0, row['image_url'])
         
@@ -749,9 +749,7 @@ def get_product_by_sku(sku: str):
         message(f"Erro ao buscar produto pelo SKU '{sku}': {response.status_code} - {response.text}")
     return None
 
-def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand: list) -> None:
-    global CONF
-    CONF = conf
+def process_and_ingest_products(job_base: JobBase, df: pd.DataFrame, refs: list, brand: list) -> None:
     
     is_connected = test_connection()
     
@@ -783,7 +781,7 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
     df_products_memory_shopify = pd.DataFrame(columns=df.columns)
     len_df = len(df)
     for index, row in df.iterrows():
-        product_data, variant_data = format_product_for_shopify(row)
+        product_data, variant_data = format_product_for_shopify(job_base, row)
         if product_data is None or variant_data is None:
             continue
 
@@ -798,8 +796,8 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
             full_product_data = product_data.copy()
             full_product_data['variants'] = [variant_data]
             product_images = []
-            path_product_images = f"{CONF['src_data_path']}/{row['page_name']}/products/{row['ref']}_images.json"
-            if path_exists(path_product_images):
+            path_product_images = f"{job_base.src_data_path}/{row['page_name']}/products/{row['ref']}_images.json"
+            if file_or_path_exists(path_product_images):
                 product_images = read_json(path_product_images)['url_images']
             product_images.insert(0, row['image_url'])
             full_product_data['images'] = [{"src": url} for url in product_images]
@@ -831,7 +829,7 @@ def process_and_ingest_products(conf: dict, df: pd.DataFrame, refs: list, brand:
             df_products_memory_shopify = pd.concat([df_products_memory_shopify, pd.DataFrame([row])], ignore_index=True)
 
         # Salvar o resultado no caminho especificado
-        df_products_memory_shopify.to_csv(conf['path_products_memory_shopify'], index=False)
+        df_products_memory_shopify.to_csv(job_base.path_memory_shopify, index=False)
         message(f"path_products_memory_shopify salvo com sucesso")
     
     message("INGESTION END")

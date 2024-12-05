@@ -1,4 +1,3 @@
-import selenium
 import time
 from typing import Any, Dict, List, Optional
 
@@ -7,12 +6,12 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.remote.webdriver import WebDriver
 
 import src.lib.extract.selenium_service as se
+from src.jobs.pipeline import JobBase
 from src.lib.utils.data_quality import check_if_job_is_ready
 from src.lib.utils.dataframe import create_or_read_df
 from src.lib.utils.file_system import read_file, save_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_string_break_line, generate_hash
-from src.jobs.pipeline import JobBase
 
 
 def crawler(job_base: JobBase, url: str) -> None:
@@ -20,7 +19,7 @@ def crawler(job_base: JobBase, url: str) -> None:
     Initiates the crawling process for a given page and URL.
 
     Args:
-        page (classmethod): The page object containing configuration and state.
+        job_base (JobBase): The page object containing configuration and state.
         url (str): The URL to crawl.
 
     Returns:

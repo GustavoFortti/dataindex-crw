@@ -8,7 +8,6 @@ from typing import Any, List, Optional, Tuple
 import requests
 
 from src.lib.utils.log import message
-from src.lib.utils.text_functions import DATE_FORMAT
 
 
 def save_file(text: str, path: str) -> None:

@@ -14,7 +14,6 @@ from src.lib.utils.file_system import (create_directory_if_not_exists,
                                        delete_file, has_files)
 from src.lib.utils.general_functions import check_url_existence
 from src.lib.utils.log import message
-from src.lib.utils.text_functions import DATE_FORMAT
 
 
 def check_if_job_is_ready(job_base: JobBase, data: Dict[str, Any], kill_job: bool = True) -> Optional[bool]:
@@ -22,7 +21,7 @@ def check_if_job_is_ready(job_base: JobBase, data: Dict[str, Any], kill_job: boo
     Validates the provided data and determines the job status based on validation results.
 
     Args:
-        job_base (Any): An object containing job configurations and paths.
+        job_base (JobBase): An object containing job configurations and paths.
         data (Dict[str, Any]): A dictionary containing data fields to validate.
         kill_job (bool, optional): Flag indicating whether to terminate the job on validation failure. Defaults to True.
 

@@ -22,7 +22,17 @@ from src.pages.page import Page
 
 
 def run(job_base: JobBase) -> None:
-    message("extract start")
+    """
+    Executes the data extract pipeline for a given job.
+
+    Args:
+        job_base (JobBase): An instance of JobBase containing job-specific configurations.
+
+    Returns:
+        Optional[None]: Exits the program after transformations and saves the result.
+    """
+    # Load the appropriate page module dynamically
+    message("Extraction process started.")
 
     page_module = importlib.import_module(f"src.pages.{job_base.page_name}.page")
     page = Page(**page_module.page_arguments)

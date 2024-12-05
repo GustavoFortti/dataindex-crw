@@ -1,4 +1,5 @@
 page_arguments = {
+    "name": "a1supplements",
     "url": "https://a1supplements.com",
     "brand": "a1supplements",
     "page_production_status": True,

@@ -11,7 +11,7 @@ from src.lib.transform.product_definition import create_product_cols
 from src.lib.utils.file_system import (file_modified_within_x_hours, read_file,
                                        save_file, save_json)
 from src.lib.utils.log import message
-from src.lib.utils.py_functions import flatten_list
+from src.lib.utils.general_functions import flatten_list
 
 
 def create_product_info_columns(df: pd.DataFrame, job_base: JobBase) -> pd.DataFrame:
