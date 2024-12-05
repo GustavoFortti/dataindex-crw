@@ -10,74 +10,72 @@ The project employs a modular architecture to ensure scalability, maintainabilit
 
 ## Directory Structure
 
-### `config/`
-Contains configuration files and scripts for setting up the project environment.
-
-- **`entrypoint/`**: Scripts for environment initialization:
-  - `entrypoint.sh`: Automates environment setup.
-  - `requirements.sh`: Installs required dependencies.
-  - `requirements.txt`: Lists Python dependencies.
-
-- **`setup/`**: Scripts for configuring services:
-  - `display.py`: Manages data visualization settings.
-  - `shopify.py`: Configures integration with Shopify.
-
----
-
 ### `jobs/`
-Manages scheduled data extraction and processing tasks for various pages and brands.
+Manages scheduled data extraction and processing tasks.
 
-- **`data_intelligence/`**: Processes and enriches product data:
-  - `product_class/`: Handles product classification.
-  - `product_description/`: Refines product descriptions.
-  - `product_flavor/`: Identifies and processes product flavors.
-  - `product_remake_description/`: Enhances and updates existing product descriptions.
-
-- **`data_shelf/`**: Handles historical and structured data:
-  - `history_price/`: Tracks product price history.
-  - `load_master/`: Processes and loads master product lists.
-
-- **`master_page/`**: Orchestrates the scraping of main website pages.
-- **`slave_page/`**: Extracts data from subpages, organized by brands and regions:
-  - `brazil/`: Includes configurations for scraping websites in Brazil.
-  - `united_states/`: Configurations for scraping U.S.-based websites.
+- `data_extract.py`: Handles the extraction of raw data.
+- `data_load.py`: Loads processed data into storage.
+- `data_transform.py`: Applies transformations to the extracted data.
+- `pipeline.py`: Orchestrates the ETL workflow.
+- `product_description.py`: Processes and enriches product descriptions.
 
 ---
 
 ### `lib/`
 Core library modules for implementing the ETL pipeline.
 
-- **`extract/`**: Handles data extraction and crawling:
+- **`extract/`**: Handles data extraction and crawling.
   - `crawler.py`: Implements web crawling functionality.
-  - `extract.py`: Extracts specific data elements.
   - `selenium_service.py`: Automates web scraping using Selenium.
 
-- **`transform/`**: Responsible for data transformation and enrichment:
-  - `product_definition.py`: Refines and structures product information.
-  - `transform_functions.py`: Contains auxiliary transformation logic.
+- **`load/`**: Manages data ingestion and components for loading data.
+  - **`components/`**: Contains modular functions for specific tasks:
+    - `cupom_code_button.py`: Manages coupon-related data.
+    - `generate_price_chart.py`: Generates price trend visualizations.
+    - `redirecionamento_button.py`: Handles redirect button functionality.
+  - `shopify.py`: Configures Shopify integration.
 
-- **`load/`**: Manages data storage and ingestion:
-  - `image_ingestion.py`: Handles ingestion of product images.
-  - `load_master.py`: Processes master data for loading.
+- **`transform/`**: Responsible for data transformation and enrichment.
+  - `product_definition.py`: Structures product definitions.
+  - `product_info.py`: Processes product-specific information.
+  - `transform_functions.py`: Contains helper functions for transformations.
+
+- **`utils/`**: Utility functions used throughout the project.
+  - `dataframe.py`: Handles dataframe manipulation.
+  - `data_quality.py`: Ensures the integrity of data.
+  - `file_system.py`: Manages file I/O operations.
+  - `log.py`: Configures project logging.
+  - `text_functions.py`: Processes and manipulates text.
+
+- **`wordlist/`**: Contains word lists and dictionaries for processing.
+  - `wordlist_flavor.py`: Handles flavor-related terms.
+  - `wordlist_format.py`: Manages product format vocabulary.
+  - `collection.py`: Provides collection-based utilities.
 
 ---
 
-### `utils/`
-Utility functions used throughout the project.
+### `pages/`
+Manages website-specific scraping configurations and elements.
 
-- **`dataframe.py`**: Manages and manipulates dataframes.
-- **`file_system.py`**: Handles file management and storage.
-- **`log.py`**: Configures and manages logging.
-- **`py_functions.py`**: General-purpose Python utility functions.
-- **`wordlist/`**: Contains word lists and dictionaries specific to the Brazilian supplement market.
+- **`a1supplements/`**: Contains configurations for the A1 Supplements website.
+  - `page_elements.py`: Defines page elements to be scraped.
+  - `page.py`: Contains page-specific scraping logic.
+  - `page_url.py`: Manages URL definitions for crawling.
+  - `seed.json`: Provides initial configuration for scraping.
+
+- `page.py`: Generic scraping logic applicable to multiple pages.
 
 ---
 
-## Key Technologies
+### Key Technologies
 
-- **Python**: The main programming language for the project.
+- **Python**: Main programming language for the project.
 - **Selenium**: Used for web scraping and automation.
 - **Docker**: Ensures a consistent and portable execution environment.
 - **Shopify API**: Integrated for managing e-commerce data.
 
 ---
+
+## Additional Information
+
+The project is designed to adapt to new sources and requirements with minimal effort. Each module can be enhanced or replaced independently, ensuring flexibility and scalability.
