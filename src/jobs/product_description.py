@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Any, Dict, Optional
 
 import openai
-import pandas as pd
+from dotenv import load_dotenv
 
 from lib.utils.page_functions import get_pages_with_status_true
 from src.lib.utils.dataframe import (create_or_read_df,
@@ -19,6 +19,7 @@ from src.lib.utils.log import message
 from src.lib.utils.text_functions import generate_hash
 from src.lib.wordlist.wordlist import WORDLIST
 
+load_dotenv()
 
 def set_config(args: Any, local: str) -> Dict[str, Any]:
     """

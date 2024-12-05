@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is designed to extract, process, and store data about supplements from various brands and websites in the Brazilian market. Using web scraping and data transformation techniques, the system consolidates product information into structured formats suitable for efficient storage and analysis.
+This project is designed to extract, process, and store data about supplements from various brands and websites in the market. Using web scraping and data transformation techniques, the system consolidates product information into structured formats suitable for efficient storage and analysis.
 
 The project employs a modular architecture to ensure scalability, maintainability, and clarity, following the ETL (Extract, Transform, Load) paradigm.
 
@@ -50,7 +50,7 @@ Core library modules for implementing the ETL pipeline.
 - **`wordlist/`**: Contains word lists and dictionaries for processing.
   - `wordlist_flavor.py`: Handles flavor-related terms.
   - `wordlist_format.py`: Manages product format vocabulary.
-  - `collection.py`: Provides collection-based utilities.
+  - `collection.py`: System of rules for classifying products into collections.
 
 ---
 
@@ -71,7 +71,6 @@ Manages website-specific scraping configurations and elements.
 
 - **Python**: Main programming language for the project.
 - **Selenium**: Used for web scraping and automation.
-- **Docker**: Ensures a consistent and portable execution environment.
 - **Shopify API**: Integrated for managing e-commerce data.
 
 ---

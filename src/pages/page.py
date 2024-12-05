@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 import importlib
 
 from bs4 import BeautifulSoup
@@ -71,7 +71,6 @@ class Page:
             html_dynamic_scroll (Dict[str, Union[float, int]]): Configuration for dynamic scrolling.
         """
         # Page configuration
-        self.name: str = name
         self.url: str = url
         self.brand: str = brand
         self.page_production_status: bool = page_production_status
