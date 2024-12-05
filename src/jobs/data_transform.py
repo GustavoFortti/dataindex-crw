@@ -1,11 +1,11 @@
 import importlib
 from typing import Optional
 from src.jobs.pipeline import JobBase
-from src.lib.transform.product_info import create_product_info_cols
+from src.lib.transform.product_info import create_product_info_columns
 from src.lib.transform.transform_functions import (
     apply_generic_filters,
     apply_platform_data,
-    create_history_price_col,
+    create_history_price_column,
     create_price_discount_percent_col,
     create_quantity_column,
     filter_nulls,
@@ -54,11 +54,10 @@ def run(job_base: JobBase) -> Optional[None]:
     df = create_price_discount_percent_col(df, job_base.data_path)
 
     message("Creating historical prices column.")
-    df = create_history_price_col(df, job_base)
+    df = create_history_price_column(df, job_base)
 
     message("Creating product information columns (product_definition, collections).")
-    df = create_product_info_cols(df, job_base)
-    exit()
+    df = create_product_info_columns(df, job_base)
 
     # Drop rows with critical missing values
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
@@ -69,27 +68,27 @@ def run(job_base: JobBase) -> Optional[None]:
             'ref',
             'title',
             'title_extract',
+            'title_terms',
             'name',
-            'price',
-            'image_url',
-            'product_url',
-            'product_url_affiliated',
-            'ing_date',
             'brand',
             'page_name',
+            'image_url',
+            'product_url',
             'price_numeric',
-            'price_discount_percent',
+            'price',
+            'prices',
             'compare_at_price',
+            'price_discount_percent',
             'quantity',
             'unit_of_measure',
-            'price_qnt',
+            'price_per_quantity',
             'product_tags',
             'collections',
             'product_score',
-            'prices',
-            'title_terms',
-            'cupom_code',
-            'discount_percent_cupom',
+            'affiliate_url',
+            'affiliate_coupon',
+            'affiliate_coupon_discount_percentage',
+            'ing_date',
         ]
     ]
 
@@ -98,7 +97,7 @@ def run(job_base: JobBase) -> Optional[None]:
 
     # Save historical price data
     df[["ref", "price_numeric", "ing_date"]].to_csv(
-        job_base.conf['path_products_history_price'], index=False
+        job_base.path_history_price_file, index=False
     )
 
     message("Transformation process completed successfully.")

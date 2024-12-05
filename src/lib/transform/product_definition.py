@@ -3,10 +3,11 @@ import copy
 from typing import Any, Dict, List
 import pandas as pd
 
-from src.lib.utils.file_system import read_file
+from src.lib.utils.file_system import file_or_path_exists, read_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
 from src.lib.wordlist.collection import COLLECTIONS
+from src.jobs.pipeline import JobBase
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -377,12 +378,12 @@ def get_collections(
     return collections_chosed, product_tags, title_field, product_score
 
 # Função principal para criar as colunas de produto
-def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
+def create_product_cols(job_base: JobBase, df: pd.DataFrame) -> pd.DataFrame:
     message("Criando colunas de descrição do produto")
 
-    wordlist = conf["wordlist"]
-    wordlist_flavor = conf["wordlist_flavor"]
-    country = conf["country"]
+    wordlist = job_base.page.wordlist
+    wordlist_flavor = job_base.page.wordlist_flavor
+    country = job_base.country
 
     # Build the Tries from the wordlists
     trie_root = build_trie(wordlist)
@@ -400,14 +401,14 @@ def create_product_cols(df: pd.DataFrame, conf: Dict[str, Any]) -> pd.DataFrame:
 
         message(f'ref - {ref} | {title} | create_product_cols ')
         
-        description_ai_path = f"{conf['data_path']}/products/{ref}_description_ai.txt"
-        description_ai = read_file(description_ai_path) if path_exists(description_ai_path) else ""
+        description_ai_path = f"{job_base.products_path}/{ref}_description_ai.txt"
+        description_ai = read_file(description_ai_path) if file_or_path_exists(description_ai_path) else ""
 
-        product_class_path = f"{conf['data_path']}/products/{ref}_class.txt"
-        product_class = read_file(product_class_path) if path_exists(product_class_path) else ""
+        product_class_path = f"{job_base.products_path}/{ref}_class.txt"
+        product_class = read_file(product_class_path) if file_or_path_exists(product_class_path) else ""
         
-        flavor_ai_path = f"{conf['data_path']}/products/{ref}_flavor_ai.txt"
-        flavor_ai = read_file(flavor_ai_path) if path_exists(flavor_ai_path) else ""
+        flavor_ai_path = f"{job_base.products_path}/{ref}_flavor_ai.txt"
+        flavor_ai = read_file(flavor_ai_path) if file_or_path_exists(flavor_ai_path) else ""
 
         collections, product_tags, title_terms, product_score = get_collections(
             row, 
