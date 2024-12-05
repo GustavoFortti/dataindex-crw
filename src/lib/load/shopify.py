@@ -1027,18 +1027,18 @@ def process_and_ingest_products(
     )
     session.headers.update(HEADERS)
     
-    # sku_data: dict = get_all_skus_with_product_ids()
+    sku_data: dict = get_all_skus_with_product_ids()
 
-    # # Find and delete duplicated SKUs
-    # duplicate_skus: dict = find_duplicate_skus(sku_data)
-    # delete_duplicates_products(duplicate_skus)
-    # # Update sku_data after deleting duplicates
-    # sku_data = get_all_skus_with_product_ids()
+    # Find and delete duplicated SKUs
+    duplicate_skus: dict = find_duplicate_skus(sku_data)
+    delete_duplicates_products(duplicate_skus)
+    # Update sku_data after deleting duplicates
+    sku_data = get_all_skus_with_product_ids()
 
-    # # Find and delete extra SKUs
-    # for brand in brands:
-    #     skus_to_delete: list = find_extra_skus_to_delete(sku_data, refs, brand)
-    #     delete_extra_skus(skus_to_delete)
+    # Find and delete extra SKUs
+    for brand in brands:
+        skus_to_delete: list = find_extra_skus_to_delete(sku_data, refs, brand)
+        delete_extra_skus(skus_to_delete)
 
     # Update sku_data after deleting extra SKUs
     sku_data = get_all_skus_with_product_ids()
