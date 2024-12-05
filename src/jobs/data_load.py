@@ -37,7 +37,7 @@ def run(job_base: JobBase) -> Optional[None]:
         page: Page = Page(**page_module.page_arguments)
         job_base.append_pages(page)
     
-    create_directory_if_not_exists(job_base.load_data_path)
+    create_directory_if_not_exists(job_base.data_path)
     
     # Step 2: Read transformed data
     message("Reading data.")
@@ -45,7 +45,7 @@ def run(job_base: JobBase) -> Optional[None]:
     df_products_transform_csl: pd.DataFrame = read_and_stack_csvs_dataframes(
         job_base.src_data_path,
         pages_with_status_true,
-        "transform_csl.csv",
+        job_base.file_name_transform_csl,
         dtype={'ref': str}
     )
     df_products_transform_csl = df_products_transform_csl.drop_duplicates(subset='ref').reset_index(drop=True)

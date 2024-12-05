@@ -25,11 +25,23 @@ class JobBase:
 
         # main paths
         self.src_data_path: str = f"{self.local}/data"
+        self.data_path: str = f"{self.src_data_path}/{self.name}"
         self.pages_path: str = f"{self.local}/src/pages"
+        
+        self.file_name_extract_csl: str = f"extract_csl.csv" 
+        self.file_name_extract_temp: str = f"extract_temp.csv" 
+        self.file_name_transform_csl: str = f"transform_csl.csv" 
+        self.file_name_metadata_transform: str = f"metadata_transform.csv"
+        self.file_name_load_csl = "load_csl.csv"
+        self.file_name_memory_shopify = "memory_shopify.csv"
+        self.file_name_shopify_csl = "shopify_csl.csv"
+        
+        self.page: Optional[Page] = None
+        self.pages: List[Page] = []
         
         if self.name in ["data_extract", "data_transform"]:
             self.extract_and_transform_configurations(args)
-        elif self.name == "data_load":
+        elif self.name in ["data_load"]:
             self.load_configurations()
         
     def extract_and_transform_configurations(self, args) -> None:
@@ -40,7 +52,7 @@ class JobBase:
         self.driver: Optional[WebDriver] = None
         self.driver_use_headless: bool = False
         
-        self.data_path: str = f"{self.src_data_path}/{self.page_name}"
+        self.data_path = f"{self.src_data_path}/{self.page_name}"
         self.products_path: str = f"{self.data_path}/products"
         self.history_price_path: str = f"{self.data_path}/history_price"
 
@@ -51,11 +63,11 @@ class JobBase:
         # data paths
         ## history paths
         self.path_history_price: str = f"{self.data_path}/history_price"
-        self.path_history_price_file: str = os.path.join(f"{self.data_path}/history_price", f"products_history_price_{self.date_today}.csv")
+        self.file_path_history_price: str = os.path.join(f"{self.data_path}/history_price", f"products_history_price_{self.date_today}.csv")
         
         ## extract config
-        self.path_extract_csl: str = os.path.join(self.data_path, "extract_csl.csv")
-        self.path_extract_temp: str = os.path.join(self.data_path, "extract_temp.csv")
+        self.path_extract_csl: str = os.path.join(self.data_path, self.file_name_extract_csl)
+        self.path_extract_temp: str = os.path.join(self.data_path, self.file_name_extract_temp)
         self.extract_dataframe_columns: List[str] = ["ref", "title", "price", "image_url", "product_url", "ing_date"]
         self.control_update_all_products: str = os.path.join(self.data_path, "_control_update_all_products_")
         self.control_update_all_products_metadata: str = os.path.join(self.data_path, "_control_update_all_products_metadata_")
@@ -66,22 +78,17 @@ class JobBase:
         self.update_all_products_metadata: bool = self.options == "update_all_products_metadata"
         
         ## transform paths
-        self.path_transform_csl: str = os.path.join(self.data_path, "transform_csl.csv")
-        self.path_metadata_transform: str = os.path.join(self.data_path, "metadata_transform.csv")
+        self.path_transform_csl: str = os.path.join(self.data_path, self.file_name_transform_csl)
+        self.path_metadata_transform: str = os.path.join(self.data_path, self.file_name_metadata_transform)
         
         if not file_or_path_exists(self.path_extract_csl) and self.options != "check_if_job_is_ready":
             self.options = "create_new_page"
             
-        self.page: Optional[Page] = None
-        
     def load_configurations(self) -> None:
-        self.load_data_path: str = f"{self.src_data_path}/{self.name}"
-        self.path_load_csl: str = os.path.join(self.load_data_path, "load_csl.csv")
-        self.path_memory_shopify: str = os.path.join(self.load_data_path, "memory_shopify.csv")
-        self.path_shopify_csl: str = os.path.join(self.load_data_path, "shopify_csl.csv")
+        self.path_load_csl: str = os.path.join(self.data_path, self.file_name_load_csl)
+        self.path_memory_shopify: str = os.path.join(self.data_path, self.file_name_memory_shopify)
+        self.path_shopify_csl: str = os.path.join(self.data_path, self.file_name_shopify_csl)
         
-        self.pages: List[Page] = []
-
     def set_page(self, page: Page) -> None:
         self.page = page
     

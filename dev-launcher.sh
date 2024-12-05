@@ -2,7 +2,7 @@
 
 LOCAL="$(pwd)"
 
-job_name="data_load"
+job_name="product_description"
 options="false"
 page_name="a1supplements"
 country="united_states"

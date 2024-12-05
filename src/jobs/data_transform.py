@@ -6,7 +6,7 @@ import pandas as pd
 from src.jobs.pipeline import JobBase
 from src.lib.transform.product_info import create_product_info_columns
 from src.lib.transform.transform_functions import (
-    apply_generic_filters, apply_platform_data, create_history_price_column,
+    creates_new_columns_from_dirty_columns, apply_platform_data, create_history_price_column,
     create_price_discount_percent_col, create_quantity_column, filter_nulls,
     remove_blacklisted_products)
 from src.lib.utils.dataframe import read_df
@@ -38,8 +38,8 @@ def run(job_base: JobBase) -> Optional[None]:
     message("Filtering null values.")
     df = filter_nulls(df)
 
-    message("Applying generic filters (name, price, brand).")
-    df = apply_generic_filters(df, job_base)
+    message("Create (name, price, brand).")
+    df = creates_new_columns_from_dirty_columns(df, job_base)
 
     message("Applying platform-specific data (coupons, links).")
     df = apply_platform_data(df, job_base)
@@ -98,7 +98,7 @@ def run(job_base: JobBase) -> Optional[None]:
     # Step 7: Save historical price data
     historical_price_columns: list[str] = ["ref", "price_numeric", "ing_date"]
     df[historical_price_columns].to_csv(
-        job_base.path_history_price_file, index=False
+        job_base.file_path_history_price, index=False
     )
 
     # Step 8: Save the transformed data

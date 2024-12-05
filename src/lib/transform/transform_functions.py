@@ -54,7 +54,7 @@ def filter_nulls(df: pd.DataFrame) -> pd.DataFrame:
     return df.dropna(subset=['title', 'price', 'image_url']).reset_index(drop=True)
 
 
-def apply_generic_filters(df: pd.DataFrame, job_base: JobBase) -> pd.DataFrame:
+def creates_new_columns_from_dirty_columns(df: pd.DataFrame, job_base: JobBase) -> pd.DataFrame:
     """
     Applies various data cleaning and transformation filters to the DataFrame.
 
@@ -69,7 +69,7 @@ def apply_generic_filters(df: pd.DataFrame, job_base: JobBase) -> pd.DataFrame:
     df['name'] = df['title'].str.lower()
     df['price'] = df['price'].str.replace(r'[R$]', '', regex=True).str.replace(' ', '')
     df['brand'] = job_base.page.brand
-    df['page_name'] = job_base.name
+    df['page_name'] = job_base.page_name
 
     # Remove thousands separator dots and replace comma with dot
     df['price_numeric'] = df['price'].str.replace(',', '.').astype(float)

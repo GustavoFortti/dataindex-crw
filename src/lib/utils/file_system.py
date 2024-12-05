@@ -9,6 +9,7 @@ import requests
 
 from src.lib.utils.log import message
 
+DATE_FORMAT = "%Y-%m-%d"
 
 def save_file(text: str, path: str) -> None:
     """
