@@ -208,7 +208,7 @@ def create_products_metadata_if_not_exist(job_base: JobBase) -> None:
         None
     """
     message("Creating metadata pages if they do not exist")
-    df_products_extract_csl: pd.DataFrame = read_df(job_base.extract_csl, dtype={'ref': str})
+    df_products_extract_csl: pd.DataFrame = read_df(job_base.path_extract_csl, dtype={'ref': str})
 
     products_path: str = os.path.join(job_base.data_path, "products")
     all_pages: List[str] = list_directory(products_path)
