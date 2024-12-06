@@ -15,7 +15,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 
-from src.jobs.job_manager import JobBase
+from jobs.job_manager import JobBase
 from src.lib.utils.log import message
 
 
@@ -64,7 +64,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
 
     # Initialize WebDriver
     try:
-        driver_version: str = "131.0.6778.108"
+        driver_version: str = "131.0.6778.69"
         chrome_service: Service = Service(
             ChromeDriverManager(driver_version=driver_version).install()
         )

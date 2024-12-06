@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-from src.jobs.job_manager import JobBase
+from jobs.job_manager import JobBase
 from src.lib.utils.dataframe import read_and_stack_historical_csvs_dataframes
 from src.lib.utils.file_system import (
     create_directory_if_not_exists,

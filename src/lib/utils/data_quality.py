@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import pandas as pd
 import requests
 
-from src.jobs.job_manager import JobBase
+from jobs.job_manager import JobBase
 from src.lib.utils.dataframe import (calc_string_diff_in_df_col,
                                      create_or_read_df,
                                      read_and_stack_historical_csvs_dataframes)

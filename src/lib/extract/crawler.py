@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.remote.webdriver import WebDriver
 
 import src.lib.extract.selenium_service as se
-from src.jobs.job_manager import JobBase
+from jobs.job_manager import JobBase
 from src.lib.utils.data_quality import check_if_job_is_ready
 from src.lib.utils.dataframe import create_or_read_df
 from src.lib.utils.file_system import read_file, save_file

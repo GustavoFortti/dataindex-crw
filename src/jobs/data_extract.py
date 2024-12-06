@@ -4,7 +4,7 @@ from typing import List
 
 import pandas as pd
 
-from src.jobs.job_manager import JobBase
+from jobs.job_manager import JobBase
 from src.lib.extract.crawler import crawler
 from src.lib.utils.data_quality import is_price
 from src.lib.utils.dataframe import read_df
@@ -243,7 +243,7 @@ def checkpoint_extract_data(control_file: str) -> bool:
     file_modified: bool = file_modified_within_x_hours(control_file, 12)
     if file_modified:
         message(f"checkpoint_extract_data active - {control_file}")
-        exit(1)
+        exit(0)
         
 
 def update_old_products_metadata(job_base: JobBase) -> None:
