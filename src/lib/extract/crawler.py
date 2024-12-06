@@ -339,7 +339,7 @@ def finalize_extraction(job_base: JobBase, df_products_temp: pd.DataFrame, size_
     """
     df_products_temp = df_products_temp.drop_duplicates(subset='ref').reset_index(drop=True)
 
-    if size_products_temp == len(df_products_temp):
+    if size_products_temp == len(df_products_temp) and job_base.page.crawler_index > 1:
         message("No change in dataframe")
         job_base.page.crawler_n_products_in_index = 0
         return

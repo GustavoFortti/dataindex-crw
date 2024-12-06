@@ -119,6 +119,7 @@ def update_all_products(job_base: JobBase) -> None:
                 break
 
             crawler(job_base, url)
+            
             # Safeguard to prevent infinite loop
             iteration_count += 1
             if iteration_count >= max_iterations:

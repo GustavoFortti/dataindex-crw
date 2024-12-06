@@ -3,7 +3,7 @@
 LOCAL="$(pwd)"
 
 job_name="data_extract"
-options="create_products_metadata_if_not_exist"
+options="update_all_products"
 page_name="a1supplements"
 country="united_states"
 mode="prd"
