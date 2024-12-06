@@ -5,24 +5,23 @@ set -euo pipefail  # Exit on error, unset variable, or pipe failure
 # Default variables
 job_name=""
 page_name=""
-page_type=""
 country=""
 mode="prd"
-local_dir="/home/crw-system/shape-data-shelf-crw"
+LOCAL_DIR="/home/crw-system/shape-data-shelf-crw"
+LOCAL_DIR="/home/mage/main/data-intelligence/shape-data-shelf-crw"
 options=""
 
 # Load external scripts
-source "$local_dir/env/display.sh"
+source "$LOCAL_DIR/env/display.sh"
 
 # Display usage information
 usage() {
     printf "Usage: %s [OPTIONS]\n" "$0"
     printf "  --job_name NAME       Set the job name\n"
     printf "  --options OPTIONS     Set the job options\n"
-    printf "  --page_name NAME      Set the page name\n"
+    printf "  --page_name NAME      Set the job page_name\n"
     printf "  --country COUNTRY     Set the country\n"
     printf "  --mode MODE           Set the mode (default: prd)\n"
-    printf "  --local LOCAL_DIR     Set the local directory (default: %s)\n" "$local_dir"
     printf "  -h, --help            Display this help and exit\n"
 }
 
@@ -49,10 +48,6 @@ while [ "$#" -gt 0 ]; do
             shift
             mode="$1"
             ;;
-        --local)
-            shift
-            local_dir="$1"
-            ;;
         -h|--help)
             usage
             exit 0
@@ -76,11 +71,8 @@ else
     exit 1
 fi
 
-# Set environment variables
-export LOCAL_DIR="$local_dir"
-
 # Create log directory
-log_path="$LOCAL_DIR/data/$page_type/$country/$log_name/logs"
+log_path="$LOCAL_DIR/data/$log_name/logs"
 mkdir -p "$log_path"
 log_file="$log_path/$(date +%Y-%m-%d).log"
 
@@ -93,7 +85,7 @@ log_file="$log_path/$(date +%Y-%m-%d).log"
     printf "  page_name: %s\n" "$page_name"
     printf "  country: %s\n" "$country"
     printf "  mode: %s\n" "$mode"
-    printf "  local_dir: %s\n" "$local_dir"
+    printf "  LOCAL_DIR: %s\n" "$LOCAL_DIR"
     printf "Job started at: %s\n" "$(date '+%Y-%m-%d %H:%M:%S')"
 } >> "$log_file"
 
@@ -104,7 +96,7 @@ if ! python3 "$LOCAL_DIR/main.py" \
     --page_name "$page_name" \
     --country "$country" \
     --mode "$mode" \
-    --local "$local_dir" >> "$log_file" 2>&1; then
+    --local "$LOCAL_DIR" >> "$log_file" 2>&1; then
     printf "Error: Job execution failed.\n" >> "$log_file"
     exit 1
 fi

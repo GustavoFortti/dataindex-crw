@@ -5,7 +5,7 @@ import traceback
 from datetime import datetime
 
 from src.lib.utils.log import message
-from jobs.job_manager import job_manager
+from src.jobs.job_manager import job_manager
 
 
 def parse_arguments():

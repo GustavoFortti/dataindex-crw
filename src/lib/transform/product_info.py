@@ -5,7 +5,7 @@ import html2text
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from src.jobs.pipeline import JobBase
+from src.jobs.job_manager import JobBase
 from src.lib.extract.crawler import crawler
 from src.lib.transform.product_definition import create_product_cols
 from src.lib.utils.file_system import (file_modified_within_x_hours, read_file,

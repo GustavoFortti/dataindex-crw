@@ -7,7 +7,7 @@ from src.lib.utils.file_system import file_or_path_exists, read_file
 from src.lib.utils.log import message
 from src.lib.utils.text_functions import clean_text
 from src.lib.wordlist.collection import COLLECTIONS
-from src.jobs.pipeline import JobBase
+from src.jobs.job_manager import JobBase
 
 
 def extract_tags(description_ai: str) -> str:

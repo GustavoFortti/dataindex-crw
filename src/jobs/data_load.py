@@ -4,7 +4,7 @@ from typing import List, Optional
 
 import pandas as pd
 
-from src.jobs.pipeline import JobBase
+from src.jobs.job_manager import JobBase
 from src.lib.load.shopify import process_and_ingest_products
 from src.lib.utils.dataframe import (create_or_read_df,
                                      read_and_stack_csvs_dataframes)

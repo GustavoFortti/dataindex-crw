@@ -4,7 +4,7 @@ from typing import List
 
 import pandas as pd
 
-from src.jobs.pipeline import JobBase
+from src.jobs.job_manager import JobBase
 from src.lib.extract.crawler import crawler
 from src.lib.utils.data_quality import is_price
 from src.lib.utils.dataframe import read_df
