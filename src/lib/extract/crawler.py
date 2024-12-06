@@ -201,6 +201,7 @@ def extract_data(job_base: JobBase, soup: BeautifulSoup) -> None:
     df_products_temp: pd.DataFrame = create_or_read_df(
         job_base.path_extract_temp, job_base.extract_dataframe_columns
     )
+    
     size_products_temp: int = len(df_products_temp)
     items: List = job_base.page.get_items(soup)
     job_base.page.crawler_n_products_in_index = len(items)
@@ -211,7 +212,7 @@ def extract_data(job_base: JobBase, soup: BeautifulSoup) -> None:
         return
 
     message("valid crawler_n_products_in_index for extraction")
-    process_items(job_base, items, df_products_temp)
+    df_products_temp = process_items(job_base, items, df_products_temp)
     finalize_extraction(job_base, df_products_temp, size_products_temp)
 
 
@@ -238,7 +239,7 @@ def handle_no_items_found(job_base: JobBase) -> None:
         exit(1)
 
 
-def process_items(job_base: JobBase, items: List, df_products_temp: pd.DataFrame) -> None:
+def process_items(job_base: JobBase, items: List, df_products_temp: pd.DataFrame) -> pd.DataFrame:
     """
     Processes each item, extracts relevant data, and updates the temporary DataFrame.
 
@@ -248,8 +249,9 @@ def process_items(job_base: JobBase, items: List, df_products_temp: pd.DataFrame
         df_products_temp (pd.DataFrame): The temporary DataFrame to update.
 
     Returns:
-        None
+        pd.DataFrame: The updated temporary DataFrame.
     """
+    df: pd.DataFrame = pd.DataFrame(columns=job_base.extract_dataframe_columns)
     for item in items:
         data: Dict[str, Optional[str]] = extract_item_data(job_base, item)
         handle_category(job_base, data)
@@ -258,10 +260,11 @@ def process_items(job_base: JobBase, items: List, df_products_temp: pd.DataFrame
         if job_base.check_if_job_is_ready:
             check_if_job_is_ready(job_base, data)
 
-        temp_df: pd.DataFrame = pd.DataFrame([data])
-        df_products_temp = pd.concat([df_products_temp, temp_df], ignore_index=True)
-        df_products_temp.to_csv(job_base.path_extract_temp, index=False)
-
+        df_aux: pd.DataFrame = pd.DataFrame([data])
+        df = pd.concat([df, df_aux], ignore_index=True)
+        
+    df = pd.concat([df_products_temp, df], ignore_index=True)
+    return df
 
 def extract_item_data(job_base: JobBase, item: BeautifulSoup) -> Dict[str, str]:
     """
@@ -339,7 +342,7 @@ def finalize_extraction(job_base: JobBase, df_products_temp: pd.DataFrame, size_
     """
     df_products_temp = df_products_temp.drop_duplicates(subset='ref').reset_index(drop=True)
 
-    if size_products_temp == len(df_products_temp) and job_base.page.crawler_index > 1:
+    if size_products_temp == len(df_products_temp):
         message("No change in dataframe")
         job_base.page.crawler_n_products_in_index = 0
         return
