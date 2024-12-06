@@ -3,7 +3,7 @@ from typing import Optional
 
 import pandas as pd
 
-from jobs.job_manager import JobBase
+from src.jobs.job_manager import JobBase
 from src.lib.transform.product_info import create_product_info_columns
 from src.lib.transform.transform_functions import (
     creates_new_columns_from_dirty_columns, apply_platform_data, create_history_price_column,

@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional
 import openai
 from dotenv import load_dotenv
 
-from jobs.job_manager import JobBase
+from src.jobs.job_manager import JobBase
 from src.lib.utils.dataframe import (create_or_read_df,
                                      read_and_stack_csvs_dataframes)
 from src.lib.utils.file_system import (create_directory_if_not_exists,

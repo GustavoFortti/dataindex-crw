@@ -11,7 +11,7 @@ import pandas as pd
 import requests
 from dotenv import load_dotenv
 
-from jobs.job_manager import JobBase
+from src.jobs.job_manager import JobBase
 from src.lib.load.components.cupom_code_button import cupom_code_button
 from src.lib.load.components.generate_price_chart import generate_price_chart
 from src.lib.load.components.redirecionamento_button import \
