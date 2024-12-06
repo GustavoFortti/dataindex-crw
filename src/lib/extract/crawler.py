@@ -228,7 +228,6 @@ def handle_no_items_found(job_base: JobBase) -> None:
     """
     index: int = job_base.page.crawler_index
     message(f"crawler_n_products_in_index: 0 - No products found on page number {index}")
-    message(job_base.page.get_items(None))
 
     if index == 1:
         message(
