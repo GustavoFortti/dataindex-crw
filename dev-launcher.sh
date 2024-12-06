@@ -2,8 +2,8 @@
 
 LOCAL="$(pwd)"
 
-job_name="product_description"
-options="false"
+job_name="data_extract"
+options="check_if_job_is_ready"
 page_name="a1supplements"
 country="united_states"
 mode="prd"
