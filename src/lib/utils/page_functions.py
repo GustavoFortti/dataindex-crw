@@ -1,7 +1,7 @@
 import importlib
 from typing import List, Dict, Any
 from src.lib.utils.file_system import list_directory
-from src.jobs.pipeline import JobBase
+from jobs.job_manager import JobBase
 
 
 def get_pages_with_status_true(job_base: JobBase) -> List[str]:

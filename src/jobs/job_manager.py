@@ -95,11 +95,11 @@ class JobBase:
     def append_pages(self, page: Page) -> None:
         self.pages.append(page)
 
-def pipeline(args):
-    message("pipeline start")
+def job_manager(args):
+    message("job_manager start")
     job_base = JobBase(args)
     
     job_script = importlib.import_module(f"src.jobs.{job_base.name}")
     job_script.run(job_base)
     
-    message("pipeline end")
+    message("job_manager end")

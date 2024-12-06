@@ -5,7 +5,7 @@ import traceback
 from datetime import datetime
 
 from src.lib.utils.log import message
-from src.jobs.pipeline import pipeline
+from jobs.job_manager import job_manager
 
 
 def parse_arguments():
@@ -35,7 +35,7 @@ def main():
     args = parse_arguments()
     
     try:
-        pipeline(args)
+        job_manager(args)
     except ModuleNotFoundError:
         message(f"Error: Module for job '{args.job_name}' not found.")
         message(f"Traceback: {traceback.format_exc()}")
