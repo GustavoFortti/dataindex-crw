@@ -64,7 +64,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
 
     # Initialize WebDriver
     try:
-        driver_version: str = "131.0.6778.69"
+        driver_version: str = "131.0.6778.108"
         chrome_service: Service = Service(
             ChromeDriverManager(driver_version=driver_version).install()
         )

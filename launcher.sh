@@ -7,8 +7,7 @@ job_name=""
 page_name=""
 country=""
 mode="prd"
-LOCAL_DIR="/home/crw-system/shape-data-shelf-crw"
-LOCAL_DIR="/home/mage/main/data-intelligence/shape-data-shelf-crw"
+LOCAL_DIR="/home/crawler-system/dataindex-crw"
 options=""
 
 # Load external scripts
