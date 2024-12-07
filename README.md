@@ -7,7 +7,7 @@ This project is designed to extract, process, and store data about supplements f
 The project employs a modular architecture to ensure scalability, maintainability, and clarity, following the ETL (Extract, Transform, Load) paradigm.
 
 <video width="320" height="240" controls>
-  <source src="https://drive.google.com/uc?id=1uEEMiGHl6CrHUqqyXI-wdVhJH490tlc1" type="video/mp4">
+  <source src="https://drive.google.com/uc?export=download&id=1uEEMiGHl6CrHUqqyXI-wdVhJH490tlc1" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
