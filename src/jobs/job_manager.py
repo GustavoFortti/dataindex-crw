@@ -32,9 +32,9 @@ class JobBase:
         self.file_name_extract_temp: str = f"extract_temp.csv" 
         self.file_name_transform_csl: str = f"transform_csl.csv" 
         self.file_name_metadata_transform: str = f"metadata_transform.csv"
-        self.file_name_load_csl = "load_csl.csv"
-        self.file_name_memory_shopify = "memory_shopify.csv"
-        self.file_name_shopify_csl = "shopify_csl.csv"
+        self.file_name_load_csl: str = "load_csl.csv"
+        self.file_name_memory_shopify: str = "memory_shopify.csv"
+        self.file_name_shopify_csl: str = "shopify_csl.csv"
         
         self.page: Optional[Page] = None
         self.pages: List[Page] = []
