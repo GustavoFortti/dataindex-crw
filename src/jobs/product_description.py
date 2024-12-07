@@ -8,20 +8,13 @@ import pandas as pd
 from dotenv import load_dotenv
 
 from src.jobs.job_manager import JobBase
-from src.lib.utils.dataframe import (
-    create_or_read_df,
-    read_and_stack_csvs_dataframes
-)
-from src.lib.utils.file_system import (
-    create_directory_if_not_exists,
-    create_file_if_not_exists,
-    file_exists_with_modification_time,
-    list_directory,
-    read_file,
-    read_json,
-    save_file_with_line_breaks,
-    save_json
-)
+from src.lib.utils.dataframe import (create_or_read_df,
+                                     read_and_stack_csvs_dataframes)
+from src.lib.utils.file_system import (create_directory_if_not_exists,
+                                       create_file_if_not_exists,
+                                       file_exists_with_modification_time,
+                                       list_directory, read_file, read_json,
+                                       save_file_with_line_breaks, save_json)
 from src.lib.utils.log import message
 from src.lib.utils.page_functions import get_pages_with_status_true
 from src.lib.utils.text_functions import generate_hash
@@ -216,7 +209,7 @@ def refine_description(description: str, assistant_id: Optional[str]) -> Optiona
         Optional[str]: Refined text or None in case of an error.
     """
     if assistant_id is None:
-        message("OPEN_AI_CHAT_KEY não está definido.")
+        message("OPEN_AI_CHAT_KEY is not set.")
         return None
 
     try:
