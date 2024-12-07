@@ -15,7 +15,7 @@ def get_pages_with_status_true(job_base: JobBase) -> List[str]:
         List[str]: A list of page names with status set to True.
     """
 
-    pages_with_status_true = []
+    pages_with_status_true: List[str] = []
     for page in job_base.pages:
         if page.page_production_status:
             pages_with_status_true.append(page.name)

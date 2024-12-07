@@ -1,15 +1,16 @@
 import logging
 import json
-from typing import Union, Dict
+from typing import Union, Dict, Any
+
 
 def setup_logging(log_file: str = 'app.log') -> None:
     """
-    Configura o sistema de logging para registrar mensagens em um arquivo e no console.
+    Sets up the logging system to record messages to a file and the console.
     
     Args:
-        log_file (str): Caminho para o arquivo de log. Padrão é 'app.log'.
+        log_file (str): Path to the log file. Defaults to 'app.log'.
     """
-    # Configuração básica para o arquivo de log
+    # Basic configuration for the log file
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
@@ -19,31 +20,33 @@ def setup_logging(log_file: str = 'app.log') -> None:
         ]
     )
 
-    # Opcional: Configurações adicionais para handlers específicos podem ser adicionadas aqui
-    # Por exemplo, definir diferentes níveis para arquivo e console
+    # Optional: Additional configurations for specific handlers can be added here
+    # For example, setting different levels for file and console
     # logger = logging.getLogger()
-    # logger.handlers[0].setLevel(logging.DEBUG)  # Arquivo
+    # logger.handlers[0].setLevel(logging.DEBUG)  # File
     # logger.handlers[1].setLevel(logging.INFO)   # Console
 
-def message(msg: Union[str, Dict], level: str = 'info') -> None:
+
+def message(msg: Union[str, Dict[str, Any]], level: str = 'info') -> None:
     """
-    Registra uma mensagem no log. Aceita strings ou dicionários.
+    Logs a message. Accepts strings or dictionaries.
     
     Args:
-        msg (Union[str, Dict]): Mensagem a ser registrada. Pode ser uma string ou um dicionário.
-        level (str): Nível de logging ('debug', 'info', 'warning', 'error', 'critical'). Padrão é 'info'.
+        msg (Union[str, Dict[str, Any]]): Message to be logged. Can be a string or a dictionary.
+        level (str): Logging level ('debug', 'info', 'warning', 'error', 'critical'). Defaults to 'info'.
     """
-    logger = logging.getLogger()
+    logger: logging.Logger = logging.getLogger()
 
-    # Serializa dicionários para JSON
+    # Serialize dictionaries to JSON
     if isinstance(msg, dict):
         try:
             msg = json.dumps(msg, ensure_ascii=False)
         except (TypeError, ValueError) as e:
-            logger.error(f"Falha ao serializar o dicionário para JSON: {e}")
-            msg = str(msg)  # Fallback para string caso a serialização falhe
+            e: Exception
+            logger.error(f"Failed to serialize dictionary to JSON: {e}")
+            msg = str(msg)  # Fallback to string if serialization fails
 
-    # Mapeia o nível de logging para os métodos correspondentes
+    # Map the logging level to the corresponding methods
     level = level.lower()
     if level == 'debug':
         logger.debug(msg)
@@ -56,6 +59,7 @@ def message(msg: Union[str, Dict], level: str = 'info') -> None:
     elif level == 'critical':
         logger.critical(msg)
     else:
-        logger.info(msg)  # Fallback para 'info' se o nível for desconhecido
+        logger.info(msg)  # Fallback to 'info' if the level is unknown
+
 
 setup_logging()

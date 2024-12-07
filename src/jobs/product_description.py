@@ -1,19 +1,27 @@
 import importlib
 import os
 import time
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import openai
+import pandas as pd
 from dotenv import load_dotenv
 
 from src.jobs.job_manager import JobBase
-from src.lib.utils.dataframe import (create_or_read_df,
-                                     read_and_stack_csvs_dataframes)
-from src.lib.utils.file_system import (create_directory_if_not_exists,
-                                       create_file_if_not_exists,
-                                       file_exists_with_modification_time,
-                                       list_directory, read_file, read_json,
-                                       save_file_with_line_breaks, save_json)
+from src.lib.utils.dataframe import (
+    create_or_read_df,
+    read_and_stack_csvs_dataframes
+)
+from src.lib.utils.file_system import (
+    create_directory_if_not_exists,
+    create_file_if_not_exists,
+    file_exists_with_modification_time,
+    list_directory,
+    read_file,
+    read_json,
+    save_file_with_line_breaks,
+    save_json
+)
 from src.lib.utils.log import message
 from src.lib.utils.page_functions import get_pages_with_status_true
 from src.lib.utils.text_functions import generate_hash
@@ -36,7 +44,9 @@ def run(job_base: JobBase) -> Optional[None]:
     """
     # Step 1: Initialize and load the pages
     message("Product description process started.")
-    pages: List[str] = list_directory(job_base.pages_path)
+    pages: Optional[List[str]] = list_directory(job_base.pages_path)
+    if pages is None:
+        pages = []
     pages = [page for page in pages if "." not in page and "__" not in page]
 
     for page_name in pages:
@@ -50,7 +60,9 @@ def run(job_base: JobBase) -> Optional[None]:
     # Control file path
     control_file_path: str = os.path.join(job_base.data_path, "control.json")
     create_file_if_not_exists(control_file_path, "{}")
-    control_data: Dict[str, Any] = read_json(control_file_path)
+    control_data: Optional[Dict[str, Any]] = read_json(control_file_path)
+    if control_data is None:
+        control_data = {}
 
     # Current date in YYYY-MM-DD format
     date_today: str = job_base.date_today
@@ -77,7 +89,7 @@ def run(job_base: JobBase) -> Optional[None]:
     active_pages: List[str] = get_pages_with_status_true(job_base)
 
     # Load the DataFrame with product data
-    df: Any = read_and_stack_csvs_dataframes(
+    df: pd.DataFrame = read_and_stack_csvs_dataframes(
         job_base.src_data_path,
         active_pages,
         job_base.file_name_transform_csl,
@@ -86,7 +98,7 @@ def run(job_base: JobBase) -> Optional[None]:
 
     df = df[['ref', 'brand', 'page_name']]
     product_info_path: str = os.path.join(job_base.data_path, "product_info.csv")
-    df_product_info: Any = create_or_read_df(
+    df_product_info: pd.DataFrame = create_or_read_df(
         path=product_info_path,
         columns=[
             "ref",
@@ -122,7 +134,7 @@ def run(job_base: JobBase) -> Optional[None]:
             df.at[idx, "hash"] = hash_value
             df.at[idx, "has_origin"] = True
 
-        existing_product = df_product_info[df_product_info["ref"] == ref]
+        existing_product: pd.DataFrame = df_product_info[df_product_info["ref"] == ref]
         old_hash: Optional[str] = (
             existing_product["hash"].values[0]
             if not existing_product.empty else None
@@ -133,7 +145,7 @@ def run(job_base: JobBase) -> Optional[None]:
         else:
             df.at[idx, "origin_is_updated"] = 0
 
-        file_status: Any = file_exists_with_modification_time(
+        file_status: Tuple[bool, Optional[str]] = file_exists_with_modification_time(
             products_path,
             f"{ref}_description_ai.txt"
         )
@@ -141,14 +153,14 @@ def run(job_base: JobBase) -> Optional[None]:
         df.at[idx, "latest_description_update"] = file_status[1]
 
     # Sort the DataFrame based on multiple criteria
-    df_sorted = df.sort_values(
+    df_sorted: pd.DataFrame = df.sort_values(
         ["description_exists", "origin_is_updated", "latest_description_update", "has_origin"],
         ascending=[False, False, False, False]
     )
     df_sorted.to_csv(product_info_path, index=False)
 
     # Filter DataFrame for processing
-    df_to_process: Any = df_sorted[
+    df_to_process: pd.DataFrame = df_sorted[
         (df_sorted['has_origin'] == True) &
         ((df_sorted['origin_is_updated'] == 0) | (df_sorted['description_exists'] == 0))
     ]
@@ -192,17 +204,21 @@ def run(job_base: JobBase) -> Optional[None]:
             return
 
 
-def refine_description(description: str, assistant_id: str) -> Optional[str]:
+def refine_description(description: str, assistant_id: Optional[str]) -> Optional[str]:
     """
     Uses the OpenAI API to generate a refined version of the product description.
 
     Args:
         description (str): The product description to be refined.
-        assistant_id (str): The OpenAI assistant ID.
+        assistant_id (Optional[str]): The OpenAI assistant ID.
 
     Returns:
         Optional[str]: Refined text or None in case of an error.
     """
+    if assistant_id is None:
+        message("OPEN_AI_CHAT_KEY não está definido.")
+        return None
+
     try:
         # Set up the OpenAI client
         client = openai.OpenAI()
@@ -218,14 +234,14 @@ def refine_description(description: str, assistant_id: str) -> Optional[str]:
         )
 
         # Execute the assistant to generate a response
-        run = client.beta.threads.runs.create(
+        run: Any = client.beta.threads.runs.create(
             thread_id=thread.id,
             assistant_id=assistant_id
         )
 
         # Periodically check the run status
         while True:
-            run_status = client.beta.threads.runs.retrieve(
+            run_status: Any = client.beta.threads.runs.retrieve(
                 thread_id=thread.id,
                 run_id=run.id
             )
@@ -235,7 +251,7 @@ def refine_description(description: str, assistant_id: str) -> Optional[str]:
                 raise Exception("The execution failed.")
 
         # List all the messages in the thread
-        messages = client.beta.threads.messages.list(thread_id=thread.id)
+        messages: Any = client.beta.threads.messages.list(thread_id=thread.id)
 
         # Get the last message from the assistant
         for msg in messages.data:

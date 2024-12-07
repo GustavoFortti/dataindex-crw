@@ -45,12 +45,12 @@ def check_url_existence(url: str, timeout: int = 5) -> bool:
     Returns:
         bool: True if the URL is accessible (HTTP status code between 200 and 399), False otherwise.
     """
-    ua = UserAgent()
-    headers = {'User-Agent': ua.random}
+    ua: UserAgent = UserAgent()
+    headers: dict[str, str] = {'User-Agent': ua.random}
 
     try:
         # Attempt with HEAD method first
-        response = requests.head(url, headers=headers, timeout=timeout)
+        response: requests.Response = requests.head(url, headers=headers, timeout=timeout)
         if response.status_code == 405:  # Method not allowed
             # Fall back to GET method
             response = requests.get(url, headers=headers, timeout=timeout)

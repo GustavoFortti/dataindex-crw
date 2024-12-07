@@ -16,10 +16,14 @@ def find_in_text_with_wordlist(text: str, wordlist: List[str]) -> bool:
     Returns:
         bool: True if any word from the wordlist is found in the text, False otherwise.
     """
-    cleaned_text: str = clean_text(text)
+    cleaned_text: Optional[str] = clean_text(text)
+    if cleaned_text is None:
+        return False
     for word in wordlist:
-        clean_word: str = clean_text(word)
-        match = re.search(clean_word, cleaned_text)
+        clean_word: Optional[str] = clean_text(word)
+        if clean_word is None:
+            continue
+        match: Optional[re.Match] = re.search(clean_word, cleaned_text)
         if match:
             return True
     return False
@@ -50,9 +54,9 @@ def levenshtein(s1: str, s2: str) -> int:
     for i, c1 in enumerate(s1):
         current_row: List[int] = [i + 1]
         for j, c2 in enumerate(s2):
-            insertions = previous_row[j + 1] + 1      # Insertion
-            deletions = current_row[j] + 1           # Deletion
-            substitutions = previous_row[j] + (c1 != c2)  # Substitution
+            insertions: int = previous_row[j + 1] + 1      # Insertion
+            deletions: int = current_row[j] + 1           # Deletion
+            substitutions: int = previous_row[j] + (c1 != c2)  # Substitution
             current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
 
