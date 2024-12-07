@@ -6,6 +6,8 @@ This project is designed to extract, process, and store data about supplements f
 
 The project employs a modular architecture to ensure scalability, maintainability, and clarity, following the ETL (Extract, Transform, Load) paradigm.
 
+![ETL Process](assets/output_fullhd.gif)
+
 ---
 
 ## Directory Structure
