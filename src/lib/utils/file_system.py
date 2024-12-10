@@ -3,13 +3,14 @@ import os
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
-from typing import Any, List, Optional, Tuple
+from typing import Any, List, Optional, Tuple, Union
 
 import requests
 
 from src.lib.utils.log import message
 
 DATE_FORMAT = "%Y-%m-%d"
+
 
 def save_file(text: str, path: str) -> None:
     """
@@ -20,9 +21,9 @@ def save_file(text: str, path: str) -> None:
         path (str): The file path where the text will be saved.
     """
     create_file_if_not_exists(path, text)
-    with open(path, "w", encoding='utf-8') as file:
+    with open(path, "w", encoding="utf-8") as file:
         message(f"File path: {path}")
-        file.write(str(text))
+        file.write(text)
 
 
 def save_file_with_line_breaks(file_path: str, text: str) -> None:
@@ -36,7 +37,7 @@ def save_file_with_line_breaks(file_path: str, text: str) -> None:
     create_file_if_not_exists(file_path, text)
     lines: List[str] = text.split("\n")
 
-    with open(file_path, "w", encoding='utf-8') as file:
+    with open(file_path, "w", encoding="utf-8") as file:
         for line in lines:
             file.write(line + "\n")
 
@@ -54,13 +55,17 @@ def read_file(file_path: str, return_date: bool = False) -> Optional[str]:
     Returns:
         Optional[str]: The file contents as a string or the modification date if return_date is True.
     """
+    if not file_or_path_exists(file_path):
+        message(f"File {file_path} does not exist.")
+        return None
+    
     try:
         if return_date:
             file_stats = os.stat(file_path)
             # Return the last modification date in readable format
             return datetime.fromtimestamp(file_stats.st_mtime).strftime(DATE_FORMAT)
         else:
-            with open(file_path, 'r', encoding='utf-8') as file:
+            with open(file_path, "r", encoding="utf-8") as file:
                 return file.read()
     except FileNotFoundError:
         return None
@@ -69,7 +74,7 @@ def read_file(file_path: str, return_date: bool = False) -> Optional[str]:
         return None
 
 
-def read_json(file_path: str) -> Optional[Any]:
+def read_json(file_path: str) -> Optional[Union[dict, list]]:
     """
     Reads a JSON file and returns its content or None in case of an error.
 
@@ -77,10 +82,10 @@ def read_json(file_path: str) -> Optional[Any]:
         file_path (str): The path to the JSON file.
 
     Returns:
-        Optional[Any]: The content of the JSON file, or None if an error occurs.
+        Optional[Union[dict, list]]: The content of the JSON file, or None if an error occurs.
     """
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(file_path, "r", encoding="utf-8") as file:
             return json.load(file)
     except FileNotFoundError:
         message(f"The file {file_path} was not found.")
@@ -100,8 +105,8 @@ def save_json(file_name: str, data: Any) -> None:
         data (Any): The data to be saved as JSON.
     """
     message(f"Saving JSON to {file_name}")
-    with open(file_name, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False)
+    with open(file_name, "w", encoding="utf-8") as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 def delete_file(file_path: str) -> None:
@@ -135,11 +140,11 @@ def file_modified_within_x_hours(file_path: str, hours: int) -> bool:
         message("File does not exist")
         return False
 
-    now = datetime.now()
-    last_modification = datetime.fromtimestamp(os.path.getmtime(file_path))
+    now: datetime = datetime.now()
+    last_modification: datetime = datetime.fromtimestamp(os.path.getmtime(file_path))
     message(f"{file_path} last modification: {last_modification}")
 
-    difference = now - last_modification
+    difference: timedelta = now - last_modification
 
     return difference <= timedelta(hours=hours)
 
@@ -167,7 +172,7 @@ def create_file_if_not_exists(file_path: str, text: Optional[str] = None) -> Non
     """
     if not file_or_path_exists(file_path):
         try:
-            with open(file_path, mode='a', encoding='utf-8') as file:
+            with open(file_path, mode="a", encoding="utf-8") as file:
                 if text:
                     file.write(text + "\n")
                 message(f"File '{file_path}' created successfully.")
@@ -206,29 +211,29 @@ def download_image(image_url: str, image_path: str, image_name: str) -> Optional
     """
     message(f"Downloading: {image_url}")
     try:
-        response = requests.get(image_url, timeout=10)
+        response: requests.Response = requests.get(image_url, timeout=10)
 
         if response.status_code == 200:
             # Obtain the content type of the response
-            content_type = response.headers.get('Content-Type', '')
-            
+            content_type: str = response.headers.get("Content-Type", "")
+
             # Determine the file extension based on content type
-            if 'image/jpeg' in content_type:
-                extension = '.jpg'
-            elif 'image/png' in content_type:
-                extension = '.png'
-            elif 'image/gif' in content_type:
-                extension = '.gif'
+            if "image/jpeg" in content_type:
+                extension = ".jpg"
+            elif "image/png" in content_type:
+                extension = ".png"
+            elif "image/gif" in content_type:
+                extension = ".gif"
             else:
                 # Use a generic extension if format is not recognized
-                extension = '.img'
+                extension = ".img"
 
             # Define the full file name with the appropriate extension
-            file_name_with_extension = image_name + extension
-            full_path = os.path.join(image_path, file_name_with_extension)
+            file_name_with_extension: str = image_name + extension
+            full_path: str = os.path.join(image_path, file_name_with_extension)
 
             # Save the image in the correct format
-            with open(full_path, 'wb') as f:
+            with open(full_path, "wb") as f:
                 f.write(response.content)
             return f"Image downloaded successfully! Saved as: {full_path}"
         else:
@@ -259,7 +264,7 @@ def save_images(image_urls: List[str], image_path: str, image_names: List[str]) 
         for future in as_completed(future_to_url):
             url = future_to_url[future]
             try:
-                result = future.result()
+                result: Optional[str] = future.result()
                 if result:
                     message(result)
                 else:
@@ -279,7 +284,7 @@ def file_exists(directory: str, filename: str) -> bool:
     Returns:
         bool: True if the file exists, False otherwise.
     """
-    file_path = os.path.join(directory, filename)
+    file_path: str = os.path.join(directory, filename)
     message(f"Checking if file exists: {file_path}")
     return os.path.exists(file_path)
 
@@ -296,12 +301,12 @@ def file_exists_with_modification_time(directory: str, filename: str) -> Tuple[b
         Tuple[bool, Optional[str]]: A tuple containing a boolean indicating if the file exists,
         and the modification date in YYYY-MM-DD format if it exists.
     """
-    file_path = os.path.join(directory, filename)
+    file_path: str = os.path.join(directory, filename)
     if os.path.exists(file_path):
         # Get the last modification timestamp of the file
-        modification_time = os.path.getmtime(file_path)
+        modification_time: float = os.path.getmtime(file_path)
         # Convert the timestamp to a readable date format
-        readable_time = datetime.fromtimestamp(modification_time).strftime(DATE_FORMAT)
+        readable_time: str = datetime.fromtimestamp(modification_time).strftime(DATE_FORMAT)
         return True, readable_time
     else:
         return False, None
@@ -318,8 +323,11 @@ def delete_directory_and_contents(directory_path: str) -> None:
         message("Directory does not exist.")
         return
 
-    shutil.rmtree(directory_path)
-    message(f"Directory and all contents deleted: {directory_path}")
+    try:
+        shutil.rmtree(directory_path)
+        message(f"Directory and all contents deleted: {directory_path}")
+    except Exception as e:
+        message(f"Error deleting directory '{directory_path}': {e}")
 
 
 def get_old_files_by_percent(
@@ -336,24 +344,23 @@ def get_old_files_by_percent(
     Returns:
         List[str]: A list of selected file names.
     """
-    all_files = [
-        file for file in os.listdir(directory_path)
-        if os.path.isfile(os.path.join(directory_path, file))
+    all_files: List[str] = [
+        file for file in os.listdir(directory_path) if os.path.isfile(os.path.join(directory_path, file))
     ]
-    files_info = []
+    files_info: List[Tuple[str, datetime]] = []
 
     for file in all_files:
-        file_path = os.path.join(directory_path, file)
-        last_modification_time = os.path.getmtime(file_path)
-        last_modification_date = datetime.fromtimestamp(last_modification_time)
+        file_path: str = os.path.join(directory_path, file)
+        last_modification_time: float = os.path.getmtime(file_path)
+        last_modification_date: datetime = datetime.fromtimestamp(last_modification_time)
         files_info.append((file, last_modification_date))
 
     files_info.sort(key=lambda x: x[1], reverse=not sort_ascending)
 
-    files_count = len(files_info)
-    slice_count = max(1, int((percentage / 100.0) * files_count))
+    files_count: int = len(files_info)
+    slice_count: int = max(1, int((percentage / 100.0) * files_count))
 
-    selected_files = [file_info[0] for file_info in files_info[:slice_count]]
+    selected_files: List[str] = [file_info[0] for file_info in files_info[:slice_count]]
 
     if len(selected_files) > 30:
         selected_files = selected_files[:30]
@@ -373,7 +380,7 @@ def list_directory(path: str) -> Optional[List[str]]:
     """
     try:
         if os.path.isdir(path):
-            contents = os.listdir(path)
+            contents: List[str] = os.listdir(path)
             message(f"Contents of directory '{path}':")
             items: List[str] = []
             for item in contents:
@@ -398,10 +405,10 @@ def has_files(directory: str) -> bool:
         bool: True if the directory contains files, False otherwise.
     """
     try:
-        items = os.listdir(directory)
+        items: List[str] = os.listdir(directory)
 
         for item in items:
-            item_path = os.path.join(directory, item)
+            item_path: str = os.path.join(directory, item)
             if os.path.isfile(item_path):
                 return True
         return False

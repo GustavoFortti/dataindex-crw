@@ -58,6 +58,7 @@ def run(job_base: JobBase) -> Optional[None]:
 
     message("Creating product information columns (product_definition, collections).")
     df = create_product_info_columns(df, job_base)
+    
 
     # Step 4: Drop rows with critical missing values
     df = df.dropna(subset=["ref", "title", "price", "image_url", "product_url"], how="any")
@@ -83,6 +84,7 @@ def run(job_base: JobBase) -> Optional[None]:
         'price_per_quantity',
         'product_tags',
         'collections',
+        'collections_class',
         'product_score',
         'affiliate_url',
         'affiliate_coupon',

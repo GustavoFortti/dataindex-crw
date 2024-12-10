@@ -1,4 +1,5 @@
 import os
+import random
 from typing import Any, Callable, Dict, List, Optional
 
 import html2text
@@ -7,11 +8,13 @@ from bs4 import BeautifulSoup
 
 from src.jobs.job_manager import JobBase
 from src.lib.extract.crawler import crawler
-from src.lib.transform.product_definition import create_product_cols
+from src.lib.transform.product_definition_by_class import \
+    create_product_cols_by_class
 from src.lib.utils.file_system import (file_modified_within_x_hours, read_file,
                                        save_file, save_json)
-from src.lib.utils.log import message
 from src.lib.utils.general_functions import flatten_list
+from src.lib.utils.log import message
+from src.lib.transform.product_definition import create_product_cols
 
 
 def create_product_info_columns(df: pd.DataFrame, job_base: JobBase) -> pd.DataFrame:
@@ -30,7 +33,14 @@ def create_product_info_columns(df: pd.DataFrame, job_base: JobBase) -> pd.DataF
         extract_metadata_from_page(df, job_base)
 
     message("CREATING columns [product_definition, product_collection]")
-    return create_product_cols(job_base, df)
+    df['collections'] = None
+    df['product_tags'] = None
+    df['title_terms'] = None
+    df['product_score'] = random.randint(1, 1000)
+    
+    df = create_product_cols_by_class(job_base, df)
+    
+    return df
 
 
 def extract_metadata_from_page(df: pd.DataFrame, job_base: JobBase) -> None:

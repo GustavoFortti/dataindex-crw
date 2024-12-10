@@ -49,7 +49,6 @@ def run(job_base: JobBase) -> Optional[None]:
         dtype={'ref': str}
     )
     df_products_transform_csl = df_products_transform_csl.drop_duplicates(subset='ref').reset_index(drop=True)
-    df_products_transform_csl = df_products_transform_csl.sample(frac=1).reset_index(drop=True)
 
     # Add column 'is_transform_data' to indicate new data
     columns: List[str] = df_products_transform_csl.columns.tolist()
@@ -83,14 +82,14 @@ def run(job_base: JobBase) -> Optional[None]:
     df = df.drop(columns=['is_transform_data'])
     df = df[columns]
     df_products_transform_csl = df_products_transform_csl.drop(columns=['is_transform_data'])
-
+    df = df[~df["collections_class"].isna()]
+    
     # Step 4: Process data with Shopify
     brands: List[str] = [page.brand for page in job_base.pages]
 
     if not df.empty:
         refs: List[str] = df_products_transform_csl["ref"].tolist()
         process_and_ingest_products(job_base, df, refs, brands)
-        exit()
         df.to_csv(job_base.path_shopify_csl, index=False)
         message(f"path_shopify_csl - {file_or_path_exists(job_base.path_shopify_csl)}")
     

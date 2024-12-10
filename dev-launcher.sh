@@ -2,8 +2,8 @@
 
 LOCAL="$(pwd)"
 
-job_name="data_extract"
-options="update_all_products"
+job_name="data_load"
+options="false"
 page_name="a1supplements"
 country="united_states"
 mode="dev"
