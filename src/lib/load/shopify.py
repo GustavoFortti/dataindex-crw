@@ -498,7 +498,7 @@ def update_product_by_sku(
         # Update images
         images_success: bool = update_images(session, product_id, product_images)
         # Update collections only if 'collections' exists
-        if 'collections_class' in row and pd.notna(row['collections_class']):
+        if 'collections' in row and pd.notna(row['collections']):
             collections_success: bool = update_collections(session, product_id, row)
         else:
             collections_success = True  # No collections to update
@@ -786,7 +786,7 @@ def update_collections(session: RateLimitedSession, product_id: int, row: pd.Ser
         bool: True if collections were successfully updated, False otherwise.
     """
     try:
-        collections_field = row['collections_class']
+        collections_field = row['collections']
         if pd.isna(collections_field):
             desired_collections: list = ["No Collection"]
         elif isinstance(collections_field, list):

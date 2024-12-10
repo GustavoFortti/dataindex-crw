@@ -28,7 +28,7 @@ def create_product_cols_by_class(job_base: JobBase, df: pd.DataFrame) -> pd.Data
         aux_class = str(product_class.split(",")) if product_class else None
         data.append(aux_class)
         
-    df['collections_class'] = data
+    df['collections'] = data
     return df
         
         
