@@ -103,28 +103,43 @@ def load_url(
     driver: WebDriver,
     url: str,
     element_selector: Optional[str] = None,
-    timeout: int = 30
+    timeout: int = 30,
+    reload_timeout: int = 10,
+    max_retries: int = 3
 ) -> None:
     """
-    Loads a URL using the provided WebDriver and waits for an element if specified.
+    Loads a URL using the provided WebDriver, waits for the page to load, and retries if needed.
 
     Args:
         driver (WebDriver): The Selenium WebDriver instance.
         url (str): The URL to load.
         element_selector (Optional[str]): CSS selector for an element to wait for.
         timeout (int): Time to wait for the element in seconds.
+        reload_timeout (int): Time to wait for the page load check in seconds.
+        max_retries (int): Maximum number of reload attempts.
 
     Raises:
-        TimeoutException: If the element does not appear within the timeout.
+        TimeoutException: If the page does not load or the element does not appear within the time limit.
     """
-    driver.get(url)
-    driver.implicitly_wait(100)
-    if element_selector:
+    retries = 0
+    while retries < max_retries:
+        driver.get(url)
         try:
-            element_present = EC.presence_of_element_located((By.CSS_SELECTOR, element_selector))
-            WebDriverWait(driver, timeout).until(element_present)
+            # Wait for the page to fully load
+            WebDriverWait(driver, reload_timeout).until(
+                lambda d: d.execute_script("return document.readyState") == "complete"
+            )
+            # Check for the presence of the specified element, if any
+            if element_selector:
+                element_present = EC.presence_of_element_located((By.CSS_SELECTOR, element_selector))
+                WebDriverWait(driver, timeout).until(element_present)
+            return  # Page loaded successfully
         except TimeoutException:
-            message(f"Timed out waiting for element {element_selector} to be present")
+            print(f"Retry {retries + 1}/{max_retries}: Page did not load, retrying...")
+            retries += 1
+
+    # If all retries fail, raise an exception
+    raise TimeoutException(f"Failed to load page {url} after {max_retries} retries.")
 
 
 def get_page_source(
