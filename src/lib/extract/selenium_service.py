@@ -67,7 +67,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
     # Initialize WebDriver
     try:
         chrome_version = get_chrome_version()
-        driver_version: str = chrome_version
+        driver_version: str = "131.0.6778.139"
         chrome_service: Service = Service(
             ChromeDriverManager(driver_version=driver_version).install()
         )
@@ -253,15 +253,10 @@ def get_chrome_version() -> str:
         str: The version number of Google Chrome, or "latest" if an error occurs.
     """
     try:
-        # Execute the shell command to get the Chrome version
         version_output: str = subprocess.check_output(['google-chrome', '--version']).decode('utf-8')
-
-        # Extract the version number using a regular expression
         version_match: Optional[re.Match] = re.search(r'(\d+\.\d+\.\d+\.\d+)', version_output)
         if version_match:
             return version_match.group(1)
     except Exception as error:
-        # Log the error and return a default version
         message(f"Error retrieving Chrome version: {error}")
-    
     return "latest"
