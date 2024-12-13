@@ -40,11 +40,15 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-software-rasterizer")
+    options.add_argument("--ignore-certificate-errors")
+    options.add_argument("--disable-extensions")
     options.add_argument("--disable-gpu")
     options.add_argument("--remote-debugging-port=9222")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--enable-logging")
     options.add_argument("--v=1")
+    options.add_argument("--remote-allow-origins=*")
+    options.add_argument("disable-infobars")
 
     # Headless mode configurations
     if job_base.driver_use_headless:
