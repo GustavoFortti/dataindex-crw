@@ -3,7 +3,7 @@ page_arguments = {
     "url": "https://a1supplements.com",
     "brand": "a1supplements",
     "page_production_status": True,
-    "crawler_driver_user_agent": None,
+    "crawler_driver_user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
     "affiliate_url": None,
     "affiliate_coupon_discount_percentage": None,
     "affiliate_coupon": None,

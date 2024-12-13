@@ -33,7 +33,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
     """
     options: Options = webdriver.ChromeOptions()
 
-    display: Optional[str] = os.getenv('DISPLAY')
+    display: Optional[str] = ":0"#os.getenv('DISPLAY')
     message(f"display - {display}")
 
     # General Chrome options
