@@ -129,23 +129,37 @@ def load_url(
     """
     retries = 0
     while retries < max_retries:
-        driver.get(url)
         try:
-            # Wait for the page to fully load
+            # Definir o tempo máximo para o carregamento da página
+            driver.set_page_load_timeout(reload_timeout)
+            message(f"Carregando a URL: {url} (Tentativa {retries + 1}/{max_retries})")
+            driver.get(url)
+            # Esperar até que a página esteja completamente carregada
             WebDriverWait(driver, reload_timeout).until(
                 lambda d: d.execute_script("return document.readyState") == "complete"
             )
-            # Check for the presence of the specified element, if any
+            # Verificar se o elemento especificado está presente
             if element_selector:
                 element_present = EC.presence_of_element_located((By.CSS_SELECTOR, element_selector))
                 WebDriverWait(driver, timeout).until(element_present)
-            return  # Page loaded successfully
+            message(f"Página carregada com sucesso na tentativa {retries + 1}.")
+            return  # Página carregada com sucesso
         except TimeoutException:
-            print(f"Retry {retries + 1}/{max_retries}: Page did not load, retrying...")
+            message(f"Retry {retries + 1}/{max_retries}: Página não carregou em {reload_timeout} segundos, recarregando...")
             retries += 1
+            try:
+                # Opcional: Parar o carregamento atual da página
+                driver.execute_script("window.stop();")
+            except WebDriverException as e:
+                message(f"Erro ao parar o carregamento da página: {e}")
+            time.sleep(1)  # Pequeno intervalo antes de tentar novamente
+        except WebDriverException as e:
+            message(f"WebDriverException ocorreu: {e}. Recarregando a página...")
+            retries += 1
+            time.sleep(1)
 
-    # If all retries fail, raise an exception
-    raise TimeoutException(f"Failed to load page {url} after {max_retries} retries.")
+    # Se todas as tentativas falharem, lançar exceção
+    raise TimeoutException(f"Falha ao carregar a página {url} após {max_retries} tentativas.")
 
 
 def get_page_source(
@@ -205,45 +219,68 @@ def dynamic_scroll(
     scroll_increment: float = min(total_height * percentage, scroll_step)
     last_scrolled_height: int = 0
     attempt_count: int = 0
+    max_scroll_reached: int = 0  # Rastreia a altura máxima alcançada
 
-    # Get a visible element to move the mouse over
-    body_element = driver.find_element(By.TAG_NAME, "body")
+    # Obter um elemento visível para mover o mouse
+    try:
+        body_element = driver.find_element(By.TAG_NAME, "body")
+    except:
+        message("Elemento 'body' não encontrado. Abortando scroll.")
+        return
+
     action = ActionChains(driver)
 
     while True:
+        # Realiza o scroll para baixo
         driver.execute_script(f"window.scrollBy(0, {scroll_increment});")
         time.sleep(time_sleep)
 
+        # Obtém a posição atual do scroll e a nova altura total da página
         scrolled_height: int = driver.execute_script("return window.pageYOffset;")
-        message(f"Current scroll position: {scrolled_height}/{total_height}")
+        new_total_height: int = driver.execute_script("return document.body.scrollHeight")
 
-        # Move the mouse to the body element
+        message(f"Current scroll position: {scrolled_height}/{new_total_height}")
+
+        # Move o mouse para o elemento 'body' para evitar detecção
         action.move_to_element(body_element).perform()
 
-        if scrolled_height == last_scrolled_height:
-            attempt_count += 1
-            if attempt_count >= max_attempts:
-                message("Scroll position unchanged for consecutive attempts. Ending scroll.")
-                break
-        else:
-            attempt_count = 0
-
-        last_scrolled_height = scrolled_height
-
-        new_total_height: int = driver.execute_script("return document.body.scrollHeight")
+        # Atualiza a altura total se a página aumentou
         if new_total_height > total_height:
-            # Adjust total height and scroll increment if the page size increased
+            message(f"Page height increased from {total_height} to {new_total_height}.")
             total_height = new_total_height
             scroll_increment = min(total_height * percentage, scroll_step)
 
-            # Calculate return distance and adjust scroll position
+            # Atualiza a altura máxima alcançada
+            if scrolled_height > max_scroll_reached:
+                max_scroll_reached = scrolled_height
+
+            # Calcula a nova posição de scroll para evitar ficar preso
             return_distance: float = min(scrolled_height * return_percentage, max_return)
             new_scroll_position: float = max(scrolled_height - return_distance, 0)
             driver.execute_script(f"window.scrollTo(0, {new_scroll_position});")
-            message(f"Page size increased to {total_height}. Returning to position {new_scroll_position} due to size increase.")
+            message(f"Returning to position {new_scroll_position} due to page height increase.")
 
+            # Atualiza a altura máxima alcançada após o retorno
+            max_scroll_reached = max(max_scroll_reached, new_scroll_position)
+
+        # Verifica se o scroll avançou
+        if scrolled_height > last_scrolled_height:
+            message("Scroll avançou. Resetando contador de tentativas.")
+            attempt_count = 0
+            last_scrolled_height = scrolled_height
+            max_scroll_reached = max(max_scroll_reached, scrolled_height)
+        else:
+            attempt_count += 1
+            message(f"Scroll não avançou. Tentativa {attempt_count}/{max_attempts}.")
+            if attempt_count >= max_attempts:
+                message("Scroll não avançou após tentativas máximas. Finalizando scroll.")
+                break
+
+        # Condição de término: se o scroll atingiu ou ultrapassou a altura total da página
         if scrolled_height + scroll_increment >= total_height:
+            message("Atingiu o final da página. Finalizando scroll.")
             break
+
 
 def get_chrome_version() -> str:
     """

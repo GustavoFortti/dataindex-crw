@@ -1,7 +1,7 @@
 page_arguments = {
-    "name": "a1supplements",
-    "url": "https://a1supplements.com",
-    "brand": "a1supplements",
+    "name": "iherb",
+    "url": "https://br.iherb.com",
+    "brand": "iherb",
     "page_production_status": True,
     "crawler_driver_user_agent": None,
     "affiliate_url": None,

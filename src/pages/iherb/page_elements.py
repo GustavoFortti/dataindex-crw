@@ -15,7 +15,7 @@ def get_items(soup: BeautifulSoup) -> List[BeautifulSoup]:
     return soup.find_all('div', class_='product-cell-container')
 
 
-def get_product_url(soup: BeautifulSoup) -> Optional[str]:
+def get_product_url(soup: BeautifulSoup, base_url: str) -> Optional[str]:
     """
     Extracts the product URL from the given BeautifulSoup object.
 

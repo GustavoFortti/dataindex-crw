@@ -6,7 +6,7 @@ job_name="data_extract"
 options="update_all_products_metadata"
 page_name="a1supplements"
 country="united_states"
-mode="prd"
+mode="dev"
 
 python3 "$LOCAL/main.py" \
         --job_name "$job_name" \

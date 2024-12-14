@@ -50,13 +50,13 @@ def check_url_existence(url: str, timeout: int = 5) -> bool:
 
     try:
         # Attempt with HEAD method first
-        response: requests.Response = requests.head(url, headers=headers, timeout=timeout)
-        if response.status_code == 405:  # Method not allowed
+        response = requests.head(url, headers=headers, timeout=timeout)
+        if response.status_code in [405, 403]:  # Method not allowed
             # Fall back to GET method
             response = requests.get(url, headers=headers, timeout=timeout)
+            
         # Return True if status code is between 200 and 399
-        return 200 <= response.status_code < 400
+        return 200 <= response.status_code < 404
     except requests.RequestException as e:
-        # Log the error and return False
         print(f"Error checking URL '{url}': {e}")
         return False
