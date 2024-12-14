@@ -110,7 +110,7 @@ def load_url(
     url: str,
     element_selector: Optional[str] = None,
     timeout: int = 30,
-    reload_timeout: int = 10,
+    reload_timeout: int = 30,
     max_retries: int = 3
 ) -> None:
     """
