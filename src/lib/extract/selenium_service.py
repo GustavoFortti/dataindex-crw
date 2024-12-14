@@ -33,7 +33,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
     """
     options: Options = webdriver.ChromeOptions()
 
-    display: Optional[str] = ":0"#os.getenv('DISPLAY')
+    display: Optional[str] = os.getenv('DISPLAY')
     message(f"display - {display}")
 
     # General Chrome options
@@ -70,7 +70,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
     # Initialize WebDriver
     try:
         chrome_version = get_chrome_version()
-        driver_version: str = "131.0.6778.139"
+        driver_version: str = chrome_version
         chrome_service: Service = Service(
             ChromeDriverManager(driver_version=driver_version).install()
         )
