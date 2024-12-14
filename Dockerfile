@@ -37,6 +37,7 @@ RUN wget -q https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/131.0.67
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+RUN apt-get install -y xvfb
 
 # Copiar o código da aplicação
 COPY . .

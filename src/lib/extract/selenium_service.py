@@ -51,7 +51,7 @@ def initialize_selenium(job_base: JobBase) -> WebDriver:
 
     # Headless mode configurations
     if job_base.driver_use_headless:
-        options.add_argument("--headless")
+        options.add_argument("--headless=new")
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)

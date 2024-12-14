@@ -50,7 +50,7 @@ class JobBase:
         
         # crawler configs
         self.driver: Optional[WebDriver] = None
-        self.driver_use_headless: bool = False
+        self.driver_use_headless: bool = True if self.mode == "prd" else False
         
         self.data_path = f"{self.src_data_path}/{self.page_name}"
         self.products_path: str = f"{self.data_path}/products"
